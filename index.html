@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mizhaev: Equivelar Octahedron of Genus 3 — interactive model</title>
+<link rel="icon" href="data:,">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+  }
+}
+</script>
+<style>
+  :root { color-scheme: dark; --panel: rgba(15, 20, 30, .91); --line: rgba(180, 200, 230, .18); --muted: #a8b4c8; --text: #eef3fb; --accent: #82d8ff; }
+  * { box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #080c13; color: var(--text); font: 13px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  #scene { position: fixed; inset: 0; display: block; width: 100%; height: 100%; outline: none; }
+  .panel { position: fixed; z-index: 3; background: var(--panel); border: 1px solid var(--line); border-radius: 11px; box-shadow: 0 8px 30px rgba(0,0,0,.25); backdrop-filter: blur(12px); }
+  #controls { top: calc(14px + env(safe-area-inset-top)); left: calc(14px + env(safe-area-inset-left)); width: min(330px, calc(100vw - 28px)); max-height: calc(100vh - 28px); max-height: calc(100dvh - 28px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); overflow: auto; padding: 14px; }
+  summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 10px; cursor: pointer; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "▾"; color: var(--muted); font-size: 13px; }
+  details:not([open]) > summary::after { content: "▸"; }
+  h1 { margin: 0; font-size: 15px; line-height: 1.35; letter-spacing: .01em; font-weight: 650; }
+  .subtitle { color: var(--muted); font-size: 11px; margin: 5px 0 9px; line-height: 1.4; }
+  .topology-details { margin-top: 7px; border-top: 1px solid var(--line); padding-top: 9px; }
+  .topology-details .stat { display: flex; justify-content: space-between; gap: 12px; margin: 3px 0; }
+  .section-title { color: #c2d0e4; text-transform: uppercase; font-size: 10px; letter-spacing: .11em; font-weight: 700; margin: 13px 0 7px; }
+  .button-row { display: flex; gap: 7px; }
+  button { border: 1px solid rgba(177,198,225,.22); background: rgba(255,255,255,.06); color: var(--text); padding: 7px 10px; border-radius: 7px; font: inherit; cursor: pointer; }
+  @media (hover: hover) { button:hover { background: rgba(130,216,255,.13); border-color: rgba(130,216,255,.5); } }
+  .button-row button { flex: 1; }
+  .control-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 7px 0; }
+  .control-row label { flex: 1; color: #e0e7f2; }
+  select { min-width: 150px; max-width: 178px; border: 1px solid rgba(177,198,225,.22); background: #151d2b; color: var(--text); padding: 6px 8px; border-radius: 7px; font: inherit; }
+  input[type="checkbox"] { accent-color: #75d4ff; width: 14px; height: 14px; margin: 0 2px 0 8px; }
+  input[type="range"] { width: 125px; accent-color: #75d4ff; }
+  .range-wrap { display: flex; align-items: center; gap: 7px; }
+  output { color: var(--accent); min-width: 30px; text-align: right; font-variant-numeric: tabular-nums; }
+  .hint { color: var(--muted); font-size: 11px; margin-top: 8px; }
+  .hint-touch { display: none; }
+  kbd { display: inline-block; border: 1px solid rgba(210,225,245,.24); border-radius: 4px; padding: 0 4px; color: #d9e5f6; background: rgba(255,255,255,.05); font: inherit; font-size: 10px; }
+  #stats { top: calc(14px + env(safe-area-inset-top)); right: calc(14px + env(safe-area-inset-right)); width: 228px; padding: 12px 13px; }
+  #stats > summary { margin: 0; }
+  #stats .stat { display: flex; justify-content: space-between; gap: 12px; margin: 3px 0; }
+  #stats .num { font-variant-numeric: tabular-nums; color: #d9eaff; }
+  #validation { margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--line); color: #8fe1b2; font-size: 11px; }
+  #validation.fail { color: #ff9e9e; }
+  #camera-info { position: fixed; z-index: 2; left: calc(14px + env(safe-area-inset-left)); bottom: calc(13px + env(safe-area-inset-bottom)); padding: 8px 11px; max-width: min(460px, calc(100vw - 28px)); background: rgba(15,20,30,.78); border: 1px solid var(--line); border-radius: 8px; color: var(--muted); font: 11px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; pointer-events: none; }
+  .subtitle a { color: #a9cfe8; text-decoration: none; }
+  .subtitle a:hover { text-decoration: underline; }
+  @media (max-width: 650px) {
+    #controls { top: calc(8px + env(safe-area-inset-top)); left: calc(8px + env(safe-area-inset-left)); width: min(300px, calc(100vw - 16px)); max-height: 59vh; max-height: 59dvh; padding: 11px; }
+    #stats { right: calc(8px + env(safe-area-inset-right)); top: auto; bottom: calc(8px + env(safe-area-inset-bottom)); width: min(228px, calc(100vw - 16px)); padding: 9px; font-size: 11px; }
+  }
+  @media (max-width: 650px), (pointer: coarse) {
+    #camera-info { display: none; }
+  }
+  @media (pointer: coarse) {
+    .hint-mouse { display: none; }
+    .hint-touch { display: inline; }
+    summary { min-height: 32px; }
+    .control-row { min-height: 40px; }
+    button, select { min-height: 40px; }
+    input[type="checkbox"] { width: 22px; height: 22px; }
+    input[type="range"] { height: 32px; }
+  }
+</style>
+</head>
+<body>
+<canvas id="scene" aria-label="Interactive 3D model"></canvas>
+<details id="controls" class="panel" open>
+  <summary><h1 id="model-title">Equivelar Octahedron of Genus 3</h1></summary>
+  <div id="model-subtitle" class="subtitle" style="margin-top:2px"><a href="https://arxiv.org/abs/2609.17700" target="_blank" rel="noopener noreferrer">Ruslan Mizhaev · arXiv:2609.17700v1</a></div>
+  <div class="section-title">Geometry display</div>
+  <div class="control-row"><label for="polyhedron-select">Polyhedron</label><select id="polyhedron-select" aria-label="Select polyhedron">
+    <option value="mizhaev">Mizhaev · genus 3</option>
+    <option value="szilassi">Szilassi · 1977</option>
+    <option value="csaszar">Császár · 1949</option>
+    <option value="tetrahedron">Tetrahedron</option>
+  </select></div>
+  <div class="control-row"><label for="black-faces-toggle">All faces black</label><input id="black-faces-toggle" type="checkbox"></div>
+  <div class="control-row"><label for="opacity-range">Face opacity</label><span class="range-wrap"><input id="opacity-range" type="range" min="0" max="100" value="55"><output id="opacity-value">55%</output></span></div>
+  <div class="control-row"><label for="labels-toggle">Show vertex numbers</label><input id="labels-toggle" type="checkbox"></div>
+  <div class="control-row"><label for="rotate-toggle">Auto-rotate model</label><input id="rotate-toggle" type="checkbox"></div>
+  <div class="button-row" style="margin-top:12px">
+    <button id="reset-view" type="button">Reset View</button>
+  </div>
+  <div class="hint"><span class="hint-mouse">Drag to rotate, right-drag to pan, wheel to zoom.</span><span class="hint-touch">One finger to rotate, two fingers to zoom and pan.</span> Edges are always visible.</div>
+</details>
+<details id="stats" class="panel" open aria-label="Model properties">
+  <summary class="section-title">Topology</summary>
+  <div class="topology-details">
+    <div class="stat"><span>Vertices (V)</span><span class="num" id="stat-v">24</span></div>
+    <div class="stat"><span>Edges (E)</span><span class="num" id="stat-e">36</span></div>
+    <div class="stat"><span>Faces (F)</span><span class="num" id="stat-f">8</span></div>
+    <div class="stat"><span>Vertices / face</span><span class="num" id="stat-face-vertices">9</span></div>
+    <div class="stat"><span>Surface genus / handles</span><span class="num" id="stat-genus">3</span></div>
+    <div class="stat"><span>Euler characteristic</span><span class="num" id="stat-chi">−4</span></div>
+    <div class="stat"><span>Adjacent face pairs</span><span class="num" id="stat-face-pairs">28 / 28</span></div>
+    <div class="stat"><span>Adjacent vertex pairs</span><span class="num" id="stat-vertex-pairs">36 / 276</span></div>
+    <div id="validation">Checking source geometry…</div>
+    <div class="subtitle" style="margin-top:10px"><a href="https://en.wikipedia.org/wiki/Euler_characteristic" target="_blank" rel="noopener noreferrer">Wikipedia: Euler characteristic</a></div>
+  </div>
+</details>
+<script>
+  // Runs synchronously so mobile users never see the panels flash open while three.js loads.
+  if (matchMedia('(pointer: coarse), (max-width: 650px)').matches) {
+    for (const panel of document.querySelectorAll('details.panel')) panel.open = false;
+  }
+</script>
+<div id="camera-info">Camera: —</div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const MODELS = {
+  mizhaev: {
+    id: 'mizhaev',
+    title: 'Equivelar Octahedron of Genus 3',
+    subtitle: '<a href="https://arxiv.org/abs/2609.17700" target="_blank" rel="noopener noreferrer">Ruslan Mizhaev · arXiv:2609.17700v1</a>',
+    vertices: [
+      [-72,84,18], [-36,112,102], [72,-84,18], [36,-112,102], [0,300,234], [-84,48,-18],
+      [9,147,207], [0,-300,234], [84,-48,-18], [-112,-36,-102], [48,84,18], [-147,9,-207],
+      [-9,-147,207], [84,72,-18], [112,36,-102], [-48,-84,18], [147,-9,-207], [-18,126,144],
+      [-126,-18,-144], [-300,0,-234], [-84,-72,-18], [18,-126,144], [126,18,-144], [300,0,-234]
+    ],
+    faces: [
+      [6,10,16,22,18,7,5,1,2],
+      [9,15,11,18,22,13,8,3,4],
+      [7,5,8,3,17,23,9,15,14],
+      [13,8,5,1,12,19,6,10,21],
+      [1,2,11,18,7,14,24,20,12],
+      [3,4,16,22,13,21,20,24,17],
+      [14,24,17,23,19,6,2,11,15],
+      [10,21,20,12,19,23,9,4,16]
+    ],
+    facePlanes: [[21,3,-10,-1440],[21,3,10,1440],[3,0,1,234],[3,0,-1,-234],[0,3,-1,234],[0,3,1,-234],[3,-21,10,-1440],[3,-21,-10,1440]],
+    colors: [0x56c5ff,0xffb454,0x9c8bff,0x54dfb1,0xff719c,0x78a8ff,0xffd166,0x67e8e0]
+  },
+  szilassi: {
+    id: 'szilassi',
+    title: 'Szilassi Polyhedron',
+    subtitle: '<a href="https://mathworld.wolfram.com/SzilassiPolyhedron.html" target="_blank" rel="noopener noreferrer">Lajos Szilassi · 1977 · genus 1</a>',
+    vertices: [
+      [-1.2,0,1.2], [1.2,0,1.2], [0,-1.26,-1.2], [0,1.26,-1.2],
+      [0.2,-0.5,-0.8], [-0.2,0.5,-0.8], [-0.375,-0.375,-0.3], [0.375,0.375,-0.3],
+      [0.45,-0.25,0.2], [-0.45,0.25,0.2], [-0.7,0,0.2], [0.7,0,0.2], [-0.7,-0.25,0.2], [0.7,0.25,0.2]
+    ],
+    // Face walks from a published coordinate model; every face is a planar hexagon.
+    faces: [
+      [9,7,5,2,1,13], [10,8,6,1,2,14], [7,8,10,11,3,5],
+      [8,7,9,12,4,6], [6,4,3,11,13,1], [9,12,14,10,11,13], [3,5,2,14,12,4]
+    ],
+    colors: [0xff719c,0x78a8ff,0x56c5ff,0xffd166,0x54dfb1,0x9c8bff,0xffb454]
+  },
+  csaszar: {
+    id: 'csaszar',
+    title: 'Császár Polyhedron',
+    subtitle: '<a href="https://mathworld.wolfram.com/CsaszarPolyhedron.html" target="_blank" rel="noopener noreferrer">Ákos Császár · 1949 · dual of Szilassi</a>',
+    // A spatial realization of the 7-vertex, 14-triangle toroidal polyhedron.
+    vertices: [[3,-3,0],[3,3,1],[1,2,3],[-1,-2,3],[-3,-3,1],[-3,3,0],[0,0,15]],
+    faces: [
+      [1,2,6], [1,4,2], [5,3,2], [4,1,3], [2,7,6], [3,7,2], [1,7,3],
+      [6,5,1], [6,3,5], [2,4,5], [3,6,4], [5,7,1], [4,7,5], [6,7,4]
+    ],
+    colors: [0x56c5ff,0xffb454,0x9c8bff,0x54dfb1,0xff719c,0x78a8ff,0xffd166,0x67e8e0,0xffa56b,0x8ed1fc,0xd9a1ff,0x96e6b3,0xff8fba,0xc3d0ff]
+  },
+  tetrahedron: {
+    id: 'tetrahedron',
+    title: 'Tetrahedron',
+    subtitle: '<a href="https://mathworld.wolfram.com/Tetrahedron.html" target="_blank" rel="noopener noreferrer">Four triangular faces · genus 0</a>',
+    vertices: [[1,1,1],[-1,-1,1],[-1,1,-1],[1,-1,-1]],
+    faces: [[1,2,3],[1,4,2],[1,3,4],[2,4,3]],
+    colors: [0x56c5ff,0xffb454,0x9c8bff,0x54dfb1]
+  }
+};
+
+const KEY = (a,b) => a < b ? `${a}:${b}` : `${b}:${a}`;
+const initialRaw = MODELS.mizhaev.vertices.map(v => new THREE.Vector3(...v));
+const INITIAL_BOUNDS = new THREE.Box3().setFromPoints(initialRaw);
+const DISPLAY_RADIUS = INITIAL_BOUNDS.getBoundingSphere(new THREE.Sphere()).radius;
+const START_TARGET = new THREE.Vector3(0,0,0);
+const START_POSITION = new THREE.Vector3(0,0,DISPLAY_RADIUS*3.3);
+
+const canvas = document.getElementById('scene');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setSize(window.innerWidth, window.innerHeight, false);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
+renderer.setClearColor(0x080c13, 1);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x080c13);
+const camera = new THREE.PerspectiveCamera(43, window.innerWidth/window.innerHeight, Math.max(0.1, DISPLAY_RADIUS/1000), DISPLAY_RADIUS*40);
+camera.position.copy(START_POSITION);
+camera.lookAt(START_TARGET);
+const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.enableDamping = true;
+orbit.dampingFactor = 0.065;
+orbit.screenSpacePanning = true;
+orbit.minDistance = Math.max(10, DISPLAY_RADIUS*0.1);
+orbit.maxDistance = DISPLAY_RADIUS*12;
+orbit.target.copy(START_TARGET);
+orbit.autoRotate = false;
+orbit.autoRotateSpeed = 0.8;
+const modelGroup = new THREE.Group();
+scene.add(modelGroup);
+
+scene.add(new THREE.AmbientLight(0xdce8ff, 1.35));
+const keyLight = new THREE.DirectionalLight(0xffffff, 2.0); keyLight.position.set(900,1200,1500); scene.add(keyLight);
+const fillLight = new THREE.DirectionalLight(0x789fff, 1.1); fillLight.position.set(-1000,-350,-800); scene.add(fillLight);
+const rimLight = new THREE.PointLight(0x55d9ff, 500000, 4000); rimLight.position.set(0,700,-900); scene.add(rimLight);
+
+let currentModel = null;
+let sourceVerts = [];
+let orientedFaces = [];
+let faceMeshes = [];
+let edgeLines = null;
+let vertexObjects = null;
+
+function getDisplayVertices(model) {
+  const raw = model.vertices.map(v => new THREE.Vector3(...v));
+  const bounds = new THREE.Box3().setFromPoints(raw);
+  const center = bounds.getCenter(new THREE.Vector3());
+  const radius = bounds.getBoundingSphere(new THREE.Sphere()).radius || 1;
+  const scale = DISPLAY_RADIUS / radius;
+  return raw.map(p => p.sub(center).multiplyScalar(scale));
+}
+
+function orientFaces(faces) {
+  const edgeUses = new Map();
+  faces.forEach((face, fi) => {
+    for (let i=0; i<face.length; i++) {
+      const a=face[i], b=face[(i+1)%face.length], key=KEY(a,b);
+      if (!edgeUses.has(key)) edgeUses.set(key, []);
+      edgeUses.get(key).push({ faceIndex: fi, a, b });
+    }
+  });
+  const neighbors = faces.map(() => []);
+  for (const uses of edgeUses.values()) {
+    if (uses.length !== 2) continue;
+    const [u,v] = uses;
+    const sameDirection = u.a === v.a && u.b === v.b;
+    const flipXor = sameDirection ? 1 : 0;
+    neighbors[u.faceIndex].push({ faceIndex: v.faceIndex, flipXor });
+    neighbors[v.faceIndex].push({ faceIndex: u.faceIndex, flipXor });
+  }
+  const flips = Array(faces.length).fill(null);
+  for (let seed=0; seed<faces.length; seed++) {
+    if (flips[seed] !== null) continue;
+    flips[seed] = 0;
+    const queue = [seed];
+    while (queue.length) {
+      const fi = queue.shift();
+      for (const next of neighbors[fi]) {
+        const required = flips[fi] ^ next.flipXor;
+        if (flips[next.faceIndex] === null) {
+          flips[next.faceIndex] = required;
+          queue.push(next.faceIndex);
+        }
+      }
+    }
+  }
+  return faces.map((face, i) => flips[i] ? face.slice().reverse() : face.slice());
+}
+
+function makeFaceGeometry(ids, faceIndex) {
+  const pts = ids.map(id => sourceVerts[id-1]);
+  const center = new THREE.Vector3();
+  for (const p of pts) center.add(p);
+  center.multiplyScalar(1/pts.length);
+  const normal = new THREE.Vector3();
+  for (let i=0; i<pts.length; i++) {
+    const a=pts[i].clone().sub(center);
+    const b=pts[(i+1)%pts.length].clone().sub(center);
+    normal.add(a.cross(b));
+  }
+  if (normal.lengthSq() < 1e-12) throw new Error(`Face F${faceIndex+1}: degenerate polygon normal`);
+  normal.normalize();
+  const ref = Math.abs(normal.x)<0.8 ? new THREE.Vector3(1,0,0) : new THREE.Vector3(0,1,0);
+  const u = ref.clone().cross(normal).normalize();
+  const v = normal.clone().cross(u).normalize();
+  const contour = pts.map(p => new THREE.Vector2(p.clone().sub(center).dot(u), p.clone().sub(center).dot(v)));
+  const triangles = THREE.ShapeUtils.triangulateShape(contour, []);
+  if (triangles.length !== ids.length-2) throw new Error(`Face F${faceIndex+1}: expected ${ids.length-2} triangles, got ${triangles.length}`);
+  const polygonArea = Math.abs(contour.reduce((sum,p,i) => {
+    const q=contour[(i+1)%contour.length]; return sum+p.x*q.y-q.x*p.y;
+  },0))/2;
+  let trianglesArea = 0;
+  const positions = pts.flatMap(p => [p.x,p.y,p.z]);
+  const indices = [];
+  for (const tri of triangles) {
+    let [a,b,c] = tri;
+    const pa=pts[a], pb=pts[b], pc=pts[c];
+    if (pb.clone().sub(pa).cross(pc.clone().sub(pa)).dot(normal)<0) [b,c]=[c,b];
+    const p2a=contour[a], p2b=contour[b], p2c=contour[c];
+    trianglesArea += Math.abs((p2b.x-p2a.x)*(p2c.y-p2a.y)-(p2b.y-p2a.y)*(p2c.x-p2a.x))/2;
+    indices.push(a,b,c);
+  }
+  if (Math.abs(trianglesArea-polygonArea)>Math.max(1,polygonArea)*1e-7) {
+    throw new Error(`Face F${faceIndex+1}: triangulation area mismatch`);
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  return geometry;
+}
+
+function disposeModel() {
+  modelGroup.traverse(object => {
+    if (object.geometry) object.geometry.dispose();
+    if (object.material) {
+      const materials = Array.isArray(object.material) ? object.material : [object.material];
+      for (const material of materials) {
+        if (material.map) material.map.dispose();
+        material.dispose();
+      }
+    }
+  });
+  modelGroup.clear();
+  faceMeshes = [];
+  edgeLines = null;
+  vertexObjects = null;
+}
+
+function createVertexObjects() {
+  vertexObjects = new THREE.Group();
+  modelGroup.add(vertexObjects);
+  const markerGeometry = new THREE.SphereGeometry(DISPLAY_RADIUS*0.0122,14,10);
+  const markerMaterial = new THREE.MeshStandardMaterial({color:0xffffff,emissive:0x253849,roughness:0.32,metalness:0.15});
+  sourceVerts.forEach((p,i) => {
+    const marker = new THREE.Mesh(markerGeometry,markerMaterial);
+    marker.position.copy(p);
+    vertexObjects.add(marker);
+    const labelCanvas=document.createElement('canvas'); labelCanvas.width=128; labelCanvas.height=64;
+    const ctx=labelCanvas.getContext('2d');
+    ctx.fillStyle='rgba(7,13,22,.88)'; ctx.beginPath(); ctx.roundRect(20,8,88,48,14); ctx.fill();
+    ctx.strokeStyle='rgba(150,220,255,.8)'; ctx.lineWidth=2; ctx.stroke();
+    ctx.fillStyle='#f4fbff'; ctx.font='bold 28px system-ui, sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(String(i+1),64,32);
+    const texture=new THREE.CanvasTexture(labelCanvas); texture.colorSpace=THREE.SRGBColorSpace;
+    const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,transparent:true,depthTest:false,depthWrite:false}));
+    const away=p.clone().normalize(); if (away.lengthSq()===0) away.set(0,1,0);
+    sprite.position.copy(p).addScaledVector(away,DISPLAY_RADIUS*0.033);
+    sprite.scale.set(DISPLAY_RADIUS*0.093,DISPLAY_RADIUS*0.0465,1);
+    vertexObjects.add(sprite);
+  });
+}
+
+function collectEdges(faces) {
+  const edges = new Map();
+  faces.forEach((face, fi) => {
+    for (let i=0; i<face.length; i++) {
+      const a=face[i], b=face[(i+1)%face.length], key=KEY(a,b);
+      if (!edges.has(key)) edges.set(key,{a,b,uses:[]});
+      edges.get(key).uses.push([a,b,fi]);
+    }
+  });
+  return edges;
+}
+
+function runModelChecks(model, edges, chi) {
+  const errors=[];
+  if (model.faces.some(face => face.some(id => !Number.isInteger(id) || id<1 || id>sourceVerts.length))) errors.push('invalid vertex reference');
+  if (model.id === 'mizhaev') {
+    if (model.vertices.length !== 24) errors.push(`V=${model.vertices.length}, expected 24`);
+    if (model.faces.length !== 8) errors.push(`F=${model.faces.length}, expected 8`);
+    if (model.faces.some(face => face.length !== 9)) errors.push('not all faces have 9 vertices');
+    for (let fi=0; fi<model.faces.length; fi++) {
+      const [a,b,c,d]=model.facePlanes[fi];
+      for (const id of model.faces[fi]) {
+        const [x,y,z]=model.vertices[id-1];
+        if (a*x+b*y+c*z !== d) errors.push(`V${id} is not on plane F${fi+1}`);
+      }
+    }
+  }
+  for (const [key,e] of edges) {
+    if (e.uses.length!==2) errors.push(`edge ${key} appears ${e.uses.length} times (expected 2)`);
+    else if (e.uses[0][0]!==e.uses[1][1] || e.uses[0][1]!==e.uses[1][0]) errors.push(`edge ${key} has inconsistent face orientations`);
+  }
+  const genus=(2-chi)/2;
+  if (!Number.isInteger(genus) || genus<0) errors.push(`invalid orientable genus derived from χ=${chi}`);
+  return {errors,chi,genus};
+}
+
+function updateDisplaySettings() {
+  const opacity=Number($('opacity-range').value)/100;
+  const allBlack=$('black-faces-toggle').checked;
+  faceMeshes.forEach((mesh,i) => {
+    mesh.material.color.setHex(allBlack ? 0x000000 : currentModel.colors[i%currentModel.colors.length]);
+    mesh.material.specular.setHex(allBlack ? 0x000000 : 0x50657c);
+    mesh.material.opacity=opacity;
+    mesh.material.transparent=opacity<1;
+    mesh.material.depthWrite=opacity>=1;
+    mesh.material.needsUpdate=true;
+  });
+  if (vertexObjects) vertexObjects.visible=$('labels-toggle').checked;
+  $('opacity-value').textContent=`${Math.round(opacity*100)}%`;
+}
+
+function buildModel(model) {
+  sourceVerts=getDisplayVertices(model);
+  orientedFaces=orientFaces(model.faces);
+
+  orientedFaces.forEach((ids,i) => {
+    const geometry=makeFaceGeometry(ids,i);
+    const material=new THREE.MeshPhongMaterial({
+      color:model.colors[i%model.colors.length],side:THREE.DoubleSide,transparent:true,opacity:0.55,
+      shininess:42,specular:new THREE.Color(0x50657c),depthWrite:false,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1
+    });
+    const mesh=new THREE.Mesh(geometry,material);
+    modelGroup.add(mesh);
+    faceMeshes.push(mesh);
+  });
+
+  const edgeMap=collectEdges(orientedFaces);
+  const edgePositions=[];
+  for (const e of edgeMap.values()) {
+    const a=sourceVerts[e.a-1],b=sourceVerts[e.b-1];
+    edgePositions.push(a.x,a.y,a.z,b.x,b.y,b.z);
+  }
+  const edgeGeometry=new THREE.BufferGeometry();
+  edgeGeometry.setAttribute('position',new THREE.Float32BufferAttribute(edgePositions,3));
+  edgeLines=new THREE.LineSegments(edgeGeometry,new THREE.LineBasicMaterial({color:0xe7f4ff,transparent:true,opacity:0.96,depthTest:true}));
+  modelGroup.add(edgeLines);
+  createVertexObjects();
+
+  const V=sourceVerts.length, F=orientedFaces.length;
+  const chi=V-edgeMap.size+F;
+  const check=runModelChecks(model,edgeMap,chi);
+  const facePairs=new Set([...edgeMap.values()].filter(e=>e.uses.length===2).map(e=>KEY(e.uses[0][2],e.uses[1][2])));
+  $('stat-v').textContent=V;
+  $('stat-e').textContent=edgeMap.size;
+  $('stat-f').textContent=F;
+  const faceSizes=[...new Set(orientedFaces.map(face=>face.length))].sort((a,b)=>a-b);
+  $('stat-face-vertices').textContent=faceSizes.length===1 ? String(faceSizes[0]) : `${faceSizes[0]}–${faceSizes[faceSizes.length-1]}`;
+  $('stat-genus').textContent=String(check.genus);
+  $('stat-chi').textContent=String(check.chi).replace('-', '−');
+  $('stat-face-pairs').textContent=`${facePairs.size} / ${F*(F-1)/2}`;
+  $('stat-vertex-pairs').textContent=`${edgeMap.size} / ${V*(V-1)/2}`;
+  const validationEl=$('validation');
+  validationEl.classList.toggle('fail',check.errors.length>0);
+  validationEl.textContent=check.errors.length===0
+    ? `PASS · ${V} vertices, ${edgeMap.size} edges, ${F} faces, coherent orientation, triangulation, χ = ${String(check.chi).replace('-', '−')}`
+    : 'CHECK FAILED · '+check.errors.join('; ');
+  if (check.errors.length) console.error(`Geometry validation failed for ${model.id}:`,check.errors);
+}
+
+function renderModel(modelId) {
+  if (!Object.hasOwn(MODELS,modelId)) return;
+  const model=MODELS[modelId];
+  disposeModel();
+  currentModel=model;
+  $('polyhedron-select').value=modelId;
+  $('model-title').textContent=model.title;
+  $('model-subtitle').innerHTML=model.subtitle;
+  document.title=`${model.title} — interactive model`;
+  history.replaceState(null,'',`#${modelId}`);
+
+  try {
+    buildModel(model);
+  } catch (error) {
+    disposeModel();
+    for (const el of document.querySelectorAll('#stats .num')) el.textContent='—';
+    $('validation').classList.add('fail');
+    $('validation').textContent=`BUILD FAILED · ${error.message}`;
+    console.error(`Geometry build failed for ${model.id}:`,error);
+  }
+
+  modelGroup.rotation.set(0,0,0);
+  resetCameraPosition();
+  updateDisplaySettings();
+}
+
+function resetCameraPosition() {
+  camera.position.copy(START_POSITION);
+  camera.lookAt(START_TARGET);
+  orbit.target.copy(START_TARGET);
+  orbit.update();
+}
+
+const $ = id => document.getElementById(id);
+const clock = new THREE.Clock();
+$('polyhedron-select').addEventListener('change',event=>renderModel(event.target.value));
+$('opacity-range').addEventListener('input',updateDisplaySettings);
+$('black-faces-toggle').addEventListener('change',updateDisplaySettings);
+$('labels-toggle').addEventListener('change',updateDisplaySettings);
+window.addEventListener('hashchange',()=>renderModel(location.hash.slice(1)));
+$('reset-view').addEventListener('click',()=>{
+  modelGroup.rotation.set(0,0,0);
+  $('rotate-toggle').checked=false;
+  resetCameraPosition();
+});
+
+function onResize() {
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  renderer.setSize(window.innerWidth,window.innerHeight,false);
+}
+window.addEventListener('resize',onResize);
+
+function updateCameraInfo() {
+  const p=camera.position;
+  $('camera-info').textContent=`Camera · x ${p.x.toFixed(1)}   y ${p.y.toFixed(1)}   z ${p.z.toFixed(1)}`;
+}
+orbit.addEventListener('change',updateCameraInfo);
+
+const hashModel=location.hash.slice(1);
+renderModel(Object.hasOwn(MODELS,hashModel) ? hashModel : 'mizhaev');
+updateCameraInfo();
+
+const rotateToggle=$('rotate-toggle');
+function animate() {
+  requestAnimationFrame(animate);
+  const dt=Math.min(clock.getDelta(),0.05);
+  if (rotateToggle.checked) modelGroup.rotation.y+=dt*0.22;
+  orbit.update();
+  renderer.render(scene,camera);
+}
+animate();
+</script>
+</body>
+</html>
