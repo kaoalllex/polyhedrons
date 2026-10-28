@@ -52,6 +52,21 @@
   #camera-info { position: fixed; z-index: 2; left: calc(14px + env(safe-area-inset-left)); bottom: calc(13px + env(safe-area-inset-bottom)); padding: 8px 11px; max-width: min(460px, calc(100vw - 28px)); background: rgba(15,20,30,.78); border: 1px solid var(--line); border-radius: 8px; color: var(--muted); font: 11px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; pointer-events: none; }
   .subtitle a { color: #a9cfe8; text-decoration: none; }
   .subtitle a:hover { text-decoration: underline; }
+  .face-list { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 4px 0 2px; }
+  .face-list label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; font-variant-numeric: tabular-nums; }
+  .face-list input[type="checkbox"] { margin: 0; }
+  .swatch { width: 10px; height: 10px; border-radius: 2px; }
+  :root[data-theme="light"] { color-scheme: light; --panel: rgba(250, 252, 255, .92); --line: rgba(40, 60, 90, .18); --muted: #566377; --text: #16202e; --accent: #0a74ad; }
+  :root[data-theme="light"] :is(html, body) { background: #eef2f7; }
+  :root[data-theme="light"] .section-title { color: #3c4b60; }
+  :root[data-theme="light"] .control-row label { color: #1f2a3a; }
+  :root[data-theme="light"] select { background: #fff; border-color: rgba(40,60,90,.25); }
+  :root[data-theme="light"] button { background: rgba(0,0,0,.04); border-color: rgba(40,60,90,.25); }
+  :root[data-theme="light"] #stats .num { color: #0f2a4a; }
+  :root[data-theme="light"] #validation { color: #17834a; }
+  :root[data-theme="light"] #validation.fail { color: #c62828; }
+  :root[data-theme="light"] #camera-info { background: rgba(250,252,255,.8); }
+  :root[data-theme="light"] .subtitle a { color: #1c6a98; }
   @media (max-width: 650px) {
     #controls { top: calc(8px + env(safe-area-inset-top)); left: calc(8px + env(safe-area-inset-left)); width: min(300px, calc(100vw - 16px)); max-height: 59vh; max-height: 59dvh; padding: 11px; }
     #stats { right: calc(8px + env(safe-area-inset-right)); top: auto; bottom: calc(8px + env(safe-area-inset-bottom)); width: min(228px, calc(100vw - 16px)); padding: 9px; font-size: 11px; }
@@ -86,10 +101,20 @@
   <div class="control-row"><label for="opacity-range">Face opacity</label><span class="range-wrap"><input id="opacity-range" type="range" min="0" max="100" value="55"><output id="opacity-value">55%</output></span></div>
   <div class="control-row"><label for="labels-toggle">Show vertex numbers</label><input id="labels-toggle" type="checkbox"></div>
   <div class="control-row"><label for="rotate-toggle">Auto-rotate model</label><input id="rotate-toggle" type="checkbox"></div>
+  <div class="control-row"><label for="theme-toggle">Light background</label><input id="theme-toggle" type="checkbox"></div>
+  <div class="section-title">Faces</div>
+  <div class="control-row"><label for="faces-all">Show all faces</label><input id="faces-all" type="checkbox" checked></div>
+  <div id="face-list" class="face-list" aria-label="Visible faces"></div>
+  <div class="section-title">Lamp</div>
+  <div class="control-row"><label for="lamp-toggle">Point light</label><input id="lamp-toggle" type="checkbox"></div>
+  <div class="control-row"><label for="lamp-power">Brightness</label><span class="range-wrap"><input id="lamp-power" type="range" min="0" max="100" value="30"><output id="lamp-power-value">30</output></span></div>
+  <div class="control-row"><label for="lamp-x">Position X</label><span class="range-wrap"><input id="lamp-x" type="range" min="-150" max="150" value="0"><output id="lamp-x-value">0</output></span></div>
+  <div class="control-row"><label for="lamp-y">Position Y</label><span class="range-wrap"><input id="lamp-y" type="range" min="-150" max="150" value="0"><output id="lamp-y-value">0</output></span></div>
+  <div class="control-row"><label for="lamp-z">Position Z</label><span class="range-wrap"><input id="lamp-z" type="range" min="-150" max="150" value="0"><output id="lamp-z-value">0</output></span></div>
   <div class="button-row" style="margin-top:12px">
     <button id="reset-view" type="button">Reset View</button>
   </div>
-  <div class="hint"><span class="hint-mouse">Drag to rotate, right-drag to pan, wheel to zoom.</span><span class="hint-touch">One finger to rotate, two fingers to zoom and pan.</span> Edges are always visible.</div>
+  <div class="hint"><span class="hint-mouse">Drag to rotate, right-drag to pan, wheel to zoom.</span><span class="hint-touch">One finger to rotate, two fingers to zoom and pan.</span> Edges are always visible. Drag the lamp's arrows to move it.</div>
 </details>
 <details id="stats" class="panel" open aria-label="Model properties">
   <summary class="section-title">Topology</summary>
@@ -116,6 +141,7 @@
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { TransformControls } from 'three/addons/controls/TransformControls.js';
 
 const MODELS = {
   mizhaev: {
@@ -193,6 +219,7 @@ renderer.setSize(window.innerWidth, window.innerHeight, false);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.15;
+renderer.shadowMap.enabled = true;
 renderer.setClearColor(0x080c13, 1);
 
 const scene = new THREE.Scene();
@@ -216,6 +243,30 @@ scene.add(new THREE.AmbientLight(0xdce8ff, 1.35));
 const keyLight = new THREE.DirectionalLight(0xffffff, 2.0); keyLight.position.set(900,1200,1500); scene.add(keyLight);
 const fillLight = new THREE.DirectionalLight(0x789fff, 1.1); fillLight.position.set(-1000,-350,-800); scene.add(fillLight);
 const rimLight = new THREE.PointLight(0x55d9ff, 500000, 4000); rimLight.position.set(0,700,-900); scene.add(rimLight);
+const lamp = new THREE.PointLight(0xfff1d0, 0, 0, 2);
+lamp.add(new THREE.Mesh(new THREE.SphereGeometry(DISPLAY_RADIUS*0.03,16,12), new THREE.MeshBasicMaterial({color:0xffc83d,toneMapped:false})));
+lamp.visible = false;
+lamp.castShadow = true;
+lamp.shadow.mapSize.set(1024,1024);
+lamp.shadow.camera.near = DISPLAY_RADIUS*0.01;
+lamp.shadow.camera.far = DISPLAY_RADIUS*5;
+lamp.shadow.bias = -0.002;
+scene.add(lamp);
+const LAMP_RANGE = DISPLAY_RADIUS*1.5;
+const lampGizmo = new TransformControls(camera, renderer.domElement);
+lampGizmo.attach(lamp);
+lampGizmo.enabled = false;
+lampGizmo.getHelper().visible = false;
+scene.add(lampGizmo.getHelper());
+lampGizmo.addEventListener('dragging-changed', event => { orbit.enabled = !event.value; });
+lampGizmo.addEventListener('objectChange', () => {
+  lamp.position.clampScalar(-LAMP_RANGE, LAMP_RANGE);
+  for (const axis of ['x','y','z']) {
+    const value=Math.round(lamp.position[axis]/DISPLAY_RADIUS*100);
+    $(`lamp-${axis}`).value=value;
+    $(`lamp-${axis}-value`).textContent=value;
+  }
+});
 
 let currentModel = null;
 let sourceVerts = [];
@@ -402,6 +453,42 @@ function updateDisplaySettings() {
   });
   if (vertexObjects) vertexObjects.visible=$('labels-toggle').checked;
   $('opacity-value').textContent=`${Math.round(opacity*100)}%`;
+  const light=$('theme-toggle').checked;
+  document.documentElement.dataset.theme=light ? 'light' : 'dark';
+  scene.background.setHex(light ? 0xeef2f7 : 0x080c13);
+  renderer.setClearColor(scene.background, 1);
+  if (edgeLines) edgeLines.material.color.setHex(light ? 0x1b2635 : 0xe7f4ff);
+}
+
+function buildFaceList() {
+  $('face-list').replaceChildren(...faceMeshes.map((mesh,i) => {
+    const label=document.createElement('label');
+    const box=document.createElement('input');
+    box.type='checkbox';
+    box.checked=mesh.visible;
+    box.addEventListener('change',()=>{ mesh.visible=box.checked; syncAllFacesToggle(); });
+    const swatch=document.createElement('span');
+    swatch.className='swatch';
+    swatch.style.background=new THREE.Color(currentModel.colors[i%currentModel.colors.length]).getStyle();
+    label.append(box,swatch,`F${i+1}`);
+    return label;
+  }));
+  syncAllFacesToggle();
+}
+
+function syncAllFacesToggle() {
+  const shown=faceMeshes.filter(mesh=>mesh.visible).length;
+  $('faces-all').checked=shown===faceMeshes.length;
+  $('faces-all').indeterminate=shown>0 && shown<faceMeshes.length;
+}
+
+function updateLamp() {
+  lamp.visible=$('lamp-toggle').checked;
+  lampGizmo.enabled=lampGizmo.getHelper().visible=lamp.visible;
+  // Scale-free brightness: same look for every model size.
+  lamp.intensity=Number($('lamp-power').value)/20*DISPLAY_RADIUS**2;
+  lamp.position.set(...['x','y','z'].map(axis => Number($(`lamp-${axis}`).value)/100*DISPLAY_RADIUS));
+  for (const id of ['lamp-power','lamp-x','lamp-y','lamp-z']) $(`${id}-value`).textContent=$(id).value;
 }
 
 function buildModel(model) {
@@ -415,6 +502,7 @@ function buildModel(model) {
       shininess:42,specular:new THREE.Color(0x50657c),depthWrite:false,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1
     });
     const mesh=new THREE.Mesh(geometry,material);
+    mesh.castShadow=mesh.receiveShadow=true;
     modelGroup.add(mesh);
     faceMeshes.push(mesh);
   });
@@ -476,6 +564,7 @@ function renderModel(modelId) {
   modelGroup.rotation.set(0,0,0);
   resetCameraPosition();
   updateDisplaySettings();
+  buildFaceList();
 }
 
 function resetCameraPosition() {
@@ -491,6 +580,12 @@ $('polyhedron-select').addEventListener('change',event=>renderModel(event.target
 $('opacity-range').addEventListener('input',updateDisplaySettings);
 $('black-faces-toggle').addEventListener('change',updateDisplaySettings);
 $('labels-toggle').addEventListener('change',updateDisplaySettings);
+$('theme-toggle').addEventListener('change',updateDisplaySettings);
+$('faces-all').addEventListener('change',event=>{
+  faceMeshes.forEach(mesh=>mesh.visible=event.target.checked);
+  buildFaceList();
+});
+for (const id of ['lamp-toggle','lamp-power','lamp-x','lamp-y','lamp-z']) $(id).addEventListener('input',updateLamp);
 window.addEventListener('hashchange',()=>renderModel(location.hash.slice(1)));
 $('reset-view').addEventListener('click',()=>{
   modelGroup.rotation.set(0,0,0);
