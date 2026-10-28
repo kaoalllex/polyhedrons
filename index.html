@@ -22,8 +22,8 @@
   #controls { top: calc(14px + env(safe-area-inset-top)); left: calc(14px + env(safe-area-inset-left)); width: min(330px, calc(100vw - 28px)); max-height: calc(100vh - 28px); max-height: calc(100dvh - 28px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); overflow: auto; padding: 14px; }
   summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 10px; cursor: pointer; }
   summary::-webkit-details-marker { display: none; }
-  summary::after { content: "▾"; color: var(--muted); font-size: 13px; }
-  details:not([open]) > summary::after { content: "▸"; }
+  summary::after { content: "▼"; color: var(--muted); font-size: 18px; line-height: 1; }
+  details:not([open]) > summary::after { content: "\25B6\FE0E"; }
   h1 { margin: 0; font-size: 15px; line-height: 1.35; letter-spacing: .01em; font-weight: 650; }
   .subtitle { color: var(--muted); font-size: 11px; margin: 5px 0 9px; line-height: 1.4; }
   .topology-details { margin-top: 7px; border-top: 1px solid var(--line); padding-top: 9px; }
@@ -97,7 +97,6 @@
     <option value="csaszar">Császár · 1949</option>
     <option value="tetrahedron">Tetrahedron</option>
   </select></div>
-  <div class="control-row"><label for="black-faces-toggle">All faces black</label><input id="black-faces-toggle" type="checkbox"></div>
   <div class="control-row"><label for="opacity-range">Face opacity</label><span class="range-wrap"><input id="opacity-range" type="range" min="0" max="100" value="55"><output id="opacity-value">55%</output></span></div>
   <div class="control-row"><label for="labels-toggle">Show vertex numbers</label><input id="labels-toggle" type="checkbox"></div>
   <div class="control-row"><label for="rotate-toggle">Auto-rotate model</label><input id="rotate-toggle" type="checkbox"></div>
@@ -442,10 +441,7 @@ function runModelChecks(model, edges, chi) {
 
 function updateDisplaySettings() {
   const opacity=Number($('opacity-range').value)/100;
-  const allBlack=$('black-faces-toggle').checked;
-  faceMeshes.forEach((mesh,i) => {
-    mesh.material.color.setHex(allBlack ? 0x000000 : currentModel.colors[i%currentModel.colors.length]);
-    mesh.material.specular.setHex(allBlack ? 0x000000 : 0x50657c);
+  faceMeshes.forEach(mesh => {
     mesh.material.opacity=opacity;
     mesh.material.transparent=opacity<1;
     mesh.material.depthWrite=opacity>=1;
@@ -578,7 +574,6 @@ const $ = id => document.getElementById(id);
 const clock = new THREE.Clock();
 $('polyhedron-select').addEventListener('change',event=>renderModel(event.target.value));
 $('opacity-range').addEventListener('input',updateDisplaySettings);
-$('black-faces-toggle').addEventListener('change',updateDisplaySettings);
 $('labels-toggle').addEventListener('change',updateDisplaySettings);
 $('theme-toggle').addEventListener('change',updateDisplaySettings);
 $('faces-all').addEventListener('change',event=>{
@@ -591,6 +586,8 @@ $('reset-view').addEventListener('click',()=>{
   modelGroup.rotation.set(0,0,0);
   $('rotate-toggle').checked=false;
   resetCameraPosition();
+  faceMeshes.forEach(mesh=>mesh.visible=true);
+  buildFaceList();
 });
 
 function onResize() {
