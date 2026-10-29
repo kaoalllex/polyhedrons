@@ -70,3 +70,52 @@ guarded). 10 µs per evaluation; a full scan (stride 1) costs ~140 s per plane o
 
 Run: `reloc_descent.py hp_seeds_ranked.json topology_33/shape_c5_i0_1154.obj t33.json 40 3 1 1`
 (stride 3, 1 thread, seed 1, 40 minutes). Result: pending.
+
+## 2026-10-29 Track 3 (OM-SAT)
+
+* **Model check (§4–§5).** Re-derived independently: side(abc;d)=χ(abcd)χ(abc∞) exactly;
+  with u_XY := spatial part of *(h_X∧h_Y∧h_∞) = −(n_X×n_Y), t_W−t_Z = det(XYZW)/(det(XYZ∞)det(XYW∞)),
+  so σ_XY=+1 in that convention; E-predicate, §5.2 IN (boundary terms, transversal crossings, run rule)
+  and Lemma 5.1 (both directions) all check out. No error found. Remarks: (1) the +ray and −ray
+  parities agree *combinatorially* (side bits are vertex functions, so total crossings of L_XY ≡ 0),
+  hence reorienting ∞ preserves IN; (2) IN[X;·] depends only on the rank-3 contraction χ/X, so
+  "IN along L_XY = IN along L_XZ" is already implied by GP (pseudoline topology) — redundant;
+  (3) Szilassi's index.html planes are NOT in general position (χ(0,1,5,∞)=χ(2,3,5,∞)=χ(4,5,6,∞)=0;
+  three normal triples coplanar), so positive controls use a ±1 perturbation of 1000×planes.
+* **Code.** `code/omsat.py` (encoder; one set of predicate formulas with a CNF/Tseitin backend and an
+  Eval backend), `code/omsat_geom.py` (exact direct geometry, Fractions, 2D charts),
+  `code/omsat_validate.py`, `code/omsat_sym.py` (Lutz maps, own Aut computation, symmetric instances),
+  `code/omsat_crosscheck_track4.py`, `code/rup_check.py`. Outputs in `experiments/omsat/`.
+* **Validation** (`python3 omsat_validate.py 300 100 8`, seed 20261029, 168 s): 693 uniform configs
+  (Szilassi control, 292 perturbed Szilassi of which 93 embedded, 300 random n=7, 100 random n=12 on
+  type id 0). Formula vs direct geometry: IN 180,318 / REFLEX 76,212 / RTURN 38,106 / E 256,530 /
+  line order 1,686,120 / side 281,020 evaluations, **0 mismatches**; Lemma 5.1 (triples) ⇔ direct
+  embeddedness (pairwise F_X∩F_Y=e_XY + simplicity): 693/693 agree; POC geometric check on 11,114 corners
+  of simple polygons: 0 failures; all 94 embedded configs satisfy every clause family; GP holds on all.
+  CNF backend: 17 configs with χ fixed by units — 0 mismatches between Tseitin literals and Eval values
+  (252 resp. 1452 named predicates each); full instance SAT iff Eval reports no violation (17/17;
+  non-embedded ones UNSAT with assumption cores of 8–42 χ literals).
+* **Cross-check with Track 4** (`planes.check_embedding`, imported only by the cross-check script):
+  149 configs (120 perturbed Szilassi, 29 random n=12), 22,872 IN values, 0 mismatches; embeddedness
+  agrees on 149/149 (32 embedded).
+* **n=7 free χ** (Szilassi triangulation): SAT in ≤0.07 s for every option combination, with and
+  without reorientation/mirror normalisation; the models satisfy all families.
+* **Numbering.** All 59 Lutz maps matched to our `k12_triangulations.json` ids by canonical form
+  (`experiments/omsat/lutz_to_ourid.json`; e.g. Lutz #25 = our id 0, #54 = id 58, #3 = id 32, #48 = id 26).
+* **Symmetric instances (independent reproduction of Hashirama1337s/szilassi-12 Part B).** Own Aut
+  computation (|Aut(#54)|=12, all orientation-preserving, T; |Aut(#3)|=|Aut(#48)|=6, D3). Encoding:
+  GP + 176 triple clauses + χ(gS)=ε(g)χ(S) + orbit-flip and mirror normalisation. Controls per instance:
+  free action, no forced-zero quadruple, explicit rational ρ:G→O(3) with det ρ=ε found and random
+  ρ-symmetric configs uniform, instance without triples SAT, explicit normalised symmetric χ SAT.
+  Results (cadical195 via PySAT): **#54 T UNSAT 1.3 s** (278 conflicts; also UNSAT without normalisation
+  3.9 s, kissat404 3.3 s, glucose4 1.3 s); **#3 D3 UNSAT 9.3 s**; **#48 D3 UNSAT 10.6 s**.
+  DRAT proof for #54 T: `experiments/omsat/sym_54_T.drat` (1282 lines, sha256 52497b88…ba23f), CNF
+  `sym_54_T.cnf.gz` (sha256 of uncompressed ac71c316…be407). Check: `drat-trim sym_54_T.cnf sym_54_T.drat`
+  (building drat-trim here was refused by the sandbox permission system); own minimal forward RUP checker
+  `code/rup_check.py`: 1034 lemmas all RUP, empty clause derived, VERIFIED.
+  #48 C2 (plain and with reflex+poc) launched with 30-min limits; see Track 3 results for outcome.
+* **#48 C2** (6 orbits of size 2, half-turn; same controls as above, all passed): with F4 REFLEX1 + F6 POC
+  (reflex corners are part of the encoding): **UNSAT in 298.2 s** (cadical195, 409,355 conflicts; 19,635 vars,
+  483,166 clauses). Plain (GP+triples only): no result after ~320 s, stopped by me at the PI's wrap-up
+  request (so this only shows that it took longer than 320 s). No proof was written for the C2 run.
+  The prior work reports 188 s for #48 C2 with their orient encoding.

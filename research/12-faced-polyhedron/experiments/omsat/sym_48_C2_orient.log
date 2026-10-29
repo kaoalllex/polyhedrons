@@ -10,3 +10,5 @@ orbit-flip normalisation quads: [(0, 1, 2, 12), (0, 1, 3, 12), (0, 1, 4, 12), (0
 control (no triples) SAT: True
 control (explicit symmetric chi, normalised) SAT: True
 instance: vars 19635 clauses 483166 families {'GP': 411840, 'TRIPLE': 176, 'REFLEX1': 132, 'POC': 240, 'SYM': 1430, 'SB_ORBFLIP': 6, 'SB_MIRROR': 1}
+RESULT map #48 C2 opts=reflex,poc solver=cadical195: UNSAT in 298.2s
+stats {'restarts': 15977, 'conflicts': 409355, 'decisions': 663907, 'propagations': 199438586}

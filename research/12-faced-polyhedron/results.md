@@ -109,3 +109,40 @@ tolerance of the direct check at coordinates ~2e5).
   **5** (HackerPoet topology 33 and 36), then 6 (topologies 2, 20, 41, 47), 7 (46 files).
 * Since symmetric realizations are claimed impossible (Moki & Julio 2026), the relevant
   benchmark is the asymmetric one.
+
+## Track 3: OM-SAT (2026-10-29)
+
+**Encoder** `code/omsat.py` (general n; faces 0..n−1, ∞=n). Variables χ(sorted 4-set), χ(ordered
+tuple)=sgn(sorting perm)·χ(sorted) with χ(abcd)=sign det(h_a,h_b,h_c,h_d), h_∞=(0,0,0,1). Clause
+families and their soundness (every clause true for every embedded realisation in general position,
+which is WLOG by openness, §2):
+
+| family | content | justification |
+|---|---|---|
+| F1 GP | 3-term Grassmann–Plücker, 16 six-literal clauses per ({a,b},{c,d,e,f}) (411,840 for n=12) | Plücker identity with all terms ≠0 ⇒ not all three products of equal sign; for uniform χ alternating+3-term GP ⇔ chirotope |
+| F2 TRIPLE | ¬IN[X;Y,Z]∨¬IN[Y;Z,X]∨¬IN[Z;X,Y] for the 176 non-triangles, IN as in §5.2 | Lemma 5.1 (re-proved; ⇒ direction suffices for soundness) |
+| F3 INCONS (opt.) | IN along L_XY ≡ IN along L_XZ | both equal the true membership; in fact implied by F1 (IN[X;·] depends only on the rank-3 contraction χ/X, a pseudoline arrangement) |
+| F4 REFLEX1 (opt.) | at most one reflex corner per vertex | two reflex corners of X,Y at v both contain the open ray −r_XY near v ⇒ F_X∩F_Y ⊋ e_XY |
+| F5 RFCONS (opt.) | reflex bit along L_XY ≡ along L_XZ | both rays start in the same open sector |
+| F6 POC (opt.) | RTURN ⊕ REFLEX constant over the 11 corners of each face | simple polygon: convex corners turn with the orientation, reflex against it; RTURN = sign(t_B−t_A′ on L_XA)·side(XBB′;A), using "left of +u_XY in H_X (seen from n_X) = positive side of H_Y" (proved: (n_X×u)·n_Y = |n_X|²|n_Y|²−(n_X·n_Y)² > 0) |
+| SB reorientation | χ(0,1,k,∞)=+1 (k=2..n−1), χ(0,2,3,∞)=χ(1,2,3,∞)=+1 | the GF(2) map ε↦(those n signs) has trivial kernel (x_k=x_0+x_1 ⇒ x_0=x_1=0), so exactly one of the 2^n reorientations normalises; GP and all predicates are reorientation invariant; reorienting ∞ = reorienting all faces |
+| SB mirror | χ(0,1,2,3)=+1 | χ↦−χ (mirror) composed with "flip all faces" fixes the normalisation and negates exactly the face-only quadruples |
+| SYM (symmetric runs) | χ(gS)=ε(g)χ(S), ε = orientation character, + orbit-flip basis normalisation + mirror | free action ⇒ choose h_{g r}=diag(ρ(g),1)h_r; det ρ(g)=ε(g) since isometries preserve the solid; one sign per GF(2)-basis vector of orbit-parity vectors |
+
+**Validation** (exact, `code/omsat_validate.py`, `code/omsat_geom.py`): 693 uniform configurations
+(n=7: Szilassi control, 292 perturbed Szilassi with 93 embedded, 300 random; n=12: 100 random) —
+0 mismatches in 2.5 M predicate evaluations (IN 180,318; REFLEX 76,212; turns 38,106; E 256,530;
+orders 1.69 M; sides 281,020); triples ⇔ direct embeddedness on 693/693; CNF/Tseitin literals equal
+the Eval values on 17 χ-fixed instances; χ-fixed instance SAT iff embedded (17/17). Cross-check with
+Track 4's independent checker: 149 configs, 22,872 IN values, 0 mismatches, embeddedness 149/149.
+Szilassi (perturbed) control: all families satisfied; reflex corners per face [1,1,1,1,2,0,2] (one
+convex face). n=7 free χ: SAT (<0.1 s) under every option set.
+
+**Symmetric 12-face cases (independent reproduction of the claims of Hashirama1337s/szilassi-12):**
+[computed] Lutz #54 under T: UNSAT (1.3 s; also kissat, glucose; also without normalisation);
+#3 under D3: UNSAT (9.3 s); #48 under D3: UNSAT (10.6 s); #48 under C2 (half-turn) with F4+F6: UNSAT (298 s; the plain encoding gave no result in 320 s and was stopped). Agreement with their results for these four
+cases. Our encoding differs from theirs (Lemma 5.1 triple form, 176 clauses, vs their S+X form).
+DRAT proof for #54 T saved (`experiments/omsat/sym_54_T.drat`); not checked with drat-trim (build
+refused in this sandbox); own forward RUP checker `code/rup_check.py`: 1034 lemmas, all RUP, empty clause derived — VERIFIED (weaker than drat-trim: self-written checker).
+Not done: asymmetric full instances (known to stall per the prior work; not attempted per PI),
+realisation attempts (no SAT χ for n=12 arose).
