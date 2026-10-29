@@ -25,6 +25,17 @@ realization may still exist. Both directions stay open.
    cross-validated against exact geometry (done for random instances); every clause family with a
    written soundness proof; checked DRAT/LRAT certificates; an adversarial reviewer.
 
+## Plan (agreed 2026-10-29): the "smart path" first, search in parallel
+
+* Step 1. Asymmetric immersion instances for all 59 types (overnight `immersion`, hours per type).
+* Step 2. If immersion is UNSAT for some types: produce DRAT proofs for those (cheap path); find
+  minimal cores; try per-face decomposition to make the remaining types tractable.
+* Step 3. If immersion is SAT for some type: realize the immersion chirotope with planes and search
+  for an embedding inside the immersion class (existence direction).
+* Step 4. Types where neither resolves: cube-and-conquer with proofs.
+* Throughout: written proofs of every clause family + adversarial review (Lemma 5.1 and the
+  in-face predicate: ACCEPTED, verification/foundations-report.md).
+
 ## Directions, in order of expected value
 
 1. **Immersion instances** (overnight `immersion`): decide them for as many types as possible;

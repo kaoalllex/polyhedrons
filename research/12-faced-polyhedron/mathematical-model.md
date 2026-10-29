@@ -68,7 +68,8 @@ combinatorial types. (To be independently re-verified in Track 2.)
 Let face `X` lie in the plane `H_X = { p : n_X . p = d_X }`, with homogeneous vector
 `h_X = (n_X, -d_X) in R^4`. For a triangle `{X,Y,Z}` of the dual triangulation, the vertex is
 `v_XYZ = H_X ∩ H_Y ∩ H_Z` (the three planes must be independent; otherwise the three edges at the
-vertex would be collinear and overlap). The edge between faces `X` and `Y` is the segment
+vertex would be collinear and overlap). Nondegeneracy convention (adversarial review V1(a)):
+adjacent faces are not coplanar; since every two faces are adjacent, the 12 planes are distinct. The edge between faces `X` and `Y` is the segment
 `e_XY = [v_XYC, v_XYD]` on the line `L_XY = H_X ∩ H_Y`, where `XYC`, `XYD` are the two triangles
 containing the edge `XY`.
 
@@ -169,6 +170,8 @@ permutation):
 
 * `side(abc; d) := sign( n_d · P_abc - d_d ) = χ(a,b,c,d) · χ(a,b,c,∞)`.
 * Along `L_XY`, parametrized in the direction of the spatial part of `*(h_X ∧ h_Y ∧ h_∞)`,
+  which is `u = n_Y × n_X` (verified exactly by the adversarial review; with `n_X × n_Y` every
+  comparison is reversed — betweenness statements are unaffected),
   `sign(t_W - t_Z) = χ(X,Y,Z,W) · χ(X,Y,Z,∞) · χ(X,Y,W,∞)`.
 * `P_XWV ∈ relint e_XW` (where `e_XW = [P_XWA, P_XWB]`, `A, B` = the two triangle partners of
   `XW`) iff `side(XWA; V) = - side(XWB; V)` (the edge segment crosses the plane `H_V`).
