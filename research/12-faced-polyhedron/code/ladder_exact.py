@@ -58,7 +58,7 @@ def in_closed(Q, q):
     return c
 
 
-def verify(H, links):
+def verify(H, links, require_all_pairs=True):
     n = len(H)
     H = [tuple(int(round(v * 10 ** 9)) for v in h) for h in H]
     out = {}
@@ -138,7 +138,7 @@ def verify(H, links):
                 if not any(s0 <= t <= s1 for s0, s1 in shared):
                     bad.append((X, Y)); break
     out['bad_pairs'] = bad
-    out['EMBEDDED'] = (out['corner_triples_distinct'] and out['all_pairs_adjacent'] and out['points_distinct']
+    out['EMBEDDED'] = (out['corner_triples_distinct'] and (out['all_pairs_adjacent'] or not require_all_pairs) and out['points_distinct']
                        and out['simple_faces'] == n and out['edges_consistent'] and not bad)
     return out
 

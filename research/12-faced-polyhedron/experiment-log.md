@@ -357,3 +357,27 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   `ladder_exact.verify`: EMBEDDED (7 simple faces, 21 pairs, chi 0); `planes.check_embedding`:
   ok. Saved: `experiments/solid_first/szilassi_found_without_map.json`. Calibration passed;
   next n = 8 (adjacency >= 1 per pair, genus 2), then 12.
+
+## 2026-10-29/30 night (autonomous): advisor, genus ladder, exact inner step
+* Thesis-advisor subagent report (summary): stop symmetry / gluing / 4-polytope projections / more
+  black-box engines / closure-first; the n = 8 rungs are poor analogues (a 2-neighbourly polyhedral map
+  must be a triangulation, so rungs 8..11 need doubled adjacencies or edge+vertex contacts);
+  **Mizhaev's octahedron (arXiv:2609.17700; README / index.html) is a known closed polyhedron with 8
+  mutually adjacent faces, genus 3 (8 pairs share two edges)** — our earlier "would be new" claim
+  was wrong for genus 3 (genus 2 open as far as we know). Our exact verifier confirms Mizhaev's
+  published planes EMBEDDED, pair energy 0. Ranked directions: calibrate on Mizhaev; exact inner
+  solver for solid-first + max-genus histogram; genus ladder "sphere + 6 handles" via tubes;
+  OM-SAT n = 8; continuous violation depth; IPC planarization flow; over-degenerate seeds.
+* **Genus ladder** (`code/genus_ladder.py`, tubes from the advisor in `code/tubes.py`): every map
+  has a chain M6 -> ... -> M0 by removing tubes (6-triangle annuli); climb from the sphere with
+  one-plane annealing + CMA-ES per level (12 min), seeded from the level below, exact check (non-
+  adjacent faces must not meet). Results: genus 0 and 1 realized EXACTLY for types 0, 11, 30;
+  **type 11 realized at genus 2** (a 12-face embedded polyhedron with 42 adjacent pairs); genus 2
+  stuck at 1 violation for the others, genus 3 at 2-5, genus 4 at 9.
+* **Exact inner step** (`code/solid_cpsat.py`): for fixed planes CP-SAT picks the bounded cells:
+  manifold octant patterns, no diagonal 1-cells, edge = parity of the four cells, <= 1 edge run per
+  pair of planes, one face per plane via the Euler characteristic of the plane's boundary region
+  (= 1) plus no pinches, maximize adjacent pairs. Szilassi planes -> 21 (valid, 0.6 s); random 7 planes
+  -> 15 (a simple 7-faced polyhedron). `code/solid_exact_search.py` (annealing over planes with the
+  exact inner value): **n = 7 Szilassi found from random planes in 45 s**, exactly verified
+  (`ladder_exact`: EMBEDDED, 14 vertices, 21 edges, chi 0). Now running on n = 12 (target 66).

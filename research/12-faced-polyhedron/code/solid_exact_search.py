@@ -1,0 +1,57 @@
+"""Solid-first with an EXACT inner step (advisor's direction 2): anneal the planes; for each plane set
+the best solid is computed exactly by CP-SAT (solid_cpsat.best_solid: manifold, at most one edge run per
+pair of planes, one disk face per plane) and the objective is the number of adjacent pairs of faces
+(= 30 + 6 g for 12 faces). Plane moves change the oriented matroid; neutral moves drift on plateaus.
+Target: n(n-1)/2 adjacent pairs (21 for n = 7 = Szilassi, 66 for n = 12).
+Usage: python3 -I solid_exact_search.py N MINUTES SEED OUT_JSON [TIME_PER_SOLVE]"""
+import json, sys, time
+import numpy as np
+sys.path.insert(0, __file__.rsplit('/', 1)[0])
+import solid_first as SF
+from solid_cpsat import best_solid
+
+
+def value(H, tl):
+    try:
+        A = SF.Arrangement(H)
+    except np.linalg.LinAlgError:
+        return -1, None, None
+    r = best_solid(A, time_limit=tl, max_cuts=5)
+    if r is None:
+        return -1, None, None
+    inS, info = r
+    v = info['adjacent'] if info['valid'] else info['adjacent'] - 3
+    return v, A, (inS, info)
+
+
+if __name__ == '__main__':
+    n, minutes, seed, out = int(sys.argv[1]), float(sys.argv[2]), int(sys.argv[3]), sys.argv[4]
+    tl = float(sys.argv[5]) if len(sys.argv) > 5 else 5.0
+    full = n * (n - 1) // 2
+    rng = np.random.default_rng(seed); t0 = time.monotonic()
+    best = (-1, None, None); restarts = 0
+    while time.monotonic() - t0 < 60 * minutes and best[0] < full:
+        restarts += 1
+        H = rng.standard_normal((n, 4)) if (best[1] is None or rng.random() < 0.5) else best[1] + 0.05 * rng.standard_normal((n, 4))
+        cur, A, sol = value(H, tl); T = 1.0; steps = 0
+        while time.monotonic() - t0 < 60 * minutes and steps < 300:
+            steps += 1
+            H2 = H.copy(); j = int(rng.integers(n)); H2[j] += float(rng.choice([0.02, 0.08, 0.3])) * rng.standard_normal(4)
+            v2, A2, sol2 = value(H2, tl)
+            if v2 >= cur or rng.random() < np.exp((v2 - cur) / T):
+                H, cur, sol = H2, v2, sol2
+                if cur > best[0]:
+                    best = (cur, H.copy(), sol)
+                    print('  new best %d adjacent pairs (genus estimate %s) at %.0fs' % (cur, sol[1]['chi'] if sol else '?', time.monotonic() - t0), flush=True)
+                    if cur == full:
+                        break
+            T = max(0.1, T * 0.99)
+        print('restart %d: best %d / %d' % (restarts, best[0], full), flush=True)
+    rec = {'n': n, 'best_adjacent': int(best[0]), 'full': full, 'planes': best[1].tolist() if best[1] is not None else None}
+    if best[2] is not None:
+        inS, info = best[2]; rec['info'] = info
+        A = SF.Arrangement(best[1]); rec['solid'] = [[int(v) for v in k] for k, s in zip(sorted(A.bounded), inS) if s]
+    json.dump(rec, open(out, 'w'))
+    print('FINAL n=%d best %d / %d' % (n, best[0], full), flush=True)
+    if best[0] == full:
+        print('!!! FULL: embedded solid with all pairs of faces adjacent', flush=True)
