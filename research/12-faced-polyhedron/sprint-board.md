@@ -27,6 +27,9 @@ Reference points: best known near-miss 4 (symmetric), 5 (asymmetric); random arr
 | B1 | (architecture: dual-mesh planarization) planes fitted to the dual mesh of the vertex-version near-miss Dual44 | 6 weightings | 53-75 violated triples, ~60 crossings | KILL |
 | Q15 | (z.ai #5) symmetric PLANE sets (tetrahedral orbit) with asymmetric triangulations | 24 arrangements, CP-SAT best triangulation | best 24 | KILL |
 | C2s | (fresh-eyes #1) immersion for all 21 half-turn classes | OM-SAT, 10 min each | running | |
+| M1 | Szilassi embryo inside some type | 59 types x 792 7-subsets | max 9 induced triangles (need 13) | KILL (structural fact) |
+| M2 | (crystallography) flat 3-torus: periods in a lattice instead of 0 | closure MILP with lattice periods, types 0 and 58 | general lattice: defect exactly 0 (det 414, 49); but faces not simple | KEEP: obstruction at closure level = zero periods; next: add simplicity, then 'deflate the torus' homotopy |
+| PD | Period-defect annealing in R^3 | type 0, ~1.5 h | 17.6 -> 8.5 | KEEP (night 2 runs all types) |
 
 ## Queued ideas from distant fields
 
