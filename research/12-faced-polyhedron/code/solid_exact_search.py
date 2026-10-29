@@ -46,9 +46,13 @@ if __name__ == '__main__':
         from gauss_degree import coherent_triangles, links_from
         from local_viol import polygons
         lv = json.load(open(sys.argv[sys.argv.index('--init') + 1]))
-        Hi = np.array(lv['planes'], float); L = links_from(coherent_triangles(lv['triangles']), n)
-        Ai = SF.Arrangement(Hi); P = polygons(Hi, L)
-        init = (Hi, SF.solid_from_winding(Ai, [P[X] for X in range(n)]))
+        Hi = np.array(lv['planes'], float)
+        if 'solid' in lv:                              # a solid-first result: use its cells directly
+            init = (Hi, {tuple(x) for x in lv['solid']})
+        else:
+            L = links_from(coherent_triangles(lv['triangles']), n)
+            Ai = SF.Arrangement(Hi); P = polygons(Hi, L)
+            init = (Hi, SF.solid_from_winding(Ai, [P[X] for X in range(n)]))
     while time.monotonic() - t0 < 60 * minutes and best[0] < full_val:
         restarts += 1
         if init is not None and (restarts == 1 or rng.random() < 0.5):

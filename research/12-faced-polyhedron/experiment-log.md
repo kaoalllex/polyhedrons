@@ -381,3 +381,10 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   -> 15 (a simple 7-faced polyhedron). `code/solid_exact_search.py` (annealing over planes with the
   exact inner value): **n = 7 Szilassi found from random planes in 45 s**, exactly verified
   (`ladder_exact`: EMBEDDED, 14 vertices, 21 edges, chi 0). Now running on n = 12 (target 66).
+* **n = 12, exact-inner solid search from random planes (no type fixed): genus 3 reached** —
+  `experiments/solid_first/genus3_12faces_48pairs.json`: 12 simple faces, V = 32, E = 48, chi = -4,
+  48 of 66 pairs of faces adjacent; `code/verify_solid.py`: EXACT EMBEDDED. Also a genus-2 one
+  (42 pairs, exact) in `genus2_12faces_42pairs.json`. The search plateaus at 48 for ~1 h; a
+  secondary score (slack of the best attempt at the next genus: soft extra runs / soft one-face
+  Euler condition) is now used to see "almost one more handle"; a run continues from the genus-3
+  solid.
