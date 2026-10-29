@@ -275,6 +275,55 @@ def job_gnormals(args, committer):
     run_pool('gnormals', tasks, gnormals_worker, args, committer)
 
 
+# ----------------------------------------------------------------------------- job: pdefect
+
+def pdefect_worker(item):
+    task, p = item
+    import numpy as np
+    from gauss_degree import coherent_triangles
+    from gauss_search import find_admissible, cover_counts, tri_index
+    from period_defect import period_defect
+    rng = np.random.default_rng(int(hashlib.sha256(task.encode()).hexdigest()[:8], 16))
+    tri = p['triangles']; ot = coherent_triangles(tri); T = tri_index(ot)
+    U = rng.standard_normal((1500, 3)); U /= np.linalg.norm(U, axis=1)[:, None]
+    def adm(G):
+        pos, neg = cover_counts(G, T, U)
+        return bool(np.all(pos - neg == -5) and np.all(pos > 0))
+    t0 = time.time()
+    G, _ = find_admissible(ot, rng, minutes=2)
+    if G is None:
+        return {'task': task, 'type_id': p['type_id'], 'status': 'NO_ADMISSIBLE_NORMALS', 'seconds': round(time.time() - t0, 1)}
+    cur = period_defect(G, tri, time_limit=15)[0]
+    start = cur; best = (cur, G.copy()); Tmp = 2.0; it = 0
+    while cur is not None and time.time() - t0 < 60 * p['minutes'] and best[0] > 1e-6:
+        it += 1
+        G2 = G.copy(); k = int(rng.integers(12))
+        v = G2[k] + float(rng.choice([0.02, 0.05, 0.15])) * rng.standard_normal(3); G2[k] = v / np.linalg.norm(v)
+        if not adm(G2):
+            continue
+        d2 = period_defect(G2, tri, time_limit=15)[0]
+        if d2 is None:
+            continue
+        if d2 <= cur or rng.random() < np.exp((cur - d2) / Tmp):
+            G, cur = G2, d2
+            if cur < best[0]:
+                best = (cur, G.copy())
+        Tmp = max(0.05, Tmp * 0.97)
+    rec = {'task': task, 'type_id': p['type_id'], 'start_defect': start, 'best_defect': best[0], 'iterations': it,
+           'normals': best[1].tolist(), 'seconds': round(time.time() - t0, 1)}
+    rec['status'] = 'ZERO_DEFECT' if best[0] is not None and best[0] <= 1e-6 else 'POSITIVE'
+    rec['candidate'] = rec['status'] == 'ZERO_DEFECT'
+    rec['summary'] = 'type %d defect %.3f -> %.3f (%d its)' % (p['type_id'], start or -1, best[0] or -1, it)
+    return rec
+
+
+def job_pdefect(args, committer):
+    types = json.load(open(os.path.join(HERE, '..', 'data', 'k12_triangulations.json')))
+    tasks = [('pd%d_%d' % (t['id'], r), dict(type_id=t['id'], triangles=t['triangles'], minutes=args.minutes_per_seed))
+             for r in range(args.reps) for t in types]
+    run_pool('pdefect', tasks, pdefect_worker, args, committer)
+
+
 # ----------------------------------------------------------------------------- job: sym
 
 def sym_cases():
@@ -304,6 +353,52 @@ def sym_cases():
             for w in range(len(classes)):
                 cases.append((m, grp, w))
     return cases
+
+
+def sym_build_immersion(m, grp, which):
+    """Symmetric IMMERSION instance: no global triple clauses; faces simple; <= 1 reflex corner per
+    vertex; orientation consistency."""
+    from omsat_sym import (parse_lutz, orient, links_from_oriented, automorphisms, subgroups, classify,
+                           compose, orbfix_quads)
+    from omsat import Triangulation, CNF, build
+    maps = parse_lutz()
+    otris = orient(maps[m])
+    links, _ = links_from_oriented(otris)
+    T = Triangulation(12, otris, links)
+    auts = automorphisms(otris)
+    eps = dict(auts)
+    subs = [H for H in subgroups(auts) if classify(H) == grp]
+    classes = []
+    for H in sorted(subs, key=lambda H: sorted(H)):
+        conj = False
+        for K in classes:
+            for a, _ in auts:
+                ainv = tuple(sorted(range(12), key=lambda i: a[i]))
+                if frozenset(compose(compose(a, h), ainv) for h in H) == K:
+                    conj = True
+                    break
+            if conj:
+                break
+        if not conj:
+            classes.append(H)
+    H = classes[which]
+    sym = [(g, eps[g]) for g in H if g != tuple(range(12))]
+    def make(local):
+        C = CNF(12)
+        P = build(C, T, dict(gp=True, triples=False, reflex=local, poc=local), sym=sym)
+        basis, _ = orbfix_quads(H)
+        for S in basis:
+            C.clause([C.chi_pos_lit(S)], 'SB_ORBFLIP')
+        C.clause([C.chi_pos_lit((0, 1, 2, 3))], 'SB_MIRROR')
+        if local:
+            for X in range(12):
+                L = T.link[X]
+                for i in range(11):
+                    for j in range(i + 2, 11):
+                        if not (i == 0 and j == 10):
+                            C.clause([-P.E(X, L[i], L[j]), -P.E(X, L[j], L[i])], 'SIMPLE')
+        return C
+    return make(True), make(False)
 
 
 def sym_build(m, grp, which, opts):
@@ -353,7 +448,7 @@ def sym_worker(item):
     opts = dict(gp=True, triples=True)
     for k in p['opts']:
         opts[k] = True
-    C, C0 = sym_build(m, grp, which, opts)
+    C, C0 = sym_build_immersion(m, grp, which) if p.get('immersion') else sym_build(m, grp, which, opts)
     with Solver(name='cadical195', bootstrap_with=C0.clauses) as s0:
         ctl_timer = threading.Timer(p['timeout'], lambda: s0.interrupt())
         ctl_timer.start()
@@ -419,7 +514,10 @@ def job_sym(args, committer):
                                         check_timeout=args.check_timeout, keep_proofs=args.keep_proofs,
                                         keep_cnf=args.keep_cnf))
              for c in sorted(cases, key=lambda c: c[1] != 'C2')]      # hard C2 cases first, quick C3 fill the tail
-    run_pool('sym', tasks, sym_worker, args, committer)
+    job = 'symimm' if args.sym_immersion else 'sym'
+    for t, p in tasks:
+        p['immersion'] = args.sym_immersion
+    run_pool(job, tasks, sym_worker, args, committer)
 
 
 # ----------------------------------------------------------------------------- job: cube
@@ -691,7 +789,7 @@ def job_status(args, committer):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('job', choices=['gnormals', 'immersion', 'normals', 'sym', 'cube', 'ils', 'status'])
+    ap.add_argument('job', choices=['gnormals', 'pdefect', 'immersion', 'normals', 'sym', 'cube', 'ils', 'status'])
     ap.add_argument('--hours', type=float, default=8.0, help='wall-clock budget of this invocation')
     ap.add_argument('--workers', type=int, default=max(1, (os.cpu_count() or 2) - 1))
     ap.add_argument('--timeout', type=float, default=None, help='per-task solver timeout in seconds')
@@ -713,6 +811,8 @@ def main():
     ap.add_argument('--cadical', default=None)
     ap.add_argument('--drat-trim', default=None)
     ap.add_argument('--sym-opts', default='reflex,poc')
+    ap.add_argument('--sym-immersion', action='store_true',
+                    help='sym: certify that no symmetric IMMERSION exists (results in results/symimm)')
     ap.add_argument('--check-timeout', type=float, default=40000)
     ap.add_argument('--keep-proofs', action='store_true')
     ap.add_argument('--keep-cnf', action='store_true')
@@ -728,9 +828,9 @@ def main():
         global RES
         RES = os.path.abspath(args.results_dir)
     if args.timeout is None:
-        args.timeout = {'gnormals': 900, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'status': 0}[args.job]
+        args.timeout = {'gnormals': 900, 'pdefect': 0, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'status': 0}[args.job]
     committer = Committer(args)
-    {'gnormals': job_gnormals, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'status': job_status}[args.job](
+    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'status': job_status}[args.job](
         args, committer)
 
 

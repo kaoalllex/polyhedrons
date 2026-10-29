@@ -41,6 +41,19 @@ If the computer turns off, run **the same command** again: finished tasks are sk
 
 Progress / прогресс: `python3 run_overnight.py status`
 
+### Night 2 / Вторая ночь
+
+```bash
+cd research/12-faced-polyhedron/overnight
+git pull
+./run_night2.sh 8 7
+```
+
+Phase 1 (~15 min): DRAT-certified proof that no SYMMETRIC polyhedral immersion exists.
+Phase 2: period-defect search over all 59 types (a defect of 0 is saved as a CANDIDATE).
+Фаза 1 — сертификаты «нет симметричных погружений», фаза 2 — поиск нормалей с нулевым
+«дефектом периодов» по всем 59 типам.
+
 ## 3. After the run / После расчёта
 
 ```bash

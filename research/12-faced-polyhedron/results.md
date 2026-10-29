@@ -214,3 +214,16 @@ the listed local families):
   (asymmetric case: overnight `immersion` job + local tests running). Numerical immersion search
   so far: >= 12 local violations from random starts; all known near-misses have >= 7 vertices
   with two reflex corners.
+
+## Night 1 (user's machine, 2026-10-29) and the symmetric immersion sweep
+
+* `sym`: **25/25 symmetric cases UNSAT-VERIFIED** (our encoder, CaDiCaL proofs checked by
+  drat-trim; solve 8-147 s each, 1989 s total; proofs 959 MB in total, drat-trim 1071 s; every
+  "no triple clauses" control SAT). Independent certified reproduction of the claim that no
+  12-face Series-1 polyhedron has a non-trivial symmetry.
+* `immersion` (asymmetric, types 0-7): all 8 TIMEOUT at 2.17 h. Asymmetric immersion instances
+  are not cheaper than full embedding instances (as the fresh-eyes review predicted for #48 C2).
+* PI, this container (no proofs): immersion instances (no global clauses) for ALL 25 symmetric
+  classes: 21 C2 classes UNSAT (68-265 s each), 4 C3 classes UNSAT (27-39 s). **[N] No symmetric
+  polyhedral immersion with planar faces exists** (stronger than the embedding statement; to be
+  DRAT-certified by `run_night2.sh` phase 1).
