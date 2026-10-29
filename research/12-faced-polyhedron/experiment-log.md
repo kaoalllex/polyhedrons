@@ -256,3 +256,22 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   pairs (38 face self-crossings, 12 multi-reflex vertices); closure + simple faces with these
   normals (`torus_simple`, R^3) is INFEASIBLE (6 s). The running night job still uses the old worker
   (no simplicity check); every ZERO_DEFECT from it must be re-checked this way.
+
+### Ladder, continued (2026-10-29 afternoon)
+* Cloud container restarts while the session idles kill background runs (several silent deaths);
+  long runs now go to the user's night script.
+* Exact single-plane relocation (`code/ladder_reloc.py`, 56-hyperplane arrangement per plane) from an
+  n = 8 plateau configuration: every plane's best cell has energy 2 (up to 1355 ties) -> a true local
+  minimum for one-plane moves.
+* ILS with multi-plane kicks (`code/ladder_ils.py`): 379 kicks, no improvement (2).
+* More maps (annealing, 5 min each): best 1 on one map, 2 on eight.
+* **Genetic algorithm (user's suggestion; `code/ladder_ga.py`, 6 islands x 40, uniform and blend
+  crossover by plane = gene, ring migration, memetic quench)**: n = 7 Szilassi found from random
+  planes in 15 generations (exact: EMBEDDED). n = 8 seeded from the best-1 configuration: stays at 1
+  after 266 generations. Unseeded runs on three more maps: below.
+* `simple defect` MILP (`torus_simple(relax_faces=True)`): only meaningful at zero closure defect
+  (otherwise infeasible); pd10_0: exactly 11 of 12 faces must be non-simple (proved, 59 s).
+* Bug fixed: `period_defect()` raised NameError since 968a74f (a block meant for `torus_defect` had
+  been pasted into it). The user's night-2 run predates the bug (it re-imports its own local copy).
+* Night 3 prepared (`overnight/run_night3.sh`): `ladder` job (GA on fresh n = 8 maps, exact check of
+  every zero) and `sdefect` job (12 faces: closure defect to 0, then non-simple faces to 0, exact check).

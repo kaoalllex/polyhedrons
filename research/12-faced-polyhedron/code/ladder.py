@@ -431,7 +431,29 @@ def pair_energy(H, LK, M):
                 tb0 = (b0[0] - a0[0]) * dx + (b0[1] - a0[1]) * dy; tb1 = (b1[0] - a0[0]) * dx + (b1[1] - a0[1]) * dy
                 if min(ta1, max(tb0, tb1)) >= max(0.0, min(tb0, tb1)) - 1e-9 * ta1:
                     dbl += 1
-    bad = 0; over = 0.0
+    # degeneracy guard (lesson of the CMA-ES run: the optimizer collapsed features below the float
+    # thresholds and scored 0 on configurations that change under 1e-9 perturbations): every polygon
+    # edge must be at least 1e-6 of the diameter of the vertex set (1e-3 rejected genuine Szilassi
+    # realizations with short edges); shorter edges count as violations
+    lo3 = np.full(3, 1e300); hi3 = np.full(3, -1e300)
+    for X in range(n):
+        for i in range(M[X]):
+            for q in range(3):
+                lo3[q] = min(lo3[q], P3[X, i, q]); hi3[q] = max(hi3[q], P3[X, i, q])
+    diam = np.sqrt(((hi3 - lo3) ** 2).sum())
+    # scale-collapse guard: the problem is scale invariant, so a configuration whose vertices shrink
+    # towards one point (all planes nearly concurrent) only feeds float noise to the predicates
+    cmax = max(np.abs(lo3).max(), np.abs(hi3).max())
+    if diam < 1e-3 * (1.0 + cmax):
+        return 99, 0.0
+    short = 0
+    for X in range(n):
+        m = M[X]
+        for i in range(m):
+            dv = P3[X, i] - P3[X, i - 1 if i > 0 else m - 1]
+            if np.sqrt((dv ** 2).sum()) < 1e-6 * diam:
+                short += 1
+    bad = short; over = 0.0
     crit = np.zeros(4 * mmax); sh0 = np.zeros(mmax); sh1 = np.zeros(mmax)
     for X in range(n):
         for Y in range(X + 1, n):
