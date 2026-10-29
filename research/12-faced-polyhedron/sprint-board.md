@@ -25,7 +25,7 @@ Reference points: best known near-miss 4 (symmetric), 5 (asymmetric); random arr
 | A1 | Symmetric obstruction is local (immersion-level) | OM-SAT without global clauses on #54 T, #3 D3, #45 C3 | all UNSAT in 1-19 s; D3: simple faces alone UNSAT; T: simple + reflex UNSAT | DONE (sound); caveat: for #48 C2 the immersion instance costs as much as the embedding one (91 s vs 92 s), simplicity essential (without it SAT) |
 | A2 | Asymmetric immersion (simple + reflex only) | types 0, 41, 25 min each; type 0 simple-only | simple-only: SAT 527 s; simple + reflex: no answer in 25 min (both types) | KEEP: decided by overnight `immersion` (2.2 h per type) |
 | B1 | (architecture: dual-mesh planarization) planes fitted to the dual mesh of the vertex-version near-miss Dual44 | 6 weightings | 53-75 violated triples, ~60 crossings | KILL |
-| Q15 | (z.ai #5) symmetric PLANE sets (tetrahedral orbit) with asymmetric triangulations | 24 arrangements, CP-SAT best triangulation | running | |
+| Q15 | (z.ai #5) symmetric PLANE sets (tetrahedral orbit) with asymmetric triangulations | 24 arrangements, CP-SAT best triangulation | best 24 | KILL |
 | C2s | (fresh-eyes #1) immersion for all 21 half-turn classes | OM-SAT, 10 min each | running | |
 
 ## Queued ideas from distant fields
