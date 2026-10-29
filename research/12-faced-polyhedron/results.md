@@ -158,3 +158,25 @@ n=12: 30/30 random arrangements are UNSAT (5-28 s each, no timeouts). Upper boun
 asymmetric arrangements: 23-39 (median 31); a 9-minute alternating SA/CP-SAT run from a random asymmetric start went 33 -> 24. This is the same plateau (21-24) reported for the GPU numerical search of
 Moki & Julio (counting rules not guaranteed identical). No solution/candidate found; this is evidence about the difficulty, not about existence.
 Details: experiment-log.md "Track 4", code/planes.py, code/geomsat.py.
+
+## PI: Gauss-map prefilter and the gauge-fixed offset SMT (2026-10-29, session 1 continued)
+
+* [P, sketch in theory-notes.md] Necessary condition on face normals alone: some gauge sign
+  vector gives a PL Gauss map of degree chi/2 = -5 whose convex corners cover the sphere.
+  Controls: tetrahedron, cube, Szilassi pass with their own gauges.
+* [N, exact per instance] **All 1005 HackerPoet near-miss seeds fail it**: no embedded
+  realization of the seed's type has the seed's face normals (any offsets). Their own Gauss
+  degrees range over -5..+4 (mostly -1..+1): the best known near-misses are not even
+  immersions, i.e. topologically far from an embedding although they have only 4-5 violated
+  triples. Perturbations of the 20 best seeds (sigma up to 1.0, 400 samples) and 100 random
+  normal sets also fail.
+* Normals passing the prefilter are easy to find by annealing (seconds; e.g. types 0 and 58).
+  The prefilter is not vacuous.
+* With admissible normals AND the gauge imposed (`code/fixed_normals_gauge.py`, Szilassi
+  control: correct gauge SAT + exact embedding, opposite gauge UNSAT), the exact offset problem
+  is decided quickly: type 0 UNSAT 59 s, type 58 UNSAT 90 s, type 5 UNSAT 19 s. Without the
+  gauge, seed instances gave no answer in 300 s.
+* OM-SAT with Gauss clauses (`code/omsat_gauss.py`, k abstract generic directions as rank-3
+  extension elements, degree cardinality + covering): n=7 Szilassi controls SAT (free, and
+  with the Szilassi chirotope fixed). Lutz #48, half-turn C2: UNSAT in 100 s with k=2
+  (Track 3 reported 298 s without these clauses; same-machine baseline pending).
