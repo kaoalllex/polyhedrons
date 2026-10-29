@@ -329,3 +329,21 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
     (beauty 0.027-0.057, still exactly EMBEDDED);
   - the n = 8 plateau configurations polish just as well while keeping 1-2 violations
     (beauty 0.012-0.033): their remaining violations are robust, not thin degenerate artefacts.
+
+### 2026-10-29 late: rung 8b totals and "solid first"
+* Rung 8b final: 23 maps (annealing and CMA-ES, 6 min each): best 2 on 19 maps, 3 on 4. Both n = 8
+  rungs (doubled adjacencies; two 4-valent vertices) plateau at 1-2.
+* **Solid-first** (`code/solid_first.py`, `code/solid_search.py`; puzzle idea P7): the state is the
+  planes plus a set S of bounded cells of their arrangement, so the solid is ALWAYS embedded; the
+  objective counts face-structure defects (extra / missing faces per plane, non-disk faces, pairs of
+  planes without exactly one edge run, non-manifold edges / vertices); the combinatorial type is not
+  fixed. Validation: Szilassi solids (S = winding-number-1 cells) score exactly 0; random S on random
+  planes 21-494; the 45 imported 12-face seeds that are embedded solids score 12 at best (4 planes
+  carry 2 lobes, 8 extra edge runs, nothing missing, no non-manifold points).
+* Search: from random planes it does NOT yet rediscover Szilassi: 8 runs (one-level and two-level
+  with greedy re-polishing of S after each plane move), all stop at exactly 4 (18 of 21 pairs
+  adjacent). From Szilassi perturbed by sigma <= 0.1 it repairs to 0 in 3 of 4 trials; from sigma >=
+  0.2 it falls into the same 4-trap. Reading: the trap is topological (the search builds sphere-like
+  solids; reaching the torus needs a tunnel, i.e. passing through much worse states). Next: genus-
+  changing macro-moves (drill a tunnel of cells / add a handle of cells in one move; Rubik idea P2)
+  and starting from solids of the right genus.
