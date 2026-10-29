@@ -11,12 +11,12 @@ import solid_first as SF
 from solid_cpsat import best_solid
 
 
-def value(H, tl):
+def value(H, tl, hint=None):
     try:
         A = SF.Arrangement(H)
     except np.linalg.LinAlgError:
         return -1, None, None
-    r = best_solid(A, time_limit=tl, max_cuts=5)
+    r = best_solid(A, time_limit=tl, max_cuts=5, hint=hint)
     if r is None:
         return -1, None, None
     inS, info = r
@@ -30,19 +30,39 @@ if __name__ == '__main__':
     full = n * (n - 1) // 2
     rng = np.random.default_rng(seed); t0 = time.monotonic()
     best = (-1, None, None); restarts = 0
+    init = None
+    if '--init' in sys.argv:                           # start from a known polyhedron: planes + its solid as hint
+        from gauss_degree import coherent_triangles, links_from
+        from local_viol import polygons
+        lv = json.load(open(sys.argv[sys.argv.index('--init') + 1]))
+        Hi = np.array(lv['planes'], float); L = links_from(coherent_triangles(lv['triangles']), n)
+        Ai = SF.Arrangement(Hi); P = polygons(Hi, L)
+        init = (Hi, SF.solid_from_winding(Ai, [P[X] for X in range(n)]))
     while time.monotonic() - t0 < 60 * minutes and best[0] < full:
         restarts += 1
-        H = rng.standard_normal((n, 4)) if (best[1] is None or rng.random() < 0.5) else best[1] + 0.05 * rng.standard_normal((n, 4))
-        cur, A, sol = value(H, tl); T = 1.0; steps = 0
+        if init is not None and (restarts == 1 or rng.random() < 0.5):
+            H = init[0].copy(); cur, A, sol = value(H, tl, init[1])
+        else:
+            H = rng.standard_normal((n, 4)) if (best[1] is None or rng.random() < 0.5) else best[1] + 0.05 * rng.standard_normal((n, 4))
+            cur, A, sol = value(H, tl)
+        T = 1.0; steps = 0
         while time.monotonic() - t0 < 60 * minutes and steps < 300:
             steps += 1
             H2 = H.copy(); j = int(rng.integers(n)); H2[j] += float(rng.choice([0.02, 0.08, 0.3])) * rng.standard_normal(4)
-            v2, A2, sol2 = value(H2, tl)
+            hint = {k for k, v in zip(sorted(A.bounded), sol[0]) if v} if (sol is not None and A is not None) else None
+            v2, A2, sol2 = value(H2, tl, hint)
             if v2 >= cur or rng.random() < np.exp((v2 - cur) / T):
-                H, cur, sol = H2, v2, sol2
+                H, cur, sol, A = H2, v2, sol2, A2
                 if cur > best[0]:
                     best = (cur, H.copy(), sol)
-                    print('  new best %d adjacent pairs (genus estimate %s) at %.0fs' % (cur, sol[1]['chi'] if sol else '?', time.monotonic() - t0), flush=True)
+                    try:                                  # save every improvement (runs may be interrupted)
+                        Ab = SF.Arrangement(best[1])
+                        json.dump({'n': n, 'best_adjacent': int(cur), 'planes': best[1].tolist(), 'info': sol[1],
+                                   'solid': [[int(v) for v in k] for k, s_ in zip(sorted(Ab.bounded), sol[0]) if s_]},
+                                  open(out + '.best.json', 'w'))
+                    except Exception:
+                        pass
+                    print('  new best %d adjacent pairs (chi %s) at %.0fs' % (cur, sol[1]['chi'] if sol else '?', time.monotonic() - t0), flush=True)
                     if cur == full:
                         break
             T = max(0.1, T * 0.99)

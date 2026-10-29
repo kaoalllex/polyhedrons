@@ -41,7 +41,7 @@ def allowed_octants():
 ALLOWED = allowed_octants()
 
 
-def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True):
+def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, hint=None):
     T = T or Tables(A)
     nc = len(T.cells)
     model = cp_model.CpModel()
@@ -119,6 +119,9 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True):
             model.Add(sum(chi_terms[X]) - sum(neg[X]) + sum(pos_v[X]) == 1)
     model.Add(sum(x) >= 1)
     model.Maximize(sum(adj))
+    if hint is not None:                               # warm start from a previous solid (cell sign vectors)
+        for i, k in enumerate(T.cells):
+            model.AddHint(x[i], 1 if k in hint else 0)
     solver = cp_model.CpSolver(); solver.parameters.max_time_in_seconds = time_limit; solver.parameters.num_workers = 1
     cuts = 0; t0 = time.monotonic()
     while True:
