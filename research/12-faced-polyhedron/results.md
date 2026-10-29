@@ -178,5 +178,8 @@ Details: experiment-log.md "Track 4", code/planes.py, code/geomsat.py.
   gauge, seed instances gave no answer in 300 s.
 * OM-SAT with Gauss clauses (`code/omsat_gauss.py`, k abstract generic directions as rank-3
   extension elements, degree cardinality + covering): n=7 Szilassi controls SAT (free, and
-  with the Szilassi chirotope fixed). Lutz #48, half-turn C2: UNSAT in 100 s with k=2
-  (Track 3 reported 298 s without these clauses; same-machine baseline pending).
+  with the Szilassi chirotope fixed). Lutz #48, half-turn C2, same machine and load:
+  UNSAT 91.8 s without, 99.7 s with k=2, 98.3 s with k=4 directions. **No speed-up** (negative
+  result; the 298 s reported by Track 3 was a different load/configuration). The Gauss clauses
+  are logically implied by embedding and apparently also easy for the solver to derive in this
+  symmetric case; they are not added to the overnight `sym`/`cube` jobs.
