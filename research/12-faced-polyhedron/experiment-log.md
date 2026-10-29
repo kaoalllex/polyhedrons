@@ -301,3 +301,12 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   automatically (type 5, 20.0 -> 0, 815 its). A HiGHS console line
   "HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();" appeared once; the run
   continued normally (internal HiGHS message, no effect on results).
+* Picture of the best positive defect (type 11, 1.20): `figures/type11_defect.png` / `.html`
+  (`code/render_defect.py`; for the picture the MILP is re-solved with `balance_bound` = minimum
+  sum |a_e| among residual <= 1.001 x optimum). The "closest" surface is far from a polyhedron: a few
+  faces are stretched (|a_e| up to ~90 with the lower bound 1), the core is a heap of overlapping
+  faces, 10 edges do not close. The defect is not scale-normalized, so small values do not mean
+  "almost a solution"; zero defect is only necessary.
+* Nevergrad (`code/ladder_ng.py`): NGOpt solves n = 7 in 379 evaluations (exact EMBEDDED);
+  TwoPointsDE did not in 2 min (best 1). NGOpt on n = 8: see below (two runs crashed inside
+  nevergrad's metamodel under NumPy 2; the loop now restarts the optimizer from the best point).

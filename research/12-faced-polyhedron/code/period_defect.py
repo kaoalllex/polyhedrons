@@ -174,9 +174,11 @@ def random_cocycle(edges, faces, nv, gen_values, seed=0):
     return phi, gens
 
 
-def torus_defect(G, tris, phi, A=100.0, time_limit=60, general=False, return_L=False):
+def torus_defect(G, tris, phi, A=100.0, time_limit=60, general=False, return_L=False, balance_bound=None):
     """Period defect in the flat 3-torus R^3 / (c Z^3): residual r_e = p_head - p_tail - a_e d_e
-    - c*phi_e, with c >= 1 a variable lattice scale. phi = 0 gives the R^3 problem."""
+    - c*phi_e, with c >= 1 a variable lattice scale. phi = 0 gives the R^3 problem.
+    balance_bound=B (for pictures): keep the total residual <= B and instead minimize sum |a_e|,
+    i.e. the most compact surface among (near-)optimal ones; the returned value is still the residual."""
     edges, faces, nv = surface_edges(G, tris)
     G = np.asarray(G, float); G = G / np.linalg.norm(G, axis=1)[:, None]
     ot = coherent_triangles(tris)
@@ -184,8 +186,13 @@ def torus_defect(G, tris, phi, A=100.0, time_limit=60, general=False, return_L=F
     ip, ia, ik = 0, 3 * nv, 3 * nv + ne
     irp, irm = ik + ne, ik + ne + 3 * ne
     ic = irm + 3 * ne
-    N = ic + (9 if general else 1)
-    c = np.zeros(N); c[irp:ic] = 1.0
+    it = ic + (9 if general else 1)
+    N = it + (ne if balance_bound is not None else 0)
+    c = np.zeros(N)
+    if balance_bound is None:
+        c[irp:ic] = 1.0
+    else:
+        c[it:] = 1.0
     Aeq = lil_matrix((3 * ne, N)); beq = np.zeros(3 * ne)
     for j, key in enumerate(E):
         t, h, d = edges[key]
@@ -221,6 +228,13 @@ def torus_defect(G, tris, phi, A=100.0, time_limit=60, general=False, return_L=F
             vlo[2 * i], vhi[2 * i] = 1, 2
             vlo[2 * i + 1], vhi[2 * i + 1] = -np.inf, np.inf
     cons.append(LinearConstraint(Av.tocsr(), vlo, vhi))
+    if balance_bound is not None:
+        Ab = lil_matrix((2 * ne + 1, N)); blo = np.zeros(2 * ne + 1); bhi = np.full(2 * ne + 1, np.inf)
+        for j in range(ne):                              # t_e >= |a_e|
+            Ab[2 * j, it + j] = 1; Ab[2 * j, ia + j] = -1
+            Ab[2 * j + 1, it + j] = 1; Ab[2 * j + 1, ia + j] = 1
+        Ab[2 * ne, irp:ic] = 1; blo[2 * ne] = -np.inf; bhi[2 * ne] = balance_bound
+        cons.append(LinearConstraint(Ab.tocsr(), blo, bhi))
     lb = np.full(N, -np.inf); ub = np.full(N, np.inf)
     lb[ip:ip + 3] = 0; ub[ip:ip + 3] = 0
     lb[ia:ia + ne] = -A; ub[ia:ia + ne] = A
@@ -234,6 +248,8 @@ def torus_defect(G, tris, phi, A=100.0, time_limit=60, general=False, return_L=F
     res = milp(c, constraints=cons, bounds=Bounds(lb, ub), integrality=integ,
                options={'time_limit': time_limit, 'disp': False})
     val = float(res.fun) if res.status in (0, 1) and res.fun is not None else None
+    if balance_bound is not None and res.x is not None:
+        val = float(res.x[irp:ic].sum())
     if return_L == 'full' and res.x is not None:
         L = res.x[ic:ic + 9].reshape(3, 3) if general else None
         return val, res.status, L, {'p': res.x[ip:ip + 3 * nv].reshape(nv, 3), 'a': res.x[ia:ia + ne],
