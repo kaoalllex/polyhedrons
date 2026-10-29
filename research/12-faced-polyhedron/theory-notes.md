@@ -260,3 +260,39 @@ exact geometry are evidence, not proof; independent re-encoding of at least the 
   `min_d` violation count below the symmetric value?
 * **E5 (polar start).** Take 12-point near-embeddings of the vertex version (Bokowski–Guedes de
   Oliveira type) and optimize the free centre `O` (3 dims) for the face predicates.
+
+## PI addendum (2026-10-29): Gauss-map prefilter on face normals — proof sketch and tests
+
+**Statement [P, sketch].** Let S be an embedded Series-1 polyhedron, triangulation K oriented
+coherently, links in that orientation, and g_X the gauge normal of face X (face polygon traversed
+in link order is counter-clockwise about g_X). For a generic direction u let
+D(u) = sum over triangles T=(X,Y,Z) of sign det(g_X,g_Y,g_Z) * [u in cone(g_X,g_Y,g_Z)].
+Then (i) D(u) = chi/2 = -5 for every generic u, and (ii) every generic u lies in the cone of some
+triangle with det > 0.
+
+* (i) Smooth S. The Gauss map is constant on faces, sweeps the SHORT arc g_X -> g_Y across each
+  edge (exterior dihedral angles lie in (-pi, pi)), and on a vertex disk has signed area equal to
+  the angle deficit delta_v, |delta_v| < 2pi, with boundary the geodesic triangle Delta_v of the
+  three normals. Since area(Delta_v) < 2pi, the only signed covering compatible with
+  |delta_v| < 2pi is +-1 on Delta_v and 0 outside, with sign = sign(delta_v) = sign det(...) in the
+  surface order (orientation preserving where K > 0). Hopf: degree of the Gauss map of a closed
+  oriented immersed surface = chi/2. Reversing the global orientation of K turns gauge normals
+  into inward normals and preserves D. The global flip g -> -g alone NEGATES D, so all 2^12 sign
+  vectors must be searched.
+* (ii) The vertex maximizing <u, x> is not a saddle (a saddle's long arc > pi contains antipodal
+  directions, impossible inside a half-space for generic u); the solid near it is the convex cone
+  below it (else the solid would extend above the maximum of its boundary), so u is in its outward
+  normal cone, a positive triangle.
+
+**Implementation** `code/gauss_degree.py` (exact integer determinants). Controls: tetrahedron
+(target +1): own gauge admissible (1 of 16). Cube (dual octahedron, +1): own gauge admissible
+(4 of 64). Szilassi (target 0): own gauge admissible (2 of 128). Degree is direction-independent
+on 200 random sign vectors (as it must be for a continuous map).
+
+**Result [N, exact per instance].** For all 1005 HackerPoet seeds (normals rounded exactly as in
+`overnight` job `normals`), NO sign vector has degree -5 with positive covering (covering tested
+at 64 random directions; a failure at one direction is an exact exclusion). Hence no embedded
+realization of the seed's type has exactly these face normals, for any offsets. The same holds
+for 400 perturbations (sigma 0.03-1.0) of the 20 best seeds and for 100 uniformly random normal
+sets. Seeds' own gauges have degrees from -5 to +4 (231 have -1); the 12 with degree -5 fail
+covering because their maximal vertices are saddles in their own gauge (not locally embedded).
