@@ -242,9 +242,17 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   2. an overlap of faces X, Y in the GAP between their two shared edges starts and ends at corners,
      so the triple-point criterion (Lemma 5.1 analogue) is blind to it -> annealing now uses
      `pair_energy` (numba twin of the exact pair verifier, 154 us).
-  With the honest energy: best 2 on the first 3 maps (the remaining defect sits at the doubled
-  adjacency: 6 of 8 faces simple). Runs continue (3 x 15 maps x 4 min).
+  With the honest energy: best 2 on 6 maps (28 restarts each; exact check: 6 of 8 faces simple).
+  CORRECTION after a closer look: the two residual crossings are NOT always at the doubled
+  adjacency — their location varies from map to map, so this looks like an annealing plateau,
+  not a structural obstruction. Relaunched with 10 min per map on 4 cores.
   Observation for theory: X contains the gap next to the corner v2 = end of e1 iff X is reflex at
   v2; same for Y; both faces are of the same "side type" at e1 and e2 (orientation argument), so the
   local geometry at e1 and e2 is identical. Whether a doubled adjacency can be embedded at all is
   open — a clean small question.
+
+* **Night-2 `pdefect` candidate pd37_0 (type 37, defect 12.9 -> 0, 295 its): FALSE POSITIVE**, like
+  pd10_0. Exact check of the reconstructed planes: 0 of 12 faces simple, 50 violated triples, 31 bad
+  pairs (38 face self-crossings, 12 multi-reflex vertices); closure + simple faces with these
+  normals (`torus_simple`, R^3) is INFEASIBLE (6 s). The running night job still uses the old worker
+  (no simplicity check); every ZERO_DEFECT from it must be re-checked this way.
