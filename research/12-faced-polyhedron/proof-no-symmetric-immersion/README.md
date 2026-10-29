@@ -46,6 +46,13 @@ Corollary (already claimed by Moki & Julio 2026, independently reproduced here):
    `szilassi-12` repository authors (independent confirmation of their Part B). Possibly arXiv
    (math.CO/math.MG) after positive feedback.
 
+7. **Free strengthening (projective symmetries)**: a finite group of projective maps preserving the bounded
+   polyhedron P maps no point of P to infinity, so each map keeps P (connected) in one half-space and
+   preserves conv(P); lifting to a sharp cone in R^4 and averaging in the dual cone gives an invariant
+   hyperplane missing conv(P); in that affine chart the group acts affinely (then isometrically after
+   averaging an inner product), and the chart change keeps P a bounded planar-faced embedding/immersion.
+   Hence the theorem also excludes projective symmetries. Write out and check (`../cross-field-ideas.md`, Y9).
+
 Also worth including in the write-up as context (separate, numerical): every known near-miss fails
 the Gauss-degree condition and is not an immersion (`../theory-notes.md`, `../results.md`).
 

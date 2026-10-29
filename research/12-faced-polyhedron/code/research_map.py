@@ -22,16 +22,21 @@ AREAS = [  # (area, colour, [(direction, status), ...]); colours: validated cate
     ('Topology &\ntheory', '#1baf7a', [
         ('Gauss-degree filter', DONE), ('Local lemma (curvature)', DONE), ('Parity theorem', DONE),
         ('Handle-period obstruction', STARTED), ('Farkas certificates -> lemma', TODO),
-        ('Lensing-type invariants', TODO)]),
+        ('Lensing-type invariants', TODO), ('Maxwell-Cremona, genus g', TODO),
+        ('Discharging (Gauss-Bonnet)', TODO), ('Winding-number classifier', DONE)]),
     ('Impossibility\nproofs', '#eda100', [
         ('No symm. embedding (certified)', DONE), ('No symm. immersion (certified)', DONE),
         ('Asymmetric immersion SAT', STARTED), ('Cube-and-conquer, asymmetric', TODO),
         ('Second independent encoder', TODO), ('LRAT / formal checking', TODO),
-        ('Write-up + expert review', TODO), ('Final polynomials (SDP)', TODO)]),
+        ('Write-up + expert review', TODO), ('Final polynomials (SDP)', TODO),
+        ('Projective symmetries (corollary)', TODO)]),
     ('Cross-field\nideas', '#e87ba4', [
         ('External AI reviews', DONE), ('Szilassi embryo', DONE), ('CSG read-once solids', TODO),
         ('Moment-curve / Tietze ansatz', TODO), ('Star-tracker hashing', TODO),
-        ('Genus ladder (g = 7)', TODO), ('Island-model evolution', TODO)]),
+        ('Genus ladder (g = 7)', TODO), ('Island-model evolution', TODO),
+        ('Screw-orbit planes', DONE), ('GWAS on near-misses', STARTED), ('Ladder n = 8..11', TODO),
+        ('Difference map (RRR)', TODO), ('Rare-event estimation', TODO), ('Tropical / patchwork seeds', TODO),
+        ('CEGAR loop', TODO), ('Local-search SAT', TODO), ('Planarization flow', TODO)]),
 ]
 INK, INK2, SURFACE = '#0b0b0b', '#52514e', '#fcfcfb'
 
@@ -43,7 +48,7 @@ def main(out):
     fig, ax = plt.subplots(figsize=(13, 13), dpi=150)
     fig.patch.set_facecolor(SURFACE)
     ax.set_facecolor(SURFACE)
-    ax.set_xlim(-1.9, 1.9); ax.set_ylim(-2.15, 2.12); ax.set_aspect('equal'); ax.axis('off')
+    ax.set_xlim(-1.9, 1.9); ax.set_ylim(-1.95, 2.12); ax.set_aspect('equal'); ax.axis('off')
     R0, R1 = 0.48, 1.0
     for i, (area, col, name, st) in enumerate(items):
         th1 = 90 - i * step
@@ -84,11 +89,11 @@ def main(out):
     handles = [Patch(facecolor='#8a8a86', edgecolor=SURFACE, label='done / answered'),
                Patch(facecolor='#8a8a8659', edgecolor='#8a8a86', hatch='////', label='started, in progress'),
                Patch(facecolor=SURFACE, edgecolor='#8a8a86', label='not started')]
-    leg1 = ax.legend(handles=handles, loc='lower center', bbox_to_anchor=(0.5, 0.035), ncol=3, frameon=False,
+    leg1 = ax.legend(handles=handles, loc='upper center', bbox_to_anchor=(0.5, 0.0), ncol=3, frameon=False,
                      fontsize=12)
     ax.add_artist(leg1)
     ah = [Patch(facecolor=col, edgecolor=SURFACE, label=area.replace('\n', ' ')) for area, col, _ in AREAS]
-    ax.legend(handles=ah, loc='lower center', bbox_to_anchor=(0.5, -0.005), ncol=5, frameon=False, fontsize=11.5)
+    ax.legend(handles=ah, loc='upper center', bbox_to_anchor=(0.5, -0.035), ncol=5, frameon=False, fontsize=11.5)
     fig.savefig(out + '.png', facecolor=SURFACE, bbox_inches='tight')
     fig.savefig(out + '.svg', facecolor=SURFACE, bbox_inches='tight')
 

@@ -30,8 +30,13 @@ Reference points: best known near-miss 4 (symmetric), 5 (asymmetric); random arr
 | M1 | Szilassi embryo inside some type | 59 types x 792 7-subsets | max 9 induced triangles (need 13) | KILL (structural fact) |
 | M2 | (crystallography) flat 3-torus: periods in a lattice instead of 0 | closure MILP with lattice periods, types 0 and 58 | general lattice: defect exactly 0 (det 414, 49); but faces not simple | closure level only: with SIMPLE faces added (`torus_simple`) both instances are INFEASIBLE in T^3 (116-392 s) and in R^3 (2-3 s) -> face simplicity is an independent, strong part of the obstruction; sweep over more normals/classes running |
 | PD | Period-defect annealing in R^3 | type 0, ~1.5 h | 17.6 -> 8.5 | KEEP (night 2 runs all types) |
+| Q16 | (current graphs, cross-field round 2, X4) 12 planes = perturbed orbit of a screw motion | 24 samples, CP-SAT best triangulation | best 27 / 28 (random: 23-39) | KILL |
+| Q17 | (computer graphics: generalized winding number, Y10) w is constant on arrangement cells; embedding => w in {0,1} | Monte Carlo (40,000 points) and exact octant test at all 220 triple points, 1005 seeds | values -2..3 occur; Monte Carlo misses thin defects (261 seeds look clean at 40k points); exact test: 45 seeds have w in {0,1} at every cell, i.e. their 2-cycle bounds a solid; the inspected ones have 4 face self-crossings (bow-tie faces: one plane carries several lobes) and 12 'multi-reflex' vertices, which are then artefacts of the reversed lobes (interpretation, not yet checked one by one) | DONE: cheap exact classifier; Monte Carlo volume excess is NOT a usable objective (defects are thin) |
+| Q18 | (genetics: GWAS, Y7) defects (vertices with >= 2 reflex corners) sit at the same combinatorial positions across seeds of one type | canonical relabeling + automorphism orbits, 12 types with >= 25 seeds | no universal position (max rate 0.55-0.85 per vertex); strong hotspots in symmetric types: type 56 — two orbits of 4 vertices at 83-85 %, all other orbits <= 13 %; type 57 — one orbit of 3 at 76 % | KEEP: test "type 56 immersion with the hotspot vertices single-reflex" by a LOCAL SAT (only nearby faces) -> candidate local lemma |
 
 ## Queued ideas from distant fields
+
+Round 2 (historical cross-field breakthroughs, 17 ideas X1-X6, Y1-Y11): see `cross-field-ideas.md`.
 
 | Field | Correspondence | Concrete test |
 |---|---|---|
