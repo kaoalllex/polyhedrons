@@ -195,3 +195,22 @@ Details: experiment-log.md "Track 4", code/planes.py, code/geomsat.py.
 * So the known near-misses are far from even an IMMERSION, consistent with their wrong Gauss
   degree. Whether the 12-face map admits any polyhedral immersion with planar faces is open to
   our knowledge (test Q12: OM-SAT without global clauses; Q12b: numerical annealing).
+
+## PI: the symmetric obstruction is LOCAL (2026-10-29)
+
+OM-SAT (our encoder, CaDiCaL) on symmetric instances WITHOUT the global forbidden-triple clauses
+(`code` script in experiment-log; families: uniform GP, symmetry, orbit/mirror normalization, plus
+the listed local families):
+
+| case | simple faces only | reflex <= 1 per vertex only | orientation consistency only | simple + reflex (= immersion) | full embedding |
+|---|---|---|---|---|---|
+| Lutz #54, T | SAT 0.6 s | SAT 0.4 s | SAT 0.6 s | **UNSAT 2.1 s** | UNSAT 1.0 s |
+| Lutz #3, D3 | **UNSAT 5.0 s** | SAT 0.5 s | SAT 1.7 s | UNSAT 5.2 s | UNSAT 4.7 s |
+| Lutz #45, C3 | – | – | – | UNSAT 19.1 s (with orientation consistency) | UNSAT 23.1 s |
+
+* For these symmetric cases no polyhedral IMMERSION with planar faces exists; for D3 the 12 face
+  polygons cannot even all be simple. The global no-intersection conditions are not needed.
+* Hypothesis H-IMM: the 12-face map admits no polyhedral immersion with planar faces at all
+  (asymmetric case: overnight `immersion` job + local tests running). Numerical immersion search
+  so far: >= 12 local violations from random starts; all known near-misses have >= 7 vertices
+  with two reflex corners.

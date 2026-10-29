@@ -22,6 +22,8 @@ Reference points: best known near-miss 4 (symmetric), 5 (asymmetric); random arr
 | Q14 | Edge convex/reflex 2-colouring (convex vertex: 3 equal; saddle: 2+1) prunes admissible normals | 10 types, SAT | always colourable; admissible normals have 27-33 saddles of 44 | KILL |
 | Q12c | Numerical immersion search on types 58, 57, 56 | annealing 60 min each, random restarts | best 12 / 12 / 14 local violations; every value observed is EVEN | KEEP (parity invariant? cf. Banchoff: triple points of immersions = chi mod 2) |
 | S1 | Independent certified reproduction of the symmetric theorem | user's machine, `sym` job, our encoder + CaDiCaL + drat-trim | all 25 cases (21 C2 classes, 4 C3) UNSAT-VERIFIED, 8-147 s each (console report; results to be pushed) | DONE |
+| A1 | Symmetric obstruction is local (immersion-level) | OM-SAT without global clauses on #54 T, #3 D3, #45 C3 | all UNSAT in 1-19 s; D3: simple faces alone UNSAT; T: simple + reflex UNSAT | DONE: major structural insight |
+| A2 | Asymmetric immersion (simple + reflex only) | types 0, 41, 25 min each; type 0 simple-only 10 min | running | |
 
 ## Queued ideas from distant fields
 
