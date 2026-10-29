@@ -100,7 +100,7 @@ class Committer:
         self.on = args.git
         self.push = args.push
         self.every = args.commit_minutes * 60
-        self.last = time.time()
+        self.last = time.monotonic()
         self.root = None
         if self.on:
             try:
@@ -111,9 +111,9 @@ class Committer:
                 self.on = False
 
     def maybe(self, msg, force=False):
-        if not self.on or (not force and time.time() - self.last < self.every):
+        if not self.on or (not force and time.monotonic() - self.last < self.every):
             return
-        self.last = time.time()
+        self.last = time.monotonic()
         try:
             subprocess.run(['git', 'add', '-A', RES], cwd=self.root, check=True)
             r = subprocess.run(['git', 'commit', '-q', '-m', msg], cwd=self.root)
@@ -129,7 +129,7 @@ def log(*a):
 
 def run_pool(job, tasks, worker, args, committer, init=None, initargs=()):
     """Run tasks (list of (task_id, payload)) in a pool; record each result; respect --hours."""
-    deadline = time.time() + args.hours * 3600
+    deadline = time.monotonic() + args.hours * 3600
     done = {r['task'] for r in load_results(job)}
     todo = [(t, p) for t, p in tasks if t not in done and (not args.only or args.only in t)]
     log('%s: %d tasks total, %d already done, %d to do' % (job, len(tasks), len(done), len(todo)))
@@ -143,7 +143,7 @@ def run_pool(job, tasks, worker, args, committer, init=None, initargs=()):
             try:
                 rec = it.next(timeout=30)
             except mp.TimeoutError:
-                if time.time() > deadline:
+                if time.monotonic() > deadline:
                     log('time budget reached; stopping (resume by re-running the same command)')
                     break
                 continue
@@ -159,7 +159,7 @@ def run_pool(job, tasks, worker, args, committer, init=None, initargs=()):
                 committer.maybe('overnight %s: CANDIDATE %s' % (job, rec['task']), force=True)
             else:
                 committer.maybe('overnight %s: progress' % job)
-            if time.time() > deadline:
+            if time.monotonic() > deadline:
                 log('time budget reached; stopping (resume by re-running the same command)')
                 break
     finally:
@@ -182,7 +182,7 @@ def normals_worker(item):
     task, p = item
     import numpy as np
     from fixed_normals import solve, integer_normals, exact_check
-    t0 = time.time()
+    t0 = time.monotonic()
     H = np.array(p['planes'], dtype=float)
     rng = np.random.default_rng(int(hashlib.sha256(task.encode()).hexdigest()[:8], 16))
     Nf = H[:, :3] / np.linalg.norm(H[:, :3], axis=1)[:, None]
@@ -196,14 +196,14 @@ def normals_worker(item):
     from gauss_degree import coherent_triangles, admissible_gauges
     if not admissible_gauges(N, coherent_triangles(p['triangles']), -5):
         return {'task': task, 'seed_id': p['seed_id'], 'source': p['source'], 'seed_count': p['ours'],
-                'sigma': p['sigma'], 'status': 'UNSAT-GAUSS', 'seconds': round(time.time() - t0, 1),
+                'sigma': p['sigma'], 'status': 'UNSAT-GAUSS', 'seconds': round(time.monotonic() - t0, 1),
                 'summary': 'no gauge with Gauss degree -5 and convex covering (exact)'}
     try:
         status, planes = solve(N, p['triangles'], timeout_s=p['timeout'])
     except Exception as e:                          # noqa: BLE001
-        return {'task': task, 'status': 'ERROR', 'error': repr(e)[:300], 'seconds': round(time.time() - t0, 1)}
+        return {'task': task, 'status': 'ERROR', 'error': repr(e)[:300], 'seconds': round(time.monotonic() - t0, 1)}
     rec = {'task': task, 'seed_id': p['seed_id'], 'source': p['source'], 'seed_count': p['ours'],
-           'sigma': p['sigma'], 'status': status, 'seconds': round(time.time() - t0, 1), 'normals': N}
+           'sigma': p['sigma'], 'status': status, 'seconds': round(time.monotonic() - t0, 1), 'normals': N}
     if status == 'SAT':
         ok, nv, nb = exact_check(planes, p['triangles'])
         rec.update({'planes': [[int(x) for x in h] for h in planes], 'triangles': p['triangles'],
@@ -238,25 +238,25 @@ def gnormals_worker(item):
     from gauss_search import find_admissible
     from fixed_normals import integer_normals, exact_check
     from fixed_normals_gauge import solve_gauge
-    t0 = time.time()
+    t0 = time.monotonic()
     rng = np.random.default_rng(int(hashlib.sha256(task.encode()).hexdigest()[:8], 16))
     ot = coherent_triangles(p['triangles'])
     G, it = find_admissible(ot, rng, minutes=p['anneal_minutes'])
     rec = {'task': task, 'type_id': p['type_id'], 'anneal_iterations': it}
     if G is None:
-        rec.update(status='NO_ADMISSIBLE_NORMALS', seconds=round(time.time() - t0, 1), summary='anneal failed')
+        rec.update(status='NO_ADMISSIBLE_NORMALS', seconds=round(time.monotonic() - t0, 1), summary='anneal failed')
         return rec
     N = integer_normals(G)
     if tuple([1] * 12) not in admissible_gauges(N, ot, -5, n_cover=500):
-        rec.update(status='ROUNDING_FAILED', seconds=round(time.time() - t0, 1), summary='exact recheck failed')
+        rec.update(status='ROUNDING_FAILED', seconds=round(time.monotonic() - t0, 1), summary='exact recheck failed')
         return rec
-    ta = time.time()
+    ta = time.monotonic()
     try:
         status, planes = solve_gauge(N, p['triangles'], timeout_s=p['timeout'])
     except Exception as e:                          # noqa: BLE001
-        rec.update(status='ERROR', error=repr(e)[:300], seconds=round(time.time() - t0, 1))
+        rec.update(status='ERROR', error=repr(e)[:300], seconds=round(time.monotonic() - t0, 1))
         return rec
-    rec.update(status=status, normals=N, smt_seconds=round(time.time() - ta, 1), seconds=round(time.time() - t0, 1))
+    rec.update(status=status, normals=N, smt_seconds=round(time.monotonic() - ta, 1), seconds=round(time.monotonic() - t0, 1))
     if status == 'SAT':
         ok, nv, nb = exact_check(planes, p['triangles'])
         rec.update(planes=[[int(x) for x in h] for h in planes], triangles=p['triangles'], exact_embedded=ok,
@@ -289,13 +289,13 @@ def pdefect_worker(item):
     def adm(G):
         pos, neg = cover_counts(G, T, U)
         return bool(np.all(pos - neg == -5) and np.all(pos > 0))
-    t0 = time.time()
+    t0 = time.monotonic()
     G, _ = find_admissible(ot, rng, minutes=2)
     if G is None:
-        return {'task': task, 'type_id': p['type_id'], 'status': 'NO_ADMISSIBLE_NORMALS', 'seconds': round(time.time() - t0, 1)}
+        return {'task': task, 'type_id': p['type_id'], 'status': 'NO_ADMISSIBLE_NORMALS', 'seconds': round(time.monotonic() - t0, 1)}
     cur = period_defect(G, tri, time_limit=15)[0]
     start = cur; best = (cur, G.copy()); Tmp = 2.0; it = 0
-    while cur is not None and time.time() - t0 < 60 * p['minutes'] and best[0] > 1e-6:
+    while cur is not None and time.monotonic() - t0 < 60 * p['minutes'] and best[0] > 1e-6:
         it += 1
         G2 = G.copy(); k = int(rng.integers(12))
         v = G2[k] + float(rng.choice([0.02, 0.05, 0.15])) * rng.standard_normal(3); G2[k] = v / np.linalg.norm(v)
@@ -310,7 +310,7 @@ def pdefect_worker(item):
                 best = (cur, G.copy())
         Tmp = max(0.05, Tmp * 0.97)
     rec = {'task': task, 'type_id': p['type_id'], 'start_defect': start, 'best_defect': best[0], 'iterations': it,
-           'normals': best[1].tolist(), 'seconds': round(time.time() - t0, 1)}
+           'normals': best[1].tolist(), 'seconds': round(time.monotonic() - t0, 1)}
     rec['status'] = 'ZERO_DEFECT' if best[0] is not None and best[0] <= 1e-6 else 'POSITIVE'
     rec['candidate'] = rec['status'] == 'ZERO_DEFECT'
     rec['summary'] = 'type %d defect %.3f -> %.3f (%d its)' % (p['type_id'], start or -1, best[0] or -1, it)
@@ -443,7 +443,7 @@ def sym_worker(item):
     task, p = item
     from pysat.solvers import Solver
     import threading
-    t0 = time.time()
+    t0 = time.monotonic()
     m, grp, which = p['case']
     opts = dict(gp=True, triples=True)
     for k in p['opts']:
@@ -463,19 +463,19 @@ def sym_worker(item):
     rec['cnf_sha256'] = sha256_file(cnf)
     if p['cadical'] and p['drat_trim']:
         proof = os.path.join(WORK, task + '.drat')
-        ts = time.time()
+        ts = time.monotonic()
         r = subprocess.run([p['cadical'], '-q', '-t', str(int(p['timeout'])), cnf, proof],
                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-        rec['solve_seconds'] = round(time.time() - ts, 1)
+        rec['solve_seconds'] = round(time.monotonic() - ts, 1)
         status = {10: 'SAT', 20: 'UNSAT'}.get(r.returncode, 'TIMEOUT')
         rec['solver'] = 'cadical-binary'
         if status == 'UNSAT':
             rec['proof_bytes'] = os.path.getsize(proof)
             rec['proof_sha256'] = sha256_file(proof)
-            tv = time.time()
+            tv = time.monotonic()
             v = subprocess.run([p['drat_trim'], cnf, proof, '-t', str(int(p['check_timeout']))],
                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-            rec['drat_trim_seconds'] = round(time.time() - tv, 1)
+            rec['drat_trim_seconds'] = round(time.monotonic() - tv, 1)
             rec['drat_trim'] = 'VERIFIED' if 's VERIFIED' in v.stdout else 'NOT VERIFIED'
             rec['drat_trim_tail'] = v.stdout[-300:]
             status = 'UNSAT-VERIFIED' if rec['drat_trim'] == 'VERIFIED' else 'UNSAT-PROOF-FAILED'
@@ -487,7 +487,7 @@ def sym_worker(item):
         timer.start()
         r = s.solve_limited(expect_interrupt=True)
         timer.cancel()
-        rec['solve_seconds'] = round(time.time() - t0, 1)
+        rec['solve_seconds'] = round(time.monotonic() - t0, 1)
         rec['solver'] = 'pysat-cadical195 (no proof)'
         status = {True: 'SAT', False: 'UNSAT-UNVERIFIED', None: 'TIMEOUT'}[r]
         if r is True:
@@ -572,12 +572,12 @@ def job_cube(args, committer):
             write_json_atomic(stp, st)
         if sha256_file(cnf) != st['cnf_sha256']:
             raise SystemExit('CNF changed since the run started; delete results/%s to restart' % job)
-        deadline = time.time() + args.hours * 3600
+        deadline = time.monotonic() + args.hours * 3600
         ctx = mp.get_context('spawn')
         log('%s: open cubes %d, refuted fraction %.6f' % (job, len(st['open']), st['refuted_fraction']))
         running = {}                                    # key -> (cube, process, queue, start)
         try:
-            while (st['open'] or running) and time.time() < deadline:
+            while (st['open'] or running) and time.monotonic() < deadline:
                 for cube in st['open']:                    # cubes stay in 'open' until finished
                     if len(running) >= args.workers:
                         break
@@ -586,21 +586,21 @@ def job_cube(args, committer):
                         q = ctx.Queue()
                         pr = ctx.Process(target=cube_child, args=(m, opts, cube, st['nchi'], q), daemon=True)
                         pr.start()
-                        running[k] = (cube, pr, q, time.time())
+                        running[k] = (cube, pr, q, time.monotonic())
                 time.sleep(1)
                 for k in list(running):
                     cube, pr, q, t0 = running[k]
                     res = None
                     if not q.empty():
                         res = q.get()
-                    elif time.time() - t0 > args.timeout or not pr.is_alive():
+                    elif time.monotonic() - t0 > args.timeout or not pr.is_alive():
                         res = {'status': 'TIMEOUT' if pr.is_alive() else 'ERROR'}
                     if res is None:
                         continue
                     pr.terminate()
                     pr.join()
                     del running[k]
-                    rec = dict(res, task=k, cube=cube, seconds=round(time.time() - t0, 1))
+                    rec = dict(res, task=k, cube=cube, seconds=round(time.monotonic() - t0, 1))
                     st['open'] = [c for c in st['open'] if c != cube]
                     if rec['status'] == 'UNSAT':
                         st['refuted_fraction'] += 2.0 ** (-len(cube))
@@ -666,27 +666,27 @@ def job_immersion(args, committer):
     todo = [t for t in types if 'imm%d_k%d' % (t['id'], args.gauss) not in done
             and (not args.only or args.only in 'imm%d_k%d' % (t['id'], args.gauss))]
     log('%s: %d types to do (%d done)' % (job, len(todo), len(done)))
-    deadline = time.time() + args.hours * 3600
+    deadline = time.monotonic() + args.hours * 3600
     ctx = mp.get_context('spawn')
     running = {}
     try:
-        while (todo or running) and time.time() < deadline:
+        while (todo or running) and time.monotonic() < deadline:
             while todo and len(running) < args.workers:
                 t = todo.pop(0)
                 q = ctx.Queue()
                 pr = ctx.Process(target=immersion_child, args=(t['id'], t['triangles'], args.gauss, q), daemon=True)
                 pr.start()
-                running['imm%d_k%d' % (t['id'], args.gauss)] = (t, pr, q, time.time())
+                running['imm%d_k%d' % (t['id'], args.gauss)] = (t, pr, q, time.monotonic())
             time.sleep(2)
             for k in list(running):
                 t, pr, q, t0 = running[k]
                 res = q.get() if not q.empty() else None
-                if res is None and (time.time() - t0 > args.timeout or not pr.is_alive()):
+                if res is None and (time.monotonic() - t0 > args.timeout or not pr.is_alive()):
                     res = {'status': 'TIMEOUT' if pr.is_alive() else 'ERROR'}
                 if res is None:
                     continue
                 pr.terminate(); pr.join(); del running[k]
-                rec = dict(res, task=k, type_id=t['id'], gauss_k=args.gauss, seconds=round(time.time() - t0, 1),
+                rec = dict(res, task=k, type_id=t['id'], gauss_k=args.gauss, seconds=round(time.monotonic() - t0, 1),
                            finished_at=time.strftime('%Y-%m-%d %H:%M:%S'))
                 rec['candidate'] = rec['status'] == 'UNSAT'      # UNSAT = no immersion = no embedding: important
                 append_result(job, rec)
@@ -716,10 +716,10 @@ def ils_worker(item):
     cur = int(violations(H, pa, it))
     start = cur
     best, bestH = cur, H.copy()
-    t0 = time.time()
+    t0 = time.monotonic()
     steps = kicks = stall = 0
     spread = float(np.std(H[:, 3])) or 1.0
-    while time.time() - t0 < 60 * p['minutes'] and best > 0:
+    while time.monotonic() - t0 < 60 * p['minutes'] and best > 0:
         k = int(rng.integers(12))
         c, h, hc, m = relocate(H, pa, it, k, stride=p['stride'], offset=int(rng.integers(p['stride'])), cap=cur + 1)
         H2 = H.copy(); H2[k] = hc
@@ -744,7 +744,7 @@ def ils_worker(item):
             kicks += 1
             stall = 0
     rec = {'task': task, 'seed_id': p['seed_id'], 'source': p['source'], 'start_count': start,
-           'best_count': best, 'steps': steps, 'kicks': kicks, 'seconds': round(time.time() - t0, 1)}
+           'best_count': best, 'steps': steps, 'kicks': kicks, 'seconds': round(time.monotonic() - t0, 1)}
     rec['status'] = 'IMPROVED' if best < start else 'NO_IMPROVEMENT'
     if best < start:
         rec['planes'] = bestH.tolist()
