@@ -251,11 +251,14 @@ def torus_defect(G, tris, phi, A=100.0, time_limit=60, general=False, return_L=F
     return val, res.status
 
 
-def torus_simple(G, tris, phi, A=100.0, eps=0.05, time_limit=300, general=True):
+def torus_simple(G, tris, phi, A=100.0, eps=0.05, time_limit=300, general=True, relax_faces=False):
     """Feasibility MILP: exact closure in the 3-torus (periods = L phi, L free 3x3; phi = 0 gives
     R^3), edge signs / vertex rules as in period_defect, AND every face polygon simple: for each
     pair of non-adjacent edges of a face, the intersection point of their lines lies outside at
-    least one of the two segments (4-way disjunction, big-M). Returns (status, solution dict)."""
+    least one of the two segments (4-way disjunction, big-M). Returns (status, solution dict).
+    relax_faces=True: a binary y_X per face switches off the simplicity of face X and the MILP
+    MINIMIZES sum y_X ('simple defect' = how many faces must be non-simple for exact closure);
+    the solution dict then carries 'nonsimple' (objective value, an upper bound if time-limited)."""
     edges, faces, nv = surface_edges(G, tris)
     G = np.asarray(G, float); G = G / np.linalg.norm(G, axis=1)[:, None]
     ot = coherent_triangles(tris)
@@ -271,7 +274,8 @@ def torus_simple(G, tris, phi, A=100.0, eps=0.05, time_limit=300, general=True):
                 if i == 0 and j == m - 1:
                     continue
                 pairs.append((X, i, j))
-    N = iz + 4 * len(pairs)
+    iy = iz + 4 * len(pairs)
+    N = iy + (len(faces) if relax_faces else 0)
     rows, lo, hi = [], [], []
     A_ = lil_matrix((3 * ne + 2 * ne + 2 * len(ot) + 9 * len(pairs), N))
     r = 0
@@ -334,7 +338,9 @@ def torus_simple(G, tris, phi, A=100.0, eps=0.05, time_limit=300, general=True):
         add(mu, '>=', z[3]); add(mu_minus, '>=', z[3])
         for q in range(4):
             A_[r, z[q]] = 1
-        lo.append(1); hi.append(4); r += 1
+        if relax_faces:
+            A_[r, iy + X] = 1
+        lo.append(1); hi.append(5 if relax_faces else 4); r += 1
     A_ = A_[:r].tocsr()
     lb = np.full(N, -np.inf); ub = np.full(N, np.inf)
     lb[ip:ip + 3] = 0; ub[ip:ip + 3] = 0
@@ -345,9 +351,14 @@ def torus_simple(G, tris, phi, A=100.0, eps=0.05, time_limit=300, general=True):
         lb[iL:iL + 9] = 0; ub[iL:iL + 9] = 0
     lb[iz:] = 0; ub[iz:] = 1
     integ = np.zeros(N); integ[ik:ik + ne] = 1; integ[iz:] = 1
-    res = milp(np.zeros(N), constraints=[LinearConstraint(A_, np.array(lo), np.array(hi))],
+    cost = np.zeros(N)
+    if relax_faces:
+        cost[iy:] = 1.0
+    res = milp(cost, constraints=[LinearConstraint(A_, np.array(lo), np.array(hi))],
                bounds=Bounds(lb, ub), integrality=integ, options={'time_limit': time_limit, 'disp': False})
     sol = None
     if res.x is not None and res.status in (0, 1):
         sol = {'L': res.x[iL:iL + 9].reshape(3, 3), 'a': res.x[ia:ia + ne]}
+        if relax_faces:
+            sol['nonsimple'] = int(round(res.x[iy:].sum()))
     return res.status, sol
