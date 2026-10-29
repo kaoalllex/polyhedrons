@@ -227,3 +227,24 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
 | Y8 symmetry breaking by irreps | annealing in one irrep subspace at a time | group representation code |
 | Y1 ladder n = 9, 10, 11 | `ladder.py fast N G ...` with G = 3, 4, 5 | ready once n = 8 is understood |
 | X5 planarization flow | smooth genus-6 surface with the map -> planar faces | implementation |
+
+### Ladder (Y1) results, 2026-10-29 (own pipeline, no external data)
+* Exact verifier `code/ladder_exact.py` (rational arithmetic; map checks, distinct points, simple
+  faces incl. collinear touching, exact pair intersections on each line X cap Y). Agrees with the
+  independent `planes.check_embedding` on n = 7 controls (positive and perturbed negative, identical
+  bad-pair and simple-face counts).
+* **n = 7 (K7, torus): Szilassi-type polyhedra found from random planes in seconds, 5 / 5 runs,
+  all EMBEDDED by both exact checkers.** The pipeline works end to end.
+* n = 8 (K8 on genus 2, two doubled adjacencies), first runs: the annealer found float "zeros" that
+  the exact verifier rejected — two loopholes, both closed:
+  1. collinear doubled edges merged (the two shared segments of a doubled pair overlap); the strict
+     float crossing test and the triple criterion do not see it -> explicit disjointness penalty;
+  2. an overlap of faces X, Y in the GAP between their two shared edges starts and ends at corners,
+     so the triple-point criterion (Lemma 5.1 analogue) is blind to it -> annealing now uses
+     `pair_energy` (numba twin of the exact pair verifier, 154 us).
+  With the honest energy: best 2 on the first 3 maps (the remaining defect sits at the doubled
+  adjacency: 6 of 8 faces simple). Runs continue (3 x 15 maps x 4 min).
+  Observation for theory: X contains the gap next to the corner v2 = end of e1 iff X is reflex at
+  v2; same for Y; both faces are of the same "side type" at e1 and e2 (orientation argument), so the
+  local geometry at e1 and e2 is identical. Whether a doubled adjacency can be embedded at all is
+  open — a clean small question.

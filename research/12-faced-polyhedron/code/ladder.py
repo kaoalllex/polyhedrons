@@ -285,7 +285,23 @@ def fast_energy(H, LK, M, forb):
                 d4 = (e[0] - c[0]) * (b[1] - c[1]) - (e[1] - c[1]) * (b[0] - c[0])
                 if d1 * d2 < 0 and d3 * d4 < 0:
                     cross += 1
-    viol = 0
+    # doubled adjacencies: the edges of face X lying on the same line X cap Y must be disjoint segments
+    # (lesson of the first n = 8 run: otherwise the annealer merges them; the triple criterion is blind to it)
+    dbl = 0
+    for X in range(n):
+        m = M[X]
+        for i in range(m):
+            for j in range(i + 1, m):
+                if LK[X, i] != LK[X, j]:
+                    continue
+                a0 = Q[X, i - 1 if i > 0 else m - 1]; a1 = Q[X, i]; b0 = Q[X, j - 1]; b1 = Q[X, j]
+                dx = a1[0] - a0[0]; dy = a1[1] - a0[1]
+                ta1 = dx * dx + dy * dy
+                tb0 = (b0[0] - a0[0]) * dx + (b0[1] - a0[1]) * dy; tb1 = (b1[0] - a0[0]) * dx + (b1[1] - a0[1]) * dy
+                lo = max(0.0, min(tb0, tb1)); hi = min(ta1, max(tb0, tb1))
+                if hi >= lo - 1e-9 * ta1:
+                    dbl += 1
+    viol = dbl
     for k in range(forb.shape[0]):
         a, b, c = forb[k, 0], forb[k, 1], forb[k, 2]
         p = _solve3(H, a, b, c)
@@ -326,15 +342,17 @@ def anneal_fast(links, rng, minutes, steps=40000):
         restarts += 1
         H = rng.standard_normal((n, 4)); H[:, :3] /= np.linalg.norm(H[:, :3], axis=1)[:, None]
         try:
-            cur = fast_energy(H, LK, M, forb)
-        except Exception:
+            e0, o0 = pair_energy(H, LK, M); cur = e0 + 0.01 * np.tanh(o0)
+        except Exception as ex:
+            if restarts < 3:
+                print('energy evaluation failed:', repr(ex)[:300], flush=True)
             continue
         bl = (cur, H.copy()); T = 1.5
         for _ in range(steps):
             H2 = H.copy(); k = int(rng.integers(n)); sig = float(rng.choice([0.01, 0.05, 0.2]))
             H2[k] += sig * rng.standard_normal(4); H2[k, :3] /= np.linalg.norm(H2[k, :3])
             try:
-                c2 = fast_energy(H2, LK, M, forb)
+                e2, o2 = pair_energy(H2, LK, M); c2 = e2 + 0.01 * np.tanh(o2)
             except Exception:
                 continue
             if c2 <= cur or rng.random() < np.exp((cur - c2) / T):
@@ -342,11 +360,11 @@ def anneal_fast(links, rng, minutes, steps=40000):
                 if cur < bl[0]:
                     bl = (cur, H.copy())
             T = max(0.03, T * 0.9998)
-            if bl[0] == 0:
+            if bl[0] < 0.5:
                 break
         if bl[0] < best[0]:
             best = bl
-        if best[0] == 0:
+        if best[0] < 0.5:
             break
     return best, restarts
 
@@ -363,12 +381,112 @@ def main_fast():
         if H is None:
             print('map %d: no evaluation succeeded' % mi, flush=True); continue
         det = energy(H, links, detail=True)
-        print('map %d: fast best %d | pair check: crossings %d, bad pairs %d | restarts %d' % (mi, b, det[0], det[1], rs), flush=True)
+        print('map %d: fast best %.3f | pair check: crossings %d, bad pairs %d | restarts %d' % (mi, b, det[0], det[1], rs), flush=True)
         results.append({'n': n, 'genus': genus, 'links': {str(k): v for k, v in links.items()},
-                        'best_fast': int(b), 'crossings': det[0], 'bad_pairs': det[1], 'planes': H.tolist()})
+                        'best_fast': float(b), 'crossings': det[0], 'bad_pairs': det[1], 'planes': H.tolist()})
         json.dump(results, open(out, 'w'))
-        if b == 0:
+        if b < 0.5:
             print('!!! ZERO-VIOLATION CONFIGURATION (float) for map', mi, flush=True)
+
+
+
+# ----------------------------------------------------------------------------- pair energy (numba)
+# The triple criterion is blind to doubled adjacencies (an overlap in the gap between the two shared
+# edges starts and ends at CORNERS). This energy is the float twin of ladder_exact.verify: for every
+# pair of faces, decide on the line X cap Y which open intervals lie in both faces outside the shared
+# edges. Energy = self-crossings + overlapping collinear (doubled) edges + bad pairs (+ overlap length).
+
+@numba.njit(cache=True)
+def pair_energy(H, LK, M):
+    n = H.shape[0]; mmax = LK.shape[1]
+    P3 = np.zeros((n, mmax, 3)); Q = np.zeros((n, mmax, 2)); U = np.zeros((n, 2, 3))
+    for X in range(n):
+        nx = H[X, :3] / np.sqrt((H[X, :3] ** 2).sum())
+        t = np.array([1.0, 0.0, 0.0]) if abs(nx[0]) < 0.9 else np.array([0.0, 1.0, 0.0])
+        u = np.cross(nx, t); u /= np.sqrt((u ** 2).sum()); w = np.cross(nx, u)
+        U[X, 0] = u; U[X, 1] = w
+        m = M[X]
+        for i in range(m):
+            p = _solve3(H, X, LK[X, i], LK[X, (i + 1) % m])
+            P3[X, i] = p; Q[X, i, 0] = p @ u; Q[X, i, 1] = p @ w
+    cross = 0; dbl = 0
+    for X in range(n):
+        m = M[X]
+        for i in range(m):
+            for j in range(i + 2, m):
+                if i == 0 and j == m - 1:
+                    continue
+                a = Q[X, i]; b = Q[X, (i + 1) % m]; c = Q[X, j]; e = Q[X, (j + 1) % m]
+                d1 = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])
+                d2 = (b[0] - a[0]) * (e[1] - a[1]) - (b[1] - a[1]) * (e[0] - a[0])
+                d3 = (e[0] - c[0]) * (a[1] - c[1]) - (e[1] - c[1]) * (a[0] - c[0])
+                d4 = (e[0] - c[0]) * (b[1] - c[1]) - (e[1] - c[1]) * (b[0] - c[0])
+                if d1 * d2 < 0 and d3 * d4 < 0:
+                    cross += 1
+            for j in range(i + 1, m):
+                if LK[X, i] != LK[X, j]:
+                    continue
+                a0 = Q[X, i - 1 if i > 0 else m - 1]; a1 = Q[X, i]; b0 = Q[X, j - 1]; b1 = Q[X, j]
+                dx = a1[0] - a0[0]; dy = a1[1] - a0[1]; ta1 = dx * dx + dy * dy
+                tb0 = (b0[0] - a0[0]) * dx + (b0[1] - a0[1]) * dy; tb1 = (b1[0] - a0[0]) * dx + (b1[1] - a0[1]) * dy
+                if min(ta1, max(tb0, tb1)) >= max(0.0, min(tb0, tb1)) - 1e-9 * ta1:
+                    dbl += 1
+    bad = 0; over = 0.0
+    crit = np.zeros(4 * mmax); sh0 = np.zeros(mmax); sh1 = np.zeros(mmax)
+    for X in range(n):
+        for Y in range(X + 1, n):
+            d = np.cross(H[X, :3], H[Y, :3]); dd = (d ** 2).sum()
+            A = np.empty((3, 3)); A[0] = H[X, :3]; A[1] = H[Y, :3]; A[2] = d
+            rhs = np.array([-H[X, 3], -H[Y, 3], 0.0])
+            p0 = np.linalg.solve(A, rhs)
+            nc = 0; ns = 0
+            for side in range(2):
+                Z = X if side == 0 else Y
+                W = Y if side == 0 else X
+                m = M[Z]
+                for i in range(m):
+                    a = P3[Z, i - 1 if i > 0 else m - 1]; b = P3[Z, i]
+                    if LK[Z, i] == W:
+                        ta = ((a - p0) @ d) / dd; tb = ((b - p0) @ d) / dd
+                        crit[nc] = ta; crit[nc + 1] = tb; nc += 2
+                        if side == 0:
+                            sh0[ns] = min(ta, tb); sh1[ns] = max(ta, tb); ns += 1
+                        continue
+                    fa = H[W, :3] @ a + H[W, 3]; fb = H[W, :3] @ b + H[W, 3]
+                    if fa * fb < 0:
+                        q = a + (b - a) * (fa / (fa - fb))
+                        crit[nc] = ((q - p0) @ d) / dd; nc += 1
+            cs = np.sort(crit[:nc])
+            isbad = False
+            for k in range(nc - 1):
+                t0 = cs[k]; t1 = cs[k + 1]
+                if t1 - t0 < 1e-12:
+                    continue
+                tm = 0.5 * (t0 + t1)
+                insh = False
+                for s in range(ns):
+                    if sh0[s] - 1e-12 <= tm <= sh1[s] + 1e-12:
+                        insh = True
+                if insh:
+                    continue
+                q = p0 + tm * d
+                inb = True
+                for side in range(2):
+                    Z = X if side == 0 else Y
+                    qx = q @ U[Z, 0]; qy = q @ U[Z, 1]; m = M[Z]; inside = False
+                    for i in range(m):
+                        ax, ay = Q[Z, i, 0], Q[Z, i, 1]; bx, by = Q[Z, (i + 1) % m, 0], Q[Z, (i + 1) % m, 1]
+                        if (ay > qy) != (by > qy):
+                            if ax + (qy - ay) * (bx - ax) / (by - ay) > qx:
+                                inside = not inside
+                    if not inside:
+                        inb = False
+                        break
+                if inb:
+                    isbad = True; over += (t1 - t0) * np.sqrt(dd)
+            if isbad:
+                bad += 1
+    return cross + dbl + bad, over
 
 
 if __name__ == '__main__':
