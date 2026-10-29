@@ -69,6 +69,12 @@ a whole number. We know of no formula for this relaxed series, so it is not clea
 comes next or how many holes it would have. All its vertices have integer coordinates, so every
 property can be checked exactly, with no rounding.
 
+## Research on the 12-face problem
+
+Ongoing computer search: `research/12-faced-polyhedron/` (notes, code, results).
+To run the overnight search locally see
+[`research/12-faced-polyhedron/HOW_TO_RUN_OVERNIGHT.md`](research/12-faced-polyhedron/HOW_TO_RUN_OVERNIGHT.md).
+
 ## Viewer controls
 
 - **Faces:** show or hide individual faces to look inside the model.
