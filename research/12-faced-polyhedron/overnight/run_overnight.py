@@ -519,6 +519,76 @@ def job_cube(args, committer):
             committer.maybe('overnight %s: stop, refuted %.6f' % (job, st['refuted_fraction']), force=True)
 
 
+# ----------------------------------------------------------------------------- job: immersion
+
+def immersion_child(tid, triangles, gauss_k, q):
+    """OM-SAT for a polyhedral IMMERSION of type tid (no global embedding clauses)."""
+    from omsat import CNF, build, Triangulation
+    from omsat_gauss import add_gauss
+    from gauss_degree import coherent_triangles, links_from
+    from pysat.solvers import Solver
+    ot = coherent_triangles(triangles)
+    T = Triangulation(12, ot, links_from(ot, 12))
+    C = CNF(12)
+    P = build(C, T, dict(gp=True, triples=False, reflex=True, poc=True, symbreak=True, mirror=True))
+    for X in range(12):
+        L = T.link[X]
+        for i in range(11):
+            for j in range(i + 2, 11):
+                if not (i == 0 and j == 10):
+                    C.clause([-P.E(X, L[i], L[j]), -P.E(X, L[j], L[i])], 'SIMPLE')
+    if gauss_k:
+        add_gauss(C, P, T, k=gauss_k)
+    with Solver(name='cadical195', bootstrap_with=C.clauses) as s:
+        r = s.solve()
+        out = {'status': 'SAT' if r else 'UNSAT', 'vars': C.nv, 'clauses': len(C.clauses)}
+        if r:
+            mdl = set(l for l in s.get_model() if l > 0)
+            out['chi_plus'] = [''.join('%x' % e for e in S) for S, v in C.qvar.items() if v in mdl]
+    q.put(out)
+
+
+def job_immersion(args, committer):
+    job = 'immersion'
+    types = json.load(open(os.path.join(HERE, '..', 'data', 'k12_triangulations.json')))
+    done = {r['task'] for r in load_results(job)}
+    todo = [t for t in types if 'imm%d_k%d' % (t['id'], args.gauss) not in done
+            and (not args.only or args.only in 'imm%d_k%d' % (t['id'], args.gauss))]
+    log('%s: %d types to do (%d done)' % (job, len(todo), len(done)))
+    deadline = time.time() + args.hours * 3600
+    ctx = mp.get_context('spawn')
+    running = {}
+    try:
+        while (todo or running) and time.time() < deadline:
+            while todo and len(running) < args.workers:
+                t = todo.pop(0)
+                q = ctx.Queue()
+                pr = ctx.Process(target=immersion_child, args=(t['id'], t['triangles'], args.gauss, q), daemon=True)
+                pr.start()
+                running['imm%d_k%d' % (t['id'], args.gauss)] = (t, pr, q, time.time())
+            time.sleep(2)
+            for k in list(running):
+                t, pr, q, t0 = running[k]
+                res = q.get() if not q.empty() else None
+                if res is None and (time.time() - t0 > args.timeout or not pr.is_alive()):
+                    res = {'status': 'TIMEOUT' if pr.is_alive() else 'ERROR'}
+                if res is None:
+                    continue
+                pr.terminate(); pr.join(); del running[k]
+                rec = dict(res, task=k, type_id=t['id'], gauss_k=args.gauss, seconds=round(time.time() - t0, 1),
+                           finished_at=time.strftime('%Y-%m-%d %H:%M:%S'))
+                rec['candidate'] = rec['status'] == 'UNSAT'      # UNSAT = no immersion = no embedding: important
+                append_result(job, rec)
+                log(job, k, rec['status'], '%.0fs' % rec['seconds'])
+                if rec['candidate']:
+                    save_candidate(job, rec)
+                committer.maybe('overnight %s: %s %s' % (job, k, rec['status']), force=rec['status'] == 'UNSAT')
+    finally:
+        for k, (t, pr, q, t0) in running.items():
+            pr.terminate()
+        committer.maybe('overnight %s: stop' % job, force=True)
+
+
 # ----------------------------------------------------------------------------- job: ils
 
 def ils_worker(item):
@@ -608,7 +678,7 @@ def job_status(args, committer):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('job', choices=['gnormals', 'normals', 'sym', 'cube', 'ils', 'status'])
+    ap.add_argument('job', choices=['gnormals', 'immersion', 'normals', 'sym', 'cube', 'ils', 'status'])
     ap.add_argument('--hours', type=float, default=8.0, help='wall-clock budget of this invocation')
     ap.add_argument('--workers', type=int, default=max(1, (os.cpu_count() or 2) - 1))
     ap.add_argument('--timeout', type=float, default=None, help='per-task solver timeout in seconds')
@@ -624,6 +694,8 @@ def main():
     # gnormals
     ap.add_argument('--reps', type=int, default=1000, help='gnormals: samples per type (round robin over 59 types)')
     ap.add_argument('--anneal-minutes', type=float, default=3.0)
+    # immersion
+    ap.add_argument('--gauss', type=int, default=0, help='immersion: number of Gauss-degree directions (0 = off)')
     # sym
     ap.add_argument('--cadical', default=None)
     ap.add_argument('--drat-trim', default=None)
@@ -643,9 +715,9 @@ def main():
         global RES
         RES = os.path.abspath(args.results_dir)
     if args.timeout is None:
-        args.timeout = {'gnormals': 900, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'status': 0}[args.job]
+        args.timeout = {'gnormals': 900, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'status': 0}[args.job]
     committer = Committer(args)
-    {'gnormals': job_gnormals, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'status': job_status}[args.job](
+    {'gnormals': job_gnormals, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'status': job_status}[args.job](
         args, committer)
 
 

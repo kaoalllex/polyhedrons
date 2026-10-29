@@ -18,8 +18,17 @@ Python 3.10+; Linux or macOS (on Windows use WSL).
 
 ```bash
 cd research/12-faced-polyhedron/overnight
-python3 run_overnight.py gnormals --hours 8 --workers 7 --git
+./run_night.sh 8 7
 ```
+
+`8` = hours, `7` = workers (CPU cores minus one). Phase 1 verifies all symmetric cases (`sym`),
+phase 2 tests every type for a polyhedral immersion (`immersion`). An `UNSAT` in phase 2 would
+mean that type has no immersion and hence no embedding — it is committed immediately.
+Часы и число ядер — аргументы скрипта. Фаза 1 — проверка симметричных случаев, фаза 2 — есть ли
+у каждого из 59 типов погружение (UNSAT = у типа нет и вложения; коммитится сразу).
+
+Optional for certified proofs in phase 1 / для сертификатов в фазе 1: install `cadical` and
+`drat-trim` (see `overnight/README.md`); without them phase 1 results are marked unverified.
 
 * `--hours` — how long to run (the program stops by itself) / сколько часов работать.
 * `--workers` — number of CPU cores minus one / число ядер минус одно.
@@ -46,7 +55,8 @@ git push
 
 | Command | Purpose |
 |---|---|
-| `python3 run_overnight.py gnormals ...` | **main**: topologically admissible normals + exact offset search (all 59 types) |
+| `python3 run_overnight.py immersion --hours 8 --workers 7 --git` | OM-SAT: does each type admit a polyhedral immersion (no global clauses)? |
+| `python3 run_overnight.py gnormals --hours 8 --workers 7 --git` | Gauss-admissible normals + exact offset search (all 59 types); mostly fast UNSAT expected |
 | `python3 run_overnight.py sym --hours 6 --workers 7 --git` | certified UNSAT for all symmetric cases (needs `cadical` and `drat-trim` on PATH for proofs, see `overnight/README.md`) |
 | `python3 run_overnight.py cube --maps 1 --hours 8 --workers 7 --git` | cube-and-conquer on the full asymmetric SAT instance of Lutz map #1 |
 | `python3 run_overnight.py ils --hours 4 --workers 7 --git` | local search with exact plane relocation from known near-misses |
