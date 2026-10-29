@@ -312,7 +312,18 @@ def pdefect_worker(item):
     rec = {'task': task, 'type_id': p['type_id'], 'start_defect': start, 'best_defect': best[0], 'iterations': it,
            'normals': best[1].tolist(), 'seconds': round(time.monotonic() - t0, 1)}
     rec['status'] = 'ZERO_DEFECT' if best[0] is not None and best[0] <= 1e-6 else 'POSITIVE'
-    rec['candidate'] = rec['status'] == 'ZERO_DEFECT'
+    if rec['status'] == 'ZERO_DEFECT':
+        # zero closure defect is only necessary (night 2: pd10_0 had 11 non-simple faces); a candidate
+        # must also close up with SIMPLE faces (exact closure + simplicity MILP, phi = 0 = R^3)
+        from period_defect import torus_simple, surface_edges
+        edges, _, _ = surface_edges(best[1], tri)
+        st, _ = torus_simple(best[1], tri, {k: (0, 0, 0) for k in edges}, time_limit=300, general=False)
+        rec['simple_milp_status'] = int(st)        # 0 feasible, 1 time limit, 2 infeasible
+        if st == 2:
+            rec['status'] = 'ZERO_DEFECT_NOT_SIMPLE'
+        elif st == 1:
+            rec['status'] = 'ZERO_DEFECT_SIMPLE_UNKNOWN'
+    rec['candidate'] = rec['status'] in ('ZERO_DEFECT', 'ZERO_DEFECT_SIMPLE_UNKNOWN')
     rec['summary'] = 'type %d defect %.3f -> %.3f (%d its)' % (p['type_id'], start or -1, best[0] or -1, it)
     return rec
 
