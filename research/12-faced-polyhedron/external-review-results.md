@@ -21,3 +21,18 @@ lemma"); genericity is automatic in general position.
 | 8 | Monodromy / chamber enumeration on 3-slices | our exact single-plane relocation already enumerates 3-dim slices exactly |
 | 9 | Lasserre moment–SOS | heavy; fixed-normal slices are already exact SMT(LRA) |
 | 10 | GPU search with topological losses | essentially Q1 (inside the admissible class: best 22) |
+
+## ChatGPT, "10 crazy ideas" (second round) — assessment
+
+| # | Proposal | Assessment |
+|---|---|---|
+| 1 | Repair the last 2 intersections of the best near-miss (Bokowski–Kevin H. Kepler–Poinsot model) | refuted as a strategy: near-misses have the wrong Gauss degree and >= 7 local overlaps; the degree is a topological invariant; exact single-plane relocation found no improvement |
+| 2 | Consistent cycles in the 12 line arrangements | = geometry-first SAT (Track 4); per-face decomposition is on the roadmap |
+| 3 | Walk across critical configurations | = exact single-plane relocation (cell enumeration) |
+| 4 | Spherical covering P >= 1, N >= 6 | have it (Gauss prefilter); admissible normals exist; the stronger obstruction is cohomological (period defect) |
+| 5 | Oriented matroids | done (Track 3, 25 certified symmetric cases) |
+| 6 | Degenerate boundary configurations | boundary of the same solution set; equality constraints, not easier |
+| 7 | Maximally asymmetric search | all our searches are asymmetric; symmetric realizations are excluded (certified) |
+| 8 | Higher-dimensional shadow | fails for planar faces: twelve 2-planes in R^4 meeting pairwise in lines lie in a common 3-space |
+| 9 | CAD plate model | equivalent to numerical search with collision checks |
+| 10 | Normals first with the right covering, then offsets | = current pipeline (Gauss-admissible normals, period defect, exact offset SMT; night 2) |
