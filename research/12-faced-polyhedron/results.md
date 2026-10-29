@@ -255,3 +255,9 @@ simple faces, at most one reflex corner per vertex, orientation consistency): **
 embedding statement (night 1) and, as far as we know, is new. (The soundness of the local clause
 families rests on mathematical-model.md and the adversarial review; SIMPLE + REFLEX1 = immersion was
 re-checked in fresh-eyes-review.md.)
+
+* [N] Torus + simple faces (`torus_simple`, exact closure, edge signs, vertex rules, and a 4-way
+  disjunction per non-adjacent edge pair): for the two zero-defect torus configurations above, the
+  problem with simple faces is INFEASIBLE (type 0: 116 s, type 58: 392 s; HiGHS); the R^3 version is
+  infeasible in 2-3 s. The torus success was a closure-level phenomenon; face simplicity is an
+  independent strong component of the obstruction.
