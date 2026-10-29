@@ -227,3 +227,37 @@ the listed local families):
   classes: 21 C2 classes UNSAT (68-265 s each), 4 C3 classes UNSAT (27-39 s). **[N] No symmetric
   polyhedral immersion with planar faces exists** (stronger than the embedding statement; to be
   DRAT-certified by `run_night2.sh` phase 1).
+
+## PI: "mad ideas" round (2026-10-29)
+
+* [N] **No Szilassi embryo.** In every one of the 59 types, any 7 faces share at most 9 vertices
+  (max induced triangles on 7 dual vertices = 9; a punctured 7-vertex torus needs 13). The 12-face
+  map contains no Szilassi-like piece.
+* [N] **Flat 3-torus relaxation of the closure problem** (`code/period_defect.py`,
+  `torus_defect`): replace "period around each handle = 0" by "period = L phi(handle)", with phi an
+  integer cohomology class (tree-cotree) and L a free 3x3 lattice matrix. Same Gauss-admissible
+  normals: R^3 defect 17.6 (type 0) / 17.4 (type 58); cubic axis-aligned lattice: 15-23 (no help);
+  general lattice: 0.5-8 for random phi, and **exactly 0 with a non-degenerate lattice** for type 0
+  (det L = 414) and type 58 (det L = 49) within a few trials (configurations in
+  `experiments/torus/`). Caveat: these closed, locally consistently labelled configurations have
+  NON-SIMPLE faces (0/12 and 1/12 faces simple) — closure level only, not an immersion.
+  Interpretation: at the closure level the R^3 obstruction is exactly the vanishing of the handle
+  periods; whether simplicity changes this is open.
+* [N] Period-defect annealing in R^3, type 0, ~1.5 h: 17.6 -> 8.5 (not 0; still slowly decreasing).
+
+## Night 2, phase 1 (user's machine): no symmetric polyhedral IMMERSION — certified
+
+`symimm` job (our encoder without the global triple clauses: uniform GP, symmetry, normalization,
+simple faces, at most one reflex corner per vertex, orientation consistency): **25/25 classes
+(21 half-turn C2, 4 three-fold C3) UNSAT-VERIFIED** with CaDiCaL DRAT proofs checked by drat-trim
+(7-158 s per case). **[Theorem, computer-assisted, certified]** No polyhedral immersion in R^3 of the
+12-face Series-1 map with planar faces has a non-trivial symmetry. This strengthens the symmetric
+embedding statement (night 1) and, as far as we know, is new. (The soundness of the local clause
+families rests on mathematical-model.md and the adversarial review; SIMPLE + REFLEX1 = immersion was
+re-checked in fresh-eyes-review.md.)
+
+* [N] Torus + simple faces (`torus_simple`, exact closure, edge signs, vertex rules, and a 4-way
+  disjunction per non-adjacent edge pair): for the two zero-defect torus configurations above, the
+  problem with simple faces is INFEASIBLE (type 0: 116 s, type 58: 392 s; HiGHS); the R^3 version is
+  infeasible in 2-3 s. The torus success was a closure-level phenomenon; face simplicity is an
+  independent strong component of the obstruction.

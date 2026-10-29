@@ -1,51 +1,49 @@
 # Prompt to continue this research in a new session
 
-Copy everything below the line into a new Claude Code session on this repository
-(branch `claude/wonderful-carson-saxyck`).
+Copy everything below the line into a new Claude Code session on the repository
+`kaoalllex/polyhedrons`, branch `claude/wonderful-carson-saxyck`.
 
 ---
 
 You are continuing an autonomous research project in the repository `kaoalllex/polyhedrons`,
-branch `claude/wonderful-carson-saxyck`, directory `research/12-faced-polyhedron/`. The goal is
-the open Series-1 problem from the README: a polyhedron embedded in R^3 with 12 planar simple
-11-gonal faces, every two faces sharing exactly one complete edge, three faces at every vertex
+branch `claude/wonderful-carson-saxyck`, directory `research/12-faced-polyhedron/`.
+Goal: the open Series-1 problem from the README — a polyhedron embedded in R^3 with 12 planar simple
+11-gonal faces, every two faces sharing exactly one complete edge, three faces per vertex
 (V=44, E=66, genus 6). Find and exactly verify one, or prove impossibility (fully or for some
-combinatorial types). Never weaken the requirements; never fabricate results.
+combinatorial types). Never weaken the requirements; never fabricate results. Report to the user
+in Russian; write repository files in English; commit and push intermediate results.
 
-Read first, in this order: `research-plan.md`, `mathematical-model.md`, `results.md`,
-`literature-review.md`, `theory-notes.md`, `hypotheses.md`, `next-steps.md`,
-`experiment-log.md` (latest entries), `overnight/README.md`. Agent definitions are in
-`.claude/agents/` (7 roles with models/effort); in a new session they load as real agent types.
+Read first: `sprint-board.md` (every hypothesis tested, with verdicts), `results.md`,
+`proof-roadmap.md`, `solution-portrait.md`, `fresh-eyes-review.md`, `theory-notes.md` (PI addendum
++ local lemma), `mathematical-model.md`, `external-review-results.md`, `HOW_TO_RUN_OVERNIGHT.md`.
+Agent definitions: `.claude/agents/` (7 roles).
 
-State at the end of session 1 (2026-10-29):
-* Reduction: a candidate is 12 planes; no equalities; embedding <=> 176 forbidden-triple
-  conditions (Lemma 5.1), all expressible in the uniform chirotope of 12 planes + plane at
-  infinity. Two independent encoders exist and agree with exact geometry
-  (`code/omsat.py` formulation A = fixed type/unknown chirotope; `code/geomsat.py`
-  formulation B = fixed planes/unknown triangulation; `code/planes.py` exact checker).
-* Combinatorics: exactly 59 types, independently re-enumerated (`data/`).
-* Prior work (third-party, unrefereed, AI-assisted, see literature-review.md): symmetric
-  realizations claimed impossible (DRAT-certified); we independently reproduced 4 cases
-  (Lutz #54 T, #3 D3, #48 D3, #48 C2: UNSAT). Asymmetric case open (~19,000 core-hours
-  estimated for full OM-SAT). Best known near-misses (HackerPoet): 4 violations (symmetric),
-  5 on maps with trivial automorphism group.
-* Our experiments so far: geometry-first SAT on 30 random 12-plane arrangements: all UNSAT,
-  best-triangulation violation counts 23-39. Exact single-plane relocation from the best
-  asymmetric near-miss (5 violations): no improvement in 33 relocations (all plateau moves).
-* New method E1 (`code/fixed_normals.py`): with the face normals fixed, all signs are linear in
-  the 12 offsets, so existence for fixed normals is an exact SMT(LRA) problem. Validated on
-  Szilassi (n=7, normals perturbed up to sigma ~0.15: SAT, exact check passes). On n=12 seeds it
-  needs >300 s per instance; the `overnight/run_overnight.py normals` job runs it at scale.
+State at the end of session 1:
+* Formulation: a candidate = 12 planes; all conditions are strict sign conditions (uniform
+  chirotope of 12 planes + plane at infinity); Lemma 5.1 and the in-face predicate were
+  adversarially verified (`verification/foundations-report.md`).
+* Combinatorics: exactly 59 types (independent enumeration).
+* Symmetric case: 25/25 classes UNSAT with drat-trim-verified DRAT proofs (our encoder, user's
+  machine): no symmetric 12-face polyhedron. Moreover, without the global non-intersection clauses
+  all 25 classes are UNSAT too (no symmetric polyhedral IMMERSION; unverified here — night 2
+  phase 1 produces the DRAT proofs into `overnight/results/symimm/`).
+* Topology: any embedding has Gauss-map degree -5 with convex covering (proved, incl. a local
+  lemma). All 1005 known near-misses (HackerPoet) fail this: they are in the wrong topological
+  class and not even immersions (>= 7 locally overlapping vertices each).
+* Asymmetric case: immersion instances (no global clauses) did not resolve in 2.2 h per type
+  (types 0-7). Full asymmetric OM-SAT is estimated at ~300 core-hours per type.
+* Fixed normals: the obstruction is cohomological (fresh-eyes review): faces close locally but
+  not around the 12 handles. `code/period_defect.py` measures it (MILP; Szilassi 0; random
+  admissible normals 17-24; annealing on type 0 reached 13.5 and was still decreasing).
+* Night 2 (`overnight/run_night2.sh`, user's machine): phase 1 `symimm` (certified "no symmetric
+  immersion"), phase 2 `pdefect` (period-defect annealing over all 59 types; defect 0 = CANDIDATE).
 
 First tasks:
-1. If `overnight/results/` contains new results (the user runs the overnight jobs locally and
-   pushes them), analyze them: any `CANDIDATES/` first (re-verify independently in exact
-   arithmetic with a fresh checker before believing anything), then UNSAT/UNKNOWN statistics of
-   `normals`, `sym` verification status, `cube` refuted fraction, `ils` improvements.
-   Record the analysis in `results.md` and `experiment-log.md`.
-2. Continue with the ranked plan in `next-steps.md` (j-plane OM-SAT neighbourhoods around
-   near-misses; Track 6 clause families F7-F9 (Gauss degree, covering, >= 13 saddles) as
-   prefilters for the normals search; E3: choose normals with Gauss-map degree -5).
-3. Commit and push intermediate results (English) as they accumulate; report to the user in
-   Russian. Usage limits may be tight: prefer local computation over many subagents, and ask
-   before launching large subagent tasks.
+1. `git pull`, then analyze `overnight/results/symimm/` (expect 25 UNSAT-VERIFIED) and
+   `overnight/results/pdefect/` (best defect per type; any ZERO_DEFECT / CANDIDATES first: run the
+   exact gauge-fixed offset SMT `code/fixed_normals_gauge.py` on those normals, then the exact
+   checker). Record results in `results.md`, `sprint-board.md`, `experiment-log.md`.
+2. If defects plateau above 0 for all types: study the LP dual (Farkas) certificates of the period
+   obstruction for a human-readable lemma (proof direction). If some reach 0: exact search there.
+3. Keep hypotheses fast and many (startup style: sprint board), and ask before launching large
+   subagent tasks (usage limits).
