@@ -275,3 +275,11 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   been pasted into it). The user's night-2 run predates the bug (it re-imports its own local copy).
 * Night 3 prepared (`overnight/run_night3.sh`): `ladder` job (GA on fresh n = 8 maps, exact check of
   every zero) and `sdefect` job (12 faces: closure defect to 0, then non-simple faces to 0, exact check).
+* **CMA-ES** (`code/ladder_cma.py`, cma 4.0.0): n = 7 solved (exact EMBEDDED). n = 8: float zeros on
+  two maps, REJECTED by the exact verifier (5 and 2 simple faces, 6 and 10 bad pairs). Cause: scale
+  collapse — the optimizer drove all planes towards one common point (all 20 vertices equal to 4
+  decimals), where rounding noise decides every predicate (1e-12 perturbations change the energy
+  0 -> 4..20). Fixed in `pair_energy`: configurations whose vertex set has diameter < 1e-3 (1 + max
+  coordinate) score 99; edges shorter than 1e-6 of the diameter count as violations (1e-3 was too
+  strict: it penalized genuine Szilassi realizations). All earlier results re-scored unchanged
+  (n = 7 zeros stay 0, n = 8 bests stay 1-2). Third optimizer exploit caught by the exact verifier.

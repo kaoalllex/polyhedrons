@@ -12,7 +12,11 @@ solves 8 faces is the one to point at 12. Every float zero is re-checked with `c
 | exact single-plane relocation (`ladder_reloc.py`) | - | 2 (true local minimum for one-plane moves) | 56-hyperplane arrangement per plane |
 | ILS with multi-plane kicks (`ladder_ils.py`) | - | 2 | 379 kicks |
 | genetic algorithm, island model (`ladder_ga.py`) | 15 generations, exact | 1 (seeded), 3 (unseeded, 10 min) | crossover by plane = gene |
-| CMA-ES with BIPOP-like restarts (`ladder_cma.py`, cma 4.0.0) | 2 restarts, exact | running | |
+| CMA-ES with BIPOP-like restarts (`ladder_cma.py`, cma 4.0.0) | 2 restarts, exact | 1 (seeded), 2, 2, 2 | first run found float 'zeros' = scale collapse (all planes nearly concurrent); rejected by the exact check; guard added |
+
+**Reading (2026-10-29):** four different engines all stop at 1-2 violations for 8 faces, while
+the same engines solve 7 faces at once. Either the 8-face rung (doubled adjacencies) is obstructed
+or much harder; settle it exactly (SAT on 9 elements) or switch the rung (two 4-valent vertices).
 
 ## To try later (user's list, 2026-10-29, from another AI, plus our notes)
 
