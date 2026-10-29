@@ -138,7 +138,17 @@ def run_pool(job, tasks, worker, args, committer, init=None, initargs=()):
     ctx = mp.get_context('spawn')
     pool = ctx.Pool(args.workers, initializer=init, initargs=initargs, maxtasksperchild=50)
     try:
-        for rec in pool.imap_unordered(worker, todo, chunksize=1):
+        it = pool.imap_unordered(worker, todo, chunksize=1)
+        while True:
+            try:
+                rec = it.next(timeout=30)
+            except mp.TimeoutError:
+                if time.time() > deadline:
+                    log('time budget reached; stopping (resume by re-running the same command)')
+                    break
+                continue
+            except StopIteration:
+                break
             rec['finished_at'] = time.strftime('%Y-%m-%d %H:%M:%S')
             append_result(job, rec)
             flag = rec.get('candidate')
