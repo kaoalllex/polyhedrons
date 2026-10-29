@@ -18,7 +18,7 @@ Reference points: best known near-miss 4 (symmetric), 5 (asymmetric); random arr
 | Q10 | UNSAT cores of the gauge-fixed SMT are small (guide normal moves) | z3 unsat core, type 0 | core = 0 of 176 triples: UNSAT already from LOCAL conditions (gauge + one reflex corner per vertex + orientation consistency) | DONE: local structure is the bottleneck |
 | L1 | Near-misses are immersions (locally embedded) | local violation counter on 300 seeds | NO: every one has >= 7 vertices with two reflex corners (Razorcross: 0 crossings, 8 such vertices) | DONE: key insight |
 | Q13 | (diff. geometry) tangent planes of a smooth genus-6 surface (tube around K5) are good seeds | 8 samples, CP-SAT best triangulation | best 26 | KILL |
-| Q12 | (biology: fragment assembly = local "secondary structure" first) Some type admits a polyhedral IMMERSION | OM-SAT without global clauses, type 0, k = 0 / 2 | running | |
+| Q12 | (biology: fragment assembly = local "secondary structure" first) Some type admits a polyhedral IMMERSION | OM-SAT without global clauses, type 0, k = 0 / 2 | no answer in 30 min (both); numerical annealing: best 12 local violations (random starts) | KEEP: overnight `immersion`, hours per type |
 
 ## Queued ideas from distant fields
 
