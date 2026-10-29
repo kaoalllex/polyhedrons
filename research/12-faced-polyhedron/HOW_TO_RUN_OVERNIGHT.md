@@ -54,6 +54,25 @@ Phase 2: period-defect search over all 59 types (a defect of 0 is saved as a CAN
 Фаза 1 — сертификаты «нет симметричных погружений», фаза 2 — поиск нормалей с нулевым
 «дефектом периодов» по всем 59 типам.
 
+### Night 3 / Третья ночь
+
+Start only after the previous night job has exited (commit its results first, then merge):
+Запускать только после того, как прошлый ночной расчёт завершился (сначала закоммитить его
+результаты, потом подтянуть origin):
+
+```bash
+cd research/12-faced-polyhedron/overnight
+git add -A results && git commit -m "overnight results"
+git pull
+./run_night3.sh 8 7
+```
+
+Phase 1 (35 %): our own "ladder" — closed polyhedra with 8 mutually adjacent faces, genetic algorithm,
+every zero re-checked exactly. Phase 2: 12 faces, "simple faces first" (closure defect to 0, then the
+number of faces that must self-intersect to 0). Any CANDIDATE is saved and committed at once.
+Фаза 1 — «лестница» (8 попарно соседних граней, генетический алгоритм, точная проверка);
+фаза 2 — 12 граней, «сначала простые грани».
+
 Sleep / lid close: the time budget counts awake time only, so closing the laptop lid (the Mac sleeps,
 processes freeze) costs nothing; on wake the run continues with the remaining budget. Plug in the power
 before opening the lid: all workers resume at once. No `caffeinate` needed.

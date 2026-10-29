@@ -186,8 +186,8 @@ def energy(H, links, detail=False):
 
 
 def anneal(links, rng, minutes, steps=20000):
-    n = len(links); best = (10 ** 9, None); t0 = time.time(); restarts = 0
-    while time.time() - t0 < 60 * minutes:
+    n = len(links); best = (10 ** 9, None); t0 = time.monotonic(); restarts = 0
+    while time.monotonic() - t0 < 60 * minutes:
         restarts += 1
         H = rng.standard_normal((n, 4)); H[:, :3] /= np.linalg.norm(H[:, :3], axis=1)[:, None]
         e, x = energy(H, links); cur = e + 0.01 * np.tanh(x); bl = (cur, H.copy()); T = 1.5
@@ -200,7 +200,7 @@ def anneal(links, rng, minutes, steps=20000):
                 if cur < bl[0]:
                     bl = (cur, H.copy())
             T = max(0.02, T * 0.9996)
-            if bl[0] < 0.5 or time.time() - t0 > 60 * minutes:
+            if bl[0] < 0.5 or time.monotonic() - t0 > 60 * minutes:
                 break
         if bl[0] < best[0]:
             best = bl
@@ -337,8 +337,8 @@ def fast_energy(H, LK, M, forb):
 
 
 def anneal_fast(links, rng, minutes, steps=40000):
-    LK, M, forb = pack(links); n = len(links); best = (10 ** 9, None); t0 = time.time(); restarts = 0
-    while time.time() - t0 < 60 * minutes:
+    LK, M, forb = pack(links); n = len(links); best = (10 ** 9, None); t0 = time.monotonic(); restarts = 0
+    while time.monotonic() - t0 < 60 * minutes:
         restarts += 1
         H = rng.standard_normal((n, 4)); H[:, :3] /= np.linalg.norm(H[:, :3], axis=1)[:, None]
         try:

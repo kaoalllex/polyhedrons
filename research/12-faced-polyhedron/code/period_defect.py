@@ -89,13 +89,6 @@ def period_defect(G, tris, A=100.0, s=1, time_limit=60):
     res = milp(c, constraints=cons, bounds=Bounds(lb, ub), integrality=integ,
                options={'time_limit': time_limit, 'disp': False})
     val = float(res.fun) if res.status in (0, 1) and res.fun is not None else None
-    if return_L == 'full' and res.x is not None:
-        L = res.x[ic:ic + 9].reshape(3, 3) if general else None
-        return val, res.status, L, {'p': res.x[ip:ip + 3 * nv].reshape(nv, 3), 'a': res.x[ia:ia + ne],
-                                    'edges': edges, 'E': E, 'faces': faces}
-    if return_L:
-        L = res.x[ic:ic + 9].reshape(3, 3) if (general and res.x is not None) else None
-        return val, res.status, L
     return val, res.status, nconv
 
 
@@ -358,7 +351,7 @@ def torus_simple(G, tris, phi, A=100.0, eps=0.05, time_limit=300, general=True, 
                bounds=Bounds(lb, ub), integrality=integ, options={'time_limit': time_limit, 'disp': False})
     sol = None
     if res.x is not None and res.status in (0, 1):
-        sol = {'L': res.x[iL:iL + 9].reshape(3, 3), 'a': res.x[ia:ia + ne]}
+        sol = {'L': res.x[iL:iL + 9].reshape(3, 3), 'a': res.x[ia:ia + ne], 'p': res.x[ip:ip + 3 * nv].reshape(nv, 3)}
         if relax_faces:
             sol['nonsimple'] = int(round(res.x[iy:].sum()))
     return res.status, sol

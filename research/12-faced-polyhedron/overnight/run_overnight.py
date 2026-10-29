@@ -335,6 +335,121 @@ def job_pdefect(args, committer):
     run_pool('pdefect', tasks, pdefect_worker, args, committer)
 
 
+# ----------------------------------------------------------------------------- job: ladder
+# Own path (cross-field-ideas.md Y1): closed polyhedra with n mutually adjacent faces, n < 12, maps
+# generated from scratch (no external seeds), genetic algorithm on the honest pair energy, every float
+# zero re-checked in exact rational arithmetic (code/ladder_exact.py). n = 7 (Szilassi) is found in
+# seconds; n = 8 (genus 2, two doubled adjacencies) plateaued at 1-2 violations in the cloud runs.
+
+def ladder_worker(item):
+    task, p = item
+    import numpy as np
+    from ladder import random_map
+    from ladder_ga import run as ga_run
+    from ladder_exact import verify
+    rng = np.random.default_rng(int(hashlib.sha256(task.encode()).hexdigest()[:8], 16))
+    t0 = time.monotonic()
+    links, tries = None, 0
+    while links is None and tries < 20:
+        links = random_map(p['n'], p['genus'], rng); tries += 1
+    if links is None:
+        return {'task': task, 'n': p['n'], 'status': 'NO_MAP', 'seconds': round(time.monotonic() - t0, 1)}
+    (b, H), gen, _ = ga_run(links, p['minutes'], rng)
+    rec = {'task': task, 'n': p['n'], 'genus': p['genus'], 'best': float(b), 'generations': gen,
+           'links': {str(k): v for k, v in links.items()}, 'planes': H.tolist(), 'seconds': round(time.monotonic() - t0, 1)}
+    rec['status'] = 'POSITIVE'
+    if b < 0.5:
+        ex = verify(H.tolist(), links)
+        rec['exact'] = {k: (v if not isinstance(v, list) else len(v)) for k, v in ex.items()}
+        rec['status'] = 'EMBEDDED' if ex['EMBEDDED'] else 'ZERO_FLOAT_NOT_EXACT'
+    rec['candidate'] = rec['status'] == 'EMBEDDED'
+    rec['summary'] = 'n=%d genus %d best %.3f (%d generations) %s' % (p['n'], p['genus'], b, gen, rec['status'])
+    return rec
+
+
+def job_ladder(args, committer):
+    ns = [int(x) for x in args.ladder_n.split(',')]
+    tasks = [('lad%d_%d' % (n, r), dict(n=n, genus=-(-(n - 3) * (n - 4) // 12), minutes=args.minutes_per_seed))
+             for r in range(args.reps) for n in ns]
+    run_pool('ladder', tasks, ladder_worker, args, committer)
+
+
+# ----------------------------------------------------------------------------- job: sdefect
+# "Simple faces first" for the 12-face problem: anneal admissible normals (Gauss degree -5) on the
+# simple defect = minimum number of faces that must be NON-simple for an exact closed, locally
+# consistent surface with these normals (MILP, period_defect.torus_simple(relax_faces=True)).
+# 0 = closed surface with all faces simple -> planes reconstructed and checked exactly.
+
+def sdefect_worker(item):
+    task, p = item
+    import numpy as np
+    from gauss_degree import coherent_triangles
+    from gauss_search import find_admissible, cover_counts, tri_index
+    from period_defect import torus_simple, surface_edges
+    rng = np.random.default_rng(int(hashlib.sha256(task.encode()).hexdigest()[:8], 16))
+    tri = p['triangles']; ot = coherent_triangles(tri); T = tri_index(ot)
+    U = rng.standard_normal((1500, 3)); U /= np.linalg.norm(U, axis=1)[:, None]
+    def adm(G):
+        pos, neg = cover_counts(G, T, U)
+        return bool(np.all(pos - neg == -5) and np.all(pos > 0))
+    from period_defect import period_defect
+    def f(G):
+        # lexicographic: while the closure (period) defect is positive the simple-defect MILP is infeasible,
+        # so the objective is 12 + defect; at zero defect it is the number of faces that must be non-simple
+        d = period_defect(G, tri, time_limit=15)[0]
+        if d is None:
+            return 99.0, None
+        if d > 1e-6:
+            return 12.0 + d, None
+        edges, _, _ = surface_edges(G, tri)
+        st, sol = torus_simple(G, tri, {k: (0, 0, 0) for k in edges}, time_limit=p['milp_s'], general=False,
+                               relax_faces=True)
+        return (float(sol['nonsimple']), sol) if sol is not None else (12.0, None)
+    t0 = time.monotonic()
+    G, _ = find_admissible(ot, rng, minutes=2)
+    if G is None:
+        return {'task': task, 'type_id': p['type_id'], 'status': 'NO_ADMISSIBLE_NORMALS', 'seconds': round(time.monotonic() - t0, 1)}
+    cur, sol = f(G); start = cur; best = (cur, G.copy(), sol); it = 0; Tmp = 2.0
+    while time.monotonic() - t0 < 60 * p['minutes'] and best[0] > 0.5:
+        it += 1
+        G2 = G.copy(); k = int(rng.integers(12))
+        v = G2[k] + float(rng.choice([0.02, 0.05, 0.15])) * rng.standard_normal(3); G2[k] = v / np.linalg.norm(v)
+        if not adm(G2):
+            continue
+        c2, s2 = f(G2)
+        if c2 <= cur or rng.random() < np.exp((cur - c2) / Tmp):
+            G, cur = G2, c2
+            if cur < best[0]:
+                best = (cur, G.copy(), s2)
+        Tmp = max(0.05, Tmp * 0.97)
+    rec = {'task': task, 'type_id': p['type_id'], 'start_nonsimple': start, 'best_nonsimple': best[0], 'iterations': it,
+           'normals': best[1].tolist(), 'seconds': round(time.monotonic() - t0, 1)}
+    rec['status'] = 'POSITIVE'
+    if best[0] < 0.5 and best[2] is not None:
+        from planes import Arrangement, check_embedding
+        Gn = best[1] / np.linalg.norm(best[1], axis=1)[:, None]; P = best[2]['p']
+        off = [float(np.mean([-Gn[X] @ P[i] for i, t in enumerate(ot) if X in t])) for X in range(12)]
+        H = np.hstack([Gn, np.array(off)[:, None]]); rec['planes'] = H.tolist()
+        try:
+            e = check_embedding(Arrangement([[int(round(v * 10 ** 8)) for v in h] for h in H]), tri)
+            rec['simple_faces'] = int(sum(e['simple'])); rec['viol_triples'] = len(e['viol_triples']); rec['bad_pairs'] = len(e['bad_pairs'])
+            rec['status'] = 'EMBEDDED' if (e['ok_triples'] and e['ok_pairs']) else 'SIMPLE_CLOSED'
+        except Exception as ex:                       # noqa: BLE001
+            rec['status'] = 'SIMPLE_CLOSED'; rec['check_error'] = repr(ex)[:200]
+    rec['candidate'] = rec['status'] in ('SIMPLE_CLOSED', 'EMBEDDED')
+    rec['summary'] = 'type %d objective %.3f -> %.3f (12+defect while not closed; else non-simple faces; %d its) %s' % (
+        p['type_id'], start, best[0], it, rec['status'])
+    return rec
+
+
+def job_sdefect(args, committer):
+    types = json.load(open(os.path.join(HERE, '..', 'data', 'k12_triangulations.json')))
+    tasks = [('sd%d_%d' % (t['id'], r), dict(type_id=t['id'], triangles=t['triangles'], minutes=args.minutes_per_seed,
+                                             milp_s=args.milp_seconds))
+             for r in range(args.reps) for t in types]
+    run_pool('sdefect', tasks, sdefect_worker, args, committer)
+
+
 # ----------------------------------------------------------------------------- job: sym
 
 def sym_cases():
@@ -800,7 +915,7 @@ def job_status(args, committer):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('job', choices=['gnormals', 'pdefect', 'immersion', 'normals', 'sym', 'cube', 'ils', 'status'])
+    ap.add_argument('job', choices=['gnormals', 'pdefect', 'immersion', 'normals', 'sym', 'cube', 'ils', 'ladder', 'sdefect', 'status'])
     ap.add_argument('--hours', type=float, default=8.0, help='wall-clock budget of this invocation')
     ap.add_argument('--workers', type=int, default=max(1, (os.cpu_count() or 2) - 1))
     ap.add_argument('--timeout', type=float, default=None, help='per-task solver timeout in seconds')
@@ -834,14 +949,16 @@ def main():
     ap.add_argument('--stride', type=int, default=4)
     ap.add_argument('--stall', type=int, default=24)
     ap.add_argument('--rounds', type=int, default=1)
+    ap.add_argument('--ladder-n', default='8', help='ladder: comma-separated face counts (8 = genus 2)')
+    ap.add_argument('--milp-seconds', type=float, default=45, help='sdefect: time limit per simple-defect MILP')
     args = ap.parse_args()
     if args.results_dir:
         global RES
         RES = os.path.abspath(args.results_dir)
     if args.timeout is None:
-        args.timeout = {'gnormals': 900, 'pdefect': 0, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'status': 0}[args.job]
+        args.timeout = {'gnormals': 900, 'pdefect': 0, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'ladder': 0, 'sdefect': 0, 'status': 0}[args.job]
     committer = Committer(args)
-    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'status': job_status}[args.job](
+    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'ladder': job_ladder, 'sdefect': job_sdefect, 'status': job_status}[args.job](
         args, committer)
 
 
