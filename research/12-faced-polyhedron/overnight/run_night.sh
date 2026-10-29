@@ -6,6 +6,8 @@
 # Re-running the same command resumes; results are committed to git every 30 min (--git).
 set -u
 cd "$(dirname "$0")"
+[ -d "$HOME/.venvs/polyhedra" ] && source "$HOME/.venvs/polyhedra/bin/activate"
+export PATH="$HOME/bin:$PATH"
 H=${1:-8}
 W=${2:-$(python3 -c "import os; print(max(1, (os.cpu_count() or 2) - 1))")}
 H1=$(python3 -c "print(round($H * 0.45, 2))")
