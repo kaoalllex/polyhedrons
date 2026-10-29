@@ -1,0 +1,599 @@
+#!/usr/bin/env python3
+"""Autonomous, resumable long runs for the 12-face polyhedron research.
+
+Jobs (run one job per invocation; re-running the same command resumes where it stopped):
+
+  normals  E1. For a near-miss seed, keep its 12 face NORMALS (rounded to integers) and decide
+           exactly, with z3 (linear real arithmetic), whether ANY choice of the 12 plane offsets
+           gives an embedded polyhedron. SAT answers are re-checked by an independent exact
+           rational checker. Then the same for randomly perturbed normals of the best seeds.
+  sym      Certified UNSAT for every symmetric case (every conjugacy class of half-turn C2 and
+           3-fold C3 subgroups of Aut of all 59 maps). With CaDiCaL + drat-trim on PATH (or given
+           by --cadical / --drat-trim) every UNSAT gets a checked DRAT proof; otherwise PySAT
+           is used and results are marked unverified.
+  cube     Cube-and-conquer on the full ASYMMETRIC OM-SAT instance of the chosen maps (Lutz
+           numbering). Timed-out cubes are split further. Reports the refuted fraction.
+  ils      Iterated local search from the seeds: exact single-plane relocation + random kicks.
+
+Progress is appended after every finished task to results/<job>/results.jsonl (fsync'ed), so a
+power cut loses at most the tasks that were running. With --git the results directory is
+committed every --commit-minutes (and immediately when a candidate is found); --push also pushes.
+
+Examples:
+  python3 run_overnight.py normals --hours 8 --workers 4 --git
+  python3 run_overnight.py sym --hours 3 --workers 4 --git
+  python3 run_overnight.py cube --maps 1 --hours 8 --workers 4 --git
+  python3 run_overnight.py ils --hours 4 --workers 4 --git
+  python3 run_overnight.py status
+"""
+import argparse
+import hashlib
+import itertools
+import json
+import multiprocessing as mp
+import os
+import random
+import shutil
+import subprocess
+import sys
+import time
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+CODE = os.path.normpath(os.path.join(HERE, '..', 'code'))
+RES = os.path.join(HERE, 'results')
+WORK = os.path.join(HERE, 'work')            # big scratch files (CNFs, proofs); not committed
+SEEDS = os.path.join(HERE, 'data', 'seeds.json')
+sys.path.insert(0, CODE)
+
+
+# ----------------------------------------------------------------------------- bookkeeping
+
+def jobdir(job):
+    d = os.path.join(RES, job)
+    os.makedirs(d, exist_ok=True)
+    return d
+
+
+def load_results(job):
+    p = os.path.join(jobdir(job), 'results.jsonl')
+    out = []
+    if os.path.exists(p):
+        with open(p) as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    out.append(json.loads(line))
+                except json.JSONDecodeError:      # torn last line after a crash
+                    pass
+    return out
+
+
+def append_result(job, rec):
+    p = os.path.join(jobdir(job), 'results.jsonl')
+    with open(p, 'a') as f:
+        f.write(json.dumps(rec, separators=(',', ':')) + '\n')
+        f.flush()
+        os.fsync(f.fileno())
+
+
+def write_json_atomic(path, obj):
+    tmp = path + '.tmp'
+    with open(tmp, 'w') as f:
+        json.dump(obj, f)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp, path)
+
+
+def save_candidate(job, rec):
+    d = os.path.join(jobdir(job), 'CANDIDATES')
+    os.makedirs(d, exist_ok=True)
+    path = os.path.join(d, '%s_%d.json' % (str(rec.get('task', 'x')).replace('/', '_'), int(time.time())))
+    write_json_atomic(path, rec)
+    return path
+
+
+class Committer:
+    def __init__(self, args):
+        self.on = args.git
+        self.push = args.push
+        self.every = args.commit_minutes * 60
+        self.last = time.time()
+        self.root = None
+        if self.on:
+            try:
+                self.root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], cwd=HERE,
+                                                    text=True).strip()
+            except Exception as e:                  # noqa: BLE001
+                print('git not available, --git ignored:', e)
+                self.on = False
+
+    def maybe(self, msg, force=False):
+        if not self.on or (not force and time.time() - self.last < self.every):
+            return
+        self.last = time.time()
+        try:
+            subprocess.run(['git', 'add', '-A', RES], cwd=self.root, check=True)
+            r = subprocess.run(['git', 'commit', '-q', '-m', msg], cwd=self.root)
+            if r.returncode == 0 and self.push:
+                subprocess.run(['git', 'push', '-q'], cwd=self.root)
+        except Exception as e:                      # noqa: BLE001
+            print('git commit failed (continuing):', e)
+
+
+def log(*a):
+    print(time.strftime('%H:%M:%S'), *a, flush=True)
+
+
+def run_pool(job, tasks, worker, args, committer, init=None, initargs=()):
+    """Run tasks (list of (task_id, payload)) in a pool; record each result; respect --hours."""
+    deadline = time.time() + args.hours * 3600
+    done = {r['task'] for r in load_results(job)}
+    todo = [(t, p) for t, p in tasks if t not in done and (not args.only or args.only in t)]
+    log('%s: %d tasks total, %d already done, %d to do' % (job, len(tasks), len(done), len(todo)))
+    if not todo:
+        return
+    ctx = mp.get_context('spawn')
+    pool = ctx.Pool(args.workers, initializer=init, initargs=initargs, maxtasksperchild=50)
+    try:
+        for rec in pool.imap_unordered(worker, todo, chunksize=1):
+            rec['finished_at'] = time.strftime('%Y-%m-%d %H:%M:%S')
+            append_result(job, rec)
+            flag = rec.get('candidate')
+            log(job, rec['task'], rec.get('status'), rec.get('summary', ''))
+            if flag:
+                p = save_candidate(job, rec)
+                log('!!! CANDIDATE saved to', p)
+                committer.maybe('overnight %s: CANDIDATE %s' % (job, rec['task']), force=True)
+            else:
+                committer.maybe('overnight %s: progress' % job)
+            if time.time() > deadline:
+                log('time budget reached; stopping (resume by re-running the same command)')
+                break
+    finally:
+        pool.terminate()
+        pool.join()
+        committer.maybe('overnight %s: stop' % job, force=True)
+
+
+# ----------------------------------------------------------------------------- job: normals
+
+def _gp_ok(N):
+    for a, b, c in itertools.combinations(range(len(N)), 3):
+        from fixed_normals import det3
+        if det3(N[a], N[b], N[c]) == 0:
+            return False
+    return True
+
+
+def normals_worker(item):
+    task, p = item
+    import numpy as np
+    from fixed_normals import solve, integer_normals, exact_check
+    t0 = time.time()
+    H = np.array(p['planes'], dtype=float)
+    rng = np.random.default_rng(int(hashlib.sha256(task.encode()).hexdigest()[:8], 16))
+    Nf = H[:, :3] / np.linalg.norm(H[:, :3], axis=1)[:, None]
+    if p['sigma'] > 0:
+        Nf = Nf + p['sigma'] * rng.standard_normal(Nf.shape)
+    N = integer_normals(Nf)
+    k = 0
+    while not _gp_ok(N) and k < 20:               # break accidental degeneracy by tiny integer noise
+        N = [[x + int(rng.integers(-1, 2)) for x in v] for v in N]
+        k += 1
+    try:
+        status, planes = solve(N, p['triangles'], timeout_s=p['timeout'])
+    except Exception as e:                          # noqa: BLE001
+        return {'task': task, 'status': 'ERROR', 'error': repr(e)[:300], 'seconds': round(time.time() - t0, 1)}
+    rec = {'task': task, 'seed_id': p['seed_id'], 'source': p['source'], 'seed_count': p['ours'],
+           'sigma': p['sigma'], 'status': status, 'seconds': round(time.time() - t0, 1), 'normals': N}
+    if status == 'SAT':
+        ok, nv, nb = exact_check(planes, p['triangles'])
+        rec.update({'planes': [[int(x) for x in h] for h in planes], 'triangles': p['triangles'],
+                    'exact_embedded': ok, 'exact_violated_triples': nv, 'exact_bad_pairs': nb})
+        rec['candidate'] = bool(ok)
+        rec['summary'] = 'SAT exact=%s' % ok
+    else:
+        rec['summary'] = '%.0fs' % rec['seconds']
+    return rec
+
+
+def job_normals(args, committer):
+    seeds = json.load(open(SEEDS))
+    tasks = []
+    for s in seeds:
+        if s['ours'] <= args.max_seed_count:
+            tasks.append(('s%d' % s['seed_id'], dict(s, sigma=0.0, timeout=args.timeout)))
+    best = [s for s in seeds if s['ours'] <= args.perturb_max_count]
+    for sigma in (0.003, 0.01, 0.03, 0.1):
+        for rep in range(args.perturb_reps):
+            for s in best:
+                tasks.append(('p%d_%g_%d' % (s['seed_id'], sigma, rep), dict(s, sigma=sigma, timeout=args.timeout)))
+    run_pool('normals', tasks, normals_worker, args, committer)
+
+
+# ----------------------------------------------------------------------------- job: sym
+
+def sym_cases():
+    from omsat_sym import parse_lutz, orient, automorphisms, subgroups, classify, compose
+    maps = parse_lutz()
+    cases = []
+    for m in sorted(maps):
+        otris = orient(maps[m])
+        auts = automorphisms(otris)
+        if len(auts) == 1:
+            continue
+        for grp in ('C2', 'C3'):
+            subs = [H for H in subgroups(auts) if classify(H) == grp]
+            classes = []
+            for H in sorted(subs, key=lambda H: sorted(H)):
+                conj = False
+                for K in classes:
+                    for a, _ in auts:
+                        ainv = tuple(sorted(range(12), key=lambda i: a[i]))
+                        if frozenset(compose(compose(a, h), ainv) for h in H) == K:
+                            conj = True
+                            break
+                    if conj:
+                        break
+                if not conj:
+                    classes.append(H)
+            for w in range(len(classes)):
+                cases.append((m, grp, w))
+    return cases
+
+
+def sym_build(m, grp, which, opts):
+    from omsat_sym import (parse_lutz, orient, links_from_oriented, automorphisms, subgroups, classify,
+                           compose, build_sym)
+    from omsat import Triangulation
+    maps = parse_lutz()
+    otris = orient(maps[m])
+    links, _ = links_from_oriented(otris)
+    T = Triangulation(12, otris, links)
+    auts = automorphisms(otris)
+    eps = dict(auts)
+    subs = [H for H in subgroups(auts) if classify(H) == grp]
+    classes = []
+    for H in sorted(subs, key=lambda H: sorted(H)):
+        conj = False
+        for K in classes:
+            for a, _ in auts:
+                ainv = tuple(sorted(range(12), key=lambda i: a[i]))
+                if frozenset(compose(compose(a, h), ainv) for h in H) == K:
+                    conj = True
+                    break
+            if conj:
+                break
+        if not conj:
+            classes.append(H)
+    H = classes[which]
+    C, _, _ = build_sym(T, H, eps, opts)
+    C0, _, _ = build_sym(T, H, eps, dict(gp=True, triples=False))
+    return C, C0
+
+
+def sha256_file(path):
+    h = hashlib.sha256()
+    with open(path, 'rb') as f:
+        for chunk in iter(lambda: f.read(1 << 20), b''):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def sym_worker(item):
+    task, p = item
+    from pysat.solvers import Solver
+    import threading
+    t0 = time.time()
+    m, grp, which = p['case']
+    opts = dict(gp=True, triples=True)
+    for k in p['opts']:
+        opts[k] = True
+    C, C0 = sym_build(m, grp, which, opts)
+    with Solver(name='cadical195', bootstrap_with=C0.clauses) as s0:
+        control = s0.solve()
+    rec = {'task': task, 'map_lutz': m, 'group': grp, 'class': which, 'opts': p['opts'],
+           'vars': C.nv, 'clauses': len(C.clauses), 'control_no_triples_SAT': control}
+    os.makedirs(WORK, exist_ok=True)
+    cnf = os.path.join(WORK, task + '.cnf')
+    C.dimacs(cnf, comments=['12-face polyhedron, symmetric OM-SAT, Lutz map #%d group %s class %d opts %s'
+                            % (m, grp, which, p['opts'])])
+    rec['cnf_sha256'] = sha256_file(cnf)
+    if p['cadical'] and p['drat_trim']:
+        proof = os.path.join(WORK, task + '.drat')
+        ts = time.time()
+        r = subprocess.run([p['cadical'], '-q', '-t', str(int(p['timeout'])), cnf, proof],
+                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        rec['solve_seconds'] = round(time.time() - ts, 1)
+        status = {10: 'SAT', 20: 'UNSAT'}.get(r.returncode, 'TIMEOUT')
+        rec['solver'] = 'cadical-binary'
+        if status == 'UNSAT':
+            rec['proof_bytes'] = os.path.getsize(proof)
+            rec['proof_sha256'] = sha256_file(proof)
+            tv = time.time()
+            v = subprocess.run([p['drat_trim'], cnf, proof, '-t', str(int(p['check_timeout']))],
+                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+            rec['drat_trim_seconds'] = round(time.time() - tv, 1)
+            rec['drat_trim'] = 'VERIFIED' if 's VERIFIED' in v.stdout else 'NOT VERIFIED'
+            rec['drat_trim_tail'] = v.stdout[-300:]
+            status = 'UNSAT-VERIFIED' if rec['drat_trim'] == 'VERIFIED' else 'UNSAT-PROOF-FAILED'
+        if not p['keep_proofs'] and os.path.exists(proof):
+            os.remove(proof)
+    else:
+        s = Solver(name='cadical195', bootstrap_with=C.clauses)
+        timer = threading.Timer(p['timeout'], lambda: s.interrupt())
+        timer.start()
+        r = s.solve_limited(expect_interrupt=True)
+        timer.cancel()
+        rec['solve_seconds'] = round(time.time() - t0, 1)
+        rec['solver'] = 'pysat-cadical195 (no proof)'
+        status = {True: 'SAT', False: 'UNSAT-UNVERIFIED', None: 'TIMEOUT'}[r]
+        if r is True:
+            mdl = set(l for l in s.get_model() if l > 0)
+            rec['chi_plus'] = [''.join('%x' % e for e in S) for S, v in C.qvar.items() if v in mdl]
+        s.delete()
+    if not p['keep_cnf']:
+        os.remove(cnf)
+    rec['status'] = status
+    rec['candidate'] = status == 'SAT'           # would contradict the claimed symmetric theorem
+    rec['summary'] = '#%d %s/%d %s %.0fs' % (m, grp, which, status, rec['solve_seconds'])
+    return rec
+
+
+def job_sym(args, committer):
+    cases = sym_cases()
+    log('symmetric cases (map, group, class):', len(cases))
+    cad = args.cadical or shutil.which('cadical')
+    drat = args.drat_trim or shutil.which('drat-trim')
+    if not (cad and drat):
+        log('WARNING: cadical/drat-trim not found; results will be UNVERIFIED (see README for setup)')
+    tasks = [('sym_%d_%s_%d' % c, dict(case=c, opts=args.sym_opts.split(',') if args.sym_opts else [],
+                                        cadical=cad, drat_trim=drat, timeout=args.timeout,
+                                        check_timeout=args.check_timeout, keep_proofs=args.keep_proofs,
+                                        keep_cnf=args.keep_cnf))
+             for c in cases]
+    run_pool('sym', tasks, sym_worker, args, committer)
+
+
+# ----------------------------------------------------------------------------- job: cube
+
+def cube_child(m, opts, cube, nchi, q):
+    """Solve one cube in a separate process (killed by the parent on timeout)."""
+    from pysat.solvers import Solver
+    C = cube_build(m, opts)
+    with Solver(name='cadical195', bootstrap_with=C.clauses) as s:
+        r = s.solve(assumptions=cube)
+        out = {'status': 'SAT' if r else 'UNSAT'}
+        if r:
+            out['model_chi_true'] = [l for l in s.get_model()[:nchi + 1] if l > 0]
+    q.put(out)
+
+
+def cube_build(m, opts):
+    from omsat_sym import parse_lutz, orient, links_from_oriented
+    from omsat import Triangulation, CNF, build
+    maps = parse_lutz()
+    otris = orient(maps[m])
+    links, _ = links_from_oriented(otris)
+    T = Triangulation(12, otris, links)
+    C = CNF(12)
+    build(C, T, opts)
+    return C
+
+
+def job_cube(args, committer):
+    import collections
+    opts = dict(gp=True, triples=True, reflex=True, poc=True, symbreak=True, mirror=True)
+    for m in [int(x) for x in args.maps.split(',')]:
+        job = 'cube_map%d' % m
+        d = jobdir(job)
+        os.makedirs(WORK, exist_ok=True)
+        cnf = os.path.join(WORK, 'full_map%d.cnf' % m)
+        stp = os.path.join(d, 'state.json')
+        if not os.path.exists(stp) or not os.path.exists(cnf):
+            log('building full CNF for Lutz map #%d ...' % m)
+            C = cube_build(m, opts)
+            C.dimacs(cnf, comments=['12-face polyhedron, full asymmetric OM-SAT, Lutz map #%d opts %s' % (m, opts)])
+            nchi = len(C.qvar)
+            occ = collections.Counter(abs(l) for cl in C.clauses for l in cl if 2 <= abs(l) <= nchi + 1)
+            units = {abs(cl[0]) for cl in C.clauses if len(cl) == 1}
+            order = [v for v, _ in occ.most_common() if v not in units]
+            del C
+        if os.path.exists(stp):
+            st = json.load(open(stp))
+        else:
+            st = {'map': m, 'opts': opts, 'cnf_sha256': sha256_file(cnf), 'order': order, 'nchi': nchi,
+                  'open': [[]], 'refuted_fraction': 0.0, 'sat': []}
+            write_json_atomic(stp, st)
+        if sha256_file(cnf) != st['cnf_sha256']:
+            raise SystemExit('CNF changed since the run started; delete results/%s to restart' % job)
+        deadline = time.time() + args.hours * 3600
+        ctx = mp.get_context('spawn')
+        log('%s: open cubes %d, refuted fraction %.6f' % (job, len(st['open']), st['refuted_fraction']))
+        running = {}                                    # key -> (cube, process, queue, start)
+        try:
+            while (st['open'] or running) and time.time() < deadline:
+                for cube in st['open']:                    # cubes stay in 'open' until finished
+                    if len(running) >= args.workers:
+                        break
+                    k = ','.join(map(str, cube)) or 'root'
+                    if k not in running:
+                        q = ctx.Queue()
+                        pr = ctx.Process(target=cube_child, args=(m, opts, cube, st['nchi'], q), daemon=True)
+                        pr.start()
+                        running[k] = (cube, pr, q, time.time())
+                time.sleep(1)
+                for k in list(running):
+                    cube, pr, q, t0 = running[k]
+                    res = None
+                    if not q.empty():
+                        res = q.get()
+                    elif time.time() - t0 > args.timeout or not pr.is_alive():
+                        res = {'status': 'TIMEOUT' if pr.is_alive() else 'ERROR'}
+                    if res is None:
+                        continue
+                    pr.terminate()
+                    pr.join()
+                    del running[k]
+                    rec = dict(res, task=k, cube=cube, seconds=round(time.time() - t0, 1))
+                    st['open'] = [c for c in st['open'] if c != cube]
+                    if rec['status'] == 'UNSAT':
+                        st['refuted_fraction'] += 2.0 ** (-len(cube))
+                    elif rec['status'] == 'SAT':
+                        st['sat'].append(cube)
+                        rec['candidate'] = True
+                        save_candidate(job, rec)
+                    else:                                       # TIMEOUT/ERROR: split on next variable
+                        used = {abs(l) for l in cube}
+                        v = next(x for x in st['order'] if x not in used)
+                        st['open'] += [cube + [v], cube + [-v]]
+                        rec['split_on'] = v
+                    rec['refuted_fraction'] = st['refuted_fraction']
+                    rec['open'] = len(st['open'])
+                    append_result(job, rec)
+                    write_json_atomic(stp, st)
+                    log(job, rec['task'][:60], rec['status'], '%.0fs' % rec['seconds'],
+                        'refuted %.6f open %d' % (st['refuted_fraction'], len(st['open'])))
+                    committer.maybe('overnight %s: refuted %.6f' % (job, st['refuted_fraction']),
+                                    force=rec['status'] == 'SAT')
+            if not st['open'] and not running:
+                log('%s FINISHED: %s' % (job, 'SAT cube(s) found' if st['sat'] else 'all cubes UNSAT (instance UNSAT)'))
+        finally:
+            for k, (cube, pr, q, t0) in running.items():
+                pr.terminate()
+            write_json_atomic(stp, st)
+            committer.maybe('overnight %s: stop, refuted %.6f' % (job, st['refuted_fraction']), force=True)
+
+
+# ----------------------------------------------------------------------------- job: ils
+
+def ils_worker(item):
+    task, p = item
+    import numpy as np
+    import numba
+    numba.set_num_threads(1)
+    from fastviol import triangulation_tables, violations
+    from relocate import relocate
+    rng = np.random.default_rng(int(hashlib.sha256(task.encode()).hexdigest()[:8], 16))
+    H = np.array(p['planes'], dtype=float)
+    H = H / np.linalg.norm(H[:, :3], axis=1)[:, None]
+    pa, it = triangulation_tables(12, p['triangles'])
+    cur = int(violations(H, pa, it))
+    start = cur
+    best, bestH = cur, H.copy()
+    t0 = time.time()
+    steps = kicks = stall = 0
+    spread = float(np.std(H[:, 3])) or 1.0
+    while time.time() - t0 < 60 * p['minutes'] and best > 0:
+        k = int(rng.integers(12))
+        c, h, hc, m = relocate(H, pa, it, k, stride=p['stride'], offset=int(rng.integers(p['stride'])), cap=cur + 1)
+        H2 = H.copy(); H2[k] = hc
+        vc = int(violations(H2, pa, it))
+        if vc > c:
+            H2[k] = h; vc = int(violations(H2, pa, it))
+        steps += 1
+        if vc <= cur:
+            stall = stall + 1 if vc == cur else 0
+            H, cur = H2, vc
+        else:
+            stall += 1
+        if cur < best:
+            best, bestH = cur, H.copy()
+        if stall >= p['stall']:                     # kick 1-2 planes
+            H = bestH.copy() if rng.random() < 0.5 else H
+            sig = float(rng.choice([0.003, 0.01, 0.03]))
+            for q in rng.choice(12, size=int(rng.integers(1, 3)), replace=False):
+                H[q, :3] += sig * rng.standard_normal(3)
+                H[q, 3] += sig * spread * rng.standard_normal()
+            cur = int(violations(H, pa, it))
+            kicks += 1
+            stall = 0
+    rec = {'task': task, 'seed_id': p['seed_id'], 'source': p['source'], 'start_count': start,
+           'best_count': best, 'steps': steps, 'kicks': kicks, 'seconds': round(time.time() - t0, 1)}
+    rec['status'] = 'IMPROVED' if best < start else 'NO_IMPROVEMENT'
+    if best < start:
+        rec['planes'] = bestH.tolist()
+        rec['triangles'] = p['triangles']
+    if best == 0:
+        from fixed_normals import exact_check
+        Hi = [[int(round(x * 10 ** 9)) for x in h] for h in bestH]
+        ok, nv, nb = exact_check(Hi, p['triangles'])
+        rec.update({'exact_embedded': ok, 'exact_violated_triples': nv, 'exact_bad_pairs': nb,
+                    'planes_int': Hi, 'candidate': bool(ok)})
+    rec['summary'] = '%d -> %d (%d steps, %d kicks)' % (start, best, steps, kicks)
+    return rec
+
+
+def job_ils(args, committer):
+    seeds = json.load(open(SEEDS))
+    tasks = [('ils%d_r%d' % (s['seed_id'], r), dict(s, minutes=args.minutes_per_seed, stride=args.stride,
+                                                     stall=args.stall))
+             for r in range(args.rounds) for s in seeds if s['ours'] <= args.max_seed_count]
+    run_pool('ils', tasks, ils_worker, args, committer)
+
+
+# ----------------------------------------------------------------------------- status
+
+def job_status(args, committer):
+    if not os.path.isdir(RES):
+        print('no results yet')
+        return
+    for job in sorted(os.listdir(RES)):
+        recs = load_results(job)
+        import collections
+        c = collections.Counter(r.get('status') for r in recs)
+        print('%-14s %5d records  %s' % (job, len(recs), dict(c)))
+        cd = os.path.join(RES, job, 'CANDIDATES')
+        if os.path.isdir(cd) and os.listdir(cd):
+            print('   CANDIDATES:', os.listdir(cd))
+        st = os.path.join(RES, job, 'state.json')
+        if os.path.exists(st):
+            s = json.load(open(st))
+            print('   refuted fraction %.6f, open cubes %d, SAT cubes %d' % (s['refuted_fraction'], len(s['open']), len(s['sat'])))
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument('job', choices=['normals', 'sym', 'cube', 'ils', 'status'])
+    ap.add_argument('--hours', type=float, default=8.0, help='wall-clock budget of this invocation')
+    ap.add_argument('--workers', type=int, default=max(1, (os.cpu_count() or 2) - 1))
+    ap.add_argument('--timeout', type=float, default=None, help='per-task solver timeout in seconds')
+    ap.add_argument('--git', action='store_true', help='commit results/ periodically')
+    ap.add_argument('--push', action='store_true', help='also git push after each commit')
+    ap.add_argument('--commit-minutes', type=float, default=30)
+    ap.add_argument('--only', default='', help='run only tasks whose id contains this substring')
+    ap.add_argument('--results-dir', default=None, help='override results directory (testing)')
+    # normals
+    ap.add_argument('--max-seed-count', type=int, default=10)
+    ap.add_argument('--perturb-max-count', type=int, default=6)
+    ap.add_argument('--perturb-reps', type=int, default=3)
+    # sym
+    ap.add_argument('--cadical', default=None)
+    ap.add_argument('--drat-trim', default=None)
+    ap.add_argument('--sym-opts', default='reflex,poc')
+    ap.add_argument('--check-timeout', type=float, default=40000)
+    ap.add_argument('--keep-proofs', action='store_true')
+    ap.add_argument('--keep-cnf', action='store_true')
+    # cube
+    ap.add_argument('--maps', default='1', help='comma-separated Lutz map numbers')
+    # ils
+    ap.add_argument('--minutes-per-seed', type=float, default=20)
+    ap.add_argument('--stride', type=int, default=4)
+    ap.add_argument('--stall', type=int, default=24)
+    ap.add_argument('--rounds', type=int, default=1)
+    args = ap.parse_args()
+    if args.results_dir:
+        global RES
+        RES = os.path.abspath(args.results_dir)
+    if args.timeout is None:
+        args.timeout = {'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'status': 0}[args.job]
+    committer = Committer(args)
+    {'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'status': job_status}[args.job](
+        args, committer)
+
+
+if __name__ == '__main__':
+    main()

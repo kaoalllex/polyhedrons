@@ -119,3 +119,79 @@ Run: `reloc_descent.py hp_seeds_ranked.json topology_33/shape_c5_i0_1154.obj t33
   483,166 clauses). Plain (GP+triples only): no result after ~320 s, stopped by me at the PI's wrap-up
   request (so this only shows that it took longer than 320 s). No proof was written for the C2 run.
   The prior work reports 188 s for #48 C2 with their orient encoding.
+
+## 2026-10-29 Track 4 (geometry-first SAT)
+
+Code: `code/planes.py` (exact geometry + DIRECT embedding checker + violation_profile), `code/geomsat.py` (SAT/MaxSAT/CP-SAT encoder for
+fixed planes, §6(B)), `code/track4_common.py`, `code/unit_test_in.py`, `code/szilassi.py`, `code/szil_test.py`, `code/exp_n7.py`,
+`code/exp_n12.py`, `code/anneal.py`. Bulk logs (not in repo): session scratchpad. All geometry is exact (Python ints / Fractions);
+random planes are integers (scale 1e4, 1e5 in the annealer), general position checked exactly (all 4x4 dets among planes + h_inf != 0).
+Encoding: 220 vars t_XYZ + Tseitin aux (n=12: ~7.0k vars, ~50k clauses incl. exactly-two per pair and all 3- and 4-cycles in links; 5+6
+split links removed by lazy cuts; CP-SAT variant adds 5-cycles statically so the link constraint is complete). IN uses §5.2 verbatim,
+with E/prefix-XOR/suffix-XOR chains shared along each line; the "run" term uses flip_{X,Y} = XOR_C [t_XYC and OR_{C' : side(XCC';Y)>0} t_XCC'].
+
+**Mapping of MaxSAT scores to edge-face / self-crossing counts.** One violated non-triangle triple {X,Y,Z} = a point P=P_XYZ in F_X,F_Y,F_Z.
+Let k = number of the 3 edges e_XY,e_XZ,e_YZ passing through P in their relative interior (computed directly, exactly):
+k=0: V0 face-face-face interior point; k=1: V1 = one edge pierces the interior of the third face = 1 edge-face intersection;
+k=2: V2 = two edges of one polygon cross in its plane = 1 polygon self-crossing (this also implies 2 edge-face contacts by Lemma 3.1, not counted
+twice); k=3: V3 = three edges concurrent = 3 self-crossings. Reported V = V0+V1+V2+V3 (number of violated triples), and the benchmark-comparable
+B = V0+V1+V2+3*V3 (= #self-crossings + #edge-face piercings, +V0). CP-SAT optimises B (weights 1, +2 for k=3 triples); the
+plain MaxSAT/RC2 objective is V. Caveat: HackerPoet's/Moki-Julio's exact counting rules are not known to me; B is my best equivalent.
+
+### E1 (3a) Is the encoded IN predicate (§5.2) equal to exact point-in-polygon?
+`cd code; python3 unit_test_in.py 200 60` (seeds 101 (n=7), 202 (n=12); distributions cycled over sphere_unif,tangent,gauss,pts3,near_tangent,small_off).
+Random planes, torus (n=7, relabelled) / random one of the 59 types from `data/k12_triangulations.json` with random labelling; IN evaluated by solving the
+definitional CNF with t fixed; 4 ray variants (line L_XY or L_XZ, both directions). Result: n=7: 84,000 (face,point) comparisons, 0 mismatches;
+n=12: 158,400 comparisons, 0 mismatches; violated-triple sets (encoding vs direct PIP) identical in all 1040 evaluations. In all these random trials
+the polygons were non-simple, so this tests the even-odd rule incl. self-crossing rays. Runtime 7 s + 23 s. PASS.
+
+### E2 (3b) Positive control: Szilassi
+`python3 szilassi.py; python3 szil_test.py`. index.html MODELS.szilassi: all 7 faces exactly planar (rational check). Planes (ints):
+(0,-20,5,-6),(0,20,5,-6),(50,-50,70,21),(-50,50,70,21),(-10,0,-5,-6),(0,0,5,-1),(10,0,-5,-6). They are NOT in general position (3 triple points
+at infinity: planes {0,1,5},{2,3,5},{4,5,6}); their dual triangulation is a valid 14-triangle 7-vertex torus. After a random integer perturbation
+(relative 1e-6..1e-3) general position holds, the direct checker passes with the Szilassi triangulation (ok_triples and ok_pairs True, profile all 0)
+and the SAT encoder returns SAT (~10 ms), the model being exactly the Szilassi triangulation, direct checker PASS. 
+Cross-validation of SAT vs brute force over all 120 labelled copies of the unique torus (`exp_n7.py cvp 25`, seed 17): 25 perturbed-Szilassi
+arrangements (rel 0.02..0.5), 3000 (arrangement,labelling) pairs: direct ok_triples == ok_pairs in all (validates Lemma 5.1 on these), encoding == direct in all,
+SAT == (some labelling embeds) in all 25; 5 SAT arrangements, each with exactly 1 valid labelling. (`exp_n7.py cv 3` on 18 pure random arrangements: 0 positives, 0 disagreements.)
+Torus: 14 triangles {i,i+1,i+3},{i,i+2,i+3} mod 7: every pair in 2 triangles, all links 6-cycles, 120 distinct labelled copies (checked); orientability not separately checked
+(K7 does not triangulate the Klein bottle, Franklin).
+Robustness (`exp_n7.py rob 300`, seed 13; scale planes to 1e6, add uniform integer noise of relative size rel to all 4 coefficients): SAT fraction
+rel 1e-4,1e-3,1e-2: 300/300; 0.03: 291/300; 0.1: 115/300; 0.2: 22/300; 0.3: 5/300; 0.5: 0/300. SAT count == count where the original
+Szilassi triangulation stays valid at every level (no other torus ever appeared).
+Random 7-plane arrangements admitting a torus (`exp_n7.py frac 3000`, seed 11, SAT verified by direct checker, 0 disagreements): sphere_unif 1/3000, tangent 1/3000,
+near_tangent 0/3000, gauss 1/3000, pts3 0/3000, small_off 1/3000 => 4/18000 = 2.2e-4 (95% CI roughly 0.6e-4..5.7e-4). Solutions are rare but not absent; timing ~11 ms/arrangement.
+
+### E3 (3c) n=12, random arrangements: SAT?
+`python3 exp_n12.py sat 5 90 1001 1` (6 distributions x 5 arrangements, cadical195, timeout 90 s, 1 process). Result: 30/30 UNSAT, 0 timeouts,
+time 5.3-27.8 s (median 11.8 s). Proven by the solver for those fixed planes: NO triangulation of any of the 59 types / any labelling embeds the polyhedron.
+(Soundness rests on the encoding; the encoding was validated in E1/E2 only on fixed triangulations and n=7 SAT; no n=12 UNSAT was cross-checked independently.)
+
+### E4 (3c) n=12 distance to a solution
+RC2 (g4, stratification options adapt/exhaust/minz) on one sphere_unif arrangement: TIMEOUT at 250 s (core-guided approach does not scale; abandoned).
+Replaced with CP-SAT (ortools, 1 worker, 36 s limit, objective B above): `python3 exp_n12.py cpsat 4 45 2002 1` (6 dists x 4). All 24 solved to FEASIBLE,
+lower bound 0 (no optimality proof), so these are UPPER bounds on the minimum. B (edge-face + self-crossings): min 23, median 31, max 39; V (violated triples)
+min 17, median 29, max 39. Per distribution (B): sphere_unif 39,31,27,37; tangent 32,32,34,32; near_tangent 30,28,31,27; gauss 31,24,36,29; pts3 35,28,35,28; small_off 30,23,33,38.
+Typical profile: 4-17 pierced faces + 13-20 self-crossings, 8-12 of 12 polygons non-simple.
+
+### E5 (4) Annealing, asymmetric random start
+`python3 anneal.py 1 sphere_unif 9` (9 min, 1 process): SA on integer plane coefficients (move: perturb one plane by relative 6e-4..0.1) with T fixed, objective B (exact),
+every 250 evals CP-SAT (25 s, warm start) re-optimises T. 2250 evaluations. B: 33 (initial CP-SAT) -> 24 (V=24, 1 face-face-face point, 4 edge-face, 19 self-crossings, 8 non-simple faces).
+Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, exact). No candidate (B=0 never close). Not extended (resource limit).
+
+## 2026-10-29 PI: E-PI-1 result and fixed-normals method (E1)
+
+* E-PI-1 (single-plane exact relocation, stride 3) from HackerPoet topology_33 seed (5
+  violations, trivial-automorphism map): 33 relocation steps, every step found only count-5
+  cells (plateau moves, some moving a plane far); no count < 5 reached. Stopped manually.
+* E1 `code/fixed_normals.py`: with integer normals fixed, existence of offsets is exact
+  SMT(LRA) in z3. A first version with float cofactors was WRONG (z3 exploited rounding with
+  offsets ~1e16); fixed by exact integer cofactors and bounded offsets. Szilassi control (n=7):
+  normals perturbed by sigma 0, 0.05, 0.10, 0.15 -> SAT and the independent exact checker
+  (planes.check_embedding) confirms embedding; sigma 0.20, 0.25 -> UNSAT. n=12 seed
+  topology_33: no answer within 300 s (smoke test: UNKNOWN at 20 s).
+* Overnight package `overnight/run_overnight.py` (jobs normals/sym/cube/ils) smoke-tested:
+  normals s0 UNKNOWN at 20 s; ils seed 0: 4 -> 4; sym Lutz #54 C3 class 0: UNSAT in 23 s
+  (unverified, no proof tools here); cube map #1: cubes time out at 12 s and split as designed.
+  PySAT's cadical195 ignores interrupt() during long solves, so cubes run in killable child
+  processes.

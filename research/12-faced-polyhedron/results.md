@@ -146,3 +146,15 @@ DRAT proof for #54 T saved (`experiments/omsat/sym_54_T.drat`); not checked with
 refused in this sandbox); own forward RUP checker `code/rup_check.py`: 1034 lemmas, all RUP, empty clause derived — VERIFIED (weaker than drat-trim: self-written checker).
 Not done: asymmetric full instances (known to stall per the prior work; not attempted per PI),
 realisation attempts (no SAT χ for n=12 arose).
+
+## Track 4: geometry-first SAT
+
+Pipeline: exact integer planes -> SAT over 220 triangle variables (all 59 types x all labelings at once) -> direct exact embedding check of every model.
+Validation: IN predicate (§5.2) vs exact point-in-polygon: 242,400 (face,point) comparisons (n=7 and n=12, 4 ray variants), 0 mismatches. Szilassi planes (perturbed to general
+position) are SAT and the model equals Szilassi's triangulation (direct checker PASS); 25 perturbed arrangements x 120 labelled tori: encoding, Lemma 5.1, pair test F_X cap F_Y = e_XY and SAT
+all agree. Szilassi robustness: SAT for 100% up to relative coefficient noise 1e-2, 97% at 3e-2, 38% at 0.1, 7% at 0.2, 1.7% at 0.3, 0% at 0.5. Random 7-plane arrangements admit a torus with
+frequency ~2e-4 (4/18000; 6 distributions).
+n=12: 30/30 random arrangements are UNSAT (5-28 s each, no timeouts). Upper bounds on the minimum number of violations (edge-face piercings + polygon self-crossings, B) for 24 random
+asymmetric arrangements: 23-39 (median 31); a 9-minute alternating SA/CP-SAT run from a random asymmetric start went 33 -> 24. This is the same plateau (21-24) reported for the GPU numerical search of
+Moki & Julio (counting rules not guaranteed identical). No solution/candidate found; this is evidence about the difficulty, not about existence.
+Details: experiment-log.md "Track 4", code/planes.py, code/geomsat.py.
