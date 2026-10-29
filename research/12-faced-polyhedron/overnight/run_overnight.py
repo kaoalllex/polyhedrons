@@ -183,6 +183,11 @@ def normals_worker(item):
     while not _gp_ok(N) and k < 20:               # break accidental degeneracy by tiny integer noise
         N = [[x + int(rng.integers(-1, 2)) for x in v] for v in N]
         k += 1
+    from gauss_degree import coherent_triangles, admissible_gauges
+    if not admissible_gauges(N, coherent_triangles(p['triangles']), -5):
+        return {'task': task, 'seed_id': p['seed_id'], 'source': p['source'], 'seed_count': p['ours'],
+                'sigma': p['sigma'], 'status': 'UNSAT-GAUSS', 'seconds': round(time.time() - t0, 1),
+                'summary': 'no gauge with Gauss degree -5 and convex covering (exact)'}
     try:
         status, planes = solve(N, p['triangles'], timeout_s=p['timeout'])
     except Exception as e:                          # noqa: BLE001
@@ -212,6 +217,52 @@ def job_normals(args, committer):
             for s in best:
                 tasks.append(('p%d_%g_%d' % (s['seed_id'], sigma, rep), dict(s, sigma=sigma, timeout=args.timeout)))
     run_pool('normals', tasks, normals_worker, args, committer)
+
+
+# ----------------------------------------------------------------------------- job: gnormals
+
+def gnormals_worker(item):
+    task, p = item
+    import numpy as np
+    from gauss_degree import coherent_triangles, admissible_gauges
+    from gauss_search import find_admissible
+    from fixed_normals import integer_normals, exact_check
+    from fixed_normals_gauge import solve_gauge
+    t0 = time.time()
+    rng = np.random.default_rng(int(hashlib.sha256(task.encode()).hexdigest()[:8], 16))
+    ot = coherent_triangles(p['triangles'])
+    G, it = find_admissible(ot, rng, minutes=p['anneal_minutes'])
+    rec = {'task': task, 'type_id': p['type_id'], 'anneal_iterations': it}
+    if G is None:
+        rec.update(status='NO_ADMISSIBLE_NORMALS', seconds=round(time.time() - t0, 1), summary='anneal failed')
+        return rec
+    N = integer_normals(G)
+    if tuple([1] * 12) not in admissible_gauges(N, ot, -5, n_cover=500):
+        rec.update(status='ROUNDING_FAILED', seconds=round(time.time() - t0, 1), summary='exact recheck failed')
+        return rec
+    ta = time.time()
+    try:
+        status, planes = solve_gauge(N, p['triangles'], timeout_s=p['timeout'])
+    except Exception as e:                          # noqa: BLE001
+        rec.update(status='ERROR', error=repr(e)[:300], seconds=round(time.time() - t0, 1))
+        return rec
+    rec.update(status=status, normals=N, smt_seconds=round(time.time() - ta, 1), seconds=round(time.time() - t0, 1))
+    if status == 'SAT':
+        ok, nv, nb = exact_check(planes, p['triangles'])
+        rec.update(planes=[[int(x) for x in h] for h in planes], triangles=p['triangles'], exact_embedded=ok,
+                   exact_violated_triples=nv, exact_bad_pairs=nb, candidate=bool(ok))
+        rec['summary'] = 'SAT exact=%s' % ok
+    else:
+        rec['summary'] = 'type %d %s smt %.0fs' % (p['type_id'], status, rec['smt_seconds'])
+    return rec
+
+
+def job_gnormals(args, committer):
+    types = json.load(open(os.path.join(HERE, '..', 'data', 'k12_triangulations.json')))
+    tasks = [('g%d_%d' % (t['id'], r), dict(type_id=t['id'], triangles=t['triangles'], timeout=args.timeout,
+                                             anneal_minutes=args.anneal_minutes))
+             for r in range(args.reps) for t in types]
+    run_pool('gnormals', tasks, gnormals_worker, args, committer)
 
 
 # ----------------------------------------------------------------------------- job: sym
@@ -557,7 +608,7 @@ def job_status(args, committer):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('job', choices=['normals', 'sym', 'cube', 'ils', 'status'])
+    ap.add_argument('job', choices=['gnormals', 'normals', 'sym', 'cube', 'ils', 'status'])
     ap.add_argument('--hours', type=float, default=8.0, help='wall-clock budget of this invocation')
     ap.add_argument('--workers', type=int, default=max(1, (os.cpu_count() or 2) - 1))
     ap.add_argument('--timeout', type=float, default=None, help='per-task solver timeout in seconds')
@@ -570,6 +621,9 @@ def main():
     ap.add_argument('--max-seed-count', type=int, default=10)
     ap.add_argument('--perturb-max-count', type=int, default=6)
     ap.add_argument('--perturb-reps', type=int, default=3)
+    # gnormals
+    ap.add_argument('--reps', type=int, default=1000, help='gnormals: samples per type (round robin over 59 types)')
+    ap.add_argument('--anneal-minutes', type=float, default=3.0)
     # sym
     ap.add_argument('--cadical', default=None)
     ap.add_argument('--drat-trim', default=None)
@@ -589,9 +643,9 @@ def main():
         global RES
         RES = os.path.abspath(args.results_dir)
     if args.timeout is None:
-        args.timeout = {'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'status': 0}[args.job]
+        args.timeout = {'gnormals': 900, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'status': 0}[args.job]
     committer = Committer(args)
-    {'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'status': job_status}[args.job](
+    {'gnormals': job_gnormals, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'status': job_status}[args.job](
         args, committer)
 
 

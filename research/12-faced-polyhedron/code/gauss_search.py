@@ -45,6 +45,40 @@ def energy(G, T, U):
     return 10 * abs(dmed + 5) + int((pos == 0).sum()) + int((deg != dmed).sum()), dmed, int((pos == 0).sum())
 
 
+def find_admissible(otris, rng, minutes=3.0, n_samples=3000, target=-5):
+    """Anneal 12 gauge normals until degree == target and positive covering on the samples.
+    Returns (G float array or None, iterations)."""
+    T = tri_index(otris)
+    U = rng.standard_normal((n_samples, 3))
+    U /= np.linalg.norm(U, axis=1)[:, None]
+    n = int(T.max()) + 1
+    G = rng.standard_normal((n, 3))
+    G /= np.linalg.norm(G, axis=1)[:, None]
+
+    def en(G):
+        pos, neg = cover_counts(G, T, U)
+        deg = pos - neg
+        dmed = int(np.median(deg))
+        return 10 * abs(dmed - target) + int((pos == 0).sum()) + int((deg != dmed).sum())
+
+    E = en(G)
+    t0 = time.time(); it = 0; Tmp = 3.0
+    while E > 0 and time.time() - t0 < 60 * minutes:
+        it += 1
+        k = int(rng.integers(n))
+        G2 = G.copy()
+        if rng.random() < 0.1:
+            G2[k] = -G2[k]
+        else:
+            G2[k] += float(rng.choice([0.03, 0.1, 0.3, 1.0])) * rng.standard_normal(3)
+            G2[k] /= np.linalg.norm(G2[k])
+        E2 = en(G2)
+        if E2 <= E or rng.random() < np.exp((E - E2) / Tmp):
+            G, E = G2, E2
+        Tmp = max(0.05, Tmp * 0.9997)
+    return (G if E == 0 else None), it
+
+
 def main():
     types = json.load(open(sys.argv[1]))
     tid, minutes, seed, out = int(sys.argv[2]), float(sys.argv[3]), int(sys.argv[4]), sys.argv[5]
