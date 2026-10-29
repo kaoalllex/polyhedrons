@@ -1,0 +1,28 @@
+Szilassi planes (index.html): [[0, -20, 5, -6], [0, 20, 5, -6], [50, -50, 70, 21], [-50, 50, 70, 21], [-10, 0, -5, -6], [0, 0, 5, -1], [10, 0, -5, -6]]
+Szilassi chirotope: 3 zero quadruples (not uniform): [(0, 1, 5, 7), (2, 3, 5, 7), (4, 5, 6, 7)]
+Szilassi control planes: [[0, -20001, 5000, -5999], [-1, 19999, 5001, -6001], [50000, -49999, 69999, 21001], [-50001, 49999, 69999, 21000], [-10000, -1, -5001, -6001], [1, 0, 4999, -999], [9999, -1, -4999, -5999]]
+uniform: True eval violations: []
+Szilassi direct embedded: True mismatches: 0 {'IN': 126, 'IN_true': 44, 'RF': 84, 'RF_true': 16, 'RT': 42, 'RT_true': 10, 'E': 210, 'lt': 840, 'side': 140, 'poc_tests': 42}
+reflex corners per face: [1, 1, 1, 1, 2, 0, 2]
+Szilassi CNF check: {'named': 252, 'named_mismatch': 0, 'sat': True, 'eval_ok': True, 'agree': True, 'core_size': None, 'violations': []}
+perturbed Szilassi: 292 configs, embedded 93 mismatches 0 {'IN': 36792, 'IN_true': 17552, 'RF': 24528, 'RF_true': 4378, 'RT': 12264, 'RT_true': 4801, 'E': 61320, 'lt': 245280, 'side': 40880, 'poc_tests': 7008}
+embedded configs violating some family: []
+random n=7: 300 configs, embedded 0, mismatches 0 {'IN': 37800, 'IN_true': 21580, 'RF': 25200, 'RF_true': 4522, 'RT': 12600, 'RT_true': 6275, 'E': 63000, 'lt': 252000, 'side': 42000, 'poc_tests': 3888}
+random n=12: 100 configs, embedded 0, mismatches 0 {'IN': 105600, 'IN_true': 64052, 'RF': 26400, 'RF_true': 7018, 'RT': 13200, 'RT_true': 6581, 'E': 132000, 'lt': 1188000, 'side': 198000, 'poc_tests': 176}
+CNF check n=7: {'named': 252, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 16, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=7: {'named': 252, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 8, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=7: {'named': 252, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 19, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=7: {'named': 252, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 27, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=7: {'named': 252, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 17, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=7: {'named': 252, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 18, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=7: {'named': 252, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 22, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=7: {'named': 252, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 25, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=12: {'named': 1452, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 27, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=12: {'named': 1452, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 15, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=12: {'named': 1452, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 42, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=12: {'named': 1452, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 20, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=12: {'named': 1452, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 42, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=12: {'named': 1452, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 12, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=12: {'named': 1452, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 19, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+CNF check n=12: {'named': 1452, 'named_mismatch': 0, 'sat': False, 'eval_ok': False, 'agree': True, 'core_size': 13, 'violations': ['POC', 'REFLEX1', 'TRIPLE']}
+done in 168.3s

@@ -1,0 +1,14 @@
+map #3: |Aut| = 6, orientation-preserving 6
+subgroups of type D3: 1, conjugacy classes: 1
+chosen subgroup: free action on faces: True; orbits [[0, 4, 8, 9, 10, 11], [1, 2, 3, 5, 6, 7]]
+eps on subgroup: [1, 1, 1, 1, 1, 1]
+forced-zero quadruples: 0
+faithful signed-permutation reps with det = eps: 24
+random symmetric configs uniform: 24 / 24
+explicit symmetric configuration satisfies the SYM relation: True
+orbit-flip normalisation quads: [(0, 1, 2, 12), (0, 1, 4, 12)]
+control (no triples) SAT: True
+control (explicit symmetric chi, normalised) SAT: True
+instance: vars 13726 clauses 466986 families {'GP': 411840, 'TRIPLE': 176, 'SYM': 7150, 'SB_ORBFLIP': 2, 'SB_MIRROR': 1}
+RESULT map #3 D3 opts= solver=cadical195: UNSAT in 9.3s
+stats {'restarts': 39, 'conflicts': 1476, 'decisions': 2003, 'propagations': 2507265}

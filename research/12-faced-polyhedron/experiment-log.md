@@ -50,3 +50,23 @@ session scratchpad with `gcc -O2 -Wall` (gcc 13.3).
    So >= 2,192,916 labelled non-orientable neighborly 12-vertex triangulations (chi=-10) with
    link(0) = the cycle 1-...-11, hence >= 2,192,916/264 > 8,300 non-orientable isomorphism types
    [N, lower bound; the exact count was not computed]. Negative/incomplete result kept for the record.
+
+## 2026-10-29 PI experiment E-PI-1: exact single-plane relocation from near-misses
+
+**Question.** Are the best known asymmetric near-misses (5 violations, HackerPoet topology 33
+and 36) local minima with respect to moving ONE plane anywhere in space (not just locally)?
+If a single-plane global move lowers the count, the prior optimizers were trapped by locality.
+
+**Method.** `code/relocate.py`: with 11 planes fixed, the count is constant on the cells of an
+arrangement of 220 hyperplanes in the 4D space of plane vectors (165 fixed triple points + 55
+fixed line directions). Probe the 8 cells around (a 1/stride sample of) the 1.75M vertices,
+take the best cell, re-centre it by LP. `code/reloc_descent.py` cycles over planes in random
+order, accepting moves with count <= current. Float arithmetic (fastviol), so any improvement
+must be re-verified exactly.
+
+**Calibration.** topology_37 seed (4 violations, symmetric map), stride 200: no plane can be
+moved to reach < 4 (all 8 planes tested before a numerical exception that has since been
+guarded). 10 µs per evaluation; a full scan (stride 1) costs ~140 s per plane on one core.
+
+Run: `reloc_descent.py hp_seeds_ranked.json topology_33/shape_c5_i0_1154.obj t33.json 40 3 1 1`
+(stride 3, 1 thread, seed 1, 40 minutes). Result: pending.
