@@ -26,7 +26,7 @@ def value(H, tl, hint=None):
         hint2 = {k for k, s_ in zip(sorted(A.bounded), inS) if s_}
         r2 = best_solid(A, time_limit=tl, hint=hint2, target_adj=info['adjacent'] + 6)
         sl = r2[1]['slack'] if r2 is not None else 60
-        info = dict(info); info['next_slack'] = sl
+        info = dict(info); info['next_slack'] = sl; info['hot'] = r2[1].get('hot', []) if r2 is not None else []
         return 10 * info['adjacent'] - min(sl, 59), A, (inS, info)
     return (10 * v if SECONDARY else v), A, (inS, info)
 
@@ -63,7 +63,9 @@ if __name__ == '__main__':
         T = 1.0; steps = 0
         while time.monotonic() - t0 < 60 * minutes and steps < (80 if SECONDARY else 300):
             steps += 1
-            H2 = H.copy(); j = int(rng.integers(n)); H2[j] += float(rng.choice([0.02, 0.08, 0.3])) * rng.standard_normal(4)
+            hot = sol[1].get('hot', []) if (sol is not None and '--guided' in sys.argv) else []
+            j = int(rng.choice(hot)) if (hot and rng.random() < 0.7) else int(rng.integers(n))
+            H2 = H.copy(); H2[j] += float(rng.choice([0.02, 0.08, 0.3])) * rng.standard_normal(4)
             hint = {k for k, v in zip(sorted(A.bounded), sol[0]) if v} if (sol is not None and A is not None) else None
             v2, A2, sol2 = value(H2, tl, hint)
             if v2 >= cur or rng.random() < np.exp((v2 - cur) / T):

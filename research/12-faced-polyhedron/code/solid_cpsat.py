@@ -148,7 +148,15 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
         f, dsk, adjv, miss, diag, badv, chi, rt = fast_eval(inS, *T.args())
         val = int(round(solver.ObjectiveValue()))
         if target_adj is not None:
-            return inS, dict(slack=val, status=solver.StatusName(st), seconds=round(time.monotonic() - t0, 2))
+            pairs = list(itertools.combinations(range(T.n), 2))
+            hot = set()
+            for (p, ss), ex in zip(starts_by_pair.items(), slack[:len(starts_by_pair)]):
+                if solver.Value(ex) > 0:
+                    hot.update(pairs[p])
+            for X, d in enumerate(slack[len(starts_by_pair):]):
+                if solver.Value(d) > 0:
+                    hot.add(X)
+            return inS, dict(slack=val, hot=sorted(hot), status=solver.StatusName(st), seconds=round(time.monotonic() - t0, 2))
         info = dict(adjacent=val, faces=int(f), disks=int(dsk), chi=int(chi), status=solver.StatusName(st), cuts=cuts,
                     seconds=round(time.monotonic() - t0, 2))
         if not require_one_face or (f == 0 and dsk == 0) or cuts >= max_cuts:
