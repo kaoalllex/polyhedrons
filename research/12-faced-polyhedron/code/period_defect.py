@@ -249,3 +249,105 @@ def torus_defect(G, tris, phi, A=100.0, time_limit=60, general=False, return_L=F
         L = res.x[ic:ic + 9].reshape(3, 3) if (general and res.x is not None) else None
         return val, res.status, L
     return val, res.status
+
+
+def torus_simple(G, tris, phi, A=100.0, eps=0.05, time_limit=300, general=True):
+    """Feasibility MILP: exact closure in the 3-torus (periods = L phi, L free 3x3; phi = 0 gives
+    R^3), edge signs / vertex rules as in period_defect, AND every face polygon simple: for each
+    pair of non-adjacent edges of a face, the intersection point of their lines lies outside at
+    least one of the two segments (4-way disjunction, big-M). Returns (status, solution dict)."""
+    edges, faces, nv = surface_edges(G, tris)
+    G = np.asarray(G, float); G = G / np.linalg.norm(G, axis=1)[:, None]
+    ot = coherent_triangles(tris)
+    E = list(edges); ne = len(E); eidx = {k: j for j, k in enumerate(E)}
+    ip, ia, ik = 0, 3 * nv, 3 * nv + ne
+    iL = ik + ne
+    iz = iL + 9
+    pairs = []
+    for X, lst in faces.items():
+        m = len(lst)
+        for i in range(m):
+            for j in range(i + 2, m):
+                if i == 0 and j == m - 1:
+                    continue
+                pairs.append((X, i, j))
+    N = iz + 4 * len(pairs)
+    rows, lo, hi = [], [], []
+    A_ = lil_matrix((3 * ne + 2 * ne + 2 * len(ot) + 9 * len(pairs), N))
+    r = 0
+    for j, key in enumerate(E):                       # exact closure
+        t, h, d = edges[key]
+        for q in range(3):
+            A_[r, ip + 3 * h + q] += 1; A_[r, ip + 3 * t + q] -= 1; A_[r, ia + j] = -d[q]
+            for kk in range(3):
+                if phi[key][kk]:
+                    A_[r, iL + 3 * q + kk] = -float(phi[key][kk])
+            lo.append(0); hi.append(0); r += 1
+    M = 2 * A
+    for j in range(ne):                               # sign(a) tied to kappa
+        A_[r, ia + j] = -1; A_[r, ik + j] = M; lo.append(-np.inf); hi.append(M - 1); r += 1
+        A_[r, ia + j] = 1; A_[r, ik + j] = -M; lo.append(-np.inf); hi.append(-1); r += 1
+    for (a, b, cc) in ot:                             # vertex rules
+        ks = [ik + eidx[frozenset((a, b))], ik + eidx[frozenset((b, cc))], ik + eidx[frozenset((a, cc))]]
+        if np.linalg.det(np.array([G[a], G[b], G[cc]])) > 0:
+            A_[r, ks[0]] = 1; A_[r, ks[1]] = -1; lo.append(0); hi.append(0); r += 1
+            A_[r, ks[1]] = 1; A_[r, ks[2]] = -1; lo.append(0); hi.append(0); r += 1
+        else:
+            for kk in ks:
+                A_[r, kk] = 1
+            lo.append(1); hi.append(2); r += 1
+            lo.append(-np.inf); hi.append(np.inf); r += 1
+    BM = 4 * 11 * A
+    for pidx, (X, i, j) in enumerate(pairs):          # simplicity disjunctions
+        g = G[X]; u = np.cross(g, [1, 0, 0] if abs(g[0]) < 0.9 else [0, 1, 0]); u /= np.linalg.norm(u); w = np.cross(g, u)
+        lst = faces[X]
+        def ed2(k):
+            key, s = lst[k]; d = edges[key][2] * s
+            return eidx[key], np.array([d @ u, d @ w])
+        # Q_j - Q_i = sum_{k=i}^{j-1} a_k * dir_k  (linear in a)
+        diff = {}
+        for k in range(i, j):
+            jj, dk = ed2(k); diff[jj] = diff.get(jj, 0) + dk
+        ji, ui = ed2(i); jj_, uj = ed2(j)
+        c = ui[0] * uj[1] - ui[1] * uj[0]
+        if abs(c) < 1e-9:
+            continue
+        cr = lambda v, x: v[0] * x[1] - v[1] * x[0]
+        lam = {var: cr(vec, uj) / c for var, vec in diff.items()}   # lambda = sum lam[var] a_var
+        mu = {var: cr(vec, ui) / c for var, vec in diff.items()}
+        z = [iz + 4 * pidx + q for q in range(4)]
+        def add(coefs, sense, zz):
+            # sense '<=': sum coefs*a <= -eps + BM(1-z) ; '>=': sum coefs*a >= eps - BM(1-z)
+            nonlocal r
+            for var, cf in coefs.items():
+                A_[r, ia + var] += cf
+            if sense == '<=':
+                A_[r, zz] = BM; lo.append(-np.inf); hi.append(BM - eps)
+            else:
+                A_[r, zz] = -BM; lo.append(eps - BM); hi.append(np.inf)
+            r += 1
+        lam_minus = dict(lam); lam_minus[ji] = lam_minus.get(ji, 0) - 1      # lambda - a_i
+        mu_minus = dict(mu); mu_minus[jj_] = mu_minus.get(jj_, 0) - 1        # mu - a_j
+        add(lam, '<=', z[0]); add(lam_minus, '<=', z[0])
+        add(lam, '>=', z[1]); add(lam_minus, '>=', z[1])
+        add(mu, '<=', z[2]); add(mu_minus, '<=', z[2])
+        add(mu, '>=', z[3]); add(mu_minus, '>=', z[3])
+        for q in range(4):
+            A_[r, z[q]] = 1
+        lo.append(1); hi.append(4); r += 1
+    A_ = A_[:r].tocsr()
+    lb = np.full(N, -np.inf); ub = np.full(N, np.inf)
+    lb[ip:ip + 3] = 0; ub[ip:ip + 3] = 0
+    lb[ia:ia + ne] = -A; ub[ia:ia + ne] = A
+    lb[ik:ik + ne] = 0; ub[ik:ik + ne] = 1
+    lb[iL:iL + 9] = -10 * A; ub[iL:iL + 9] = 10 * A
+    if not general:
+        lb[iL:iL + 9] = 0; ub[iL:iL + 9] = 0
+    lb[iz:] = 0; ub[iz:] = 1
+    integ = np.zeros(N); integ[ik:ik + ne] = 1; integ[iz:] = 1
+    res = milp(np.zeros(N), constraints=[LinearConstraint(A_, np.array(lo), np.array(hi))],
+               bounds=Bounds(lb, ub), integrality=integ, options={'time_limit': time_limit, 'disp': False})
+    sol = None
+    if res.x is not None and res.status in (0, 1):
+        sol = {'L': res.x[iL:iL + 9].reshape(3, 3), 'a': res.x[ia:ia + ne]}
+    return res.status, sol
