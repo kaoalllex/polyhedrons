@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Independent checker for neighborly orientable 12-vertex genus-6 triangulations.
 
-Usage: python3 check_triangulations.py FILE.json [--no-pairs]
+Usage: python3 check_triangulations.py FILE.json [--no-pairs] [--selftest]
+  --selftest: positive control -- every entry is randomly relabelled and mirrored (seeded);
+              the copy must pass all checks, be found isomorphic to the original, and have
+              the same invariant and the same canonical string.
 
 Uses ONLY the "triangles" field to derive everything (links, orientation, automorphisms);
 the other fields are compared against the recomputed values.  Does not import k12_tools.
@@ -17,7 +20,9 @@ Checks per entry:
   7. automorphism group orders recomputed by brute force over the 264 flag maps
      (a simplicial map determined by the image of vertex 0, of one link neighbour and of
      the direction around the link), compared with 'aut_order',
-     'aut_orient_preserving_order', 'chiral' (chiral := no orientation-reversing automorphism)
+     'aut_orient_preserving_order', 'chiral' (chiral := no orientation-reversing automorphism;
+     an automorphism is orientation preserving iff it maps oriented triangles to oriented
+     triangles up to cyclic rotation)
   8. 'canonical' recomputed by an independent implementation of the definition
 Across entries:
   9. pairwise non-isomorphism: an isomorphism-invariant (multiset of sorted link-distance
@@ -206,7 +211,7 @@ def main():
             fail(f"entry {k}: id {e['id']}")
         T["aut"], T["aut_op"] = aut, aut_op
         Ts.append(T)
-    if "canonical" in data[0] and len(data) > 1:
+    if all("canonical" in e for e in data) and len(data) > 1:
         cs = [e["canonical"] for e in data]
         if cs != sorted(cs):
             fail("entries not sorted by canonical form")
@@ -223,6 +228,24 @@ def main():
         print(f"OK: all {len(Ts)} entries pairwise non-isomorphic (brute force over "
               f"264 flag maps for every pair); distance-triple invariant separates "
               f"{ninv} classes")
+    if "--selftest" in sys.argv:
+        import random
+        rng = random.Random(12345)
+        for k, e in enumerate(data):
+            p = list(range(N))
+            rng.shuffle(p)
+            mirror = rng.random() < 0.5 or k % 2 == 0
+            tris = [[p[t[0]], p[t[2]], p[t[1]]] if mirror else [p[x] for x in t]
+                    for t in e["triangles"]]
+            rng.shuffle(tris)
+            T2 = check_entry({"triangles": tris}, f"selftest-{k}")
+            if not isomorphisms(T2, Ts[k], first_only=True):
+                fail(f"selftest {k}: relabelled copy not recognised as isomorphic")
+            if invariant(T2) != invariant(Ts[k]):
+                fail(f"selftest {k}: invariant not invariant")
+            if "canonical" in e and canonical_independent(T2) != e["canonical"]:
+                fail(f"selftest {k}: canonical string not invariant")
+        print(f"OK: selftest ({len(data)} random relabellings, mirrored ones included) passed")
     print("aut orders:", Counter(T["aut"] for T in Ts))
     print("chiral (no orientation-reversing automorphism):",
           sum(1 for T in Ts if T["aut"] == T["aut_op"]), "of", len(Ts))

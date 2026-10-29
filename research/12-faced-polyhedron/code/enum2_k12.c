@@ -188,6 +188,30 @@ static void solution(void)
     }
 }
 
+static void search(void);
+
+/* add triangle {a,b,c} if legal, then either recurse (stage<0) or pick the second
+   triangle {a,b,c2} with c2 > c (stage 1) */
+static void try_tri(int a, int b, int c, int stage)
+{
+    if (c == a || c == b) return;
+    if (edeg[a][c] >= 2 || edeg[b][c] >= 2) return;
+    int s[3] = {a, b, c};
+    if (s[0] > s[1]) { int t = s[0]; s[0] = s[1]; s[1] = t; }
+    if (s[1] > s[2]) { int t = s[1]; s[1] = s[2]; s[2] = t; }
+    if (s[0] > s[1]) { int t = s[0]; s[0] = s[1]; s[1] = t; }
+    if (tri_exists(s[0], s[1], s[2])) return;
+    if (!link_ok(a, b, c) || !link_ok(b, a, c) || !link_ok(c, a, b)) return;
+    int mark = uf_sp;
+    int ok = add_tri(s[0], s[1], s[2]);
+    if (ok || !orient_mode) {
+        if (stage < 0) search();
+        else for (int c2 = c + 1; c2 < N; c2++) try_tri(a, b, c2, -1);
+    }
+    del_tri();
+    uf_undo_to(mark);
+}
+
 static void search(void)
 {
     nodes++;
@@ -202,21 +226,12 @@ static void search(void)
         for (int y = x + 1; y < N; y++)
             if (edeg[x][y] < 2) { a = x; b = y; break; }
     if (a < 0) return;   /* cannot happen: 66 edges * 2 = 132 = 3*44 */
-    for (int c = 0; c < N; c++) {
-        if (c == a || c == b) continue;
-        if (edeg[a][c] >= 2 || edeg[b][c] >= 2) continue;
-        int s[3] = {a, b, c};
-        /* sort */
-        if (s[0] > s[1]) { int t = s[0]; s[0] = s[1]; s[1] = t; }
-        if (s[1] > s[2]) { int t = s[1]; s[1] = s[2]; s[2] = t; }
-        if (s[0] > s[1]) { int t = s[0]; s[0] = s[1]; s[1] = t; }
-        if (tri_exists(s[0], s[1], s[2])) continue;
-        if (!link_ok(a, b, c) || !link_ok(b, a, c) || !link_ok(c, a, b)) continue;
-        int mark = uf_sp;
-        int ok = add_tri(s[0], s[1], s[2]);
-        if (ok || !orient_mode) search();
-        del_tri();
-        uf_undo_to(mark);
+    if (edeg[a][b] == 1) {
+        for (int c = 0; c < N; c++) try_tri(a, b, c, -1);
+    } else {
+        /* edge in no triangle yet: choose BOTH triangles at once, c1 < c2
+           (choosing them one at a time would produce every solution twice) */
+        for (int c1 = 0; c1 < N; c1++) try_tri(a, b, c1, 1);
     }
 }
 
