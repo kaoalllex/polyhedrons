@@ -73,3 +73,16 @@ realizes the incidences of any map. The whole difficulty is real (signs / chirot
 | Z1 | **Weierstrass representation** (minimal surfaces): a real surface x = Re of an integral of complex data on a Riemann surface; its obstruction is the PERIOD PROBLEM (real parts of periods vanish) = our 36 handle-period conditions. Our surfaces are mostly saddles (27-33 of 44), so the Gauss map is close to an anti-holomorphic 5-sheeted branched cover of the sphere (Riemann-Hurwitz for genus 6: 20 branch points); discrete minimal surfaces with planar faces exist (Bobenko-Hoffmann-Springborn). | build admissible normals from a degree-5 branched-cover model; study how the period problem is solved for genus-g minimal surfaces (symmetry or parameter continuity) |
 | Z2 | **Complex detours in homotopy continuation** (numerical algebraic geometry: Bertini, HomotopyContinuation.jl): paths through C avoid the singularities where real paths stall | boundary configurations (some inequalities made equalities), all complex solutions, keep the real ones |
 | Z3 | **Signs -> phases relaxation** (phased / complex matroids; Goemans-Williamson-type relaxations): replace +-1 chirotope signs by unit complex phases, optimize continuously, push phases to +-1 | relaxed objective on the ladder (n = 7 / 8) |
+
+## Ideas, round 2d: the science of solving puzzles (user's question, 2026-10-29)
+
+| ID | Puzzle lesson (origin) | Transfer to our problem |
+|---|---|---|
+| P1 | **Staged subgroups** (Rubik's cube: Thistlethwaite / Kociemba solve in nested stages, each stage keeps what earlier stages fixed) | search in stages that PRESERVE invariants: right Gauss class -> immersion -> closure -> simple faces -> embedding; never leave a class once reached (today our searches jump directly to the last stage) |
+| P2 | **Macro-operators** (cube algorithms that change only a few pieces) | learn compound 2-3-plane moves that repair one violation without creating another, from the plateau data (n = 8: one-plane moves are provably stuck) |
+| P3 | **Parity invariants** (Loyd's 15-puzzle is unsolvable by a permutation-parity argument) | invariants that prove impossibility: Gauss degree, parity theorem; look for one explaining the n = 8 plateau |
+| P4 | **Pattern databases** (Korf: exact costs of sub-puzzles as admissible heuristics) | precompute, for small sets of faces (4-6), all locally feasible configurations; prune / guide with them ("per-face decomposition") |
+| P5 | **Constraint propagation + fail-first** (Sudoku, CSP: most constrained variable first; human techniques = derived rules) | branch first on the most constrained faces / vertices; turn recurring local failure patterns into lemmas (clauses) |
+| P6 | **Jigsaw: edges first, then clusters, then merge** | solve sub-configurations (5-7 faces) and glue (fragment assembly; Szilassi embryo was one attempt) |
+| P7 | **Work backwards / puzzle design** (designers start from the solution) | "solid-first" search: keep an EMBEDDED solid at all times (a union of cells of the 12-plane arrangement; 45 imported seeds are already embedded solids with split faces) and repair the face structure (one simple face per plane, all 66 pairs adjacent); any zero is automatically an embedding |
+| P8 | **Lookahead / failed-literal probing** (Nonograms, SAT) | try a decision, propagate, learn from the contradiction |
