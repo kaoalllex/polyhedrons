@@ -296,3 +296,28 @@ realization of the seed's type has exactly these face normals, for any offsets. 
 for 400 perturbations (sigma 0.03-1.0) of the 20 best seeds and for 100 uniformly random normal
 sets. Seeds' own gauges have degrees from -5 to +4 (231 have -1); the 12 with degree -5 fail
 covering because their maximal vertices are saddles in their own gauge (not locally embedded).
+
+### Local lemma (gap pointed out by an external review, now closed) [P]
+
+**Lemma.** Let v be a vertex of an embedded polyhedral surface with three faces X, Y, Z (in the
+surface orientation), unit edge directions u1, u2, u3 (u1 between Z and X, u2 between X and Y,
+u3 between Y and Z), face angles alpha, beta, gamma and deficit delta = 2pi - alpha - beta - gamma.
+Let Delta_n be the spherical triangle of the (gauge) face normals n_X, n_Y, n_Z. Then
+area(Delta_n) = |delta| and sign det(n_X, n_Y, n_Z) = sign(delta).
+
+*Proof.* Embedded vertex => at most one face angle > pi (see Q1(a) of theory-notes).
+Convex corner (all angles < pi): the edge directions span a spherical triangle Delta_e with
+sides alpha, beta, gamma, and Delta_n is its polar triangle, so area(Delta_n) = 2pi - (alpha +
+beta + gamma) = delta > 0. Saddle (alpha > pi at face X, which uses the long arc from u1 to u2):
+Delta_e (short arcs) has sides d12 = 2pi - alpha, beta, gamma; its polar triangle P has area
+2pi - (d12 + beta + gamma) and angle pi - d12 at the pole of side u1u2. Delta_n is P with that
+vertex replaced by its antipode (the long-arc face has the opposite normal); a triangle and its
+"colunar" triangle across a vertex fill a lune of area 2 x (angle at that vertex), so
+area(Delta_n) = 2(pi - d12) - area(P) = beta + gamma - d12 = alpha + beta + gamma - 2pi = -delta.
+The orientation of Delta_n (sign of det in surface order) is reversed exactly in the saddle case. ∎
+
+[N] Numerical check, 300,000 random vertices (convex and saddle): max |area - |delta|| = 3.5e-5
+(arccos rounding near degeneracies); sign det = sign delta in every case.
+With this lemma, the vertex-disk contribution to the Gauss-map degree is +-1 on Delta_n and 0
+outside (signed area = delta, |delta| < 2pi, area(Delta_n) < 2pi rules out the other fillings).
+Degenerate cases (delta = 0, collinear normals) do not occur in general position.
