@@ -104,11 +104,107 @@ def run(n, minutes, seed, once=True):
     return best, restarts
 
 
+def _path(nb, a, b, allowed):
+    """BFS shortest path from a to b through cells in 'allowed' (a, b included)."""
+    from collections import deque
+    prev = {a: None}; dq = deque([a])
+    while dq:
+        x = dq.popleft()
+        if x == b:
+            out = []
+            while x is not None:
+                out.append(x); x = prev[x]
+            return out
+        for y in nb[x]:
+            if y not in prev and (y in allowed or y == b):
+                prev[y] = x; dq.append(y)
+    return None
+
+
+def macro(A, S, rng, kind):
+    """Topology-changing macro-move: 'drill' removes a path of cells of S between two boundary cells
+    (a tunnel); 'handle' adds a path of outside bounded cells between two cells touching S."""
+    nb = SF.cell_graph(A)
+    inside = [k for k in S if any(x not in S for x in nb[k]) or len(nb[k]) < len(k)]
+    outside = [k for k in A.bounded if k not in S and any(x in S for x in nb[k])]
+    pool = inside if kind == 'drill' else outside
+    if len(pool) < 2:
+        return None
+    a, b = (pool[i] for i in rng.choice(len(pool), 2, replace=False))
+    allowed = S if kind == 'drill' else set(A.bounded) - S
+    path = _path(nb, a, b, allowed)
+    if path is None or len(path) < 3:
+        return None
+    return (set(S) - set(path)) if kind == 'drill' else (set(S) | set(path))
+
+
+def objective_g(A, S, once, chi_target):
+    t, d = objective(A, S, once)
+    chi = SF.boundary_euler(A, S)
+    d = dict(d); d['chi'] = chi
+    return t + abs(chi - chi_target) / 2.0, d
+
+
+def run3(n, minutes, seed, once=True):
+    """Annealing with plane moves (+ carry + greedy polish), cell flips, and tunnel / handle macro-moves;
+    objective += |chi(boundary) - chi_target| / 2 (target genus of the n-face neighbourly map)."""
+    g_target = -(-(n - 3) * (n - 4) // 12); chi_t = 2 - 2 * g_target
+    rng = np.random.default_rng(seed); t0 = time.monotonic()
+    best = (1e9, None, None, None); restarts = 0
+    def f(A, S):
+        return objective_g(A, S, once, chi_t)[0]
+    while time.monotonic() - t0 < 60 * minutes and best[0] > 0:
+        restarts += 1
+        if best[1] is not None and rng.random() < 0.5:     # intensify: restart near the best state
+            H = best[1] + 0.03 * rng.standard_normal(best[1].shape)
+            try:
+                A = SF.Arrangement(H)
+            except np.linalg.LinAlgError:
+                continue
+            Ab = SF.Arrangement(best[1]); S = carry(Ab, set(best[2]), A)
+        else:
+            H = rng.standard_normal((n, 4)); A = SF.Arrangement(H)
+            S = {k for k in A.bounded if rng.random() < 0.5}
+        S, _ = polish_S(A, S, once, rng); cur = f(A, S); T = 1.0
+        for _ in range(600):
+            if time.monotonic() - t0 > 60 * minutes:
+                break
+            r = rng.random()
+            if r < 0.4:
+                H2 = H.copy(); j = int(rng.integers(n)); H2[j] += float(rng.choice([0.02, 0.08, 0.3])) * rng.standard_normal(4)
+                try:
+                    A2 = SF.Arrangement(H2)
+                except np.linalg.LinAlgError:
+                    continue
+                S2, _ = polish_S(A2, carry(A, S, A2), once, rng)
+            elif r < 0.7:
+                A2, H2 = A, H
+                S2 = macro(A, S, rng, 'drill' if rng.random() < 0.5 else 'handle')
+                if S2 is None:
+                    continue
+                S2, _ = polish_S(A, S2, once, rng)
+            else:
+                A2, H2 = A, H
+                k = list(A.bounded)[int(rng.integers(len(A.bounded)))]
+                S2 = set(S); S2.symmetric_difference_update({k})
+            c2 = f(A2, S2)
+            if c2 <= cur or rng.random() < np.exp((cur - c2) / T):
+                H, A, S, cur = H2, A2, S2, c2
+                if cur < best[0]:
+                    best = (cur, H.copy(), sorted(S), objective_g(A, S, once, chi_t)[1])
+                    if cur == 0:
+                        break
+            T = max(0.05, T * 0.993)
+        print('restart %d: best so far %s %s' % (restarts, best[0], best[3]), flush=True)
+    return best, restarts
+
+
 if __name__ == '__main__':
     n, minutes, seed, out = int(sys.argv[1]), float(sys.argv[2]), int(sys.argv[3]), sys.argv[4]
     once = '--once' in sys.argv
-    (b, H, S, d), rs = (run2 if '--two-level' in sys.argv else run)(n, minutes, seed, once)
-    json.dump({'n': n, 'best': int(b), 'detail': {k: int(v) for k, v in (d or {}).items()},
+    eng = run3 if '--macro' in sys.argv else (run2 if '--two-level' in sys.argv else run)
+    (b, H, S, d), rs = eng(n, minutes, seed, once)
+    json.dump({'n': n, 'best': float(b), 'detail': {k: int(v) for k, v in (d or {}).items()},
                'planes': H.tolist() if H is not None else None,
                'solid': [[int(x) for x in k] for k in S] if S is not None else None}, open(out, 'w'))
     print('FINAL n=%d best %s after %d restarts %s' % (n, b, rs, d), flush=True)

@@ -347,3 +347,13 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   solids; reaching the torus needs a tunnel, i.e. passing through much worse states). Next: genus-
   changing macro-moves (drill a tunnel of cells / add a handle of cells in one move; Rubik idea P2)
   and starting from solids of the right genus.
+* **Solid-first + topology macro-moves** (`run3`: tunnel drilling = remove a BFS path of cells of S
+  between two boundary cells; handle attaching = add a BFS path of outside cells; greedy re-polish;
+  objective + |chi(boundary) - chi_target| / 2 with chi computed exactly on the cell complex
+  (validated: Szilassi 0, embedded 12-face solids -10); restarts half from the best state):
+  the trap is broken (all runs reach genus 1, best 2 within 8 min) and **one of four 15-min runs
+  found a zero: a Szilassi-type polyhedron discovered WITHOUT any prescribed map**. Map extracted
+  from the solid (vertices = triple points where all three planes carry boundary facets: 14);
+  `ladder_exact.verify`: EMBEDDED (7 simple faces, 21 pairs, chi 0); `planes.check_embedding`:
+  ok. Saved: `experiments/solid_first/szilassi_found_without_map.json`. Calibration passed;
+  next n = 8 (adjacency >= 1 per pair, genus 2), then 12.

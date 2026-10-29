@@ -198,3 +198,70 @@ def solid_from_winding(A, polys):
     if w.sum() < 0:
         w = -w
     return {k for k, x in zip(keys, w) if x == 1}
+
+
+def boundary_euler(A, S):
+    """Euler characteristic of the boundary surface of S as a sub-complex of the arrangement:
+    (triple points on the boundary) - (1-cells on the boundary) + (boundary facets)."""
+    n = A.n
+    V0 = 0
+    for t, p in A.P.items():
+        base = list(np.sign(A.H[:, :3] @ p + A.H[:, 3]).astype(int)); k = 0
+        for code in range(8):
+            sv = list(base)
+            for q in range(3):
+                sv[t[q]] = 1 if (code >> q) & 1 else -1
+            k += tuple(sv) in S
+        V0 += 0 < k < 8
+    E1 = 0
+    for (X, Y), segs in A.ones.items():
+        for sv, ca, cb in segs:
+            k = sum(_cell(sv, X, a, Y, b) in S for a in (1, -1) for b in (1, -1))
+            E1 += 0 < k < 4
+    F2 = 0
+    for X in range(n):
+        seen = set()
+        for t, p in A.P.items():
+            if X not in t:
+                continue
+            base = list(np.sign(A.H[:, :3] @ p + A.H[:, 3]).astype(int))
+            o = [w for w in t if w != X]
+            for s1 in (1, -1):
+                for s2 in (1, -1):
+                    c = list(base); c[o[0]] = s1; c[o[1]] = s2; c[X] = 0
+                    key = tuple(c)
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    up = list(c); up[X] = 1; dn = list(c); dn[X] = -1
+                    F2 += (tuple(up) in S) != (tuple(dn) in S)
+    return V0 - E1 + F2
+
+
+def cell_graph(A):
+    nb = {}
+    for k in A.bounded:
+        nb[k] = [x for x in (tuple(k[:i] + (-k[i],) + k[i + 1:]) for i in range(len(k))) if x in A.bounded]
+    return nb
+
+
+def extract_map(A, S):
+    """Polyhedron vertices of the solid: triple points where all three planes carry boundary facets.
+    Returns the list of vertex triples (the dual 'triangulation'); with one face per plane these
+    determine the links, so the result can be re-checked by the independent exact verifier."""
+    tris = []
+    for t, p in A.P.items():
+        base = list(np.sign(A.H[:, :3] @ p + A.H[:, 3]).astype(int))
+        occ = {}
+        for code in range(8):
+            sv = list(base); s = []
+            for q in range(3):
+                v = 1 if (code >> q) & 1 else -1; sv[t[q]] = v; s.append(v)
+            occ[tuple(s)] = tuple(sv) in S
+        k = sum(occ.values())
+        if k in (0, 8):
+            continue
+        contrib = [any(occ[s] != occ[tuple(-x if i == q else x for i, x in enumerate(s))] for s in occ) for q in range(3)]
+        if all(contrib):
+            tris.append(list(t))
+    return tris
