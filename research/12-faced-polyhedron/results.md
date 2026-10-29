@@ -244,3 +244,14 @@ the listed local families):
   Interpretation: at the closure level the R^3 obstruction is exactly the vanishing of the handle
   periods; whether simplicity changes this is open.
 * [N] Period-defect annealing in R^3, type 0, ~1.5 h: 17.6 -> 8.5 (not 0; still slowly decreasing).
+
+## Night 2, phase 1 (user's machine): no symmetric polyhedral IMMERSION — certified
+
+`symimm` job (our encoder without the global triple clauses: uniform GP, symmetry, normalization,
+simple faces, at most one reflex corner per vertex, orientation consistency): **25/25 classes
+(21 half-turn C2, 4 three-fold C3) UNSAT-VERIFIED** with CaDiCaL DRAT proofs checked by drat-trim
+(7-158 s per case). **[Theorem, computer-assisted, certified]** No polyhedral immersion in R^3 of the
+12-face Series-1 map with planar faces has a non-trivial symmetry. This strengthens the symmetric
+embedding statement (night 1) and, as far as we know, is new. (The soundness of the local clause
+families rests on mathematical-model.md and the adversarial review; SIMPLE + REFLEX1 = immersion was
+re-checked in fresh-eyes-review.md.)
