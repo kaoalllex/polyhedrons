@@ -283,3 +283,21 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   coordinate) score 99; edges shorter than 1e-6 of the diameter count as violations (1e-3 was too
   strict: it penalized genuine Szilassi realizations). All earlier results re-scored unchanged
   (n = 7 zeros stay 0, n = 8 bests stay 1-2). Third optimizer exploit caught by the exact verifier.
+
+## 2026-10-29 evening: night-2 pdefect results (59 records, run interrupted, resumed 20:58)
+* 59 records: types 0-57 once (rep 0) + pd4_1; type 58 was missing before the resume (pd58_0 arrived
+  after it: defect 29.3 -> 8.14). Status: 56 POSITIVE, 3 ZERO_DEFECT (old code, unchecked).
+* "Defect" = the minimum of the L1 closure residual (sum over the 66 edges of |p_head - p_tail -
+  a_e d_e|) for the best admissible normals found: how far the faces are from closing up into a
+  surface with those normals. 0 is necessary, not sufficient.
+* Best positive defects: type 11 1.20, 30 1.67, 54 1.83, 9 2.07, 21 2.12, 23 2.30, 19 2.42,
+  7 2.73, 2 3.30, 12 3.38; worst: 44 14.2, 24 14.6, 34 16.2 (one 30-min run per type).
+* **pd4_1 (type 4, defect 2.785 -> 0, 86 its): FALSE POSITIVE.** `torus_simple(general=False,
+  phi=0)` INFEASIBLE (26 s); reconstructed closed surface: 0 of 12 faces simple, 55 violated
+  triples, 33 bad pairs (scales 1e6 and 1e8); simple-defect MILP optimum: 11 of 12 faces must be
+  non-simple (proved optimal, 143 s). Independent exact check by the adversarial-verifier agent:
+  see below when it reports.
+* After the resume the user's run uses the NEW worker: pd5_1 was flagged ZERO_DEFECT_NOT_SIMPLE
+  automatically (type 5, 20.0 -> 0, 815 its). A HiGHS console line
+  "HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();" appeared once; the run
+  continued normally (internal HiGHS message, no effect on results).

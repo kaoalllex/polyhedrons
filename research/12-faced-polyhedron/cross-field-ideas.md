@@ -60,3 +60,16 @@ impossibility proofs are linear-algebraic (one dual certificate, one matrix, one
 | Y9 | **Projective symmetries are covered for free** (convex projective geometry): a finite group of projective maps preserving the bounded polyhedron P preserves conv(P), hence (lift to a sharp cone, average in the dual cone) fixes a hyperplane missing conv(P); in that affine chart it acts affinely, then isometrically after averaging an inner product. So the symmetric theorem extends to projective symmetries | write the paragraph into the proof task | strengthens the theorem at no cost |
 | Y10 | **Generalized winding number** (computer graphics, Jacobson et al. 2013): w is constant on the cells of the 12-plane arrangement; embedding => w in {0,1}; transverse crossings => three values | Q17 | exact, cheap test; classifies near-misses |
 | Y11 | **Penrose cohomology of impossible figures + Sugihara's LP for line drawings** (perception, computer vision): language for the write-up of the period obstruction; fixed projection + depth labels make non-intersection linear | framing; possibly an LP-based depth-order search | clearer statement of the obstruction |
+
+## Ideas, round 2c: complex numbers (user's question, 2026-10-29)
+
+Direct complexification does not help: over C there is no order, so "simple polygon", "inside",
+"faces do not intersect" have no meaning, and every 12-plane configuration in general position
+realizes the incidences of any map. The whole difficulty is real (signs / chirotope), so
+"converting back" is the entire problem. Meaningful uses of complex numbers:
+
+| ID | Idea (origin) | First test |
+|---|---|---|
+| Z1 | **Weierstrass representation** (minimal surfaces): a real surface x = Re of an integral of complex data on a Riemann surface; its obstruction is the PERIOD PROBLEM (real parts of periods vanish) = our 36 handle-period conditions. Our surfaces are mostly saddles (27-33 of 44), so the Gauss map is close to an anti-holomorphic 5-sheeted branched cover of the sphere (Riemann-Hurwitz for genus 6: 20 branch points); discrete minimal surfaces with planar faces exist (Bobenko-Hoffmann-Springborn). | build admissible normals from a degree-5 branched-cover model; study how the period problem is solved for genus-g minimal surfaces (symmetry or parameter continuity) |
+| Z2 | **Complex detours in homotopy continuation** (numerical algebraic geometry: Bertini, HomotopyContinuation.jl): paths through C avoid the singularities where real paths stall | boundary configurations (some inequalities made equalities), all complex solutions, keep the real ones |
+| Z3 | **Signs -> phases relaxation** (phased / complex matroids; Goemans-Williamson-type relaxations): replace +-1 chirotope signs by unit complex phases, optimize continuously, push phases to +-1 | relaxed objective on the ladder (n = 7 / 8) |

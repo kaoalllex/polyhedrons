@@ -38,7 +38,38 @@ State at the end of session 1:
 * Night 2 (`overnight/run_night2.sh`, user's machine): phase 1 `symimm` (certified "no symmetric
   immersion"), phase 2 `pdefect` (period-defect annealing over all 59 types; defect 0 = CANDIDATE).
 
-First tasks:
+State at the end of session 2 (2026-10-29, evening):
+* CERTIFIED: no symmetric polyhedral immersion (25/25 UNSAT-VERIFIED, `overnight/results/symimm/`);
+  separate write-up task in `proof-no-symmetric-immersion/` (own CONTINUE_PROMPT).
+* Period defect (`pdefect`, night 2): zero closure defect is reachable (pd10_0, pd37_0, pd4_1, pd5_1)
+  but every such normal set is a FALSE POSITIVE: exact closure needs >= 11 of 12 faces to be
+  non-simple (simple-defect MILP, proved optimal for pd10_0 and pd4_1). The T^3 relaxation shows
+  the same. Face simplicity is the core obstruction, not closure. The job now checks simple faces
+  itself (status ZERO_DEFECT_NOT_SIMPLE). Best positive defects per type: `experiment-log.md`.
+* Own path "ladder" (`code/ladder*.py`, no external data): closed polyhedra with n mutually adjacent
+  faces; maps generated from scratch; exact rational verifier `code/ladder_exact.py` (agrees with
+  `planes.check_embedding`). n = 7: Szilassi rediscovered from random planes by every engine
+  (annealing, GA, CMA-ES). n = 8 (genus 2, two doubled adjacencies): four engines (annealing, exact
+  one-plane relocation, GA, CMA-ES) all stop at 1-2 violations. Three optimizer exploits were caught
+  by the exact verifier (merged collinear doubled edges, gap overlaps between doubled edges, scale
+  collapse); the honest energy is `ladder.pair_energy`. Maps for n = 9..11 are not generated yet
+  (random rotation-system annealing fails; needs a better generator).
+* Night 3 is ready (`overnight/run_night3.sh`, see `HOW_TO_RUN_OVERNIGHT.md`): `ladder` (GA on n = 8,
+  exact check of zeros) and `sdefect` (12 faces: closure defect to 0, then non-simple faces to 0).
+* Idea lists: `cross-field-ideas.md` (rounds 2a-2c incl. complex numbers), `search-algorithms.md`
+  (tried engines + to try: Differential Evolution, Nevergrad NGOpt, smooth least squares, MAP-Elites,
+  cross-entropy, RRR, homotopy continuation). Research map: `figures/research-map.png`.
+* Practical lessons: background processes in the cloud container die when the session idles
+  (container restarts) - long runs belong to the user's night scripts; every float "zero" must be
+  re-checked exactly; never `pkill -f` a pattern that also occurs in the same shell command.
+
+First tasks (session 3):
+0. `git pull`; analyze the newest `overnight/results/` (pdefect, and ladder/sdefect after night 3):
+   any CANDIDATE first, re-checked exactly (`code/ladder_exact.py` for the ladder; for 12 faces
+   `period_defect.torus_simple(..., general=False, phi=0)` and `planes.check_embedding`).
+1. Ladder n = 8: decide it exactly (OM-SAT on 9 elements with the doubled-adjacency conditions) or
+   switch the rung to two 4-valent vertices; try the engines listed in `search-algorithms.md`.
+Older first tasks (session 1):
 1. `git pull`, then analyze `overnight/results/symimm/` (expect 25 UNSAT-VERIFIED) and
    `overnight/results/pdefect/` (best defect per type; any ZERO_DEFECT / CANDIDATES first: run the
    exact gauge-fixed offset SMT `code/fixed_normals_gauge.py` on those normals, then the exact
