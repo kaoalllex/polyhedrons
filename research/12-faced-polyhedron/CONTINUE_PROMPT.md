@@ -63,6 +63,20 @@ State at the end of session 2 (2026-10-29, evening):
   (container restarts) - long runs belong to the user's night scripts; every float "zero" must be
   re-checked exactly; never `pkill -f` a pattern that also occurs in the same shell command.
 
+State after the night of 2026-10-29/30 (most promising engine first):
+* **Solid-first with an exact inner step** (`code/solid_cpsat.py` + `code/solid_exact_search.py`):
+  the state is 12 planes; for each plane set CP-SAT picks the best EMBEDDED solid (union of bounded
+  arrangement cells: manifold, <= 1 edge run per pair of planes, one disk face per plane via the
+  Euler characteristic + no pinches) maximizing the number of adjacent pairs (= 30 + 6 g for 12 faces);
+  annealing over the planes. The combinatorial type is free. n = 7: Szilassi from random planes in
+  45 s (exact). n = 12: climbs 30 -> 36 -> 42 -> 48 adjacent pairs (genus 3) from random planes in
+  ~6 min; results verified exactly with `code/verify_solid.py` (extract the map, `ladder_exact`).
+  Weak point: CP-SAT does not prove optimality at n = 12 within 10-30 s (use hints / more time /
+  better model). Target 66.
+* Genus ladder (`code/genus_ladder.py`, tubes from the advisor): map-fixed climb sphere -> genus 6
+  per type; frontier genus 2 (type 11).
+* Advisor report summary and the correction about Mizhaev's octahedron: `experiment-log.md`.
+
 First tasks (session 3):
 0. `git pull`; analyze the newest `overnight/results/` (pdefect, and ladder/sdefect after night 3):
    any CANDIDATE first, re-checked exactly (`code/ladder_exact.py` for the ladder; for 12 faces
