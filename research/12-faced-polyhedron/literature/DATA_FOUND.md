@@ -28,3 +28,5 @@ Secondary data: `sage-GenusSix/` (the one triangulation, copied from Sage source
   (e.g. Lutz #54 = HackerPoet no.58 = Sage GenusSix() = ABS96 #58 (group order 12)).
 - Also stored from that repo: `code/automorphisms.json`, `results/certificates.csv`, `code/omsat.py`, `code/autos.py`, README.md (all untrusted; not executed).
 Lutz numbering and ABS96 numbering are DIFFERENT; keep a mapping table when citing "map #k".
+
+Update: the third-party repo pirozhkov-andrei/polyhedraproof (docs/SOURCES.md) reports downloading Lutz's `manifolds_lex_d2_n12_o1_g6.txt` from the Manifold Page on 2026-10-13/15 with size 25,272 bytes and raw sha256 identical to the hash above, so the Hashirama copy is very likely byte-identical to Lutz's file (not verified by us; Lutz's page is blocked in this sandbox).
