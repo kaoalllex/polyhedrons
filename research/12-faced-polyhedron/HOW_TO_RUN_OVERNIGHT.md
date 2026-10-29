@@ -54,6 +54,12 @@ Phase 2: period-defect search over all 59 types (a defect of 0 is saved as a CAN
 Фаза 1 — сертификаты «нет симметричных погружений», фаза 2 — поиск нормалей с нулевым
 «дефектом периодов» по всем 59 типам.
 
+Sleep / lid close: the time budget counts awake time only, so closing the laptop lid (the Mac sleeps,
+processes freeze) costs nothing; on wake the run continues with the remaining budget. Plug in the power
+before opening the lid: all workers resume at once. No `caffeinate` needed.
+Сон / закрытая крышка: бюджет считается только по времени бодрствования, так что в дороге ничего не
+теряется; после пробуждения расчёт продолжается.
+
 ## 3. After the run / После расчёта
 
 ```bash
