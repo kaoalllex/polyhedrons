@@ -8,12 +8,13 @@ set -u
 cd "$(dirname "$0")"
 [ -d "$HOME/.venvs/polyhedra" ] && source "$HOME/.venvs/polyhedra/bin/activate"
 export PATH="$HOME/bin:$PATH"
-H=${1:-8}
-W=${2:-$(python3 -c "import os; print(max(1, (os.cpu_count() or 2) - 1))")}
+H=${1:-4}
+W=${2:-8}
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1
 H1=$(python3 -c "print(round($H * 0.45, 2))")
 H2=$(python3 -c "print(round($H * 0.55, 2))")
 echo "night run: $H h on $W workers (sym $H1 h, immersion $H2 h)"
-python3 run_overnight.py sym --hours "$H1" --workers "$W" --git
+nice -n 10 python3 run_overnight.py sym --hours "$H1" --workers "$W" --git
 T2=$(python3 -c "print(int($H2 * 3600) - 120)")   # one type per worker for the whole phase
-python3 run_overnight.py immersion --hours "$H2" --workers "$W" --timeout "$T2" --git
+nice -n 10 python3 run_overnight.py immersion --hours "$H2" --workers "$W" --timeout "$T2" --git
 python3 run_overnight.py status

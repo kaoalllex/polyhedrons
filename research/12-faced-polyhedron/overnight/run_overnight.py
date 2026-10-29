@@ -355,7 +355,10 @@ def sym_worker(item):
         opts[k] = True
     C, C0 = sym_build(m, grp, which, opts)
     with Solver(name='cadical195', bootstrap_with=C0.clauses) as s0:
-        control = s0.solve()
+        ctl_timer = threading.Timer(p['timeout'], lambda: s0.interrupt())
+        ctl_timer.start()
+        control = s0.solve_limited(expect_interrupt=True)       # None if it hit the timeout
+        ctl_timer.cancel()
     rec = {'task': task, 'map_lutz': m, 'group': grp, 'class': which, 'opts': p['opts'],
            'vars': C.nv, 'clauses': len(C.clauses), 'control_no_triples_SAT': control}
     os.makedirs(WORK, exist_ok=True)
@@ -415,7 +418,7 @@ def job_sym(args, committer):
                                         cadical=cad, drat_trim=drat, timeout=args.timeout,
                                         check_timeout=args.check_timeout, keep_proofs=args.keep_proofs,
                                         keep_cnf=args.keep_cnf))
-             for c in cases]
+             for c in sorted(cases, key=lambda c: c[1] != 'C2')]      # hard C2 cases first, quick C3 fill the tail
     run_pool('sym', tasks, sym_worker, args, committer)
 
 
