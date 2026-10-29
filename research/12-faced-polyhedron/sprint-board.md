@@ -15,16 +15,18 @@ Reference points: best known near-miss 4 (symmetric), 5 (asymmetric); random arr
 | Q1 | Joint normals+offsets annealing inside the admissible class beats 20 | 8 min x 2 types | best 22 (types 0, 58) | KILL |
 | Q2 | Admissible normals nearest to the best asymmetric seed + its offsets | 8 min, seed topology_33 | best 26 | KILL |
 | Q5 | Every one of the 59 types has admissible normals | 3 x 30 s annealing per type | running | |
-| Q10 | UNSAT cores of the gauge-fixed SMT are small (guide normal moves) | z3 unsat core, type 0 | core = 0 of 176 triples: UNSAT already from LOCAL conditions (gauge + one reflex corner per vertex + orientation consistency) | DONE: local structure is the bottleneck |
+| Q10 | UNSAT cores of the gauge-fixed SMT are small (guide normal moves) | z3 unsat core, type 0 | core = 0 of 176 triples: UNSAT already from LOCAL conditions (gauge + one reflex corner per vertex + orientation consistency) | DONE; refined by fresh-eyes review: the fixed-normal obstruction is COHOMOLOGICAL (36 handle period conditions; without them SAT in < 0.4 s; an LP decides it in seconds) |
 | L1 | Near-misses are immersions (locally embedded) | local violation counter on 300 seeds | NO: every one has >= 7 vertices with two reflex corners (Razorcross: 0 crossings, 8 such vertices) | DONE: key insight |
 | Q13 | (diff. geometry) tangent planes of a smooth genus-6 surface (tube around K5) are good seeds | 8 samples, CP-SAT best triangulation | best 26 | KILL |
 | Q12 | (biology: fragment assembly = local "secondary structure" first) Some type admits a polyhedral IMMERSION | OM-SAT without global clauses, type 0, k = 0 / 2 | no answer in 30 min (both); numerical annealing: best 12 local violations (random starts) | KEEP: overnight `immersion`, hours per type |
 | Q14 | Edge convex/reflex 2-colouring (convex vertex: 3 equal; saddle: 2+1) prunes admissible normals | 10 types, SAT | always colourable; admissible normals have 27-33 saddles of 44 | KILL |
-| Q12c | Numerical immersion search on types 58, 57, 56 | annealing 60 min each, random restarts | best 12 / 12 / 14 local violations; every value observed is EVEN | KEEP (parity invariant? cf. Banchoff: triple points of immersions = chi mod 2) |
+| Q12c | Numerical immersion search on types 58, 57, 56 | annealing 60 min each, random restarts | best 12 / 12 / 14 local violations; every value observed is EVEN | explained: parity theorem [P, fresh-eyes]: sum of face self-crossings + sum_v C(r_v,2) = chi (mod 2) — not an obstruction |
 | S1 | Independent certified reproduction of the symmetric theorem | user's machine, `sym` job, our encoder + CaDiCaL + drat-trim | all 25 cases (21 C2 classes, 4 C3) UNSAT-VERIFIED, 8-147 s each (console report; results to be pushed) | DONE |
-| A1 | Symmetric obstruction is local (immersion-level) | OM-SAT without global clauses on #54 T, #3 D3, #45 C3 | all UNSAT in 1-19 s; D3: simple faces alone UNSAT; T: simple + reflex UNSAT | DONE: major structural insight |
+| A1 | Symmetric obstruction is local (immersion-level) | OM-SAT without global clauses on #54 T, #3 D3, #45 C3 | all UNSAT in 1-19 s; D3: simple faces alone UNSAT; T: simple + reflex UNSAT | DONE (sound); caveat: for #48 C2 the immersion instance costs as much as the embedding one (91 s vs 92 s), simplicity essential (without it SAT) |
 | A2 | Asymmetric immersion (simple + reflex only) | types 0, 41, 25 min each; type 0 simple-only | simple-only: SAT 527 s; simple + reflex: no answer in 25 min (both types) | KEEP: decided by overnight `immersion` (2.2 h per type) |
 | B1 | (architecture: dual-mesh planarization) planes fitted to the dual mesh of the vertex-version near-miss Dual44 | 6 weightings | 53-75 violated triples, ~60 crossings | KILL |
+| Q15 | (z.ai #5) symmetric PLANE sets (tetrahedral orbit) with asymmetric triangulations | 24 arrangements, CP-SAT best triangulation | running | |
+| C2s | (fresh-eyes #1) immersion for all 21 half-turn classes | OM-SAT, 10 min each | running | |
 
 ## Queued ideas from distant fields
 
