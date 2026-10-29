@@ -17,8 +17,9 @@ AREAS = [  # (area, colour, [(direction, status), ...]); colours: validated cate
         ('Prior near-misses analysed', DONE), ('Geometry-first SAT', DONE),
         ('Exact plane relocation', DONE), ('Admissible normals + exact offsets', DONE),
         ('Polar / dual-mesh / tube seeds', DONE), ('Symmetric planes, asym. triangulation', DONE),
-        ('Numerical immersion search', STARTED), ('Period-defect search (night 2)', STARTED),
-        ('3-torus relaxation', STARTED), ('Torus "deflation" homotopy', TODO)]),
+        ('Numerical immersion search', STARTED), ('Period-defect search (night 2)', DONE),
+        ('3-torus relaxation', DONE), ('Torus "deflation" homotopy', TODO),
+        ('Simple-faces-first (sdefect)', STARTED), ('Solid-first search', TODO)]),
     ('Topology &\ntheory', '#1baf7a', [
         ('Gauss-degree filter', DONE), ('Local lemma (curvature)', DONE), ('Parity theorem', DONE),
         ('Handle-period obstruction', STARTED), ('Farkas certificates -> lemma', TODO),
@@ -34,9 +35,11 @@ AREAS = [  # (area, colour, [(direction, status), ...]); colours: validated cate
         ('External AI reviews', DONE), ('Szilassi embryo', DONE), ('CSG read-once solids', TODO),
         ('Moment-curve / Tietze ansatz', TODO), ('Star-tracker hashing', TODO),
         ('Genus ladder (g = 7)', TODO), ('Island-model evolution', TODO),
-        ('Screw-orbit planes', DONE), ('GWAS on near-misses', STARTED), ('Ladder n = 8..11', TODO),
-        ('Difference map (RRR)', TODO), ('Rare-event estimation', TODO), ('Tropical / patchwork seeds', TODO),
-        ('CEGAR loop', TODO), ('Local-search SAT', TODO), ('Planarization flow', TODO)]),
+        ('Screw-orbit planes', DONE), ('GWAS on near-misses', STARTED), ('Ladder n = 7 (Szilassi found)', DONE),
+        ('Ladder n = 8 (doubled edges)', STARTED), ('Ladder 8b (4-valent)', STARTED), ('GA / CMA-ES / NGOpt', DONE),
+        ('Beauty + polishing', DONE), ('Weierstrass / complex', TODO), ('Staged invariants (Rubik)', TODO),
+        ('Difference map (RRR)', TODO), ('Rare-event estimation', TODO),
+        ('CEGAR loop', TODO), ('Planarization flow', TODO)]),
 ]
 INK, INK2, SURFACE = '#0b0b0b', '#52514e', '#fcfcfb'
 
