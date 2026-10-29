@@ -183,3 +183,15 @@ Details: experiment-log.md "Track 4", code/planes.py, code/geomsat.py.
   result; the 298 s reported by Track 3 was a different load/configuration). The Gauss clauses
   are logically implied by embedding and apparently also easy for the solver to derive in this
   symmetric case; they are not added to the overnight `sym`/`cube` jobs.
+
+## PI: near-misses are not immersions (2026-10-29)
+
+* [N] `code/local_viol.py` counts LOCAL violations: pairs of crossing non-adjacent edges inside a
+  face, and vertices with two or more reflex corners (two reflex corners at a degree-3 vertex make
+  the two faces overlap beyond the vertex; zero local violations = polyhedral immersion).
+  Szilassi: 0/0. Every one of the first 300 HackerPoet seeds has >= 7 multi-reflex vertices;
+  the Razorcross family (0 crossings, 4 edge-face intersections) has 8. The triple-point count
+  used by all prior searches hides most of these local overlaps.
+* So the known near-misses are far from even an IMMERSION, consistent with their wrong Gauss
+  degree. Whether the 12-face map admits any polyhedral immersion with planar faces is open to
+  our knowledge (test Q12: OM-SAT without global clauses; Q12b: numerical annealing).
