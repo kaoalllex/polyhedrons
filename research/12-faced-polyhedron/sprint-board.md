@@ -20,7 +20,8 @@ Reference points: best known near-miss 4 (symmetric), 5 (asymmetric); random arr
 | Q13 | (diff. geometry) tangent planes of a smooth genus-6 surface (tube around K5) are good seeds | 8 samples, CP-SAT best triangulation | best 26 | KILL |
 | Q12 | (biology: fragment assembly = local "secondary structure" first) Some type admits a polyhedral IMMERSION | OM-SAT without global clauses, type 0, k = 0 / 2 | no answer in 30 min (both); numerical annealing: best 12 local violations (random starts) | KEEP: overnight `immersion`, hours per type |
 | Q14 | Edge convex/reflex 2-colouring (convex vertex: 3 equal; saddle: 2+1) prunes admissible normals | 10 types, SAT | always colourable; admissible normals have 27-33 saddles of 44 | KILL |
-| Q12c | Numerical immersion search on types 58, 57, 56 | annealing 60 min each | running | |
+| Q12c | Numerical immersion search on types 58, 57, 56 | annealing 60 min each, random restarts | best 12 / 12 / 14 local violations; every value observed is EVEN | KEEP (parity invariant? cf. Banchoff: triple points of immersions = chi mod 2) |
+| S1 | Independent certified reproduction of the symmetric theorem | user's machine, `sym` job, our encoder + CaDiCaL + drat-trim | all 25 cases (21 C2 classes, 4 C3) UNSAT-VERIFIED, 8-147 s each (console report; results to be pushed) | DONE |
 
 ## Queued ideas from distant fields
 
