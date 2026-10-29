@@ -310,3 +310,22 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
 * Nevergrad (`code/ladder_ng.py`): NGOpt solves n = 7 in 379 evaluations (exact EMBEDDED);
   TwoPointsDE did not in 2 min (best 1). NGOpt on n = 8: see below (two runs crashed inside
   nevergrad's metamodel under NumPy 2; the loop now restarts the optimizer from the best point).
+
+### 2026-10-29 night: rung 8b, NGOpt on n = 8, "beauty"
+* NGOpt (nevergrad 1.0.5) on n = 8, 10 min per map: best 2, 4, 5 (worse than annealing / CMA-ES).
+* **Rung 8b** (`code/ladder4.py`, exact `code/ladder4_exact.py`): K8 on genus 2 with 16 triangles +
+  2 quadrilaterals = 8 faces, 16 three-valent + 2 four-valent vertices (exact concurrency built in:
+  a dependent plane per quadrilateral), every pair of faces sharing exactly ONE edge. One more
+  optimizer exploit caught by the exact verifier: the shared edge of two opposite faces of a
+  quadrilateral routed through the 4-valent point (now penalized). First maps: best 2-3.
+* **"Beauty"** (`code/beauty.py`, user's idea): margin (min distance of a triple point from a
+  fourth plane), shortest edge, face fatness (isoperimetric quotient), all / diameter; beauty =
+  geometric mean. Findings:
+  - genuine Szilassi realizations FOUND BY SEARCH are as "ugly" as near-misses (beauty 1e-3..4e-3,
+    margins 5e-5..3e-4; 300 imported 12-face seeds: median 1.4e-3, max 1.8e-2), so beauty is NOT a
+    usable hard filter for candidates;
+  - but it catches degeneracy (the CMA-ES collapse has beauty 0) and is a good POLISHING criterion:
+    keeping zero violations, 1 min of beauty ascent makes Szilassi realizations 7-17x prettier
+    (beauty 0.027-0.057, still exactly EMBEDDED);
+  - the n = 8 plateau configurations polish just as well while keeping 1-2 violations
+    (beauty 0.012-0.033): their remaining violations are robust, not thin degenerate artefacts.
