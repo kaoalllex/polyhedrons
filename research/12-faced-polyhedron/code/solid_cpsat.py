@@ -41,7 +41,7 @@ def allowed_octants():
 ALLOWED = allowed_octants()
 
 
-def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, hint=None):
+def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, hint=None, target_adj=None):
     T = T or Tables(A)
     nc = len(T.cells)
     model = cp_model.CpModel()
@@ -78,10 +78,16 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
             model.AddBoolOr([e[j].Not(), e[j - 1], s])
             model.AddImplication(s, e[j])
         starts_by_pair.setdefault(p, []).append(s)
-    adj = []
+    adj = []; slack = []
     for p, ss in starts_by_pair.items():
-        model.Add(sum(ss) <= 1)
-        a = model.NewBoolVar('a%d' % p); model.Add(sum(ss) == 1).OnlyEnforceIf(a); model.Add(sum(ss) == 0).OnlyEnforceIf(a.Not())
+        a = model.NewBoolVar('a%d' % p)
+        if target_adj is None:
+            model.Add(sum(ss) <= 1)
+            model.Add(sum(ss) == 1).OnlyEnforceIf(a); model.Add(sum(ss) == 0).OnlyEnforceIf(a.Not())
+        else:                                            # soft: extra runs of a pair are penalized
+            ex = model.NewIntVar(0, len(ss), 'x%d' % p)
+            model.Add(sum(ss) >= 1).OnlyEnforceIf(a); model.Add(sum(ss) == 0).OnlyEnforceIf(a.Not())
+            model.Add(ex >= sum(ss) - 1); slack.append(ex)
         adj.append(a)
     # one face per plane, via the Euler characteristic of the boundary region in each plane:
     # facets - (1-cells in its closure) + (vertices in its closure) = 1  (a single disk has chi = 1)
@@ -116,9 +122,19 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
                 model.AddBoolOr([q[1].Not(), q[2].Not(), q[0], q[3]])
     if require_one_face:
         for X in range(T.n):
-            model.Add(sum(chi_terms[X]) - sum(neg[X]) + sum(pos_v[X]) == 1)
+            if target_adj is None:
+                model.Add(sum(chi_terms[X]) - sum(neg[X]) + sum(pos_v[X]) == 1)
+            else:                                        # soft one-face condition
+                d = model.NewIntVar(0, 50, 'd%d' % X)
+                model.Add(d >= sum(chi_terms[X]) - sum(neg[X]) + sum(pos_v[X]) - 1)
+                model.Add(d >= 1 - (sum(chi_terms[X]) - sum(neg[X]) + sum(pos_v[X])))
+                slack.append(d)
     model.Add(sum(x) >= 1)
-    model.Maximize(sum(adj))
+    if target_adj is None:
+        model.Maximize(sum(adj))
+    else:                                                # secondary score: how close is the next genus
+        model.Add(sum(adj) >= target_adj)
+        model.Minimize(sum(slack))
     if hint is not None:                               # warm start from a previous solid (cell sign vectors)
         for i, k in enumerate(T.cells):
             model.AddHint(x[i], 1 if k in hint else 0)
@@ -131,6 +147,8 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
         inS = np.array([solver.Value(v) for v in x], np.int64)
         f, dsk, adjv, miss, diag, badv, chi, rt = fast_eval(inS, *T.args())
         val = int(round(solver.ObjectiveValue()))
+        if target_adj is not None:
+            return inS, dict(slack=val, status=solver.StatusName(st), seconds=round(time.monotonic() - t0, 2))
         info = dict(adjacent=val, faces=int(f), disks=int(dsk), chi=int(chi), status=solver.StatusName(st), cuts=cuts,
                     seconds=round(time.monotonic() - t0, 2))
         if not require_one_face or (f == 0 and dsk == 0) or cuts >= max_cuts:
