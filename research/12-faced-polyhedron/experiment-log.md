@@ -604,3 +604,13 @@ this session; the night-4 branch is left untouched).
   `gate` results (start in seconds) and its time budget counts from the job start. Re-test of arch: 47
   realizations loaded, gated arms of types 2 and 15 (genus 3) and diversity tasks run. TESTED; night 4 =
   this script (merge `claude/practical-archimedes-e5p1fi`).
+
+## 2026-10-30 late: idea Q1 (chain-consistent normals), first test
+
+`code/chain_normals.py`: one set of 12 gauge normals for a whole chain M0 (sphere) -> M6 (genus 6), energy =
+sum over the 7 levels of the Gauss-class energy (degree 1 - g, robust covering, >= 2g+1 saddles), then
+exact class check and exact offsets level by level at the FIXED normals. Run 1 (4 min anneal per type,
+chain seed 1): no type reached energy 0. Float degrees per level (targets 1, 0, -1, ..., -5):
+type 58 [1, 1, -1, -2, -3, -4, -5] (only the torus level wrong: handle 1 gives k = 0, handle 2 gives -2);
+types 0 and 11 [0, 0, -1, -2, -3, -4, -4] (sphere and genus 6 wrong); type 24 three levels wrong.
+Run 2 (8 min, other chains): below.
