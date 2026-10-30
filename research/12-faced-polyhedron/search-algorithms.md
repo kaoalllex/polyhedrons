@@ -54,3 +54,29 @@ Our own list of modern "search for the unknown" methods, for the same bench:
     planar faces, with path tracking instead of random search.
 13. **Bayesian optimisation with a surrogate**: for expensive objectives such as the simple-defect MILP
     (minutes per evaluation); not useful for the cheap ladder energy.
+
+## Evaluation of the "AI-driven polyhedron discovery engine" brainstorm (user, 2026-10-30)
+
+Key fact for every point: for OUR target (12 faces, every two adjacent) the combinatorial topology
+is not open. The dual map must be one of exactly 59 neighbourly genus-6 triangulations (enumerated
+twice). So "discovering new topologies" at the top level is done; the discrete freedom that matters is
+(a) which sub-maps we climb through (the lattice of handle subsets of each type; dead ends vs
+extendable), (b) which realization of a level we start from, (c) the oriented-matroid / isotopy class
+of the embedding (twisted, knotted tunnels). Evidence 2026-10-30: discrete choices alone (branching
+over handles + a second genus-3 realization) moved genus 4 from 8 to 2 violations in two hours.
+
+| # | Proposal | Verdict for this problem | What to take |
+|---|---|---|---|
+| 1 | LLM hypothesis generation + tree search over graphs | low for the 12-face target (topologies enumerated); useful as an idea source, never as a validator | keep using LLM agents for ideas; no LLM in the inner loop |
+| 2 | Two-level evolution: discrete topology + continuous CMA-ES | **high**, it is what works now: discrete = handle lattice + realization archive, continuous = annealing / CMA-ES | formalize: population of (type, sub-map, realization) with mutations add / remove / swap a handle |
+| 3 | Bayesian optimization as scheduler | **medium-high** as a bandit (successive halving / UCB over arms), not a GP: arms are discrete and the start energy is already a good prior (17 -> 4, 27 -> 7) | successive halving over (realization, handle) arms with fixed CPU budget |
+| 4 | AlphaEvolve-style evolution of the search code | medium-low now: costly; needs a benchmark (we have one: ladder n = 7 and the genus 3 -> 4 step) and the exact verifier as the only judge (reward hacking happened three times) | later, small budget |
+| 5 | Independent exact verification, novelty check | already in place (rational verifiers, Euler / genus, type identification); gap: second independent implementation | adversarial-verifier agent on any genus >= 5 result |
+| 6 | QUBO / quantum | not useful: the discrete layer is small, CP-SAT / SAT are far stronger on these constraints | skip |
+
+Warning carried over: "near-zero defect" is not progress by itself (night 2: 9 zero closure defects,
+all false). Only an exact zero of the full conditions counts; report the exact violation count.
+
+Smallest proof of concept (planned): on type 0, equal CPU budget (e.g. 4 core-hours), compare (i) the
+fixed chain, (ii) branching ladder, (iii) branching + realization archive + successive halving.
+Metric: highest exactly realized genus and the best violation count at the next genus.
