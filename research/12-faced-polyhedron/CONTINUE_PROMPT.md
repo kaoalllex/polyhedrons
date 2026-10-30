@@ -124,7 +124,9 @@ NEXT STEPS agreed with the owner (2026-10-30 late), in this order:
    C4 rotoreflection), relaxed target L1 (d = 6 or 12 doubled pairs, genus 7 / 8) and strict target.
    Ideas L1-L6: `cross-field-ideas.md` round 3; materials: `literature/TODO_world_research_2026.md`
    (also: Mizhaev's coordinates as a second control).
-3. Own method: formalize "GCL" (Gauss-class ladder, `METHODS_PROTOCOL.md` section "Own method") and test the
+3. Q1 next steps (a)-(c) in `METHODS_PROTOCOL.md`; owner's brainstorm analysed in
+   `brainstorm-2026-10-30-analysis.md` (new items B1-B5, updated plan section 5).
+4. Own method: formalize "GCL" (Gauss-class ladder, `METHODS_PROTOCOL.md` section "Own method") and test the
    projective variant P1 (`cross-field-ideas.md` round 3, last row).
 
 First tasks (session 6): analyze night 4 (`analyze_glad.py`, arch archive) and night 5 (`analyze_n5.py`):
