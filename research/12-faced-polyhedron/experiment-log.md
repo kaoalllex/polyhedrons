@@ -422,3 +422,6 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   Branching ladder genus 3 -> 4 (12 min per handle): best 5 (handle A = tube (1,2,10)-(4,7,9)),
   7, 7 (the fixed chain had 8). LNS on the six planes of handle A + 2 random planes: 5 after 9 min.
   Level skipping (`code/seed_search.py`): genus 5 maps searched directly from the genus-3 planes.
+* See-through test (user's tunnel question, `code/see_through.py`): Szilassi 1/1 holes see-through,
+  genus-2 solid 2/2, genus-3 solid 3/3, type-0 genus-3 extendable 3/3 - all holes straight
+  see-through so far.
