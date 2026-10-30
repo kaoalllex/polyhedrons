@@ -459,3 +459,9 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   `type0_genus3_extendable_c.json`, healthier (shortest edge 7.5e-4, margin 2.5e-4 of the diameter);
   genus-4 start energies 18, 18, 21. Realization searches so far: 2 successes in 8 runs of 15 min.
   `--floor` now also in `beam_ladder.py` (shared `genus_ladder.use_floor`).
+* Archive of type-0 genus-3 realizations: A (glad), B, C, D (`type0_genus3_extendable{,_b,_c,_d}.json`;
+  4 successes in 13 searches of 15 min). Branching to genus 4 with the degeneracy floor
+  (10 min per handle): C: 10 / 6 / 7; D: handle A **4** (honest: no floor violation), handle B 7 and 5
+  (a second 20-min run on the arm with the lowest start energy 11), handle C 7. Floor-guarded
+  refinements of the 4-attempt from B: 4; from B itself: 7. **Genus 4 plateau for type 0: 4 honest
+  violations** (two different realizations, two different handles).
