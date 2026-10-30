@@ -93,7 +93,7 @@ def climb_seq(level, minutes, rng, deadline, path=()):
                'start_energy': float(e), 'planes': Hb.tolist(), 'triangles': [list(t) for t in R]}
         if b < 0.5:
             rec['exact'] = bool(verify(Hb.tolist(), L, require_all_pairs=(g + 1 == (n - 3) * (n - 4) // 12))['EMBEDDED'])
-        tried.append({k: rec[k] for k in ('genus', 'tube', 'path', 'best', 'start_energy', 'planes')} | {'exact': rec.get('exact', False)})
+        tried.append({k: rec[k] for k in ('genus', 'tube', 'path', 'best', 'start_energy', 'planes', 'triangles')} | {'exact': rec.get('exact', False)})
         if rec.get('exact'):
             sub_top, sub_rec, sub_tried = climb_seq(rec, minutes, rng, deadline, path + (i,))
             tried += sub_tried
