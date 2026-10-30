@@ -425,3 +425,10 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
 * See-through test (user's tunnel question, `code/see_through.py`): Szilassi 1/1 holes see-through,
   genus-2 solid 2/2, genus-3 solid 3/3, type-0 genus-3 extendable 3/3 - all holes straight
   see-through so far.
+* Climbing from the type-0 genus-3 polyhedron (05:00-05:30 UTC): polished first (beauty 6.7e-4 ->
+  2.3e-2, still exact EMBEDDED; `type0_genus3_extendable_polished.json`). Genus 4 (handle A) by
+  annealing + CMA from the genus-3 planes: 6; LNS: 5 (4 non-simple faces + 2 bad pairs). Level
+  skipping: genus 5 directly from the genus-3 planes 10 and 12; genus 5 seeded from the failed
+  genus-4 attempt: 7. Drift inside the genus-3 realization space (`code/drift_search.py`: every step
+  stays an embedded genus-3 polyhedron, objective = genus-4 energy): 7-11 after 15 min (worse than
+  free search). Genus 6 (type 0) seeded from the genus-5 attempt: running.
