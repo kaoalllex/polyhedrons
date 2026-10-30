@@ -388,3 +388,12 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   secondary score (slack of the best attempt at the next genus: soft extra runs / soft one-face
   Euler condition) is now used to see "almost one more handle"; a run continues from the genus-3
   solid.
+* **Dead-end maps (key finding of the night).** `code/handle_add.py`: tube attachments (all 6-triangle
+  annuli without interior vertices between two disjoint triangles, every alignment and orientation,
+  all six cross pairs new) and `reach()` = the largest number of adjacent pairs reachable by
+  attaching tubes (DFS with memo). Sanity check: maps of the advisor's tube chains (sub-maps of the
+  59 neighbourly types) reach 66 at every genus. **Every polyhedron found by the solid-first search is
+  a dead end:** genus-2 solids reach 54 and 60, genus-3 solids reach 54 (the first enumeration with
+  only zig-zag annuli even gave 0 extensions). The free-type search drifts into maps that cannot be
+  completed — this explains its plateau. Fix: the search value now includes a dead-end penalty
+  40 * (66 - reach) / 6 (computed from genus >= 1; `--reach`); four such runs launched.

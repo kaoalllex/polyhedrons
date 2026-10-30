@@ -21,17 +21,38 @@ def value(H, tl, hint=None):
         return -1, None, None
     inS, info = r
     v = info['adjacent'] if info['valid'] else info['adjacent'] - 3
+    pen = 0
+    if REACH and info['valid']:
+        pen, rch = reach_penalty(A, (inS, info), A.n)
+        info = dict(info); info['reach'] = rch; info['reach_penalty'] = pen
     if SECONDARY and info['valid'] and info['adjacent'] < A.n * (A.n - 1) // 2:
         # secondary score (advisor): slack of the best attempt at the next genus (+6 adjacent pairs)
         hint2 = {k for k, s_ in zip(sorted(A.bounded), inS) if s_}
         r2 = best_solid(A, time_limit=tl, hint=hint2, target_adj=info['adjacent'] + 6)
         sl = r2[1]['slack'] if r2 is not None else 60
         info = dict(info); info['next_slack'] = sl; info['hot'] = r2[1].get('hot', []) if r2 is not None else []
-        return 10 * info['adjacent'] - min(sl, 59), A, (inS, info)
-    return (10 * v if SECONDARY else v), A, (inS, info)
+        return 10 * info['adjacent'] - min(sl, 59) - pen, A, (inS, info)
+    return (10 * v if SECONDARY else v) - pen, A, (inS, info)
 
 
 SECONDARY = '--secondary' in sys.argv
+REACH = '--reach' in sys.argv
+
+
+def reach_penalty(A, sol, n):
+    """Dead-end penalty: how many adjacencies the current map can still gain by attaching tubes
+    (code/handle_add.reach); maps that cannot grow to all n(n-1)/2 pairs are penalized."""
+    from handle_add import reach
+    inS, info = sol
+    S = {k for k, s_ in zip(sorted(A.bounded), inS) if s_}
+    tris = SF.extract_map(A, S)
+    full = n * (n - 1) // 2
+    if info.get('adjacent', 0) < 36:                   # low genus: too slow to decide, assume reachable
+        return 0, None
+    r, exhausted = reach(tris, n, node_limit=3000)
+    if not exhausted:
+        return 0, r
+    return 40 * (full - r) // 6, r
 
 
 if __name__ == '__main__':
@@ -79,7 +100,7 @@ if __name__ == '__main__':
                                   open(out + '.best.json', 'w'))
                     except Exception:
                         pass
-                    print('  new best value %d (adjacent %s, chi %s, next-genus slack %s) at %.0fs' % (cur, sol[1].get('adjacent') if sol else '?', sol[1].get('chi') if sol else '?', sol[1].get('next_slack', '-') if sol else '?', time.monotonic() - t0), flush=True)
+                    print('  new best value %d (adjacent %s, chi %s, next-genus slack %s, reach %s) at %.0fs' % (cur, sol[1].get('adjacent') if sol else '?', sol[1].get('chi') if sol else '?', sol[1].get('next_slack', '-') if sol else '?', sol[1].get('reach', '-') if sol else '?', time.monotonic() - t0), flush=True)
                     if cur == full_val:
                         break
             T = max(0.1, T * 0.99)
