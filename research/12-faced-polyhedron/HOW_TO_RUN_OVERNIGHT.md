@@ -83,10 +83,15 @@ After night 3 has finished (commit its results first, then merge):
 
 ```bash
 cd research/12-faced-polyhedron/overnight
-git add -A results && git commit -m "night 3 results"
-git pull
+git add -A results && git commit -m "night 3 results" && git push
+git fetch origin
+git merge origin/claude/practical-archimedes-e5p1fi
 ./run_night4.sh 8 11
 ```
+
+Revised 2026-10-30 evening: phase 1 `gate` (Gauss gate, minutes), then in parallel `arch --gauss-gate` on a
+third of the cores and `n5` (normals first + exact offsets, drift to handle degree -1, genus 6) on the rest
+(see the Night 5 section below for what `n5` does). Morning summary: `python3 analyze_n5.py`.
 
 Realization archive + bandit (`code/archive_climb.py`): every exactly realized polyhedron of genus >= 2 from
 night 3 is a starting point; every next handle that keeps all 66 pairs reachable is an "arm"; time goes to

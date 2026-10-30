@@ -598,5 +598,9 @@ this session; the night-4 branch is left untouched).
   (on the class wall). The class explains the type-0 genus-4 plateau, not the general 2 -> 3 stall.
 * `overnight/run_night4.sh` rewritten (gate, then `arch --gauss-gate` on ~1/3 of the cores + `n5` on the
   rest), because the bandit ranks arms by target genus and would spend the night on the excluded type-0
-  genus-4 arms. NOT YET TESTED (the smoke test was interrupted); until tested, run night 4 from
-  `claude/wonderful-carson-saxyck` (original script).
+  genus-4 arms. Smoke test (scratch results dir, 3 workers): gate skips the 47 gated realizations, n5 builds
+  3274 tasks from 154 gated arms of 46 realizations and runs; found and fixed: `arch` recomputed reach + T1
+  for all 47 realizations in one process (> 15 min before the first task) - it now takes them from the
+  `gate` results (start in seconds) and its time budget counts from the job start. Re-test of arch: 47
+  realizations loaded, gated arms of types 2 and 15 (genus 3) and diversity tasks run. TESTED; night 4 =
+  this script (merge `claude/practical-archimedes-e5p1fi`).

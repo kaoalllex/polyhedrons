@@ -522,7 +522,7 @@ def job_arch(args, committer):
         seeds += [os.path.join(ex, f) for f in sorted(os.listdir(ex)) if f.endswith('.json')]
     seeds = [f for f in seeds if os.path.exists(f)]
     run(jobdir('arch'), args.hours, args.workers, args.minutes_per_seed, seeds, log=log, committer=committer,
-        gate=args.gauss_gate)
+        gate=args.gauss_gate, gate_records=[r for r in load_results('gate') if r.get('status') == 'GATE'])
 
 
 # ----------------------------------------------------------------------------- night 5: Gauss gate + normals first

@@ -134,7 +134,16 @@ class Archive:
             H2 = np.array(planes, float); nr = np.linalg.norm(H2[:, :3], axis=1)
             H2[:, :3] /= nr[:, None]; H2[:, 3] /= nr
             from gauss_gate import arm_report
-            for t1, t2, R, L in extendable([tuple(t) for t in tris], N):
+            cached = GATE_CACHE.get(gate_key(planes, tris))       # job `gate` already did reach + T1
+            if cached is not None:
+                from handle_add import candidates
+                from gauss_degree import coherent_triangles, links_from
+                keep = {json.dumps(a['tube']): a for a in cached['arms']}
+                arms = [(t1, t2, R, links_from(coherent_triangles(R), N)) for t1, t2, R, _ in
+                        candidates([tuple(t) for t in tris], N) if json.dumps([list(t1), list(t2)]) in keep]
+            else:
+                arms = extendable([tuple(t) for t in tris], N)
+            for t1, t2, R, L in arms:
                 LK, M, _ = pack(L)
                 try:
                     e = float(pair_energy(H2, LK, M)[0])
@@ -142,7 +151,7 @@ class Archive:
                     e = 99.0
                 tk = mapkey(R); self.maps[tk] = [list(map(int, t)) for t in R]
                 try:
-                    t1r = arm_report(planes, tris, R, (t1, t2))
+                    t1r = keep[json.dumps([list(t1), list(t2)])] if cached is not None else arm_report(planes, tris, R, (t1, t2))
                     gauss = {k: t1r.get(k) for k in ('own_degree', 'target_degree', 'k_tau', 'hemisphere_margin',
                                                       'n_admissible', 'min_reversed', 'n_tube_only')}
                 except Exception as ex:              # noqa: BLE001
@@ -158,6 +167,17 @@ def gauss_pass(a):
     if g.get('n_admissible') is None:
         return None
     return g['n_admissible'] > 0
+
+
+GATE_CACHE = {}          # gate_key -> results/gate record (set by run(gate_records=...))
+
+
+def gate_key(planes, tris):
+    """= run_overnight._rkey"""
+    import hashlib
+    h = hashlib.sha256(json.dumps([[round(float(v), 9) for v in p] for p in planes]).encode()
+                       + json.dumps(sorted(sorted(int(x) for x in t) for t in tris)).encode())
+    return h.hexdigest()[:10]
 
 
 def pick(arc, rng, minutes, gate=False):
@@ -231,7 +251,10 @@ def load_seeds(arc, files, log):
     log('archive seeds: %d realizations (genus >= 2), %d attempts; %d arms' % (n_real, n_att, len(arc.arms)))
 
 
-def run(out_dir, hours, workers, minutes, files, log=print, committer=None, seed=0, gate=False):
+def run(out_dir, hours, workers, minutes, files, log=print, committer=None, seed=0, gate=False, gate_records=()):
+    deadline = time.monotonic() + 3600 * hours          # the budget includes loading the seeds
+    for r in gate_records:
+        GATE_CACHE[r['task'][2:]] = r
     os.makedirs(out_dir, exist_ok=True)
     arc = Archive(os.path.join(out_dir, 'archive.json'))
     if not arc.real:
@@ -242,7 +265,6 @@ def run(out_dir, hours, workers, minutes, files, log=print, committer=None, seed
     log('archive: %d realizations, %d arms; Gauss gate T1: %d pass, %d fail, %d unknown%s' % (
         len(arc.real), len(arc.arms), np_, nf, len(arc.arms) - np_ - nf, ' (gate ON)' if gate else ''))
     rng = np.random.default_rng(seed + arc.done)
-    deadline = time.monotonic() + 3600 * hours
     res_path = os.path.join(out_dir, 'results.jsonl')
     pool = mp.get_context('spawn').Pool(workers, maxtasksperchild=20)
     running = {}; issued = 0
