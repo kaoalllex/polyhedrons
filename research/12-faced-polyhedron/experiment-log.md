@@ -465,3 +465,11 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   (a second 20-min run on the arm with the lowest start energy 11), handle C 7. Floor-guarded
   refinements of the 4-attempt from B: 4; from B itself: 7. **Genus 4 plateau for type 0: 4 honest
   violations** (two different realizations, two different handles).
+* Singularity check of the degenerate genus-4 limit (user's brainstorm, idea 3): the collapsing
+  edges are 2-10 (ends 1, 6) and 0-2 (ends 1, 3), both at 1e-6 of the diameter. Passing through the
+  singularity = dual 2-2 flip 2-10 -> 1-6; but 1-6 (and 1-3) are already adjacent, so the flipped map
+  has a doubled adjacency (not orientable as a simple map): the optimizer was approaching an invalid
+  configuration (faces 1 and 6 meeting twice), matching its violated pairs (1,2), (1,6).
+* Exact-inner solid search started FROM the genus-3 realizations with the dead-end penalty
+  (`solid_exact_search.py --init ... --reach`): all four start at 48 / reach 66 and stay there
+  (no genus 4) after 12 min.

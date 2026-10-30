@@ -110,3 +110,20 @@ new is to aim at them deliberately:
 | T2 | **See-through test** for realized polyhedra: for each handle, is there a straight line through it? Classify our genus-2/3 results; if all are see-through, try to bias toward twisted tunnels | ray casting through the dual cycles |
 | T2 result | `code/see_through.py` (random lines missing the surface; linking with a cycle basis of the edge graph; rank of the linking vectors = independent see-through holes): Szilassi rank 1 of 1; our genus-2 solid 2 of 2; both genus-3 polyhedra 3 of 3. **Every hole of every polyhedron found so far is see-through**; twisted (non-see-through) tunnels have not appeared yet | aim at them deliberately (T1, T3) |
 | T3 | **Branching handles in the ladder**: a tube attached between a vertex on an earlier handle and another vertex is exactly "one tunnel splitting into two"; prefer such attachments when straight attachments fail | order beam-ladder candidates by whether a tube end lies on an earlier tube |
+
+## Ideas, round 2f: "unconventional approaches" brainstorm (user, 2026-10-30)
+
+Evaluation against what is known and done (literature: `literature-review.md`).
+
+| # | Proposal | Status here | Verdict / what we take |
+|---|---|---|---|
+| 1 | Permutation (rotation-system) maps, Cayley / voltage graphs, coverings | the maps of our target are classified: exactly 59 neighbourly genus-6 maps (Altshuler-Bokowski-Schuchert 1996; re-enumerated by us twice). Voltage / current graphs are exactly how Ringel built triangular K_n embeddings | no new topology exists to discover for the 12-face target; useful only for other targets (other n) - out of scope |
+| 2 | Plane-based parameterization (faces as a x + b y + c z + d = 0) | this IS our formulation since session 1 (12 planes, vertices = triple points, planarity automatic) | done |
+| 3 | Singularities, bifurcations, branches near degenerate configurations | new for us; the realization space is OPEN (strict inequalities), so singular points are its boundary. Our degenerate genus-4 limit (2026-10-30) is such a point: two edges collapse (4 planes nearly concurrent). Passing through = a 2-2 flip of the dual map. Tested: both flips would create a doubled adjacency (1-6, 1-3 already adjacent) - not a valid branch | **take**: at every degenerate limit, list the flips through it and test the valid ones (cheap); homotopy continuation stays on the list |
+| 4 | Coverings g' = d (g - 1) + 1, handle addition, local moves | handle addition = our genus ladder (works); coverings multiply faces (wrong n) | handle addition taken; coverings no |
+| 5 | Novelty search / MAP-Elites archive | started by hand: archive of 4 genus-3 realizations of type 0 gave the best genus-4 attempts | **take**: automate (archive cells = type x handle set x realization shape) |
+| 6 | Symmetry breaking from symmetric configurations | all C2 / C3-symmetric cases are certified impossible even as immersions, so symmetric starts are non-solutions; symmetric near-misses could still seed | low |
+| 7 | Algebraic families (groups, spectra) | automorphism groups of the 59 maps are known and small (max order 12, map 58) | low for this target |
+
+Taken into the plan: (3) flips at degenerate limits as a standard step after every stalled
+search; (5) automated realization archive with a bandit scheduler (see `search-algorithms.md`).

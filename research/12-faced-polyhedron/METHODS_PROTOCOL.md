@@ -6,7 +6,7 @@ at a glance: `figures/research-map.png`. Target: 12 planar faces, all 66 pairs a
 polyhedron of genus 6 (V = 44, E = 66). Progress measure: the number of adjacent pairs of faces of an
 EXACTLY verified embedded 12-face polyhedron (30 + 6 g; genus g).
 
-**Best so far:** genus 3 (48 of 66 pairs), exactly verified, twice: a free solid-first result
+**Best so far:** genus 3 (48 of 66 pairs), exactly verified, several times: a free solid-first result
 (dead end: it cannot be completed by attaching handles) and, since 2026-10-30, a type-0 genus-ladder
 result that is still extendable to 66 (`experiments/genus_ladder/type0_genus3_extendable.json`).
 
@@ -24,7 +24,7 @@ Verdict scale: **works** (reached a new level), **partial** (gives information o
 | Solid-first | state = planes + set of cells of the arrangement, always embedded; objective = face-structure defects | Szilassi from random planes without a map | works (n = 7) | basis of the exact-inner engine |
 | Solid-first + exact CP-SAT inner step | for fixed planes CP-SAT picks the best solid (manifold, one disk face per plane, at most one edge per pair) | **n = 12 genus 3 (48 pairs), exact**; plateau at 48 | works, then dead ends | add the extendability penalty (`--reach`) |
 | Genus ladder (sphere + 6 handles) | remove 6 handles (tubes) from a neighbourly map to a sphere; realize genus 0, 1, 2, ... seeded from the level below | type 11 genus 2; **type 0 genus 3, extendable** | works | night 3 over all 59 types |
-| Branching ladder | from a realized level, try every next handle that keeps all 66 pairs reachable | running (genus 3 -> 4, 3 candidates) | in progress | in night 3 (`--branch-minutes`) |
+| Branching ladder + realization archive | from a realized level, try every next handle that keeps all 66 pairs reachable; several realizations of the same level | type 0: 4 genus-3 realizations; genus 4 honest plateau at 4 violations | partial | in night 3 (`--branch-minutes`) |
 | Target-graph exact step | exact solid solver aiming at the next level's adjacency graph | slack 16 -> 10, no zero | partial | run from the extendable genus-3 polyhedron |
 
 ## B. Engines (how it is searched)
@@ -65,10 +65,12 @@ exploit so far (merged collinear edges, scale collapse, shared edge through a 4-
 3. Spine-seeded solids (user's idea 2026-10-30, `cross-field-ideas.md` round 2e): start from a
    thickened spatial graph of cycle rank 6 (K5, K3,4, knotted or branching tunnels).
 4. Quality-diversity (MAP-Elites) over (genus, extendability, beauty) to keep many different
-   realized polyhedra instead of one best.
-5. Difference map / RRR, nested sampling, cross-entropy method, MCTS, homotopy continuation,
+   realized polyhedra instead of one best (started by hand: 4 genus-3 realizations of type 0).
+5. Flips through degenerate limits (singularity / branch idea, round 2f): every stalled search
+   that collapses an edge points to a 2-2 flip of the map; test the valid flips.
+6. Difference map / RRR, nested sampling, cross-entropy method, MCTS, homotopy continuation,
    LLM-guided program search (FunSearch-style) - see `search-algorithms.md` 6-13.
-6. Impossibility: cube-and-conquer, second independent encoder, LRAT checking.
+7. Impossibility: cube-and-conquer, second independent encoder, LRAT checking.
 
 ## F. Lessons
 
