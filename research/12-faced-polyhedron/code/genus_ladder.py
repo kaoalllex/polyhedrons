@@ -63,9 +63,9 @@ def energy_fn(LK, M, n):
     return f
 
 
-def anneal_level(links, n, minutes, rng, seed_planes=None, steps=30000):
+def anneal_level(links, n, minutes, rng, seed_planes=None, steps=30000, free=None):
     """One-plane annealing on the honest pair energy; restarts alternate between the seed (perturbed)
-    and random planes."""
+    and random planes. free: only these planes move (large-neighbourhood steps)."""
     LK, M, _ = pack(links)
     def en(H):
         try:
@@ -83,7 +83,7 @@ def anneal_level(links, n, minutes, rng, seed_planes=None, steps=30000):
         H[:, :3] /= np.linalg.norm(H[:, :3], axis=1)[:, None]
         cur = en(H); bl = (cur, H.copy())
         for _ in range(steps):
-            H2 = H.copy(); k = int(rng.integers(n)); H2[k] += float(rng.choice([0.005, 0.02, 0.08])) * rng.standard_normal(4)
+            H2 = H.copy(); k = int(rng.integers(n)) if free is None else int(rng.choice(free)); H2[k] += float(rng.choice([0.005, 0.02, 0.08])) * rng.standard_normal(4)
             H2[k, :3] /= np.linalg.norm(H2[k, :3])
             c2 = en(H2)
             if c2 <= cur or rng.random() < np.exp((cur - c2) / T):

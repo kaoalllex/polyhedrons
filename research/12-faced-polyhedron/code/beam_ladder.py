@@ -55,7 +55,7 @@ def climb(level, minutes, seed, out_dir, workers, path=()):
     log = []
     for (e, o, i), rec in zip(order, recs):
         rec['tube'] = [list(C[i][0]), list(C[i][1])]; rec['genus'] = g + 1; rec['start_energy'] = float(e)
-        log.append({k: rec[k] for k in ('tube', 'best', 'start_energy') if k in rec} | {'exact': rec.get('exact', False)})
+        log.append(dict(rec, exact=rec.get('exact', False)))            # with planes: failed attempts seed later runs
         print('  genus %d via tube %s-%s: best %.3f %s' % (g + 1, C[i][0], C[i][1], rec['best'], 'EXACT EMBEDDED' if rec.get('exact') else ''), flush=True)
     json.dump(log, open(os.path.join(out_dir, 'genus%d_%s.json' % (g + 1, '_'.join(map(str, path)) or 'root')), 'w'))
     for (e, o, i), rec in zip(order, recs):
@@ -88,7 +88,7 @@ def climb_seq(level, minutes, rng, deadline, path=()):
                'start_energy': float(e), 'planes': Hb.tolist(), 'triangles': [list(t) for t in R]}
         if b < 0.5:
             rec['exact'] = bool(verify(Hb.tolist(), L, require_all_pairs=(g + 1 == (n - 3) * (n - 4) // 12))['EMBEDDED'])
-        tried.append({k: rec[k] for k in ('genus', 'tube', 'path', 'best', 'start_energy')} | {'exact': rec.get('exact', False)})
+        tried.append({k: rec[k] for k in ('genus', 'tube', 'path', 'best', 'start_energy', 'planes')} | {'exact': rec.get('exact', False)})
         if rec.get('exact'):
             sub_top, sub_rec, sub_tried = climb_seq(rec, minutes, rng, deadline, path + (i,))
             tried += sub_tried
