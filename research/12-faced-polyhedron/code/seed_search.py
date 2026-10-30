@@ -1,7 +1,7 @@
 """Search one target map seeded from given planes (level skipping: e.g. genus 5 from a genus-3
 polyhedron or from a failed genus-4 attempt). Annealing + CMA-ES on the honest pair energy; the best
 planes are always saved (failed attempts seed later runs); a float zero is re-checked exactly.
-Usage: python3 -I seed_search.py SEED_JSON TARGET_JSON MINUTES SEED OUT_JSON [--floor]
+Usage: python3 -I seed_search.py SEED_JSON TARGET_JSON MINUTES SEED OUT_JSON [--floor] [--depth W]
   SEED_JSON: any JSON with 'planes'; TARGET_JSON: JSON with 'triangles' (the target map)"""
 import json, os, sys
 import numpy as np
@@ -11,6 +11,9 @@ from gauss_degree import coherent_triangles, links_from
 from ladder_exact import verify
 
 src, tgt, minutes, seed, out = sys.argv[1], sys.argv[2], float(sys.argv[3]), int(sys.argv[4]), sys.argv[5]
+if '--depth' in sys.argv:            # weight of the violation depth in the energy (default 0.01 = tie-breaker)
+    import genus_ladder
+    genus_ladder.DEPTH_W = float(sys.argv[sys.argv.index('--depth') + 1])
 if '--floor' in sys.argv:            # degeneracy floor: an edge < 1e-5 or a margin < 1e-7 of the diameter counts as a violation
     import genus_ladder
     genus_ladder.use_floor()

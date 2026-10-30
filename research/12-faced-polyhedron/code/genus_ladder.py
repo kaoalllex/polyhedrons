@@ -18,6 +18,7 @@ if not hasattr(np, 'Inf'):
 import cma
 
 EXTRA = None          # optional extra energy term f(H, LK, M) (e.g. a degeneracy floor); None = honest energy only
+DEPTH_W = 0.01        # weight of tanh(violation depth) next to the violation count (0.01 = tie-breaker only)
 
 
 def use_floor(edge=1e-5, margin=1e-7):
@@ -72,7 +73,7 @@ def energy_fn(LK, M, n):
             e, o = pair_energy(H, LK, M)
         except Exception:
             return 1e6
-        return e + 0.01 * np.tanh(o) + (EXTRA(H, LK, M) if EXTRA is not None else 0.0)
+        return e + DEPTH_W * np.tanh(o) + (EXTRA(H, LK, M) if EXTRA is not None else 0.0)
     return f
 
 
@@ -85,7 +86,7 @@ def anneal_level(links, n, minutes, rng, seed_planes=None, steps=30000, free=Non
             e, o = pair_energy(H, LK, M)
         except Exception:
             return 1e9
-        return e + 0.01 * np.tanh(o) + (EXTRA(H, LK, M) if EXTRA is not None else 0.0)
+        return e + DEPTH_W * np.tanh(o) + (EXTRA(H, LK, M) if EXTRA is not None else 0.0)
     t0 = time.monotonic(); best = (1e9, None); r = 0
     while time.monotonic() - t0 < 60 * minutes and best[0] >= 0.5:
         r += 1

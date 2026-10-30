@@ -485,3 +485,10 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   1, 3, 8, 13, 14, 18, 23, 24, 26, 29; type 24: genus 3 at 1, genus 4 at 2 (to be checked for
   degeneracy with `overnight/analyze_glad.py`). Type 0 chain 0 reached only genus 1 this time (the
   same seed reached genus 3 in the test): luck and CPU speed matter, repetitions are worth it.
+* Exact-inner solid search from the genus-3 realizations C and D (`--init ... --reach`, 35 min each):
+  stays at 48 / reach 66; no genus 4.
+* Strong degeneracy floor (edge < 1e-3, margin < 1e-5 count as violations), genus 4 from realizations C
+  (handle A) and D (handle B), 15 min: 7 and 6 with edges 1.1e-3 / 1.6e-3. Archive test (25 min, 2
+  workers): 8 different genus-3 realizations; genus-4 arms 2-7, the low ones at the floor (edge 3e-5).
+  Conclusion for type 0: well-conditioned genus-4 attempts are 4-7 violations away; all lower values
+  are the degenerate attractor.
