@@ -455,3 +455,7 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
 * Check of the n = 8 plateau for degeneracy: the 1-violation results (CMA-ES, GA seeded) have
   shortest edges 2.8e-4 to 5.1e-4 and margins 5e-5 to 1.1e-4 of the diameter, crossing depth 0.36-0.56:
   NOT degenerate limits; that plateau is genuine.
+* Third exact realization of the type-0 genus-3 map (search with the degeneracy floor, 15 min):
+  `type0_genus3_extendable_c.json`, healthier (shortest edge 7.5e-4, margin 2.5e-4 of the diameter);
+  genus-4 start energies 18, 18, 21. Realization searches so far: 2 successes in 8 runs of 15 min.
+  `--floor` now also in `beam_ladder.py` (shared `genus_ladder.use_floor`).

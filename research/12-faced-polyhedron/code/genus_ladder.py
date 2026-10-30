@@ -20,6 +20,17 @@ import cma
 EXTRA = None          # optional extra energy term f(H, LK, M) (e.g. a degeneracy floor); None = honest energy only
 
 
+def use_floor(edge=1e-5, margin=1e-7):
+    """Degeneracy floor: a shortest edge < edge or a corner-plane margin < margin (relative to the
+    diameter) counts as one violation each, so the search cannot approach degenerate limits."""
+    global EXTRA
+    from ladder import degeneracy
+    def f(H, LK, M):
+        e, m = degeneracy(H, LK, M)
+        return float(e < edge) + float(m < margin)
+    EXTRA = f
+
+
 def remove(tris, tube):
     A, B, S = tube
     T = [tuple(sorted(t)) for t in tris]

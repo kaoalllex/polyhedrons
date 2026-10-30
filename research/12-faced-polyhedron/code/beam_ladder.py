@@ -4,7 +4,7 @@ whose six new edges are new (handle_add.candidates), keep those after which all 
 still reachable (handle_add.reach), order them by the pair energy of the new map at the current
 planes, and search each (annealing + CMA-ES, seeded from the current planes; float zeros re-checked
 exactly). Every realized next level is saved and climbed further (depth first).
-Usage: python3 -I beam_ladder.py LEVEL_JSON MINUTES_PER_CANDIDATE SEED OUT_DIR [WORKERS]"""
+Usage: python3 -I beam_ladder.py LEVEL_JSON MINUTES_PER_CANDIDATE SEED OUT_DIR [WORKERS] [--floor]"""
 import json, os, sys, time
 from multiprocessing import Pool
 import numpy as np
@@ -13,6 +13,8 @@ from handle_add import candidates, reach
 from ladder import pack, pair_energy
 from genus_ladder import search
 from ladder_exact import verify
+
+FLOOR = '--floor' in sys.argv          # degeneracy floor in the search energy (genus_ladder.use_floor)
 
 
 def genus_of(tris, n):
@@ -32,6 +34,9 @@ def extendable(tris, n):
 
 def work(args):
     planes, R, L, minutes, seed = args
+    if FLOOR:
+        import genus_ladder
+        genus_ladder.use_floor()
     rng = np.random.default_rng(seed)
     (b, H), runs = search(L, len(planes), minutes, rng, planes)
     rec = {'best': float(b), 'planes': H.tolist(), 'triangles': [list(t) for t in R]}
@@ -101,6 +106,6 @@ def climb_seq(level, minutes, rng, deadline, path=()):
 
 if __name__ == '__main__':
     lv = json.load(open(sys.argv[1])); minutes = float(sys.argv[2]); seed = int(sys.argv[3]); out_dir = sys.argv[4]
-    workers = int(sys.argv[5]) if len(sys.argv) > 5 else 1
+    workers = int(sys.argv[5]) if len(sys.argv) > 5 and not sys.argv[5].startswith('--') else 1
     os.makedirs(out_dir, exist_ok=True)
     climb(lv, minutes, seed, out_dir, workers)
