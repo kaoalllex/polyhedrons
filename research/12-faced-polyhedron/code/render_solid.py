@@ -20,7 +20,7 @@ if 'solid' in r:
 else:                                                   # a map-based result: planes + dual triangles
     tris = [tuple(t) for t in r['triangles']]
 L = links_from(coherent_triangles(tris), n); P = polygons(A.H, L)
-V = np.vstack(list(P.values())); c = V.mean(0); s = np.abs(V - c).max()
+V = np.vstack(list(P.values())); c = (V.max(0) + V.min(0)) / 2; s = np.abs(V - c).max()
 Q = {X: (q - c) / s for X, q in P.items()}
 fig = plt.figure(figsize=(16, 13), dpi=130)
 for i, (el, az) in enumerate([(25, 30), (25, 120), (70, -60), (-20, 210)]):
