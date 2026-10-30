@@ -14,6 +14,8 @@ Jobs (run one job per invocation; re-running the same command resumes where it s
   cube     Cube-and-conquer on the full ASYMMETRIC OM-SAT instance of the chosen maps (Lutz
            numbering). Timed-out cubes are split further. Reports the refuted fraction.
   ils      Iterated local search from the seeds: exact single-plane relocation + random kicks.
+  gate     Night 5: Gauss gate T1 for every realized polyhedron x next handle; test 2.2 on night-3 chains.
+  n5       Night 5: normals-first ladder (nfirst), k-targeted drift (kdrift), genus-6 normals first (g6).
 
 Progress is appended after every finished task to results/<job>/results.jsonl (fsync'ed), so a
 power cut loses at most the tasks that were running. With --git the results directory is
@@ -40,7 +42,7 @@ import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CODE = os.path.normpath(os.path.join(HERE, '..', 'code'))
-RES = os.path.join(HERE, 'results')
+RES = os.environ.get('POLY_RESULTS_DIR') or os.path.join(HERE, 'results')   # env: seen by spawned workers too
 WORK = os.path.join(HERE, 'work')            # big scratch files (CNFs, proofs); not committed
 SEEDS = os.path.join(HERE, 'data', 'seeds.json')
 sys.path.insert(0, CODE)
@@ -157,6 +159,8 @@ def run_pool(job, tasks, worker, args, committer, init=None, initargs=()):
                 p = save_candidate(job, rec)
                 log('!!! CANDIDATE saved to', p)
                 committer.maybe('overnight %s: CANDIDATE %s' % (job, rec['task']), force=True)
+            elif rec.get('important'):
+                committer.maybe('overnight %s: %s %s' % (job, rec.get('status'), rec['task']), force=True)
             else:
                 committer.maybe('overnight %s: progress' % job)
             if time.monotonic() > deadline:
@@ -517,7 +521,236 @@ def job_arch(args, committer):
     if os.path.isdir(ex):
         seeds += [os.path.join(ex, f) for f in sorted(os.listdir(ex)) if f.endswith('.json')]
     seeds = [f for f in seeds if os.path.exists(f)]
-    run(jobdir('arch'), args.hours, args.workers, args.minutes_per_seed, seeds, log=log, committer=committer)
+    run(jobdir('arch'), args.hours, args.workers, args.minutes_per_seed, seeds, log=log, committer=committer,
+        gate=args.gauss_gate)
+
+
+# ----------------------------------------------------------------------------- night 5: Gauss gate + normals first
+# Review 2026-10-30 (reviews/review-2026-10-30.md): the type-0 genus-4 plateau is a Gauss-degree (normal-class)
+# obstruction. Job `gate` = test T1 for every realized polyhedron x every extendable next handle (+ test 2.2 on
+# the night-3 chains); job `n5` = the gated ladder: `nfirst` (normals first, exact offsets: normals_first.py),
+# `kdrift` (drift inside the realization space until the handle degree k_tau = -1 and the next map's class is
+# reached, then normals first from there: kdrift.py) and `g6` (genus-6 normals first from random normals).
+
+def _rkey(planes, tris):
+    h = hashlib.sha256(json.dumps([[round(float(v), 9) for v in p] for p in planes]).encode()
+                       + json.dumps(sorted(sorted(int(x) for x in t) for t in tris)).encode())
+    return h.hexdigest()[:10]
+
+
+def gate_realizations():
+    """Every exactly embedded polyhedron of genus >= 2 known on disk: experiments/genus_ladder, night-3 glad
+    levels and branches, night-4 arch archive, night-5 realizations. Returns [(key, record)]."""
+    from gauss_gate import genus
+    out = {}
+
+    def add(planes, tris, tid, origin):
+        tris = [list(map(int, t)) for t in tris]
+        if genus(tris, len(planes)) < 2:
+            return
+        k = _rkey(planes, tris)
+        out.setdefault(k, {'planes': planes, 'triangles': tris, 'type_id': tid, 'origin': origin})
+    ex = os.path.normpath(os.path.join(HERE, '..', 'experiments', 'genus_ladder'))
+    if os.path.isdir(ex):
+        for f in sorted(os.listdir(ex)):
+            if f.endswith('.json'):
+                d = json.load(open(os.path.join(ex, f)))
+                if 'attempt' not in f and 'planes' in d:
+                    add(d['planes'], d['triangles'], d.get('type_id', 0), f)
+    for r in load_results('glad'):
+        for lv in r.get('levels', []):
+            if lv.get('exact'):
+                add(lv['planes'], lv['triangles'], r.get('type_id', -1), '%s level %d' % (r['task'], lv['genus']))
+        br = (r.get('branch') or {}).get('realized')
+        if br:
+            add(br['planes'], br['triangles'], r.get('type_id', -1), '%s branch' % r['task'])
+    ap = os.path.join(RES, 'arch', 'archive.json')
+    if os.path.exists(ap):
+        a = json.load(open(ap))
+        for r in a.get('real', []):
+            add(r['planes'], a['maps'][r['map']], r.get('type_id', -1), 'arch %s' % r.get('origin'))
+    rd = os.path.join(RES, 'n5', 'realized')
+    if os.path.isdir(rd):
+        for f in sorted(os.listdir(rd)):
+            d = json.load(open(os.path.join(rd, f)))
+            add(d['planes'], d['triangles'], d.get('type_id', -1), 'n5 %s' % f)
+    return sorted(out.items())
+
+
+def gate_worker(item):
+    task, p = item
+    t0 = time.monotonic()
+    if p.get('chains'):
+        from gauss_gate import t22_main
+        out = os.path.join(jobdir('gate'), 'chains_2_2.json')
+        st = t22_main(out, [p['chains']])
+        return {'task': task, 'status': 'CHAINS', 'summary': '2.2: %s' % st, 'stats': st,
+                'seconds': round(time.monotonic() - t0, 1)}
+    from gauss_gate import config_report, arms_of, arm_report
+    planes, tris = p['planes'], [tuple(t) for t in p['triangles']]
+    rec = {'task': task, 'type_id': p['type_id'], 'origin': p['origin'], 'planes': planes,
+           'triangles': p['triangles']}
+    c = config_report(planes, tris, gauges=False)
+    rec.update(genus=c['genus'], own_degree=c.get('own_degree'), bad_turning=c.get('bad_turning_faces'))
+    arms = []
+    if c['genus'] < 6:
+        for t1, t2, R in arms_of(planes, tris, len(planes)):
+            a = arm_report(planes, tris, R, (t1, t2))
+            arms.append({k: a.get(k) for k in ('tube', 'own_degree', 'target_degree', 'k_tau', 'hemisphere_margin',
+                                               'n_admissible', 'min_reversed', 'n_tube_only', 'pass', 'error')})
+    rec['arms'] = arms
+    rec['status'] = 'GATE'
+    rec['seconds'] = round(time.monotonic() - t0, 1)
+    rec['summary'] = 'type %s genus %d (degree %s): %d arms, T1 pass %d, k_tau %s' % (
+        p['type_id'], c['genus'], c.get('own_degree'), len(arms), sum(1 for a in arms if a.get('pass')),
+        sorted(set(a.get('k_tau') for a in arms), key=str))
+    return rec
+
+
+def job_gate(args, committer):
+    tasks = [('r_%s' % k, r) for k, r in gate_realizations()]
+    gl = os.path.join(RES, 'glad', 'results.jsonl')
+    if os.path.exists(gl):
+        tasks.append(('chains', {'chains': gl}))
+    run_pool('gate', tasks, gate_worker, args, committer)
+
+
+def _n5_climb(planes, tris, type_id, minutes, rng, task, log_path, depth=0):
+    """Normals-first from one realization over all its extendable arms (equal shares); recursive on success.
+    Returns the highest realized record or None."""
+    from gauss_gate import arms_of, genus
+    from normals_first import run_arm
+    arms = arms_of(planes, [tuple(t) for t in tris], len(planes))
+    if not arms or minutes <= 0:
+        return None
+    best = None
+    t_end = time.monotonic() + 60 * minutes
+    for i, (t1, t2, R) in enumerate(arms):
+        left = (t_end - time.monotonic()) / 60
+        if left <= 0.5:
+            break
+        rec, _ = run_arm(planes, tris, R, (t1, t2), left / (len(arms) - i), rng, log_path,
+                         tag='%s climb%d arm %d' % (task, depth, i), log=lambda *a: None)
+        if rec and rec.get('exact'):
+            rec['type_id'] = type_id
+            _save_realized(task + '_c%d_%d' % (depth, i), rec)
+            best = rec
+            if genus(rec['triangles'], len(planes)) < 6:
+                up = _n5_climb(rec['planes'], rec['triangles'], type_id, (t_end - time.monotonic()) / 60, rng, task,
+                               log_path, depth + 1)
+                if up:
+                    best = up
+            break
+    return best
+
+
+def _save_realized(name, rec):
+    d = os.path.join(jobdir('n5'), 'realized')
+    os.makedirs(d, exist_ok=True)
+    write_json_atomic(os.path.join(d, name + '.json'), {k: rec[k] for k in ('planes', 'triangles', 'type_id', 'genus', 'tube')
+                                                        if k in rec})
+
+
+def n5_worker(item):
+    task, p = item
+    import numpy as np
+    from gauss_gate import arms_of, genus
+    from normals_first import run_arm
+    t0 = time.monotonic()
+    rng = np.random.default_rng(int(hashlib.sha256(task.encode()).hexdigest()[:8], 16))
+    att = os.path.join(jobdir('n5'), 'attempts')
+    os.makedirs(att, exist_ok=True)
+    log_path = os.path.join(att, task + '.jsonl')
+    out = {'task': task, 'kind': p['kind'], 'type_id': p.get('type_id')}
+    realized = None
+    if p['kind'] == 'g6':
+        rec, stats = run_arm(None, None, [tuple(t) for t in p['triangles']], None, p['minutes'], rng, log_path,
+                             mode='free', rev_cost=0, timeout=p['timeout'], tag=task, log=lambda *a: None)
+        out['stats'] = stats; realized = rec
+    else:
+        planes, tris = p['planes'], [tuple(t) for t in p['triangles']]
+        arm = next(a for a in arms_of(planes, tris, len(planes)) if [list(a[0]), list(a[1])] == p['tube'])
+        t1, t2, R = arm
+        seed_planes = planes; seed_tris = tris; minutes = p['minutes']
+        if p['kind'] == 'kdrift':
+            from kdrift import drift
+            dr, Hd = drift(planes, tris, R, (t1, t2), minutes / 2, rng, log=lambda *a: None)
+            out['drift'] = {k: dr.get(k) for k in ('status', 'k_tau', 'energy', 'hemisphere_margin', 't1', 'steps')}
+            if dr['status'] in ('T1_PASS', 'K_REACHED'):
+                seed_planes = Hd.tolist()
+                sd = os.path.join(jobdir('n5'), 'class_seeds'); os.makedirs(sd, exist_ok=True)
+                write_json_atomic(os.path.join(sd, task + '.json'), dict(dr, next_triangles=[list(t) for t in R],
+                                                                         type_id=p.get('type_id')))
+            minutes = max(0.5, minutes - (time.monotonic() - t0) / 60)
+            if dr['status'] != 'T1_PASS':
+                minutes = min(minutes, p['minutes'] / 4)       # out of class: only a short normals-first try
+        rec, stats = run_arm(seed_planes, seed_tris, R, (t1, t2), minutes, rng, log_path, timeout=p['timeout'],
+                             tag=task, log=lambda *a: None)
+        out['stats'] = stats; realized = rec
+        if realized and realized.get('exact') and genus(realized['triangles'], 12) < 6:
+            realized['type_id'] = p.get('type_id')
+            _save_realized(task, realized)
+            up = _n5_climb(realized['planes'], realized['triangles'], p.get('type_id'), p['minutes'], rng, task, log_path)
+            if up:
+                realized = up
+    out['seconds'] = round(time.monotonic() - t0, 1)
+    if realized and realized.get('exact'):
+        g = genus(realized['triangles'], 12)
+        realized['type_id'] = p.get('type_id')
+        _save_realized(task + '_top', realized)
+        out.update(status='REALIZED_GENUS_%d' % g, genus=g, planes=realized['planes'], triangles=realized['triangles'],
+                   important=True, candidate=(g == 6))
+    else:
+        out['status'] = 'NOT_REALIZED'
+    out['summary'] = '%s %s %s' % (p['kind'], out.get('stats'), out.get('drift', {}).get('status', ''))
+    return out
+
+
+def job_n5(args, committer):
+    """Tasks interleaved by --mix (nfirst, kdrift, g6) from the gate results (run `gate` first)."""
+    gate = [r for r in load_results('gate') if r.get('status') == 'GATE']
+    arms = []
+    for r in gate:
+        for a in r.get('arms', []):
+            if a.get('error'):
+                continue
+            arms.append((r, a))
+    # rank: higher genus first, T1 pass first, then small hemisphere margin (closest to k_tau changing);
+    # round robin over types so that one type with many archived realizations does not take the night
+    arms.sort(key=lambda ra: (-ra[0]['genus'], not ra[1].get('pass'), ra[1].get('hemisphere_margin') or 0))
+    by_type = {}
+    for ra in arms:
+        by_type.setdefault(ra[0]['type_id'], []).append(ra)
+    rr = []
+    while any(by_type.values()):
+        for t in sorted(by_type, key=str):
+            if by_type[t]:
+                rr.append(by_type[t].pop(0))
+    nf, kd = [], []
+    for r, a in rr:
+        base = dict(planes=r['planes'], triangles=r['triangles'], type_id=r['type_id'], tube=a['tube'],
+                    minutes=args.minutes_per_seed, timeout=args.timeout)
+        tid = '%s_%s' % (r['task'][2:], '_'.join(str(x) for t in a['tube'] for x in t))
+        nf.append(('nf_%s' % tid, dict(base, kind='nfirst')))
+        if a.get('k_tau') == 0 or not a.get('pass'):
+            kd.append(('kd_%s' % tid, dict(base, kind='kdrift')))
+    types = json.load(open(os.path.join(HERE, '..', 'data', 'k12_triangulations.json')))
+    g6 = []
+    for rep in range(args.reps):
+        for t in types:
+            if str(t['id']) in args.g6_types.split(','):
+                g6.append(('g6_%d_%d' % (t['id'], rep), dict(kind='g6', type_id=t['id'], triangles=t['triangles'],
+                                                            minutes=args.minutes_per_seed, timeout=args.timeout)))
+    mix = [int(x) for x in args.mix.split(',')]
+    queues = [nf, kd, g6]
+    tasks = []
+    while any(queues):
+        for q, m in zip(queues, mix):
+            for _ in range(m):
+                if q:
+                    tasks.append(q.pop(0))
+    log('n5: %d gated arms from %d realizations; %d tasks (mix nfirst:kdrift:g6 = %s)' % (len(arms), len(gate), len(tasks), args.mix))
+    run_pool('n5', tasks, n5_worker, args, committer)
 
 
 # ----------------------------------------------------------------------------- job: sym
@@ -985,7 +1218,7 @@ def job_status(args, committer):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('job', choices=['gnormals', 'pdefect', 'immersion', 'normals', 'sym', 'cube', 'ils', 'ladder', 'sdefect', 'glad', 'arch', 'status'])
+    ap.add_argument('job', choices=['gnormals', 'pdefect', 'immersion', 'normals', 'sym', 'cube', 'ils', 'ladder', 'sdefect', 'glad', 'arch', 'gate', 'n5', 'status'])
     ap.add_argument('--hours', type=float, default=8.0, help='wall-clock budget of this invocation')
     ap.add_argument('--workers', type=int, default=max(1, (os.cpu_count() or 2) - 1))
     ap.add_argument('--timeout', type=float, default=None, help='per-task solver timeout in seconds')
@@ -1021,16 +1254,20 @@ def main():
     ap.add_argument('--rounds', type=int, default=1)
     ap.add_argument('--ladder-n', default='8', help='ladder: comma-separated face counts (8 = genus 2)')
     ap.add_argument('--milp-seconds', type=float, default=45, help='sdefect: time limit per simple-defect MILP')
+    ap.add_argument('--mix', default='4,3,1', help='n5: tasks per round for nfirst, kdrift, g6')
+    ap.add_argument('--g6-types', default='0,11,58', help='n5: types for genus-6 normals-first tasks')
+    ap.add_argument('--gauss-gate', action='store_true', help='arch: never pick arms that fail the Gauss gate T1')
     ap.add_argument('--branch-minutes', type=float, default=0,
                     help='glad: budget for branching from the highest realized level (genus >= 2) over every extendable handle')
     args = ap.parse_args()
     if args.results_dir:
         global RES
         RES = os.path.abspath(args.results_dir)
+        os.environ['POLY_RESULTS_DIR'] = RES            # spawned pool workers re-import this module
     if args.timeout is None:
-        args.timeout = {'gnormals': 900, 'pdefect': 0, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'ladder': 0, 'sdefect': 0, 'glad': 0, 'arch': 0, 'status': 0}[args.job]
+        args.timeout = {'gnormals': 900, 'pdefect': 0, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'ladder': 0, 'sdefect': 0, 'glad': 0, 'arch': 0, 'gate': 0, 'n5': 600, 'status': 0}[args.job]
     committer = Committer(args)
-    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'ladder': job_ladder, 'sdefect': job_sdefect, 'glad': job_glad, 'arch': job_arch, 'status': job_status}[args.job](
+    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'ladder': job_ladder, 'sdefect': job_sdefect, 'glad': job_glad, 'arch': job_arch, 'gate': job_gate, 'n5': job_n5, 'status': job_status}[args.job](
         args, committer)
 
 

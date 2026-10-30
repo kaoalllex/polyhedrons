@@ -101,6 +101,37 @@ before opening the lid: all workers resume at once. No `caffeinate` needed.
 Сон / закрытая крышка: бюджет считается только по времени бодрствования, так что в дороге ничего не
 теряется; после пробуждения расчёт продолжается.
 
+### Night 5 / Пятая ночь
+
+After night 4 has finished. The night-5 code is on branch `claude/practical-archimedes-e5p1fi` (the research
+branch + the session of 2026-10-30 afternoon); merge it into the branch you run from:
+После окончания четвёртой ночи. Код пятой ночи лежит в ветке `claude/practical-archimedes-e5p1fi`;
+влейте её в рабочую ветку:
+
+```bash
+cd research/12-faced-polyhedron/overnight
+git add -A results && git commit -m "night 4 results" && git push
+git fetch origin
+git merge origin/claude/practical-archimedes-e5p1fi
+./run_night5.sh 8 11
+```
+
+Why (independent review 2026-10-30): the genus-4 plateau is a Gauss-map degree obstruction. At every saved
+genus-3 polyhedron the next handle contributes degree k_tau = 0, but genus 4 needs -1, so starting the next
+level from the planes of the level below starts in an excluded class. Night 5 therefore moves the NORMALS
+first and decides the offsets exactly:
+* phase 1, `gate` (minutes): for every exactly realized polyhedron (nights 3-4, `experiments/genus_ladder/`)
+  and every next handle: degree, k_tau, admissible orientations (test T1); and test 2.2 on the night-3 chains;
+* phase 2, `n5` (all but one core): `nfirst` = anneal the normals near a realization into the next map's
+  class, then z3 decides EXACTLY whether offsets exist (SAT = next genus, re-checked by the exact
+  verifier, saved to `results/n5/realized/` and climbed further at once); `kdrift` = move the polyhedron
+  (staying embedded) until k_tau = -1, then the same; `g6` = genus 6 directly from random normals;
+* one core: night-4 `arch` as the control.
+Morning summary: `python3 analyze_n5.py`.
+Почему: плато рода 4 — это препятствие степени отображения Гаусса (вклад ручки 0 вместо −1). Ночь 5
+сначала двигает нормали в нужный класс, а смещения решает точно (z3); найденный род сразу
+проверяется точным верификатором и поднимается дальше. Утренняя сводка: `python3 analyze_n5.py`.
+
 ## 3. After the run / После расчёта
 
 ```bash

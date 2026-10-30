@@ -37,26 +37,36 @@ class ClassEnergy:
     """Float energy of gauge normals for the Gauss gate of one oriented map (annealing only; every
     zero is re-checked exactly by gauss_gate)."""
 
-    def __init__(self, otris, target, min_saddles, n_samples, rng):
+    def __init__(self, otris, target, min_saddles, n_samples, rng, cover_margin=0.0):
+        """cover_margin > 0: a sample direction counts as covered only if it lies inside a positive
+        triangle's cone with all three (unit-normal) determinants > cover_margin (robust covering)."""
         self.T = np.array(otris, np.int64)
         self.target = target
         self.min_saddles = min_saddles
+        self.cm = cover_margin
         U = rng.standard_normal((n_samples, 3))
         self.U = U / np.linalg.norm(U, axis=1)[:, None]
 
     def __call__(self, G):
         T, U = self.T, self.U
+        G = G / np.linalg.norm(G, axis=1)[:, None]
         A, B, C = G[T[:, 0]], G[T[:, 1]], G[T[:, 2]]
         d = np.einsum('ij,ij->i', A, np.cross(B, C))
         s = np.sign(d)
-        inside = ((U @ np.cross(B, C).T) * s > 0) & ((U @ np.cross(C, A).T) * s > 0) & ((U @ np.cross(A, B).T) * s > 0)
-        pos = (inside & (s > 0)).sum(axis=1)
+        q1, q2, q3 = (U @ np.cross(B, C).T) * s, (U @ np.cross(C, A).T) * s, (U @ np.cross(A, B).T) * s
+        inside = (q1 > 0) & (q2 > 0) & (q3 > 0)
+        if self.cm > 0:
+            pos = ((q1 > self.cm) & (q2 > self.cm) & (q3 > self.cm) & (s > 0)).sum(axis=1)
+        else:
+            pos = (inside & (s > 0)).sum(axis=1)
         neg = (inside & (s < 0)).sum(axis=1)
-        deg = pos - neg
+        deg = (inside & (s > 0)).sum(axis=1) - neg
         dmed = int(np.median(deg))
         sad = int((s < 0).sum())
         # conditioning: tiny |det| of a triangle's normals = vertex near infinity; keep away from it
         weak = int((np.abs(d) < 1e-3).sum())
+        self.last = {'degree': dmed, 'uncovered': int((pos == 0).sum()), 'inconsistent': int((deg != dmed).sum()),
+                     'saddles': sad, 'weak': weak, 'samples': len(U)}
         e = (10 * abs(dmed - self.target) + int((pos == 0).sum()) + int((deg != dmed).sum())
              + 3 * max(0, self.min_saddles - sad) + weak)
         return e, dmed, sad
@@ -115,7 +125,7 @@ def exact_gate(Nf, eps, otris, target, min_saddles, n_cover=256, seed=0):
 # ----------------------------------------------------------------------------- arm loop
 
 def run_arm(Hseed, tris_M, tris_R, tube, minutes, rng, out, radii=(0.1, 0.2, 0.4, 0.8), mode='tube',
-            fixed_gauge=None, rev_cost=2, timeout=600, anneal_minutes=2.0, tag='', log=print):
+            fixed_gauge=None, rev_cost=2, timeout=600, anneal_minutes=2.0, tag='', log=print, try_seed=True):
     from fixed_normals_gauge import solve_gauge
     from ladder_exact import verify
     n = len(tris_R) and max(max(t) for t in tris_R) + 1
@@ -137,19 +147,26 @@ def run_arm(Hseed, tris_M, tris_R, tube, minutes, rng, out, radii=(0.1, 0.2, 0.4
     else:
         eps0, free = list(eps_seed), set(six)
     LR = links_from(oR, n)
-    energy = ClassEnergy(oR, target, min_sad, 2000, rng)
+    energy = ClassEnergy(oR, target, min_sad, 2000, rng, cover_margin=0.005)
     t0 = time.monotonic(); k = 0; stats = {}
     while time.monotonic() - t0 < 60 * minutes:
         radius = radii[k % len(radii)]; k += 1
         start = None
+        if k == 1 and try_seed and Hseed is not None:
+            radius = 0.0                                   # first: the seed normals themselves, seed gauge
         if Hseed is None:
             S = rng.standard_normal((n, 3)); S /= np.linalg.norm(S, axis=1)[:, None]
             start = (S, eps0); Nbase = S
         else:
             Nbase = Nseed
-        Nf, eps, e, it = anneal_normals(Nbase, eps0, free if mode != 'free' else set(range(n)),
-                                        rev_cost if mode == 'free' else 0, energy, rng,
-                                        radius if Hseed is not None else None, anneal_minutes, start)
+        if radius == 0.0:
+            Nf, eps, it = Nseed.copy(), list(eps_seed), 0
+            e = energy(np.array(eps)[:, None] * Nf)[0]
+            e = 0 if e == 0 else int(np.ceil(e))
+        else:
+            Nf, eps, e, it = anneal_normals(Nbase, eps0, free if mode != 'free' else set(range(n)),
+                                            rev_cost if mode == 'free' else 0, energy, rng,
+                                            radius if Hseed is not None else None, anneal_minutes, start)
         rec = {'tag': tag, 'tube': [list(t) for t in tube] if tube else None, 'genus': gR, 'radius': radius,
                'mode': mode, 'anneal_energy': int(e), 'anneal_iterations': it, 'gauge': eps,
                'reversed_outside_tube': [X for X in range(n) if eps[X] != eps_seed[X] and X not in six]}

@@ -22,6 +22,7 @@ with turning != +1); ladder.pair_energy counts violation EVENTS; ladder_exact co
 Usage: python3 -I gauss_gate.py T1 OUT_JSON FILES...   (realization / attempt JSON files with 'planes'
        + 'triangles', or night-3 glad results.jsonl: every level, realized or not, and every arm
        (realization, extendable next handle) of the realized ones)
+       python3 -I gauss_gate.py T22 OUT_JSON GLAD_RESULTS.jsonl...   (review test 2.2 per chain)
 """
 import itertools
 import json
@@ -167,8 +168,9 @@ def all_gauges(n):
     return np.array([[1 if (m >> i) & 1 == 0 else -1 for i in range(n)] for m in range(1 << n)], np.int8)
 
 
-def admissible(N, otris, target, n_cover=64, seed=0, eps=None):
-    """All gauges (or the given ones) with degree == target and positive covering at n_cover samples.
+def admissible(N, otris, target, n_cover=64, seed=0, eps=None, n_confirm=1000):
+    """All gauges (or the given ones) with degree == target and positive covering at n_cover samples,
+    confirmed at n_confirm further samples (64 alone let a gauge with an uncovered region through).
     Also returns the degrees of all tested gauges (for statistics)."""
     U = _directions(n_cover, seed)
     req, con, _ = sign_tables(N, otris, U)
@@ -179,6 +181,11 @@ def admissible(N, otris, target, n_cover=64, seed=0, eps=None):
         degs.append(d)
         for i in np.nonzero((d == target) & c)[0]:
             out.append([int(x) for x in E[k + i]])
+    if out and n_confirm:
+        U2 = _directions(n_confirm, seed + 1)
+        req2, con2, _ = sign_tables(N, otris, U2)
+        _, c2 = degrees_and_cover(out, otris, req2, con2)
+        out = [g for g, ok in zip(out, c2) if ok]
     return out, np.concatenate(degs)
 
 
@@ -362,8 +369,59 @@ def t1_main(out, files, verify_exact=True):
     return res
 
 
+def chain_report(levels, n=12):
+    """Review test 2.2 on one genus-ladder chain (glad record 'levels', each seeded from the planes of
+    the level below): per level the own-orientation degree of its best attempt (vs 1 - g), the faces
+    with turning != +1, and the degree of the NEXT level's map at the same planes in the same orientation
+    (vs 1 - g - 1). Prediction: failed levels have degree != 1 - g; a failed level followed by a
+    realized one already sits at 1 - (g + 1)."""
+    out = []
+    for i, lv in enumerate(levels):
+        tris = [tuple(t) for t in lv['triangles']]
+        r = {'genus': lv.get('genus'), 'best': lv.get('best'), 'exact': bool(lv.get('exact'))}
+        try:
+            c = config_report(lv['planes'], tris, gauges=False)
+            r.update(own_degree=c.get('own_degree'), target=c['target_degree'], bad_turning=c.get('bad_turning_faces'))
+            if i + 1 < len(levels):
+                R = [tuple(t) for t in levels[i + 1]['triangles']]
+                oM, oR = aligned_orientations(tris, R, n)
+                eps = own_gauge(lv['planes'], links_from(oM, n))
+                r['next_degree'] = degree(int_normals(lv['planes']), oR, eps)
+                r['next_target'] = euler_target(R, n)
+        except Exception as e:                       # noqa: BLE001
+            r['error'] = repr(e)[:200]
+        out.append(r)
+    return out
+
+
+def t22_main(out, files):
+    """Chain reports for every glad record; summary of the 2.2 prediction."""
+    res = []; stats = {'failed_in_class': 0, 'failed_out_of_class': 0, 'skip_next_in_class': 0, 'skip_next_out': 0}
+    for f in files:
+        for line in open(f):
+            if not line.strip():
+                continue
+            r = json.loads(line)
+            ch = chain_report(r.get('levels', []))
+            for i, lv in enumerate(ch):
+                if lv.get('own_degree') is None:
+                    continue
+                if not lv['exact']:
+                    stats['failed_in_class' if lv['own_degree'] == lv['target'] else 'failed_out_of_class'] += 1
+                    if i + 1 < len(ch) and ch[i + 1]['exact'] and 'next_degree' in lv:
+                        stats['skip_next_in_class' if lv['next_degree'] == lv['next_target'] else 'skip_next_out'] += 1
+            res.append({'task': r.get('task'), 'type_id': r.get('type_id'), 'levels': ch})
+            print(r.get('task'), 'type', r.get('type_id'), [(l.get('genus'), round(l.get('best') or 0, 2), l.get('own_degree'),
+                                                            l.get('target'), l.get('next_degree')) for l in ch], flush=True)
+    print('2.2 summary:', stats, flush=True)
+    json.dump({'chains': res, 'summary': stats}, open(out, 'w'))
+    return stats
+
+
 if __name__ == '__main__':
     if len(sys.argv) > 2 and sys.argv[1] == 'T1':
         t1_main(sys.argv[2], sys.argv[3:])
+    elif len(sys.argv) > 2 and sys.argv[1] == 'T22':
+        t22_main(sys.argv[2], sys.argv[3:])
     else:
         print(__doc__)
