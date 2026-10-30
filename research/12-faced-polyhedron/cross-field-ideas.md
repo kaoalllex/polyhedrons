@@ -127,3 +127,20 @@ Evaluation against what is known and done (literature: `literature-review.md`).
 
 Taken into the plan: (3) flips at degenerate limits as a standard step after every stalled
 search; (5) automated realization archive with a bandit scheduler (see `search-algorithms.md`).
+
+## Round 3 (2026-10-30): ideas from the 2026 literature (Mizhaev arXiv:2609.17700, Röst-Vígh arXiv:2609.32998)
+
+Facts used: both 8-face genus-3 face-neighbourly polyhedra exist only with DOUBLED collinear adjacencies
+(20 single + 8 double pairs); both are SYMMETRIC two-orbit plane sets (D2 resp. C4 rotoreflection, i.e. 2
+free planes); Röst-Vígh's method builds the polyhedron from the planes alone and rediscovered Szilassi and
+Mizhaev; their planes have tiny integer coefficients (3,-4,-2 | 5 and -2,5,-5 | 3). Our control
+(`code/control_rost_vigh.py`) passes the exact verifier and the Gauss gate (degree -2, turning +1).
+
+| # | Idea | Why it fits | First test (cheap) | Success / kill |
+|---|---|---|---|---|
+| L1 | **Relaxed 12-face target with collinear doubled pairs**: every pair adjacent, d pairs doubled. 3-valence: E = 66 + d, V = 2E/3, genus 1 - (12 - E/3)/2, so d = 6 (genus 7) or d = 12 (genus 8). Not covered by our symmetric UNSAT (that is for the 59 simple maps). | The 8-face case exists ONLY in this relaxed form; a 12-face analogue would be new and publishable, and a stepping stone | solid-first CP-SAT (`solid_cpsat.py`) with "<= 2 collinear edge runs per pair" instead of 1, objective = number of adjacent pairs (66) | any exact 12-face relaxed object; kill if the symmetric search (L2) stalls far below 66 |
+| L2 | **Symmetric orbit ansatz + plane-only construction** (Röst-Vígh style): 12 planes = 3 orbits of a free group of order 4 (D2 or C4 rotoreflection) = 3 free planes (12 parameters) or 2 orbits of order 6; construct the best solid from the planes (our exact inner step) | their method rediscovered Szilassi and Mizhaev; 12 parameters instead of 48 make massive sampling possible | rediscover RV's polyhedron from random D2 two-orbit planes with our `solid_cpsat` (n = 8, relaxed doubling) = ENGINE CALIBRATION; then n = 12, d in {0, 6, 12} | calibration must succeed first (otherwise fix the engine); then 12-face pair counts |
+| L3 | **Small-integer lattice search**: plane coefficients in [-6, 6] within the symmetric ansatz; exact arithmetic for free | RV planes have coefficients <= 5; exactness without rounding | enumerate / random-sample integer orbit representatives, fast filter (Gauss gate of the resulting solid's map, pair count) | hits with >= 60 pairs |
+| L4 | **Undoubling ladder**: from a relaxed object (L1) merge doubled collinear pairs one at a time (break the symmetry first), each step = genus -1/2 per merged pair; use normals first + exact offsets and the Gauss gate (target 1 - g changes by the merge) | a ladder that starts from an existing object instead of from below | needs L1 first; on RV's polyhedron: try to merge one doubled pair of the 8-face object (impossible in the strict sense for n = 8, so measure how far it gets: calibration of the merge step) | strict 12-face object; kill if no merge works on any relaxed object |
+| L5 | **Ladder over n with doubled rungs**: n = 8 genus 3 (8 doubles, EXISTS) -> n = 9, 10, 11 with doubles -> 12 with 0; face insertion = cut the realized solid by a new plane, then repair | our n = 8 genus-2 rung (2 doubles) stalls at 1, the genus-3 rung with 8 doubles exists: more doubling seems easier | from RV's polyhedron add a 9th plane (sampled), solid-first to maximize pairs with doubling allowed | a 9-face face-neighbourly relaxed object (new) |
+| L6 | **Known objects as engine test bench**: replace the n = 8 genus-2 rung (possibly impossible) by RV's and Mizhaev's genus-3 objects as the standard benchmark of every engine (rediscovery from random symmetric / asymmetric planes) | a benchmark with a known solution separates engine weakness from impossibility | `ladder.py` / GA / CMA on RV's map (links from `control_rost_vigh.build()`) from random planes | rediscovery rate per engine |
