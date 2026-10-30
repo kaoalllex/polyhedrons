@@ -473,3 +473,15 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
 * Exact-inner solid search started FROM the genus-3 realizations with the dead-end penalty
   (`solid_exact_search.py --init ... --reach`): all four start at 48 / reach 66 and stay there
   (no genus 4) after 12 min.
+* **Night 4 prepared: job `arch`** (`code/archive_climb.py`, `overnight/run_night4.sh`): archive of
+  exact realizations (genus >= 2) from night 3 + `experiments/genus_ladder/`, arms = (realization, next
+  extendable handle), UCB priority 2 * genus - estimate + bonus, 25 % diversity tasks; a realization
+  counts as new if its oriented matroid (495 signs of the 4-plane determinants, up to reorientation)
+  differs in >= 30 signs (our type-0 realizations differ pairwise in 44-75 signs; polishing changed
+  19). Test (2 workers, 3 min tasks): a new genus-3 realization in 15 s; genus-4 arms again "2" with
+  edge 4e-5 just above the floor 3e-5: the same degenerate attractor (faces 1 and 6 meeting twice).
+  The log now prints edge and margin of every best attempt.
+* User's night 3 (in progress, 40 of 118 tasks at 11:40 local): genus 2 realized exactly for types
+  1, 3, 8, 13, 14, 18, 23, 24, 26, 29; type 24: genus 3 at 1, genus 4 at 2 (to be checked for
+  degeneracy with `overnight/analyze_glad.py`). Type 0 chain 0 reached only genus 1 this time (the
+  same seed reached genus 3 in the test): luck and CPU speed matter, repetitions are worth it.

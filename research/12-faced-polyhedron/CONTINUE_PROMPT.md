@@ -88,7 +88,12 @@ State on the morning of 2026-10-30 (read `METHODS_PROTOCOL.md` first: every meth
   each) + branching (`--branch-minutes 30`) from the highest realized level >= 2.
 * Ideas round 2e (twisted / branching / knotted tunnels; spine-seeded solids): `cross-field-ideas.md`.
 
-First tasks (session 4): analyze night-3 `glad` results (highest exactly realized genus per type;
+Later on 2026-10-30: archive of four type-0 genus-3 realizations (`experiments/genus_ladder/`);
+honest genus-4 plateau at 4 violations; every lower "2" is a degenerate limit (check edge / margin with
+`ladder.degeneracy`; `--floor` options). Night 4 = job `arch` (`overnight/run_night4.sh`), run after
+night 3. Ideas rounds 2e (tunnels) and 2f (unconventional approaches) evaluated in `cross-field-ideas.md`.
+
+First tasks (session 4): analyze night-3 `glad` results with `overnight/analyze_glad.py` (highest exactly realized genus per type;
 any SOLUTION first, re-check with `ladder_exact.verify(require_all_pairs=True)`); climb from the best
 extendable polyhedra (beam ladder, target-graph exact step `code/ladder_solid.py`, LNS on the six
 planes of the next handle); spine-seeded solids (T1).
