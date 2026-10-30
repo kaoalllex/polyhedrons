@@ -452,3 +452,6 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   relative) and `seed_search.py --floor` (edge < 1e-5 or margin < 1e-7 counts as a violation). The
   realized genus-3 polyhedra are genuine (exact check on rational planes; edges 1.6e-4 and 2.8e-3).
   Lesson: low plateaus (n = 8 at 1, genus 2 at 1-2) must be checked for degenerate limits too.
+* Check of the n = 8 plateau for degeneracy: the 1-violation results (CMA-ES, GA seeded) have
+  shortest edges 2.8e-4 to 5.1e-4 and margins 5e-5 to 1.1e-4 of the diameter, crossing depth 0.36-0.56:
+  NOT degenerate limits; that plateau is genuine.
