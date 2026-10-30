@@ -71,9 +71,17 @@ def chirotope_from_planes(planes):
 # ----------------------------------------------------------------------------- triangulation
 
 class Triangulation:
-    """Neighborly-type triangulation on faces 0..n-1 (the dual of the polyhedron)."""
+    """Neighborly-type triangulation on faces 0..n-1 (the dual of the polyhedron).
 
-    def __init__(self, n, triangles, links=None):
+    submap=True also accepts a triangulation that is not neighborly (a SUB-MAP: a polyhedron with n
+    faces in which some pairs of faces are not adjacent, e.g. a genus-ladder level). Lemma 5.1 carries
+    over verbatim: an endpoint P_XYW of a component of F_X cap F_Y lies in three faces, so XYW must be a
+    triangle, which is impossible when XY is not an edge; hence the same forbidden triples (over ALL
+    non-triangle triples) force F_X cap F_Y = e_XY for adjacent and = empty for non-adjacent pairs. The
+    in-face predicate IN(X;Y,Z) for a non-adjacent pair X, Y is the same crossing parity along L_XY
+    without the e_XY boundary / collinear-edge terms (Predicates.IN)."""
+
+    def __init__(self, n, triangles, links=None, submap=False):
         self.n = n
         self.tris = [tuple(t) for t in triangles]
         self.triset = set(frozenset(t) for t in triangles)
@@ -84,27 +92,31 @@ class Triangulation:
                 self.partners.setdefault(frozenset((a, b)), []).append(c)
         for k, v in self.partners.items():
             assert len(v) == 2, (k, v)
-        assert len(self.partners) == n * (n - 1) // 2, "not neighborly"
+        if not submap:
+            assert len(self.partners) == n * (n - 1) // 2, "not neighborly"
+        self.neighborly = len(self.partners) == n * (n - 1) // 2
         # cyclic link of each face (orientation taken from `links` if given, else arbitrary)
         self.link = {}
         for X in range(n):
+            nbrs = [Y for Y in range(n) if Y != X and frozenset((X, Y)) in self.partners]
+            m = len(nbrs)
             if links is not None:
                 cyc = list(links[X])
             else:
-                nb = {}
-                for Y in range(n):
-                    if Y != X:
-                        nb[Y] = self.partners[frozenset((X, Y))]
+                nb = {Y: self.partners[frozenset((X, Y))] for Y in nbrs}
                 start = min(nb)
                 cyc = [start, nb[start][0]]
-                while len(cyc) < n - 1:
+                while len(cyc) < m:
                     a, b = nb[cyc[-1]]
                     cyc.append(a if a != cyc[-2] else b)
                 assert cyc[0] in nb[cyc[-1]]
-            assert sorted(cyc) == [Y for Y in range(n) if Y != X]
-            for i in range(n - 1):
-                assert frozenset((X, cyc[i], cyc[(i + 1) % (n - 1)])) in self.triset
+            assert sorted(cyc) == nbrs, 'link of %d is not one cycle through all its neighbours' % X
+            for i in range(m):
+                assert frozenset((X, cyc[i], cyc[(i + 1) % m])) in self.triset
             self.link[X] = cyc
+
+    def adjacent(self, a, b):
+        return frozenset((a, b)) in self.partners
 
     def is_tri(self, a, b, c):
         return frozenset((a, b, c)) in self.triset
@@ -381,6 +393,8 @@ class Predicates:
         key = ('E', frozenset((X, W)), V)
 
         def f():
+            if not self.T.adjacent(X, W):
+                return self.B.FALSE                   # sub-map: no edge e_XW
             A, Bp = self.T.part(X, W)
             if V in (A, Bp):
                 return self.B.FALSE
@@ -389,12 +403,18 @@ class Predicates:
 
     def IN(self, X, Y, Z):
         """TRUE iff P_XYZ lies in the closed region F_X (boundary or odd crossing parity),
-        ray along L_XY in direction +u_XY.  Requires XYZ not a triangle."""
+        ray along L_XY in direction +u_XY.  Requires XYZ not a triangle.
+        Sub-map with X, Y not adjacent: no edge e_XY on the ray's line, so only the parity over the
+        edges e_XW (W adjacent to X) and the boundary term P_XYZ in relint e_XZ remain."""
         key = ('IN', X, Y, Z)
 
         def f():
             B, T = self.B, self.T
             assert not T.is_tri(X, Y, Z)
+            if not T.adjacent(X, Y):
+                terms = [B.and_([B.NOT(self.lt(X, Y, Z, W)), self.E(X, W, Y)])
+                         for W in range(T.n) if W not in (X, Y, Z) and T.adjacent(X, W)]
+                return B.or_([self.E(X, Z, Y), B.xor(terms)])
             C, D = T.part(X, Y)
             Cp = T.other_partner(X, C, Y)
             Dp = T.other_partner(X, D, Y)

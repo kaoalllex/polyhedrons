@@ -503,3 +503,38 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   2 violations of one fixed pattern, which can only be removed by degenerating (faces 1 and 6 would
   have to meet twice). Well-conditioned (edge >= 1e-3): 6-7. `archive_climb` now scores attempts with
   a degeneracy adjustment (+1 for edge < 1e-4, +1 for margin < 1e-5), also for the loaded seeds.
+
+## 2026-10-30 (session 5): night-5 preparation after the independent review
+
+Review `reviews/review-2026-10-30.md`: the type-0 genus-4 plateau is a Gauss-degree (normal-class)
+obstruction. Work on branch `claude/practical-archimedes-e5p1fi` (= `claude/wonderful-carson-saxyck` +
+this session; the night-4 branch is left untouched).
+
+* **Gauss gate with target 1 - g** (`code/gauss_gate.py`, new): own-orientation degree, turning numbers,
+  saddles, all admissible gauges (exact sign tables, vectorised over the 2^12 gauges: degree + positive
+  covering), k_tau, hemisphere margin of the six handle faces; CLI `T1` over realization / attempt files
+  and night-3 `glad` results. Counter names: CLASS defects here (|D - (1-g)| + faces with turning != +1),
+  EVENTS in `ladder.pair_energy`, exact defects in `ladder_exact`.
+  T1 on `experiments/genus_ladder/*.json` (12 s) reproduces the review exactly: all five genus-3
+  realizations have own degree -2 = 1 - g, turning +1 everywhere, 2-8 admissible gauges; all 15 arms
+  (5 realizations x 3 extendable handles) have degree -2 in the realized polyhedron's gauge, k_tau = 0,
+  hemisphere margin 0.017-0.24; admissible genus-4 gauges: none, except 1 on the polished copy for
+  (1,2,10)-(4,7,9), which reverses 7 faces. Attempts: own degree -2 (target -3), non-+1 turning faces
+  [0,2,3,11] (4-violation file) and [2,3] (degenerate file), 0 and 1 admissible gauges.
+  Pitfall found and fixed: the "own gauge" of an arm must be the REALIZED polyhedron's face orientation
+  (links of M aligned with M + tau); the next map's polygons at the same planes give degrees 0/1 (their
+  six handle faces are not meaningful polygons there).
+* **Sub-maps in the OM encoder** (`omsat.Triangulation(..., submap=True)`, `Predicates.E/IN`):
+  E(X,W;V) is FALSE for non-adjacent X, W; IN(X;Y,Z) for non-adjacent X, Y = parity over the edges
+  e_XW plus the boundary term "P_XYZ in relint e_XZ" (no e_XY terms). Forbidden triples over all
+  non-triangle triples (Lemma 5.1 verbatim). `fixed_normals_gauge.solve_gauge` uses it.
+  Validation (`code/submap_validate.py`): Eval backend on the exact chirotope (planes x 1e9, gauge-
+  oriented): realizations A, B, D clean (no TRIPLE / REFLEX1 / POC / GP violation, gauge literal 0 on
+  every corner); negative controls: 4-violation attempt TRIPLE 4 + POC 11, degenerate attempt TRIPLE 2
+  + POC 7. `solve_gauge` at A's own gauge normals (scale 1e6): **SAT in 157 s, exact verify EMBEDDED**.
+* **Normals-first ladder step** (`code/normals_first.py`, new; review T3): anneal the normals within a
+  radius of the seed (gauge of the six handle faces free, the other six fixed to the seed orientation)
+  until the float class energy is 0 (degree 1 - g', positive covering on 2000 samples, >= 2g'+1
+  saddles, no near-coplanar triple), re-check exactly (integer normals, 256 directions), then decide
+  the offsets exactly with `solve_gauge`. Smoke test, A, arm (0,5,8)-(2,6,7), 3 min, radii 0.2/0.4:
+  admissible normals reached in 0.5 min each (max angle 0.18-0.40 rad), **4 x UNSAT** (z3 15-84 s).

@@ -4,6 +4,8 @@ The normals g_X are given WITH signs (gauge normals: each face polygon, traverse
 link order, must be counter-clockwise about g_X). This is imposed as RTURN xor REFLEX = 0 at
 every corner (omsat F6 literals: convex corners turn left, reflex corners right, seen from g_X).
 Use with normals that pass the Gauss-degree prefilter (gauss_degree.py / gauss_search.py).
+Works for sub-maps too (some pairs of faces not adjacent, e.g. a genus-ladder level; omsat.Triangulation
+with submap=True): the gauge normals then need degree 1 - g, not -5 (gauss_gate.py).
 """
 import os
 import sys
@@ -22,7 +24,7 @@ def solve_gauge(G, tris, timeout_s=600, margin=1, bound=10 ** 9, orient_sign=0):
     from math import lcm
     n = len(G)
     ot = coherent_triangles(tris)
-    T = Triangulation(n, ot, links_from(ot, n))
+    T = Triangulation(n, ot, links_from(ot, n), submap=True)
     C = CNF(n)
     P = build(C, T, dict(gp=False, triples=True, reflex=True, poc=True))
     for X in range(n):
