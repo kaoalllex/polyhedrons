@@ -29,3 +29,24 @@ Questions to answer:
    n = 8 rung (genus 2, two doubled adjacencies) stalls at 1 violation. Does more doubling / higher genus
    make realization easier (as the genus-ladder data suggest)?
 4. Anything on obstructions for the 12-face case.
+
+## Status 2026-10-30 evening (session 5, out of budget)
+
+* STARTED with the owner's priority (question 2/3: positive control for the n = 8 rung). Blocked: arxiv.org
+  is not in the cloud session's allowed network domains (DNS fails); the owner has to allow `arxiv.org`
+  (environment settings -> Network access -> Allowed domains), or put the PDFs / coordinate files into
+  `literature/`.
+* Found while preparing the control (no network needed, do these first next session):
+  1. `gauss_gate` / `gauss_degree.coherent_triangles` assume a SIMPLE map: with doubled adjacencies (two
+     edges between faces X, Y, as in the 8-face genus-3 objects and our n = 8 rung) an edge key {X, Y} has 4
+     triangles and the BFS orientation breaks. Needed: a links-based variant (oriented corners (X, L[i],
+     L[i+1]) from the rotation system with repetitions, degree and covering from those corners; target
+     chi/2 = 1 - g: -1 for our genus-2 rung, -2 for the genus-3 octahedra).
+  2. `ladder_exact.verify` already takes links with repetitions (doubled adjacencies) -> it can check their
+     coordinates directly once the face cycles are known.
+  3. No n = 8 attempt is saved in the repository (the ladder runs of 2026-10-29 kept only logs): rerun
+     `code/ladder.py` / `ladder_ga.py` on n = 8 for a few minutes, save the best attempts (planes + links),
+     then run the links-based T1 (target -1) and turning numbers on them (review 2.3: is the n = 8 plateau at
+     1 violation a class defect like type-0 genus 4, or an in-class defect?).
+  4. Then normals first + exact offsets for n = 8 needs `omsat.Triangulation` with doubled adjacencies
+     (partners per edge occurrence, not per face pair) - not supported yet.
