@@ -113,6 +113,20 @@ branch `claude/practical-archimedes-e5p1fi` = research branch + this session; me
 * Night 5 READY (`overnight/run_night5.sh`; `HOW_TO_RUN_OVERNIGHT.md`): `gate`, then `n5` (nfirst, kdrift,
   g6) + `arch` control; morning summary `overnight/analyze_n5.py`.
 
+NEXT STEPS agreed with the owner (2026-10-30 late), in this order:
+1. **L6 engine calibration on a known solution**: rebuild Röst-Vígh's 8-face genus-3 polyhedron
+   (`code/control_rost_vigh.build()` gives planes + links with doubled adjacencies) and test whether our
+   engines rediscover it from random planes (ladder annealing / GA / CMA on its map; solid-first from random
+   planes with "<= 2 collinear edge runs per pair"). Rediscovery rate per engine = calibration; replaces the
+   n = 8 genus-2 rung as the benchmark.
+2. **L2 symmetric orbit ansatz + plane-only construction** (Röst-Vígh style): first rediscover their polyhedron
+   from random D2 two-orbit planes (2 free planes), then n = 12 with 3 orbits of a free order-4 group (D2 or
+   C4 rotoreflection), relaxed target L1 (d = 6 or 12 doubled pairs, genus 7 / 8) and strict target.
+   Ideas L1-L6: `cross-field-ideas.md` round 3; materials: `literature/TODO_world_research_2026.md`
+   (also: Mizhaev's coordinates as a second control).
+3. Own method: formalize "GCL" (Gauss-class ladder, `METHODS_PROTOCOL.md` section "Own method") and test the
+   projective variant P1 (`cross-field-ideas.md` round 3, last row).
+
 First tasks (session 6): analyze night 4 (`analyze_glad.py`, arch archive) and night 5 (`analyze_n5.py`):
 any realized genus first (re-check with `ladder_exact.verify`); test 2.2 summary; per arm the k_tau values
 and whether kdrift crosses the hemisphere boundary robustly anywhere; UNSAT statistics of normals-first

@@ -79,3 +79,15 @@ exploit so far (merged collinear edges, scale collapse, shared edge through a 4-
   in dead-end maps; the genus ladder keeps extendability by construction.
 * Every float "solution" must pass the exact check; zero defects of necessary conditions
   (night 2) are not solutions.
+
+## Own method: GCL, the Gauss-class ladder (2026-10-30)
+
+Assembled from this project's own pieces (none taken from the literature): (1) the genus ladder with tube
+decomposition and extendability (`genus_ladder.py`, `handle_add.reach`); (2) the Gauss-degree theorem with
+positive covering for every genus (theory-notes F7, proved here; controls: Szilassi, five type-0 genus-3
+realizations, Röst-Vígh's polyhedron) used as a per-level gate, with the handle decomposition
+D_{M+tau} = D_M + k_tau (review 2026-10-30); (3) drift inside the realization space of level g toward the
+class of level g+1 (`kdrift.py`); (4) normals first, then the offsets decided EXACTLY by the sub-map OM-SMT
+(`normals_first.py`, `fixed_normals_gauge.py`, positive control `nf_control.py`); (5) exact rational
+verification of every claim (`ladder_exact.py`). Status: implemented and tested on type 0 (night 4 runs it
+on all night-3 realizations); variant P1 (projective ladder) proposed.
