@@ -1,4 +1,4 @@
-"""Polish a solid-first polyhedron: random plane moves that keep the SAME face structure (same set of
+"""Polish a solid-first polyhedron (planes + solid) or a map-based one (planes + triangles): random plane moves that keep the SAME face structure (same set of
 adjacent pairs, one disk face per plane, embedded) while increasing 'beauty' (code/beauty.py).
 Usage: python3 -I polish_solid.py RESULT_JSON OUT_JSON SECONDS"""
 import json, sys, time
@@ -10,8 +10,9 @@ from ladder import pack, pair_energy
 from beauty import beauty
 
 r = json.load(open(sys.argv[1])); secs = float(sys.argv[3])
-H = np.array(r['planes'], float); n = len(H); A = SF.Arrangement(H); S = {tuple(x) for x in r['solid']}
-tris = SF.extract_map(A, S); L = links_from(coherent_triangles(tris), n); LK, M, _ = pack(L)
+H = np.array(r['planes'], float); n = len(H); A = SF.Arrangement(H)
+tris = SF.extract_map(A, {tuple(x) for x in r['solid']}) if 'solid' in r else [tuple(t) for t in r['triangles']]
+L = links_from(coherent_triangles(tris), n); LK, M, _ = pack(L)
 H = A.H.copy()
 assert pair_energy(H, LK, M)[0] == 0
 b = beauty(H, L)['beauty']; b0 = b; rng = np.random.default_rng(0); t0 = time.time()
@@ -30,6 +31,7 @@ A2 = SF.Arrangement(H)
 # rebuild the solid for the polished planes from the polygons (winding number 1 cells)
 from ladder import polygons
 P = polygons(H, L); S2 = SF.solid_from_winding(A2, [P[X] for X in range(n)])
-json.dump({'planes': H.tolist(), 'solid': [[int(v) for v in k] for k in S2], 'beauty_before': b0, 'beauty_after': b},
+json.dump({'planes': H.tolist(), 'solid': [[int(v) for v in k] for k in S2], 'triangles': [list(map(int, t)) for t in tris],
+           'beauty_before': b0, 'beauty_after': b},
           open(sys.argv[2], 'w'))
 print('beauty %.2e -> %.2e' % (b0, b))

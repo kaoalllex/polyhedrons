@@ -1,4 +1,4 @@
-"""Render a solid-first result (planes + solid cells) as a polyhedron: four views (PNG) + interactive
+"""Render a solid-first result (planes + solid cells) or a map-based one (planes + triangles) as a polyhedron: four views (PNG) + interactive
 plotly HTML. Usage: python3 -I render_solid.py RESULT_JSON OUT_PREFIX TITLE"""
 import json, sys
 import numpy as np
@@ -14,8 +14,12 @@ from ladder import polygons
 COL = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4', '#8a63d2', '#3fb6c6', '#c4553a', '#6f9e2f', '#b8860b',
        '#d0679d', '#5a6fb3']
 r = json.load(open(sys.argv[1])); out = sys.argv[2]; title = sys.argv[3]
-H = np.array(r['planes'], float); n = len(H); A = SF.Arrangement(H); S = {tuple(x) for x in r['solid']}
-tris = SF.extract_map(A, S); L = links_from(coherent_triangles(tris), n); P = polygons(A.H, L)
+H = np.array(r['planes'], float); n = len(H); A = SF.Arrangement(H)
+if 'solid' in r:
+    tris = SF.extract_map(A, {tuple(x) for x in r['solid']})
+else:                                                   # a map-based result: planes + dual triangles
+    tris = [tuple(t) for t in r['triangles']]
+L = links_from(coherent_triangles(tris), n); P = polygons(A.H, L)
 V = np.vstack(list(P.values())); c = V.mean(0); s = np.abs(V - c).max()
 Q = {X: (q - c) / s for X, q in P.items()}
 fig = plt.figure(figsize=(16, 13), dpi=130)

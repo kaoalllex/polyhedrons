@@ -86,3 +86,26 @@ realizes the incidences of any map. The whole difficulty is real (signs / chirot
 | P6 | **Jigsaw: edges first, then clusters, then merge** | solve sub-configurations (5-7 faces) and glue (fragment assembly; Szilassi embryo was one attempt) |
 | P7 | **Work backwards / puzzle design** (designers start from the solution) | "solid-first" search: keep an EMBEDDED solid at all times (a union of cells of the 12-plane arrangement; 45 imported seeds are already embedded solids with split faces) and repair the face structure (one simple face per plane, all 66 pairs adjacent); any zero is automatically an embedding |
 | P8 | **Lookahead / failed-literal probing** (Nonograms, SAT) | try a decision, propagate, learn from the contradiction |
+
+## Ideas, round 2e: twisted and branching tunnels (user's question, 2026-10-30)
+
+Question: Szilassi's hole can be seen through; must the holes of the 12-face polyhedron be straight
+see-through tunnels and independent of each other?
+
+Answer: no. Genus 6 only says the surface is a sphere with 6 handles; nothing in the problem (or in
+any of our formulations) requires a see-through tunnel or independent holes:
+* a tunnel can be twisted or curved so that no straight line passes through it;
+* tunnels can branch and merge: the solid is a thickened graph (its "spine"), genus = cycle rank of
+  the spine (edges - vertices + 1); one tunnel splitting into two is a theta-shaped spine (genus 2);
+* tunnels can even be knotted or linked (the inside or the outside is then not a standard
+  handlebody); this changes the embedding but not the combinatorial map, so the same neighbourly
+  map may have several geometrically different realizations;
+* handles can be "inside" (tunnels through the solid) or "outside" (handles on the solid).
+Our searches do not assume any of this, so all variants are already allowed implicitly. What is
+new is to aim at them deliberately:
+
+| ID | Idea | Experiment |
+|---|---|---|
+| T1 | **Spine-seeded solids**: start the solid-first / exact-inner search from a thickened spatial graph of cycle rank 6 instead of random cells: K5 (10 edges, 5 vertices), K3,4 (12, 7), the cube with a diagonal pair, a theta-chain, and knotted versions (trefoil-shaped edges) | choose 12 planes approximating the faces of the thickened graph, take the cells near the graph as the solid, then CP-SAT + annealing |
+| T2 | **See-through test** for realized polyhedra: for each handle, is there a straight line through it? Classify our genus-2/3 results; if all are see-through, try to bias toward twisted tunnels | ray casting through the dual cycles |
+| T3 | **Branching handles in the ladder**: a tube attached between a vertex on an earlier handle and another vertex is exactly "one tunnel splitting into two"; prefer such attachments when straight attachments fail | order beam-ladder candidates by whether a tube end lies on an earlier tube |
