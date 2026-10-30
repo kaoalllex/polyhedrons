@@ -538,3 +538,17 @@ this session; the night-4 branch is left untouched).
   saddles, no near-coplanar triple), re-check exactly (integer normals, 256 directions), then decide
   the offsets exactly with `solve_gauge`. Smoke test, A, arm (0,5,8)-(2,6,7), 3 min, radii 0.2/0.4:
   admissible normals reached in 0.5 min each (max angle 0.18-0.40 rad), **4 x UNSAT** (z3 15-84 s).
+* Soundness control of the sub-map encoder (`submap_validate.py --unsat`, realization A): the three
+  genus-4 maps at A's normals in A's gauge (degree -2, target -3) are **UNSAT** in 119 / 28 / 12 s, as
+  the degree theorem requires; own-normal SAT also for B, C, D, polished (96-173 s, all exactly
+  verified EMBEDDED). So `solve_gauge` on sub-maps is validated in both directions.
+* **Gate + class logging in the climbers.** `archive_climb.py`: every arm stores T1 (`gauss` field:
+  degree in the realized polyhedron's gauge, k_tau, hemisphere margin, admissible gauges, fewest reversed
+  faces), every task logs degree / target and faces with turning != +1 of its best attempt; with
+  `--gauss-gate` failing arms are never picked (diversity tasks run instead). `beam_ladder.py`: T1 per
+  handle, passing handles first, `--gauss-gate` skips failing ones (climb_seq(gate=True)); class data
+  per attempt. Test (gated archive, 2 workers, 3 min, seeds A + B): 7 new genus-3 realizations (all
+  degree -2, turning +1); 27 arms, all with degree -2 and k_tau = 0 at their realization; 1 passes T1
+  (realization #8, handle (0,9,11)-(3,5,10), one admissible gauge reversing 4 faces); its arm task
+  ended at 7 events with degree 0 / target -3 and 5 faces with turning != +1: the event energy does not
+  steer into the class, which is why the normals-first step is the main tool.

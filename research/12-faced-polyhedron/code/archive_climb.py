@@ -12,8 +12,14 @@ scheduler instead of a fixed chain). What worked by hand on type 0 is automated 
     count as violations; near-solutions tend to hug the floor, so the log shows edge and margin), seeded
     from the arm's best attempt or from the realization; every float zero re-checked exactly.
 A realization of the full map (genus 6, all 66 pairs) is a solution.
+Gauss gate (review 2026-10-30; code/gauss_gate.py): every arm records T1 at its realization (degree of the
+next map in the realized polyhedron's orientation, k_tau, number of admissible gauges for 1 - g'); every
+task logs the class data of its best attempt (own degree vs 1 - g, faces with turning != +1). With
+gate=True (run_overnight.py arch --gauss-gate) arms without an admissible gauge are never picked, so the
+climb only spends time on arms in the right normal class and on diversity tasks (new realizations,
+whose arms may pass).
 State: OUT_DIR/archive.json (atomic) + OUT_DIR/results.jsonl (one line per task); resumable.
-Usage: python3 -I archive_climb.py OUT_DIR HOURS WORKERS MINUTES_PER_TASK SEED_FILES..."""
+Usage: python3 -I archive_climb.py OUT_DIR HOURS WORKERS MINUTES_PER_TASK SEED_FILES... [--gauss-gate]"""
 import json, os, sys, time, random
 import multiprocessing as mp
 import numpy as np
@@ -78,6 +84,13 @@ def worker(item):
     Hn = np.array(H, float); nr = np.linalg.norm(Hn[:, :3], axis=1); Hn[:, :3] /= nr[:, None]; Hn[:, 3] /= nr
     e_rel, m_rel = degeneracy(Hn, *pack(L)[:2])
     rec['edge'] = float(e_rel); rec['margin'] = float(m_rel)
+    try:
+        from gauss_gate import config_report
+        cr = config_report(H.tolist(), tris, gauges=False)
+        rec['degree'] = cr.get('own_degree'); rec['target_degree'] = cr['target_degree']
+        rec['bad_turning'] = cr.get('bad_turning_faces')
+    except Exception as e:                           # noqa: BLE001
+        rec['degree_error'] = repr(e)[:200]
     if b < 4.5:
         rec['planes'] = H.tolist()
     if b < 0.5:
@@ -120,6 +133,7 @@ class Archive:
         if g < FULL_GENUS:
             H2 = np.array(planes, float); nr = np.linalg.norm(H2[:, :3], axis=1)
             H2[:, :3] /= nr[:, None]; H2[:, 3] /= nr
+            from gauss_gate import arm_report
             for t1, t2, R, L in extendable([tuple(t) for t in tris], N):
                 LK, M, _ = pack(L)
                 try:
@@ -127,15 +141,31 @@ class Archive:
                 except Exception:
                     e = 99.0
                 tk = mapkey(R); self.maps[tk] = [list(map(int, t)) for t in R]
+                try:
+                    t1r = arm_report(planes, tris, R, (t1, t2))
+                    gauss = {k: t1r.get(k) for k in ('own_degree', 'target_degree', 'k_tau', 'hemisphere_margin',
+                                                      'n_admissible', 'min_reversed', 'n_tube_only')}
+                except Exception as ex:              # noqa: BLE001
+                    gauss = {'error': repr(ex)[:200]}
                 self.arms['%d:%s' % (rid, tk)] = {'real': rid, 'target': tk, 'genus': g + 1, 'tube': [list(t1), list(t2)],
-                                                  'start': e, 'tries': 0, 'best': None, 'running': 0}
+                                                  'start': e, 'tries': 0, 'best': None, 'running': 0, 'gauss': gauss}
         return rid
 
 
-def pick(arc, rng, minutes):
-    """Next task: a diversity task (25 %) or the arm with the highest priority."""
+def gauss_pass(a):
+    """T1 verdict of an arm: True / False, None if unknown (arm created before the gate existed)."""
+    g = a.get('gauss') or {}
+    if g.get('n_admissible') is None:
+        return None
+    return g['n_admissible'] > 0
+
+
+def pick(arc, rng, minutes, gate=False):
+    """Next task: a diversity task (25 %; always when the gate leaves no arm) or the arm with the
+    highest priority (with gate: only arms passing T1)."""
     reals = arc.real
-    if reals and rng.random() < 0.25:
+    arms = {k: a for k, a in arc.arms.items() if not gate or gauss_pass(a) is not False}
+    if reals and (rng.random() < 0.25 or not arms):
         top = max(r['genus'] for r in reals)
         pool = [r for r in reals if r['genus'] >= top - 1]
         r = pool[int(rng.integers(len(pool)))]
@@ -146,13 +176,13 @@ def pick(arc, rng, minutes):
             seed = (norm_planes(r['planes']) + 0.15 * rng.standard_normal((N, 4))).tolist()
         return {'kind': 'diversity', 'map': r['map'], 'tris': arc.maps[r['map']], 'seed_planes': seed,
                 'type_id': r['type_id'], 'minutes': minutes}
-    if not arc.arms:
+    if not arms:
         return None
-    total = sum(a['tries'] for a in arc.arms.values()) + 1
+    total = sum(a['tries'] for a in arms.values()) + 1
     def prio(a):
         est = a['best'] if a['best'] is not None else a['start'] / 3.0
         return 2 * a['genus'] - est + 2.0 * np.sqrt(np.log(total + 1) / (a['tries'] + a['running'] + 1))
-    key = max(arc.arms, key=lambda k: prio(arc.arms[k]))
+    key = max(arms, key=lambda k: prio(arms[k]))
     a = arc.arms[key]; r = arc.real[a['real']]
     att = arc.attempts.get(a['target'], [])
     seed = att[0][1] if (att and rng.random() < 0.5) else r['planes']
@@ -201,13 +231,16 @@ def load_seeds(arc, files, log):
     log('archive seeds: %d realizations (genus >= 2), %d attempts; %d arms' % (n_real, n_att, len(arc.arms)))
 
 
-def run(out_dir, hours, workers, minutes, files, log=print, committer=None, seed=0):
+def run(out_dir, hours, workers, minutes, files, log=print, committer=None, seed=0, gate=False):
     os.makedirs(out_dir, exist_ok=True)
     arc = Archive(os.path.join(out_dir, 'archive.json'))
     if not arc.real:
         load_seeds(arc, files, log); arc.save()
     if not arc.arms and not arc.real:
         log('archive: nothing to climb from (no realized genus >= 2)'); return
+    np_ = sum(1 for a in arc.arms.values() if gauss_pass(a)); nf = sum(1 for a in arc.arms.values() if gauss_pass(a) is False)
+    log('archive: %d realizations, %d arms; Gauss gate T1: %d pass, %d fail, %d unknown%s' % (
+        len(arc.real), len(arc.arms), np_, nf, len(arc.arms) - np_ - nf, ' (gate ON)' if gate else ''))
     rng = np.random.default_rng(seed + arc.done)
     deadline = time.monotonic() + 3600 * hours
     res_path = os.path.join(out_dir, 'results.jsonl')
@@ -216,7 +249,7 @@ def run(out_dir, hours, workers, minutes, files, log=print, committer=None, seed
     try:
         while True:
             while len(running) < workers and time.monotonic() < deadline:
-                p = pick(arc, rng, minutes)
+                p = pick(arc, rng, minutes, gate)
                 if p is None:
                     break
                 issued += 1; tid = 'a%d_%d' % (arc.done, issued)
@@ -253,8 +286,9 @@ def run(out_dir, hours, workers, minutes, files, log=print, committer=None, seed
                     f.write(json.dumps({k: v for k, v in rec.items() if k != 'planes'} | ({'planes': rec['planes']} if rec.get('exact') else {})) + '\n')
                 arc.save()
                 top = max(r['genus'] for r in arc.real) if arc.real else -1
-                log('arch %s %s type %d genus %d: best %.2f (edge %.0e, margin %.0e)%s (archive: %d realizations, top genus %d)' % (
+                log('arch %s %s type %d genus %d: best %.2f (edge %.0e, margin %.0e, degree %s/%s, turning!=1 %s)%s (archive: %d realizations, top genus %d)' % (
                     tid, p['kind'], p['type_id'], rec['genus'], rec['best'], rec.get('edge', 0), rec.get('margin', 0),
+                    rec.get('degree'), rec.get('target_degree'), rec.get('bad_turning'),
                     ' NEW REALIZATION #%d' % new if new is not None else (' (exact, same as known)' if rec.get('exact') else ''),
                     len(arc.real), top))
                 if new is not None and rec['genus'] == FULL_GENUS:
@@ -275,6 +309,8 @@ def run(out_dir, hours, workers, minutes, files, log=print, committer=None, seed
 
 
 if __name__ == '__main__':
-    out_dir, hours, workers, minutes = sys.argv[1], float(sys.argv[2]), int(sys.argv[3]), float(sys.argv[4])
-    run(out_dir, hours, workers, minutes, sys.argv[5:],
-        log=lambda *a: print(time.strftime('%H:%M:%S'), *a, flush=True))
+    gate = '--gauss-gate' in sys.argv
+    argv = [a for a in sys.argv if a != '--gauss-gate']
+    out_dir, hours, workers, minutes = argv[1], float(argv[2]), int(argv[3]), float(argv[4])
+    run(out_dir, hours, workers, minutes, argv[5:],
+        log=lambda *a: print(time.strftime('%H:%M:%S'), *a, flush=True), gate=gate)
