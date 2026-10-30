@@ -495,3 +495,11 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
 * Depth weight in the search energy (`--depth W`: e + W tanh(depth) instead of e + 0.01 tanh(depth)),
   genus 4 from C (handle A) and D (handle B), 15 min: W = 0.3 -> 5 and 7, W = 1.0 -> 5 and 6 honest
   violations; no gain over the count-dominated energy.
+* **Refinement of the genus-4 picture (type 0, handle B = tube (0,5,8)-(2,6,7)):** archive test with
+  1-minute tasks found 2-violation attempts that are NOT degenerate by the floor criteria (edge 1.2e-4
+  to 2.8e-4, margin 1.6e-5 to 3.3e-5), all with the SAME pattern as the degenerate one: bad pairs
+  (1,2), (1,6) and two non-simple faces ({2,3} or {3,10}), depth ~0.005; the depth goes to 0 only in
+  the degenerate limit. So "honest plateau 4" above is too strong: the handle-B arm sits robustly at
+  2 violations of one fixed pattern, which can only be removed by degenerating (faces 1 and 6 would
+  have to meet twice). Well-conditioned (edge >= 1e-3): 6-7. `archive_climb` now scores attempts with
+  a degeneracy adjustment (+1 for edge < 1e-4, +1 for margin < 1e-5), also for the loaded seeds.

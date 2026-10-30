@@ -3,8 +3,8 @@ scheduler instead of a fixed chain). What worked by hand on type 0 is automated 
   * ARCHIVE: every exactly embedded polyhedron found (genus >= 2) with its map (dual triangles);
     several different realizations of the same map are kept (diversity gave the best genus-4 starts);
   * ARMS: (realization, next handle) for every handle after which all n(n-1)/2 pairs stay reachable
-    (handle_add.reach); an arm's estimate = its best violation count so far (start energy / 3 before
-    the first try); priority = higher target genus first, then low estimate + exploration bonus;
+    (handle_add.reach); an arm's estimate = its best degeneracy-adjusted violation count so far (+1 for
+    a shortest edge < 1e-4, +1 for a margin < 1e-5 of the diameter; start energy / 3 before the first try); priority = higher target genus first, then low estimate + exploration bonus;
   * DIVERSITY tasks (a quarter of the time): search an archived map again from a failed attempt or
     or from a strongly perturbed realization, to find a DIFFERENT realization (oriented matroid differs
     in >= 30 of the 495 signs, up to reorientation);
@@ -192,8 +192,12 @@ def load_seeds(arc, files, log):
                 if arc.add_realization(tris, planes, tid, origin) is not None:
                     n_real += 1
                 continue
-        if best < 4.5:
-            arc.add_attempt(mapkey(tris), float(best), planes); n_att += 1
+        if best < 4.5:                                   # degeneracy-adjusted, as for the task results
+            from ladder import pack, degeneracy
+            H = np.array(planes, float); nr = np.linalg.norm(H[:, :3], axis=1); H[:, :3] /= nr[:, None]; H[:, 3] /= nr
+            e_rel, m_rel = degeneracy(H, *pack(links_from(coherent_triangles(tris), N))[:2])
+            score = float(best) + (1.0 if e_rel < 1e-4 else 0.0) + (1.0 if m_rel < 1e-5 else 0.0)
+            arc.add_attempt(mapkey(tris), score, planes); n_att += 1
     log('archive seeds: %d realizations (genus >= 2), %d attempts; %d arms' % (n_real, n_att, len(arc.arms)))
 
 
@@ -230,11 +234,15 @@ def run(out_dir, hours, workers, minutes, files, log=print, committer=None, seed
                 except Exception as e:                       # noqa: BLE001
                     log('task %s failed: %r' % (tid, e)); continue
                 arc.done += 1
+                # degeneracy-adjusted value: near-solutions hugging the floor (tiny edge / margin) are degenerate
+                # limits, not progress; they must not attract the bandit or seed later tasks
+                score = rec['best'] + (1.0 if rec.get('edge', 1.0) < 1e-4 else 0.0) + (1.0 if rec.get('margin', 1.0) < 1e-5 else 0.0)
+                rec['score'] = score
                 if p.get('arm'):
                     a = arc.arms[p['arm']]; a['running'] = max(0, a['running'] - 1); a['tries'] += 1
-                    a['best'] = rec['best'] if a['best'] is None else min(a['best'], rec['best'])
+                    a['best'] = score if a['best'] is None else min(a['best'], score)
                 if 'planes' in rec and not rec.get('exact'):
-                    arc.add_attempt(rec['map'], rec['best'], rec['planes'])
+                    arc.add_attempt(rec['map'], score, rec['planes'])
                 new = None
                 if rec.get('exact'):
                     new = arc.add_realization([tuple(t) for t in arc.maps[rec['map']]], rec['planes'], p['type_id'],
