@@ -41,7 +41,7 @@ def allowed_octants():
 ALLOWED = allowed_octants()
 
 
-def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, hint=None, target_adj=None):
+def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, hint=None, target_adj=None, target_pairs=None):
     T = T or Tables(A)
     nc = len(T.cells)
     model = cp_model.CpModel()
@@ -89,6 +89,8 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
             model.Add(sum(ss) >= 1).OnlyEnforceIf(a); model.Add(sum(ss) == 0).OnlyEnforceIf(a.Not())
             model.Add(ex >= sum(ss) - 1); slack.append(ex)
         adj.append(a)
+    pairs_list = list(itertools.combinations(range(T.n), 2))
+    adj_by_pair = dict(zip(starts_by_pair.keys(), adj))
     # one face per plane, via the Euler characteristic of the boundary region in each plane:
     # facets - (1-cells in its closure) + (vertices in its closure) = 1  (a single disk has chi = 1)
     nf = T.nf
@@ -130,10 +132,17 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
                 model.Add(d >= 1 - (sum(chi_terms[X]) - sum(neg[X]) + sum(pos_v[X])))
                 slack.append(d)
     model.Add(sum(x) >= 1)
-    if target_adj is None:
+    if target_pairs is not None and target_adj is None:   # match a prescribed adjacency graph
+        good = [a for p, a in adj_by_pair.items() if pairs_list[p] in target_pairs]
+        bad = [a for p, a in adj_by_pair.items() if pairs_list[p] not in target_pairs]
+        model.Maximize(sum(good) - 2 * sum(bad))
+    elif target_adj is None:
         model.Maximize(sum(adj))
     else:                                                # secondary score: how close is the next genus
         model.Add(sum(adj) >= target_adj)
+        if target_pairs is not None:                    # ... with a prescribed adjacency graph
+            for p, a in adj_by_pair.items():
+                model.Add(a == (1 if pairs_list[p] in target_pairs else 0))
         model.Minimize(sum(slack))
     if hint is not None:                               # warm start from a previous solid (cell sign vectors)
         for i, k in enumerate(T.cells):
@@ -159,6 +168,10 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
             return inS, dict(slack=val, hot=sorted(hot), status=solver.StatusName(st), seconds=round(time.monotonic() - t0, 2))
         info = dict(adjacent=val, faces=int(f), disks=int(dsk), chi=int(chi), status=solver.StatusName(st), cuts=cuts,
                     seconds=round(time.monotonic() - t0, 2))
+        if target_pairs is not None:
+            got = {pairs_list[p] for p, a in adj_by_pair.items() if solver.Value(a)}
+            info['matched'] = len(got & set(target_pairs)); info['extra'] = len(got - set(target_pairs))
+            info['adjacent'] = len(got)
         if not require_one_face or (f == 0 and dsk == 0) or cuts >= max_cuts:
             info['valid'] = bool(f == 0 and dsk == 0 and diag == 0 and badv == 0)
             return inS, info
