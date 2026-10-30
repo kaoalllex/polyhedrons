@@ -409,7 +409,7 @@ def pair_energy(H, LK, M):
         for i in range(m):
             p = _solve3(H, X, LK[X, i], LK[X, (i + 1) % m])
             P3[X, i] = p; Q[X, i, 0] = p @ u; Q[X, i, 1] = p @ w
-    cross = 0; dbl = 0
+    cross = 0; dbl = 0; cdepth = 0.0
     for X in range(n):
         m = M[X]
         for i in range(m):
@@ -423,6 +423,11 @@ def pair_energy(H, LK, M):
                 d4 = (e[0] - c[0]) * (b[1] - c[1]) - (e[1] - c[1]) * (b[0] - c[0])
                 if d1 * d2 < 0 and d3 * d4 < 0:
                     cross += 1
+                    # continuous depth of the crossing (advisor's direction 5): the smaller of the two
+                    # sub-segments beyond the crossing point, relative to the edge lengths
+                    la = np.sqrt((b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2) + 1e-300
+                    lc = np.sqrt((e[0] - c[0]) ** 2 + (e[1] - c[1]) ** 2) + 1e-300
+                    cdepth += min(abs(d1), abs(d2)) / (la * lc) + min(abs(d3), abs(d4)) / (la * lc)
             for j in range(i + 1, m):
                 if LK[X, i] != LK[X, j]:
                     continue
@@ -508,7 +513,7 @@ def pair_energy(H, LK, M):
                     isbad = True; over += (t1 - t0) * np.sqrt(dd)
             if isbad:
                 bad += 1
-    return cross + dbl + bad, over
+    return cross + dbl + bad, over + cdepth
 
 
 if __name__ == '__main__':
