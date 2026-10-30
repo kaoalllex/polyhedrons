@@ -397,3 +397,12 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   only zig-zag annuli even gave 0 extensions). The free-type search drifts into maps that cannot be
   completed — this explains its plateau. Fix: the search value now includes a dead-end penalty
   40 * (66 - reach) / 6 (computed from genus >= 1; `--reach`); four such runs launched.
+* Night-2 `pdefect` finished (user's machine): 170 records, 161 POSITIVE, 9 with zero closure defect
+  — all false positives: the 3 early ones checked by hand (pd10_0, pd37_0, pd4_1: 11 of 12 faces must
+  be non-simple), the 6 later ones (pd5_1, pd54_1, pd6_2, pd8_2, pd18_2, pd54_2) flagged
+  ZERO_DEFECT_NOT_SIMPLE automatically by the new worker (closure + simple faces infeasible).
+* Ladder steps with the exact solid solver and a target graph (genus 2 -> 3 for types 4, 11; genus
+  1 -> 2 for types 54, 9): the soft slack toward the next level fell from 16-18 to 10-12 (and from
+  99 to 14 for 1 -> 2) in 60-90 min, no zero. Level re-search with the crossing-depth energy:
+  type 11 genus 2: 2 -> 1, type 4 genus 3: 5 -> 4 (no zero). n = 8 with depth: still 1.
+* Night 3 revised: the genus ladder over all 59 types (job `glad`, `run_night3.sh`).

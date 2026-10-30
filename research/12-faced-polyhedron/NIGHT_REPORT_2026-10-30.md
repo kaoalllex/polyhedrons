@@ -37,8 +37,17 @@ was climbing the wrong mountains; climbing must stay on extendable maps (the cha
 map-fixed genus ladder (frontier so far: genus 2, type 11). Four ladders (types 11, 4, 54, 9,
 15 min per level) are running.
 
+## Later in the night
+* Genus ladders (map-fixed, extendable by construction) on types 11, 4, 54, 9 with a stronger
+  per-level search: frontier genus 2 (types 4 and 11 exactly), genus 3 at 4-5 violations.
+* Exact-solid ladder steps toward a prescribed next-level adjacency graph: soft slack decreased
+  (16 -> 10, 99 -> 14) but no zero.
+* Continuous crossing depth added to the honest energy (tie-breaker): small gains, no zero; n = 8
+  plateau unchanged (1).
+* Night-2 `pdefect` (user's machine) finished: 9 zero-defect normal sets, all non-simple (false).
+
 ## Next
+* Run night 3 (genus ladder over all 59 types) on the user's machine: which types climb highest.
+* Climb only on extendable maps (chains); combine the exact solid solver with the chain targets.
 * Speed and strength of the inner CP-SAT at n = 12 (it does not prove optimality within 60 s).
-* Push beyond genus 3: more runs from the genus-3 solid, guided moves, longer budgets (user's
-  machine overnight with 7 workers).
 * Advisor's remaining directions: IPC planarization flow, continuous violation depth, OM-SAT n = 8.
