@@ -432,3 +432,9 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   genus-4 attempt: 7. Drift inside the genus-3 realization space (`code/drift_search.py`: every step
   stays an embedded genus-3 polyhedron, objective = genus-4 energy): 7-11 after 15 min (worse than
   free search). Genus 6 (type 0) seeded from the genus-5 attempt: running.
+* Diversity of genus-3 realizations: 5 searches of the type-0 genus-3 map seeded from the failed
+  genus-2 attempt (15 min each): 1 exact realization (`type0_genus3_extendable_b.json`, planes differ by
+  up to 1.46 from the first one), 4 at 1 violation. From realization B the genus-4 start energies are
+  lower (17, 18, 27 vs 27, 28, 34) and the branching ladder reached **genus 4 at 4 violations**
+  (handle B = tube (0,5,8)-(2,6,7)), the best so far; handle C 6 (LNS 6), handle A 7. Genus 6 seeded
+  from the genus-5 attempt of realization A: 16.
