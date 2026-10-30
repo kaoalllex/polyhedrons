@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-# Night 3. Usage: ./run_night3.sh [HOURS] [WORKERS]
-# Phase 1 (<= 35 %): own "ladder" path - closed polyhedra with 8 mutually adjacent faces (genus 2),
-#                    maps generated from scratch, genetic algorithm (island model) on the honest pair
-#                    energy, every float zero re-checked in exact rational arithmetic -> CANDIDATE.
-#                    (7 faces = Szilassi is found in seconds by the same code; 8 is open.)
-# Phase 2 (rest):    "simple faces first" for 12 faces - anneal admissible normals: first drive the
-#                    closure defect to 0, then minimise the number of faces that must be non-simple
-#                    (exact MILP); 0 -> planes reconstructed and checked exactly -> CANDIDATE.
+# Night 3 (revised 2026-10-30). Usage: ./run_night3.sh [HOURS] [WORKERS]
+# Genus ladder over all 59 neighbourly types: each type's map = simple 12-faced polyhedron + 6 handles;
+# remove tubes down to the sphere, then climb back realizing genus 0, 1, 2, ... (annealing + CMA-ES on
+# the honest pair energy, each level seeded from the level below, every zero checked exactly).
+# Result per type: the highest exactly realized genus (genus 6 = a solution, saved as CANDIDATE).
+# (The older phases - 8-face ladder GA, simple-defect - remain available as jobs 'ladder' / 'sdefect'.)
 # Merge origin only AFTER the previous night job has exited (it re-imports run_overnight.py from disk).
 set -u
 cd "$(dirname "$0")"
@@ -15,12 +13,7 @@ export PATH="$HOME/bin:$PATH"
 H=${1:-8}
 W=${2:-$(python3 -c "import os; print(max(1, (os.cpu_count() or 2) - 1))")}
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1
-H1=$(python3 -c "print(round($H * 0.35, 2))")
 # budgets count awake time only (time.monotonic stops while the Mac sleeps), so closing the lid costs nothing
-T0=$(python3 -c "import time; print(time.monotonic())")
-echo "night 3: $H h on $W workers (ladder <= $H1 h, sdefect gets the rest)"
-nice -n 10 python3 run_overnight.py ladder --ladder-n 8 --reps 400 --minutes-per-seed 10 --hours "$H1" --workers "$W" --git
-H2=$(python3 -c "import time; print(round($H - (time.monotonic() - $T0) / 3600, 2))")
-echo "phase 2: $H2 h"
-nice -n 10 python3 run_overnight.py sdefect --reps 3 --minutes-per-seed 30 --milp-seconds 45 --hours "$H2" --workers "$W" --git
+echo "night 3: genus ladder, $H h on $W workers"
+nice -n 10 python3 run_overnight.py glad --reps 2 --minutes-per-seed 8 --hours "$H" --workers "$W" --git
 python3 run_overnight.py status

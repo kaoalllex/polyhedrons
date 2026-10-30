@@ -67,11 +67,12 @@ git pull
 ./run_night3.sh 8 7
 ```
 
-Phase 1 (35 %): our own "ladder" — closed polyhedra with 8 mutually adjacent faces, genetic algorithm,
-every zero re-checked exactly. Phase 2: 12 faces, "simple faces first" (closure defect to 0, then the
-number of faces that must self-intersect to 0). Any CANDIDATE is saved and committed at once.
-Фаза 1 — «лестница» (8 попарно соседних граней, генетический алгоритм, точная проверка);
-фаза 2 — 12 граней, «сначала простые грани».
+Revised 2026-10-30: the whole night is the **genus ladder** over all 59 types (2 chains each): every
+neighbourly 12-face map = a simple 12-faced polyhedron + 6 handles; the job realizes genus 0, 1, 2, ...
+step by step (each level seeded from the one below, exact check). Result per type: the highest
+exactly realized genus; genus 6 = a solution (saved as CANDIDATE and committed at once).
+Вся ночь — «лестница рода» по всем 59 типам: для каждого типа — наибольший точно реализованный род;
+род 6 = решение.
 
 Sleep / lid close: the time budget counts awake time only, so closing the laptop lid (the Mac sleeps,
 processes freeze) costs nothing; on wake the run continues with the remaining budget. Plug in the power

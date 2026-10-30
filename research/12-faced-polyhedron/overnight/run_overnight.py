@@ -450,6 +450,54 @@ def job_sdefect(args, committer):
     run_pool('sdefect', tasks, sdefect_worker, args, committer)
 
 
+# ----------------------------------------------------------------------------- job: glad
+# Genus ladder (2026-10-30 night): every neighbourly 12-face map = simple 12-faced polyhedron + 6 handles.
+# Remove tubes down to the sphere (code/genus_ladder.chain), then climb: realize M0, M1, ... with
+# one-plane annealing + CMA-ES on the honest pair energy, each level seeded from the level below;
+# every zero re-checked exactly. A realized genus-6 level IS a solution (CANDIDATE). Maps on these
+# chains are extendable by construction (the free-type solid search drifts into dead-end maps).
+
+def glad_worker(item):
+    task, p = item
+    import random
+    import numpy as np
+    from genus_ladder import chain, search
+    from gauss_degree import coherent_triangles, links_from
+    from ladder_exact import verify
+    seed = int(hashlib.sha256(task.encode()).hexdigest()[:8], 16)
+    rng = np.random.default_rng(seed); t0 = time.monotonic()
+    ch = chain(p['triangles'], 12, random.Random(seed))
+    levels = []; seed_planes = None; top = -1
+    for lvl, T in enumerate(ch):
+        g = 6 - (len(ch) - 1 - lvl)
+        L = links_from(coherent_triangles(T), 12)
+        (b, H), runs = search(L, 12, p['minutes'], rng, seed_planes)
+        rec = {'genus': g, 'best': float(b), 'planes': H.tolist(), 'triangles': [list(t) for t in T]}
+        if b < 0.5:
+            ex = verify(H.tolist(), L, require_all_pairs=(g == 6))
+            rec['exact'] = bool(ex['EMBEDDED'])
+            if ex['EMBEDDED']:
+                top = g
+        levels.append(rec)
+        seed_planes = H.tolist()
+        if not rec.get('exact') and lvl >= 1 and b > 6:          # hopeless above this level: stop early
+            break
+    out = {'task': task, 'type_id': p['type_id'], 'top_exact_genus': top, 'levels': levels,
+           'seconds': round(time.monotonic() - t0, 1)}
+    out['status'] = 'SOLUTION' if top == 6 else 'TOP_GENUS_%d' % top
+    out['candidate'] = top == 6
+    out['summary'] = 'type %d: highest exactly realized genus %d; per level %s' % (
+        p['type_id'], top, [(lv['genus'], round(lv['best'], 2)) for lv in levels])
+    return out
+
+
+def job_glad(args, committer):
+    types = json.load(open(os.path.join(HERE, '..', 'data', 'k12_triangulations.json')))
+    tasks = [('gl%d_%d' % (t['id'], r), dict(type_id=t['id'], triangles=t['triangles'], minutes=args.minutes_per_seed))
+             for r in range(args.reps) for t in types]
+    run_pool('glad', tasks, glad_worker, args, committer)
+
+
 # ----------------------------------------------------------------------------- job: sym
 
 def sym_cases():
@@ -915,7 +963,7 @@ def job_status(args, committer):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('job', choices=['gnormals', 'pdefect', 'immersion', 'normals', 'sym', 'cube', 'ils', 'ladder', 'sdefect', 'status'])
+    ap.add_argument('job', choices=['gnormals', 'pdefect', 'immersion', 'normals', 'sym', 'cube', 'ils', 'ladder', 'sdefect', 'glad', 'status'])
     ap.add_argument('--hours', type=float, default=8.0, help='wall-clock budget of this invocation')
     ap.add_argument('--workers', type=int, default=max(1, (os.cpu_count() or 2) - 1))
     ap.add_argument('--timeout', type=float, default=None, help='per-task solver timeout in seconds')
@@ -956,9 +1004,9 @@ def main():
         global RES
         RES = os.path.abspath(args.results_dir)
     if args.timeout is None:
-        args.timeout = {'gnormals': 900, 'pdefect': 0, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'ladder': 0, 'sdefect': 0, 'status': 0}[args.job]
+        args.timeout = {'gnormals': 900, 'pdefect': 0, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'ladder': 0, 'sdefect': 0, 'glad': 0, 'status': 0}[args.job]
     committer = Committer(args)
-    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'ladder': job_ladder, 'sdefect': job_sdefect, 'status': job_status}[args.job](
+    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'ladder': job_ladder, 'sdefect': job_sdefect, 'glad': job_glad, 'status': job_status}[args.job](
         args, committer)
 
 
