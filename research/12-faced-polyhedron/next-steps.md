@@ -25,3 +25,13 @@ controls, theory notes, adversarial verification of the foundations, PI experime
    asymmetric seeds with <= 7 violations; 2 cores.
 3. **Geometry-first MaxSAT on near-miss arrangements**: does any OTHER labeled triangulation
    fit a near-miss arrangement better than its own?
+
+## Night 5 candidates (2026-10-30; decide after nights 3-4)
+1. Resume night 4 (`./run_night4.sh` again continues the archive) if it is still improving.
+2. Flip arms in `archive_climb`: when an arm stalls at a fixed violation pattern that vanishes only in
+   a degenerate limit, try the 2-2 flips of the dual map at the collapsing edges (valid ones only) as
+   new targets.
+3. More chains per type (`glad --reps 4`) for the types that realized genus 2: different sub-map
+   sequences give different genus-3 maps (chain choice decided type 0's genus 3).
+4. Exact local obstruction test of a stuck pattern (OM-SAT / LP on the planes involved): if it is
+   UNSAT, that handle on that realization family is impossible and can be pruned.
