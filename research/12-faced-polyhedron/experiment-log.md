@@ -614,3 +614,13 @@ chain seed 1): no type reached energy 0. Float degrees per level (targets 1, 0, 
 type 58 [1, 1, -1, -2, -3, -4, -5] (only the torus level wrong: handle 1 gives k = 0, handle 2 gives -2);
 types 0 and 11 [0, 0, -1, -2, -3, -4, -4] (sphere and genus 6 wrong); type 24 three levels wrong.
 Run 2 (8 min, other chains): below.
+Run 2 (8 min anneal, chain seeds 2/3): **type 58, chain seed 3: CHAIN-CONSISTENT NORMALS FOUND** (energy 0
+after 447 s; exact class check True on all 7 levels: degrees +1, 0, -1, ..., -5, robust covering, saddles
+>= 2g+1) -> `experiments/chain_normals/type58_chain_seed3_consistent_normals.json`. But the bottom level,
+the 12-face SPHERE M0, is **UNSAT at these fixed normals** (z3, 33 s): the class is necessary, not
+sufficient, already at genus 0. Other runs one level short (energy 10): type 0 [1,0,-1,-2,-3,-4,-4],
+types 11 and 58 (seed 2) [0,0,-1,...,-5].
+Conclusion: Q1 part 1 works (such normals exist and are found in minutes); part 2 needs a loop: many
+diverse chain-consistent normal sets, each decided exactly at M0 (~30 s), then M1, ... (statistics of the
+first UNSAT level). Next: add that loop (as in normals_first.run_arm) and/or add realizability of M0 to the
+normal-level conditions (e.g. the period/closure LP of the sphere map).
