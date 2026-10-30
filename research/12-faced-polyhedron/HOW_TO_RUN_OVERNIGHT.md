@@ -76,6 +76,25 @@ polyhedron it tries every next handle that keeps all 66 pairs reachable (`code/b
 Вся ночь — «лестница рода» по всем 59 типам: для каждого типа — наибольший точно реализованный род;
 род 6 = решение.
 
+### Night 4 / Четвёртая ночь
+
+After night 3 has finished (commit its results first, then merge):
+После окончания третьей ночи (сначала закоммитить её результаты, потом подтянуть origin):
+
+```bash
+cd research/12-faced-polyhedron/overnight
+git add -A results && git commit -m "night 3 results"
+git pull
+./run_night4.sh 8 11
+```
+
+Realization archive + bandit (`code/archive_climb.py`): every exactly realized polyhedron of genus >= 2 from
+night 3 is a starting point; every next handle that keeps all 66 pairs reachable is an "arm"; time goes to
+the most promising arms, and a quarter of it to new, different realizations of the same polyhedra
+(the trick that gave the best genus-4 attempts by hand). The log shows edge and margin of each best
+attempt: tiny values (near 3e-5 / 1e-6) mean a degenerate limit, not a near-solution.
+Архив реализаций + «бандит»: старт от всех точно реализованных полиэдров рода >= 2 из третьей ночи.
+
 Sleep / lid close: the time budget counts awake time only, so closing the laptop lid (the Mac sleeps,
 processes freeze) costs nothing; on wake the run continues with the remaining budget. Plug in the power
 before opening the lid: all workers resume at once. No `caffeinate` needed.

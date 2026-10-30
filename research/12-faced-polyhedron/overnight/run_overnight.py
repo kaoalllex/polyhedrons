@@ -507,6 +507,19 @@ def job_glad(args, committer):
     run_pool('glad', tasks, glad_worker, args, committer)
 
 
+def job_arch(args, committer):
+    """Realization archive + bandit climb (code/archive_climb.py): seeded from the glad results and the
+    realized polyhedra in experiments/genus_ladder/; every exactly embedded genus >= 2 polyhedron is a
+    root, every extendable next handle an arm; a quarter of the time goes to new realizations."""
+    from archive_climb import run
+    ex = os.path.normpath(os.path.join(HERE, '..', 'experiments', 'genus_ladder'))
+    seeds = [os.path.join(RES, 'glad', 'results.jsonl')]
+    if os.path.isdir(ex):
+        seeds += [os.path.join(ex, f) for f in sorted(os.listdir(ex)) if f.endswith('.json')]
+    seeds = [f for f in seeds if os.path.exists(f)]
+    run(jobdir('arch'), args.hours, args.workers, args.minutes_per_seed, seeds, log=log, committer=committer)
+
+
 # ----------------------------------------------------------------------------- job: sym
 
 def sym_cases():
@@ -972,7 +985,7 @@ def job_status(args, committer):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('job', choices=['gnormals', 'pdefect', 'immersion', 'normals', 'sym', 'cube', 'ils', 'ladder', 'sdefect', 'glad', 'status'])
+    ap.add_argument('job', choices=['gnormals', 'pdefect', 'immersion', 'normals', 'sym', 'cube', 'ils', 'ladder', 'sdefect', 'glad', 'arch', 'status'])
     ap.add_argument('--hours', type=float, default=8.0, help='wall-clock budget of this invocation')
     ap.add_argument('--workers', type=int, default=max(1, (os.cpu_count() or 2) - 1))
     ap.add_argument('--timeout', type=float, default=None, help='per-task solver timeout in seconds')
@@ -1015,9 +1028,9 @@ def main():
         global RES
         RES = os.path.abspath(args.results_dir)
     if args.timeout is None:
-        args.timeout = {'gnormals': 900, 'pdefect': 0, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'ladder': 0, 'sdefect': 0, 'glad': 0, 'status': 0}[args.job]
+        args.timeout = {'gnormals': 900, 'pdefect': 0, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'ladder': 0, 'sdefect': 0, 'glad': 0, 'arch': 0, 'status': 0}[args.job]
     committer = Committer(args)
-    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'ladder': job_ladder, 'sdefect': job_sdefect, 'glad': job_glad, 'status': job_status}[args.job](
+    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'ladder': job_ladder, 'sdefect': job_sdefect, 'glad': job_glad, 'arch': job_arch, 'status': job_status}[args.job](
         args, committer)
 
 
