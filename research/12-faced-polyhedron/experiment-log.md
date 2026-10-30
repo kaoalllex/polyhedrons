@@ -552,3 +552,24 @@ this session; the night-4 branch is left untouched).
   (realization #8, handle (0,9,11)-(3,5,10), one admissible gauge reversing 4 faces); its arm task
   ended at 7 events with degree 0 / target -3 and 5 faces with turning != +1: the event energy does not
   steer into the class, which is why the normals-first step is the main tool.
+* **T1 covering must be confirmed on many directions.** `gauss_gate.admissible` now re-checks every gauge
+  that passes on 64 directions on 1000 further ones (`n_confirm`). With that, the single admissible gauge
+  of the polished copy (review: "one exception") is NOT admissible: all 15 type-0 arms fail T1.
+* **k-targeted drift (T2, `code/kdrift.py`, new).** Plane moves that keep A's map embedded (float pair
+  energy 0, exact check at the end), energy = Gauss class of M + tau in A's orientation + hemisphere term.
+  First version (only k_tau, 1000 samples): arm (0,5,8)-(2,6,7) reached k_tau = -1 in 104 s, own gauge
+  passed 64 directions but not 1000; z3 at those normals: UNSAT (77 s). The configuration sits ON the
+  class wall: faces 5 and 7 nearly antiparallel (cos -0.992), tube vertex P_257 near infinity
+  (det 0.008), hemisphere margin -0.0000. Second version (robust covering: unit determinants > 0.01 on
+  3000 samples, hemisphere target -0.05; a bug in the first robust edit, which computed the degree from
+  the robust counts, was fixed before these runs), 15 min per arm: A (0,5,8)-(2,6,7) **reached the class
+  again (T1_PASS: own degree -3, own gauge admissible, confirmed on 1000 directions)** after 266 s, margin
+  still -0.0000; A (1,2,10)-(4,7,9), A (0,9,11)-(3,5,10), B (0,5,8)-(2,6,7): k_tau stays 0, margin pinned
+  at -0.0000 (the walk reaches the hemisphere boundary within seconds and cannot cross it while the genus-3
+  polyhedron stays embedded).
+* **Night 5 ready** (`overnight/run_night5.sh`, jobs `gate` and `n5` in `run_overnight.py`,
+  `overnight/analyze_n5.py`, instructions in `HOW_TO_RUN_OVERNIGHT.md`): phase 1 `gate` (T1 for every
+  realized polyhedron x next handle; test 2.2 on the night-3 chains), phase 2 `n5` on W-1 cores (mix
+  nfirst : kdrift : g6 = 4 : 4 : 1, 20 min tasks, z3 timeout 600 s; realizations saved and climbed at once)
+  + night-4 `arch` on 1 core as the control. Smoke tests with `--results-dir` (found and fixed: the results
+  directory override did not reach the spawned workers; now passed by environment).
