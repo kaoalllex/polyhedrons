@@ -15,9 +15,10 @@ Pipeline (all our own, no external seeds):
   3. anneal(links): plane-space annealing with restarts.
 Usage: python3 -I ladder.py fast N GENUS N_MAPS MINUTES_PER_MAP SEED OUT_JSON   (fast = numba triple energy)
 """
-import json, sys, time
+import json, os, sys, time
 from itertools import combinations
 import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))   # numba cache may resolve 'ladder' by name
 
 
 # ----------------------------------------------------------------------------- maps
