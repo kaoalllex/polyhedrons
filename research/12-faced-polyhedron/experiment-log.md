@@ -414,3 +414,11 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   From this polyhedron 10 tube attachments exist, 3 of them extendable (reach 66); branching ladder
   (`code/beam_ladder.py`: every extendable next handle, ordered by the start energy at the current
   planes, depth first) is running on them.
+* glad test, types 0-7 (8 min per level): genus 0 and 1 exact for all; **genus 2 failed for every
+  type at 1-2 violations**; type 0 nevertheless realized genus 3 (level seeded from the failed
+  genus-2 attempt) - levels can be skipped. Others: genus 3 at 3-7, genus 4 at 6-8.
+* The type-0 genus-3 polyhedron has exactly ONE completion to genus 6, the type-0 map itself
+  (3 genus-4 maps, 3 genus-5 maps: the three remaining handles A, B, C in any combination).
+  Branching ladder genus 3 -> 4 (12 min per handle): best 5 (handle A = tube (1,2,10)-(4,7,9)),
+  7, 7 (the fixed chain had 8). LNS on the six planes of handle A + 2 random planes: 5 after 9 min.
+  Level skipping (`code/seed_search.py`): genus 5 maps searched directly from the genus-3 planes.
