@@ -50,3 +50,24 @@ Questions to answer:
      1 violation a class defect like type-0 genus 4, or an in-class defect?).
   4. Then normals first + exact offsets for n = 8 needs `omsat.Triangulation` with doubled adjacencies
      (partners per edge occurrence, not per face pair) - not supported yet.
+
+## 2026-10-30 late: arxiv reachable (curl); first results
+
+* Abstracts read (full texts downloaded to the session scratchpad only, not committed):
+  * Mizhaev, arXiv:2609.17700: integer coordinates, face walks and plane equations given in the paper;
+    exact verification; C4 (rotoreflection) symmetry; "based on an earlier construction".
+  * Röst-Vígh, arXiv:2609.32998: faces A1: 3x-4y-2z=5, B1: -2x+5y-5z=3 and their images under the
+    half-turns about the axes (symmetry D2, chiral); found by "a computational geometric search"; exact
+    rational verification; combinatorially different from Mizhaev's; they say their construction procedure
+    applied to Mizhaev's planes reproduces his polyhedron (integer vertices in [-300, 300]^3).
+* **POSITIVE CONTROL PASSED** (`code/control_rost_vigh.py`, rebuilt from their Table 1 planes and face
+  cycles only): our exact verifier `ladder_exact.verify` (doubled collinear adjacencies as repeated link
+  entries): EMBEDDED, V/E/F = 24/36/8, 20 single + 8 double pairs, all faces simple; Gauss gate: own
+  degree -2 = chi/2, turning +1 on all 8 faces, own gauge admissible (2256 directions), 20 saddles
+  (>= 2g+1 = 7). So the degree theorem and our exact tools hold on an independent, published polyhedron
+  with doubled adjacencies.
+* Next: Mizhaev's coordinates (his tables) as a second control; read Röst-Vígh's "computational geometric
+  search" section for the method (symmetric two-orbit plane ansatz: 2 free planes + a symmetry group =
+  8 planes; the analogue for 12 faces is excluded for symmetric 12-face polyhedra by our certified UNSAT,
+  but a symmetric ansatz for LADDER rungs / genus-ladder levels is not); compare their n = 8, genus 3 with
+  our n = 8, genus 2 rung (1 violation plateau).
