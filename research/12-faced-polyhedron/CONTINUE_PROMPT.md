@@ -89,7 +89,8 @@ State on the morning of 2026-10-30 (read `METHODS_PROTOCOL.md` first: every meth
 * Ideas round 2e (twisted / branching / knotted tunnels; spine-seeded solids): `cross-field-ideas.md`.
 
 Later on 2026-10-30: archive of four type-0 genus-3 realizations (`experiments/genus_ladder/`);
-honest genus-4 plateau at 4 violations; every lower "2" is a degenerate limit (check edge / margin with
+genus 4 stuck at 2 violations of one fixed pattern (faces 1-2, 1-6 overlap) that vanish only in a
+degenerate limit (check edge / margin with
 `ladder.degeneracy`; `--floor` options). Night 4 = job `arch` (`overnight/run_night4.sh`), run after
 night 3. Ideas rounds 2e (tunnels) and 2f (unconventional approaches) evaluated in `cross-field-ideas.md`.
 

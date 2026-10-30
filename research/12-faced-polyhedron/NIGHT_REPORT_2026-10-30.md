@@ -61,9 +61,10 @@ map-fixed genus ladder (frontier so far: genus 2, type 11). Four ladders (types 
 * Type 0, genus 3 on an extendable map: four (later eight) different exact realizations (oriented
   matroids differ in 44-75 of 495 signs); polished copy and picture `figures/type0_genus3_extendable.*`.
   Its only completion to genus 6 is the type-0 map itself (3 remaining handles).
-* Genus 4: honest plateau 4-7 violations. Every lower value ("2") is a degenerate limit: an edge
-  shrinks to the energy's guard, the optimizer approaches an invalid configuration (faces 1 and 6
-  meeting twice). New tools: `ladder.degeneracy`, `--floor`, `overnight/analyze_glad.py` flags them.
+* Genus 4: the best handle sits robustly at 2 violations of ONE fixed pattern (faces 1-2 and 1-6
+  overlap, two faces non-simple), at moderate conditioning (edge ~2e-4); the violations vanish only
+  in a degenerate limit (an edge shrinks to 0; faces 1 and 6 would have to meet twice).
+  Well-conditioned attempts (edge >= 1e-3): 6-7. New tools: `ladder.degeneracy`, `--floor`, `overnight/analyze_glad.py` flags them.
 * Tried without success on the genus-4 step: LNS on the handle's planes, level skipping (genus 5
   directly: 7-12; genus 6: 16), drift inside the genus-3 realization space (7-11), exact-solid target
   steps (slack 14-16), exact-inner solid search from the genus-3 realizations (stays at 48), strong
