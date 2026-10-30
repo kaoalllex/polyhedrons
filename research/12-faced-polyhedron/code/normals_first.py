@@ -5,6 +5,9 @@ a radius of the seed normals, until the gauge normals pass the exact Gauss gate 
 fixed_normals_gauge.solve_gauge (z3, sub-map encoding). SAT = an exact genus g' polyhedron (re-checked with
 ladder_exact); UNSAT = these normals with this gauge admit no embedding. Every decided normal set is logged.
 
+Each attempt starts from a random point of the radius ball around the seed normals (jitter), so the
+decided normal sets spread over the ball instead of piling up where the walk from the seed first enters the
+class.
 Gauge (face orientation) modes:
   tube    faces outside the handle keep the seed polyhedron's orientation, the six handle faces are free
           (default: no polygon outside the tube has to reverse);
@@ -108,6 +111,16 @@ def anneal_normals(Nseed, eps0, free, rev_cost, energy, rng, radius, minutes, st
     return best[1], [int(x) for x in best[2]], best[0], it
 
 
+def jitter_normals(N, radius, rng):
+    """Rotate every unit normal by a random angle in [0, radius) about a random perpendicular axis."""
+    out = N.copy()
+    for k in range(len(N)):
+        a = rng.standard_normal(3); a -= (a @ N[k]) * N[k]; a /= np.linalg.norm(a)
+        t = float(rng.uniform(0, radius))
+        out[k] = np.cos(t) * N[k] + np.sin(t) * a
+    return out
+
+
 def exact_gate(Nf, eps, otris, target, min_saddles, n_cover=256, seed=0):
     """Integer normals (scale 1e6) and the exact gate: degree, covering, saddles, no coplanar triple."""
     N = [[int(round(v * GG.SCALE)) for v in x] for x in Nf]
@@ -124,8 +137,9 @@ def exact_gate(Nf, eps, otris, target, min_saddles, n_cover=256, seed=0):
 
 # ----------------------------------------------------------------------------- arm loop
 
-def run_arm(Hseed, tris_M, tris_R, tube, minutes, rng, out, radii=(0.1, 0.2, 0.4, 0.8), mode='tube',
-            fixed_gauge=None, rev_cost=2, timeout=600, anneal_minutes=2.0, tag='', log=print, try_seed=True):
+def run_arm(Hseed, tris_M, tris_R, tube, minutes, rng, out, radii=(0.02, 0.05, 0.1, 0.2), mode='tube',
+            fixed_gauge=None, rev_cost=2, timeout=600, anneal_minutes=2.0, tag='', log=print, try_seed=True,
+            jitter=True):
     from fixed_normals_gauge import solve_gauge
     from ladder_exact import verify
     n = len(tris_R) and max(max(t) for t in tris_R) + 1
@@ -159,6 +173,8 @@ def run_arm(Hseed, tris_M, tris_R, tube, minutes, rng, out, radii=(0.1, 0.2, 0.4
             start = (S, eps0); Nbase = S
         else:
             Nbase = Nseed
+            if radius and jitter:
+                start = (jitter_normals(Nseed, radius, rng), eps0)   # diversity: a random point of the ball
         if radius == 0.0:
             Nf, eps, it = Nseed.copy(), list(eps_seed), 0
             e = energy(np.array(eps)[:, None] * Nf)[0]
@@ -210,7 +226,7 @@ def main():
         if name in a:
             i = a.index(name); v = a[i + 1]; del a[i:i + 2]; return conv(v)
         return default
-    radii = tuple(float(x) for x in opt('--radius', '0.1,0.2,0.4,0.8').split(','))
+    radii = tuple(float(x) for x in opt("--radius", "0.02,0.05,0.1,0.2").split(','))
     mode = opt('--mode', 'tube'); timeout = opt('--timeout', 600.0, float)
     am = opt('--anneal-minutes', 2.0, float); gauge = opt('--gauge', None)
     rev_cost = opt('--rev-cost', 2, int)

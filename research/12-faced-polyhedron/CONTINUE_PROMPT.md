@@ -94,6 +94,34 @@ degenerate limit (check edge / margin with
 `ladder.degeneracy`; `--floor` options). Night 4 = job `arch` (`overnight/run_night4.sh`), run after
 night 3. Ideas rounds 2e (tunnels) and 2f (unconventional approaches) evaluated in `cross-field-ideas.md`.
 
+State after session 5 (2026-10-30 afternoon; independent review `reviews/review-2026-10-30.md`; code on
+branch `claude/practical-archimedes-e5p1fi` = research branch + this session; merge it before night 5):
+* The type-0 genus-4 plateau is a Gauss-degree obstruction (review): at every saved genus-3 realization the
+  next handle has k_tau = 0, so the next map has degree -2 instead of -3 in the polyhedron's orientation.
+* New tools: `code/gauss_gate.py` (T1: degree target 1 - g, admissible gauges confirmed on 1000 directions,
+  k_tau, hemisphere margin, turning numbers; T22 = review test 2.2 on glad chains); sub-map OM encoding
+  (`omsat.Triangulation(submap=True)`) used by `fixed_normals_gauge.solve_gauge` (validated: SAT at the own
+  normals of all five genus-3 realizations, exact re-check EMBEDDED; UNSAT for the genus-4 maps at the same
+  normals); `code/normals_first.py` (anneal normals into the class within a radius, exact z3 offsets);
+  `code/kdrift.py` (T2: drift inside the realization space to k_tau = -1); `code/nf_control.py` (positive
+  control of normals-first on the realized map itself); gate + class logging in `archive_climb.py`
+  (`--gauss-gate`) and `beam_ladder.py`.
+* kdrift reaches the genus-4 class (own degree -3, covering confirmed) only for handle (0,5,8)-(2,6,7)
+  (realizations A and C), and only on the class wall (hemisphere margin -0.0000, faces 5 and 7 nearly
+  antiparallel, a tube vertex near infinity); the other handles stay at k_tau = 0 with the margin pinned at
+  0. Exact offsets at and near (radius <= 0.2) the class seed: UNSAT every time (z3 10-44 s).
+* Night 5 READY (`overnight/run_night5.sh`; `HOW_TO_RUN_OVERNIGHT.md`): `gate`, then `n5` (nfirst, kdrift,
+  g6) + `arch` control; morning summary `overnight/analyze_n5.py`.
+
+First tasks (session 6): analyze night 4 (`analyze_glad.py`, arch archive) and night 5 (`analyze_n5.py`):
+any realized genus first (re-check with `ladder_exact.verify`); test 2.2 summary; per arm the k_tau values
+and whether kdrift crosses the hemisphere boundary robustly anywhere; UNSAT statistics of normals-first
+versus the positive control (`nf_control.py`) at the same radii (a local obstruction if the control is
+SAT where the next map is UNSAT). Open review items: n = 8 by 9-element OM-SAT; T4 (Hamming-ball OM-SAT
+with degree clauses); rank-3 SAT per type (direction 6); projective re-charting (direction 7); a lemma for
+the pinned hemisphere margin (why the six handle normals of an embedded polyhedron resist leaving a closed
+hemisphere).
+
 First tasks (session 4): analyze night-3 `glad` results with `overnight/analyze_glad.py` (highest exactly realized genus per type;
 any SOLUTION first, re-check with `ladder_exact.verify(require_all_pairs=True)`); climb from the best
 extendable polyhedra (beam ladder, target-graph exact step `code/ladder_solid.py`, LNS on the six

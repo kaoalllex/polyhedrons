@@ -573,3 +573,12 @@ this session; the night-4 branch is left untouched).
   nfirst : kdrift : g6 = 4 : 4 : 1, 20 min tasks, z3 timeout 600 s; realizations saved and climbed at once)
   + night-4 `arch` on 1 core as the control. Smoke tests with `--results-dir` (found and fixed: the results
   directory override did not reach the spawned workers; now passed by environment).
+* **Class seeds saved** (`experiments/gauss_class/`): kdrift reached the genus-4 class (T1_PASS, own degree
+  -3, covering confirmed) for handle (0,5,8)-(2,6,7) on realizations A (266 s) and C (142 s); both on the
+  class wall (hemisphere margin -0.0000). Exact offsets at A's class seed: UNSAT (10 s); normals first around
+  it (radius 0.02-0.2, tube and free gauge modes, ~16 normal sets): all UNSAT (10-44 s).
+* **Positive control** (`code/nf_control.py`, A's own genus-3 map, own gauge, jittered start within the
+  radius): r = 0.02 UNKNOWN (305 s timeout), **r = 0.05 SAT (174 s, exactly EMBEDDED)**, r = 0.1 / 0.2 / 0.4
+  UNSAT (227 / 147 / 94 s). So even the realized map is UNSAT for normals 0.1 rad away: the normal-space
+  realization region is narrow, and genus-4 UNSATs at r >= 0.1 are weak evidence; SAT instances take
+  ~2-5 min. Default radii of normals_first changed to 0.02, 0.05, 0.1, 0.2 (night-5 z3 timeout 600 s).
