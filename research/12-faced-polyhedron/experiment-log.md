@@ -406,3 +406,11 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   99 to 14 for 1 -> 2) in 60-90 min, no zero. Level re-search with the crossing-depth energy:
   type 11 genus 2: 2 -> 1, type 4 genus 3: 5 -> 4 (no zero). n = 8 with depth: still 1.
 * Night 3 revised: the genus ladder over all 59 types (job `glad`, `run_night3.sh`).
+* **Genus 3 on an extendable map (glad test, 03:30-04:45 UTC, 3 workers, 8 min per level).** Type 0,
+  chain 0: genus 0, 1 exact; genus 2 stuck at 1; **genus 3 realized exactly** (seeded from the genus-2
+  attempt): `experiments/genus_ladder/type0_genus3_extendable.json` — 12 simple faces, V = 32, E = 48,
+  chi = -4, `ladder_exact` EMBEDDED, and `reach` = 66 (all pairs still reachable by tube steps), i.e.
+  the first genus-3 polyhedron that is NOT a dead end. Genus 4 of the same chain: 8 violations.
+  From this polyhedron 10 tube attachments exist, 3 of them extendable (reach 66); branching ladder
+  (`code/beam_ladder.py`: every extendable next handle, ordered by the start energy at the current
+  planes, depth first) is running on them.
