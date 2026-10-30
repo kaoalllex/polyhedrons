@@ -77,6 +77,22 @@ State after the night of 2026-10-29/30 (most promising engine first):
   per type; frontier genus 2 (type 11).
 * Advisor report summary and the correction about Mizhaev's octahedron: `experiment-log.md`.
 
+State on the morning of 2026-10-30 (read `METHODS_PROTOCOL.md` first: every method, result, verdict):
+* **Best: genus 3 on an EXTENDABLE map** (type 0, genus ladder): `experiments/genus_ladder/
+  type0_genus3_extendable.json` (exact EMBEDDED, reach 66). The solid-first genus-3 results are dead
+  ends (`handle_add.reach` < 66). Only 3 of the 10 possible next handles keep it extendable;
+  `code/beam_ladder.py` (branching ladder) searches them.
+* Night 2 (user's machine): `symimm` and `sym` 25/25 UNSAT-VERIFIED; `pdefect` 9 zero defects, all
+  non-simple (false); `immersion` 8/8 timeout.
+* Night 3 READY (`overnight/run_night3.sh`): job `glad` = genus ladder over all 59 types (2 chains
+  each) + branching (`--branch-minutes 30`) from the highest realized level >= 2.
+* Ideas round 2e (twisted / branching / knotted tunnels; spine-seeded solids): `cross-field-ideas.md`.
+
+First tasks (session 4): analyze night-3 `glad` results (highest exactly realized genus per type;
+any SOLUTION first, re-check with `ladder_exact.verify(require_all_pairs=True)`); climb from the best
+extendable polyhedra (beam ladder, target-graph exact step `code/ladder_solid.py`, LNS on the six
+planes of the next handle); spine-seeded solids (T1).
+
 First tasks (session 3):
 0. `git pull`; analyze the newest `overnight/results/` (pdefect, and ladder/sdefect after night 3):
    any CANDIDATE first, re-checked exactly (`code/ladder_exact.py` for the ladder; for 12 faces
