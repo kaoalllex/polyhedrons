@@ -71,3 +71,14 @@ Questions to answer:
   8 planes; the analogue for 12 faces is excluded for symmetric 12-face polyhedra by our certified UNSAT,
   but a symmetric ansatz for LADDER rungs / genus-ladder levels is not); compare their n = 8, genus 3 with
   our n = 8, genus 2 rung (1 violation plateau).
+* Röst-Vígh method (their Sec. 4, verbatim gist): "found by a computational geometric search, using
+  significant computational resources ... developed, optimized, implemented in Python, and verified through
+  a highly autonomous AI framework. The method rediscovered the Szilassi polyhedron and Mizhaev's example as
+  well"; details deferred to a later paper. Their "construction procedure" builds the polyhedron from the
+  planes alone (like our solid-first `code/solid_cpsat.py`): applied to Mizhaev's planes it reproduces his
+  polyhedron. Mizhaev's planes are given in their Sec. 3 in a +- form (two orbits under the rotoreflection
+  T(x,y,z) = (y,-x,-z)). Neither paper claims anything about 12 faces.
+* Lesson for us: both 8-face examples are SYMMETRIC (D2, C4 rotoreflection) two-orbit plane sets, i.e. a
+  2-plane (8-parameter) search space. For 12 faces every symmetric polyhedron is excluded (our certified
+  25/25 UNSAT), but symmetric ansaetze remain open for intermediate objects (ladder rungs with doubled
+  adjacencies, genus-ladder levels) and as seeds that are then perturbed asymmetrically.
