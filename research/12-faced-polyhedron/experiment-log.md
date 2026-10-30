@@ -582,3 +582,21 @@ this session; the night-4 branch is left untouched).
   UNSAT (227 / 147 / 94 s). So even the realized map is UNSAT for normals 0.1 rad away: the normal-space
   realization region is narrow, and genus-4 UNSATs at r >= 0.1 are weak evidence; SAT instances take
   ~2-5 min. Default radii of normals_first changed to 0.02, 0.05, 0.1, 0.2 (night-5 z3 timeout 600 s).
+
+## 2026-10-30 evening: night-3 analysis (Gauss gate on the glad results)
+
+* Night 3 complete (118 tasks = 59 types x 2 chains): highest exactly realized genus 3 for types 39 and 53,
+  genus 2 in 37 chains, genus 1 in 74; types 52 and 56 could not be reduced to the sphere (chains start at
+  genus 4). Details: `overnight/analyze_glad.py`.
+* `run_overnight.py gate` on 47 realizations (night 3 + experiments/genus_ladder): `results/gate/`.
+  Genus-2 realizations of other types often have arms with k_tau = -1 (next map in class at the seed) and
+  most arms pass T1; all type-0 genus-3 arms fail.
+* Test 2.2 (review): 352 of 378 failed levels (93 %) are out of their Gauss class, 26 in class.
+* `code/gate_vs_glad.py`: 110 first-step night-3 branch attempts with a gated arm. **k_tau at the seed does
+  not predict the event-energy search**: mean best 2.50 (k_tau = -1, 10 attempts), 2.44 (0, 82), 2.28
+  (+1, 18); the only realization (gl39_0, genus 3) came from a k_tau = 0 arm with hemisphere margin ~0
+  (on the class wall). The class explains the type-0 genus-4 plateau, not the general 2 -> 3 stall.
+* `overnight/run_night4.sh` rewritten (gate, then `arch --gauss-gate` on ~1/3 of the cores + `n5` on the
+  rest), because the bandit ranks arms by target genus and would spend the night on the excluded type-0
+  genus-4 arms. NOT YET TESTED (the smoke test was interrupted); until tested, run night 4 from
+  `claude/wonderful-carson-saxyck` (original script).
