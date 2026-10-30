@@ -1,7 +1,7 @@
 """Search one target map seeded from given planes (level skipping: e.g. genus 5 from a genus-3
 polyhedron or from a failed genus-4 attempt). Annealing + CMA-ES on the honest pair energy; the best
 planes are always saved (failed attempts seed later runs); a float zero is re-checked exactly.
-Usage: python3 -I seed_search.py SEED_JSON TARGET_JSON MINUTES SEED OUT_JSON
+Usage: python3 -I seed_search.py SEED_JSON TARGET_JSON MINUTES SEED OUT_JSON [--floor]
   SEED_JSON: any JSON with 'planes'; TARGET_JSON: JSON with 'triangles' (the target map)"""
 import json, os, sys
 import numpy as np
@@ -11,6 +11,13 @@ from gauss_degree import coherent_triangles, links_from
 from ladder_exact import verify
 
 src, tgt, minutes, seed, out = sys.argv[1], sys.argv[2], float(sys.argv[3]), int(sys.argv[4]), sys.argv[5]
+if '--floor' in sys.argv:            # degeneracy floor: an edge < 1e-5 or a margin < 1e-7 of the diameter counts as a violation
+    import genus_ladder
+    from ladder import degeneracy
+    def _floor(H, LK, M):
+        e, m = degeneracy(H, LK, M)
+        return float(e < 1e-5) + float(m < 1e-7)
+    genus_ladder.EXTRA = _floor
 planes = json.load(open(src))['planes']; tris = [tuple(t) for t in json.load(open(tgt))['triangles']]
 n = len(planes); L = links_from(coherent_triangles(tris), n)
 E = len({frozenset(e) for t in tris for e in ((t[0], t[1]), (t[1], t[2]), (t[0], t[2]))}); g = (2 - (n - E + len(tris))) // 2

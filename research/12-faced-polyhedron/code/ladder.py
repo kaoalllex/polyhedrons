@@ -517,6 +517,36 @@ def pair_energy(H, LK, M):
     return cross + dbl + bad, over + cdepth
 
 
+@numba.njit(cache=True)
+def degeneracy(H, LK, M):
+    """(shortest polygon edge, smallest distance of a corner from a fourth plane), both relative to the
+    diameter of the vertex set; small values = close to a degenerate configuration (an optimizer
+    approaching a degenerate limit instead of a genuine realization)."""
+    n = H.shape[0]; mmax = LK.shape[1]
+    P3 = np.zeros((n, mmax, 3))
+    lo3 = np.full(3, 1e300); hi3 = np.full(3, -1e300)
+    for X in range(n):
+        m = M[X]
+        for i in range(m):
+            p = _solve3(H, X, LK[X, i], LK[X, (i + 1) % m]); P3[X, i] = p
+            for q in range(3):
+                lo3[q] = min(lo3[q], p[q]); hi3[q] = max(hi3[q], p[q])
+    diam = np.sqrt(((hi3 - lo3) ** 2).sum()) + 1e-300
+    emin = 1e300; mmin = 1e300
+    for X in range(n):
+        m = M[X]
+        for i in range(m):
+            dv = P3[X, i] - P3[X, i - 1 if i > 0 else m - 1]
+            emin = min(emin, np.sqrt((dv ** 2).sum()))
+            a = LK[X, i]; b = LK[X, (i + 1) % m]
+            for w in range(n):
+                if w == X or w == a or w == b:
+                    continue
+                nw = np.sqrt((H[w, :3] ** 2).sum())
+                mmin = min(mmin, abs(H[w, :3] @ P3[X, i] + H[w, 3]) / nw)
+    return emin / diam, mmin / diam
+
+
 if __name__ == '__main__':
     if sys.argv[1] == 'fast':
         main_fast()
