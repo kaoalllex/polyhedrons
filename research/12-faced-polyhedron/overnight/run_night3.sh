@@ -15,5 +15,5 @@ W=${2:-$(python3 -c "import os; print(max(1, (os.cpu_count() or 2) - 1))")}
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1
 # budgets count awake time only (time.monotonic stops while the Mac sleeps), so closing the lid costs nothing
 echo "night 3: genus ladder, $H h on $W workers"
-nice -n 10 python3 run_overnight.py glad --reps 2 --minutes-per-seed 8 --hours "$H" --workers "$W" --git
+nice -n 10 python3 run_overnight.py glad --reps 2 --minutes-per-seed 8 --branch-minutes 30 --hours "$H" --workers "$W" --git
 python3 run_overnight.py status

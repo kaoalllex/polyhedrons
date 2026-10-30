@@ -45,6 +45,11 @@ map-fixed genus ladder (frontier so far: genus 2, type 11). Four ladders (types 
 * Continuous crossing depth added to the honest energy (tie-breaker): small gains, no zero; n = 8
   plateau unchanged (1).
 * Night-2 `pdefect` (user's machine) finished: 9 zero-defect normal sets, all non-simple (false).
+* **New frontier on an extendable map: genus 3** (test of the night-3 job `glad`, type 0):
+  `experiments/genus_ladder/type0_genus3_extendable.json` — 12 simple faces, V = 32, E = 48, exactly
+  embedded, and still extendable to all 66 pairs (unlike every solid-first result). Only 10 handles
+  can be attached to it with six new adjacencies; 3 keep the map extendable. Branching ladder
+  (`code/beam_ladder.py`) tries them all.
 
 ## Next
 * Run night 3 (genus ladder over all 59 types) on the user's machine: which types climb highest.

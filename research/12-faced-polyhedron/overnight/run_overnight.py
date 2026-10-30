@@ -482,8 +482,16 @@ def glad_worker(item):
         seed_planes = H.tolist()
         if not rec.get('exact') and lvl >= 1 and b > 6:          # hopeless above this level: stop early
             break
-    out = {'task': task, 'type_id': p['type_id'], 'top_exact_genus': top, 'levels': levels,
-           'seconds': round(time.monotonic() - t0, 1)}
+    out = {'task': task, 'type_id': p['type_id'], 'top_exact_genus': top, 'levels': levels}
+    if 2 <= top < 6 and p.get('branch_minutes', 0) > 0:
+        # branching: from the highest realized level try every extendable next handle (depth first)
+        from beam_ladder import climb_seq
+        base = next(lv for lv in levels if lv['genus'] == top and lv.get('exact'))
+        btop, brec, tried = climb_seq(base, p['minutes'], rng, time.monotonic() + 60 * p['branch_minutes'])
+        out['branch'] = {'from_genus': top, 'top': btop, 'tried': tried}
+        if btop > top:
+            top = btop; out['top_exact_genus'] = top; out['branch']['realized'] = brec
+    out['seconds'] = round(time.monotonic() - t0, 1)
     out['status'] = 'SOLUTION' if top == 6 else 'TOP_GENUS_%d' % top
     out['candidate'] = top == 6
     out['summary'] = 'type %d: highest exactly realized genus %d; per level %s' % (
@@ -493,7 +501,8 @@ def glad_worker(item):
 
 def job_glad(args, committer):
     types = json.load(open(os.path.join(HERE, '..', 'data', 'k12_triangulations.json')))
-    tasks = [('gl%d_%d' % (t['id'], r), dict(type_id=t['id'], triangles=t['triangles'], minutes=args.minutes_per_seed))
+    tasks = [('gl%d_%d' % (t['id'], r), dict(type_id=t['id'], triangles=t['triangles'], minutes=args.minutes_per_seed,
+                                            branch_minutes=args.branch_minutes))
              for r in range(args.reps) for t in types]
     run_pool('glad', tasks, glad_worker, args, committer)
 
@@ -999,6 +1008,8 @@ def main():
     ap.add_argument('--rounds', type=int, default=1)
     ap.add_argument('--ladder-n', default='8', help='ladder: comma-separated face counts (8 = genus 2)')
     ap.add_argument('--milp-seconds', type=float, default=45, help='sdefect: time limit per simple-defect MILP')
+    ap.add_argument('--branch-minutes', type=float, default=0,
+                    help='glad: budget for branching from the highest realized level (genus >= 2) over every extendable handle')
     args = ap.parse_args()
     if args.results_dir:
         global RES

@@ -70,7 +70,9 @@ git pull
 Revised 2026-10-30: the whole night is the **genus ladder** over all 59 types (2 chains each): every
 neighbourly 12-face map = a simple 12-faced polyhedron + 6 handles; the job realizes genus 0, 1, 2, ...
 step by step (each level seeded from the one below, exact check). Result per type: the highest
-exactly realized genus; genus 6 = a solution (saved as CANDIDATE and committed at once).
+exactly realized genus; genus 6 = a solution (saved as CANDIDATE and committed at once). When a chain
+reaches genus >= 2 and then stalls, the job branches for up to 30 min: from the highest realized
+polyhedron it tries every next handle that keeps all 66 pairs reachable (`code/beam_ladder.py`).
 Вся ночь — «лестница рода» по всем 59 типам: для каждого типа — наибольший точно реализованный род;
 род 6 = решение.
 
