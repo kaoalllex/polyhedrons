@@ -95,7 +95,7 @@ def verify(H, links, require_all_pairs=True):
                 if seg_meet(Q[i], Q[(i + 1) % m], Q[j], Q[(j + 1) % m]):
                     ok = False
         simple[X] = ok
-    out['simple_faces'] = sum(simple.values())
+    out['simple_faces'] = sum(simple.values()); out['nonsimple_faces'] = sorted(X for X, ok in simple.items() if not ok)
     # edge consistency: edge i of face X (on line X cap L[i]) joins vertex i-1 and vertex i
     def edges_on(X, Y):
         L = links[X]; m = len(L)

@@ -438,3 +438,8 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   lower (17, 18, 27 vs 27, 28, 34) and the branching ladder reached **genus 4 at 4 violations**
   (handle B = tube (0,5,8)-(2,6,7)), the best so far; handle C 6 (LNS 6), handle A 7. Genus 6 seeded
   from the genus-5 attempt of realization A: 16.
+* Genus 4 from realization B, handle B: refined to **2 violations** (seed_search from the 4-attempt;
+  two more 20-min refinements also stop at 2): exact check = faces 2, 3 non-simple, bad pairs (1,2),
+  (1,6). Genus 5 seeded from it: 10, 11. Targeted repair (`code/repair_search.py`: anneal only the
+  violated faces' planes + K random ones) launched. `ladder_exact.verify` now also lists the
+  non-simple faces.
