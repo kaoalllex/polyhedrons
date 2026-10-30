@@ -492,3 +492,6 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   workers): 8 different genus-3 realizations; genus-4 arms 2-7, the low ones at the floor (edge 3e-5).
   Conclusion for type 0: well-conditioned genus-4 attempts are 4-7 violations away; all lower values
   are the degenerate attractor.
+* Depth weight in the search energy (`--depth W`: e + W tanh(depth) instead of e + 0.01 tanh(depth)),
+  genus 4 from C (handle A) and D (handle B), 15 min: W = 0.3 -> 5 and 7, W = 1.0 -> 5 and 6 honest
+  violations; no gain over the count-dominated energy.

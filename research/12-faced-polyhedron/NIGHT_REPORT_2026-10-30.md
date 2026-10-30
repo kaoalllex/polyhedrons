@@ -56,3 +56,19 @@ map-fixed genus ladder (frontier so far: genus 2, type 11). Four ladders (types 
 * Climb only on extendable maps (chains); combine the exact solid solver with the chain targets.
 * Speed and strength of the inner CP-SAT at n = 12 (it does not prove optimality within 60 s).
 * Advisor's remaining directions: IPC planarization flow, continuous violation depth, OM-SAT n = 8.
+
+## Day 2026-10-30 (after the night)
+* Type 0, genus 3 on an extendable map: four (later eight) different exact realizations (oriented
+  matroids differ in 44-75 of 495 signs); polished copy and picture `figures/type0_genus3_extendable.*`.
+  Its only completion to genus 6 is the type-0 map itself (3 remaining handles).
+* Genus 4: honest plateau 4-7 violations. Every lower value ("2") is a degenerate limit: an edge
+  shrinks to the energy's guard, the optimizer approaches an invalid configuration (faces 1 and 6
+  meeting twice). New tools: `ladder.degeneracy`, `--floor`, `overnight/analyze_glad.py` flags them.
+* Tried without success on the genus-4 step: LNS on the handle's planes, level skipping (genus 5
+  directly: 7-12; genus 6: 16), drift inside the genus-3 realization space (7-11), exact-solid target
+  steps (slack 14-16), exact-inner solid search from the genus-3 realizations (stays at 48), strong
+  floor (6-7), depth-weighted energy (5-7).
+* See-through test: every hole of every polyhedron found so far can be looked through.
+* User's brainstorms evaluated (`search-algorithms.md`, `cross-field-ideas.md` rounds 2e, 2f).
+* Night 3 (user's machine, running): 10 types realize genus 2 exactly. Night 4 prepared: job `arch`
+  (realization archive + bandit climb) over all realized polyhedra of night 3.
