@@ -96,3 +96,14 @@ class of level g+1 (`kdrift.py`); (4) normals first, then the offsets decided EX
 (`normals_first.py`, `fixed_normals_gauge.py`, positive control `nf_control.py`); (5) exact rational
 verification of every claim (`ladder_exact.py`). Status: implemented and tested on type 0 (night 4 runs it
 on all night-3 realizations); variant P1 (projective ladder) proposed.
+
+### Q1 (chain-consistent normals): status and next steps (2026-10-30 late; not started)
+
+Status: part 1 works (type 58: one normal set puts all 7 chain levels in their Gauss class, found in 7.5 min;
+`experiments/chain_normals/`); part 2 failed once (the 12-face sphere M0 is UNSAT at those fixed normals).
+Next, in this order: (a) loop: many diverse chain-consistent normal sets per type (restarts, different
+chains), each decided exactly level by level from M0 (~30 s per level) -> statistics of the first UNSAT
+level; (b) add realizability of M0 at the normal level to the annealer (closure / period LP of the sphere
+map, as in `period_defect.py`), so the normals are good for the bottom level by construction; (c) allow the
+normals to move per level within a small radius (normals_first with the chain-consistency energy as a
+penalty) instead of keeping them fixed.
