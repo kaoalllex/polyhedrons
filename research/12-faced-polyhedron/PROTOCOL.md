@@ -48,7 +48,11 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
   if it was not, the verdict is "underpowered".
 * A new engine must first reproduce a known object (Szilassi, Roest-Vigh, a saved genus-3 witness).
 * Theorem-level claims need two independent implementations (encoder / verifier) and a human reviewer outside
-  the agent chain; the `adversarial-verifier` agent is a filter, not a referee.
+  the agent chain; the `adversarial-verifier` agent is a filter, not a referee. Every claim that changes a
+  FD / witness row gets a `REVIEW.md` (`experiments/_template/REVIEW.md`) written by someone other than its author.
+* Infrastructure work must answer yes to at least one question: does it help find an obstruction, find a
+  realization, exclude a class of hypotheses, make a result independently checkable, or choose a better
+  direction? If not, do not build it.
 
 ## 4. Numbers and IDs
 

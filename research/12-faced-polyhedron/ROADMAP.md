@@ -37,16 +37,16 @@ the starting point.
 
 | ID | State | Tests | Question | T D F G R | Budget | Stop rule |
 |---|---|---|---|---|---|---|
-| E01 | open | FD10, witness | Type-0 genus-3 dossier: is the best positive result correct and new? | 1 2 2 1 2 | 1-2 sessions, no compute | stop after the 5 steps below or 2 sessions; any verifier mismatch -> fix FD10 first |
-| E02 | open | DR2 | Power of normals-first: how often is the *control* SAT at radius r? | 1 2 2 1 2 | ~10 core-h | 30 maps x 3 radii, or earlier if the rate is clear |
-| E03 | open | DR10 | Proof mining: what small cores make fixed-normal offset problems UNSAT? | 2 2 2 2 2 | ~5 core-h + theory | a core family explained, or 50 cores with no pattern |
-| E06 | open | DR9 | Rank-3 (normals-only) SAT per type with degree / covering / saddle / face-winding clauses | 2 2 2 2 2 | 1 day coding, minutes per type | per type: UNSAT (proof!) or a model count estimate; stop after 3 types if every one is SAT with no pruning |
-| E04 | open | DR3 | Pinned hemisphere margin: why does every class-reaching drift end at margin 0? | 2 2 2 2 1 | 1 session theory + 1 core-h | stop after 1 session + the 1-h test: proof, counterexample, or written reason it is an artefact |
-| E09 | open | DR12 | Relaxed S1 target: 12 faces, doubled pairs, symmetric orbit ansatz, after Roest-Vigh calibration | 1 2 2 1 2 | 2 nights max, <= 25 % of compute | calibration fails -> fix engine, do not run n = 12 |
-| E07 | open | DR8 | Encoding comparison with `pirozhkov-andrei/polyhedraproof` on shared instances | 1 2 1 1 2 | 1 day | conflicts / time per instance measured for both encoders |
+| E01 | open | H5, FD10 | Type-0 genus-3 dossier: is the best positive result correct and new? | 1 2 2 1 2 | 1-2 sessions, no compute | stop after the 5 steps below or 2 sessions; any verifier mismatch -> fix FD10 first |
+| E02 | open | H4, DR2 | Power of normals-first: how often is the *control* SAT at radius r? | 1 2 2 1 2 | ~10 core-h | 30 maps x 3 radii, or earlier if the rate is clear |
+| E03 | open | H2, DR10 | Proof mining: what small cores make fixed-normal offset problems UNSAT? | 2 2 2 2 2 | ~5 core-h + theory | a core family explained, or 50 cores with no pattern |
+| E06 | open | H2, H3, DR9 | Rank-3 (normals-only) SAT per type with degree / covering / saddle / face-winding clauses | 2 2 2 2 2 | 1 day coding, minutes per type | per type: UNSAT (proof!) or a model count estimate; stop after 3 types if every one is SAT with no pruning |
+| E04 | open | H3, DR3 | Pinned hemisphere margin: why does every class-reaching drift end at margin 0? | 2 2 2 2 1 | 1 session theory + 1 core-h | stop after 1 session + the 1-h test: proof, counterexample, or written reason it is an artefact |
+| E09 | open | H7, DR12 | Relaxed S1 target: 12 faces, doubled pairs, symmetric orbit ansatz, after Roest-Vigh calibration | 1 2 2 1 2 | 2 nights max, <= 25 % of compute | calibration fails -> fix engine, do not run n = 12 |
+| E07 | open | H6, DR8 | Encoding comparison with `pirozhkov-andrei/polyhedraproof` on shared instances | 1 2 1 1 2 | 1 day | conflicts / time per instance measured for both encoders |
 | E08 | open | FD6 | Write-up: no symmetric immersion (second encoder, soundness proofs, archived certificates) | 2 1 1 1 2 | 2-3 sessions | arXiv-ready draft reviewed by `adversarial-verifier` (a filter) and one human |
 | E12 | open | FD5, FD6, E01 | External human review: send FD5/FD6 (CNF hashes, certificates) and the E01 dossier to Pirozhkov, Moki & Julio or Bokowski | 2 2 1 1 2 | owner's e-mail, no compute | a reply, or 4 weeks without one -> next reviewer |
-| E13 | open | DR12, DR15 | Side line: maximal face-neighbourly cubic polyhedra per genus. All pairs adjacent and E = 3(F + 2g - 2) >= C(F, 2) give the largest F per genus: (F, g) = (8, 2), (9, 3), (10, 4), (11, 5), with 2, 3, 3, 2 extra edges beyond one per pair (doubled pairs); (12, 6) is Szilassi-12 itself. Which of them exist? Start with a literature check and (8, 2) | 1 2 2 2 2 | literature 1 session; then 1 night per case | stop at the first case that is UNSAT for every map tried with a written power statement, or after (9, 3) |
+| E13 | open | H7, DR12, DR15 | Side line: maximal face-neighbourly cubic polyhedra per genus. All pairs adjacent and E = 3(F + 2g - 2) >= C(F, 2) give the largest F per genus: (F, g) = (8, 2), (9, 3), (10, 4), (11, 5), with 2, 3, 3, 2 extra edges beyond one per pair (doubled pairs); (12, 6) is Szilassi-12 itself. Which of them exist? Start with a literature check and (8, 2) | 1 2 2 2 2 | literature 1 session; then 1 night per case | stop at the first case that is UNSAT for every map tried with a written power statement, or after (9, 3) |
 
 Below the gate (T + D < 3; run only after re-scoring with a written reason):
 
@@ -62,8 +62,11 @@ extrapolation is below ~2,000 core-hours per type.
 ### E01 - type-0 genus-3 dossier (external audit sections 18, 23, 24)
 
 Hypothesis: the five `type0_genus3_extendable*.json` files are exact embeddings of one map that is completable by
-the three certified handles to target type 0. Steps: (1) a second, independently written verifier (vertices from
-planes, cyclic face order, simplicity, pairwise intersections, chi = -4) that does not import `ladder_exact`;
+the three certified handles to target type 0. Steps: (1) a second, independently written verifier that does not
+import `ladder_exact` and uses a different representation (vertex coordinates and face polygons, not planes +
+links): face incidence and vertex stars (3 faces per vertex, edges in exactly 2 faces), orientation, chi = -4,
+planarity, simple face boundaries, every pair of faces meets exactly in its shared edges; plus regression tests on
+Szilassi, Roest-Vigh (positive) and the genus-4 attempts and mutated copies (negative);
 (2) canonical form of the map (relabelling + mirror), proof that all five variants share it; (3) re-run the
 certificate; (4) novelty search: genus-3 maps with 12 faces (Wedd's list, Conder's census), known R^3
 realizations; (5) a 2-page dossier: theorem, certificates, limits, questions for a mathematician.
@@ -82,8 +85,13 @@ blind, retire the UNSAT counts as evidence; timeouts dominate -> encoding cost p
 Instances: the Q1 sphere (type 58, `experiments/chain_normals/`) and the 80 r = 0 kdrift seeds
 (`overnight/results/n5/attempts/kd_*`, `radius: 0.0`). Save every SMT2 instance; extract minimal cores (z3
 `unsat_core` with named assertions, then deletion-based minimisation); classify by which constraint families
-they use (closure / periods, simplicity, reflex, orientation). Outcome: a recurring small core -> state it as a
-lemma (PROVED-1), test it as a cheap normal-level filter, add it to the gate; no pattern -> record and stop.
+they use (closure / periods, simplicity, reflex, orientation). **Ablation**: re-solve with each constraint
+family switched off in turn (and with weaker / stronger variants) and record which families the contradiction
+needs. Report per instance: the exact model, the minimised core, the ablation table, the scope of the conclusion
+(`SPEC.md` §4: instance / family / theorem) and possible mathematical consequences. Keep every SMT2 file and
+solver output. Outcome: a recurring small core -> state it as a lemma (PROVED-1), test it as a cheap
+normal-level filter, add it to the gate; no pattern -> record and stop. The tooling lives in the experiment
+folder and is reused by E02 and any later UNSAT (no generic framework before a first result).
 
 ### E04 - pinned hemisphere margin
 

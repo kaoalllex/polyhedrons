@@ -18,7 +18,10 @@ Paths are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2.
    formula (CNF / SMT2 file or its SHA-256) and, for SAT, its proof.
 4. **Conclude.** Fill in `CONCLUSION.md` from the template:
    - prediction vs outcome;
-   - claims with `SPEC.md` §5 labels, and what must not be claimed;
+   - claims with `SPEC.md` §5 labels and their scope (instance / family / theorem), and what must not be
+     claimed;
+   - how the outcome moves the hypotheses in `STATUS.md` §3a;
+   - for a claim that changes an FD or witness row: a `REVIEW.md` by someone other than the author;
    - the verdict with its budget (e.g. "LOW-YIELD@8 core-h, 2 seeds"; REFUTED only with a proof);
    - the next step.
 5. **Ledger, in the same commit:**

@@ -72,6 +72,21 @@ No direction is REFUTED today.
 | DR16 | Gauss clauses as SAT speed-up; kappa-CSP prefilter; symmetric plane sets; screw orbits; tangent planes of smooth surfaces; Szilassi embryo | `archive/sprint-board.md` | minutes each | LOW-YIELD@minutes each (small budgets; see the sprint board) |
 | DR17 | Configuration-space planning / rigidity (stress matrices) / homotopy continuation between levels | external audit 17.1, 25 | 0 | OPEN: each needs a cheap falsification test first |
 
+## 3a. Competing hypotheses (what the experiments discriminate)
+
+Every ROADMAP item names the hypotheses it can move. A hypothesis is never "accepted" by a search that failed.
+Standing constraint: any S0 realization is asymmetric (FD5), so symmetric ansatzes are for S1-S4 only.
+
+| # | Hypothesis | Rival | Evidence so far | Discriminated by |
+|---|---|---|---|---|
+| H1 | Szilassi-12 exists (some asymmetric realization of one of the 59 types) | no type is realizable | none either way (FD5: not symmetric) | E06, E11, any S0 PASS |
+| H2 | A short structural obstruction (a lemma on few constraint families) kills many types | obstructions are global, type by type | Q10 cores used no global triples, only local and period conditions (DR10) | E03, E06 |
+| H3 | The Gauss class (degree, covering, saddles) is the main barrier above genus 3 | it is necessary but not the binding one | explains the type-0 plateau (k_tau = 0, DR3); Q1: in class yet UNSAT | E04, E06 |
+| H4 | The 12,202 normals-first UNSATs reflect a real obstruction between levels | the sampling was blind (low power) | control SAT only at r = 0.05, one trial | E02 |
+| H5 | The type-0 genus-3 object is correct and new | a verifier bug, or a known object | one verifier, novelty unchecked | E01 |
+| H6 | An exact per-type decision costs < ~2,000 core-h | it is out of reach for this project | third-party pilot 648.5 core-h for 2 maps (CLAIMED) | E07, E11 |
+| H7 | Maximal face-neighbourly polyhedra with few doubled pairs exist for g = 2-5 (S1 / E13) | they stop below genus 6 | 8-face genus-3 objects exist (Mizhaev, Roest-Vigh) | E13, E09 |
+
 ## 4. What may and may not be claimed
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for

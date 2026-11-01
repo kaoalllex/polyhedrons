@@ -15,7 +15,7 @@ Paths are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2,
    branch, ask which base to use.
 3. **Folder.** `cp -r experiments/_template experiments/E##-slug`.
 4. **Plan.** Fill in `PLAN.md` from the row and its ROADMAP section:
-   - H1 and H0;
+   - the hypotheses it moves (`STATUS.md` §3a, H#) and H1/H0 for this run;
    - the target (S0-S4) and the counters by their `SPEC.md` §4 names;
    - a positive control that must succeed and a negative control that must fail;
    - a power statement;

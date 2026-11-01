@@ -69,8 +69,21 @@ that vanish only in a degenerate limit (`ladder.degeneracy`) are not progress.
 
 Solver outcomes: **SAT** (a model; re-check exactly before use), **UNSAT** (scoped to exactly that formula:
 those normals, gauge, bounds and margins; never generalise beyond it), **UNKNOWN / timeout** (no information,
-never a negative result), **NO_ADMISSIBLE_NORMALS** (the annealer found no normals in the class within its
-budget - a search failure, not a proof).
+never a negative result), **ERROR** (the run failed; no information), **NO_ADMISSIBLE_NORMALS** (the annealer
+found no normals in the class within its budget - a search failure, not a proof). A SAT model or a search output
+is a **CANDIDATE** until `verify_candidate.py` passes; none of these outcomes is an evidence label (§5).
+
+**Scope of a negative result** - every UNSAT / "not found" statement names one of:
+1. *instance*: this formula only (these normals, this gauge, these bounds);
+2. *family*: every instance of a stated family (e.g. "all 25 symmetry classes", "all normal sets passing gate
+   T1 for type 0"), with the argument that the instances cover the family;
+3. *theorem*: a mathematical statement, with its evidence label (§5).
+
+Going from 1 to 2 needs a coverage argument; from 2 to 3 needs a soundness argument for the encoding.
+
+**Certificate chain** (say which link a claim reaches): the solver answered -> it produced a certificate (DRAT /
+LRAT / exact witness) -> an independent checker accepted it -> a written argument turns it into a theorem.
+Only the last link is CERTIFIED (§5).
 
 ## 5. Evidence levels (use these labels in `STATUS.md`, `CONCLUSION.md` files and agent output)
 
@@ -88,6 +101,7 @@ claims need a human mathematical review outside this chain of agents.
 
 ## Change log
 
+* 2026-11-01: §4 adds ERROR / CANDIDATE, the scope of a negative result and the certificate chain.
 * 2026-11-01: §1 success check is `verify_candidate.py --target S0` (the earlier `--all-pairs` wording
   accepted doubled adjacencies; found by the fresh-eyes audit, `reviews/fresh-audit-2026-11-01.md` F01).
   §5: `results.md` is frozen history and keeps its old labels.
