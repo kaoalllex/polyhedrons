@@ -22,7 +22,7 @@ script of one sprint-board test, kept for reproducibility, not maintained.
 | `k12_tools.py`, `check_triangulations.py`, `k12_invariants.py` | 59-type data helpers, independent checker, invariants |
 | `handle_add.py`, `tubes.py` | handle attachment, `reach`, tube decomposition of neighbourly maps |
 | `ladder.py` | smaller-analogue maps, `pair_energy`, `degeneracy` |
-| `solid_first.py`, `solid_fast.py`, `solid_cpsat.py` | solid-first state, numba evaluator, exact CP-SAT inner solver |
+| `solid_first.py`, `solid_fast.py`, `solid_cpsat.py` | solid-first state, numba evaluator, exact CP-SAT inner solver (S0 only: at most one edge run per pair of planes, so no doubled adjacencies; the disk condition is enforced lazily by no-goods, see E-261101-16 / E-261101-08) |
 | `fastviol.py`, `local_viol.py`, `relocate.py` | float violation counters, exact single-plane relocation |
 | `rup_check.py` | minimal RUP proof checker |
 
