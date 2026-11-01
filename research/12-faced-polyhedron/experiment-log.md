@@ -740,3 +740,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * Night-6 launcher `overnight/run_night6.sh` (start / status / stop; 10 single-core processes for the M4 Pro's 10
   performance cores, each under `caffeinate -dimsu`); E-25 night settings add a 75-minute cap per seed and a
   per-step `progress.jsonl`; both runners pin BLAS threads to 1. Pilot L stopped unfinished before the night.
+* Restartability: both runners skip units already recorded in `results.jsonl` (E-23 also skips larger k after a
+  recorded UNSAT), manifests append on restart, `nice -n 10`; tested (skips in 0.5 s). Lessons written into the
+  `overnight-run-script` skill ("Lessons of night 6").

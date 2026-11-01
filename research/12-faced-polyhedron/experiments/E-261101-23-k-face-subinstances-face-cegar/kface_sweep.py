@@ -111,12 +111,19 @@ def main():
     log = lambda *a: print(time.strftime('%H:%M:%S'), *a, flush=True)
     outp = os.path.join(args.out, 'results.jsonl')
     done = set()
+    unsat_types = set()
     if os.path.exists(outp):
         for line in open(outp):
             r = json.loads(line); done.add((r['type'], r['k']))
+            if r.get('status') == 'UNSAT':
+                unsat_types.add(r['type'])
     for tid in args.types:
+        if tid in unsat_types and args.stop_at_first_unsat:
+            log('type %d: an UNSAT is already recorded, larger k skipped' % tid)
+            continue
         for k, to in zip(args.ks, args.timeouts):
             if (tid, k) in done:
+                log('type %d k %d: already recorded, skipped' % (tid, k))
                 continue
             rec = run_one(tid, k, to, args.out, log)
             with open(outp, 'a') as f:

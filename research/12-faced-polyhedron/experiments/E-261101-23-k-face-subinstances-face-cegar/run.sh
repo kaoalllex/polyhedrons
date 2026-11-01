@@ -11,12 +11,16 @@ export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 MKL_NUM
 OUT="$HERE/results/$SHARD"
 mkdir -p "$OUT"
 T0=$(date +%s)
-{
-  echo "experiment: $(basename "$HERE")"; echo "commit: $(git -C "$ROOT" rev-parse HEAD)"
-  echo "dirty_files: $(git -C "$ROOT" status --porcelain | wc -l | tr -d ' ')"; echo "branch: $(git -C "$ROOT" rev-parse --abbrev-ref HEAD)"
-  echo "shard: $SHARD"; echo "workers: $WORKERS"; echo "host: $(uname -srm)"; echo "python: $($PY --version 2>&1)"
-  echo "cadical: $(${CADICAL:-$HOME/bin/cadical} --version 2>&1 | head -1)"; echo "started_utc: $(date -u +%FT%TZ)"
-} > "$OUT/manifest.txt"
+if [ -f "$OUT/manifest.txt" ]; then
+  echo "restarted_utc: $(date -u +%FT%TZ) commit: $(git -C "$ROOT" rev-parse --short HEAD)" >> "$OUT/manifest.txt"   # resume: finished units are skipped
+else
+  {
+    echo "experiment: $(basename "$HERE")"; echo "commit: $(git -C "$ROOT" rev-parse HEAD)"
+    echo "dirty_files: $(git -C "$ROOT" status --porcelain | wc -l | tr -d ' ')"; echo "branch: $(git -C "$ROOT" rev-parse --abbrev-ref HEAD)"
+    echo "shard: $SHARD"; echo "workers: $WORKERS"; echo "host: $(uname -srm)"; echo "python: $($PY --version 2>&1)"
+    echo "cadical: $(${CADICAL:-$HOME/bin/cadical} --version 2>&1 | head -1)"; echo "started_utc: $(date -u +%FT%TZ)"
+  } > "$OUT/manifest.txt"
+fi
 $PY -m pip freeze > "$OUT/pip-freeze.txt" 2>/dev/null || true
 finish() {
   rc=$?; T1=$(date +%s)
@@ -26,7 +30,7 @@ finish() {
 trap finish EXIT
 TYPES=$(seq 0 58 | awk -v s="$SHARD" '$1 % 6 == s' | tr '\n' ' ')
 cd "$HERE"
-$PY kface_sweep.py --types $TYPES --ks 8 9 10 --timeouts 300 600 1200 --out "$OUT"
+nice -n 10 $PY kface_sweep.py --types $TYPES --ks 8 9 10 --timeouts 300 600 1200 --out "$OUT"
 # ---- exact verification: every UNSAT carries drat_trim VERIFIED and both hashes; every realized SAT model its planes ----
 $PY - "$OUT/results.jsonl" <<'PYEOF'
 import json, sys, collections

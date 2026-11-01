@@ -52,6 +52,32 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
   `sudo pmset -a disablesleep 1` (+ `caffeinate`), risks overheating in a bag, and must be reverted
   (`disablesleep 0`); only suggest it if the user asks, and never run `sudo` yourself.
 
+## Lessons of night 6 (2026-11-01): a night the owner can restart blindly
+
+- **Resume at unit granularity.** Every runner appends one JSON record per finished unit (a seed, a (type, k)
+  pair) to `results.jsonl` and, on start, reads that file and skips the units already recorded. The owner's rule
+  is then "if it died, run the same command again"; only the unit in flight is recomputed. Derived skips too: a
+  type with a recorded UNSAT skips its larger k.
+- **Progress inside a unit.** A unit that can run for an hour appends one line per step to `progress.jsonl`, so a
+  killed run still leaves data; and it has its own wall-clock cap (`--seed-minutes`), recorded as TIME-CAP, so one
+  hard unit cannot eat the shard's night.
+- **Manifest survives restarts.** `run.sh` writes the manifest header only if it is absent and appends a
+  `restarted_utc` line otherwise; the `finish` trap appends `finished_utc`, `exit_status`, `wall_seconds` and
+  `core_hours` every time, so the core-hours of a restarted shard are the sum of its lines.
+- **One command for the whole night** (`overnight/run_night6.sh`): starts N detached processes (`nohup ... &`, each
+  under its own `caffeinate -dimsu` and `nice -n 10`), one per performance core (M4 Pro: 10), with `status` and
+  `stop` modes. Detached means Ctrl+C or closing the terminal does not kill them; only `stop` does.
+- **Pilot through the same code path** as the night: a positive control (expected SAT / found) and a negative
+  control (expected UNSAT with a VERIFIED proof; rebuild a certified instance and compare its CNF SHA-256 with the
+  record) before the first full run.
+- **Flush, do not buffer.** A pilot piped through `grep | tail` shows nothing until the end; log with `flush=True`
+  and read the raw log, or use `grep --line-buffered` without `tail`.
+- **Keep only what certifies.** CNF and proof files are kept for UNSATs (with SHA-256 in the record); SAT and
+  timeout CNFs are deleted after the hash is recorded, or a 59-type sweep fills the disk.
+- **Forked SAT children.** When a SAT call runs in a forked child with `p.join(timeout)`, the timeout is monotonic
+  and the child is terminated on expiry; solver binaries (`cadical -t`) use wall time, which is fine while
+  `caffeinate` holds the machine awake.
+
 ## Python job checklist
 
 - Pool via `run_pool` (spawn context, `maxtasksperchild`), results appended per task, `--git` committer

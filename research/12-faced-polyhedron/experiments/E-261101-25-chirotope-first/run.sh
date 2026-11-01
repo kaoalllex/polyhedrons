@@ -11,12 +11,16 @@ export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 MKL_NUM
 OUT="$HERE/results/$SHARD"
 mkdir -p "$OUT"
 T0=$(date +%s)
-{
-  echo "experiment: $(basename "$HERE")"; echo "commit: $(git -C "$ROOT" rev-parse HEAD)"
-  echo "dirty_files: $(git -C "$ROOT" status --porcelain | wc -l | tr -d ' ')"; echo "branch: $(git -C "$ROOT" rev-parse --abbrev-ref HEAD)"
-  echo "shard: $SHARD"; echo "workers: $WORKERS"; echo "host: $(uname -srm)"; echo "python: $($PY --version 2>&1)"
-  echo "started_utc: $(date -u +%FT%TZ)"
-} > "$OUT/manifest.txt"
+if [ -f "$OUT/manifest.txt" ]; then
+  echo "restarted_utc: $(date -u +%FT%TZ) commit: $(git -C "$ROOT" rev-parse --short HEAD)" >> "$OUT/manifest.txt"   # resume: finished units are skipped
+else
+  {
+    echo "experiment: $(basename "$HERE")"; echo "commit: $(git -C "$ROOT" rev-parse HEAD)"
+    echo "dirty_files: $(git -C "$ROOT" status --porcelain | wc -l | tr -d ' ')"; echo "branch: $(git -C "$ROOT" rev-parse --abbrev-ref HEAD)"
+    echo "shard: $SHARD"; echo "workers: $WORKERS"; echo "host: $(uname -srm)"; echo "python: $($PY --version 2>&1)"
+    echo "cadical: $(${CADICAL:-$HOME/bin/cadical} --version 2>&1 | head -1)"; echo "started_utc: $(date -u +%FT%TZ)"
+  } > "$OUT/manifest.txt"
+fi
 $PY -m pip freeze > "$OUT/pip-freeze.txt" 2>/dev/null || true
 finish() {
   rc=$?; T1=$(date +%s)
@@ -29,7 +33,7 @@ cd "$HERE"
 SEEDS=$(ls "$ROOT"/experiments/E-261030-11-normals-first-night-runs/results/n5/class_seeds/*.json | awk -v s="$SHARD" 'NR % 10 == s')
 for f in $SEEDS; do
   T=$($PY -c "import json,sys; print(json.load(open(sys.argv[1]))['type_id'])" "$f")
-  $PY chirotope_first.py run --type "$T" --seeds "$f" --ladder 7 --alt 20 --timeout 60 --rounds 12 --readd 1000 --realize-restarts 6 --block 1 --realizer two-stage --simple 1 --fp 1 --seed-minutes 75 --progress "$OUT/progress.jsonl" --out "$OUT/results.jsonl" || true
+  nice -n 10 $PY chirotope_first.py run --type "$T" --seeds "$f" --ladder 7 --alt 20 --timeout 60 --rounds 12 --readd 1000 --realize-restarts 6 --block 1 --realizer two-stage --simple 1 --fp 1 --seed-minutes 75 --progress "$OUT/progress.jsonl" --out "$OUT/results.jsonl" || true
 done
 # ---- exact verification of anything found: every record with result EMBEDDED carries its planes ----
 $PY - "$OUT/results.jsonl" <<'PYEOF'

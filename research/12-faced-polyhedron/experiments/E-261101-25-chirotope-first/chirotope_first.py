@@ -519,12 +519,12 @@ def random_planes(n, rng):
 def one_run(T, seed_planes, args, log, tag, faces_order=None):
     n = T.n
     rec = {'tag': tag, 'n': n, 'steps': []}
-    t_seed = time.time()
+    t_seed = time.monotonic()                      # monotonic: does not advance while the laptop sleeps
     progress = getattr(args, 'progress', None)
     def note(step):
         if progress:
             with open(progress, 'a') as f:
-                f.write(json.dumps({'tag': tag, 'elapsed': round(time.time() - t_seed), **{k: v for k, v in step.items() if k != 'history'}}) + '\n')
+                f.write(json.dumps({'tag': tag, 'elapsed': round(time.monotonic() - t_seed), **{k: v for k, v in step.items() if k != 'history'}}) + '\n')
     planes = to_int(seed_planes)
     planes, mirrored = normalise(planes, n)
     rec['mirrored'] = mirrored
@@ -571,7 +571,7 @@ def one_run(T, seed_planes, args, log, tag, faces_order=None):
             rec['steps'].append(step)
             note(step)
             log('  alternation %d: released %d, wrong signs after realization %d' % (it, len(released), nbad))
-            if args.seed_minutes and time.time() - t_seed > 60 * args.seed_minutes and nbad:
+            if args.seed_minutes and time.monotonic() - t_seed > 60 * args.seed_minutes and nbad:
                 rec['result'] = 'TIME-CAP'
                 rec['planes_best'] = planes_f
                 return rec
@@ -710,8 +710,19 @@ def main():
         seeds.append((os.path.basename(path), d['planes']))
     for i in range(args.random_seeds):
         seeds.append(('random-%d' % i, random_planes(12, rng).tolist()))
+    done_tags = set()
+    if os.path.exists(args.out):
+        for line in open(args.out):
+            try:
+                done_tags.add(json.loads(line)['tag'])
+            except Exception:
+                pass
     for name, planes in seeds:
-        rec = one_run(T, planes, args, log, 'type%d-%s' % (args.type, name), faces_order=order)
+        tag = 'type%d-%s' % (args.type, name)
+        if tag in done_tags:
+            log('skip %s: already recorded in %s' % (tag, args.out))
+            continue
+        rec = one_run(T, planes, args, log, tag, faces_order=order)
         rec['type'] = args.type
         rec['face_order'] = order
         log('RESULT', rec['result'], [(s['k'], s['status'], s['released'], s['rounds'], s.get('realized_wrong_signs')) for s in rec['steps']])
