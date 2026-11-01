@@ -108,3 +108,7 @@ Amendments.
   handed over; its record will appear in `results/pilot_type0_fp.jsonl` and is to be read with the night's results.
   Night settings now also include `--simple 1` (explicit face-simplicity clauses, as in the certified immersion
   instances) and `--fp 1`.
+  Pilot L was stopped unfinished after about one hour (SIGTERM before night 6, to free the cores); it wrote no record
+  (records are written per seed at the end). Night settings therefore add `--progress` (one line per alternation
+  step, survives a kill) and `--seed-minutes 75` (a seed that has not realized within 75 minutes is recorded as
+  TIME-CAP and the shard moves on), so that a night of 4 shards covers 20-40 seeds instead of 4-8.

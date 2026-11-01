@@ -7,6 +7,7 @@ ROOT="$(cd "$HERE/../.." && pwd)"
 SHARD="${1:-0}"
 WORKERS="${WORKERS:-1}"
 PY="${PY:-$HOME/.venvs/polyhedra/bin/python}"
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 MKL_NUM_THREADS=1   # one core per process on the M4 Pro
 OUT="$HERE/results/$SHARD"
 mkdir -p "$OUT"
 T0=$(date +%s)
@@ -28,7 +29,7 @@ cd "$HERE"
 SEEDS=$(ls "$ROOT"/experiments/E-261030-11-normals-first-night-runs/results/n5/class_seeds/*.json | awk -v s="$SHARD" 'NR % 10 == s')
 for f in $SEEDS; do
   T=$($PY -c "import json,sys; print(json.load(open(sys.argv[1]))['type_id'])" "$f")
-  $PY chirotope_first.py run --type "$T" --seeds "$f" --ladder 7 --alt 20 --timeout 60 --rounds 12 --readd 1000 --realize-restarts 6 --block 1 --realizer two-stage --simple 1 --fp 1 --out "$OUT/results.jsonl" || true
+  $PY chirotope_first.py run --type "$T" --seeds "$f" --ladder 7 --alt 20 --timeout 60 --rounds 12 --readd 1000 --realize-restarts 6 --block 1 --realizer two-stage --simple 1 --fp 1 --seed-minutes 75 --progress "$OUT/progress.jsonl" --out "$OUT/results.jsonl" || true
 done
 # ---- exact verification of anything found: every record with result EMBEDDED carries its planes ----
 $PY - "$OUT/results.jsonl" <<'PYEOF'

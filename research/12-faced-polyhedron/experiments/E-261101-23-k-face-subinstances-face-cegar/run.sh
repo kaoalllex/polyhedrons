@@ -7,6 +7,7 @@ ROOT="$(cd "$HERE/../.." && pwd)"
 SHARD="${1:-0}"
 WORKERS="${WORKERS:-1}"
 PY="${PY:-$HOME/.venvs/polyhedra/bin/python}"
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 MKL_NUM_THREADS=1   # one core per process on the M4 Pro
 OUT="$HERE/results/$SHARD"
 mkdir -p "$OUT"
 T0=$(date +%s)

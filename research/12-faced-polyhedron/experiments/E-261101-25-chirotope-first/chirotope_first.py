@@ -519,6 +519,12 @@ def random_planes(n, rng):
 def one_run(T, seed_planes, args, log, tag, faces_order=None):
     n = T.n
     rec = {'tag': tag, 'n': n, 'steps': []}
+    t_seed = time.time()
+    progress = getattr(args, 'progress', None)
+    def note(step):
+        if progress:
+            with open(progress, 'a') as f:
+                f.write(json.dumps({'tag': tag, 'elapsed': round(time.time() - t_seed), **{k: v for k, v in step.items() if k != 'history'}}) + '\n')
     planes = to_int(seed_planes)
     planes, mirrored = normalise(planes, n)
     rec['mirrored'] = mirrored
@@ -563,7 +569,12 @@ def one_run(T, seed_planes, args, log, tag, faces_order=None):
                 planes_f, nbad = realize(chi_model, n, start_planes=planes, restarts=args.realize_restarts, rng=rng, log=log)
             step['realized_wrong_signs'] = nbad
             rec['steps'].append(step)
+            note(step)
             log('  alternation %d: released %d, wrong signs after realization %d' % (it, len(released), nbad))
+            if args.seed_minutes and time.time() - t_seed > 60 * args.seed_minutes and nbad:
+                rec['result'] = 'TIME-CAP'
+                rec['planes_best'] = planes_f
+                return rec
             if nbad == 0:
                 planes = planes_f
                 break
@@ -646,6 +657,8 @@ def main():
                     help='two-stage: normals by hinge on the rank-3 signs, offsets by an exact LP (FD8), hinge fallback')
     ap.add_argument('--simple', type=int, default=1, help='1: add explicit face-simplicity clauses for the faces in play')
     ap.add_argument('--fp', type=int, default=1, help='1: test every unrealized model for a biquadratic final polynomial; an exact one becomes a sound cut')
+    ap.add_argument('--seed-minutes', type=float, default=0, help='wall-clock cap per seed (0 = none); the record says TIME-CAP')
+    ap.add_argument('--progress', default='', help='append one line per alternation step to this file (survives a killed run)')
     ap.add_argument('--block', type=int, default=1, help='1: after a model fails to realize, forbid its exact set of flipped signs (heuristic no-good)')
     args = ap.parse_args()
     os.makedirs(os.path.dirname(args.out), exist_ok=True)

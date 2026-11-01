@@ -737,3 +737,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   with a mutation quota and a benchmark gate), experiment E-261101-26 (engine benchmark ladder), `PROTOCOL.md` 8a
   (how the next experiment is chosen; a night run is part of an experiment); night run 1 of E-261101-25
   pre-registered with predictions P1-P4 in its `PLAN.md`.
+* Night-6 launcher `overnight/run_night6.sh` (start / status / stop; 10 single-core processes for the M4 Pro's 10
+  performance cores, each under `caffeinate -dimsu`); E-25 night settings add a 75-minute cap per seed and a
+  per-step `progress.jsonl`; both runners pin BLAS threads to 1. Pilot L stopped unfinished before the night.
