@@ -30,6 +30,9 @@ status (OPTIMAL / FEASIBLE / UNKNOWN) for every arrangement.
 * Inner solver exists: `code/solid_cpsat.best_solid(A, time_limit, target_adj=...)` with `code/solid_first.Arrangement`.
   Use it twice per arrangement: the decision `target_adj=66` (60 s) and the maximisation (60 s). Record the CP-SAT
   status; UNKNOWN is a timeout, not a verdict.
+* Weight the catalogue towards the geometry of the two known objects (I-261101-20): D2 and S4 arrangements whose
+  four extreme vertices lie far out (tetrahedral hull, long spikes), as in Roest-Vigh's planes 3x - 4y - 2z = 5,
+  -2x + 5y - 5z = 3 and their D2 images, and Mizhaev's planes (`literature/mizhaev2026-planes.json`).
 * Catalogue generator (new script in this folder): for G in {A4, D3, D2, S4, C3, C2} take an explicit orthogonal
   representation (`code/omsat_sym.find_reps` gives signed-permutation ones), sample the free planes per orbit, build
   the 12 planes as the orbit union, perturb by 1e-6 to break exact coincidences, apply the filters of I-261101-08.

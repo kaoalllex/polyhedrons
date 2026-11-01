@@ -14,7 +14,12 @@ preregistered: false
 
 ## Goal
 
-Step 0, before anything else: read Bokowski and Kevin H. (2025) Sec. 4 and Sec. 8.3 in the primary text and
+Step 0 (done 2026-11-01, `literature/primary-reads-2026-11-01.md`): Bokowski and Kevin H. (2025) Sec. 4, 7.3, 8.3 and
+Roest-Vigh (2026) Sec. 3-5 read in full; the "empty set" sentence is the vertex version, the face version is open in
+print, and both 8-face objects have exactly 4 convex vertices (I-261101-20). Remaining: the equivelar literature
+below plus Bokowski-Schewe 2002 (uniqueness of Szilassi) and Arseneva et al. 2024 (the question's source).
+
+The original step 0 read: Bokowski and Kevin H. (2025) Sec. 4 and Sec. 8.3 in the primary text and
 answer one question: does their sentence about "neighborly oriented matroids ... the empty set" concern the face
 version (then an OM-level exclusion of the 59 dual types is already claimed in print and E-261101-15 becomes a
 replication) or the vertex version (Schewe; then nothing changes)? Then Roest and Vigh (2026) Sec. 3-4: their

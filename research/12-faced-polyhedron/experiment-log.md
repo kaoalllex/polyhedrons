@@ -706,3 +706,14 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   E-261101-18 (asymmetric half moved to E-261101-23), E-261101-22 (primary reads of Bokowski-H. 8.3 and Roest-Vigh 4
   first), E-261101-08 (S1 is a goal in itself; I-261030-09 undoubling parked: a surgery, not a path).
 * ROADMAP queue re-ordered: E-261101-23 and -06 first, -21 and -22 next; STATUS 3a lists H-261101-15, -16.
+
+## 2026-11-01 (evening): primary sources read
+
+* `literature/primary-reads-2026-11-01.md`: Bokowski-H. 2025 (full HTML text), Roest-Vigh 2026 and Mizhaev 2026
+  (arXiv PDFs). The "empty set" sentence (Sec. 7.3) is the vertex version; the face version is open in print.
+  Both 8-face objects have exactly 4 convex vertices (20 reflex corners, one per saddle). Mizhaev's planes and face
+  walks transcribed to `literature/mizhaev2026-planes.json` and checked with `ladder_exact.verify`: EMBEDDED,
+  20 single + 8 doubled pairs (EXACT, session check).
+* New idea I-261101-20 (few convex vertices); E-06, E-16, E-08, E-12 and E-22 READMEs updated; literature rows
+  added (bokowski-schewe2002, arseneva2024, sequin2004, schulte-wills2012); E-11 README and ROADMAP Phase 0 carry the
+  justification for the e-mail to the `polyhedraproof` author and the Szeged contacts.

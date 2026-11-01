@@ -35,5 +35,8 @@ Refinements 2026-11-01 (strategy review follow-up):
   the chirotope and require a positive triangle on each (this absorbs E-261101-13).
 * Output per model the 44 vertex-type bits (convex iff chi(X, Y, Z, inf) = +1 in the gauge, F3) and count the
   distinct patterns: they are the cube basis for E-261101-15, and the identities of E-261101-21 prune them.
+* First sub-case (I-261101-20): fix the number of convex vertices to 4 (exactly four positive triangles, whose
+  normal cones must cover the sphere), then <= 8; both known 8-face objects have exactly 4. These instances are small
+  and an UNSAT is a readable statement about a type.
 * Realize a few rank-3 models numerically (12 vectors, hinge loss): their normals are inputs for E-261101-16 and
   E-261101-24.

@@ -27,8 +27,12 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
   for mirrors and point reflections; Lemma B says tight trivalent polyhedra are convex. Both are PROVED-1 at most.
   Until Lemma A is reviewed, say "no immersion with a rotational symmetry".
 * **In-flight runs:** none. No compute was started by the review session.
-* **Open owner actions:** merge the branch; send the first external e-mail (E-261101-11: the `polyhedraproof`
-  author, three shared instances with CNF hashes, one question); Zenodo DOI for the certificates (Phase 0 TODO).
+* **Open owner actions:** merge the branch; send the first external e-mail (E-261101-11 README "Why and whom": the
+  `polyhedraproof` author, then Roest and Vigh in Szeged); Zenodo DOI for the certificates (Phase 0 TODO).
+* **Primary sources are read** (`literature/primary-reads-2026-11-01.md`): nothing in print answers the face
+  version; both 8-face objects have exactly 4 convex vertices (I-261101-20, now the first sub-case of E-261101-06).
+  Mizhaev's data is in `literature/mizhaev2026-planes.json`; `control_mizhaev.py` for `verify_all` is the first task
+  of E-261101-12.
 * **Next ROADMAP items, in order:** E-261101-23 (k-face sub-instances: monotone in the faces, an UNSAT excludes a
   type, SAT models become face-CEGAR seeds), E-261101-06 (rank-3 SAT per type with exact covering), E-261101-21
   (fold-map identity, one theory session), E-261101-22 (read Bokowski-H. 8.3 and Roest-Vigh 4 first), then

@@ -128,6 +128,9 @@ why heuristics plateau). On construction the project has hit a robust barrier at
 search has low expected value. What moves the question now is (a) exact decisions with certificates
 (DR8-DR9), (b) turning UNSATs into lemmas (DR10-DR11), (c) a cheap constructive side line on S1 (DR12). Progress
 is measured by new exact constraints, certificates or witnesses - not by core-hours or runs.
+Primary sources read 2026-11-01 (`literature/primary-reads-2026-11-01.md`): Bokowski-H. 2025 found no embedding of
+the 59 duals numerically and their OM-level "empty set" result is the vertex version; Roest-Vigh 2026 call the 12-face
+case open. Both known 8-face face-neighbourly polyhedra have exactly 4 convex vertices (I-261101-20).
 
 ## 7. Compute ledger
 
