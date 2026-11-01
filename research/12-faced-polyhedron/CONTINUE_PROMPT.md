@@ -13,30 +13,30 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 3. Unless the owner names another task, work on the top `open` row of `ROADMAP.md`, using the `experiment-start`
    skill.
 
-## Hand-over (2026-11-01, evening)
+## Hand-over (2026-11-01, night)
 
-* **Branch to open:** `claude/strategy-review-2026-11-01` (on top of `main` after PR #1). It holds the strategy
-  review (`reviews/strategy-review-2026-11-01.md`), the ledger corrections it required, ten new ideas
-  (I-261101-08..17), seven new hypotheses (H-261101-08..14), seven planned experiments (E-261101-16..22), the
-  re-ordered `ROADMAP.md` queue with a three-scenario decision table, and process rules in the agent prompts and
-  skills. `verify_all --quick`: ALL PASS. Owner action: review and merge via PR (`verify` must be green).
-* **Read first, in this order:** `STATUS.md` (FD6 and FD11 changed; DR18 new), `ROADMAP.md` (new order and
-  decision table), `reviews/strategy-review-2026-11-01.md` sections 1, 5 and 9, then the README of the experiment
-  you take.
-* **Two lemmas await a human reader** (`theory/theory-notes.md`, addendum 2026-11-01): Lemma A closes the FD6 gap
-  for mirrors and point reflections; Lemma B says tight trivalent polyhedra are convex. Both are PROVED-1 at most.
-  Until Lemma A is reviewed, say "no immersion with a rotational symmetry".
-* **In-flight runs:** none. No compute was started by the review session.
-* **Open owner actions:** merge the branch; send the first external e-mail (E-261101-11 README "Why and whom": the
-  `polyhedraproof` author, then Roest and Vigh in Szeged); Zenodo DOI for the certificates (Phase 0 TODO).
-* **Primary sources are read** (`literature/primary-reads-2026-11-01.md`): nothing in print answers the face
-  version; both 8-face objects have exactly 4 convex vertices (I-261101-20, now the first sub-case of E-261101-06).
-  Mizhaev's data is in `literature/mizhaev2026-planes.json`; `control_mizhaev.py` for `verify_all` is the first task
-  of E-261101-12.
-* **Next ROADMAP items, in order:** E-261101-23 (k-face sub-instances: monotone in the faces, an UNSAT excludes a
-  type, SAT models become face-CEGAR seeds), E-261101-06 (rank-3 SAT per type with exact covering), E-261101-21
-  (fold-map identity, one theory session), E-261101-22 (read Bokowski-H. 8.3 and Roest-Vigh 4 first), then
-  E-261101-18, -09, -11, -16, -24. Each README has a "Starting point" written so that a smaller model can execute it; the `PLAN.md` must be
-  filled and committed before any compute (skill `experiment-start`), including the new counter-calibration and
-  scenario-move lines.
-* **Do not** use `gauss_gate.hemisphere_margin` as an objective or a diagnostic (it floors at 0, E-261101-07).
+* **Branches.** `claude/strategy-review-2026-11-01` (pushed): the strategy review, ledger corrections, new ideas /
+  hypotheses / experiments E-261101-16..24, primary reads, process rules. `experiment/E-261101-25-chirotope-first`
+  (on top of it): algorithm v2 and its pre-registered experiment. Owner: review and merge both via PR (`verify` green).
+* **Algorithm v2 = E-261101-25 (`experiments/E-261101-25-chirotope-first/chirotope_first.py`).** Search in the space of
+  chirotopes: the signs of a geometric seed are SAT assumptions, UNSAT cores release the conflicting signs, a greedy
+  re-add pass leaves a minimal correction set, the model is realized by hinge-loss descent with analytic gradients,
+  rounded, re-checked exactly; alternating projections between SAT models and realizations; heuristic no-good
+  blocking of models that do not realize; optional face ladder (k-face sub-instances, monotone). Controls pass:
+  n = 7 from random planes -> exact EMBEDDED; known 12-plane chirotopes realized from random starts in 0.3 s.
+  Pilot state at n = 12 (type 0, k = 7 sub-instance): solves take seconds, the minimal correction set is 8-9 signs,
+  but the nearest embedding models did not realize (8 wrong signs); blocking pilot K in `PLAN.md` Amendments.
+* **Night run (owner, laptop, AC power, lid open):**
+  `cd research/12-faced-polyhedron && caffeinate -dimsu bash experiments/E-261101-25-chirotope-first/run.sh 0`
+  (shards 0-9 = slices of the 149 class seeds; run several shards in parallel in separate terminals, one process
+  each; results in `experiments/E-261101-25-chirotope-first/results/<shard>/results.jsonl`). Then the
+  `experiment-conclude` skill. Any record with result EMBEDDED goes through `candidate-check` first.
+* **What the night measures** (`PLAN.md`): fraction of seeds whose k-face models realize at each k, the size of the
+  minimal correction sets, and whether any seed climbs the face ladder to k = 12. The engine's open weaknesses are
+  listed in the Amendments: no realizability constraints in the SAT instance (final polynomials would be the exact
+  cut), the RC2/LSU projections are too slow or not interruptible at n = 12, the realizer uses 5-6 restarts.
+* **Open owner actions:** merge the branches; send the first external e-mail (E-261101-11 README "Why and whom");
+  Zenodo DOI (Phase 0 TODO).
+* **Next ROADMAP items after the night:** E-261101-23 (k-face sub-instances with DRAT, the UNSAT side of the same
+  encoder), E-261101-06 (rank-3), E-261101-21, E-261101-22, E-261101-18, E-261101-09, E-261101-11, E-261101-16.
+* **Do not** use `gauss_gate.hemisphere_margin` as an objective or a diagnostic (floors at 0, E-261101-07).

@@ -717,3 +717,18 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * New idea I-261101-20 (few convex vertices); E-06, E-16, E-08, E-12 and E-22 READMEs updated; literature rows
   added (bokowski-schewe2002, arseneva2024, sequin2004, schulte-wills2012); E-11 README and ROADMAP Phase 0 carry the
   justification for the e-mail to the `polyhedraproof` author and the Szeged contacts.
+
+## 2026-11-01 (night): algorithm v2, chirotope-first realization (branch `experiment/E-261101-25-chirotope-first`)
+
+* New engine `experiments/E-261101-25-chirotope-first/chirotope_first.py` (idea I-261101-21, hypothesis H-261101-17,
+  experiment E-261101-25 pre-registered in its `PLAN.md`): SAT over the OM-SAT encoding with the signs of a
+  geometric seed as assumptions, core-guided release with a greedy re-add pass (minimal correction set), realization of
+  models by hinge-loss descent with analytic gradients, exact rounding and `ladder_exact.verify`, alternating
+  projections, heuristic no-good blocking, optional face ladder on k-face sub-instances (`build_faces` reproduces
+  `omsat.build` exactly on the full face set).
+* Controls: n = 7 from random planes -> exact EMBEDDED (5/5 across modes); realizer recovers the exact chirotopes of
+  the type-0 witness and a class seed from random starts in 0.3 s.
+* Pilots at n = 12 (type 0): full instance under rank-3 assumptions UNSAT in 0.3 s (core ~77), then TIMEOUT once
+  most assumptions are released; k = 7 sub-instance SAT in seconds with a minimal correction set of 8-9 signs, but
+  the nearest embedding models did not realize (8 wrong signs): the SAT instance lacks realizability constraints.
+  Details and the blocking pilot in `PLAN.md` Amendments. Night run handed to the owner (`run.sh`, 10 shards).

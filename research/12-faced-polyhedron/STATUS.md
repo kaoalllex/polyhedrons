@@ -97,6 +97,8 @@ The competing hypotheses that drive the queue:
 - `-15`: the obstruction is local in faces: every type has an UNSAT sub-instance on <= 9 faces (the face ladder is
   monotone, the genus ladder is not);
 - `-16`: guided by the Farkas certificate, the normals reach offset-feasible configurations that annealing never found.
+- `-17`: core-guided SAT under the rank-3 assumptions of a geometric seed reaches embedding models of the full
+  12-face instance in minutes (algorithm v2, E-261101-25).
 Added 2026-11-01 from `reviews/strategy-review-2026-11-01.md` and its follow-up; H-261101-04 is demoted (its rival is
 -09).
 

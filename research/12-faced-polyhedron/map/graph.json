@@ -744,6 +744,21 @@
    "preregistered": "false"
   },
   {
+   "id": "E-261101-25",
+   "kind": "experiment",
+   "title": "Chirotope-first realization - core-guided SAT with geometric assumptions, numerical realization, exact check",
+   "status": "running",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-25-chirotope-first/README.md",
+   "direction": [
+    "DR8",
+    "DR9",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": "true"
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -1201,6 +1216,17 @@
    "status": "open",
    "date": "2026-11-01",
    "path": "hypotheses/H-261101-16-farkas-descent-reaches-closable-normals.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261101-17",
+   "kind": "hypothesis",
+   "title": "Core-guided SAT under rank-3 assumptions reaches embedding models of the full 12-face instance in minutes",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "hypotheses/H-261101-17-chirotope-first-reaches-models.md",
    "direction": [],
    "verdict": "",
    "preregistered": ""
@@ -2712,6 +2738,21 @@
    "preregistered": ""
   },
   {
+   "id": "I-261101-21",
+   "kind": "idea",
+   "title": "Chirotope first - core-guided incremental SAT with geometric assumptions, then realize the model",
+   "status": "tried",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-21-chirotope-first-core-guided-realization.md",
+   "direction": [
+    "DR8",
+    "DR9",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -3052,6 +3093,11 @@
   {
    "from": "E-261029-12",
    "to": "E-261101-23",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-12",
+   "to": "E-261101-25",
    "kind": "origin"
   },
   {
@@ -3431,6 +3477,11 @@
   },
   {
    "from": "E-261030-11",
+   "to": "E-261101-25",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-11",
    "to": "H-261029-09",
    "kind": "tests"
   },
@@ -3675,8 +3726,28 @@
    "kind": "tests"
   },
   {
+   "from": "E-261101-25",
+   "to": "H-261101-01",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-25",
+   "to": "H-261101-12",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-25",
+   "to": "H-261101-17",
+   "kind": "tests"
+  },
+  {
    "from": "FD2",
    "to": "I-261101-18",
+   "kind": "origin"
+  },
+  {
+   "from": "FD2",
+   "to": "I-261101-21",
    "kind": "origin"
   },
   {
@@ -3715,6 +3786,11 @@
    "kind": "origin"
   },
   {
+   "from": "FD8",
+   "to": "I-261101-21",
+   "kind": "origin"
+  },
+  {
    "from": "FD9",
    "to": "I-261101-19",
    "kind": "origin"
@@ -3727,6 +3803,11 @@
   {
    "from": "H-261029-08",
    "to": "E-261029-11",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261101-01",
+   "to": "H-261101-17",
    "kind": "origin"
   },
   {
@@ -3747,6 +3828,11 @@
   {
    "from": "H-261101-09",
    "to": "H-261101-16",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261101-12",
+   "to": "H-261101-17",
    "kind": "origin"
   },
   {
@@ -3777,6 +3863,11 @@
   {
    "from": "I-261029-11",
    "to": "I-261101-18",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-11",
+   "to": "I-261101-21",
    "kind": "origin"
   },
   {
@@ -3897,6 +3988,11 @@
   {
    "from": "I-261029-57",
    "to": "H-261101-12",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-57",
+   "to": "I-261101-21",
    "kind": "origin"
   },
   {
@@ -4176,7 +4272,17 @@
   },
   {
    "from": "I-261101-18",
+   "to": "E-261101-25",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-18",
    "to": "H-261101-15",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-18",
+   "to": "I-261101-21",
    "kind": "origin"
   },
   {
@@ -4187,6 +4293,16 @@
   {
    "from": "I-261101-19",
    "to": "H-261101-16",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-21",
+   "to": "E-261101-25",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-21",
+   "to": "H-261101-17",
    "kind": "origin"
   },
   {
@@ -4417,6 +4533,11 @@
   {
    "from": "L:schewe2010",
    "to": "I-261031-02",
+   "kind": "origin"
+  },
+  {
+   "from": "L:schewe2010",
+   "to": "I-261101-21",
    "kind": "origin"
   },
   {
