@@ -26,11 +26,17 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
   n = 7 from random planes -> exact EMBEDDED; known 12-plane chirotopes realized from random starts in 0.3 s.
   Pilot state at n = 12 (type 0, k = 7 sub-instance): solves take seconds, the minimal correction set is 8-9 signs,
   but the nearest embedding models did not realize (8 wrong signs); blocking pilot K in `PLAN.md` Amendments.
-* **Night run (owner, laptop, AC power, lid open):**
-  `cd research/12-faced-polyhedron && caffeinate -dimsu bash experiments/E-261101-25-chirotope-first/run.sh 0`
-  (shards 0-9 = slices of the 149 class seeds; run several shards in parallel in separate terminals, one process
-  each; results in `experiments/E-261101-25-chirotope-first/results/<shard>/results.jsonl`). Then the
-  `experiment-conclude` skill. Any record with result EMBEDDED goes through `candidate-check` first.
+* **Night 6 = two pre-registered experiments in parallel, 10 processes on 11 cores** (owner, laptop on AC power,
+  lid open, each command in its own terminal, all under `caffeinate -dimsu`):
+  * E-261101-23, k-face sub-instances with DRAT (types mod 6 = shard), shards 0-5:
+    `cd research/12-faced-polyhedron && caffeinate -dimsu bash experiments/E-261101-23-k-face-subinstances-face-cegar/run.sh 0`
+    (and the same with 1, 2, 3, 4, 5). Any UNSAT is a certified exclusion of a type for that sub-map; any realized
+    SAT model is a k-face partial object. Predictions P1-P4 in its `PLAN.md`.
+  * E-261101-25, chirotope-first ladder on the class seeds, shards 0-3 (of 10; the rest another night):
+    `cd research/12-faced-polyhedron && caffeinate -dimsu bash experiments/E-261101-25-chirotope-first/run.sh 0`
+    (and 1, 2, 3). Predictions P1-P4 in its `PLAN.md`, section "Night run 1".
+  * Morning: `experiment-conclude` for both; every EMBEDDED record through `candidate-check`; results in
+    `experiments/<ID>/results/<shard>/results.jsonl` with `manifest.txt` core-hours.
 * **What the night measures** (`PLAN.md`): fraction of seeds whose k-face models realize at each k, the size of the
   minimal correction sets, and whether any seed climbs the face ladder to k = 12. The engine's open weaknesses are
   listed in the Amendments: no realizability constraints in the SAT instance (final polynomials would be the exact
@@ -39,4 +45,7 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
   Zenodo DOI (Phase 0 TODO).
 * **Next ROADMAP items after the night:** E-261101-23 (k-face sub-instances with DRAT, the UNSAT side of the same
   encoder), E-261101-06 (rank-3), E-261101-21, E-261101-22, E-261101-18, E-261101-09, E-261101-11, E-261101-16.
+* **How the next step is chosen** (`PROTOCOL.md` 8a, idea I-261101-22): top open ROADMAP row by credences and
+  scores; one run in four from the mutation pool, logged as "explore"; construction engines go to the target only
+  after the benchmark ladder (E-261101-26).
 * **Do not** use `gauss_gate.hemisphere_margin` as an objective or a diagnostic (floors at 0, E-261101-07).

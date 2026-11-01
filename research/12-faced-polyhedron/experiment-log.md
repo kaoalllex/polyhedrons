@@ -732,3 +732,8 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   most assumptions are released; k = 7 sub-instance SAT in seconds with a minimal correction set of 8-9 signs, but
   the nearest embedding models did not realize (8 wrong signs): the SAT instance lacks realizability constraints.
   Details and the blocking pilot in `PLAN.md` Amendments. Night run handed to the owner (`run.sh`, 10 shards).
+* Same night, later: `final_polynomial.py` (biquadratic final polynomials with an exact rational re-check; sound cuts
+  in the loop) and CLD minimal correction sets added to the engine; idea I-261101-22 (exploit / explore research loop
+  with a mutation quota and a benchmark gate), experiment E-261101-26 (engine benchmark ladder), `PROTOCOL.md` 8a
+  (how the next experiment is chosen; a night run is part of an experiment); night run 1 of E-261101-25
+  pre-registered with predictions P1-P4 in its `PLAN.md`.

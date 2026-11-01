@@ -2,16 +2,15 @@
 id: E-261101-23
 title: k-face sub-instances of the asymmetric OM-SAT encoding, and face-CEGAR seeds from their models
 date: 2026-11-01
-status: planned
+status: running
 direction: [DR8, DR11]
 origin: [I-261101-18, E-261029-12, E-261101-18]
 tests: [H-261101-15, H-261101-02, H-261101-12]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned. Scores T D F G R: 2 2 2 2 2 | budget: 1 day of coding, then one laptop night (about 60 core-h) or an
-> Actions matrix of 59 shards. Before any compute: `PLAN.md` (skill `experiment-start`).
+> Running: `PLAN.md` pre-registered 2026-11-01; runner `kface_sweep.py`, `run.sh` with 6 shards (types mod 6).
 
 ## Goal
 

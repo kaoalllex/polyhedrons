@@ -133,6 +133,20 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 * Night results are committed by the runner (`--git`); push them before starting a new session.
 * Tags freeze citable states (`state-YYYY-MM-DD`), e.g. before a write-up or an external review.
 
+## 8a. Choosing the next experiment
+
+* The default next experiment is the top `open` row of `ROADMAP.md`; the order follows the credence table of the
+  decision point and the T D F G R scores, and every `CONCLUSION.md` moves the credences by the line its `PLAN.md`
+  pre-registered ("scenario move").
+* One run in four is an **explore** run drawn from the mutation pool (a parked method with one stated change, a
+  below-gate row re-scored with a written reason, or a new idea file); it is logged as "explore" and its PLAN says
+  what result would make it the new default.
+* A construction engine runs on the 12-face target only after it is scored on the benchmark ladder (E-261101-26);
+  a failure on the target is not evidence about the engine, a failure on a rung with a known answer is.
+* A night run is part of an experiment: it is launched only from an experiment's `run.sh`, after its `PLAN.md` is
+  committed, and it is concluded with the `experiment-conclude` skill. "Go and run this" without a PLAN is not a
+  valid hand-over.
+
 ## 8. AI sessions and agents
 
 * Start from `CONTINUE_PROMPT.md`; read `STATUS.md` and `ROADMAP.md` before acting; the first task is the top

@@ -78,3 +78,33 @@ Amendments.
   --readd 1000 --realize-restarts 6 --block 1 --realizer two-stage`. Open weaknesses for the next version: no
   realizability constraints in the SAT instance (final polynomials would be exact cuts); re-add is the time sink
   (a binary-search MCS would cut it 10x); the LSU/RC2 projections are unusable at n = 12 in pysat.
+  Follow-up (same session): `final_polynomial.py` added: biquadratic final polynomials over all 25,740 three-term
+  Grassmann-Pluecker relations of the 13-element rank-4 chirotope, LP in 715 log-variables, Farkas multipliers
+  rounded to rationals and the identity re-checked exactly (an EXACT certificate is a proof of non-realizability; a
+  feasible LP proves nothing). Control: the chirotopes of the type-0 witness and of a class seed are FEASIBLE
+  (t* = 0.0065 and 0.0071, 6-8 s each). Single-sign flips of a realizable chirotope that remain chirotopes were not
+  certified (5 tried), as expected for mutations. In the loop: every model that fails to realize is tested; an exact
+  final polynomial becomes a SOUND cut (at least one bracket of its support must change sign), otherwise the
+  heuristic block is used. Re-add replaced by the CLD algorithm for minimal correction sets (one disjunction of all
+  released literals under a selector per call; all literals true in the model are added back at once).
+
+## Night run 1 (pre-registered 2026-11-01, before launch)
+
+* **Command**: `caffeinate -dimsu bash experiments/E-261101-25-chirotope-first/run.sh <shard>` for shards 0-9 (each a
+  tenth of the 149 class seeds, type taken from the seed), one process per shard, laptop on AC power.
+* **Engine settings** (fixed in `run.sh`): face ladder from k = 7, 20 alternations per k, 60 s per SAT call, 12
+  core-guided rounds, CLD re-add (60 calls max), 6 realizer restarts, two-stage realizer with hinge fallback, final
+  polynomials on every unrealized model (exact ones become sound cuts), heuristic blocks otherwise.
+* **Predictions, written before the run**: (P1) every seed's k = 7 step produces SAT models within the round budget
+  (solves took <= 6 s in the pilots); (P2) at least 30 % of the unrealized k = 7 models receive an EXACT final
+  polynomial (if far fewer, non-realizability is not the main reason the realizer fails and the realizer is the
+  weak link); (P3) at least one seed realizes a k = 7 model (a 7-face partial object of its type in the right
+  class, the first of its kind in the project); (P4) no seed reaches k = 12 (if one does, `candidate-check` at once).
+* **What each outcome changes**: P2 false -> invest in the realizer (more restarts, staged flips), not in cuts; P3
+  false -> the alternation needs the Farkas-type guidance of E-261101-24 or the MaxSAT projection made tractable;
+  P3 true -> run the same seeds to k = 8, 9 (E-261101-23 owns the UNSAT side); P4 false -> stop everything and verify.
+* **Collection**: `results/<shard>/results.jsonl` and `manifest.txt` (core-hours), analysed by `experiment-conclude`.
+  Pilot L (k = 7, CLD re-add, final polynomials, SIMPLE clauses, 6 alternations) was still running when night 6 was
+  handed over; its record will appear in `results/pilot_type0_fp.jsonl` and is to be read with the night's results.
+  Night settings now also include `--simple 1` (explicit face-simplicity clauses, as in the certified immersion
+  instances) and `--fp 1`.

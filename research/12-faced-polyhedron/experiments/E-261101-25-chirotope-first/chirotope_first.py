@@ -34,6 +34,7 @@ sys.path.insert(0, os.path.join(ROOT, 'code'))
 import omsat                                                     # noqa: E402
 from omsat import CNF, Triangulation, Predicates, chirotope_from_planes, perm_parity   # noqa: E402
 import ladder_exact                                              # noqa: E402
+import final_polynomial as FPOLY                                 # noqa: E402
 
 FULL_OPTS = dict(gp=True, triples=True, reflex=True, poc=True, symbreak=True, mirror=True)
 SCALE = 10 ** 9
@@ -41,10 +42,12 @@ SCALE = 10 ** 9
 
 # ----------------------------------------------------------------------------- encoding (face-restricted copy of omsat.build)
 
-def build_faces(C, T, faces=None, opts=FULL_OPTS):
+def build_faces(C, T, faces=None, opts=FULL_OPTS, simple=False):
     """omsat.build with the local clause families restricted to `faces` (None = all): TRIPLE for non-triangles
     inside the set, REFLEX1 for triangles inside the set, POC for faces in the set. GP and the normalisations are
-    unchanged. With faces = all faces the formula equals omsat.build's (checked in the pilot)."""
+    unchanged. With faces = all faces and simple=False the formula equals omsat.build's (checked in the pilot).
+    simple=True adds the explicit face-simplicity clauses of the immersion instances (non-adjacent edges of a face
+    do not cross) for the faces in the set; sound for embeddings, and it keeps k-face models closer to partial objects."""
     n = T.n
     faces = set(range(n)) if faces is None else set(faces)
     o = dict(omsat.DEFAULT_OPTS)
@@ -81,6 +84,15 @@ def build_faces(C, T, faces=None, opts=FULL_OPTS):
                 w = [C.xor([P.RTURN(X, A, Bv), P.REFLEX(X, A, Bv)]) for A, Bv in cs]
                 for i in range(1, len(w)):
                     C.equiv(w[0], w[i], 'POC')
+    if simple:
+        for X in range(n):
+            if X in faces:
+                L = T.link[X]
+                m = len(L)
+                for i in range(m):
+                    for j in range(i + 2, m):
+                        if not (i == 0 and j == m - 1):
+                            C.clause([C.NOT(P.E(X, L[i], L[j])), C.NOT(P.E(X, L[j], L[i]))], 'SIMPLE')
     if o['symbreak']:
         INF = n
         fixed = [(0, 1, k, INF) for k in range(2, n)] + [(0, 2, 3, INF), (1, 2, 3, INF)]
@@ -265,13 +277,26 @@ def core_guided(C, clauses, assumptions, n, timeout, max_rounds, log, readd=0, r
         if r['status'] == 'SAT':
             model = r['model_pos']
             if readd and released:
-                kept = 0
-                for lit in list(released)[:readd]:
-                    r2 = solve(clauses, A + [lit], C.nv, readd_timeout)
-                    if r2['status'] == 'SAT':
-                        A.append(lit); released.remove(lit); model = r2['model_pos']; kept += 1
-                history.append({'round': rnd, 'readd_tried': min(readd, len(released) + kept), 'readd_kept': kept})
-                log('  re-add: kept %d released literals; %d assumptions now' % (kept, len(A)))
+                # CLD (Marques-Silva et al. 2013): add the disjunction of all still-released literals under a selector;
+                # a model satisfies some of them, add all of those back at once; UNSAT means none can be added.
+                kept = calls = 0
+                R = list(released)
+                sel = C.nv + 1
+                while R and calls < readd:
+                    r2 = solve(clauses + [[-sel] + R], A + [sel], C.nv + 1, readd_timeout)
+                    calls += 1
+                    if r2['status'] != 'SAT':
+                        break
+                    pos = set(r2['model_pos'])
+                    newly = [l for l in R if ((l in pos) if l > 0 else ((-l) not in pos))]
+                    if not newly:
+                        break
+                    A += newly; kept += len(newly)
+                    R = [l for l in R if l not in set(newly)]
+                    model = [l for l in r2['model_pos'] if l <= C.nv]
+                released = R
+                history.append({'round': rnd, 'readd_calls': calls, 'readd_kept': kept})
+                log('  re-add (CLD): kept %d released literals in %d calls; %d assumptions, %d released' % (kept, calls, len(A), len(released)))
             return 'SAT', model_chi(C, model, n), released, history
         if r['status'] != 'UNSAT':
             return r['status'], None, released, history
@@ -504,7 +529,7 @@ def one_run(T, seed_planes, args, log, tag, faces_order=None):
     for k in ks:
         faces = None if k == n else faces_order[:k]
         C = CNF(n)
-        build_faces(C, T, faces)
+        build_faces(C, T, faces, simple=bool(args.simple))
         quads = rank3_quads(n) if args.assume == 'rank3' else list(itertools.combinations(range(n + 1), 4))
         log('[%s] k=%d faces=%s: %d vars, %d clauses' % (tag, k, 'all' if faces is None else faces, C.nv, len(C.clauses)))
         # alternating projections: (SAT model closest to the current chirotope) <-> (realizable configuration closest to the model)
@@ -542,8 +567,23 @@ def one_run(T, seed_planes, args, log, tag, faces_order=None):
             if nbad == 0:
                 planes = planes_f
                 break
-            if args.block:
-                # the model's values on the signs it flipped relative to the seed: forbid this exact combination
+            cut_added = False
+            if args.fp:
+                t1 = time.time()
+                try:
+                    fp = FPOLY.final_polynomial(chi_model, n + 1)
+                except ValueError as e:
+                    fp = {'status': 'GP-VIOLATION', 'error': str(e)}
+                step['final_polynomial'] = {k: fp[k] for k in fp if k in ('status', 't_star', 'exact', 'n_relations')}
+                if fp.get('status', '').startswith('NONREALIZABLE'):
+                    step['final_polynomial']['support_relations'] = len(fp['support']); step['final_polynomial']['brackets'] = len(fp['brackets'])
+                    if fp['exact']:
+                        C.clauses.append(FPOLY.cut_clause(C, chi_model, fp['brackets']))
+                        cut_added = True
+                log('  final polynomial: %s (%.1fs)%s' % (fp['status'], time.time() - t1,
+                    (', sound cut on %d brackets' % len(fp['brackets'])) if cut_added else ''))
+            if args.block and not cut_added:
+                # heuristic no-good: forbid the model's exact combination of flipped signs
                 flipped = [S for S in quads if chi_seed.get(S) and chi_model[S] != chi_seed[S]]
                 if flipped:
                     clause = [(-C.qvar[S] if chi_model[S] > 0 else C.qvar[S]) for S in flipped]
@@ -604,6 +644,8 @@ def main():
     ap.add_argument('--kmax', type=int, default=0, help='stop the ladder after this k (0 = go to n)')
     ap.add_argument('--realizer', choices=['hinge', 'two-stage'], default='two-stage',
                     help='two-stage: normals by hinge on the rank-3 signs, offsets by an exact LP (FD8), hinge fallback')
+    ap.add_argument('--simple', type=int, default=1, help='1: add explicit face-simplicity clauses for the faces in play')
+    ap.add_argument('--fp', type=int, default=1, help='1: test every unrealized model for a biquadratic final polynomial; an exact one becomes a sound cut')
     ap.add_argument('--block', type=int, default=1, help='1: after a model fails to realize, forbid its exact set of flipped signs (heuristic no-good)')
     args = ap.parse_args()
     os.makedirs(os.path.dirname(args.out), exist_ok=True)

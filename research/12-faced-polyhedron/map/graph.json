@@ -718,7 +718,7 @@
    "id": "E-261101-23",
    "kind": "experiment",
    "title": "k-face sub-instances of the asymmetric OM-SAT encoding, and face-CEGAR seeds from their models",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-01",
    "path": "experiments/E-261101-23-k-face-subinstances-face-cegar/README.md",
    "direction": [
@@ -726,7 +726,7 @@
     "DR11"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "true"
   },
   {
    "id": "E-261101-24",
@@ -757,6 +757,21 @@
    ],
    "verdict": "",
    "preregistered": "true"
+  },
+  {
+   "id": "E-261101-26",
+   "kind": "experiment",
+   "title": "Engine benchmark ladder - tasks with known answers on which every construction engine is scored before the target",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-26-engine-benchmark-ladder/README.md",
+   "direction": [
+    "DR1",
+    "DR7",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": "false"
   },
   {
    "id": "FD11",
@@ -2753,6 +2768,17 @@
    "preregistered": ""
   },
   {
+   "id": "I-261101-22",
+   "kind": "idea",
+   "title": "Choose the next experiment by credences with an explicit exploration quota, and gate every engine by a benchmark ladder",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-22-research-loop-exploit-explore.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -3262,6 +3288,11 @@
   },
   {
    "from": "E-261030-01",
+   "to": "E-261101-26",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-01",
    "to": "H-261029-07",
    "kind": "tests"
   },
@@ -3308,6 +3339,11 @@
   {
    "from": "E-261030-03",
    "to": "E-261101-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-03",
+   "to": "E-261101-26",
    "kind": "origin"
   },
   {
@@ -3727,6 +3763,11 @@
   },
   {
    "from": "E-261101-25",
+   "to": "E-261101-26",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-25",
    "to": "H-261101-01",
    "kind": "tests"
   },
@@ -3737,6 +3778,16 @@
   },
   {
    "from": "E-261101-25",
+   "to": "H-261101-17",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-26",
+   "to": "H-261101-10",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-26",
    "to": "H-261101-17",
    "kind": "tests"
   },
@@ -4046,6 +4097,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261030-16",
+   "to": "I-261101-22",
+   "kind": "origin"
+  },
+  {
    "from": "I-261030-21",
    "to": "E-261101-17",
    "kind": "origin"
@@ -4266,6 +4322,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261101-17",
+   "to": "I-261101-22",
+   "kind": "origin"
+  },
+  {
    "from": "I-261101-18",
    "to": "E-261101-23",
    "kind": "origin"
@@ -4303,6 +4364,11 @@
   {
    "from": "I-261101-21",
    "to": "H-261101-17",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-22",
+   "to": "E-261101-26",
    "kind": "origin"
   },
   {
@@ -4828,6 +4894,11 @@
   {
    "from": "owner",
    "to": "I-261101-07",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261101-22",
    "kind": "origin"
   }
  ]
