@@ -375,6 +375,99 @@ def realize(chi, n, start_planes=None, restarts=6, rng=None, log=print, margin=0
     return best[0], best[1]
 
 
+# ----------------------------------------------------------------------------- two-stage realizer (normals by hinge, offsets by LP)
+
+class NormalRealizer:
+    """Fit 12 unit normals to the 220 rank-3 signs chi(a, b, c, INF) = sign det(n_a, n_b, n_c)."""
+    def __init__(self, n, chi, margin=0.05):
+        self.n = n
+        self.trip = [S[:3] for S in itertools.combinations(range(n + 1), 4) if S[3] == n and chi[S] != 0]
+        self.sign = np.array([chi[t + (n,)] for t in self.trip], float)
+        self.idx = np.array(self.trip)
+        self.margin = margin
+
+    def loss_grad(self, x):
+        N = x.reshape(self.n, 3)
+        A, B, Cc = N[self.idx[:, 0]], N[self.idx[:, 1]], N[self.idx[:, 2]]
+        cBC, cCA, cAB = np.cross(B, Cc), np.cross(Cc, A), np.cross(A, B)
+        det = (A * cBC).sum(axis=1)
+        norms = np.linalg.norm(A, axis=1) * np.linalg.norm(B, axis=1) * np.linalg.norm(Cc, axis=1)
+        f = self.sign * det / norms
+        viol = np.maximum(0.0, self.margin - f)
+        loss = float((viol ** 2).sum())
+        coef = (-2 * viol * self.sign / norms)
+        G = np.zeros_like(N)
+        for k, (cof, rows) in enumerate(((cBC, A), (cCA, B), (cAB, Cc))):
+            g = coef[:, None] * (cof - (det / (rows ** 2).sum(axis=1))[:, None] * rows)
+            np.add.at(G, self.idx[:, k], g)
+        nn = (N ** 2).sum(axis=1)
+        loss += 0.1 * float(((nn - 1) ** 2).sum())
+        G += 0.1 * (4 * (nn - 1))[:, None] * N
+        return loss, G.ravel()
+
+    def fit(self, x0, maxiter=2000):
+        res = minimize(self.loss_grad, x0, jac=True, method='L-BFGS-B', options={'maxiter': maxiter})
+        N = res.x.reshape(self.n, 3)
+        return N / np.linalg.norm(N, axis=1)[:, None], res.fun
+
+
+def offsets_lp(N, chi, n, margin=1e-3):
+    """With the normals fixed every face-only sign is linear in the offsets d (FD8): det[h_a; h_b; h_c; h_e] with
+    h = (n, d) expands along the d column. Maximise the smallest margin over the 495 face-only quads with d in
+    [-1, 1]^n. Returns (d, t*) with t* > 0 iff feasible at these normals."""
+    from scipy.optimize import linprog
+    quads = [S for S in itertools.combinations(range(n), 4) if chi[S] != 0]
+    rows = []
+    for (a, b, c, e) in quads:
+        # det of rows (n_a,d_a),(n_b,d_b),(n_c,d_c),(n_e,d_e) = sum over the d column with cofactors
+        M3 = {a: np.linalg.det(np.array([N[b], N[c], N[e]])), b: -np.linalg.det(np.array([N[a], N[c], N[e]])),
+              c: np.linalg.det(np.array([N[a], N[b], N[e]])), e: -np.linalg.det(np.array([N[a], N[b], N[c]]))}
+        # row i of the 4x4 is (n_i, d_i); expanding along the last column: det = sum_i (-1)^(i+3) d_i det(minor_i)
+        coef = np.zeros(n)
+        sgn = {a: -1, b: 1, c: -1, e: 1}          # (-1)^(i+3) for i = 0..3
+        coef[a] = sgn[a] * np.linalg.det(np.array([N[b], N[c], N[e]]))
+        coef[b] = sgn[b] * np.linalg.det(np.array([N[a], N[c], N[e]]))
+        coef[c] = sgn[c] * np.linalg.det(np.array([N[a], N[b], N[e]]))
+        coef[e] = sgn[e] * np.linalg.det(np.array([N[a], N[b], N[c]]))
+        rows.append(chi[S := (a, b, c, e)] * coef)
+    A = np.array(rows)                                  # want A d >= t  ->  -A d + t <= 0
+    nq = len(quads)
+    c_obj = np.zeros(n + 1); c_obj[-1] = -1.0
+    A_ub = np.hstack([-A, np.ones((nq, 1))])
+    res = linprog(c_obj, A_ub=A_ub, b_ub=np.zeros(nq), bounds=[(-1, 1)] * n + [(None, None)], method='highs')
+    if res.status != 0:
+        return None, -np.inf
+    return res.x[:n], float(res.x[n])
+
+
+def realize2(chi, n, start_planes=None, restarts=6, rng=None, log=print):
+    """Stage 1: normals from the rank-3 signs (hinge, warm start from the seed's normals). Stage 2: offsets by LP.
+    Returns (planes_int, wrong_signs)."""
+    rng = rng or np.random.default_rng(0)
+    R = NormalRealizer(n, chi)
+    best = None
+    for k in range(restarts):
+        if start_planes is not None and k < restarts // 2:
+            N0 = np.array(start_planes, float)[:, :3]
+            N0 = N0 / np.linalg.norm(N0, axis=1)[:, None] + rng.normal(scale=0.05 * k, size=(n, 3))
+        else:
+            N0 = rng.normal(size=(n, 3))
+        t0 = time.time()
+        N, f1 = R.fit(N0.ravel())
+        d, tstar = offsets_lp(N, chi, n)
+        if d is None:
+            log('  realize2 restart %d: normals loss %.3g, offsets LP failed, %.1fs' % (k, f1, time.time() - t0)); continue
+        planes = to_int(np.hstack([N, d[:, None]]))
+        chi_e = chirotope_from_planes(planes)
+        bad = [S for S in itertools.combinations(range(n + 1), 4) if chi[S] and chi_e[S] != chi[S]]
+        log('  realize2 restart %d: normals loss %.3g, LP margin %.3g, %d/715 signs wrong, %.1fs' % (k, f1, tstar, len(bad), time.time() - t0))
+        if best is None or len(bad) < best[1]:
+            best = (planes, len(bad))
+        if not bad:
+            return planes, 0
+    return best if best else (to_int(start_planes) if start_planes is not None else None, 10 ** 6)
+
+
 # ----------------------------------------------------------------------------- drivers
 
 def load_type(tid):
@@ -437,7 +530,12 @@ def one_run(T, seed_planes, args, log, tag, faces_order=None):
                 rec['steps'].append(step)
                 rec['result'] = status
                 return rec
-            planes_f, nbad = realize(chi_model, n, start_planes=planes, restarts=args.realize_restarts, rng=rng, log=log)
+            if args.realizer == 'two-stage':
+                planes_f, nbad = realize2(chi_model, n, start_planes=planes, restarts=args.realize_restarts, rng=rng, log=log)
+                if nbad:
+                    planes_f, nbad = realize(chi_model, n, start_planes=planes, restarts=max(2, args.realize_restarts // 2), rng=rng, log=log)
+            else:
+                planes_f, nbad = realize(chi_model, n, start_planes=planes, restarts=args.realize_restarts, rng=rng, log=log)
             step['realized_wrong_signs'] = nbad
             rec['steps'].append(step)
             log('  alternation %d: released %d, wrong signs after realization %d' % (it, len(released), nbad))
@@ -504,6 +602,8 @@ def main():
     ap.add_argument('--solver', choices=['core', 'maxsat', 'lsu'], default='core',
                     help='core: core-guided release + greedy re-add (minimal correction set); maxsat: exact RC2 (minimum flips, slow at n = 12); lsu: anytime MaxSAT, best model before the timeout')
     ap.add_argument('--kmax', type=int, default=0, help='stop the ladder after this k (0 = go to n)')
+    ap.add_argument('--realizer', choices=['hinge', 'two-stage'], default='two-stage',
+                    help='two-stage: normals by hinge on the rank-3 signs, offsets by an exact LP (FD8), hinge fallback')
     ap.add_argument('--block', type=int, default=1, help='1: after a model fails to realize, forbid its exact set of flipped signs (heuristic no-good)')
     args = ap.parse_args()
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
@@ -539,7 +639,10 @@ def main():
             log('realizer control on %s: n=%d, %d zero quads' % (os.path.basename(path), n, zeros))
             t0 = time.time()
             pl, nbad = realize(chi, n, start_planes=None, restarts=args.realize_restarts, rng=rng, log=log)
-            log('RESULT realizer: wrong signs %d, %.1fs' % (nbad, time.time() - t0))
+            log('RESULT realizer (hinge): wrong signs %d, %.1fs' % (nbad, time.time() - t0))
+            t0 = time.time()
+            pl2, nbad2 = realize2(chi, n, start_planes=None, restarts=args.realize_restarts, rng=rng, log=log)
+            log('RESULT realizer (two-stage): wrong signs %d, %.1fs' % (nbad2, time.time() - t0))
             with open(args.out, 'a') as f:
                 f.write(json.dumps({'tag': 'realizer-control', 'file': path, 'n': n, 'wrong_signs': nbad, 'seconds': time.time() - t0}) + '\n')
         return

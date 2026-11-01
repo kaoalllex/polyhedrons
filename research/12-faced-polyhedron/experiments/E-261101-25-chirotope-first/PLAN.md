@@ -67,3 +67,14 @@ Amendments.
   constraints, so the nearest embedding model is a non-realizable chirotope; alternating projections between the
   two non-convex sets stall there. Change: heuristic no-good blocking of the exact flipped-sign set of a model that
   failed to realize (`--block 1`), so the next projection returns a different near model; pilot K.
+  Pilot K (k = 7, blocking on, 8 alternations, ~1-4 min each, re-add dominating): wrong signs after realization
+  15, 32, 16, 15, 10, 5, 9, 16; the flipped-sign sets of the blocked models had sizes 122, 238, 19, 21, 13, 10, 17,
+  216. Blocking diversifies the near models (best 5 wrong signs, from 8 before) but no k = 7 model realized within
+  8 alternations. Two-stage realizer added after K (normals by hinge on the 220 rank-3 signs, offsets by an exact LP,
+  FD8): exact on n = 7 (LP margin 0.02); on the n = 12 realizer control from random normal starts the offsets LP is
+  infeasible (190-339 wrong signs) because the fixed-normal fibre is empty for most normals with the right rank-3
+  combinatorics (the thinness of H-261101-09 seen directly); used in the loop with the seed's normals as warm start
+  and the hinge realizer as fallback. Night settings in `run.sh`: `--ladder 7 --alt 20 --timeout 60 --rounds 12
+  --readd 1000 --realize-restarts 6 --block 1 --realizer two-stage`. Open weaknesses for the next version: no
+  realizability constraints in the SAT instance (final polynomials would be exact cuts); re-add is the time sink
+  (a binary-search MCS would cut it 10x); the LSU/RC2 projections are unusable at n = 12 in pysat.

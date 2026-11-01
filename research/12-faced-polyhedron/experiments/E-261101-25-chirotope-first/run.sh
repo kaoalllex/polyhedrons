@@ -28,7 +28,7 @@ cd "$HERE"
 SEEDS=$(ls "$ROOT"/experiments/E-261030-11-normals-first-night-runs/results/n5/class_seeds/*.json | awk -v s="$SHARD" 'NR % 10 == s')
 for f in $SEEDS; do
   T=$($PY -c "import json,sys; print(json.load(open(sys.argv[1]))['type_id'])" "$f")
-  $PY chirotope_first.py run --type "$T" --seeds "$f" --timeout 120 --rounds 40 --out "$OUT/results.jsonl" || true
+  $PY chirotope_first.py run --type "$T" --seeds "$f" --ladder 7 --alt 20 --timeout 60 --rounds 12 --readd 1000 --realize-restarts 6 --block 1 --realizer two-stage --out "$OUT/results.jsonl" || true
 done
 # ---- exact verification of anything found: every record with result EMBEDDED carries its planes ----
 $PY - "$OUT/results.jsonl" <<'PYEOF'
