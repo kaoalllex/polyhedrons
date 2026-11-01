@@ -54,10 +54,50 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
   realization, exclude a class of hypotheses, make a result independently checkable, or choose a better
   direction? If not, do not build it.
 
-## 4. Numbers and IDs
+## 4. Research graph: IDs, files, links
 
-Experiments `E01, E02, ...` (permanent, from `ROADMAP.md`). Ledger rows `FD#` (foundations) and `DR#`
-(directions) in `STATUS.md`. Old IDs (sprint board G1, Q10, R1-R4, ...) stay valid inside `archive/`.
+Every idea, hypothesis and experiment is one file with a small header, so that the path from an idea to a result
+can be traced (`verification/trace.py` checks the links; the interactive map `map/index.html` draws them).
+
+**IDs.** `<K>-YYMMDD-NN`: kind letter, creation date, number within that day (`NN` = 01..99, three digits if ever
+needed). Unique without a central counter, so parallel sessions rarely collide; `trace.py` rejects duplicates.
+IDs are permanent: never renumber, never reuse.
+
+| Kind | ID | File |
+|---|---|---|
+| idea | `I-261030-04` | `ideas/I-261030-04-<slug>.md` |
+| hypothesis | `H-261101-02` | `hypotheses/H-261101-02-<slug>.md` |
+| experiment | `E-261031-05` | `experiments/E-261031-05-<slug>/README.md` (+ `PLAN.md`, `run.sh`, `results/`, `CONCLUSION.md`) |
+
+Other node references: `FD#` and `DR#` rows of `STATUS.md`; `W:<id>` witnesses (`witnesses/witnesses.json`);
+`C:<folder>` certificates (`verification/certificates/<folder>/`); `L:<key>` sources (`literature/README.md`);
+`owner` (an idea or decision of the project owner).
+
+**Header.** Between two `---` lines at the top of the file; only `key: value` and `key: [a, b]` lines.
+
+```
+---
+id: E-261031-05
+title: Normals-first with exact offsets, genus 3 -> 4
+date: 2026-10-31
+status: done            # idea: open | tried | parked; hypothesis: open | supported | weakened | refuted | proved;
+                        # experiment: planned | running | done | killed
+direction: [DR2]        # optional
+origin: [I-261030-04, H-261101-04, E-261030-07, L:schewe2010]   # where it came from (any node kinds)
+tests: [H-261101-04]    # experiments only: hypotheses it can move
+produces: [FD7, W:lab_type0_genus3]                              # experiments only: results it established
+verdict: LOW-YIELD@150 core-h                                    # experiments only, when done
+preregistered: false    # experiments only; false for work reconstructed after the fact
+---
+```
+
+**Links are stored once, on the child.** An experiment lists its `origin` and the hypotheses it `tests`; "what grew
+out of this idea / hypothesis / experiment" is computed in reverse by `trace.py`, never written by hand. Links are
+many-to-many: one hypothesis can be the origin of many experiments, one experiment can test many hypotheses.
+
+**Body.** Idea: the idea, why it might help, the cheapest test. Hypothesis: statement, rival, evidence so far,
+what would move it. Experiment: goal, origin in prose, method, results (files in `results/`), conclusions (with
+`SPEC.md` labels and scope), next steps. Planned experiments also carry their `ROADMAP.md` scores.
 
 ## 5. Provenance manifest (every run, every shard)
 
