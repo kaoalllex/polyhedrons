@@ -21,7 +21,7 @@ export PATH="$HOME/bin:$PATH"
 H=${1:-8}
 W=${2:-$(python3 -c "import os; print(max(1, (os.cpu_count() or 2) - 1))")}
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1
-# budgets count awake time only (time.monotonic stops while the Mac sleeps), so closing the lid costs nothing
+# budgets count awake time only (time.monotonic stops while the Mac sleeps), so a sleep costs no budget (run under caffeinate -dimsu anyway, or the night is lost)
 T0=$(python3 -c "import time; print(time.monotonic())")
 H1=$(python3 -c "print(round(min(1.0, $H * 0.15), 2))")
 echo "night 5: $H h on $W workers (gate <= $H1 h, then n5 on $((W > 1 ? W - 1 : 1)) + arch control on 1)"

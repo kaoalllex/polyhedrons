@@ -23,9 +23,11 @@ triangles or cyclic neighbour lists `links`). Vertices are triple points of plan
 The realization space of a type is open in R^36, so general position is WLOG and a solution, if any, has a
 rational (hence integer) certificate.
 
-**Only `ladder_exact.verify(..., require_all_pairs=True)` returning `EMBEDDED: True` with 12 faces, 66
-adjacent pairs and every adjacency single counts as a solution** (`verification/verify_candidate.py FILE
---all-pairs`). Nothing else - no energy, no counter, no picture - is evidence of a solution.
+**Only `verification/verify_candidate.py FILE --target S0` returning PASS counts as a solution**: exact
+`EMBEDDED: True` (`ladder_exact.verify`), 12 faces, every two faces adjacent, every adjacency single,
+(V, E, F, chi) = (44, 66, 12, -10). `--all-pairs` alone is S1 (it accepts doubled adjacencies; `verify_all`
+checks that S0 rejects the Roest-Vigh object). Nothing else - no energy, no counter, no picture - is
+evidence of a solution.
 
 ## 2. Auxiliary targets (never solutions; label every result with its target)
 
@@ -70,7 +72,7 @@ those normals, gauge, bounds and margins; never generalise beyond it), **UNKNOWN
 never a negative result), **NO_ADMISSIBLE_NORMALS** (the annealer found no normals in the class within its
 budget - a search failure, not a proof).
 
-## 5. Evidence levels (use these labels in `STATUS.md` and `results.md`)
+## 5. Evidence levels (use these labels in `STATUS.md`, `CONCLUSION.md` files and agent output)
 
 | Label | Meaning |
 |---|---|
@@ -86,5 +88,8 @@ claims need a human mathematical review outside this chain of agents.
 
 ## Change log
 
+* 2026-11-01: §1 success check is `verify_candidate.py --target S0` (the earlier `--all-pairs` wording
+  accepted doubled adjacencies; found by the fresh-eyes audit, `reviews/fresh-audit-2026-11-01.md` F01).
+  §5: `results.md` is frozen history and keeps its old labels.
 * 2026-11-01: created from `theory/mathematical-model.md`, the external audit v3 (sections 1, 9.6, 11) and the
   internal audit draft of 2026-10-31.

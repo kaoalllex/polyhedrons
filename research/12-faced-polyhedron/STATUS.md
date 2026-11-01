@@ -2,12 +2,12 @@
 
 As of **2026-11-01** (after night 5). Definitions, counters and evidence labels: `SPEC.md`. Evidence
 details: `results.md`; chronology: `experiment-log.md`; what to do next: `ROADMAP.md`. Update this file in the
-same commit as any result that changes a row; never let it drift from `results.md`.
+same commit as any result that changes a row. This file owns the verdicts and numbers; other files link here.
 
 ## 0. State in one paragraph
 
-Combinatorics is finished (59 types). Impossibility side: no symmetric realization, even as a polyhedral
-immersion (25/25 cases, CERTIFIED); the asymmetric case is open. Construction side: the best exact object
+Combinatorics is finished (59 types). Impossibility side: no symmetric embedding (25/25 cases, CERTIFIED) and
+no symmetric polyhedral immersion (25/25 DRAT-checked, EXACT; CERTIFIED after E08); the asymmetric case is open. Construction side: the best exact object
 has genus 3 (48 of 66 adjacent pairs; 94 realizations of 4 types, one of them on a map that is
 combinatorially completable to a target map); **genus 4 was never reached** in five nights (ten engines). Every Gauss-admissible normal set tried so far
 is exactly UNSAT for the offsets (12,202 decisions in nights 4-5 alone, 0 SAT), but the positive control shows these decisions have low power. No candidate
@@ -17,16 +17,16 @@ for genus 6 exists; no type has been excluded. The question is open in both dire
 
 | # | Statement | Level | Evidence | Caveat |
 |---|---|---|---|---|
-| FD1 | Face-plane formulation; open realization space; general position WLOG; integer certificates exist | PROVED | `theory/mathematical-model.md` §1-§5; adversarial review ACCEPT (`verification/foundations-report.md`) | reviewers were AI agents; needs human review before publication |
-| FD2 | Lemma 5.1: embedding = 176 forbidden-triple conditions on the chirotope of 12 planes + plane at infinity; `IN` predicate | PROVED + EXACT tests | foundations report; 2.5 M predicate evaluations, 0 mismatches; Szilassi check in `verify_all` | same |
+| FD1 | Face-plane formulation; open realization space; general position WLOG; integer certificates exist | PROVED-1 | `theory/mathematical-model.md` §1-§5; adversarial review ACCEPT (`verification/foundations-report.md`) | reviewers were AI agents (not independent, SPEC §5); PROVED after a human review |
+| FD2 | Lemma 5.1: embedding = 176 forbidden-triple conditions on the chirotope of 12 planes + plane at infinity; `IN` predicate | PROVED-1 + EXACT tests | foundations report; 2.5 M predicate evaluations, 0 mismatches; Szilassi check in `verify_all` | same |
 | FD3 | Exactly 59 types; automorphism groups (39 trivial) | EXACT | two independent enumerators; bijection with HackerPoet and Lutz lists; `verify_all` check 1 | known since Altshuler-Bokowski-Schuchert 1996 - replication, not discovery |
 | FD4 | OM-SAT encoder (GP, triples, REFLEX1, POC, symmetry, normalisations) | EXACT tests | 0 mismatches vs exact geometry; cross-check with Track 4 (`results.md` Track 3) | single encoder; immersion families have no second implementation |
-| FD5 | No symmetric embedding (all C2, C3 classes, hence all groups) | CERTIFIED | 25/25 UNSAT-VERIFIED, drat-trim (`overnight/results/sym/`) | raw DRAT files regenerated bit-identically 2026-11-01, publication pending (ROADMAP Phase 0); reproduces Moki & Julio 2026 |
-| FD6 | **No symmetric polyhedral immersion** (no global clauses) | CERTIFIED | 25/25 UNSAT-VERIFIED (`overnight/results/symimm/`); plan `proof-no-symmetric-immersion/` | write-up, soundness proofs of REFLEX1/POC/SIMPLE/SYM and a second encoder pending |
+| FD5 | No symmetric embedding (all C2, C3 classes, hence all groups) | CERTIFIED | 25/25 UNSAT-VERIFIED, drat-trim (`overnight/results/sym/`) | encoding soundness rests on FD2 (PROVED-1); raw DRAT files regenerated bit-identically 2026-11-01, publication pending (ROADMAP Phase 0); reproduces Moki & Julio 2026 |
+| FD6 | **No symmetric polyhedral immersion** (no global clauses) | EXACT (DRAT-checked); CERTIFIED after E08 | 25/25 UNSAT-VERIFIED (`overnight/results/symimm/`); plan `proof-no-symmetric-immersion/` | write-up, soundness proofs of REFLEX1/POC/SIMPLE/SYM and a second encoder pending |
 | FD7 | Gauss-map degree = 1 - g in the gauge, positive covering, >= 2g+1 saddles; local lemma; face-winding identity; parity theorem; handle decomposition D_{M+tau} = D_M + k_tau | PROVED-1 (classical fact in polyhedral form; the normal-only exact filter is ours) | `theory/theory-notes.md` 2.1 + PI addendum; held on 232/232 realizations (nights 4-5), tetrahedron, cube, Szilassi, Roest-Vigh | covering is checked on sampled directions only (SPEC §4) |
-| FD8 | Fixed normals make every condition linear in the offsets; exact SMT decides a normal set in seconds-minutes | PROVED + EXACT | `theory/theory-notes.md` 3.1; `fixed_normals_gauge.py`; positive controls SAT | UNSAT is scoped to that normal set, gauge and bounds |
+| FD8 | Fixed normals make every condition linear in the offsets; exact SMT decides a normal set in seconds-minutes | PROVED-1 + EXACT | `theory/theory-notes.md` 3.1; `fixed_normals_gauge.py`; positive controls SAT | UNSAT is scoped to that normal set, gauge and bounds |
 | FD9 | Fixed-normal obstruction is cohomological (36 handle periods); face simplicity is an independent strong wall | NUMERICAL (~200 normal sets) | `reviews/fresh-eyes-review.md` 2.3; `period_defect.py`; night 2 | observation, not a theorem |
-| FD10 | Exact verifiers (`ladder_exact`, `verify_solid`, `planes.check_embedding`) and the one-command suite | EXACT | caught 4 optimizer exploits; `verification/verify_all.py` (9 checks, all PASS 2026-11-01) | rational rounding at 1e-9 (SPEC §3) |
+| FD10 | Exact verifiers (`ladder_exact`, `verify_solid`, `planes.check_embedding`) and the one-command suite | EXACT | caught 4 optimizer exploits; `verification/verify_all.py` (11 checks incl. the S0 negative control, all PASS 2026-11-01) | rational rounding at 1e-9 (SPEC §3) |
 | FD11 | All 1005 known near-misses (HackerPoet) have the wrong Gauss degree and are not immersions (>= 7 vertices with two reflex corners each) | EXACT per instance | `results.md` PI sections | - |
 
 ## 2. Exact witnesses (objects, re-checked by `verify_all`)
@@ -90,7 +90,7 @@ local defect); "correct Gauss degree implies realizability" (refuted by Q1); "co
 
 ## 6. Progress or barrier?
 
-Progress is real on understanding and impossibility (FD1-FD11, two certified theorems, a correct diagnosis of
+Progress is real on understanding and impossibility (FD1-FD11, one certified theorem and one DRAT-checked one awaiting its write-up, a correct diagnosis of
 why heuristics plateau). On construction the project has hit a robust barrier at genus 3; more heuristic
 search has low expected value. What moves the question now is (a) exact decisions with certificates
 (DR8-DR9), (b) turning UNSATs into lemmas (DR10-DR11), (c) a cheap constructive side line on S1 (DR12). Progress
@@ -102,6 +102,6 @@ From now on every run records its core-hours in its manifest (`PROTOCOL.md` §5)
 
 | Period | Core-hours (approx.) | Information gained |
 |---|---|---|
-| Nights 1-2 (sym, symimm, pdefect, immersion) | not recorded (immersion alone 8 x 2.2 h) | two certified theorems; closure-first refuted |
+| Nights 1-2 (sym, symimm, pdefect, immersion) | not recorded (immersion alone 8 x 2.2 h) | FD5 (certified), FD6 (DRAT-checked); closure-first refuted |
 | Night 3 (glad) | not recorded | genus 3 for types 39, 53; class diagnosis of failed levels |
 | Nights 4-5 (arch, gate, n5) | ~200 (n5 147.5 measured; arch ~50) | 203 more genus-2/3 realizations; plateau confirmed; 12,202 low-power UNSATs; pinned margin |

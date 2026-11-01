@@ -1243,8 +1243,9 @@ def main():
     ap.add_argument('--sym-immersion', action='store_true',
                     help='sym: certify that no symmetric IMMERSION exists (results in results/symimm)')
     ap.add_argument('--check-timeout', type=float, default=40000)
-    ap.add_argument('--keep-proofs', action='store_true')
-    ap.add_argument('--keep-cnf', action='store_true')
+    # a DRAT proof is the certificate: keep it and its CNF unless disk space forces --no-keep-*
+    ap.add_argument('--keep-proofs', action=argparse.BooleanOptionalAction, default=True)
+    ap.add_argument('--keep-cnf', action=argparse.BooleanOptionalAction, default=True)
     # cube
     ap.add_argument('--maps', default='1', help='comma-separated Lutz map numbers')
     # ils

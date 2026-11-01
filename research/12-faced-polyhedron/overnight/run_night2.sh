@@ -11,7 +11,7 @@ H=${1:-8}
 W=${2:-$(python3 -c "import os; print(max(1, (os.cpu_count() or 2) - 1))")}
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1
 H1=$(python3 -c "print(round(min(1.0, $H * 0.2), 2))")
-# budgets count awake time only (time.monotonic stops while the Mac sleeps), so closing the lid costs nothing
+# budgets count awake time only (time.monotonic stops while the Mac sleeps), so a sleep costs no budget (run under caffeinate -dimsu anyway, or the night is lost)
 T0=$(python3 -c "import time; print(time.monotonic())")
 echo "night 2: $H h on $W workers (symimm <= $H1 h, pdefect gets the rest)"
 nice -n 10 python3 run_overnight.py sym --sym-immersion --hours "$H1" --workers "$W" --git

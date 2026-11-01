@@ -1,15 +1,29 @@
 ---
 name: overnight-run-script
-description: Use when writing or editing a long-running unattended run script (run_night*.sh, overnight/run_overnight.py jobs) for the 12-face polyhedron research, so it runs well on the user's MacBook, survives lid-close/sleep, and does not waste its time budget.
+description: Use when writing or editing a long-running unattended run script (an experiment's run.sh, run_night*.sh, overnight/run_overnight.py jobs) for the 12-face polyhedron research, so it runs well on the user's MacBook, survives lid-close/sleep, and does not waste its time budget.
 ---
 
 # Overnight run scripts (macOS laptop)
 
-Reference implementations: `research/12-faced-polyhedron/overnight/run_night2.sh` and `run_overnight.py`.
+Reference implementations: `research/12-faced-polyhedron/overnight/run_night5.sh` and `run_overnight.py`.
 Check them first; extend rather than rewrite.
+
+## Before writing anything
+
+- A night is an experiment. It needs a `ROADMAP.md` row with T + D >= 3 and a committed
+  `experiments/E##-slug/PLAN.md` (skill `experiment-start`). Refuse jobs on the ROADMAP stop list unless
+  `STATUS.md` records a dated reason to reopen them.
+- The wrapper is `experiments/E##-slug/run.sh` (from `experiments/_template/`). It writes the provenance
+  manifest and calls `run_overnight.py <job> ... --results-dir "$OUT"`, so a night gets both the manifest and
+  resume. Do not build a third framework.
+- `--git` commits go to the experiment branch, never to `main`.
+- SAT jobs keep proofs and CNFs (the default since 2026-11-01). Record `cadical --version` and the drat-trim
+  commit in the manifest.
 
 ## Shell wrapper checklist
 
+0. The owner launches it as `caffeinate -dimsu bash run.sh ...`, on AC power, lid open. Print that line in the
+   hand-over. Without it, idle sleep stops the night (night 4 lost 8 h).
 1. `cd "$(dirname "$0")"`, activate `~/.venvs/polyhedra` if present, `export PATH="$HOME/bin:$PATH"` (cadical, drat-trim).
 2. Usage line `[HOURS] [WORKERS]`; default workers = `ncpu - 1`.
 3. Pin BLAS/numba to one thread per worker, otherwise N workers x M BLAS threads oversubscribe the cores:
@@ -32,7 +46,8 @@ Check them first; extend rather than rewrite.
 - Resume: all jobs record per-task results and skip finished tasks on re-run, so after sleep, a crash or
   a power cut re-running the same command continues. New jobs must keep this property
   (`load_results` / `append_result` / `jobdir`; task ids stable and deterministic).
-- Do not rely on the machine staying awake. Keeping it awake while the lid is closed needs
+- `caffeinate` keeps the Mac awake with the lid open, but not with the lid closed. Keeping it awake with the
+  lid closed needs
   `sudo pmset -a disablesleep 1` (+ `caffeinate`), risks overheating in a bag, and must be reverted
   (`disablesleep 0`); only suggest it if the user asks, and never run `sudo` yourself.
 

@@ -8,4 +8,4 @@
 * **What may NOT be claimed**:
 * **Verdict for the direction** (FOUNDATION / PROMISING / OPEN-LOW / DEAD@budget):
 * **Next step** (new ROADMAP row, or none):
-* **Rows updated**: `STATUS.md` ..., `results.md` ..., `experiment-log.md` (date).
+* **Rows updated**: `STATUS.md` ..., `ROADMAP.md` State ..., `experiment-log.md` (date).

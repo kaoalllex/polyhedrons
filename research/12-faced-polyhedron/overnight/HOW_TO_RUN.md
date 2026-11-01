@@ -105,26 +105,16 @@ the most promising arms, and a quarter of it to new, different realizations of t
 attempt: tiny values (near 3e-5 / 1e-6) mean a degenerate limit, not a near-solution.
 Архив реализаций + «бандит»: старт от всех точно реализованных полиэдров рода >= 2 из третьей ночи.
 
-Sleep / lid close: the time budget counts awake time only, so closing the laptop lid (the Mac sleeps,
-processes freeze) costs nothing; on wake the run continues with the remaining budget. Plug in the power
-before opening the lid: all workers resume at once. No `caffeinate` needed.
-Сон / закрытая крышка: бюджет считается только по времени бодрствования, так что в дороге ничего не
-теряется; после пробуждения расчёт продолжается.
+Sleep: run under `caffeinate -dimsu`, on AC power, lid open; otherwise idle sleep stops the night (night 4
+lost 8 h). If the Mac does sleep (lid closed), nothing is lost but time: budgets count awake time only
+(`time.monotonic()`), so the run continues with the remaining budget on wake.
+Сон: запускайте под `caffeinate -dimsu`, от сети, с открытой крышкой. Если Mac всё же уснул, бюджет не
+сгорает, но ночь теряется.
 
 ### Night 5 / Пятая ночь
 
-After night 4 has finished. The night-5 code is on branch `claude/practical-archimedes-e5p1fi` (the research
-branch + the session of 2026-10-30 afternoon); merge it into the branch you run from:
-После окончания четвёртой ночи. Код пятой ночи лежит в ветке `claude/practical-archimedes-e5p1fi`;
-влейте её в рабочую ветку:
-
-```bash
-cd research/12-faced-polyhedron/overnight
-git add -A results && git commit -m "night 4 results" && git push
-git fetch origin
-git merge origin/claude/practical-archimedes-e5p1fi
-./run_night5.sh 8 11
-```
+Historical (2026-10-31, done; its jobs are on the ROADMAP stop list). The code is on `main`:
+`caffeinate -dimsu ./run_night5.sh 8 11`.
 
 Why (independent review 2026-10-30): the genus-4 plateau is a Gauss-map degree obstruction. At every saved
 genus-3 polyhedron the next handle contributes degree k_tau = 0, but genus 4 needs -1, so starting the next

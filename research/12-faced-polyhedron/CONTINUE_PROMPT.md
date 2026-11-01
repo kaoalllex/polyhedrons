@@ -1,28 +1,31 @@
 # Prompt to continue this research in a new session
 
-Copy everything below the line into a new Claude Code session on `kaoalllex/polyhedrons`, branch `main` (or the
-experiment branch named in `ROADMAP.md`).
+The standing rules are in the root `CLAUDE.md`, which loads automatically. This file holds only the hand-over:
+what was in flight when the last session ended. The `session-handover` skill rewrites the block below. Paste the
+part under the line into a new Claude Code session on `kaoalllex/polyhedrons`.
 
 ---
 
-You are continuing a research project in `research/12-faced-polyhedron/` of `kaoalllex/polyhedrons`: does a
-polyhedron embedded in R^3 exist with 12 planar simple faces, every two sharing exactly one edge, three faces per
-vertex (V = 44, E = 66, genus 6)? Find and exactly verify one, or prove impossibility (fully or for some
-combinatorial types). Never weaken the requirements; never fabricate results; report failures with their output.
-Report to the owner in Russian; write repository files in English.
+Continue the 12-face research in `research/12-faced-polyhedron/`.
 
-Read, in this order: `README.md` (map), `STATUS.md` (where we are: foundations, witnesses, directions with
-verdicts, what may be claimed), `ROADMAP.md` (the scored queue), `PROTOCOL.md` (how experiments are run),
-`SPEC.md` (definitions, counters, evidence labels). History is in `experiment-log.md` and `archive/`.
+1. Read `STATUS.md` and `ROADMAP.md`.
+2. Read the hand-over below.
+3. Unless the owner names another task, work on the top `open` row of `ROADMAP.md`, using the `experiment-start`
+   skill.
 
-Rules that matter most:
-* Start an experiment only from a `ROADMAP.md` row; pre-register it in `experiments/E##-slug/PLAN.md` before any
-  compute; one branch `experiment/E##-slug` per experiment; finish with `CONCLUSION.md` and update `STATUS.md`.
-* `python3 verification/verify_all.py` must pass before and after your changes; every candidate goes through
-  `verification/verify_candidate.py`.
-* Do not run anything on the stop list (`ROADMAP.md`). A timeout is not a result; an UNSAT holds only for its
-  formula.
-* Ask the owner before large subagent tasks (usage limits) and before long runs; long runs go to the owner's
-  laptop (`caffeinate`) or to GitHub Actions (`.github/workflows/experiment.yml`).
+## Hand-over (2026-11-01)
 
-First task unless the owner says otherwise: the top open item of `ROADMAP.md` (E01, the type-0 genus-3 dossier).
+* Branch `claude/research-restructure` (pushed; CI `verify` green), not merged into
+  `main`. Merging is the owner's call; after it, tag `state-2026-11-01`.
+* DRAT certificates of FD5/FD6 regenerated bit-identically; they exist only on the owner's laptop
+  (`overnight/work/regen/release/`, 2 archives, 860 MB). The owner decides when to publish them (GitHub release).
+* Fresh-eyes audit `reviews/fresh-audit-2026-11-01.md`: actions 2-8 done.
+* Open audit actions:
+  * 9: `lint_docs.py` in `verify_all`, and an id regex in `experiment.yml`.
+  * 10: `test_mutants.py` and a re-encode-and-hash check of 2-3 symmetric CNFs.
+  * 12: READMEs link to STATUS instead of restating numbers.
+  * 13: archive `run_night*.sh`.
+  * 14: Actions pilot on E02.
+* Site: the lab models (type-0 genus 3, solid-first genus 3) and a `witnesses/` folder are agreed with the
+  owner, not started.
+* Next research item: E01 (type-0 genus-3 dossier).

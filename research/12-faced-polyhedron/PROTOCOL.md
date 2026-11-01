@@ -13,7 +13,7 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
 | `SPEC.md` | target, relaxations, counters, evidence labels | frozen; changes only via its change log |
 | `STATUS.md` | ledger: foundations, witnesses, directions with verdicts, claims | update in the same commit as any result that changes a row |
 | `ROADMAP.md` | the scored experiment queue | an experiment starts only from here |
-| `results.md` | evidence: what is proved / computed / observed, with labels | append or correct, never silently delete |
+| `results.md` | evidence up to 2026-11-01 (old labels) | frozen: correct errors only; new evidence goes to `CONCLUSION.md` |
 | `experiment-log.md` | chronology | append-only |
 | `CONTINUE_PROMPT.md` | hand-over to the next session | short; points to the files above |
 | `experiments/E##-slug/` | one experiment: plan, runner, results, conclusion | see section 2 |
@@ -33,7 +33,9 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
 6. **Verify** -> every candidate through `verification/verify_candidate.py`; every UNSAT that is used as evidence
    keeps its formula (SMT2 / CNF hash) so it can be re-checked.
 7. **Conclude** -> `CONCLUSION.md`: prediction vs outcome, what may be claimed (with its SPEC label), what not,
-   the verdict for the direction, the next step. Then update `STATUS.md`, `results.md`, `experiment-log.md`.
+   the verdict for the direction, the next step. In the same commit: the `STATUS.md` row(s), the `ROADMAP.md` State
+   (plus any new row that passes the gate) and a 1-3 line `experiment-log.md` entry pointing to `CONCLUSION.md`.
+   Numbers live in `STATUS.md` and `CONCLUSION.md` only; other files link to them (skill `experiment-conclude`).
 8. **Merge** -> PR into `main` once `verify_all.py` passes; the branch is kept for its run history.
 
 ## 3. Interpretation rules

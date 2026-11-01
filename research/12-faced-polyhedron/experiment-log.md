@@ -639,3 +639,29 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   SAT only at r = 0.05, one trial). Follow-ups: control power study, pinned-margin lemma, UNSAT cores at r = 0.
 * External audit v3 (owner, 2026-10-31) imported to `reviews/`; its type-0 handle-completion certificate
   (genus 3 -> 6, combinatorial only) re-run here: PASS (`verification/certificates/type0_handle_completion/`).
+
+## 2026-11-01: restructure, DRAT regeneration, fresh-eyes audit fixes
+
+* Project restructured into SPEC / STATUS / ROADMAP / PROTOCOL, `verify_all.py`, experiment template, CI
+  (commit 72ccc52). Röst–Vígh added to the site (e7adba8).
+* DRAT certificates of `sym` / `symimm` regenerated with `--keep-proofs --keep-cnf`: 50/50 CNFs and proofs
+  bit-identical to the recorded SHA-256, 50/50 re-VERIFIED (`ROADMAP.md` Phase 0). Not yet published.
+* Fresh-eyes audit (`reviews/fresh-audit-2026-11-01.md`), actions 2-8 done:
+  * The solution check is now `verify_candidate.py --target S0`. The old `--all-pairs` accepted doubled
+    adjacencies, as Röst–Vígh showed; that object is now a negative control in `verify_all`. The witness checks
+    assert their genus.
+  * Labels:
+    * FD1, FD2 and FD8 are now PROVED-1.
+    * FD6 is now EXACT, and becomes CERTIFIED after E08.
+    * `results.md` is frozen.
+  * ROADMAP:
+    * State and Tests columns, plus an ordering rule.
+    * E05 and E10 moved below the gate.
+    * New row E12: external human review.
+  * Process and repository:
+    * One sleep rule (`caffeinate -dimsu`).
+    * `run_overnight.py` keeps proofs and CNFs by default.
+    * Root `CLAUDE.md`.
+    * Shared agent preamble.
+    * Skills `experiment-start`, `experiment-conclude`, `candidate-check`, `session-handover`.
+    * `LICENSE` and `CITATION.cff`.

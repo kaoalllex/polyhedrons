@@ -4,8 +4,8 @@ Does a polyhedron embedded in R^3 exist with 12 planar simple faces, every two s
 faces per vertex (V = 44, E = 66, genus 6)? Open since Szilassi (1977) found the 7-face one. Exact statement:
 `SPEC.md`.
 
-**State (2026-11-01):** no solution and no impossibility proof. Certified: no symmetric solution, not even a
-symmetric polyhedral immersion. Best exact object: genus 3 (48 of 66 adjacent pairs) on a map that is
+**State (2026-11-01):** no solution and no impossibility proof. Certified: no symmetric solution. Checked by
+DRAT proofs, write-up pending: not even a symmetric polyhedral immersion. Best exact object: genus 3 (48 of 66 adjacent pairs) on a map that is
 combinatorially completable to a target map. Genus 4 was never reached. Details and verdicts: `STATUS.md`.
 
 ## Read in this order
@@ -14,17 +14,18 @@ combinatorially completable to a target map. Genus 4 was never reached. Details 
 2. `ROADMAP.md` - the scored, pre-registered experiment queue and the stop list.
 3. `PROTOCOL.md` - how experiments are run, verified, recorded; branches; laptop and GitHub Actions.
 4. `SPEC.md` - target, relaxed targets, degeneracies, counters, evidence labels.
-5. `results.md` (evidence) and `experiment-log.md` (append-only chronology) when you need details.
+5. `experiments/E##-*/CONCLUSION.md` (evidence), `experiment-log.md` (append-only chronology), `results.md` (frozen
+   evidence up to 2026-11-01) when you need details.
 
 ## Layout
 
 | Path | Content |
 |---|---|
 | `SPEC.md`, `STATUS.md`, `ROADMAP.md`, `PROTOCOL.md` | the four living control documents |
-| `results.md`, `experiment-log.md` | evidence ledger; chronology (append-only) |
+| `results.md`, `experiment-log.md` | evidence up to 2026-11-01 (frozen); chronology (append-only) |
 | `CONTINUE_PROMPT.md` | hand-over prompt for a new AI session |
 | `theory/` | mathematical model, theory notes (lemmas, Gauss degree), proof roadmap |
-| `proof-no-symmetric-immersion/` | write-up project of the certified theorem (own continue prompt) |
+| `proof-no-symmetric-immersion/` | write-up of the symmetric-immersion theorem (ROADMAP E08) |
 | `code/` | all scripts; registry with status per module: `code/README.md` |
 | `verification/` | exact verifiers, `verify_all.py`, `verify_candidate.py`, certificates, foundations report |
 | `experiments/` | `E##-slug/` pre-registered experiments (template `_template/`); legacy artifact folders |

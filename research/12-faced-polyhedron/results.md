@@ -1,5 +1,9 @@
 # Results
 
+> **Frozen 2026-11-01.** History up to the restructure, with the old labels ([N], [E], [P], [K]). New
+> evidence goes to `experiments/E##-slug/CONCLUSION.md`; verdicts and numbers live in `STATUS.md`. Correct
+> errors here, but do not add new sections.
+
 Only results with evidence. Each section states what is proved, what is computed, and what is
 merely observed.
 

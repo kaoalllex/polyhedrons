@@ -10,12 +10,12 @@ regions where one experiment can exclude a whole class or reveal a new constrain
 Each item is scored 0-2 on: **T** theoretical motivation, **D** discriminating power (do different outcomes
 change the plan?), **F** cheap falsification test exists, **G** generalisation potential (a lemma for many
 types?), **R** reproducibility (exact, archivable). Do not run anything with T + D < 3, however easy to
-parallelise. Every item states what SAT / UNSAT / timeout / near-miss would mean **before** it runs.
+parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-miss would mean **before** it runs.
 
 ## Phase 0 - foundations of the workflow (done 2026-11-01 unless marked)
 
 * `SPEC.md` frozen; evidence labels and counters normalised.
-* `verification/verify_all.py` (one command, 9 checks) and `verify_candidate.py` (any file format); CI on every push.
+* `verification/verify_all.py` (one command, 11 checks) and `verify_candidate.py` (any file format, `--target S0` = the solution check); CI on every push.
 * `requirements.txt` pinned; hard-coded `/home/user` paths removed.
 * Experiment template and GitHub Actions runner (`experiments/_template/`, `.github/workflows/experiment.yml`).
 * DRAT certificates of `sym` / `symimm`: the night runs had deleted them after checking (no `--keep-proofs`).
@@ -25,20 +25,33 @@ parallelise. Every item states what SAT / UNSAT / timeout / near-miss would mean
   TODO: publish them (GitHub release, later Zenodo) and add the URLs + archive SHA-256 here.
 * TODO: tag the frozen state `state-2026-11-01` after this restructure is merged.
 
-## Queue (in order; IDs are permanent, folders `experiments/E##-slug/` when started)
+## Queue
 
-| ID | Question | T D F G R | Budget | Stop rule |
-|---|---|---|---|---|
-| E01 | Type-0 genus-3 dossier: is the best positive result correct and new? | 1 2 2 1 2 | 1-2 sessions, no compute | done when a referee-style package exists |
-| E02 | Power of normals-first: how often is the *control* SAT at radius r? | 1 2 2 1 2 | ~10 core-h | 30 maps x 3 radii, or earlier if the rate is clear |
-| E03 | Proof mining: what small cores make fixed-normal offset problems UNSAT? | 2 2 2 2 2 | ~5 core-h + theory | a core family explained, or 50 cores with no pattern |
-| E04 | Pinned hemisphere margin: why does every class-reaching drift end at margin 0? | 2 2 2 2 1 | theory + 1 h | proof, counterexample, or written reason it is an artefact |
-| E05 | Exact covering: replace sampled covering by an exact check | 1 1 2 1 2 | 1 session | exact check agrees with sampling on all 232 gated realizations |
-| E06 | Rank-3 (normals-only) SAT per type with degree / covering / saddle / face-winding clauses | 2 2 2 2 2 | 1 day coding, minutes per type | per type: UNSAT (proof!) or a model count estimate |
-| E07 | Encoding comparison with `pirozhkov-andrei/polyhedraproof` on shared instances | 1 2 1 1 2 | 1 day | conflicts / time per instance measured for both encoders |
-| E08 | Write-up: no symmetric immersion (second encoder, soundness proofs, archived certificates) | 2 1 1 1 2 | 2-3 sessions | arXiv-ready draft reviewed by `adversarial-verifier` and one human |
-| E09 | Relaxed S1 target: 12 faces, doubled pairs, symmetric orbit ansatz, after Roest-Vigh calibration | 1 2 2 1 2 | 2 nights max, <= 25 % of compute | calibration fails -> fix engine, do not run n = 12 |
-| E10 | Chirotope chambers of the 247 archive realizations | 1 1 2 1 2 | 1 session | a description of chamber adjacency for one map, or "no structure" |
+Order rule: first the items that validate evidence the project already relies on (E01 checks the verifier and
+the best witness, E02 checks whether 12,202 UNSATs mean anything); then by score sum, ties by lower cost. IDs are
+permanent. State: `open` / `running` / `done` / `killed` / `blocked`. Folder `experiments/E##-slug/` once
+started (E08 lives in `proof-no-symmetric-immersion/` until its PLAN.md exists). `experiment-conclude` updates
+the State. Hypotheses and outcome meanings go in each item's `PLAN.md` before it runs; the sections below are
+the starting point.
+
+| ID | State | Tests | Question | T D F G R | Budget | Stop rule |
+|---|---|---|---|---|---|---|
+| E01 | open | FD10, witness | Type-0 genus-3 dossier: is the best positive result correct and new? | 1 2 2 1 2 | 1-2 sessions, no compute | stop after the 5 steps below or 2 sessions; any verifier mismatch -> fix FD10 first |
+| E02 | open | DR2 | Power of normals-first: how often is the *control* SAT at radius r? | 1 2 2 1 2 | ~10 core-h | 30 maps x 3 radii, or earlier if the rate is clear |
+| E03 | open | DR10 | Proof mining: what small cores make fixed-normal offset problems UNSAT? | 2 2 2 2 2 | ~5 core-h + theory | a core family explained, or 50 cores with no pattern |
+| E06 | open | DR9 | Rank-3 (normals-only) SAT per type with degree / covering / saddle / face-winding clauses | 2 2 2 2 2 | 1 day coding, minutes per type | per type: UNSAT (proof!) or a model count estimate; stop after 3 types if every one is SAT with no pruning |
+| E04 | open | DR3 | Pinned hemisphere margin: why does every class-reaching drift end at margin 0? | 2 2 2 2 1 | 1 session theory + 1 core-h | stop after 1 session + the 1-h test: proof, counterexample, or written reason it is an artefact |
+| E09 | open | DR12 | Relaxed S1 target: 12 faces, doubled pairs, symmetric orbit ansatz, after Roest-Vigh calibration | 1 2 2 1 2 | 2 nights max, <= 25 % of compute | calibration fails -> fix engine, do not run n = 12 |
+| E07 | open | DR8 | Encoding comparison with `pirozhkov-andrei/polyhedraproof` on shared instances | 1 2 1 1 2 | 1 day | conflicts / time per instance measured for both encoders |
+| E08 | open | FD6 | Write-up: no symmetric immersion (second encoder, soundness proofs, archived certificates) | 2 1 1 1 2 | 2-3 sessions | arXiv-ready draft reviewed by `adversarial-verifier` (a filter) and one human |
+| E12 | open | FD5, FD6, E01 | External human review: send FD5/FD6 (CNF hashes, certificates) and the E01 dossier to Pirozhkov, Moki & Julio or Bokowski | 2 2 1 1 2 | owner's e-mail, no compute | a reply, or 4 weeks without one -> next reviewer |
+
+Below the gate (T + D < 3; run only after re-scoring with a written reason):
+
+| ID | Question | T D F G R | Why below |
+|---|---|---|---|
+| E05 | Exact covering: replace sampled covering by an exact check | 1 1 2 1 2 | no planned decision depends on it until E06 uses covering clauses; re-score then |
+| E10 | Chirotope chambers of the 247 archive realizations | 1 1 2 1 2 | descriptive; no outcome changes the plan |
 
 Conditional (only after E06 and E07): **E11 cube-and-conquer pilot** on 3 types (type 0, type 58, one trivial-Aut
 type), one laptop night or GitHub Actions matrix; metric = refuted fraction per core-hour; campaign only if the
@@ -93,6 +106,6 @@ more seeds or weights on an unchanged objective. Reopening needs a written reaso
 
 ## Decision point
 
-After E01-E06: either (a) E11 then a certified campaign (cloud or Actions matrix), or (b) publish the shareable
+After E01-E04 and E06: either (a) E11 then a certified campaign (cloud or Actions matrix), or (b) publish the shareable
 results and change the class of geometric ansatz, or (c) stop with a written negative report. Decide from the
 evidence, not from sunk cost.

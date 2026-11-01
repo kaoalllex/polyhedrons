@@ -31,7 +31,7 @@ trap finish EXIT
 
 # ---- the experiment: bounded, checkpointing into $OUT (EDIT) ----
 cd "$ROOT/code"
-echo "replace this line with the experiment command, e.g. python3 my_script.py --seed $SHARD --out $OUT/result.json"
+echo "replace this line with the experiment command, e.g. python3 my_script.py --seed $SHARD --out $OUT/result.json or python3 ../../overnight/run_overnight.py JOB --results-dir $OUT ..."
 exit 1
 
 # ---- exact verification of anything found (EDIT) ----
