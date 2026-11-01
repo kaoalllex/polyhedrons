@@ -5,7 +5,7 @@ solver -> a lemma or a certificate**. We do not try to enumerate the search spac
 regions where one experiment can exclude a whole class or reveal a new constraint. How to run an item:
 `PROTOCOL.md`. Current state: `STATUS.md`.
 
-## Scoring (pre-registration, external audit 17.2)
+## Scoring (pre-registration)
 
 Each item is scored 0-2 on: **T** theoretical motivation, **D** discriminating power (do different outcomes
 change the plan?), **F** cheap falsification test exists, **G** generalisation potential (a lemma for many
@@ -59,7 +59,7 @@ Conditional (only after E06 and E07): **E11 cube-and-conquer pilot** on 3 types 
 type), one laptop night or GitHub Actions matrix; metric = refuted fraction per core-hour; campaign only if the
 extrapolation is below ~2,000 core-hours per type.
 
-### E01 - type-0 genus-3 dossier (external audit sections 18, 23, 24)
+### E01 - type-0 genus-3 dossier
 
 Hypothesis: the five `type0_genus3_extendable*.json` files are exact embeddings of one map that is completable by
 the three certified handles to target type 0. Steps: (1) a second, independently written verifier that does not
@@ -80,7 +80,7 @@ Hypothesis H0: at in-class seeds the offset problem is generically SAT near the 
 are real evidence of an obstruction between levels (then E03 on them); p ~ 0 -> normals-first sampling is
 blind, retire the UNSAT counts as evidence; timeouts dominate -> encoding cost problem, not geometry.
 
-### E03 - proof mining from UNSAT cores (external audit 16.3, 17.1 C, 20)
+### E03 - proof mining from UNSAT cores
 
 Instances: the Q1 sphere (type 58, `experiments/chain_normals/`) and the 80 r = 0 kdrift seeds
 (`overnight/results/n5/attempts/kd_*`, `radius: 0.0`). Save every SMT2 instance; extract minimal cores (z3

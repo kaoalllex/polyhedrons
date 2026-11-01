@@ -105,5 +105,4 @@ claims need a human mathematical review outside this chain of agents.
 * 2026-11-01: §1 success check is `verify_candidate.py --target S0` (the earlier `--all-pairs` wording
   accepted doubled adjacencies; found by the fresh-eyes audit, `reviews/fresh-audit-2026-11-01.md` F01).
   §5: `results.md` is frozen history and keeps its old labels.
-* 2026-11-01: created from `theory/mathematical-model.md`, the external audit v3 (sections 1, 9.6, 11) and the
-  internal audit draft of 2026-10-31.
+* 2026-11-01: created from `theory/mathematical-model.md` and the process audits of 2026-10-31.
