@@ -13,19 +13,25 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 3. Unless the owner names another task, work on the top `open` row of `ROADMAP.md`, using the `experiment-start`
    skill.
 
-## Hand-over (2026-11-01)
+## Hand-over (2026-11-01, evening)
 
-* **Research graph.** Every idea, hypothesis and experiment is one file with a dated ID (`PROTOCOL.md` §4).
-  * 108 ideas in `ideas/`, 24 hypotheses in `hypotheses/`.
-  * 46 experiments in `experiments/E-*`: 33 past ones reconstructed with their data, 13 planned (the queue).
-  * The interactive map is `map/index.html`; `verification/trace.py` checks the links (part of `verify_all`).
-  * To add work, use the skills `experiment-start` and `experiment-conclude`. New ideas and hypotheses get their
-    own files.
-* **State of `main`.** Everything is on `main` once PR #1 is merged (the owner merges). Tag `state-2026-11-01` holds
-  the release with the DRAT certificates of FD5/FD6 and the documents that were split or removed (archive,
-  old idea notes, reviews, night scripts).
-* **Optional for the owner.** A strategic review by a strong model (`reviews/REVIEW_PROMPT_2026-11-01.md`).
-* **Infrastructure TODOs.** Listed in `ROADMAP.md` Phase 0: `lint_docs.py`, mutation tests, CNF re-encode
-  check, README numbers, Actions pilot.
-* **Next research item.** E-261101-03 (type-0 genus-3 dossier). Side line: E-261101-12 (maximal face-neighbourly
-  polyhedra).
+* **Branch to open:** `claude/strategy-review-2026-11-01` (on top of `main` after PR #1). It holds the strategy
+  review (`reviews/strategy-review-2026-11-01.md`), the ledger corrections it required, ten new ideas
+  (I-261101-08..17), seven new hypotheses (H-261101-08..14), seven planned experiments (E-261101-16..22), the
+  re-ordered `ROADMAP.md` queue with a three-scenario decision table, and process rules in the agent prompts and
+  skills. `verify_all --quick`: ALL PASS. Owner action: review and merge via PR (`verify` must be green).
+* **Read first, in this order:** `STATUS.md` (FD6 and FD11 changed; DR18 new), `ROADMAP.md` (new order and
+  decision table), `reviews/strategy-review-2026-11-01.md` sections 1, 5 and 9, then the README of the experiment
+  you take.
+* **Two lemmas await a human reader** (`theory/theory-notes.md`, addendum 2026-11-01): Lemma A closes the FD6 gap
+  for mirrors and point reflections; Lemma B says tight trivalent polyhedra are convex. Both are PROVED-1 at most.
+  Until Lemma A is reviewed, say "no immersion with a rotational symmetry".
+* **In-flight runs:** none. No compute was started by the review session.
+* **Open owner actions:** merge the branch; send the first external e-mail (E-261101-11: the `polyhedraproof`
+  author, three shared instances with CNF hashes, one question); Zenodo DOI for the certificates (Phase 0 TODO).
+* **Next ROADMAP items, in order:** E-261101-06 (rank-3 SAT per type; the cheapest decisive experiment),
+  E-261101-09 (predicate equality of the two encoders), E-261101-18 (face-grouped MUS), E-261101-16 (arrangement
+  first). Each README has a "Starting point" written so that a smaller model can execute it; the `PLAN.md` must be
+  filled and committed before any compute (skill `experiment-start`), including the new counter-calibration and
+  scenario-move lines.
+* **Do not** use `gauss_gate.hemisphere_margin` as an objective or a diagnostic (it floors at 0, E-261101-07).

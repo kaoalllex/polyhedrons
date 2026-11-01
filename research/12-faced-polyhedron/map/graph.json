@@ -508,13 +508,13 @@
    "id": "E-261101-07",
    "kind": "experiment",
    "title": "Why does every class-reaching drift end at margin 0?",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-01",
    "path": "experiments/E-261101-07-pinned-hemisphere-margin/README.md",
    "direction": [
     "DR3"
    ],
-   "verdict": "",
+   "verdict": "ARTEFACT (measuring function floors at 0; see CONCLUSION.md)",
    "preregistered": "false"
   },
   {
@@ -621,9 +621,103 @@
    "preregistered": "false"
   },
   {
+   "id": "E-261101-16",
+   "kind": "experiment",
+   "title": "Arrangement first - exact chamber-SAT on structured and archived 12-plane arrangements",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-16-arrangement-first-chamber-sat/README.md",
+   "direction": [
+    "DR7",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-17",
+   "kind": "experiment",
+   "title": "Geometry of the realization spaces - chord widths, shrinkage per handle, connectivity of the archive",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-17-realization-space-geometry/README.md",
+   "direction": [
+    "DR13",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-18",
+   "kind": "experiment",
+   "title": "Face-grouped minimal unsatisfiable cores of the 50 certified symmetric instances",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-18-face-grouped-mus-symmetric/README.md",
+   "direction": [
+    "DR10",
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-19",
+   "kind": "experiment",
+   "title": "Barrier continuation from genus-3 realizations towards an in-class handle (replaces E-261101-07)",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-19-barrier-continuation-genus3-handle/README.md",
+   "direction": [
+    "DR17",
+    "DR3"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-20",
+   "kind": "experiment",
+   "title": "One incremental SAT session for the symmetric instances - do shared GP lemmas cut the total time?",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-20-incremental-sat-across-types/README.md",
+   "direction": [
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-21",
+   "kind": "experiment",
+   "title": "The Gauss map as a fold map - find the identity on the controls, then add it to the rank-3 encoding",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-21-fold-locus-controls/README.md",
+   "direction": [
+    "DR9",
+    "DR3"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-22",
+   "kind": "experiment",
+   "title": "Literature - realized and excluded equivelar {p,3} polyhedra with planar faces",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-22-equivelar-literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
-   "title": "All 1005 known near-misses (HackerPoet) have the wrong Gauss degree and are not immersions (>= 7 vertices with two reflex corners each)",
+   "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
    "status": "",
    "date": "",
    "path": "STATUS.md",
@@ -678,7 +772,7 @@
   {
    "id": "FD6",
    "kind": "foundation",
-   "title": "**No symmetric polyhedral immersion** (no global clauses)",
+   "title": "**No polyhedral immersion with a non-trivial rotational symmetry** (no global clauses); improper isometries (mirror, point reflection) excluded by the lemma I-261101-16, pending review",
    "status": "",
    "date": "",
    "path": "STATUS.md",
@@ -964,7 +1058,7 @@
   {
    "id": "H-261101-06",
    "kind": "hypothesis",
-   "title": "An exact per-type decision costs under about 2,000 core-hours",
+   "title": "An exact per-type decision costs about 300 core-hours and its proofs can be checked on the fly in 6-hour shards",
    "status": "open",
    "date": "2026-11-01",
    "path": "hypotheses/H-261101-06-per-type-decision-affordable.md",
@@ -979,6 +1073,83 @@
    "status": "open",
    "date": "2026-11-01",
    "path": "hypotheses/H-261101-07-maximal-face-neighbourly-exist.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261101-08",
+   "kind": "hypothesis",
+   "title": "Some structured 12-plane arrangement carries an all-adjacent solid of genus >= 4",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "hypotheses/H-261101-08-structured-arrangement-high-genus-solid.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261101-09",
+   "kind": "hypothesis",
+   "title": "The realization regions are thin and shrink sharply per handle, so sampling has no power at any genus",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "hypotheses/H-261101-09-thin-realization-region.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261101-10",
+   "kind": "hypothesis",
+   "title": "Handles are the wrong move - no genus-3 realization space reaches an in-class handle",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "hypotheses/H-261101-10-handles-wrong-move.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261101-11",
+   "kind": "hypothesis",
+   "title": "The symmetric obstructions have cores on at most six faces that recur across classes",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "hypotheses/H-261101-11-few-face-core.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261101-12",
+   "kind": "hypothesis",
+   "title": "Some types are SAT at the oriented-matroid level with only non-realizable models",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "hypotheses/H-261101-12-om-sat-nonrealizable-types.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261101-13",
+   "kind": "hypothesis",
+   "title": "No polyhedral immersion of the 12-face map has a mirror or point-reflection symmetry",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "hypotheses/H-261101-13-no-improper-symmetric-immersion.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261101-14",
+   "kind": "hypothesis",
+   "title": "A fold-map identity constrains the convex region of the Gauss map beyond the known counts",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "hypotheses/H-261101-14-fold-locus-identity.md",
    "direction": [],
    "verdict": "",
    "preregistered": ""
@@ -2254,7 +2425,7 @@
    "id": "I-261101-03",
    "kind": "idea",
    "title": "Explain why every class-reaching drift ends at hemisphere margin exactly 0",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-01",
    "path": "ideas/I-261101-03-pinned-hemisphere-margin.md",
    "direction": [
@@ -2314,6 +2485,137 @@
    "preregistered": ""
   },
   {
+   "id": "I-261101-08",
+   "kind": "idea",
+   "title": "Arrangement first - symmetric plane arrangements with asymmetric solids, decided exactly per arrangement",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-08-arrangement-first-structured-arrangements.md",
+   "direction": [
+    "DR7",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261101-09",
+   "kind": "idea",
+   "title": "Measure the realization spaces of the archived polyhedra - widths, volume ratio per handle, connectivity",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-09-realization-space-geometry-hit-and-run.md",
+   "direction": [
+    "DR13",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261101-10",
+   "kind": "idea",
+   "title": "Face-grouped minimal unsatisfiable cores of the 50 certified symmetric instances",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-10-face-grouped-mus-symmetric-cores.md",
+   "direction": [
+    "DR10",
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261101-11",
+   "kind": "idea",
+   "title": "Barrier continuation inside a genus-3 realization space towards an in-class handle",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-11-barrier-continuation-handle-feasibility.md",
+   "direction": [
+    "DR17",
+    "DR3"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261101-12",
+   "kind": "idea",
+   "title": "One incremental SAT session for all types - shared Grassmann-Pluecker lemmas, selector literals per type",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-12-incremental-sat-shared-gp-lemmas.md",
+   "direction": [
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261101-13",
+   "kind": "idea",
+   "title": "The Gauss map as a fold map - topology of the convex region as rank-3 clauses",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-13-convex-region-fold-map-topology.md",
+   "direction": [
+    "DR9",
+    "DR3"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261101-14",
+   "kind": "idea",
+   "title": "Tight (minimal total absolute curvature) realizations - excluded for trivalent polyhedra of positive genus",
+   "status": "parked",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-14-no-tight-trivalent-polyhedron.md",
+   "direction": [
+    "DR3"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261101-15",
+   "kind": "idea",
+   "title": "Szilassi-12 is an equivelar polyhedron of type {11,3} - read the equivelar-polyhedra literature",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-15-equivelar-p3-literature.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261101-16",
+   "kind": "idea",
+   "title": "Close the FD6 gap - no polyhedral immersion has a mirror or point-reflection symmetry",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-16-improper-isometry-lemma-immersions.md",
+   "direction": [
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261101-17",
+   "kind": "idea",
+   "title": "An explicit three-scenario credence ledger for the decision point",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-17-scenario-probability-ledger.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -2336,9 +2638,31 @@
    "preregistered": ""
   },
   {
+   "id": "L:bgm1982",
+   "kind": "source",
+   "title": "T. Banchoff, T. Gaffney, C. McCrory, Cusps of Gauss Mappings, Pitman Research Notes 55 (1982)",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:bokowski2025",
    "kind": "source",
    "title": "J. Bokowski, Kevin H., Polyhedral embeddings of triangular regular maps of genus g, 2 <= g <= 14, and neighborly spatial",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "L:brehm-wills1993",
+   "kind": "source",
+   "title": "U. Brehm, J. M. Wills, Polyhedral manifolds, Handbook of Convex Geometry (1993) 535-554",
    "status": "",
    "date": "",
    "path": "literature/README.md",
@@ -2361,6 +2685,17 @@
    "id": "L:hackerpoet",
    "kind": "source",
    "title": "HackerPoet / CodeParade, NeighborlyPolyhedra (HackerPoet-NeighborlyPolyhedra/)",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "L:kuehnel1995",
+   "kind": "source",
+   "title": "W. Kuehnel, Tight polyhedral submanifolds and tight triangulations, LNM 1612, Springer 1995",
    "status": "",
    "date": "",
    "path": "literature/README.md",
@@ -2402,9 +2737,31 @@
    "preregistered": ""
   },
   {
+   "id": "L:msw1983",
+   "kind": "source",
+   "title": "P. McMullen, C. Schulz, J. M. Wills, Polyhedral 2-manifolds in E^3 with unusually large genus, Israel J. Math. 46 (1983)",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:pirozhkov2026",
    "kind": "source",
    "title": "A. Pirozhkov, Twelve pairwise adjacent faces: a reduction to 59 SAT formulas ..., github.com/pirozhkov-andrei/polyhedrap",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "L:quine1978",
+   "kind": "source",
+   "title": "J. R. Quine, A global theorem for singularities of maps between oriented 2-manifolds, Trans. AMS 236 (1978)",
    "status": "",
    "date": "",
    "path": "literature/README.md",
@@ -2427,6 +2784,17 @@
    "id": "L:schewe2010",
    "kind": "source",
    "title": "L. Schewe, Nonrealizable minimal vertex triangulations of surfaces, DCG 43 (2010), arXiv:0801.2582",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "L:schulte-wills1985",
+   "kind": "source",
+   "title": "E. Schulte, J. M. Wills, A polyhedral realization of Felix Klein's map {3,7}_8 on a Riemann surface of genus 3, J. Londo",
    "status": "",
    "date": "",
    "path": "literature/README.md",
@@ -2607,8 +2975,23 @@
   },
   {
    "from": "E-261029-13",
+   "to": "E-261101-18",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-13",
+   "to": "E-261101-20",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-13",
    "to": "FD5",
    "kind": "produces"
+  },
+  {
+   "from": "E-261029-13",
+   "to": "I-261101-10",
+   "kind": "origin"
   },
   {
    "from": "E-261029-14",
@@ -2647,6 +3030,16 @@
   },
   {
    "from": "E-261029-15",
+   "to": "E-261101-18",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-15",
+   "to": "E-261101-20",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-15",
    "to": "FD6",
    "kind": "produces"
   },
@@ -2659,6 +3052,21 @@
    "from": "E-261029-15",
    "to": "H-261029-10",
    "kind": "tests"
+  },
+  {
+   "from": "E-261029-15",
+   "to": "H-261101-13",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-15",
+   "to": "I-261101-10",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-15",
+   "to": "I-261101-16",
+   "kind": "origin"
   },
   {
    "from": "E-261029-16",
@@ -2708,6 +3116,11 @@
   {
    "from": "E-261030-02",
    "to": "E-261030-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-02",
+   "to": "E-261101-16",
    "kind": "origin"
   },
   {
@@ -2792,6 +3205,11 @@
   },
   {
    "from": "E-261030-06",
+   "to": "E-261101-19",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-06",
    "to": "FD7",
    "kind": "produces"
   },
@@ -2804,6 +3222,11 @@
    "from": "E-261030-06",
    "to": "H-261030-05",
    "kind": "tests"
+  },
+  {
+   "from": "E-261030-06",
+   "to": "H-261101-10",
+   "kind": "origin"
   },
   {
    "from": "E-261030-07",
@@ -2847,8 +3270,28 @@
   },
   {
    "from": "E-261030-10",
+   "to": "E-261101-16",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-10",
+   "to": "E-261101-17",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-10",
+   "to": "E-261101-21",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-10",
    "to": "H-261030-04",
    "kind": "tests"
+  },
+  {
+   "from": "E-261030-10",
+   "to": "I-261101-09",
+   "kind": "origin"
   },
   {
    "from": "E-261030-11",
@@ -2867,6 +3310,11 @@
   },
   {
    "from": "E-261030-11",
+   "to": "E-261101-19",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-11",
    "to": "H-261029-09",
    "kind": "tests"
   },
@@ -2874,6 +3322,21 @@
    "from": "E-261030-11",
    "to": "H-261101-04",
    "kind": "tests"
+  },
+  {
+   "from": "E-261030-11",
+   "to": "H-261101-09",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-11",
+   "to": "I-261101-09",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-11",
+   "to": "I-261101-11",
+   "kind": "origin"
   },
   {
    "from": "E-261101-01",
@@ -2927,6 +3390,11 @@
   },
   {
    "from": "E-261101-06",
+   "to": "E-261101-21",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-06",
    "to": "H-261101-02",
    "kind": "tests"
   },
@@ -2937,8 +3405,23 @@
   },
   {
    "from": "E-261101-07",
+   "to": "E-261101-19",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-07",
    "to": "H-261101-03",
    "kind": "tests"
+  },
+  {
+   "from": "E-261101-07",
+   "to": "H-261101-10",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-07",
+   "to": "I-261101-11",
+   "kind": "origin"
   },
   {
    "from": "E-261101-08",
@@ -2958,6 +3441,11 @@
   {
    "from": "E-261101-10",
    "to": "H-261029-10",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-10",
+   "to": "H-261101-13",
    "kind": "tests"
   },
   {
@@ -2981,6 +3469,81 @@
    "kind": "tests"
   },
   {
+   "from": "E-261101-16",
+   "to": "H-261101-08",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-16",
+   "to": "H-261101-10",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-17",
+   "to": "H-261101-09",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-17",
+   "to": "H-261101-10",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-18",
+   "to": "H-261101-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-18",
+   "to": "H-261101-11",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-19",
+   "to": "H-261101-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-19",
+   "to": "H-261101-10",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-20",
+   "to": "H-261101-06",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-21",
+   "to": "H-261101-14",
+   "kind": "tests"
+  },
+  {
+   "from": "FD5",
+   "to": "H-261101-08",
+   "kind": "origin"
+  },
+  {
+   "from": "FD5",
+   "to": "I-261101-08",
+   "kind": "origin"
+  },
+  {
+   "from": "FD7",
+   "to": "H-261101-14",
+   "kind": "origin"
+  },
+  {
+   "from": "FD7",
+   "to": "I-261101-13",
+   "kind": "origin"
+  },
+  {
+   "from": "FD7",
+   "to": "I-261101-14",
+   "kind": "origin"
+  },
+  {
    "from": "H-261029-06",
    "to": "E-261029-12",
    "kind": "origin"
@@ -2988,6 +3551,16 @@
   {
    "from": "H-261029-08",
    "to": "E-261029-11",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261101-02",
+   "to": "H-261101-11",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261101-04",
+   "to": "H-261101-09",
    "kind": "origin"
   },
   {
@@ -3021,6 +3594,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261029-16",
+   "to": "I-261101-13",
+   "kind": "origin"
+  },
+  {
    "from": "I-261029-17",
    "to": "E-261029-14",
    "kind": "origin"
@@ -3038,6 +3616,11 @@
   {
    "from": "I-261029-27",
    "to": "E-261029-20",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-27",
+   "to": "I-261101-08",
    "kind": "origin"
   },
   {
@@ -3116,6 +3699,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261029-57",
+   "to": "H-261101-12",
+   "kind": "origin"
+  },
+  {
    "from": "I-261030-03",
    "to": "E-261030-03",
    "kind": "origin"
@@ -3141,6 +3729,16 @@
    "kind": "origin"
   },
   {
+   "from": "I-261030-07",
+   "to": "E-261101-16",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-07",
+   "to": "I-261101-08",
+   "kind": "origin"
+  },
+  {
    "from": "I-261030-11",
    "to": "E-261030-01",
    "kind": "origin"
@@ -3153,6 +3751,16 @@
   {
    "from": "I-261030-16",
    "to": "E-261030-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-21",
+   "to": "E-261101-17",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-21",
+   "to": "I-261101-09",
    "kind": "origin"
   },
   {
@@ -3211,6 +3819,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261031-02",
+   "to": "I-261101-12",
+   "kind": "origin"
+  },
+  {
    "from": "I-261031-03",
    "to": "E-261101-09",
    "kind": "origin"
@@ -3221,8 +3834,18 @@
    "kind": "origin"
   },
   {
+   "from": "I-261031-05",
+   "to": "I-261101-11",
+   "kind": "origin"
+  },
+  {
    "from": "I-261031-06",
    "to": "E-261101-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-06",
+   "to": "I-261101-16",
    "kind": "origin"
   },
   {
@@ -3236,8 +3859,18 @@
    "kind": "origin"
   },
   {
+   "from": "I-261101-02",
+   "to": "I-261101-10",
+   "kind": "origin"
+  },
+  {
    "from": "I-261101-03",
    "to": "E-261101-07",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-03",
+   "to": "I-261101-11",
    "kind": "origin"
   },
   {
@@ -3261,6 +3894,76 @@
    "kind": "origin"
   },
   {
+   "from": "I-261101-08",
+   "to": "E-261101-16",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-08",
+   "to": "H-261101-08",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-09",
+   "to": "E-261101-17",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-09",
+   "to": "H-261101-09",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-10",
+   "to": "E-261101-18",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-10",
+   "to": "H-261101-11",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-11",
+   "to": "E-261101-19",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-11",
+   "to": "H-261101-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-12",
+   "to": "E-261101-20",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-13",
+   "to": "E-261101-21",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-13",
+   "to": "H-261101-14",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-15",
+   "to": "E-261101-22",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-16",
+   "to": "E-261101-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-16",
+   "to": "H-261101-13",
+   "kind": "origin"
+  },
+  {
    "from": "L:abs1996",
    "to": "E-261029-01",
    "kind": "origin"
@@ -3271,6 +3974,16 @@
    "kind": "origin"
   },
   {
+   "from": "L:banchoff1967",
+   "to": "I-261101-14",
+   "kind": "origin"
+  },
+  {
+   "from": "L:bgm1982",
+   "to": "I-261101-13",
+   "kind": "origin"
+  },
+  {
    "from": "L:bokowski2025",
    "to": "I-261029-46",
    "kind": "origin"
@@ -3278,6 +3991,11 @@
   {
    "from": "L:bokowski2025",
    "to": "I-261029-57",
+   "kind": "origin"
+  },
+  {
+   "from": "L:brehm-wills1993",
+   "to": "I-261101-15",
    "kind": "origin"
   },
   {
@@ -3298,6 +4016,11 @@
   {
    "from": "L:hackerpoet",
    "to": "E-261029-08",
+   "kind": "origin"
+  },
+  {
+   "from": "L:kuehnel1995",
+   "to": "I-261101-14",
    "kind": "origin"
   },
   {
@@ -3336,6 +4059,11 @@
    "kind": "origin"
   },
   {
+   "from": "L:mizhaev2026",
+   "to": "I-261101-08",
+   "kind": "origin"
+  },
+  {
    "from": "L:mokijulio2026",
    "to": "E-261029-02",
    "kind": "origin"
@@ -3351,8 +4079,18 @@
    "kind": "origin"
   },
   {
+   "from": "L:msw1983",
+   "to": "I-261101-15",
+   "kind": "origin"
+  },
+  {
    "from": "L:pirozhkov2026",
    "to": "H-261101-06",
+   "kind": "origin"
+  },
+  {
+   "from": "L:pirozhkov2026",
+   "to": "H-261101-12",
    "kind": "origin"
   },
   {
@@ -3363,6 +4101,16 @@
   {
    "from": "L:pirozhkov2026",
    "to": "I-261031-03",
+   "kind": "origin"
+  },
+  {
+   "from": "L:pirozhkov2026",
+   "to": "I-261101-12",
+   "kind": "origin"
+  },
+  {
+   "from": "L:quine1978",
+   "to": "I-261101-13",
    "kind": "origin"
   },
   {
@@ -3406,8 +4154,18 @@
    "kind": "origin"
   },
   {
+   "from": "L:roestvigh2026",
+   "to": "I-261101-08",
+   "kind": "origin"
+  },
+  {
    "from": "L:schewe2010",
    "to": "E-261029-03",
+   "kind": "origin"
+  },
+  {
+   "from": "L:schewe2010",
+   "to": "H-261101-12",
    "kind": "origin"
   },
   {
@@ -3426,6 +4184,11 @@
    "kind": "origin"
   },
   {
+   "from": "L:schulte-wills1985",
+   "to": "I-261101-15",
+   "kind": "origin"
+  },
+  {
    "from": "L:szilassi1977",
    "to": "H-261029-05",
    "kind": "origin"
@@ -3433,6 +4196,11 @@
   {
    "from": "L:szilassi1977",
    "to": "H-261101-01",
+   "kind": "origin"
+  },
+  {
+   "from": "L:szilassi1977",
+   "to": "I-261101-15",
    "kind": "origin"
   },
   {

@@ -16,7 +16,10 @@ They stop below genus 6.
 
 ## Evidence so far
 
-8-face genus-3 objects exist (Mizhaev, Roest-Vigh); the maximal cases (8,2), (9,3), (10,4), (11,5) are untested.
+8-face genus-3 objects exist (Mizhaev, Roest-Vigh). (8,2) was tried only by black-box engines at session budgets
+(E-261029-19: plateau at 1-2 violations, no symmetric ansatz, no attempts saved), so it is underpowered, not
+untested; (9,3), (10,4), (11,5) are untested. For 12 faces the smallest S1 relaxation has 3 doubled pairs and genus 7
+(d = 6g - 36).
 
 ## What would move it
 

@@ -13,6 +13,10 @@ add dated amendments at the end instead.
 * **Pilot** (minutes; what bug in the idea it could expose):
 * **Budget**: core-hours, wall time, shards (`matrix.json`), where (laptop / Actions).
 * **Power statement**: what the budget can and cannot detect.
+* **Counter calibration**: for every float diagnostic in the planned verdict, a control input on each side of its
+  threshold (a saturating measure is not a measurement).
+* **Scenario move**: how each outcome moves the three credences of the `ROADMAP.md` decision point (A exists /
+  B all OM-UNSAT / C OM-SAT but non-realizable), one line each.
 * **Outcomes and their meaning** (decided now):
   * SAT / found: ...
   * UNSAT: ... (scope of the formula)

@@ -23,6 +23,9 @@ Hard rules:
 - Start an experiment only from a `ROADMAP.md` row with T + D >= 3, and only after its `PLAN.md` is committed.
 - Parked methods (`ROADMAP.md`) are not banned, but a new run must say in its `PLAN.md` what is different. Never call a
   method dead without a proof. A timeout is not a result. An UNSAT holds only for its exact formula.
+- A diagnostic that is constant across many runs is suspect: check the measuring function on controls before naming
+  a phenomenon (`reviews/strategy-review-2026-11-01.md` §5.1). Every negative statement names its scope (`SPEC.md` §4)
+  and what was not run.
 - Long runs go to the owner's laptop (under `caffeinate -dimsu`, on AC power) or to GitHub Actions. Never start
   a multi-hour run from a session.
 - Ask the owner before large subagent tasks and before long runs. SAT runs keep their proofs and CNFs.

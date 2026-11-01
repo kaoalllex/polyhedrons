@@ -18,6 +18,12 @@ Project rules (shared by all agents; full text in the root `CLAUDE.md` and `rese
   experiment's `run.sh` (laptop under `caffeinate -dimsu`, or GitHub Actions).
 - Outputs: theory -> `theory/`; experiment code and results -> `experiments/E-YYMMDD-NN-slug/`; reusable library code
   -> an existing module in `code/` (`code/README.md`); ideas -> one line in `ideas/`. Bulk data -> scratchpad.
+- Scope every negative statement (`SPEC.md` section 4: instance / family / theorem) and say what was NOT run; a
+  symmetric SAT family covers only the isometries whose determinant equals the encoded character.
+- A diagnostic that is constant across many runs (pinned, exactly 0, always even) is suspect: test the measuring
+  function on controls that must give the other sign before naming a phenomenon (E-261101-07 was such an artefact).
+- Before proposing an ansatz, name the FD row that would exclude it and the loophole that remains (example: FD5
+  excludes symmetric polyhedra, not an asymmetric solid on a symmetric arrangement).
 
 Role rules:
 - Give explicit equations/inequalities/clauses and derive them. State precisely which

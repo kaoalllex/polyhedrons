@@ -157,7 +157,7 @@ the `χ(·,·,·,∞)` are constants. Hence for fixed normals and fixed type the
 Lemma 5.1 Boolean structure. Moreover, given the normals, vertex types (F3), the edge-type rule (F4)
 and the face turning rule (F6) form a CSP on the 66 bits `κ_e` alone (44 four-literal rules, 12
 tables over 11 bits): a fast exact *prefilter* on normal configurations; given `κ`, all edge-endpoint
-orders `μ` are fixed linear constraints on `d`. Search space: normals mod GL(3) = 15 dims (outer),
+orders `μ` are fixed linear constraints on `d`. Search space: normals mod GL(3) = 16 dims (outer),
 `d` = 8 dims (inner, exact).
 
 ### 3.2 Chamber formulation for fixed planes [P]
@@ -243,7 +243,7 @@ exact geometry are evidence, not proof; independent re-encoding of at least the 
 
 ## 6. Construction ansatzes (precise experiments)
 
-* **E1 (bilevel, exact inner).** Outer: normal configurations (15 dims); prefilter by DEG/COV/CNT
+* **E1 (bilevel, exact inner).** Outer: normal configurations (16 dims); prefilter by DEG/COV/CNT
   (F7–F9) and the κ-CSP of §3.1 for each of the 59 types. Inner: SMT(LRA) or MILP over `d` with the
   Lemma 5.1 structure; MaxSMT gives `f(normals) = min_d #violations` exactly. Validation: Szilassi
   normals (perturbed) must give SAT for F=7. Belief change: if prefilter-feasible normals are rare
@@ -321,3 +321,28 @@ The orientation of Delta_n (sign of det in surface order) is reversed exactly in
 With this lemma, the vertex-disk contribution to the Gauss-map degree is +-1 on Delta_n and 0
 outside (signed area = delta, |delta| < 2pi, area(Delta_n) < 2pi rules out the other fillings).
 Degenerate cases (delta = 0, collinear normals) do not occur in general position.
+
+## Addendum 2026-11-01 (strategy review): two lemmas, both [P, reviewer, unreviewed]
+
+**Lemma A (no improper symmetric immersion; closes the FD6 gap).** Let an immersion of one of the 59 maps (simple
+planar faces, embedded vertex stars, distinct non-coplanar planes for adjacent faces, edges of positive length) be
+invariant under an improper isometry g inducing an automorphism. The action on faces is free (results.md Track 2).
+(i) g a point reflection: g(a) is parallel to a; adjacent faces must share an edge; contradiction.
+(ii) g a mirror sigma: the line L = a cap sigma(a) is sigma-invariant, so L lies in the mirror plane or is
+perpendicular to it. Perpendicular: sigma(a) contains L and the fixed line a cap Pi, which span a, so sigma(a) = a,
+excluded. Hence L is in the mirror and fixed pointwise. The edge e_{a, sigma a} lies on L with endpoints
+P_{a, sigma a, c} and P_{a, sigma a, c'}; sigma maps the triangle {a, sigma a, c} to {sigma a, a, sigma c}, which
+must be the other triangle on that edge, so c' = sigma c and the second endpoint is sigma of the first; both are
+fixed, so they coincide: a zero-length edge. Rotoreflections of order 4 have a proper half-turn as square (covered by
+the C2 certificates); orders 5, 7, 11 do not occur in any automorphism group. The uniform OM encoding cannot express
+this case (15 quadruples {a, g a, b, g b} are forced to zero), which is why the lemma, not a SAT run, closes it.
+Source and checks: `reviews/strategy-review-2026-11-01.md` 5.2 and A.4; idea I-261101-16.
+
+**Lemma B (tight trivalent polyhedra are convex).** For a trivalent polyhedral surface in general position the
+covering condition of 2.1 is the Chern-Lashof inequality: TAC = sum |delta_v| = 2 (integral of p) + 4 pi (g - 1)
+>= 4 pi (g + 1), with equality iff p = 1 almost everywhere (tight). If p = 1 everywhere, let v = (X, Y, C) be a convex
+corner and v' = (X, Y, C') its neighbour along e_XY; crossing the arc n_X n_Y of the tile Delta_v at a generic point
+changes p from 1 to [v' convex], because in general position only the tiles of v and v' have that arc on their
+boundary; so v' is convex. The edge graph is connected, hence every vertex is convex, deg = 1, g = 0. Consequently a
+Szilassi-12 has p >= 2 on a set of positive measure next to every convex-saddle edge, and the sum of delta over
+its convex corners exceeds 4 pi strictly; a "tight ansatz" is empty (idea I-261101-14, parked).

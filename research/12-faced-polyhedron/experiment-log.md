@@ -676,3 +676,21 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   * The interactive map is `map/`; `verification/trace.py` checks the graph inside `verify_all`.
   * The old idea notes, archive, night scripts and AI reviews were removed after migration; they are in tag
     `state-2026-11-01`.
+
+## 2026-11-01: strategy review applied; new directions queued (branch `claude/strategy-review-2026-11-01`)
+
+* `reviews/strategy-review-2026-11-01.md` (commit 97e40a5): verdict, ranked directions, errors with file:line. Checks
+  run: `verify_all --quick` ALL PASS; `k_tau` of the type-0 witness unchanged (never -1) in 40 projective charts; all
+  1005 near-miss seeds re-counted (multi-reflex min 4, no immersion); `gauss_gate.hemisphere_margin` floors at 0;
+  an improper C2 symmetry forces 15 zero quadruples in the uniform encoding.
+* Ledger corrections: FD6 restated for rotations (improper isometries by Lemma A, `theory/theory-notes.md` addendum,
+  PROVED-1, unreviewed); FD11 re-worded; DR2 drift evidence void; DR3 scope; new DR18 (arrangement first);
+  `theory-notes.md` 15 -> 16 dims; `proof-no-symmetric-immersion/README.md` scope note.
+* E-261101-07 concluded without compute: ARTEFACT (`CONCLUSION.md`); I-261101-03 tried.
+* New ideas I-261101-08..17, hypotheses H-261101-08..14, planned experiments E-261101-16..22 (arrangement first with
+  asymmetric solids on symmetric arrangements; realization-space geometry by hit-and-run; face-grouped MUS of the
+  50 certified instances; barrier continuation with a non-saturating measure; incremental SAT with shared GP
+  lemmas; fold-map topology of the convex region; equivelar {p,3} literature). ROADMAP queue re-ordered, E-261101-15
+  promoted to a row, E-261101-04 re-scored below the gate, decision point now a three-scenario credence table.
+* Process: agent preambles, `experiment-start`, `experiment-conclude`, the PLAN template and `CLAUDE.md` now require
+  counter calibration and the scope of every negative statement.
