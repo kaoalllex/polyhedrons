@@ -93,8 +93,12 @@ The competing hypotheses that drive the queue:
 - `-11`: the symmetric obstructions have cores on <= 6 faces that recur across classes;
 - `-12`: some types are OM-SAT with only non-realizable models;
 - `-13`: no immersion has a mirror or point-reflection symmetry (lemma, unreviewed);
-- `-14`: a fold-map identity constrains the convex region of the Gauss map beyond the known counts.
-Added 2026-11-01 from `reviews/strategy-review-2026-11-01.md`; H-261101-04 is demoted (its rival is -09).
+- `-14`: a fold-map identity constrains the convex region of the Gauss map beyond the known counts;
+- `-15`: the obstruction is local in faces: every type has an UNSAT sub-instance on <= 9 faces (the face ladder is
+  monotone, the genus ladder is not);
+- `-16`: guided by the Farkas certificate, the normals reach offset-feasible configurations that annealing never found.
+Added 2026-11-01 from `reviews/strategy-review-2026-11-01.md` and its follow-up; H-261101-04 is demoted (its rival is
+-09).
 
 ## 4. What may and may not be claimed
 

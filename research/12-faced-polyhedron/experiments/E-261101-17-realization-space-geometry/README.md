@@ -30,6 +30,10 @@ normal direction (then the conclusion is clear).
   own links (`gauss_degree.links_from(coherent_triangles(tris))`). Normalise planes to unit normals; move in the
   36 coordinates; a chord is found by doubling then bisection (20 steps) on each side; use the maximal feasible
   interval containing the current point (the region is not convex; this is a Markov chain on its component).
+* Split the directions: offsets only (the fibre is a cone, FD8, so chords there measure its inradius) and normals
+  only (where the thinness lives); report both distributions, never the mixed one alone.
+* Speed: a float pre-filter (`code/fastviol.py` or the float margins of `local_viol`) before every exact
+  verification; exact arithmetic only on candidate chord endpoints and accepted points.
 * Report per realization: chord-length quantiles, the fraction of chords shorter than 0.05 and 0.1 in the normal
   directions (compare with the control of E-261030-11), and the estimated log-volume ratio child / parent from
   matched directions.

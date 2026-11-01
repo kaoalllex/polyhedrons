@@ -34,6 +34,11 @@ status (OPTIMAL / FEASIBLE / UNKNOWN) for every arrangement.
   representation (`code/omsat_sym.find_reps` gives signed-permutation ones), sample the free planes per orbit, build
   the 12 planes as the orbit union, perturb by 1e-6 to break exact coincidences, apply the filters of I-261101-08.
   Grid the A4 family (3 parameters) densely; sample the others.
+* The decision version must not rely on the lazy "one disk face per plane" loop of `best_solid` (no-goods with
+  `max_cuts`): encode the disk condition exactly in CP-SAT, V - E + F = 1 for the selected 2-cells of every plane,
+  with parity variables for the 1-cells and 0-cells inside the plane; then INFEASIBLE is a verdict.
+* Third source of arrangements: normals realized from rank-3 models of E-261101-06 and partial objects from
+  E-261101-23, each with offsets chosen by the LP of FD8 (these satisfy every normal-level condition by construction).
 * Positive control: the Roest-Vigh planes (`code/control_rost_vigh.py`) must give 28 pairs with 8 doubled ones in the
   S1 variant, and the archived type-0 genus-3 arrangement must reach 48. Negative control: 30 random arrangements
   must stay below 48 (as in E-261030-02).

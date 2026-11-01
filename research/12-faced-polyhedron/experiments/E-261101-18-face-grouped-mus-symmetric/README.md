@@ -38,6 +38,6 @@ and the second half is skipped).
 * Pilot (minutes): Lutz #54 under T and #3 under D3.
 * Positive control: with all 12 groups the instance is UNSAT (certified); negative control: with no local group the
   instance is SAT (the `control_no_triples_SAT` field).
-* Outcomes: a recurring core on <= 6 faces supports H-261101-11; then build the asymmetric sub-instance (same faces'
-  local clauses, GP, no SYM) for the 59 types and report SAT/UNSAT per type (an UNSAT excludes the type: run
-  `drat-trim`, record hashes, label EXACT). Cores of >= 10 faces weaken H-261101-11 and H-261101-02.
+* Outcomes: a recurring core on <= 6 faces supports H-261101-11; the asymmetric sub-instances on those face sets are
+  then the first runs of E-261101-23 (which owns the asymmetric k-face sweep). Cores of >= 10 faces weaken
+  H-261101-11 and H-261101-02.

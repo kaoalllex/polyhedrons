@@ -28,3 +28,12 @@ degree -5 at sampled directions, covering, >= 13 saddles, vertex rule F3/F4, fac
 identity. Controls: Szilassi normals (n = 7) SAT; the 94 genus-3 realizations' normals SAT for their sub-maps;
 random normals mostly UNSAT. Outcome: UNSAT for a type = a short human-checkable exclusion (unlikely, decisive);
 SAT = model counts and a split basis for E-261101-15.
+
+Refinements 2026-11-01 (strategy review follow-up):
+* Covering exactly, not sampled: p(m) is constant on the chambers of the arrangement of the 66 great circles through
+  pairs of normals, and those chambers are the single-element extensions of the rank-3 chirotope; enumerate them from
+  the chirotope and require a positive triangle on each (this absorbs E-261101-13).
+* Output per model the 44 vertex-type bits (convex iff chi(X, Y, Z, inf) = +1 in the gauge, F3) and count the
+  distinct patterns: they are the cube basis for E-261101-15, and the identities of E-261101-21 prune them.
+* Realize a few rank-3 models numerically (12 vectors, hinge loss): their normals are inputs for E-261101-16 and
+  E-261101-24.

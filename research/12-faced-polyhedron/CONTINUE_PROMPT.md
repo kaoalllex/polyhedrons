@@ -29,9 +29,10 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 * **In-flight runs:** none. No compute was started by the review session.
 * **Open owner actions:** merge the branch; send the first external e-mail (E-261101-11: the `polyhedraproof`
   author, three shared instances with CNF hashes, one question); Zenodo DOI for the certificates (Phase 0 TODO).
-* **Next ROADMAP items, in order:** E-261101-06 (rank-3 SAT per type; the cheapest decisive experiment),
-  E-261101-09 (predicate equality of the two encoders), E-261101-18 (face-grouped MUS), E-261101-16 (arrangement
-  first). Each README has a "Starting point" written so that a smaller model can execute it; the `PLAN.md` must be
+* **Next ROADMAP items, in order:** E-261101-23 (k-face sub-instances: monotone in the faces, an UNSAT excludes a
+  type, SAT models become face-CEGAR seeds), E-261101-06 (rank-3 SAT per type with exact covering), E-261101-21
+  (fold-map identity, one theory session), E-261101-22 (read Bokowski-H. 8.3 and Roest-Vigh 4 first), then
+  E-261101-18, -09, -11, -16, -24. Each README has a "Starting point" written so that a smaller model can execute it; the `PLAN.md` must be
   filled and committed before any compute (skill `experiment-start`), including the new counter-calibration and
   scenario-move lines.
 * **Do not** use `gauss_gate.hemisphere_margin` as an objective or a diagnostic (it floors at 0, E-261101-07).

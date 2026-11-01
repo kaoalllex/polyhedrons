@@ -15,7 +15,10 @@ preregistered: false
 
 ## Goal
 
-A new 12-face object with all pairs adjacent and a few doubled pairs.
+A new 12-face object with all pairs adjacent and a few doubled pairs: the smallest case has three doubled pairs and
+genus 7 (d = 6g - 36), so one C3 orbit of doubled pairs is the natural ansatz. It is a goal in itself (the first
+12-face polyhedron with every pair of faces adjacent), not a route to S0: removing doubled edges is a surgery that
+changes the genus, not a continuous move (I-261030-09 parked for that reason).
 
 ## Next
 

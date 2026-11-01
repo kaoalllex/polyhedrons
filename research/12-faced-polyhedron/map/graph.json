@@ -585,7 +585,7 @@
    "id": "E-261101-13",
    "kind": "experiment",
    "title": "Exact covering check instead of sampled covering",
-   "status": "planned",
+   "status": "killed",
    "date": "2026-11-01",
    "path": "experiments/E-261101-13-exact-covering/README.md",
    "direction": [
@@ -706,11 +706,40 @@
   {
    "id": "E-261101-22",
    "kind": "experiment",
-   "title": "Literature - realized and excluded equivelar {p,3} polyhedra with planar faces",
+   "title": "Literature - the two unread primary sections that could change the plan, then equivelar {p,3} polyhedra",
    "status": "planned",
    "date": "2026-11-01",
    "path": "experiments/E-261101-22-equivelar-literature/README.md",
    "direction": [],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-23",
+   "kind": "experiment",
+   "title": "k-face sub-instances of the asymmetric OM-SAT encoding, and face-CEGAR seeds from their models",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-23-k-face-subinstances-face-cegar/README.md",
+   "direction": [
+    "DR8",
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-24",
+   "kind": "experiment",
+   "title": "Farkas-certificate descent on the normals - pilot on the 80 radius-0 seeds and a perturbed witness",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-24-farkas-descent-pilot/README.md",
+   "direction": [
+    "DR2",
+    "DR4",
+    "DR17"
+   ],
    "verdict": "",
    "preregistered": "false"
   },
@@ -1150,6 +1179,28 @@
    "status": "open",
    "date": "2026-11-01",
    "path": "hypotheses/H-261101-14-fold-locus-identity.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261101-15",
+   "kind": "hypothesis",
+   "title": "The obstruction is local in faces - every type has an UNSAT sub-instance on at most nine faces",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "hypotheses/H-261101-15-k-face-obstruction.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261101-16",
+   "kind": "hypothesis",
+   "title": "Guided by the Farkas certificate, the normals reach offset-feasible configurations that annealing never found",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "hypotheses/H-261101-16-farkas-descent-reaches-closable-normals.md",
    "direction": [],
    "verdict": "",
    "preregistered": ""
@@ -2015,7 +2066,7 @@
    "id": "I-261030-09",
    "kind": "idea",
    "title": "Undoubling ladder from a relaxed object",
-   "status": "open",
+   "status": "parked",
    "date": "2026-10-30",
    "path": "ideas/I-261030-09-undoubling-ladder-from-relaxed-object.md",
    "direction": [
@@ -2616,6 +2667,36 @@
    "preregistered": ""
   },
   {
+   "id": "I-261101-18",
+   "kind": "idea",
+   "title": "The face ladder is monotone, the genus ladder is not - k-face sub-instances and face-CEGAR seeds",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-18-face-ladder-cegar.md",
+   "direction": [
+    "DR8",
+    "DR11",
+    "DR1"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261101-19",
+   "kind": "idea",
+   "title": "Farkas-certificate descent - the exact gradient of offset infeasibility with respect to the normals",
+   "status": "open",
+   "date": "2026-11-01",
+   "path": "ideas/I-261101-19-farkas-certificate-descent.md",
+   "direction": [
+    "DR2",
+    "DR4",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -2955,6 +3036,11 @@
   },
   {
    "from": "E-261029-12",
+   "to": "E-261101-23",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-12",
    "to": "H-261029-06",
    "kind": "tests"
   },
@@ -3070,6 +3156,11 @@
   },
   {
    "from": "E-261029-16",
+   "to": "E-261101-24",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-16",
    "to": "H-261029-11",
    "kind": "tests"
   },
@@ -3162,6 +3253,11 @@
    "from": "E-261030-03",
    "to": "H-261030-03",
    "kind": "tests"
+  },
+  {
+   "from": "E-261030-03",
+   "to": "I-261101-18",
+   "kind": "origin"
   },
   {
    "from": "E-261030-03",
@@ -3315,6 +3411,11 @@
   },
   {
    "from": "E-261030-11",
+   "to": "E-261101-24",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-11",
    "to": "H-261029-09",
    "kind": "tests"
   },
@@ -3330,12 +3431,22 @@
   },
   {
    "from": "E-261030-11",
+   "to": "H-261101-16",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-11",
    "to": "I-261101-09",
    "kind": "origin"
   },
   {
    "from": "E-261030-11",
    "to": "I-261101-11",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-11",
+   "to": "I-261101-19",
    "kind": "origin"
   },
   {
@@ -3490,6 +3601,11 @@
   },
   {
    "from": "E-261101-18",
+   "to": "E-261101-23",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-18",
    "to": "H-261101-02",
    "kind": "tests"
   },
@@ -3519,6 +3635,36 @@
    "kind": "tests"
   },
   {
+   "from": "E-261101-23",
+   "to": "H-261101-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-23",
+   "to": "H-261101-12",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-23",
+   "to": "H-261101-15",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-24",
+   "to": "H-261101-09",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-24",
+   "to": "H-261101-16",
+   "kind": "tests"
+  },
+  {
+   "from": "FD2",
+   "to": "I-261101-18",
+   "kind": "origin"
+  },
+  {
    "from": "FD5",
    "to": "H-261101-08",
    "kind": "origin"
@@ -3544,6 +3690,16 @@
    "kind": "origin"
   },
   {
+   "from": "FD8",
+   "to": "I-261101-19",
+   "kind": "origin"
+  },
+  {
+   "from": "FD9",
+   "to": "I-261101-19",
+   "kind": "origin"
+  },
+  {
    "from": "H-261029-06",
    "to": "E-261029-12",
    "kind": "origin"
@@ -3559,8 +3715,18 @@
    "kind": "origin"
   },
   {
+   "from": "H-261101-02",
+   "to": "H-261101-15",
+   "kind": "origin"
+  },
+  {
    "from": "H-261101-04",
    "to": "H-261101-09",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261101-09",
+   "to": "H-261101-16",
    "kind": "origin"
   },
   {
@@ -3574,6 +3740,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261029-03",
+   "to": "I-261101-19",
+   "kind": "origin"
+  },
+  {
    "from": "I-261029-04",
    "to": "E-261029-10",
    "kind": "origin"
@@ -3581,6 +3752,11 @@
   {
    "from": "I-261029-07",
    "to": "E-261029-19",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-11",
+   "to": "I-261101-18",
    "kind": "origin"
   },
   {
@@ -3924,6 +4100,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261101-10",
+   "to": "I-261101-18",
+   "kind": "origin"
+  },
+  {
    "from": "I-261101-11",
    "to": "E-261101-19",
    "kind": "origin"
@@ -3961,6 +4142,26 @@
   {
    "from": "I-261101-16",
    "to": "H-261101-13",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-18",
+   "to": "E-261101-23",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-18",
+   "to": "H-261101-15",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-19",
+   "to": "E-261101-24",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-19",
+   "to": "H-261101-16",
    "kind": "origin"
   },
   {

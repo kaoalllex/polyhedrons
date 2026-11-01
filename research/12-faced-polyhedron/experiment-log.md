@@ -694,3 +694,15 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   promoted to a row, E-261101-04 re-scored below the gate, decision point now a three-scenario credence table.
 * Process: agent preambles, `experiment-start`, `experiment-conclude`, the PLAN template and `CLAUDE.md` now require
   counter calibration and the scope of every negative statement.
+
+## 2026-11-01 (later): follow-up of the strategy review, the "from the future" pass
+
+* New: I-261101-18 (the face ladder is monotone, the genus ladder is not: k-face sub-instances and face-CEGAR seeds),
+  I-261101-19 (Farkas-certificate descent on the normals), H-261101-15, H-261101-16, E-261101-23 (k-face
+  sub-instances), E-261101-24 (Farkas pilot).
+* Refined: E-261101-06 (exact covering on chambers, vertex-type patterns as cube basis; E-261101-13 merged and
+  killed), E-261101-15 (cubes on the 44 vertex-type bits, LRAT on the fly), E-261101-16 (exact disk constraint;
+  normals from SAT models as a third source), E-261101-17 (offsets and normals measured separately; float prefilter),
+  E-261101-18 (asymmetric half moved to E-261101-23), E-261101-22 (primary reads of Bokowski-H. 8.3 and Roest-Vigh 4
+  first), E-261101-08 (S1 is a goal in itself; I-261030-09 undoubling parked: a surgery, not a path).
+* ROADMAP queue re-ordered: E-261101-23 and -06 first, -21 and -22 next; STATUS 3a lists H-261101-15, -16.
