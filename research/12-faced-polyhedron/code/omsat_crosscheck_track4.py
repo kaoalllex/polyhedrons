@@ -33,4 +33,4 @@ for i in range(120):
 for i in range(30):
     run([[rng.randint(-40, 40) for _ in range(4)] for _ in range(12)], T12)
 print(res)
-json.dump(res, open(os.path.join(os.path.dirname(__file__), '..', 'experiments', 'omsat', 'crosscheck_track4.json'), 'w'))
+json.dump(res, open(os.path.join(os.environ.get('OUT', '.'), 'crosscheck_track4.json'), 'w'))

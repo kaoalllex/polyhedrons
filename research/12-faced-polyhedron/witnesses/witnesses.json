@@ -1,0 +1,20 @@
+[
+  {
+    "id": "lab_type0_genus3",
+    "label": "Lab · genus 3, type 0",
+    "title": "Lab · 12 faces, genus 3 (type 0)",
+    "source": "experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable_polished.json",
+    "target": "S3",
+    "genus": 3,
+    "note": "Why it matters: its map extends, by 3 explicit handles (certificate in the repo), to one of the 59 maps a 12-face Szilassi-type polyhedron must have; realizing those handles geometrically would solve the open problem. Planes and map in the source file."
+  },
+  {
+    "id": "lab_solid_genus3",
+    "label": "Lab · genus 3, solid-first",
+    "title": "Lab · 12 faces, genus 3 (solid-first)",
+    "source": "experiments/E-261030-02-solid-first-exact-inner-n12/results/genus3_12faces_48pairs_polished.json",
+    "target": "S3",
+    "genus": 3,
+    "note": "Why it matters: found from random planes without prescribing any map, which shows such objects are not rare; but adding handles to its map reaches at most 54 of 66 adjacencies, so it cannot grow into a solution."
+  }
+]

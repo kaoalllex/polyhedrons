@@ -85,7 +85,7 @@ Run: `reloc_descent.py hp_seeds_ranked.json topology_33/shape_c5_i0_1154.obj t33
 * **Code.** `code/omsat.py` (encoder; one set of predicate formulas with a CNF/Tseitin backend and an
   Eval backend), `code/omsat_geom.py` (exact direct geometry, Fractions, 2D charts),
   `code/omsat_validate.py`, `code/omsat_sym.py` (Lutz maps, own Aut computation, symmetric instances),
-  `code/omsat_crosscheck_track4.py`, `code/rup_check.py`. Outputs in `experiments/omsat/`.
+  `code/omsat_crosscheck_track4.py`, `code/rup_check.py`. Outputs in `experiments/E-261029-03-omsat-encoder-validation/results/`.
 * **Validation** (`python3 omsat_validate.py 300 100 8`, seed 20261029, 168 s): 693 uniform configs
   (Szilassi control, 292 perturbed Szilassi of which 93 embedded, 300 random n=7, 100 random n=12 on
   type id 0). Formula vs direct geometry: IN 180,318 / REFLEX 76,212 / RTURN 38,106 / E 256,530 /
@@ -101,7 +101,7 @@ Run: `reloc_descent.py hp_seeds_ranked.json topology_33/shape_c5_i0_1154.obj t33
 * **n=7 free χ** (Szilassi triangulation): SAT in ≤0.07 s for every option combination, with and
   without reorientation/mirror normalisation; the models satisfy all families.
 * **Numbering.** All 59 Lutz maps matched to our `k12_triangulations.json` ids by canonical form
-  (`experiments/omsat/lutz_to_ourid.json`; e.g. Lutz #25 = our id 0, #54 = id 58, #3 = id 32, #48 = id 26).
+  (`data/lutz_to_ourid.json`; e.g. Lutz #25 = our id 0, #54 = id 58, #3 = id 32, #48 = id 26).
 * **Symmetric instances (independent reproduction of Hashirama1337s/szilassi-12 Part B).** Own Aut
   computation (|Aut(#54)|=12, all orientation-preserving, T; |Aut(#3)|=|Aut(#48)|=6, D3). Encoding:
   GP + 176 triple clauses + χ(gS)=ε(g)χ(S) + orbit-flip and mirror normalisation. Controls per instance:
@@ -109,7 +109,7 @@ Run: `reloc_descent.py hp_seeds_ranked.json topology_33/shape_c5_i0_1154.obj t33
   ρ-symmetric configs uniform, instance without triples SAT, explicit normalised symmetric χ SAT.
   Results (cadical195 via PySAT): **#54 T UNSAT 1.3 s** (278 conflicts; also UNSAT without normalisation
   3.9 s, kissat404 3.3 s, glucose4 1.3 s); **#3 D3 UNSAT 9.3 s**; **#48 D3 UNSAT 10.6 s**.
-  DRAT proof for #54 T: `experiments/omsat/sym_54_T.drat` (1282 lines, sha256 52497b88…ba23f), CNF
+  DRAT proof for #54 T: `experiments/E-261029-03-omsat-encoder-validation/results/sym_54_T.drat` (1282 lines, sha256 52497b88…ba23f), CNF
   `sym_54_T.cnf.gz` (sha256 of uncompressed ac71c316…be407). Check: `drat-trim sym_54_T.cnf sym_54_T.drat`
   (building drat-trim here was refused by the sandbox permission system); own minimal forward RUP checker
   `code/rup_check.py`: 1034 lemmas all RUP, empty clause derived, VERIFIED.
@@ -177,7 +177,7 @@ Typical profile: 4-17 pierced faces + 13-20 self-crossings, 8-12 of 12 polygons 
 ### E5 (4) Annealing, asymmetric random start
 `python3 anneal.py 1 sphere_unif 9` (9 min, 1 process): SA on integer plane coefficients (move: perturb one plane by relative 6e-4..0.1) with T fixed, objective B (exact),
 every 250 evals CP-SAT (25 s, warm start) re-optimises T. 2250 evaluations. B: 33 (initial CP-SAT) -> 24 (V=24, 1 face-face-face point, 4 edge-face, 19 self-crossings, 8 non-simple faces).
-Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, exact). No candidate (B=0 never close). Not extended (resource limit).
+Saved: `experiments/E-261029-05-geometry-first-sat/results/track4_anneal_sphere_unif_1.json` (planes + triangulation, exact). No candidate (B=0 never close). Not extended (resource limit).
 
 ## 2026-10-29 PI: E-PI-1 result and fixed-normals method (E1)
 
@@ -217,7 +217,7 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   independent pair-based check at the end. Calibration n = 7 (Szilassi must be found), then
   n = 8 on genus 2. Results below as they come.
 
-### Queue for the user's next night script (from `cross-field-ideas.md`)
+### Queue for the user's next night script (from `ideas/cross-field-ideas.md`)
 | Idea | What to run | Needs |
 |---|---|---|
 | Y2 difference map (RRR) | divide-and-concur over plane coefficients, per type, 30 min | implementation (not yet written) |
@@ -355,7 +355,7 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   found a zero: a Szilassi-type polyhedron discovered WITHOUT any prescribed map**. Map extracted
   from the solid (vertices = triple points where all three planes carry boundary facets: 14);
   `ladder_exact.verify`: EMBEDDED (7 simple faces, 21 pairs, chi 0); `planes.check_embedding`:
-  ok. Saved: `experiments/solid_first/szilassi_found_without_map.json`. Calibration passed;
+  ok. Saved: `experiments/E-261029-20-solid-first-n7/results/szilassi_found_without_map.json`. Calibration passed;
   next n = 8 (adjacency >= 1 per pair, genus 2), then 12.
 
 ## 2026-10-29/30 night (autonomous): advisor, genus ladder, exact inner step
@@ -382,7 +382,7 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   exact inner value): **n = 7 Szilassi found from random planes in 45 s**, exactly verified
   (`ladder_exact`: EMBEDDED, 14 vertices, 21 edges, chi 0). Now running on n = 12 (target 66).
 * **n = 12, exact-inner solid search from random planes (no type fixed): genus 3 reached** —
-  `experiments/solid_first/genus3_12faces_48pairs.json`: 12 simple faces, V = 32, E = 48, chi = -4,
+  `experiments/E-261030-02-solid-first-exact-inner-n12/results/genus3_12faces_48pairs.json`: 12 simple faces, V = 32, E = 48, chi = -4,
   48 of 66 pairs of faces adjacent; `code/verify_solid.py`: EXACT EMBEDDED. Also a genus-2 one
   (42 pairs, exact) in `genus2_12faces_42pairs.json`. The search plateaus at 48 for ~1 h; a
   secondary score (slack of the best attempt at the next genus: soft extra runs / soft one-face
@@ -408,7 +408,7 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
 * Night 3 revised: the genus ladder over all 59 types (job `glad`, `run_night3.sh`).
 * **Genus 3 on an extendable map (glad test, 03:30-04:45 UTC, 3 workers, 8 min per level).** Type 0,
   chain 0: genus 0, 1 exact; genus 2 stuck at 1; **genus 3 realized exactly** (seeded from the genus-2
-  attempt): `experiments/genus_ladder/type0_genus3_extendable.json` — 12 simple faces, V = 32, E = 48,
+  attempt): `experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable.json` — 12 simple faces, V = 32, E = 48,
   chi = -4, `ladder_exact` EMBEDDED, and `reach` = 66 (all pairs still reachable by tube steps), i.e.
   the first genus-3 polyhedron that is NOT a dead end. Genus 4 of the same chain: 8 violations.
   From this polyhedron 10 tube attachments exist, 3 of them extendable (reach 66); branching ladder
@@ -447,7 +447,7 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   edge is exactly at the energy's short-edge guard (1.0e-6 of the diameter) and its smallest corner-
   to-plane margin is 9e-9: the optimizer shrinks features until the violations have almost zero depth
   (pair energy 2 + 2.6e-5). The honest best genus-4 attempt is 4 violations (edge 6.8e-5, margin
-  1.8e-5; `experiments/genus_ladder/type0_genus4_attempt_4viol.json`; the degenerate one is kept as
+  1.8e-5; `experiments/E-261030-04-type0-genus4-attempts/results/type0_genus4_attempt_4viol.json`; the degenerate one is kept as
   `type0_genus4_attempt_degenerate.json`). New: `ladder.degeneracy` (shortest edge, smallest margin,
   relative) and `seed_search.py --floor` (edge < 1e-5 or margin < 1e-7 counts as a violation). The
   realized genus-3 polyhedra are genuine (exact check on rational planes; edges 1.6e-4 and 2.8e-3).
@@ -474,7 +474,7 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   (`solid_exact_search.py --init ... --reach`): all four start at 48 / reach 66 and stay there
   (no genus 4) after 12 min.
 * **Night 4 prepared: job `arch`** (`code/archive_climb.py`, `overnight/run_night4.sh`): archive of
-  exact realizations (genus >= 2) from night 3 + `experiments/genus_ladder/`, arms = (realization, next
+  exact realizations (genus >= 2) from night 3 + `experiments/E-261030-03-genus-ladder-type0-genus3/results/`, arms = (realization, next
   extendable handle), UCB priority 2 * genus - estimate + bonus, 25 % diversity tasks; a realization
   counts as new if its oriented matroid (495 signs of the 4-plane determinants, up to reorientation)
   differs in >= 30 signs (our type-0 realizations differ pairwise in 44-75 signs; polishing changed
@@ -515,7 +515,7 @@ this session; the night-4 branch is left untouched).
   covering), k_tau, hemisphere margin of the six handle faces; CLI `T1` over realization / attempt files
   and night-3 `glad` results. Counter names: CLASS defects here (|D - (1-g)| + faces with turning != +1),
   EVENTS in `ladder.pair_energy`, exact defects in `ladder_exact`.
-  T1 on `experiments/genus_ladder/*.json` (12 s) reproduces the review exactly: all five genus-3
+  T1 on `experiments/E-261030-03-genus-ladder-type0-genus3/results/*.json` (12 s) reproduces the review exactly: all five genus-3
   realizations have own degree -2 = 1 - g, turning +1 everywhere, 2-8 admissible gauges; all 15 arms
   (5 realizations x 3 extendable handles) have degree -2 in the realized polyhedron's gauge, k_tau = 0,
   hemisphere margin 0.017-0.24; admissible genus-4 gauges: none, except 1 on the polished copy for
@@ -568,12 +568,12 @@ this session; the night-4 branch is left untouched).
   at -0.0000 (the walk reaches the hemisphere boundary within seconds and cannot cross it while the genus-3
   polyhedron stays embedded).
 * **Night 5 ready** (`overnight/run_night5.sh`, jobs `gate` and `n5` in `run_overnight.py`,
-  `overnight/analyze_n5.py`, instructions in `HOW_TO_RUN_OVERNIGHT.md`): phase 1 `gate` (T1 for every
+  `overnight/analyze_n5.py`, instructions in `overnight/HOW_TO_RUN.md`): phase 1 `gate` (T1 for every
   realized polyhedron x next handle; test 2.2 on the night-3 chains), phase 2 `n5` on W-1 cores (mix
   nfirst : kdrift : g6 = 4 : 4 : 1, 20 min tasks, z3 timeout 600 s; realizations saved and climbed at once)
   + night-4 `arch` on 1 core as the control. Smoke tests with `--results-dir` (found and fixed: the results
   directory override did not reach the spawned workers; now passed by environment).
-* **Class seeds saved** (`experiments/gauss_class/`): kdrift reached the genus-4 class (T1_PASS, own degree
+* **Class seeds saved** (`experiments/E-261030-08-normals-first-and-kdrift-pilot/results/`): kdrift reached the genus-4 class (T1_PASS, own degree
   -3, covering confirmed) for handle (0,5,8)-(2,6,7) on realizations A (266 s) and C (142 s); both on the
   class wall (hemisphere margin -0.0000). Exact offsets at A's class seed: UNSAT (10 s); normals first around
   it (radius 0.02-0.2, tube and free gauge modes, ~16 normal sets): all UNSAT (10-44 s).
@@ -616,7 +616,7 @@ types 0 and 11 [0, 0, -1, -2, -3, -4, -4] (sphere and genus 6 wrong); type 24 th
 Run 2 (8 min, other chains): below.
 Run 2 (8 min anneal, chain seeds 2/3): **type 58, chain seed 3: CHAIN-CONSISTENT NORMALS FOUND** (energy 0
 after 447 s; exact class check True on all 7 levels: degrees +1, 0, -1, ..., -5, robust covering, saddles
->= 2g+1) -> `experiments/chain_normals/type58_chain_seed3_consistent_normals.json`. But the bottom level,
+>= 2g+1) -> `experiments/E-261030-09-chain-consistent-normals-q1/results/type58_chain_seed3_consistent_normals.json`. But the bottom level,
 the 12-face SPHERE M0, is **UNSAT at these fixed normals** (z3, 33 s): the class is necessary, not
 sufficient, already at genus 0. Other runs one level short (energy 10): type 0 [1,0,-1,-2,-3,-4,-4],
 types 11 and 58 (seed 2) [0,0,-1,...,-5].
@@ -625,7 +625,7 @@ diverse chain-consistent normal sets, each decided exactly at M0 (~30 s), then M
 first UNSAT level). Next: add that loop (as in normals_first.run_arm) and/or add realizability of M0 to the
 normal-level conditions (e.g. the period/closure LP of the sphere map).
 
-## 2026-11-01: nights 4 and 5 analysed (`NIGHT_REPORT_2026-11-01.md`)
+## 2026-11-01: nights 4 and 5 analysed (`reports/NIGHT_REPORT_2026-11-01.md`)
 
 * arch: 818 tasks, 203 new exact realizations (archive 247: 153 genus 2, 94 genus 3 of types 0, 15, 39, 53);
   11 genus-4 arm tasks, best 4.0 events, 0 realizations. All 94 genus-3 realizations re-checked with
@@ -639,3 +639,40 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   SAT only at r = 0.05, one trial). Follow-ups: control power study, pinned-margin lemma, UNSAT cores at r = 0.
 * External audit v3 (owner, 2026-10-31) imported to `reviews/`; its type-0 handle-completion certificate
   (genus 3 -> 6, combinatorial only) re-run here: PASS (`verification/certificates/type0_handle_completion/`).
+
+## 2026-11-01: restructure, DRAT regeneration, fresh-eyes audit fixes
+
+* Project restructured into SPEC / STATUS / ROADMAP / PROTOCOL, `verify_all.py`, experiment template, CI
+  (commit 72ccc52). Röst–Vígh added to the site (e7adba8).
+* DRAT certificates of `sym` / `symimm` regenerated with `--keep-proofs --keep-cnf`: 50/50 CNFs and proofs
+  bit-identical to the recorded SHA-256, 50/50 re-VERIFIED (`ROADMAP.md` Phase 0). Not yet published.
+* Fresh-eyes audit (`reviews/fresh-audit-2026-11-01.md`), actions 2-8 done:
+  * The solution check is now `verify_candidate.py --target S0`. The old `--all-pairs` accepted doubled
+    adjacencies, as Röst–Vígh showed; that object is now a negative control in `verify_all`. The witness checks
+    assert their genus.
+  * Labels:
+    * FD1, FD2 and FD8 are now PROVED-1.
+    * FD6 is now EXACT, and becomes CERTIFIED after E08.
+    * `results.md` is frozen.
+  * ROADMAP:
+    * State and Tests columns, plus an ordering rule.
+    * E05 and E10 moved below the gate.
+    * New row E12: external human review.
+  * Process and repository:
+    * One sleep rule (`caffeinate -dimsu`).
+    * `run_overnight.py` keeps proofs and CNFs by default.
+    * Root `CLAUDE.md`.
+    * Shared agent preamble.
+    * Skills `experiment-start`, `experiment-conclude`, `candidate-check`, `session-handover`.
+    * `LICENSE` and `CITATION.cff`.
+* Later the same day:
+  * `witnesses/` added (`witnesses.json` + `export_site.py`). The site shows two exactly re-verified "Lab ·"
+    models (type-0 genus 3, solid-first genus 3), and `verify_all` checks that the site matches the list.
+  * DRAT certificates published on the release `state-2026-11-01` (`verification/certificates/symmetric_drat/`).
+  * Branch merged into `main` and tagged.
+* Research graph (same day):
+  * Every idea, hypothesis and experiment is now one file with a dated ID (`PROTOCOL.md` §4). That is 108 ideas,
+    24 hypotheses and 46 experiments, of which 33 are past work reconstructed with their data and 13 are planned.
+  * The interactive map is `map/`; `verification/trace.py` checks the graph inside `verify_all`.
+  * The old idea notes, archive, night scripts and AI reviews were removed after migration; they are in tag
+    `state-2026-11-01`.

@@ -5,9 +5,11 @@
  r_X     = #reflex corners of F_X.
 Part 1: Szilassi (actual polygons). Part 2: Gauss-admissible normals from the annealer (types 0,5,58):
  does the kappa-CSP (F4 vertex rule + per-face flip count a_X = 2 - 2 w_X) have a solution?"""
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '../..'))
 import sys, json, math, itertools
 import numpy as np
-sys.path.insert(0, '/home/user/polyhedrons/research/12-faced-polyhedron/code')
+sys.path.insert(0, _ROOT + '/code')
 
 def winding(gX, Bs, G):
     gX = gX / np.linalg.norm(gX)
@@ -66,7 +68,7 @@ import z3
 from gauss_degree import coherent_triangles, links_from, degree_at, covered_positive, tri_signs
 from gauss_search import find_admissible
 from fixed_normals import integer_normals
-types = json.load(open('/home/user/polyhedrons/research/12-faced-polyhedron/data/k12_triangulations.json'))
+types = json.load(open(_ROOT + '/data/k12_triangulations.json'))
 
 def kappa_csp(Gi, ot, links):
     n = 12

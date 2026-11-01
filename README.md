@@ -8,8 +8,13 @@ Interactive 3D viewer of polyhedra in which every face shares an edge with every
 - Császár polyhedron (1949): the dual case, where every vertex is joined to every other vertex
 - Szilassi polyhedron (1977): 7 faces, genus 1
 - Mizhaev equivelar octahedron (2026): 8 faces, genus 3
+- Röst–Vígh polyhedron (2026): a second 8-face, genus-3 example, with rational coordinates
 
-Link to a specific model with a hash, e.g. `#szilassi`, `#csaszar`, `#tetrahedron`.
+Link to a specific model with a hash, e.g. `#szilassi`, `#csaszar`, `#tetrahedron`, `#rost_vigh`.
+
+Models marked **Lab ·** come from our own search for the 12-face polyhedron. They are exactly verified partial
+objects (12 faces, genus 3, 48 of the 66 face pairs adjacent), **not solutions**. Each one links to its source file.
+The list is in [`research/12-faced-polyhedron/witnesses/`](research/12-faced-polyhedron/witnesses/README.md).
 
 ## Why these polyhedra are special
 
@@ -69,11 +74,21 @@ a whole number. We know of no formula for this relaxed series, so it is not clea
 comes next or how many holes it would have. All its vertices have integer coordinates, so every
 property can be checked exactly, with no rounding.
 
+The [Röst–Vígh polyhedron](https://arxiv.org/abs/2609.32998) (2026) is a second, different example with the same
+counts: 8 nine-sided faces, 20 pairs sharing one edge and 8 pairs sharing two, genus 3, rational coordinates.
+
 ## Research on the 12-face problem
 
-Ongoing computer search: `research/12-faced-polyhedron/` (notes, code, results).
+New to the terms (genus, map, handle, UNSAT, DRAT, Gauss degree)? Read the plain-language
+[glossary](research/12-faced-polyhedron/GLOSSARY.md).
+
+Interactive [research map](https://kaoalllex.github.io/polyhedrons/research/12-faced-polyhedron/map/): every idea,
+hypothesis and experiment of the 12-face search, and how they lead to each other and to the results.
+
+Ongoing research: start at [`research/12-faced-polyhedron/README.md`](research/12-faced-polyhedron/README.md)
+(state of the problem, verdicts, experiment queue, how to verify every claim with one command).
 To run the overnight search locally see
-[`research/12-faced-polyhedron/HOW_TO_RUN_OVERNIGHT.md`](research/12-faced-polyhedron/HOW_TO_RUN_OVERNIGHT.md).
+[`research/12-faced-polyhedron/overnight/HOW_TO_RUN.md`](research/12-faced-polyhedron/overnight/HOW_TO_RUN.md).
 
 ## Viewer controls
 

@@ -1,7 +1,9 @@
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '../..'))
 import sys, json, numpy as np
-sys.path.insert(0,'/home/user/polyhedrons/research/12-faced-polyhedron/code')
+sys.path.insert(0,_ROOT + '/code')
 from period_defect import surface_edges, random_cocycle, torus_defect
-types=json.load(open('/home/user/polyhedrons/research/12-faced-polyhedron/data/k12_triangulations.json'))
+types=json.load(open(_ROOT + '/data/k12_triangulations.json'))
 def seg_x(a,b,c,d):
     o=lambda p,q,r:(q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0])
     return o(a,b,c)*o(a,b,d)<0 and o(c,d,a)*o(c,d,b)<0

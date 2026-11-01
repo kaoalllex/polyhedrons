@@ -13,11 +13,11 @@ Materials named by the owner (from a chat-assistant summary that is itself unver
   octahedron with the same characteristics, verified by exact rational arithmetic.
 * J. Bokowski, Kevin H., "Polyhedral Embeddings of Triangular Regular Maps of Genus g, 2 <= g <= 14, and
   Neighborly Spatial Polyhedra", Symmetry 17(4) (2025) 622, https://www.mdpi.com/2073-8994/17/4/622
-  (already summarized from secondary sources in literature-review.md sec. 6; Sec. 4 and 8.3 still unread).
+  (already summarized from secondary sources in literature/literature-review.md sec. 6; Sec. 4 and 8.3 still unread).
 * Solid Modeling Symposium, Seattle 2003 slides,
   https://www.slideserve.com/yeva/solid-modeling-symposium-seattle-2003 (probably C. Séquin's talk on
   Szilassi/Császár-type models; check relevance).
-* People named: L. Schewe (oriented matroids + SAT; vertex version, see literature-review.md sec. 5),
+* People named: L. Schewe (oriented matroids + SAT; vertex version, see literature/literature-review.md sec. 5),
   R. Mizhaev, G. Röst, V. Vígh.
 
 Questions to answer:

@@ -1,9 +1,11 @@
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '../..'))
 import sys, json, numpy as np, time
-sys.path.insert(0,'/home/user/polyhedrons/research/12-faced-polyhedron/code')
+sys.path.insert(0,_ROOT + '/code')
 from period_defect import surface_edges, random_cocycle, torus_defect, period_defect
 from gauss_search import find_admissible
 from gauss_degree import coherent_triangles
-types=json.load(open('/home/user/polyhedrons/research/12-faced-polyhedron/data/k12_triangulations.json'))
+types=json.load(open(_ROOT + '/data/k12_triangulations.json'))
 for tid in (0,58):
     tri=types[tid]['triangles']; G,_=find_admissible(coherent_triangles(tri),np.random.default_rng(tid),minutes=1)
     edges,faces,nv=surface_edges(G,tri)

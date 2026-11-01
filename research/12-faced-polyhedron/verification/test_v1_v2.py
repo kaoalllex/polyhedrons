@@ -1,5 +1,7 @@
 """V1(b), V1(c), V2 tests (exact).  Usage: python3 test_v1_v2.py N12 N7 NSIMPLE SEED
 Prints a JSON summary on the last line."""
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
 import sys, json, time, random, itertools
 from fractions import Fraction
 from exact_core import *
@@ -233,5 +235,5 @@ if __name__ == "__main__":
     print("des12", json.dumps({k: v for k, v in out["designed_simple_n12"].items() if k != "examples"}), flush=True)
     out["designed_simple_n7"] = run_designed(NS, rng, 7, src7, budget=30)
     print("des7", json.dumps({k: v for k, v in out["designed_simple_n7"].items() if k != "examples"}), flush=True)
-    json.dump(out, open(f"/home/user/polyhedrons/research/12-faced-polyhedron/verification/test_v1_v2_seed{seed}_{"-".join(phases)}.json", "w"), indent=1, default=str)
+    json.dump(out, open(_ROOT + f"/verification/test_v1_v2_seed{seed}_{"-".join(phases)}.json", "w"), indent=1, default=str)
     print("DONE")

@@ -487,7 +487,7 @@ def main():
     if r is True:
         m = s.get_model()
         chi = {''.join(map(str, S)): (1 if m[v - 1] > 0 else -1) for S, v in C.qvar.items()}
-        out = os.path.join(RDIR, 'experiments', 'omsat', 'sym_%d_%s_chi.json' % (args.map, args.group))
+        out = os.path.join(os.environ.get('OUT', '.'), 'sym_%d_%s_chi.json' % (args.map, args.group))
         json.dump(chi, open(out, 'w'))
         print('chirotope saved', out)
     s.delete()

@@ -1,8 +1,10 @@
 """C2 (half-turn) symmetric IMMERSION instance at OM level: uniform GP + SYM + orbit/mirror normalisation +
 simple faces + <=1 reflex corner per vertex + polygon-orientation consistency; NO forbidden-triple clauses.
 SAT => the asymmetric immersion instance of this map is SAT too (local route cannot refute this map)."""
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '../..'))
 import sys, time, threading
-sys.path.insert(0, '/home/user/polyhedrons/research/12-faced-polyhedron/code')
+sys.path.insert(0, _ROOT + '/code')
 import omsat_sym as S
 from omsat import CNF, build, Triangulation
 from pysat.solvers import Solver

@@ -2,16 +2,18 @@
 simple (0 crossings), predicted: sum_v C(r_v,2) even (=> #vertices with >=2 reflex corners even).
 (B) For Gauss-admissible annealed normals (gauge fixed): is 'kappa-CSP (F4 + flip counts) + edge orientation
 LP (every edge traversed in direction s*kappa_e*(g_X x g_B), polygon closure)' satisfiable over the offsets?"""
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '../..'))
 import sys, json, time, itertools
 from fractions import Fraction
 import numpy as np, z3
-sys.path.insert(0, '/home/user/polyhedrons/research/12-faced-polyhedron/code')
+sys.path.insert(0, _ROOT + '/code')
 from gauss_degree import coherent_triangles, links_from
 from local_viol import local_violations
 from gauss_search import find_admissible
 from fixed_normals import integer_normals
 
-R = '/home/user/polyhedrons/research/12-faced-polyhedron/'
+R = _ROOT + '/'
 seeds = json.load(open(R + 'overnight/data/seeds.json'))
 stats = {}
 for sd in seeds:

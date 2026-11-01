@@ -71,7 +71,7 @@ def main(seed, dist, minutes, reopt=250, T0=2.0, cp_secs=25, init_secs=40):
         res = check_embedding(arr, best[2])
         out["CANDIDATE_direct_check"] = dict(ok_triples=res["ok_triples"], ok_pairs=res["ok_pairs"])
         print("CANDIDATE!!", out["CANDIDATE_direct_check"], flush=True)
-    fn = os.path.join(HERE, "..", "experiments", f"track4_{tag}.json")
+    fn = os.path.join(os.environ.get("OUT", "."), f"track4_{tag}.json")
     json.dump(out, open(fn, "w"))
     print("done", best[0], best[3], "evals", evals)
 

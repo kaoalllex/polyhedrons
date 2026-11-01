@@ -1,10 +1,12 @@
 """Independent exact (integer / Fraction) core for the adversarial verification of
-mathematical-model.md Sec. 5 (Lemma 5.1, Sec. 5.1 sign formulas, Sec. 5.2 in-face predicate).
+theory/mathematical-model.md Sec. 5 (Lemma 5.1, Sec. 5.1 sign formulas, Sec. 5.2 in-face predicate).
 
 Written from the specification only; imports nothing from ../code.
 Planes are integer 4-vectors h = (a, b, c, e) meaning a x + b y + c z + e = 0
 (h . (p, 1) = n . p - d with n = (a, b, c), d = -e).  Index n is the plane at infinity (0,0,0,1).
 """
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
 import itertools
 import random
 from fractions import Fraction
@@ -336,6 +338,6 @@ def random_planes(n, rng, R=50, dist="cube"):
     return H
 
 
-def load_k12(path="/home/user/polyhedrons/research/12-faced-polyhedron/data/k12_triangulations.json"):
+def load_k12(path=_ROOT + "/data/k12_triangulations.json"):
     import json
     return json.load(open(path))

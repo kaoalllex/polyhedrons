@@ -2,15 +2,17 @@
 kappa-CSP + edge-orientation LP; (2) n=12 random planes: the LP with the configuration's OWN edge
 orientation pattern (kappa-CSP dropped) must be SAT (checks vert_lin / sign conventions).
 (3) parity of (face self-crossings + multi-reflex vertices) on the 1005 seeds."""
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '../..'))
 import sys, json, itertools, time
 import numpy as np, z3
-sys.path.insert(0, '/home/user/polyhedrons/research/12-faced-polyhedron/code')
-sys.path.insert(0, '/home/user/polyhedrons/research/12-faced-polyhedron/code/fresh_eyes')
+sys.path.insert(0, _ROOT + '/code')
+sys.path.insert(0, _ROOT + '/code/fresh_eyes')
 from gauss_degree import coherent_triangles, links_from
 from fixed_normals import integer_normals
 from local_viol import local_violations
 import importlib.util
-spec = importlib.util.spec_from_file_location('cp', '/home/user/polyhedrons/research/12-faced-polyhedron/code/fresh_eyes/closure_and_parity.py')
+spec = importlib.util.spec_from_file_location('cp', _ROOT + '/code/fresh_eyes/closure_and_parity.py')
 src = open(spec.origin).read()
 # reuse helper functions only (skip the experiment loops)
 helpers = src[src.index('def winding'):src.index('for tid in (0, 58, 5)')]
@@ -79,7 +81,7 @@ Gi = integer_normals(G)
 print('(1) Szilassi: %d oriented triangles; kappa-CSP + closure LP:' % len(ot), closure_smt_n(Gi, ot, links, 7), flush=True)
 
 # (2) random n=12 planes, type 0, own orientation pattern
-types = json.load(open('/home/user/polyhedrons/research/12-faced-polyhedron/data/k12_triangulations.json'))
+types = json.load(open(_ROOT + '/data/k12_triangulations.json'))
 e0 = next(t for t in types if t['id'] == 0); ot0 = coherent_triangles(e0['triangles']); L0 = links_from(ot0, 12)
 rng = np.random.default_rng(7)
 for trial in range(2):
@@ -96,7 +98,7 @@ for trial in range(2):
     print('(2) random planes, own orientation pattern, LP:', closure_smt_n(Gi, ot0, L0, 12, use_kappa=False, fixed_sigma=sig), flush=True)
 
 # (3) parity of crossings + multi on seeds
-seeds = json.load(open('/home/user/polyhedrons/research/12-faced-polyhedron/overnight/data/seeds.json'))
+seeds = json.load(open(_ROOT + '/overnight/data/seeds.json'))
 par = {}
 for sd in seeds:
     H = np.array(sd['planes'], float); ot = coherent_triangles(sd['triangles']); L = links_from(ot, 12)

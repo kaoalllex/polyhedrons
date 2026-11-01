@@ -3,10 +3,10 @@
 A configuration is n planes h_X = (a, b, c, e) meaning a x + b y + c z + e = 0, plus a
 neighborly triangulation (the dual map). The violation count is the number of non-triangle
 triples {X,Y,Z} whose triple point P_XYZ lies in all three closed faces (Lemma 5.1 of
-mathematical-model.md). Each polygon self-crossing and each edge-face intersection is one such
+theory/mathematical-model.md). Each polygon self-crossing and each edge-face intersection is one such
 triple, so the count is comparable to "crossings + intersections" of other searches.
 
-The in-face test is the line-parity predicate of mathematical-model.md section 5.2. Floating
+The in-face test is the line-parity predicate of theory/mathematical-model.md section 5.2. Floating
 point only: candidates must be re-verified in exact arithmetic.
 """
 import itertools

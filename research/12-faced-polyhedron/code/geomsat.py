@@ -1,4 +1,4 @@
-"""Geometry-first SAT (Track 4, mathematical-model.md section 6(B)).
+"""Geometry-first SAT (Track 4, theory/mathematical-model.md section 6(B)).
 
 Given n planes in general position (exact, integer), search for a triangulation (dual of the polyhedron)
 on the n face labels such that the face-plane realization is an embedded polyhedron:

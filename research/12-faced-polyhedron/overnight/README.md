@@ -7,8 +7,8 @@ local machine for hours, survive interruptions, and leave results in git for lat
 
 ```bash
 git clone https://github.com/kaoalllex/polyhedrons && cd polyhedrons
-git checkout claude/wonderful-carson-saxyck
-python3 -m pip install numpy scipy numba python-sat z3-solver sympy
+git checkout main
+python3 -m pip install -r research/12-faced-polyhedron/requirements.txt
 cd research/12-faced-polyhedron/overnight
 ```
 
@@ -25,11 +25,11 @@ git clone https://github.com/marijnheule/drat-trim && (cd drat-trim && make) && 
 
 | Job | What it decides | Default per-task timeout |
 |---|---|---|
-| `gnormals` | **Main constructive experiment (recommended).** Round robin over the 59 types: anneal 12 face normals until they pass the exact Gauss-map prefilter (degree chi/2 = -5 and every direction covered by a convex corner; necessary for any embedding, see theory-notes.md), then decide EXACTLY with z3 whether some plane offsets give an embedded polyhedron with these normals and this orientation gauge. About 1-2 min per sample. SAT answers are re-checked by an independent exact checker and saved as CANDIDATES. | 900 s |
+| `gnormals` | **Main constructive experiment (recommended).** Round robin over the 59 types: anneal 12 face normals until they pass the exact Gauss-map prefilter (degree chi/2 = -5 and every direction covered by a convex corner; necessary for any embedding, see theory/theory-notes.md), then decide EXACTLY with z3 whether some plane offsets give an embedded polyhedron with these normals and this orientation gauge. About 1-2 min per sample. SAT answers are re-checked by an independent exact checker and saved as CANDIDATES. | 900 s |
 | `normals` | *(superseded)* Seeds' own normals. Every seed fails the Gauss prefilter (exact certificate, status `UNSAT-GAUSS`, instant), so this job now finishes quickly; kept for completeness. | **Main constructive experiment (E1).** For each near-miss seed (1005 configurations from HackerPoet/NeighborlyPolyhedra, `data/seeds.json`, sorted by violation count), fix the 12 face normals and decide EXACTLY (z3, linear real arithmetic) whether any choice of the 12 plane offsets gives an embedded polyhedron. Then the same for perturbed normals (sigma 0.003-0.1) of the best seeds. Every SAT answer is re-checked by an independent exact rational checker; a positive check is saved as a CANDIDATE and committed immediately. | 1800 s |
 | `sym` | Every symmetric case (each conjugacy class of half-turn and 3-fold subgroups of Aut of all 59 maps; these imply all larger groups). Expected: all UNSAT (claimed by prior work; 4 cases already reproduced here). With cadical + drat-trim each UNSAT gets a checked DRAT proof (status `UNSAT-VERIFIED`); a SAT would contradict the claimed theorem and is saved as a CANDIDATE. | 4 h |
 | `cube` | Cube-and-conquer on the full asymmetric OM-SAT instance of Lutz map(s) `--maps` (default #1, which a third party claims UNSAT after ~300 core-hours). Reports the refuted fraction of the search space; timed-out cubes are split. Experimental. | 900 s per cube |
-| `gate` | Night 5, phase 1. Gauss gate (test T1 of the review 2026-10-30) for every exactly realized polyhedron of genus >= 2 (experiments/genus_ladder, results/glad, results/arch, results/n5/realized) x every extendable next handle: degree in the realized polyhedron's orientation, handle degree k_tau, hemisphere margin, admissible orientations for 1 - g'; plus test 2.2 on the night-3 chains (`results/gate/chains_2_2.json`). Minutes. | none |
+| `gate` | Night 5, phase 1. Gauss gate (test T1 of the review 2026-10-30) for every exactly realized polyhedron of genus >= 2 (the type-0 realizations of E-261030-03 and the `glad`, `arch`, `n5/realized` records) x every extendable next handle: degree in the realized polyhedron's orientation, handle degree k_tau, hemisphere margin, admissible orientations for 1 - g'; plus test 2.2 on the night-3 chains (`results/gate/chains_2_2.json`). Minutes. | none |
 | `n5` | Night 5, phase 2. Gauss-gated normals-first ladder over the gated arms (round robin over types) and genus-6 types: `nfirst` (code/normals_first.py), `kdrift` (code/kdrift.py, then normals first from the class seed), `g6`; mix `--mix 4,4,1`. Each decided normal set is logged in `results/n5/attempts/`; exact realizations go to `results/n5/realized/` (committed at once, climbed further in the same task); genus 6 = CANDIDATE. Summary: `analyze_n5.py`. | 600 s per z3 call, `--minutes-per-seed` per task |
 | `ils` | Iterated local search from the seeds: exact single-plane relocation (global optimum over all positions of one plane) plus random kicks. A configuration with 0 violations is re-checked exactly and saved as a CANDIDATE. | 20 min per seed |
 
@@ -42,19 +42,16 @@ python3 run_overnight.py gnormals --hours 8 --workers 7 --git
 Other runs:
 
 ```bash
-python3 run_overnight.py sym --hours 6 --workers 7 --git
+python3 run_overnight.py sym --hours 6 --workers 7 --keep-proofs --git
 python3 run_overnight.py ils --hours 4 --workers 7 --git
 python3 run_overnight.py cube --maps 1 --hours 8 --workers 7 --git
 python3 run_overnight.py status
 ```
 
-`--git` commits `results/` every 30 minutes (`--commit-minutes`), on stop, and immediately when
-a candidate appears; add `--push` to push each commit. Otherwise commit and push `results/`
-yourself when the run ends:
-
-```bash
-git add research/12-faced-polyhedron/overnight/results && git commit -m "overnight results" && git push
-```
+Run every job inside an experiment, with `--results-dir ../experiments/<ID>-<slug>/results` (the experiment's
+`run.sh` does this; `HOW_TO_RUN.md`). `--git` commits that folder every 30 minutes (`--commit-minutes`), on stop,
+and immediately when a candidate appears; add `--push` to push each commit. Jobs that read another job's records
+(`gate`, `arch`, `n5`) look in the results dir first, then in the newest experiment that recorded that job.
 
 ## Files
 

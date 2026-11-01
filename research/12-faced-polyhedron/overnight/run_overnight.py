@@ -29,6 +29,7 @@ Examples:
   python3 run_overnight.py status
 """
 import argparse
+import glob
 import hashlib
 import itertools
 import json
@@ -56,8 +57,17 @@ def jobdir(job):
     return d
 
 
+def find_jobdir(job):
+    """Where a job's results live: the current results dir, else the newest experiment that recorded that job."""
+    d = os.path.join(RES, job)
+    if os.path.exists(os.path.join(d, 'results.jsonl')):
+        return d
+    found = sorted(glob.glob(os.path.join(HERE, '..', 'experiments', 'E-*', 'results', job, 'results.jsonl')))
+    return os.path.dirname(found[-1]) if found else jobdir(job)
+
+
 def load_results(job):
-    p = os.path.join(jobdir(job), 'results.jsonl')
+    p = os.path.join(find_jobdir(job), 'results.jsonl')
     out = []
     if os.path.exists(p):
         with open(p) as f:
@@ -340,7 +350,7 @@ def job_pdefect(args, committer):
 
 
 # ----------------------------------------------------------------------------- job: ladder
-# Own path (cross-field-ideas.md Y1): closed polyhedra with n mutually adjacent faces, n < 12, maps
+# Own path (idea I-261029-07): closed polyhedra with n mutually adjacent faces, n < 12, maps
 # generated from scratch (no external seeds), genetic algorithm on the honest pair energy, every float
 # zero re-checked in exact rational arithmetic (code/ladder_exact.py). n = 7 (Szilassi) is found in
 # seconds; n = 8 (genus 2, two doubled adjacencies) plateaued at 1-2 violations in the cloud runs.
@@ -513,10 +523,10 @@ def job_glad(args, committer):
 
 def job_arch(args, committer):
     """Realization archive + bandit climb (code/archive_climb.py): seeded from the glad results and the
-    realized polyhedra in experiments/genus_ladder/; every exactly embedded genus >= 2 polyhedron is a
+    realized polyhedra in experiments/E-261030-03-genus-ladder-type0-genus3/results/; every exactly embedded genus >= 2 polyhedron is a
     root, every extendable next handle an arm; a quarter of the time goes to new realizations."""
     from archive_climb import run
-    ex = os.path.normpath(os.path.join(HERE, '..', 'experiments', 'genus_ladder'))
+    ex = os.path.normpath(os.path.join(HERE, '..', 'experiments', 'E-261030-03-genus-ladder-type0-genus3', 'results'))
     seeds = [os.path.join(RES, 'glad', 'results.jsonl')]
     if os.path.isdir(ex):
         seeds += [os.path.join(ex, f) for f in sorted(os.listdir(ex)) if f.endswith('.json')]
@@ -526,7 +536,7 @@ def job_arch(args, committer):
 
 
 # ----------------------------------------------------------------------------- night 5: Gauss gate + normals first
-# Review 2026-10-30 (reviews/review-2026-10-30.md): the type-0 genus-4 plateau is a Gauss-degree (normal-class)
+# Review 2026-10-30 (hypothesis H-261030-01): the type-0 genus-4 plateau is a Gauss-degree (normal-class)
 # obstruction. Job `gate` = test T1 for every realized polyhedron x every extendable next handle (+ test 2.2 on
 # the night-3 chains); job `n5` = the gated ladder: `nfirst` (normals first, exact offsets: normals_first.py),
 # `kdrift` (drift inside the realization space until the handle degree k_tau = -1 and the next map's class is
@@ -550,7 +560,7 @@ def gate_realizations():
             return
         k = _rkey(planes, tris)
         out.setdefault(k, {'planes': planes, 'triangles': tris, 'type_id': tid, 'origin': origin})
-    ex = os.path.normpath(os.path.join(HERE, '..', 'experiments', 'genus_ladder'))
+    ex = os.path.normpath(os.path.join(HERE, '..', 'experiments', 'E-261030-03-genus-ladder-type0-genus3', 'results'))
     if os.path.isdir(ex):
         for f in sorted(os.listdir(ex)):
             if f.endswith('.json'):
@@ -1243,8 +1253,9 @@ def main():
     ap.add_argument('--sym-immersion', action='store_true',
                     help='sym: certify that no symmetric IMMERSION exists (results in results/symimm)')
     ap.add_argument('--check-timeout', type=float, default=40000)
-    ap.add_argument('--keep-proofs', action='store_true')
-    ap.add_argument('--keep-cnf', action='store_true')
+    # a DRAT proof is the certificate: keep it and its CNF unless disk space forces --no-keep-*
+    ap.add_argument('--keep-proofs', action=argparse.BooleanOptionalAction, default=True)
+    ap.add_argument('--keep-cnf', action=argparse.BooleanOptionalAction, default=True)
     # cube
     ap.add_argument('--maps', default='1', help='comma-separated Lutz map numbers')
     # ils

@@ -3,9 +3,11 @@ edge vector (in face X's CCW traversal) = alpha_e * (g_X x g_Y); sign(alpha_e) =
 sum_i alpha_{X B_i} (g_X x g_{B_i}) = 0.  NO period conditions (cycles of the edge graph around handles need not
 close). LP_loc feasible but full LP infeasible => the fixed-normal obstruction is cohomological (Penrose-type:
 locally consistent, globally impossible figure). Same normals/seeds as closure_and_parity.py; Szilassi control."""
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '../..'))
 import sys, json, itertools, time
 import numpy as np, z3
-sys.path.insert(0, '/home/user/polyhedrons/research/12-faced-polyhedron/code')
+sys.path.insert(0, _ROOT + '/code')
 from gauss_degree import coherent_triangles, links_from
 from gauss_search import find_admissible
 from fixed_normals import integer_normals
@@ -36,7 +38,7 @@ def penrose(Gi, ot, links, n, with_kappa=True):
             s.add(z3.Sum([int(T[i][r]) * al[frozenset((X, Bs[i]))] for i in range(m)]) == 0)
     t0 = time.time(); res = s.check(); return str(res), time.time() - t0
 
-R = '/home/user/polyhedrons/research/12-faced-polyhedron/'
+R = _ROOT + '/'
 types = json.load(open(R + 'data/k12_triangulations.json'))
 for tid in (0, 58, 5):
     e = next(t for t in types if t['id'] == tid)

@@ -1,12 +1,16 @@
 # Results
 
+> **Frozen 2026-11-01.** History up to the restructure, with the old labels ([N], [E], [P], [K]). New
+> evidence goes to `experiments/E-YYMMDD-NN-slug/CONCLUSION.md`; verdicts and numbers live in `STATUS.md`. Correct
+> errors here, but do not add new sections.
+
 Only results with evidence. Each section states what is proved, what is computed, and what is
 merely observed.
 
 ## PI: reductions (2026-10-29)
 
 * [P] The Series-1 parameters (F=12, E=66, V=44, 11-gons, genus 6) follow from the definition
-  (mathematical-model.md §1).
+  (theory/mathematical-model.md §1).
 * [P] Face-plane formulation: a candidate is a set of 12 planes; planarity is automatic; the
   realization space of each combinatorial type is open in R^36 (§2).
 * [P] Embedding ⇔ 176 forbidden-triple conditions (Lemma 5.1), all expressible in the uniform
@@ -142,7 +146,7 @@ convex face). n=7 free χ: SAT (<0.1 s) under every option set.
 [computed] Lutz #54 under T: UNSAT (1.3 s; also kissat, glucose; also without normalisation);
 #3 under D3: UNSAT (9.3 s); #48 under D3: UNSAT (10.6 s); #48 under C2 (half-turn) with F4+F6: UNSAT (298 s; the plain encoding gave no result in 320 s and was stopped). Agreement with their results for these four
 cases. Our encoding differs from theirs (Lemma 5.1 triple form, 176 clauses, vs their S+X form).
-DRAT proof for #54 T saved (`experiments/omsat/sym_54_T.drat`); not checked with drat-trim (build
+DRAT proof for #54 T saved (`experiments/E-261029-03-omsat-encoder-validation/results/sym_54_T.drat`); not checked with drat-trim (build
 refused in this sandbox); own forward RUP checker `code/rup_check.py`: 1034 lemmas, all RUP, empty clause derived — VERIFIED (weaker than drat-trim: self-written checker).
 Not done: asymmetric full instances (known to stall per the prior work; not attempted per PI),
 realisation attempts (no SAT χ for n=12 arose).
@@ -161,7 +165,7 @@ Details: experiment-log.md "Track 4", code/planes.py, code/geomsat.py.
 
 ## PI: Gauss-map prefilter and the gauge-fixed offset SMT (2026-10-29, session 1 continued)
 
-* [P, sketch in theory-notes.md] Necessary condition on face normals alone: some gauge sign
+* [P, sketch in theory/theory-notes.md] Necessary condition on face normals alone: some gauge sign
   vector gives a PL Gauss map of degree chi/2 = -5 whose convex corners cover the sphere.
   Controls: tetrahedron, cube, Szilassi pass with their own gauges.
 * [N, exact per instance] **All 1005 HackerPoet near-miss seeds fail it**: no embedded
@@ -239,7 +243,7 @@ the listed local families):
   normals: R^3 defect 17.6 (type 0) / 17.4 (type 58); cubic axis-aligned lattice: 15-23 (no help);
   general lattice: 0.5-8 for random phi, and **exactly 0 with a non-degenerate lattice** for type 0
   (det L = 414) and type 58 (det L = 49) within a few trials (configurations in
-  `experiments/torus/`). Caveat: these closed, locally consistently labelled configurations have
+  `experiments/E-261029-14-closure-first-torus-and-period/results/torus/`). Caveat: these closed, locally consistently labelled configurations have
   NON-SIMPLE faces (0/12 and 1/12 faces simple) — closure level only, not an immersion.
   Interpretation: at the closure level the R^3 obstruction is exactly the vanishing of the handle
   periods; whether simplicity changes this is open.
@@ -253,11 +257,23 @@ simple faces, at most one reflex corner per vertex, orientation consistency): **
 (7-158 s per case). **[Theorem, computer-assisted, certified]** No polyhedral immersion in R^3 of the
 12-face Series-1 map with planar faces has a non-trivial symmetry. This strengthens the symmetric
 embedding statement (night 1) and, as far as we know, is new. (The soundness of the local clause
-families rests on mathematical-model.md and the adversarial review; SIMPLE + REFLEX1 = immersion was
-re-checked in fresh-eyes-review.md.)
+families rests on theory/mathematical-model.md and the adversarial review; SIMPLE + REFLEX1 = immersion was
+re-checked in reviews/fresh-eyes-review.md.)
 
 * [N] Torus + simple faces (`torus_simple`, exact closure, edge signs, vertex rules, and a 4-way
   disjunction per non-adjacent edge pair): for the two zero-defect torus configurations above, the
   problem with simple faces is INFEASIBLE (type 0: 116 s, type 58: 392 s; HiGHS); the R^3 version is
   infeasible in 2-3 s. The torus success was a closure-level phenomenon; face simplicity is an
   independent strong component of the obstruction.
+
+## Nights 4-5 (2026-10-30/11-01): realization archive, Gauss gate, normals first (`reports/NIGHT_REPORT_2026-11-01.md`)
+
+* [E] 94 exactly embedded 12-face genus-3 polyhedra (S3) of types 0 (6), 15 (54), 39 (1), 53 (33), plus 153 of
+  genus 2; all re-checked by `verification/verify_all.py` (archive check). No genus 4.
+* [E] Gauss-map degree = 1 - g on all 232 gated realizations. Type 0 genus 3: k_tau = 0 on all 21 next handles.
+* [E] 12,202 exact UNSAT offset decisions at Gauss-admissible normals (radii 0-0.2 around realized seeds and
+  direct genus 6), 0 SAT, no timeouts. Scope: each UNSAT holds for its normal set and gauge only; the positive
+  control was SAT at r = 0.05 once and UNSAT at r >= 0.1, so the counts are low-power evidence.
+* [N] k-drift reaches the next class 153 times, always with hemisphere margin exactly 0 (open: ROADMAP E-261101-07).
+* [E] Combinatorial completion certificate type 0 genus 3 -> 6 (three handles), external audit v3, re-run: PASS
+  (`verification/certificates/type0_handle_completion/`).

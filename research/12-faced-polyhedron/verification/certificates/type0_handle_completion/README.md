@@ -1,7 +1,7 @@
 # Type-0 genus-3 -> genus-6 combinatorial completion certificate
 
-Source: external audit v3 (`reviews/external-audit-2026-10-31-v3.ru.md`, section 23), imported 2026-11-01 and
-re-run here (PASS).
+Source: the owner's process audit of 2026-10-31 (not kept in the repository), imported 2026-11-01 and re-run here
+(PASS). The certificate stands on its own: `verify.py` checks it with the standard library only.
 
 * `certificate.json` - four triangulated maps (genus 3, 4, 5, 6) and the three explicit handle surgeries
   (remove two disjoint triangles, insert a six-triangle annulus, +6 adjacencies each):
@@ -11,7 +11,7 @@ re-run here (PASS).
 
 ```bash
 python3 -I verify.py certificate.json \
-  --source ../../../experiments/genus_ladder/type0_genus3_extendable.json \
+  --source ../../../experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable.json \
   --catalog ../../../data/k12_triangulations.json
 ```
 

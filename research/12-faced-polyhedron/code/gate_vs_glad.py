@@ -5,7 +5,9 @@ Usage: python3 -I gate_vs_glad.py [RESULTS_DIR]"""
 import hashlib, json, os, sys
 from collections import defaultdict
 HERE = os.path.dirname(os.path.abspath(__file__))
-res = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, '..', 'overnight', 'results')
+res = sys.argv[1] if len(sys.argv) > 1 else None
+GATE = os.path.join(res, 'gate') if res else os.path.join(HERE, '..', 'experiments', 'E-261030-06-gauss-gate', 'results', 'gate')
+GLAD = os.path.join(res, 'glad') if res else os.path.join(HERE, '..', 'experiments', 'E-261030-05-genus-ladder-all-types', 'results', 'glad')
 
 
 def rkey(planes, tris):     # = run_overnight._rkey
@@ -15,12 +17,12 @@ def rkey(planes, tris):     # = run_overnight._rkey
 
 
 gate = {}
-for l in open(os.path.join(res, 'gate', 'results.jsonl')):
+for l in open(os.path.join(GATE, 'results.jsonl')):
     r = json.loads(l)
     if r.get('status') == 'GATE':
         gate[r['task'][2:]] = r
 rows = []
-for l in open(os.path.join(res, 'glad', 'results.jsonl')):
+for l in open(os.path.join(GLAD, 'results.jsonl')):
     r = json.loads(l)
     br = r.get('branch')
     if not br:

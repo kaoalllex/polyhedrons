@@ -18,12 +18,12 @@ Corollary (already claimed by Moki & Julio 2026, independently reproduced here):
 
 | Part | Status | Where |
 |---|---|---|
-| Reduction to face planes; open realization space; WLOG general position | written; adversarially reviewed (ACCEPT, minor fixes applied) | `../mathematical-model.md` §1-§5, `../verification/foundations-report.md` |
-| Symmetry reduction: a non-trivial symmetry group contains a half-turn (C2) or a 3-fold rotation (C3); no fixed faces; no mirrors / point reflections; 25 conjugacy classes (21 C2, 4 C3) | proved in Track 6 notes, matches the prior work's section 2; class list computed by our code | `../theory-notes.md` (Q2), `../results.md` (Track 2), `../code/omsat_sym.py` |
+| Reduction to face planes; open realization space; WLOG general position | written; adversarially reviewed (ACCEPT, minor fixes applied) | `../theory/mathematical-model.md` §1-§5, `../verification/foundations-report.md` |
+| Symmetry reduction: a non-trivial symmetry group contains a half-turn (C2) or a 3-fold rotation (C3); no fixed faces; no mirrors / point reflections; 25 conjugacy classes (21 C2, 4 C3) | proved in Track 6 notes, matches the prior work's section 2; class list computed by our code | `../theory/theory-notes.md` (Q2), `../results.md` (Track 2), `../code/omsat_sym.py` |
 | Symmetric configurations can be perturbed symmetrically into general position | checked per representation (random symmetric configurations are uniform) | `../code/omsat_sym.py` (`find_reps`, uniformity check) |
-| Clause families: uniform 3-term GP; symmetry chi(gS) = eps(g) chi(S); orbit-flip + mirror normalization; SIMPLE (non-adjacent edges of a face do not cross); REFLEX1 (at most one reflex corner per vertex = embedded vertex star); POC (orientation consistency) | encoded in `../code/omsat.py`; predicates validated against exact geometry (0 mismatches, ~2.5 M evaluations); SIMPLE + REFLEX1 = immersion re-checked by the fresh-eyes review | `../results.md` (Track 3), `../fresh-eyes-review.md` |
-| SAT results | all 25 classes UNSAT; DRAT proofs checked by drat-trim on the user's machine (night 2, phase 1, 7-158 s per case) | `../overnight/results/symimm/results.jsonl` (pushed after night 2), console log in `../results.md` |
-| Embedding version | 25/25 UNSAT-VERIFIED (night 1) and agrees with the independent third-party encoding | `../overnight/results/sym/results.jsonl` |
+| Clause families: uniform 3-term GP; symmetry chi(gS) = eps(g) chi(S); orbit-flip + mirror normalization; SIMPLE (non-adjacent edges of a face do not cross); REFLEX1 (at most one reflex corner per vertex = embedded vertex star); POC (orientation consistency) | encoded in `../code/omsat.py`; predicates validated against exact geometry (0 mismatches, ~2.5 M evaluations); SIMPLE + REFLEX1 = immersion re-checked by the fresh-eyes review | `../results.md` (Track 3), `../reviews/fresh-eyes-review.md` |
+| SAT results | all 25 classes UNSAT; DRAT proofs checked by drat-trim on the user's machine (night 2, phase 1, 7-158 s per case) | `../experiments/E-261029-15-symmetric-immersion-certificates/results/symimm/results.jsonl` (pushed after night 2), console log in `../results.md` |
+| Embedding version | 25/25 UNSAT-VERIFIED (night 1) and agrees with the independent third-party encoding | `../experiments/E-261029-13-symmetric-embedding-certificates/results/sym/results.jsonl` |
 
 ## What remains (in order)
 
@@ -51,10 +51,10 @@ Corollary (already claimed by Moki & Julio 2026, independently reproduced here):
    preserves conv(P); lifting to a sharp cone in R^4 and averaging in the dual cone gives an invariant
    hyperplane missing conv(P); in that affine chart the group acts affinely (then isometrically after
    averaging an inner product), and the chart change keeps P a bounded planar-faced embedding/immersion.
-   Hence the theorem also excludes projective symmetries. Write out and check (`../cross-field-ideas.md`, Y9).
+   Hence the theorem also excludes projective symmetries. Write out and check (`../ideas/I-261029-15-projective-symmetries-covered-free.md`, Y9).
 
 Also worth including in the write-up as context (separate, numerical): every known near-miss fails
-the Gauss-degree condition and is not an immersion (`../theory-notes.md`, `../results.md`).
+the Gauss-degree condition and is not an immersion (`../theory/theory-notes.md`, `../results.md`).
 
 ## Reproduce
 

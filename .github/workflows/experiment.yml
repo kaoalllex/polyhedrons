@@ -1,0 +1,82 @@
+# Runs one pre-registered experiment (research/12-faced-polyhedron/experiments/<ID>/) on GitHub-hosted runners.
+# Trigger: push to branch experiment/<ID> with "[run]" in the head commit message, or Run workflow by hand
+# (that needs this file on main). Each entry of experiments/<ID>/matrix.json is one shard = one job:
+# bash run.sh <shard>, at most 350 min. Results: one artifact per shard, kept 90 days - download with
+# `gh run download <run-id>` and commit the summary. See PROTOCOL.md section 6.
+name: experiment
+on:
+  push:
+    branches: ["experiment/**"]
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "Experiment folder name under research/12-faced-polyhedron/experiments/ (e.g. E02-control-power)"
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: experiment-${{ github.ref }}-${{ inputs.id }}
+  cancel-in-progress: false
+jobs:
+  plan:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[run]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      id: ${{ steps.id.outputs.id }}
+      shards: ${{ steps.shards.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: id
+        env:
+          INPUT_ID: ${{ inputs.id }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          ID="${INPUT_ID:-${REF_NAME#experiment/}}"
+          case "$ID" in *[!A-Za-z0-9._-]*|"") echo "bad experiment id: $ID"; exit 1;; esac
+          test -f "research/12-faced-polyhedron/experiments/$ID/run.sh" || { echo "no experiments/$ID/run.sh"; exit 1; }
+          test -f "research/12-faced-polyhedron/experiments/$ID/PLAN.md" || { echo "no PLAN.md: pre-register first"; exit 1; }
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+      - id: shards
+        env:
+          ID: ${{ steps.id.outputs.id }}
+        run: |
+          M="research/12-faced-polyhedron/experiments/$ID/matrix.json"
+          if [ -f "$M" ]; then S=$(python3 -c "import json,sys; v=json.load(open(sys.argv[1])); assert isinstance(v,list) and 0<len(v)<=256; print(json.dumps([str(x) for x in v]))" "$M"); else S='["0"]'; fi
+          echo "shards=$S" >> "$GITHUB_OUTPUT"
+  run:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.shards) }}
+    defaults:
+      run:
+        working-directory: research/12-faced-polyhedron
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: research/12-faced-polyhedron/requirements.txt
+      - run: python -m pip install -r requirements.txt
+      - name: Base check (a broken evidence base must not produce results)
+        run: python verification/verify_all.py --quick
+      - name: Run shard
+        env:
+          ID: ${{ needs.plan.outputs.id }}
+          SHARD: ${{ matrix.shard }}
+        run: bash "experiments/$ID/run.sh" "$SHARD"
+      - name: Upload shard results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ needs.plan.outputs.id }}-shard-${{ matrix.shard }}-${{ github.run_id }}
+          path: research/12-faced-polyhedron/experiments/${{ needs.plan.outputs.id }}/results/${{ matrix.shard }}/
+          retention-days: 90
+          if-no-files-found: warn

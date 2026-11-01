@@ -304,8 +304,7 @@ def main():
             print('CNF check n=%d:' % n, r)
     out['cnf_checks'] = [dict(n=n, **r) for n, r in cres]
     out['seconds'] = time.time() - t0
-    os.makedirs(os.path.join(RDIR, 'experiments', 'omsat'), exist_ok=True)
-    with open(os.path.join(RDIR, 'experiments', 'omsat', 'validation.json'), 'w') as f:
+    with open(os.path.join(os.environ.get('OUT', '.'), 'validation.json'), 'w') as f:
         json.dump(out, f, indent=1, default=str)
     print('done in %.1fs' % (time.time() - t0))
 
