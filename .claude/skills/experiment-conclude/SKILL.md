@@ -20,7 +20,7 @@ Paths are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2.
    - prediction vs outcome;
    - claims with `SPEC.md` §5 labels and their scope (instance / family / theorem), and what must not be
      claimed;
-   - how the outcome moves the hypotheses in `STATUS.md` §3a;
+   - how the outcome moves each hypothesis in `tests` (update the hypothesis file's status and evidence);
    - for a claim that changes an FD or witness row: a `REVIEW.md` by someone other than the author;
    - the verdict with its budget (e.g. "LOW-YIELD@8 core-h, 2 seeds"; REFUTED only with a proof);
    - the next step.
@@ -29,6 +29,11 @@ Paths are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2.
    - **`ROADMAP.md`:** set the State to `done` or `killed`. A follow-up row needs scores, T + D >= 3, a budget, a
      stop rule and its DR/FD link.
    - **`experiment-log.md`:** a 1-3 line dated entry pointing to `CONCLUSION.md`.
+
+   - **Experiment `README.md`:** `status: done` (or `killed`), `verdict`, `produces` (FD / W: / C: it established),
+     and a short results / conclusions summary.
+   - **New ideas or hypotheses** that came out of it: one file each, with this experiment in their `origin`.
+   - Run `verification/trace.py` so the map is up to date.
 
    Do not restate numbers anywhere else. `results.md` is frozen. Change `SPEC.md` only through its change log.
 6. **Night report.** For a laptop night, also write a short `reports/NIGHT_REPORT_YYYY-MM-DD.md` covering:

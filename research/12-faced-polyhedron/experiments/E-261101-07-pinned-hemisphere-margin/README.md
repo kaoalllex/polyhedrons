@@ -20,3 +20,10 @@ A lemma about handle normals of an embedded polyhedron, or an artefact of the dr
 ## Next
 
 Stop rule: proof, counterexample, or a written reason it is an artefact
+
+## Starting point (moved from ROADMAP.md)
+
+153/153 drifts reached the next class with margin exactly 0. Either a theorem (handle normals of an embedded
+polyhedron cannot leave a closed hemisphere in that configuration) or an artefact of the drift's acceptance
+rule. First read `kdrift.py`'s acceptance rule and margin definition; then try to prove; then a 1-hour test that
+forces the margin positive. Outcome either way is a short note in `theory/theory-notes.md`.

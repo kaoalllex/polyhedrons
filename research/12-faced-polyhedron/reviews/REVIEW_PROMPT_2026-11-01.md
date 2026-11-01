@@ -41,9 +41,9 @@ is one of the 59 neighbourly genus-6 triangulations with 12 vertices. The vertex
 - `STATUS.md`: the ledger. It holds:
   - the foundations FD1-FD11 and the exact witnesses;
   - the directions DR1-DR17 with their measured verdicts;
-  - the competing hypotheses H1-H7 (§3a);
+  - the competing hypotheses H-261101-01-H-261101-07 (§3a);
   - what may be claimed.
-- `ROADMAP.md`: the scored queue E01-E13 (each row names the hypotheses it moves) and the parked methods.
+- `ROADMAP.md`: the scored queue E-261101-03-E-261101-12 (each row names the hypotheses it moves) and the parked methods.
 - `SPEC.md`: the targets S0-S4, the counters, the scope of negative results and the evidence labels.
 - `reports/NIGHT_REPORT_2026-11-01.md`: the latest compute.
 - `reviews/fresh-audit-2026-11-01.md`: the process audit.
@@ -82,7 +82,7 @@ The code is in `code/` (registry in `code/README.md`). Run the evidence base wit
    family, continuation from a degenerate configuration, lifting from a known object. Be concrete.
 4. **Which intermediate goals are worth reaching for their own sake?** Assess these candidates:
    - maximal face-neighbourly cubic polyhedra per genus, (F, g) = (8, 2), (9, 3), (10, 4), (11, 5), with
-     E - C(F, 2) = 2, 3, 3, 2 extra edges, i.e. doubled pairs (ROADMAP E13);
+     E - C(F, 2) = 2, 3, 3, 2 extra edges, i.e. doubled pairs (ROADMAP E-261101-12);
    - a genus-4 analogue of the Mizhaev / Röst–Vígh octahedra;
    - publishing results 1 and 2 above.
    
@@ -92,7 +92,7 @@ The code is in `code/` (registry in `code/README.md`). Run the evidence base wit
      invalidates the measurement.
    - Look for a claim stronger than its evidence, including a negative result whose scope is overstated
      (instance vs family vs theorem).
-   - Are H1-H7 the right competing hypotheses? Name any missing rival, and say which experiment would
+   - Are H-261101-01-H-261101-07 the right competing hypotheses? Name any missing rival, and say which experiment would
      discriminate it.
    - Is there prior work (the two partly read repositories, Bokowski & Kevin H. 2025, the map censuses) that
      already answers one of our questions or makes an item redundant?
@@ -106,6 +106,6 @@ The code is in `code/` (registry in `code/README.md`). Run the evidence base wit
 - a 10-line verdict;
 - an answer to each question;
 - a ranked table of directions with hypothesis, test, cost and decision value;
-- a revised hypothesis table, if yours differs from H1-H7;
+- a revised hypothesis table, if yours differs from H-261101-01-H-261101-07;
 - a list of errors or overclaims you found, with file:line;
 - the 3 things you would do first next week.

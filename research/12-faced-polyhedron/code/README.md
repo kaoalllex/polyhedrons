@@ -31,7 +31,7 @@ script of one sprint-board test, kept for reproducibility, not maintained.
 | Module | Role |
 |---|---|
 | `control_rost_vigh.py` | positive control: Roest-Vigh 8-face genus-3 polyhedron (in `verify_all`) |
-| `nf_control.py` | positive control of normals-first on a realized map (see ROADMAP E02) |
+| `nf_control.py` | positive control of normals-first on a realized map (see ROADMAP E-261101-04) |
 | `omsat_validate.py`, `omsat_crosscheck_track4.py`, `submap_validate.py`, `unit_test_in.py` | encoder / predicate validation |
 | `enum_k12.c`, `enum2_k12.c`, `build_json.py`, `classify_enum2.py`, `compare_literature.py` | enumeration of the 59 types and literature cross-check |
 | `import_hackerpoet.py` | import of the 1005 HackerPoet near-misses |
@@ -44,7 +44,7 @@ script of one sprint-board test, kept for reproducibility, not maintained.
 | Module | Direction | Verdict |
 |---|---|---|
 | `genus_ladder.py`, `beam_ladder.py`, `archive_climb.py`, `level_search.py`, `seed_search.py`, `lns_handle.py`, `ladder_solid.py`, `drift_search.py`, `repair_search.py` | DR1 genus ladder family | LOW-YIELD@budget for S0 |
-| `normals_first.py`, `kdrift.py`, `chain_normals.py` | DR2 normals first / k-drift; DR14 Q1 | LOW-YIELD@budget as climbers; reusable for E02-E03 |
+| `normals_first.py`, `kdrift.py`, `chain_normals.py` | DR2 normals first / k-drift; DR14 Q1 | LOW-YIELD@budget as climbers; reusable for E-261101-04-E-261101-05 |
 | `solid_exact_search.py`, `solid_search.py`, `solid_search_fast.py` | DR7 solid-first | OPEN-LOW (generator) |
 | `period_anneal.py`, `gauss_search.py`, `offset_anneal.py`, `joint_anneal.py` | DR4 closure-first, normal annealers | LOW-YIELD |
 | `ladder_cma.py`, `ladder_ga.py`, `ladder_ils.py`, `ladder_ng.py`, `ladder_reloc.py`, `ladder4.py`, `anneal.py`, `reloc_descent.py` | DR6 black-box engines, DR15 n = 8 | LOW-YIELD |
@@ -55,7 +55,7 @@ script of one sprint-board test, kept for reproducibility, not maintained.
 
 `q4_polar.py`, `q5_admissible_all.py`, `q10_core.py`, `q13_tube_planes.py`, `q15_symmetric_planes.py`,
 `q16_screw_planes.py`, `q17_winding.py`, `q18_gwas.py`, `szilassi.py`, `szil_test.py`, `szilassi_faceplane_check.py`.
-`q10_core.py` is the starting point for ROADMAP E03 (UNSAT cores).
+`q10_core.py` is the starting point for ROADMAP E-261101-05 (UNSAT cores).
 
 New code: put library functions in an existing CORE module where they belong; put an experiment's own script in
-its `experiments/E##-slug/` folder unless it becomes a reusable tool.
+its `experiments/E-YYMMDD-NN-slug/` folder unless it becomes a reusable tool.

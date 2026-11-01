@@ -1,4 +1,4 @@
-# E##: adversarial review
+# E-YYMMDD-NN: adversarial review
 
 Written by someone other than the author of the result: the `adversarial-verifier` agent (a filter) or a human
 (a review in the sense of `SPEC.md` §5). The author never approves their own result.

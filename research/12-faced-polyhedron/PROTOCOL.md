@@ -16,7 +16,7 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
 | `results.md` | evidence up to 2026-11-01 (old labels) | frozen: correct errors only; new evidence goes to `CONCLUSION.md` |
 | `experiment-log.md` | chronology | append-only |
 | `CONTINUE_PROMPT.md` | hand-over to the next session | short; points to the files above |
-| `experiments/E##-slug/` | one experiment: plan, runner, results, conclusion | see section 2 |
+| `experiments/E-YYMMDD-NN-slug/` | one experiment: plan, runner, results, conclusion | see section 2 |
 | `theory/`, `ideas/`, `reviews/`, `reports/`, `literature/` | supporting material | ideas are a backlog, not a plan |
 | `archive/` | superseded documents | read-only history |
 
@@ -24,11 +24,11 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
 
 1. **Idea** -> `ideas/` (one line is enough).
 2. **Score and queue** -> a row in `ROADMAP.md` (T D F G R scores, budget, stop rule). T + D < 3: do not run.
-3. **Pre-register** -> copy `experiments/_template/` to `experiments/E##-slug/`, fill `PLAN.md` *before* any
+3. **Pre-register** -> copy `experiments/_template/` to `experiments/E-YYMMDD-NN-slug/`, fill `PLAN.md` *before* any
    compute: hypothesis, controls, what each outcome (SAT / UNSAT / timeout / near-miss) will mean, budget, stop
    rule, power statement (what effect size the budget can detect).
 4. **Pilot** -> the smallest instance that could expose a bug in the idea (minutes). Positive control must pass.
-5. **Run** -> on branch `experiment/E##-slug`, on the laptop (`caffeinate -dimsu bash run.sh`) or on GitHub
+5. **Run** -> on branch `experiment/E-YYMMDD-NN-slug`, on the laptop (`caffeinate -dimsu bash run.sh`) or on GitHub
    Actions (section 6). Every run writes a manifest (section 5).
 6. **Verify** -> every candidate through `verification/verify_candidate.py`; every UNSAT that is used as evidence
    keeps its formula (SMT2 / CNF hash) so it can be re-checked.
@@ -128,7 +128,7 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 ## 7. Git
 
 * `main` is the integrated state: site (`index.html`) + research; always passes `verify_all.py`.
-* One branch per experiment: `experiment/E##-slug`; documentation / infrastructure work: `claude/<topic>`.
+* One branch per experiment: `experiment/E-YYMMDD-NN-slug`; documentation / infrastructure work: `claude/<topic>`.
 * Night results are committed by the runner (`--git`); push them before starting a new session.
 * Tags freeze citable states (`state-YYYY-MM-DD`), e.g. before a write-up or an external review.
 

@@ -28,6 +28,6 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
   * 10: `test_mutants.py` and a re-encode-and-hash check of 2-3 symmetric CNFs.
   * 12: READMEs link to STATUS instead of restating numbers.
   * 13: archive `run_night*.sh`.
-  * 14: Actions pilot on E02.
-* Next: audit actions 9-13 above (one short session), then E01 (type-0 genus-3 dossier). E13 (maximal
+  * 14: Actions pilot on E-261101-04.
+* Next: audit actions 9-13 above (one short session), then E-261101-03 (type-0 genus-3 dossier). E-261101-12 (maximal
   face-neighbourly polyhedra per genus) is a new side line.

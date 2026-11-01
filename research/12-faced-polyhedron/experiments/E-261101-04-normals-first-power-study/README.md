@@ -20,3 +20,11 @@ Measure the SAT rate of the positive control per radius, so that the 12,202 UNSA
 ## Next
 
 Stop rule: 30 maps x 3 radii, or earlier if the rate is clear
+
+## Starting point (moved from ROADMAP.md)
+
+Hypothesis H0: at in-class seeds the offset problem is generically SAT near the realized normals, so 0 SAT in
+12,202 means something. Test: `code/nf_control.py` on 30 realized maps (archive, several types) x r in {0.01,
+0.02, 0.05}, z3 timeout 600 s. Outcomes: control SAT rate p >= 0.3 at some r -> the night-4/5 UNSATs at that r
+are real evidence of an obstruction between levels (then E-261101-05 on them); p ~ 0 -> normals-first sampling is
+blind, retire the UNSAT counts as evidence; timeouts dominate -> encoding cost problem, not geometry.

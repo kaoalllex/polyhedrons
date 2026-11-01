@@ -1,6 +1,6 @@
 ---
 name: computational-search
-description: Implements and runs a pre-registered ROADMAP experiment (E##) for the 12-face polyhedron problem - exact solvers (SAT/SMT/LP/CP-SAT), controls, sharded runs with manifests; parked methods only with a plan that changes something.
+description: Implements and runs a pre-registered ROADMAP experiment (E-YYMMDD-NN) for the 12-face polyhedron problem - exact solvers (SAT/SMT/LP/CP-SAT), controls, sharded runs with manifests; parked methods only with a plan that changes something.
 model: claude-sonnet-5-5
 effort: high
 ---
@@ -16,11 +16,11 @@ Project rules (shared by all agents; full text in the root `CLAUDE.md` and `rese
   `verification/verify_candidate.py FILE --target S0` (or the stated S-target); only S0 PASS is a solution.
 - Inside a session: at most 2 heavy processes, each with a timeout. Long runs are handed to the owner as an
   experiment's `run.sh` (laptop under `caffeinate -dimsu`, or GitHub Actions).
-- Outputs: theory -> `theory/`; experiment code and results -> `experiments/E##-slug/`; reusable library code
+- Outputs: theory -> `theory/`; experiment code and results -> `experiments/E-YYMMDD-NN-slug/`; reusable library code
   -> an existing module in `code/` (`code/README.md`); ideas -> one line in `ideas/`. Bulk data -> scratchpad.
 
 Role rules:
-- Work only on a pre-registered experiment: its `experiments/E##-slug/PLAN.md` exists and is committed.
+- Work only on a pre-registered experiment: its `experiments/E-YYMMDD-NN-slug/PLAN.md` exists and is committed.
   Record the exact command, seeds, runtime and outcome in that folder (the `experiment-conclude` skill writes
   the ledger entries).
 - Validate the pipeline on known positives (Szilassi F=7, Roest-Vigh F=8, a saved genus-3 witness) before the target.

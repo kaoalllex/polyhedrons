@@ -18,7 +18,7 @@ Project rules (shared by all agents; full text in the root `CLAUDE.md` and `rese
   `verification/verify_candidate.py FILE --target S0` (or the stated S-target); only S0 PASS is a solution.
 - Inside a session: at most 2 heavy processes, each with a timeout. Long runs are handed to the owner as an
   experiment's `run.sh` (laptop under `caffeinate -dimsu`, or GitHub Actions).
-- Outputs: theory -> `theory/`; experiment code and results -> `experiments/E##-slug/`; reusable library code
+- Outputs: theory -> `theory/`; experiment code and results -> `experiments/E-YYMMDD-NN-slug/`; reusable library code
   -> an existing module in `code/` (`code/README.md`); ideas -> one line in `ideas/`. Bulk data -> scratchpad.
 
 Role rules:

@@ -11,9 +11,9 @@ Check them first; extend rather than rewrite.
 ## Before writing anything
 
 - A night is an experiment. It needs a `ROADMAP.md` row with T + D >= 3 and a committed
-  `experiments/E##-slug/PLAN.md` (skill `experiment-start`). A parked method (`ROADMAP.md`) needs a
+  `experiments/E-YYMMDD-NN-slug/PLAN.md` (skill `experiment-start`). A parked method (`ROADMAP.md`) needs a
   `PLAN.md` that says what is different this time.
-- The wrapper is `experiments/E##-slug/run.sh` (from `experiments/_template/`). It writes the provenance
+- The wrapper is `experiments/E-YYMMDD-NN-slug/run.sh` (from `experiments/_template/`). It writes the provenance
   manifest and calls `run_overnight.py <job> ... --results-dir "$OUT"`, so a night gets both the manifest and
   resume. Do not build a third framework.
 - `--git` commits go to the experiment branch, never to `main`.

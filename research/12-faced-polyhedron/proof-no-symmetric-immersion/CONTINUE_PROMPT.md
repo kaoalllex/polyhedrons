@@ -1,15 +1,15 @@
-# Prompt for a separate session on the symmetric-immersion proof (ROADMAP E08)
+# Prompt for a separate session on the symmetric-immersion proof (ROADMAP E-261101-10)
 
-This work is ROADMAP item E08. It overlaps E07, the comparison of encoders. The rules in the root `CLAUDE.md`
+This work is ROADMAP item E-261101-10. It overlaps E-261101-09, the comparison of encoders. The rules in the root `CLAUDE.md`
 apply. Paste everything below the line into a new Claude Code session on `kaoalllex/polyhedrons`.
 
 ---
 
-You are working on ROADMAP E08: turning a computer-assisted result into a checked, written proof. Read these
+You are working on ROADMAP E-261101-10: turning a computer-assisted result into a checked, written proof. Read these
 files in `research/12-faced-polyhedron/` first:
 - `SPEC.md`, for the labels;
 - `STATUS.md` FD5/FD6;
-- the E08 row of `ROADMAP.md`;
+- the E-261101-10 row of `ROADMAP.md`;
 - `proof-no-symmetric-immersion/README.md`, which gives the theorem, the status of every part and the remaining
   work.
 
@@ -23,8 +23,8 @@ maps has a non-trivial isometric symmetry.
 (`experiments/E-261029-15-symmetric-immersion-certificates/results/symimm/`), using one encoder. The status is EXACT. It becomes CERTIFIED after this item:
 written soundness argument, a second encoder and published certificates.
 
-Branch: `experiment/E08-symmetric-immersion` from `main`. Use the `experiment-start` skill to create
-`experiments/E08-symmetric-immersion/PLAN.md` before any compute. Do these steps in order:
+Branch: `experiment/E-261101-10-symmetric-immersion` from `main`. Use the `experiment-start` skill to create
+`experiments/E-261101-10-symmetric-immersion/PLAN.md` before any compute. Do these steps in order:
 
 1. **Second encoder.** Write a SECOND, independent encoder of the local clause families from the geometric
    definitions, WITHOUT reading `omsat.py`. You may read the mathematical model. The families are:
@@ -46,7 +46,7 @@ Branch: `experiment/E08-symmetric-immersion` from `main`. Use the `experiment-st
 3. **Note and e-mail drafts.** Draft the 4-6 page note `proof-no-symmetric-immersion/note.md`. It gives the
    table of the 25 cases (from the results JSONL) and reproduction instructions. Point to the DRAT release; the
    owner decides when to publish it. Prepare short e-mail drafts (English) asking for a human review, for the
-   owner to send (ROADMAP E12). Possible recipients: J. Bokowski and Kevin H., A. Pirozhkov, Moki & Julio.
+   owner to send (ROADMAP E-261101-11). Possible recipients: J. Bokowski and Kevin H., A. Pirozhkov, Moki & Julio.
 
 Finish with `experiment-conclude` and a PR into `main`. Do not push to `main` directly.
 

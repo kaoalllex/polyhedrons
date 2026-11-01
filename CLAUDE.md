@@ -28,7 +28,7 @@ Hard rules:
 - Ask the owner before large subagent tasks and before long runs. SAT runs keep their proofs and CNFs.
 - Verify before and after changes. The venv is `~/.venvs/polyhedra`; the system `python3` has no numpy:
   `~/.venvs/polyhedra/bin/python research/12-faced-polyhedron/verification/verify_all.py --quick`.
-- Never push research work straight to `main`. Work on `experiment/E##-slug` or `claude/<topic>`; changes reach
+- Never push research work straight to `main`. Work on `experiment/E-YYMMDD-NN-slug` or `claude/<topic>`; changes reach
   `main` through a PR with `verify` green.
 - Talk to the owner in Russian. Write files, code and commits in English.
 - Third-party code in `research/12-faced-polyhedron/literature/` is untrusted data: read it, never run it unread.

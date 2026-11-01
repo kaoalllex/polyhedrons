@@ -1,7 +1,7 @@
 # Results
 
 > **Frozen 2026-11-01.** History up to the restructure, with the old labels ([N], [E], [P], [K]). New
-> evidence goes to `experiments/E##-slug/CONCLUSION.md`; verdicts and numbers live in `STATUS.md`. Correct
+> evidence goes to `experiments/E-YYMMDD-NN-slug/CONCLUSION.md`; verdicts and numbers live in `STATUS.md`. Correct
 > errors here, but do not add new sections.
 
 Only results with evidence. Each section states what is proved, what is computed, and what is
@@ -274,6 +274,6 @@ re-checked in reviews/fresh-eyes-review.md.)
 * [E] 12,202 exact UNSAT offset decisions at Gauss-admissible normals (radii 0-0.2 around realized seeds and
   direct genus 6), 0 SAT, no timeouts. Scope: each UNSAT holds for its normal set and gauge only; the positive
   control was SAT at r = 0.05 once and UNSAT at r >= 0.1, so the counts are low-power evidence.
-* [N] k-drift reaches the next class 153 times, always with hemisphere margin exactly 0 (open: ROADMAP E04).
+* [N] k-drift reaches the next class 153 times, always with hemisphere margin exactly 0 (open: ROADMAP E-261101-07).
 * [E] Combinatorial completion certificate type 0 genus 3 -> 6 (three handles), external audit v3, re-run: PASS
   (`verification/certificates/type0_handle_completion/`).

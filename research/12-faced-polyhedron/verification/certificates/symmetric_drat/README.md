@@ -47,4 +47,4 @@ To check that the current encoder still produces the same formulas, re-generate 
 
 The soundness of the encoding is a separate question:
 * FD5 rests on Lemma 5.1 (FD2, PROVED-1).
-* For FD6 the soundness argument is the subject of ROADMAP E08; until then FD6 is EXACT, not CERTIFIED.
+* For FD6 the soundness argument is the subject of ROADMAP E-261101-10; until then FD6 is EXACT, not CERTIFIED.

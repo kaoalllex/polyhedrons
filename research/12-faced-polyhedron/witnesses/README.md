@@ -5,7 +5,7 @@ object in `witnesses.json`; the data stays in its source file, so nothing is cop
 
 | id | Object | Target | Source | Why it matters |
 |---|---|---|---|---|
-| `lab_type0_genus3` | 12 faces, genus 3, 48 of 66 pairs adjacent, all adjacencies single | S3 | `experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable_polished.json` | the best exact object: its map can be completed combinatorially to target type 0 by 3 handles (`verification/certificates/type0_handle_completion/`); the subject of ROADMAP E01 |
+| `lab_type0_genus3` | 12 faces, genus 3, 48 of 66 pairs adjacent, all adjacencies single | S3 | `experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable_polished.json` | the best exact object: its map can be completed combinatorially to target type 0 by 3 handles (`verification/certificates/type0_handle_completion/`); the subject of ROADMAP E-261101-03 |
 | `lab_solid_genus3` | 12 faces, genus 3, 48 of 66 pairs, another map | S3 | `experiments/E-261030-02-solid-first-exact-inner-n12/results/genus3_12faces_48pairs_polished.json` | found from random planes without a given map (solid-first); a dead-end map |
 
 None of them is a solution: only `verification/verify_candidate.py FILE --target S0` PASS is one (`SPEC.md` §1).

@@ -16,7 +16,7 @@ New here? Start with `GLOSSARY.md` (the key terms in plain words).
 2. `ROADMAP.md` - the scored, pre-registered experiment queue and the parked methods.
 3. `PROTOCOL.md` - how experiments are run, verified, recorded; branches; laptop and GitHub Actions.
 4. `SPEC.md` - target, relaxed targets, degeneracies, counters, evidence labels.
-5. `experiments/E##-*/CONCLUSION.md` (evidence), `experiment-log.md` (append-only chronology), `results.md` (frozen
+5. `experiments/E-YYMMDD-NN-*/CONCLUSION.md` (evidence), `experiment-log.md` (append-only chronology), `results.md` (frozen
    evidence up to 2026-11-01) when you need details.
 
 ## Layout
@@ -28,10 +28,10 @@ New here? Start with `GLOSSARY.md` (the key terms in plain words).
 | `results.md`, `experiment-log.md` | evidence up to 2026-11-01 (frozen); chronology (append-only) |
 | `CONTINUE_PROMPT.md` | hand-over prompt for a new AI session |
 | `theory/` | mathematical model, theory notes (lemmas, Gauss degree), proof roadmap |
-| `proof-no-symmetric-immersion/` | write-up of the symmetric-immersion theorem (ROADMAP E08) |
+| `proof-no-symmetric-immersion/` | write-up of the symmetric-immersion theorem (ROADMAP E-261101-10) |
 | `code/` | all scripts; registry with status per module: `code/README.md` |
 | `verification/` | exact verifiers, `verify_all.py`, `verify_candidate.py`, certificates, foundations report |
-| `experiments/` | `E##-slug/` pre-registered experiments (template `_template/`); legacy artifact folders |
+| `experiments/` | `E-YYMMDD-NN-slug/` pre-registered experiments (template `_template/`); legacy artifact folders |
 | `overnight/` | night-run framework (`run_overnight.py`, `run_night*.sh`, `HOW_TO_RUN.md`) and its results |
 | `data/` | the 59 combinatorial types with invariants (`data/README.md`) |
 | `literature/` | source matrix (`literature/README.md`), third-party data (untrusted), notes |
@@ -55,7 +55,7 @@ CI runs `verify_all.py` on every push touching `research/` (`.github/workflows/v
 
 ## Run an experiment
 
-Pick the top open row of `ROADMAP.md`, copy `experiments/_template/` to `experiments/E##-slug/`, fill `PLAN.md`
+Pick the top open row of `ROADMAP.md`, copy `experiments/_template/` to `experiments/E-YYMMDD-NN-slug/`, fill `PLAN.md`
 before any compute, then run `run.sh` on the laptop (`caffeinate -dimsu bash run.sh 0`) or push branch
-`experiment/E##-slug` with `[run]` in the commit message (GitHub Actions, one job per shard of `matrix.json`).
+`experiment/E-YYMMDD-NN-slug` with `[run]` in the commit message (GitHub Actions, one job per shard of `matrix.json`).
 Full rules: `PROTOCOL.md`.

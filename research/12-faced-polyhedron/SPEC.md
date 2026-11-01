@@ -64,7 +64,7 @@ that vanish only in a degenerate limit (`ladder.degeneracy`) are not progress.
 | `own_degree`, `target_degree` | Gauss-map degree of the realized normals in their gauge; target 1 - g | exact (signs of 3x3 determinants) | yes |
 | `k_tau` | degree change of the next handle at fixed normals (D_{M+tau} = D_M + k_tau) | exact | yes |
 | `saddles` | saddle vertices (need >= 2g + 1) | exact | yes |
-| `covering` | positive covering of the sphere | **sampled** (64-2256 directions) | only as "sampled covering"; not exact until `ROADMAP.md` E05 lands |
+| `covering` | positive covering of the sphere | **sampled** (64-2256 directions) | only as "sampled covering"; not exact until `ROADMAP.md` E-261101-13 lands |
 | `hemisphere_margin` | how far the handle normals are from a closed hemisphere | float | diagnostics |
 
 Solver outcomes: **SAT** (a model; re-check exactly before use), **UNSAT** (scoped to exactly that formula:

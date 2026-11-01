@@ -1,4 +1,4 @@
-# E##: conclusion
+# E-YYMMDD-NN: conclusion
 
 * **Runs**: commits, shards, core-hours (from `results/*/manifest.txt`), Actions run ids.
 * **Controls**: did the positive control succeed? did the negative control fail?

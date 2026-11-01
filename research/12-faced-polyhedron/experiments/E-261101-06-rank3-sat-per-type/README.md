@@ -20,3 +20,11 @@ A short human-checkable exclusion of a type, or model counts and a split basis f
 ## Next
 
 Stop rule: per type UNSAT or a model count estimate; stop after 3 types if every one is SAT with no pruning
+
+## Starting point (moved from ROADMAP.md)
+
+Variables: the 220 signs chi(X, Y, Z, inf) in the gauge, kappa bits, vertex-type bits. Clauses: rank-3 GP,
+degree -5 at sampled directions, covering, >= 13 saddles, vertex rule F3/F4, face turning F6, face-winding
+identity. Controls: Szilassi normals (n = 7) SAT; the 94 genus-3 realizations' normals SAT for their sub-maps;
+random normals mostly UNSAT. Outcome: UNSAT for a type = a short human-checkable exclusion (unlikely, decisive);
+SAT = model counts and a split basis for E-261101-15.

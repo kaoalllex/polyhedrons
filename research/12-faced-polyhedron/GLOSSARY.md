@@ -74,7 +74,7 @@ upper floors can stand.
     available ones give 0.
 - **Normals first.** Pick face directions with the right Gauss properties first, then let an exact solver
   search for the plane offsets. This gave 12,202 UNSAT results. A control run showed the method may simply search
-  badly, so this is weak evidence; experiment E02 measures it.
+  badly, so this is weak evidence; experiment E-261101-04 measures it.
 - **Q1.** A single run on type 58. The face directions satisfied the Gauss conditions on every level, yet the
   offsets were UNSAT already at the first level. So "the right Gauss class" alone is not enough. The result
   holds for that one instance only.
@@ -83,7 +83,7 @@ upper floors can stand.
 - **Witness.** An exactly verified object, such as our genus-3 objects. The curated ones are in `witnesses/`.
 - **Symmetry results.**
   - FD5: no symmetric Szilassi-12 exists. CERTIFIED; it reproduces Moki & Julio 2026.
-  - FD6: there is not even a symmetric immersion. DRAT-checked, EXACT; the written proof is ROADMAP E08.
+  - FD6: there is not even a symmetric immersion. DRAT-checked, EXACT; the written proof is ROADMAP E-261101-10.
   - So any solution must be asymmetric.
 
 ## Targets, labels and IDs
@@ -107,5 +107,6 @@ upper floors can stand.
 - **IDs.**
   - **FD**: a foundation we rely on.
   - **DR**: a direction of search.
-  - **E##**: an experiment in the queue (`ROADMAP.md`).
-  - **H#**: a competing hypothesis that experiments try to tell apart (`STATUS.md` §3a).
+  - **I-YYMMDD-NN / H-YYMMDD-NN / E-YYMMDD-NN**: an idea, a hypothesis, an experiment. The date is the day it was
+    created, NN its number within that day. Each is one file whose header says where it came from; the
+    interactive map (`map/index.html`) draws the whole graph from idea to result.
