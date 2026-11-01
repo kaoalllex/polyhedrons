@@ -10,7 +10,9 @@ combinatorially completable to a target map. Genus 4 was never reached. Details 
 
 ## Read in this order
 
-New here? Start with `GLOSSARY.md` (the key terms in plain words).
+New here? Start with `GLOSSARY.md` (the key terms in plain words), then the interactive map `map/index.html`
+(every idea, hypothesis and experiment and how they connect; live at
+https://kaoalllex.github.io/polyhedrons/research/12-faced-polyhedron/map/).
 
 1. `STATUS.md` - foundations, exact witnesses, every direction with its verdict, what may be claimed.
 2. `ROADMAP.md` - the scored, pre-registered experiment queue and the parked methods.
