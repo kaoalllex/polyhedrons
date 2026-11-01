@@ -624,3 +624,18 @@ Conclusion: Q1 part 1 works (such normals exist and are found in minutes); part 
 diverse chain-consistent normal sets, each decided exactly at M0 (~30 s), then M1, ... (statistics of the
 first UNSAT level). Next: add that loop (as in normals_first.run_arm) and/or add realizability of M0 to the
 normal-level conditions (e.g. the period/closure LP of the sphere map).
+
+## 2026-11-01: nights 4 and 5 analysed (`NIGHT_REPORT_2026-11-01.md`)
+
+* arch: 818 tasks, 203 new exact realizations (archive 247: 153 genus 2, 94 genus 3 of types 0, 15, 39, 53);
+  11 genus-4 arm tasks, best 4.0 events, 0 realizations. All 94 genus-3 realizations re-checked with
+  `ladder_exact.verify`: EMBEDDED.
+* gate: 232 realizations, own degree 1 - g on all; type 0 genus 3: k_tau = 0 on 21/21 arms; test 2.2: 93 % of
+  failed night-3 levels out of class.
+* n5: 432 tasks NOT_REALIZED; 12,202 exact UNSAT, 0 SAT (g6 1,486, kdrift 7,074, nfirst 3,642); 80 UNSAT at
+  radius 0 (the class seed itself). kdrift: 153 T1_PASS, hemisphere margin exactly 0 on all 153.
+* Night 4 lost ~8 h to laptop sleep (no `caffeinate`).
+* Verdict: arch / glad / n5 / kdrift climbing DEAD at this budget; UNSAT counts have low power (positive control
+  SAT only at r = 0.05, one trial). Follow-ups: control power study, pinned-margin lemma, UNSAT cores at r = 0.
+* External audit v3 (owner, 2026-10-31) imported to `reviews/`; its type-0 handle-completion certificate
+  (genus 3 -> 6, combinatorial only) re-run here: PASS (`verification/certificates/type0_handle_completion/`).
