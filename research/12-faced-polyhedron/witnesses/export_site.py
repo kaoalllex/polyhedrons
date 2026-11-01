@@ -62,8 +62,9 @@ def model(w):
     assert all(len(u) == 2 and u[0] == u[1][::-1] for u in use.values()), w['id'] + ': incoherent face cycles'
     pairs = sum(1 for X in range(F) for Y in range(X + 1, F) if Y in L[X])
     sub = ('<a href="%s%s" target="_blank" rel="noopener noreferrer">Our search · source file</a> · exactly verified · '
-           'genus %d · %d of %d face pairs adjacent · partial object, not a solution'
-           % (BLOB, w["source"], w["genus"], pairs, F * (F - 1) // 2))
+           'genus %d · %d of %d face pairs adjacent · partial object, not a solution.<br>%s '
+           '<a href="%switnesses/README.md" target="_blank" rel="noopener noreferrer">Details</a>'
+           % (BLOB, w["source"], w["genus"], pairs, F * (F - 1) // 2, html.escape(w['note']), BLOB))
     return {'id': w['id'], 'title': w['title'], 'subtitle': sub, 'vertices': verts, 'faces': faces,
             'colors': COLORS[:F]}, (V, len(use), F)
 

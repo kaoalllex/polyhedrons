@@ -6,7 +6,7 @@
     "source": "experiments/genus_ladder/type0_genus3_extendable_polished.json",
     "target": "S3",
     "genus": 3,
-    "note": "best exact object: its map is combinatorially completable to target type 0 by 3 handles"
+    "note": "Why it matters: its map extends, by 3 explicit handles (certificate in the repo), to one of the 59 maps a 12-face Szilassi-type polyhedron must have; realizing those handles geometrically would solve the open problem. Planes and map in the source file."
   },
   {
     "id": "lab_solid_genus3",
@@ -15,6 +15,6 @@
     "source": "experiments/solid_first/genus3_12faces_48pairs_polished.json",
     "target": "S3",
     "genus": 3,
-    "note": "found from random planes without a given map; its map is a dead end"
+    "note": "Why it matters: found from random planes without prescribing any map, which shows such objects are not rare; but adding handles to its map reaches at most 54 of 66 adjacencies, so it cannot grow into a solution."
   }
 ]
