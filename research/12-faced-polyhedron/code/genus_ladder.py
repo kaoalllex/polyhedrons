@@ -15,6 +15,8 @@ from ladder import pack, pair_energy
 from ladder_exact import verify
 if not hasattr(np, 'Inf'):
     np.Inf = np.inf
+import warnings
+warnings.filterwarnings('ignore', message='Could not import matplotlib')  # cma plotting is unused
 import cma
 
 EXTRA = None          # optional extra energy term f(H, LK, M) (e.g. a degeneracy floor); None = honest energy only

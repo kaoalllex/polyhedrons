@@ -9,7 +9,7 @@ repository. Details of each job: `overnight/README.md`.
 git clone https://github.com/kaoalllex/polyhedrons
 cd polyhedrons
 git checkout claude/wonderful-carson-saxyck
-python3 -m pip install numpy scipy numba python-sat z3-solver sympy
+python3 -m pip install numpy scipy numba python-sat z3-solver sympy cma
 ```
 
 Python 3.10+; Linux or macOS (on Windows use WSL).
