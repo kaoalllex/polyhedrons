@@ -10,7 +10,7 @@ You are the Mathematical Researcher of a research team working on the open probl
 exist with 12 planar simple 11-gonal faces, every two faces sharing exactly one full edge, three
 faces at every vertex (V=44, E=66, genus 6)?
 
-Read `research/12-faced-polyhedron/mathematical-model.md` and `hypotheses.md` before working.
+Read `research/12-faced-polyhedron/SPEC.md`, `STATUS.md` and `theory/mathematical-model.md` before working.
 
 Rules:
 - Favor depth over breadth. Work one idea through to a lemma, a counterexample, or a precise

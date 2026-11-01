@@ -1,4 +1,4 @@
-"""Ladder of smaller analogues (cross-field-ideas.md, Y1): closed polyhedra with n faces, every two
+"""Ladder of smaller analogues (ideas/cross-field-ideas.md, Y1): closed polyhedra with n faces, every two
 faces sharing at least one edge, 3 faces per vertex, generic face planes.
 
 n = 7: K7 on the torus (Szilassi; calibration).  n = 8: K8 on genus 2 needs F = 18 faces of the dual

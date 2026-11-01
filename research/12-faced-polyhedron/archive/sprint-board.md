@@ -40,7 +40,7 @@ Reference points: best known near-miss 4 (symmetric), 5 (asymmetric); random arr
 
 ## Queued ideas from distant fields
 
-Round 2 (historical cross-field breakthroughs, 17 ideas X1-X6, Y1-Y11): see `cross-field-ideas.md`.
+Round 2 (historical cross-field breakthroughs, 17 ideas X1-X6, Y1-Y11): see `ideas/cross-field-ideas.md`.
 
 | Field | Correspondence | Concrete test |
 |---|---|---|

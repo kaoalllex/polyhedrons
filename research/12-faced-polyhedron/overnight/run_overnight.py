@@ -340,7 +340,7 @@ def job_pdefect(args, committer):
 
 
 # ----------------------------------------------------------------------------- job: ladder
-# Own path (cross-field-ideas.md Y1): closed polyhedra with n mutually adjacent faces, n < 12, maps
+# Own path (ideas/cross-field-ideas.md Y1): closed polyhedra with n mutually adjacent faces, n < 12, maps
 # generated from scratch (no external seeds), genetic algorithm on the honest pair energy, every float
 # zero re-checked in exact rational arithmetic (code/ladder_exact.py). n = 7 (Szilassi) is found in
 # seconds; n = 8 (genus 2, two doubled adjacencies) plateaued at 1-2 violations in the cloud runs.

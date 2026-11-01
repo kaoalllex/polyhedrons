@@ -4,7 +4,7 @@
 
 Verdict: claims (i) and (ii) correct; the argument needed an explicit LOCAL LEMMA (area of the
 normal triangle = |angle deficit|, sign det = sign deficit) and a careful definition of
-"generic" directions. Status: lemma proved and checked numerically (theory-notes.md, "Local
+"generic" directions. Status: lemma proved and checked numerically (theory/theory-notes.md, "Local
 lemma"); genericity is automatic in general position.
 
 ## z.ai on Prompt 2 (10 new approaches) — assessment

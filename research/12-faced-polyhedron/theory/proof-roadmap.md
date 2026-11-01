@@ -8,7 +8,7 @@ realization may still exist. Both directions stay open.
 
 1. **Reduction (rigorous, mostly written).** Any realization gives, WLOG in general position, one of
    the 59 combinatorial types and a uniform rank-4 chirotope on 12 planes + plane at infinity that
-   satisfies the Grassmann–Pluecker relations and the embedding predicates (mathematical-model.md
+   satisfies the Grassmann–Pluecker relations and the embedding predicates (theory/mathematical-model.md
    §2-§5, Lemma 5.1). To do: a complete written proof of Lemma 5.1 and of the in-face predicate,
    reviewed adversarially (the review was interrupted).
 2. **Symmetric case: done.** 25 cases (all half-turn and 3-fold classes), our own encoder, DRAT

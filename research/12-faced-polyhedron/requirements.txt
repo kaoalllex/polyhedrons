@@ -1,0 +1,12 @@
+# Exact versions of the environment that produced nights 2-5 (Python 3.14.6, macOS arm64, 2026-11-01).
+# Install: python3 -m pip install -r requirements.txt   (record `pip freeze` in every run manifest)
+numpy==2.5.4
+scipy==1.18.1
+numba==0.68.1
+python-sat==1.9.dev17
+z3-solver==5.3.2.0
+ortools==9.15.6755
+sympy==1.14.0
+cma==4.5.0
+# Optional, only for rendering / engine comparisons (not pinned, not needed by verify_all.py):
+# matplotlib, plotly, nevergrad

@@ -1,16 +1,16 @@
 # Prompt for a separate session on the symmetric-immersion proof
 
 Copy everything below the line into a new Claude Code session on the repository
-`kaoalllex/polyhedrons`, branch `claude/wonderful-carson-saxyck`.
+`kaoalllex/polyhedrons`, branch `main`.
 
 ---
 
 You are working on one well-defined task in the repository `kaoalllex/polyhedrons`
-(branch `claude/wonderful-carson-saxyck`): turning a computer-assisted result into a checked,
+(branch `main`): turning a computer-assisted result into a checked,
 written proof. Read `research/12-faced-polyhedron/proof-no-symmetric-immersion/README.md` first —
 it states the theorem, the current status of every part, and the ordered list of remaining work.
-Background, when needed: `research/12-faced-polyhedron/mathematical-model.md`,
-`verification/foundations-report.md`, `theory-notes.md` (Q2 symmetry analysis), `fresh-eyes-review.md`,
+Background, when needed: `research/12-faced-polyhedron/theory/mathematical-model.md`,
+`verification/foundations-report.md`, `theory/theory-notes.md` (Q2 symmetry analysis), `reviews/fresh-eyes-review.md`,
 `results.md`, and the encoder `code/omsat.py` + `code/omsat_sym.py`.
 
 The theorem: no polyhedral immersion in R^3 with planar faces of any of the 59 neighborly genus-6

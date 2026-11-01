@@ -1,11 +1,13 @@
 """V3: compare code/fastviol.py (float) with the exact chirotope count on the near-miss seeds
 and on random configurations.  Usage: python3 test_v3_fastviol.py SEEDS_JSON NRANDOM SEED"""
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
 import sys, json, time, random, itertools
 from fractions import Fraction
 import numpy as np
 from exact_core import *
 
-sys.path.insert(0, "/home/user/polyhedrons/research/12-faced-polyhedron/code")
+sys.path.insert(0, _ROOT + "/code")
 import fastviol  # the code under test
 
 
@@ -75,7 +77,7 @@ if __name__ == "__main__":
             if len(res["random"]["examples"]) < 5:
                 res["random"]["examples"].append({"H": H, "tris": tris, "only_exact": sorted(vx - fl), "only_fast": sorted(fl - vx)})
     res["time"] = round(time.time() - t0, 1)
-    json.dump(res, open("/home/user/polyhedrons/research/12-faced-polyhedron/verification/test_v3_fastviol.json", "w"), indent=1)
+    json.dump(res, open(_ROOT + "/verification/test_v3_fastviol.json", "w"), indent=1)
     print(json.dumps({k: (v if k != "nearmiss" else {kk: vv for kk, vv in v.items() if kk != "disagreements"}) for k, v in res.items() if k != "random"}))
     print("random", {k: v for k, v in res["random"].items() if k != "examples"})
     print("first disagreements:", json.dumps(res["nearmiss"]["disagreements"][:8]))

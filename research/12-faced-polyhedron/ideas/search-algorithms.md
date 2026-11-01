@@ -44,7 +44,7 @@ Our own list of modern "search for the unknown" methods, for the same bench:
 8. **Parallel tempering / population annealing / nested sampling** (astronomy): sample the level sets
    E <= k with a population; also estimates how rare a solution is (cross-field-ideas Y3).
 9. **Large neighbourhood search with an exact solver**: free 2-3 planes, solve that subproblem
-   exactly (OM-SAT or CP-SAT), keep the rest fixed (next-steps.md "SAT-LNS").
+   exactly (OM-SAT or CP-SAT), keep the rest fixed (archive/next-steps.md "SAT-LNS").
 10. **Monte Carlo tree search / AlphaZero-style construction**: build the configuration plane by plane
     or sign by sign with learned value estimates.
 11. **LLM-guided program search (FunSearch, AlphaEvolve)**: evolve programs that GENERATE plane sets

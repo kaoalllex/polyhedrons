@@ -4,7 +4,7 @@ Scope: about 25 tool calls, mostly WebSearch; no full PDF reads. Each lead gives
 
 ## 1. Non-realizability of 12-vertex genus-6 neighborly triangulations (Schewe; Bokowski-Schewe) [highest priority, check first]
 - Field: oriented matroids + SAT, polyhedral embeddings.
-- Correspondence: our face-plane model (mathematical-model.md section 2) uses the dual triangulation T of the 59 neighborly genus-6 types. The 2008 paper proves the 59 types of the vertex-version (T as a polyhedral surface with points as vertices) admit no acyclic uniform oriented matroid. Our problem is the dual (planes as faces, triple points as vertices). It is NOT the same OM. ANALOGY, not implication, unless the transfer is proved. Polarity does not preserve nonconvex surfaces in general.
+- Correspondence: our face-plane model (theory/mathematical-model.md section 2) uses the dual triangulation T of the 59 neighborly genus-6 types. The 2008 paper proves the 59 types of the vertex-version (T as a polyhedral surface with points as vertices) admit no acyclic uniform oriented matroid. Our problem is the dual (planes as faces, triple points as vertices). It is NOT the same OM. ANALOGY, not implication, unless the transfer is proved. Polarity does not preserve nonconvex surfaces in general.
 - Sources: https://arxiv.org/pdf/0801.2582 ; SAT 2006 abstract by Schewe (ICMS 2006, via the 2008 bibliography).
 - Experiment: write down explicitly the relation between the 12-plane chirotope (on 13 elements, incl. infinity) and any point chirotope on the 12 vertices of T. Decide whether the 2008 UNSAT certificate can be reused, or whether a new UNSAT run on the section-6(A) instance is needed. This decides whether Series 1 is already dead.
 

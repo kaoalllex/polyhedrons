@@ -1,8 +1,10 @@
 """Lemma 5.1 (<=) on genuinely embedded configurations: perturbed Szilassi planes (n = 7).
 Planes are fitted exactly (Fractions) through 3 vertices of each face of the model in
-/home/user/polyhedrons/index.html (coordinates copied below), then perturbed by random
+index.html at the repository root (coordinates copied below), then perturbed by random
 rationals of relative size eps, and checked for: GP, violation set (chi), direct simplicity and
 direct pairwise face intersections (F_X cap F_Y == e_XY)."""
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
 import itertools, random, json, sys
 from fractions import Fraction
 from exact_core import *
@@ -70,4 +72,4 @@ if __name__ == "__main__":
                     rec["pos_viol_but_embedded"] += 1
         res[str(eps)] = rec
         print(eps, rec, flush=True)
-    json.dump(res, open("/home/user/polyhedrons/research/12-faced-polyhedron/verification/test_szilassi.json", "w"), indent=1)
+    json.dump(res, open(_ROOT + "/verification/test_szilassi.json", "w"), indent=1)

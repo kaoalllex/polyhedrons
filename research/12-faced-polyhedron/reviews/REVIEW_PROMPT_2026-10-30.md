@@ -17,8 +17,8 @@
 run it; it costs usage and runs without repository write access to the user's machine).
 
 **Option C: a chat without the repository** (claude.ai): paste the prompt and attach
-`METHODS_PROTOCOL.md`, `NIGHT_REPORT_2026-10-30.md`, `experiment-log.md`, `cross-field-ideas.md`,
-`search-algorithms.md`, `literature-review.md`. Weaker: the reviewer cannot check code or data.
+`archive/METHODS_PROTOCOL.md`, `reports/NIGHT_REPORT_2026-10-30.md`, `experiment-log.md`, `ideas/cross-field-ideas.md`,
+`ideas/search-algorithms.md`, `literature/literature-review.md`. Weaker: the reviewer cannot check code or data.
 
 -----
 
@@ -35,10 +35,10 @@ vertex version (Csaszar-type, 12 vertices) is known to be impossible (Schewe 201
 matroids + SAT); the face version is open (Bokowski and Kevin H., Symmetry 2025).
 
 WHERE TO READ (directory `research/12-faced-polyhedron/`):
-* `METHODS_PROTOCOL.md` - one page: every method, best result, verdict, what is not tried yet;
-* `NIGHT_REPORT_2026-10-30.md` - latest results (night + day); `CONTINUE_PROMPT.md` - full state;
-* `experiment-log.md` (the sections of 2026-10-29/30), `search-algorithms.md`, `cross-field-ideas.md`
-  (rounds 2a-2f), `literature-review.md`, `theory-notes.md`, `proof-roadmap.md`, `results.md`;
+* `archive/METHODS_PROTOCOL.md` - one page: every method, best result, verdict, what is not tried yet;
+* `reports/NIGHT_REPORT_2026-10-30.md` - latest results (night + day); `CONTINUE_PROMPT.md` - full state;
+* `experiment-log.md` (the sections of 2026-10-29/30), `ideas/search-algorithms.md`, `ideas/cross-field-ideas.md`
+  (rounds 2a-2f), `literature/literature-review.md`, `theory/theory-notes.md`, `theory/proof-roadmap.md`, `results.md`;
 * code: `code/ladder.py` (pair_energy = the honest violation count; degeneracy), `code/ladder_exact.py`
   (exact rational verifier), `code/genus_ladder.py`, `code/handle_add.py` (tubes, reach),
   `code/beam_ladder.py`, `code/archive_climb.py`, `code/solid_cpsat.py` + `code/solid_exact_search.py`;

@@ -1,5 +1,8 @@
 # Literature review: the 12-face Szilassi-type problem (Track 1)
 
+> **Outdated in parts (2026-11-01):** the access limits below were lifted later (arXiv reachable since
+> 2026-10-30, see `TODO_world_research_2026.md`). The current source list with read levels is `README.md`.
+
 Date of review: 2026-10-29. Author: literature-researcher agent.
 
 ## 0. Access limits (read this first)
@@ -156,7 +159,7 @@ so that "54" is probably Lutz-style numbering or a coincidence. **Open interpret
 ## 10. Known necessary conditions / partial results for planar-faced duals (question 5)
 
 * Nothing found in the literature (within my reach) that gives a nonexistence result for the face version other than the claimed symmetric result in 7.1.
-* Facts that do hold (derive from the model; not from literature): E = C(F,2), genus (F-3)(F-4)/12 (the [3P-audit] says Grünbaum-Szilassi does *not* contain this; the pirozhkov article proves it as Prop. 2.5; our `mathematical-model.md` 1.1 proves it too).
+* Facts that do hold (derive from the model; not from literature): E = C(F,2), genus (F-3)(F-4)/12 (the [3P-audit] says Grünbaum-Szilassi does *not* contain this; the pirozhkov article proves it as Prop. 2.5; our `theory/mathematical-model.md` 1.1 proves it too).
 * Convexity: for 7 faces, Szilassi's torus has exactly one convex face; the Hashirama repo proves (claimed, SAT/DRAT) that every 7-hexagon torus without overarching faces has exactly one convex face, confirming Grünbaum-Szilassi Conjecture 5.7 in that case. Not proved in the 12-face case.
 * Steinitz-type theorems for higher genus: none known to me; realizability of cubic maps of genus >= 1 with planar faces is not characterised (Bokowski's chapters use oriented matroid enumeration + heuristics only).
 

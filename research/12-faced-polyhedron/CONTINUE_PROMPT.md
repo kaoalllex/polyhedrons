@@ -1,160 +1,28 @@
 # Prompt to continue this research in a new session
 
-Copy everything below the line into a new Claude Code session on the repository
-`kaoalllex/polyhedrons`, branch `claude/wonderful-carson-saxyck`.
+Copy everything below the line into a new Claude Code session on `kaoalllex/polyhedrons`, branch `main` (or the
+experiment branch named in `ROADMAP.md`).
 
 ---
 
-You are continuing an autonomous research project in the repository `kaoalllex/polyhedrons`,
-branch `claude/wonderful-carson-saxyck`, directory `research/12-faced-polyhedron/`.
-Goal: the open Series-1 problem from the README — a polyhedron embedded in R^3 with 12 planar simple
-11-gonal faces, every two faces sharing exactly one complete edge, three faces per vertex
-(V=44, E=66, genus 6). Find and exactly verify one, or prove impossibility (fully or for some
-combinatorial types). Never weaken the requirements; never fabricate results. Report to the user
-in Russian; write repository files in English; commit and push intermediate results.
+You are continuing a research project in `research/12-faced-polyhedron/` of `kaoalllex/polyhedrons`: does a
+polyhedron embedded in R^3 exist with 12 planar simple faces, every two sharing exactly one edge, three faces per
+vertex (V = 44, E = 66, genus 6)? Find and exactly verify one, or prove impossibility (fully or for some
+combinatorial types). Never weaken the requirements; never fabricate results; report failures with their output.
+Report to the owner in Russian; write repository files in English.
 
-Read first: `sprint-board.md` (every hypothesis tested, with verdicts), `results.md`,
-`proof-roadmap.md`, `solution-portrait.md`, `fresh-eyes-review.md`, `theory-notes.md` (PI addendum
-+ local lemma), `mathematical-model.md`, `external-review-results.md`, `HOW_TO_RUN_OVERNIGHT.md`.
-Agent definitions: `.claude/agents/` (7 roles).
+Read, in this order: `README.md` (map), `STATUS.md` (where we are: foundations, witnesses, directions with
+verdicts, what may be claimed), `ROADMAP.md` (the scored queue), `PROTOCOL.md` (how experiments are run),
+`SPEC.md` (definitions, counters, evidence labels). History is in `experiment-log.md` and `archive/`.
 
-State at the end of session 1:
-* Formulation: a candidate = 12 planes; all conditions are strict sign conditions (uniform
-  chirotope of 12 planes + plane at infinity); Lemma 5.1 and the in-face predicate were
-  adversarially verified (`verification/foundations-report.md`).
-* Combinatorics: exactly 59 types (independent enumeration).
-* Symmetric case: 25/25 classes UNSAT with drat-trim-verified DRAT proofs (our encoder, user's
-  machine): no symmetric 12-face polyhedron. Moreover, without the global non-intersection clauses
-  all 25 classes are UNSAT too (no symmetric polyhedral IMMERSION; unverified here — night 2
-  phase 1 produces the DRAT proofs into `overnight/results/symimm/`).
-* Topology: any embedding has Gauss-map degree -5 with convex covering (proved, incl. a local
-  lemma). All 1005 known near-misses (HackerPoet) fail this: they are in the wrong topological
-  class and not even immersions (>= 7 locally overlapping vertices each).
-* Asymmetric case: immersion instances (no global clauses) did not resolve in 2.2 h per type
-  (types 0-7). Full asymmetric OM-SAT is estimated at ~300 core-hours per type.
-* Fixed normals: the obstruction is cohomological (fresh-eyes review): faces close locally but
-  not around the 12 handles. `code/period_defect.py` measures it (MILP; Szilassi 0; random
-  admissible normals 17-24; annealing on type 0 reached 13.5 and was still decreasing).
-* Night 2 (`overnight/run_night2.sh`, user's machine): phase 1 `symimm` (certified "no symmetric
-  immersion"), phase 2 `pdefect` (period-defect annealing over all 59 types; defect 0 = CANDIDATE).
+Rules that matter most:
+* Start an experiment only from a `ROADMAP.md` row; pre-register it in `experiments/E##-slug/PLAN.md` before any
+  compute; one branch `experiment/E##-slug` per experiment; finish with `CONCLUSION.md` and update `STATUS.md`.
+* `python3 verification/verify_all.py` must pass before and after your changes; every candidate goes through
+  `verification/verify_candidate.py`.
+* Do not run anything on the stop list (`ROADMAP.md`). A timeout is not a result; an UNSAT holds only for its
+  formula.
+* Ask the owner before large subagent tasks (usage limits) and before long runs; long runs go to the owner's
+  laptop (`caffeinate`) or to GitHub Actions (`.github/workflows/experiment.yml`).
 
-State at the end of session 2 (2026-10-29, evening):
-* CERTIFIED: no symmetric polyhedral immersion (25/25 UNSAT-VERIFIED, `overnight/results/symimm/`);
-  separate write-up task in `proof-no-symmetric-immersion/` (own CONTINUE_PROMPT).
-* Period defect (`pdefect`, night 2): zero closure defect is reachable (pd10_0, pd37_0, pd4_1, pd5_1)
-  but every such normal set is a FALSE POSITIVE: exact closure needs >= 11 of 12 faces to be
-  non-simple (simple-defect MILP, proved optimal for pd10_0 and pd4_1). The T^3 relaxation shows
-  the same. Face simplicity is the core obstruction, not closure. The job now checks simple faces
-  itself (status ZERO_DEFECT_NOT_SIMPLE). Best positive defects per type: `experiment-log.md`.
-* Own path "ladder" (`code/ladder*.py`, no external data): closed polyhedra with n mutually adjacent
-  faces; maps generated from scratch; exact rational verifier `code/ladder_exact.py` (agrees with
-  `planes.check_embedding`). n = 7: Szilassi rediscovered from random planes by every engine
-  (annealing, GA, CMA-ES). n = 8 (genus 2, two doubled adjacencies): four engines (annealing, exact
-  one-plane relocation, GA, CMA-ES) all stop at 1-2 violations. Three optimizer exploits were caught
-  by the exact verifier (merged collinear doubled edges, gap overlaps between doubled edges, scale
-  collapse); the honest energy is `ladder.pair_energy`. Maps for n = 9..11 are not generated yet
-  (random rotation-system annealing fails; needs a better generator).
-* Night 3 is ready (`overnight/run_night3.sh`, see `HOW_TO_RUN_OVERNIGHT.md`): `ladder` (GA on n = 8,
-  exact check of zeros) and `sdefect` (12 faces: closure defect to 0, then non-simple faces to 0).
-* Idea lists: `cross-field-ideas.md` (rounds 2a-2c incl. complex numbers), `search-algorithms.md`
-  (tried engines + to try: Differential Evolution, Nevergrad NGOpt, smooth least squares, MAP-Elites,
-  cross-entropy, RRR, homotopy continuation). Research map: `figures/research-map.png`.
-* Practical lessons: background processes in the cloud container die when the session idles
-  (container restarts) - long runs belong to the user's night scripts; every float "zero" must be
-  re-checked exactly; never `pkill -f` a pattern that also occurs in the same shell command.
-
-State after the night of 2026-10-29/30 (most promising engine first):
-* **Solid-first with an exact inner step** (`code/solid_cpsat.py` + `code/solid_exact_search.py`):
-  the state is 12 planes; for each plane set CP-SAT picks the best EMBEDDED solid (union of bounded
-  arrangement cells: manifold, <= 1 edge run per pair of planes, one disk face per plane via the
-  Euler characteristic + no pinches) maximizing the number of adjacent pairs (= 30 + 6 g for 12 faces);
-  annealing over the planes. The combinatorial type is free. n = 7: Szilassi from random planes in
-  45 s (exact). n = 12: climbs 30 -> 36 -> 42 -> 48 adjacent pairs (genus 3) from random planes in
-  ~6 min; results verified exactly with `code/verify_solid.py` (extract the map, `ladder_exact`).
-  Weak point: CP-SAT does not prove optimality at n = 12 within 10-30 s (use hints / more time /
-  better model). Target 66.
-* Genus ladder (`code/genus_ladder.py`, tubes from the advisor): map-fixed climb sphere -> genus 6
-  per type; frontier genus 2 (type 11).
-* Advisor report summary and the correction about Mizhaev's octahedron: `experiment-log.md`.
-
-State on the morning of 2026-10-30 (read `METHODS_PROTOCOL.md` first: every method, result, verdict):
-* **Best: genus 3 on an EXTENDABLE map** (type 0, genus ladder): `experiments/genus_ladder/
-  type0_genus3_extendable.json` (exact EMBEDDED, reach 66). The solid-first genus-3 results are dead
-  ends (`handle_add.reach` < 66). Only 3 of the 10 possible next handles keep it extendable;
-  `code/beam_ladder.py` (branching ladder) searches them.
-* Night 2 (user's machine): `symimm` and `sym` 25/25 UNSAT-VERIFIED; `pdefect` 9 zero defects, all
-  non-simple (false); `immersion` 8/8 timeout.
-* Night 3 READY (`overnight/run_night3.sh`): job `glad` = genus ladder over all 59 types (2 chains
-  each) + branching (`--branch-minutes 30`) from the highest realized level >= 2.
-* Ideas round 2e (twisted / branching / knotted tunnels; spine-seeded solids): `cross-field-ideas.md`.
-
-Later on 2026-10-30: archive of four type-0 genus-3 realizations (`experiments/genus_ladder/`);
-genus 4 stuck at 2 violations of one fixed pattern (faces 1-2, 1-6 overlap) that vanish only in a
-degenerate limit (check edge / margin with
-`ladder.degeneracy`; `--floor` options). Night 4 = job `arch` (`overnight/run_night4.sh`), run after
-night 3. Ideas rounds 2e (tunnels) and 2f (unconventional approaches) evaluated in `cross-field-ideas.md`.
-
-State after session 5 (2026-10-30 afternoon; independent review `reviews/review-2026-10-30.md`; code on
-branch `claude/practical-archimedes-e5p1fi` = research branch + this session; merge it before night 5):
-* The type-0 genus-4 plateau is a Gauss-degree obstruction (review): at every saved genus-3 realization the
-  next handle has k_tau = 0, so the next map has degree -2 instead of -3 in the polyhedron's orientation.
-* New tools: `code/gauss_gate.py` (T1: degree target 1 - g, admissible gauges confirmed on 1000 directions,
-  k_tau, hemisphere margin, turning numbers; T22 = review test 2.2 on glad chains); sub-map OM encoding
-  (`omsat.Triangulation(submap=True)`) used by `fixed_normals_gauge.solve_gauge` (validated: SAT at the own
-  normals of all five genus-3 realizations, exact re-check EMBEDDED; UNSAT for the genus-4 maps at the same
-  normals); `code/normals_first.py` (anneal normals into the class within a radius, exact z3 offsets);
-  `code/kdrift.py` (T2: drift inside the realization space to k_tau = -1); `code/nf_control.py` (positive
-  control of normals-first on the realized map itself); gate + class logging in `archive_climb.py`
-  (`--gauss-gate`) and `beam_ladder.py`.
-* kdrift reaches the genus-4 class (own degree -3, covering confirmed) only for handle (0,5,8)-(2,6,7)
-  (realizations A and C), and only on the class wall (hemisphere margin -0.0000, faces 5 and 7 nearly
-  antiparallel, a tube vertex near infinity); the other handles stay at k_tau = 0 with the margin pinned at
-  0. Exact offsets at and near (radius <= 0.2) the class seed: UNSAT every time (z3 10-44 s).
-* Night 5 READY (`overnight/run_night5.sh`; `HOW_TO_RUN_OVERNIGHT.md`): `gate`, then `n5` (nfirst, kdrift,
-  g6) + `arch` control; morning summary `overnight/analyze_n5.py`.
-
-NEXT STEPS agreed with the owner (2026-10-30 late), in this order:
-1. **L6 engine calibration on a known solution**: rebuild Röst-Vígh's 8-face genus-3 polyhedron
-   (`code/control_rost_vigh.build()` gives planes + links with doubled adjacencies) and test whether our
-   engines rediscover it from random planes (ladder annealing / GA / CMA on its map; solid-first from random
-   planes with "<= 2 collinear edge runs per pair"). Rediscovery rate per engine = calibration; replaces the
-   n = 8 genus-2 rung as the benchmark.
-2. **L2 symmetric orbit ansatz + plane-only construction** (Röst-Vígh style): first rediscover their polyhedron
-   from random D2 two-orbit planes (2 free planes), then n = 12 with 3 orbits of a free order-4 group (D2 or
-   C4 rotoreflection), relaxed target L1 (d = 6 or 12 doubled pairs, genus 7 / 8) and strict target.
-   Ideas L1-L6: `cross-field-ideas.md` round 3; materials: `literature/TODO_world_research_2026.md`
-   (also: Mizhaev's coordinates as a second control).
-3. Q1 next steps (a)-(c) in `METHODS_PROTOCOL.md`; owner's brainstorm analysed in
-   `brainstorm-2026-10-30-analysis.md` (new items B1-B5, updated plan section 5).
-4. Own method: formalize "GCL" (Gauss-class ladder, `METHODS_PROTOCOL.md` section "Own method") and test the
-   projective variant P1 (`cross-field-ideas.md` round 3, last row).
-
-First tasks (session 6): analyze night 4 (`analyze_glad.py`, arch archive) and night 5 (`analyze_n5.py`):
-any realized genus first (re-check with `ladder_exact.verify`); test 2.2 summary; per arm the k_tau values
-and whether kdrift crosses the hemisphere boundary robustly anywhere; UNSAT statistics of normals-first
-versus the positive control (`nf_control.py`) at the same radii (a local obstruction if the control is
-SAT where the next map is UNSAT). Open review items: n = 8 by 9-element OM-SAT; T4 (Hamming-ball OM-SAT
-with degree clauses); rank-3 SAT per type (direction 6); projective re-charting (direction 7); a lemma for
-the pinned hemisphere margin (why the six handle normals of an embedded polyhedron resist leaving a closed
-hemisphere).
-
-First tasks (session 4): analyze night-3 `glad` results with `overnight/analyze_glad.py` (highest exactly realized genus per type;
-any SOLUTION first, re-check with `ladder_exact.verify(require_all_pairs=True)`); climb from the best
-extendable polyhedra (beam ladder, target-graph exact step `code/ladder_solid.py`, LNS on the six
-planes of the next handle); spine-seeded solids (T1).
-
-First tasks (session 3):
-0. `git pull`; analyze the newest `overnight/results/` (pdefect, and ladder/sdefect after night 3):
-   any CANDIDATE first, re-checked exactly (`code/ladder_exact.py` for the ladder; for 12 faces
-   `period_defect.torus_simple(..., general=False, phi=0)` and `planes.check_embedding`).
-1. Ladder n = 8: decide it exactly (OM-SAT on 9 elements with the doubled-adjacency conditions) or
-   switch the rung to two 4-valent vertices; try the engines listed in `search-algorithms.md`.
-Older first tasks (session 1):
-1. `git pull`, then analyze `overnight/results/symimm/` (expect 25 UNSAT-VERIFIED) and
-   `overnight/results/pdefect/` (best defect per type; any ZERO_DEFECT / CANDIDATES first: run the
-   exact gauge-fixed offset SMT `code/fixed_normals_gauge.py` on those normals, then the exact
-   checker). Record results in `results.md`, `sprint-board.md`, `experiment-log.md`.
-2. If defects plateau above 0 for all types: study the LP dual (Farkas) certificates of the period
-   obstruction for a human-readable lemma (proof direction). If some reach 0: exact search there.
-3. Keep hypotheses fast and many (startup style: sprint board), and ask before launching large
-   subagent tasks (usage limits).
+First task unless the owner says otherwise: the top open item of `ROADMAP.md` (E01, the type-0 genus-3 dossier).

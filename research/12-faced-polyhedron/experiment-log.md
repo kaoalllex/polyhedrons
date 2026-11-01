@@ -217,7 +217,7 @@ Saved: `experiments/track4_anneal_sphere_unif_1.json` (planes + triangulation, e
   independent pair-based check at the end. Calibration n = 7 (Szilassi must be found), then
   n = 8 on genus 2. Results below as they come.
 
-### Queue for the user's next night script (from `cross-field-ideas.md`)
+### Queue for the user's next night script (from `ideas/cross-field-ideas.md`)
 | Idea | What to run | Needs |
 |---|---|---|
 | Y2 difference map (RRR) | divide-and-concur over plane coefficients, per type, 30 min | implementation (not yet written) |
@@ -568,7 +568,7 @@ this session; the night-4 branch is left untouched).
   at -0.0000 (the walk reaches the hemisphere boundary within seconds and cannot cross it while the genus-3
   polyhedron stays embedded).
 * **Night 5 ready** (`overnight/run_night5.sh`, jobs `gate` and `n5` in `run_overnight.py`,
-  `overnight/analyze_n5.py`, instructions in `HOW_TO_RUN_OVERNIGHT.md`): phase 1 `gate` (T1 for every
+  `overnight/analyze_n5.py`, instructions in `overnight/HOW_TO_RUN.md`): phase 1 `gate` (T1 for every
   realized polyhedron x next handle; test 2.2 on the night-3 chains), phase 2 `n5` on W-1 cores (mix
   nfirst : kdrift : g6 = 4 : 4 : 1, 20 min tasks, z3 timeout 600 s; realizations saved and climbed at once)
   + night-4 `arch` on 1 core as the control. Smoke tests with `--results-dir` (found and fixed: the results
@@ -625,7 +625,7 @@ diverse chain-consistent normal sets, each decided exactly at M0 (~30 s), then M
 first UNSAT level). Next: add that loop (as in normals_first.run_arm) and/or add realizability of M0 to the
 normal-level conditions (e.g. the period/closure LP of the sphere map).
 
-## 2026-11-01: nights 4 and 5 analysed (`NIGHT_REPORT_2026-11-01.md`)
+## 2026-11-01: nights 4 and 5 analysed (`reports/NIGHT_REPORT_2026-11-01.md`)
 
 * arch: 818 tasks, 203 new exact realizations (archive 247: 153 genus 2, 94 genus 3 of types 0, 15, 39, 53);
   11 genus-4 arm tasks, best 4.0 events, 0 realizations. All 94 genus-3 realizations re-checked with

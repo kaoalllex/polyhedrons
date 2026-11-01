@@ -1,7 +1,7 @@
 # Theory notes, Track 6 (necessary conditions, symmetry, construction)
 
 Author: mathematical-researcher, 2026-10-29. Labels: **[P]** proved here (proof given), **[K]** known
-(cited), **[C]** conjecture, **[N]** numerical observation. Notation as in `mathematical-model.md`
+(cited), **[C]** conjecture, **[N]** numerical observation. Notation as in `theory/mathematical-model.md`
 (planes `H_X`, `h_X = (n_X, -d_X)`, `χ`, `P_XYZ`, `L_XY`, `e_XY`, link of `X` = cyclic order of
 neighbours = boundary order of polygon `F_X`). General position (GP) of the 13 planes is assumed
 throughout, as in the model.

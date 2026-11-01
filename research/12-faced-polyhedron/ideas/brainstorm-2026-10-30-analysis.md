@@ -27,7 +27,7 @@
 | group actions / symmetric search | certified UNSAT for every symmetric case (25 classes, DRAT) |
 | algebraic topology / Euler, genus, degree | Gauss-degree gate (`gauss_gate.py`), turning numbers |
 | computational geometry, exact predicates | OM-SAT encoder (`omsat.py`, sub-maps), `ladder_exact.py` |
-| CMA-ES, DE, annealing, NGOpt, GA, basin hopping | `search-algorithms.md` (all tried; review stop list: no new black-box engines) |
+| CMA-ES, DE, annealing, NGOpt, GA, basin hopping | `ideas/search-algorithms.md` (all tried; review stop list: no new black-box engines) |
 | discrete differential geometry (angle defect) | covering + saddle bound s >= 2g+1 (theory-notes F7-F9) |
 | quality-diversity / archive | `archive_climb.py` (MAP-Elites-style archive) |
 
@@ -56,7 +56,7 @@ changes the realization question (the brainstorm's own Tier-3 rule). Revisit onl
 0. Night-4 analysis (`analyze_n5.py`, arch log): realized genus per type, n5 SAT/UNSAT statistics,
    kdrift class crossings on genus-2 arms with k_tau = -1.
 1. L6 engine calibration on Röst-Vígh's polyhedron + L2 symmetric rediscovery (agreed first).
-2. Q1 next steps (a)-(c) (`METHODS_PROTOCOL.md`).
+2. Q1 next steps (a)-(c) (`archive/METHODS_PROTOCOL.md`).
 3. B1 SPEC.md; B3 canonical comparison of the 8-face objects (with Mizhaev's coordinates as the second
    control); then B2 voltage generator -> L1 relaxed 12-face search.
 4. P1 projective ladder test; Q3 flip through degeneration; n = 8 links-based gate; B4, B5 as cheap side tests.

@@ -8,11 +8,16 @@ repository. Details of each job: `overnight/README.md`.
 ```bash
 git clone https://github.com/kaoalllex/polyhedrons
 cd polyhedrons
-git checkout claude/wonderful-carson-saxyck
-python3 -m pip install numpy scipy numba python-sat z3-solver sympy cma
+git checkout main
+python3 -m pip install -r research/12-faced-polyhedron/requirements.txt
 ```
 
-Python 3.10+; Linux or macOS (on Windows use WSL).
+Python 3.14 (the pins in `requirements.txt` come from 3.14.6); Linux or macOS (on Windows use WSL).
+
+**macOS laptop: run every night script under `caffeinate -dimsu` (e.g. `caffeinate -dimsu ./run_night5.sh 8 11`),
+otherwise the machine sleeps and the night is lost (night 4 lost 8 h). / На ноутбуке запускайте под `caffeinate -dimsu`.**
+
+New experiments are pre-registered first (`../PROTOCOL.md`); the night jobs below are the legacy framework.
 
 ## 2. Start / Запуск
 

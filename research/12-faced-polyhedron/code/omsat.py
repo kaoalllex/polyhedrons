@@ -10,7 +10,7 @@ sgn(sorting permutation) * chi(sorted).  Boolean variable p_S is TRUE iff chi(S)
 Internally predicates are built from "negative bits" nb(t) := [chi(t) = -1], so that
 products of signs are XORs of bits.
 
-Derived predicates (proofs in mathematical-model.md §4-5, re-derived in the Track-3 notes):
+Derived predicates (proofs in theory/mathematical-model.md §4-5, re-derived in the Track-3 notes):
   side(abc;d)  = chi(abcd) chi(abc INF)  = sign(n_d . P_abc - d_d)
   on L_XY with direction u_XY := spatial part of *(h_X ^ h_Y ^ h_INF) = -(n_X x n_Y):
       sign(t_W - t_Z) = chi(XYZW) chi(XYZ INF) chi(XYW INF)

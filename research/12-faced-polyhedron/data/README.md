@@ -2,7 +2,7 @@
 
 Written 2026-10-29 by the combinatorial-topology researcher (Track 2).
 These are the duals of the combinatorial types of the 12-face polyhedron (see
-`../mathematical-model.md` §1.3). **They are abstract surfaces; nothing here says anything
+`../theory/mathematical-model.md` §1.3). **They are abstract surfaces; nothing here says anything
 about realizability in R^3 with planar faces.**
 
 ## Files

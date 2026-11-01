@@ -2,7 +2,7 @@
 
 Prompt: famous cases where a problem was solved with tools from a distant field; lessons; new
 ideas for the 12-face problem, each with a cheap first test. Verdicts and results go to
-`sprint-board.md`.
+`archive/sprint-board.md`.
 
 ## Historical cases and the lesson each one carries
 
@@ -113,7 +113,7 @@ new is to aim at them deliberately:
 
 ## Ideas, round 2f: "unconventional approaches" brainstorm (user, 2026-10-30)
 
-Evaluation against what is known and done (literature: `literature-review.md`).
+Evaluation against what is known and done (literature: `literature/literature-review.md`).
 
 | # | Proposal | Status here | Verdict / what we take |
 |---|---|---|---|
@@ -126,7 +126,7 @@ Evaluation against what is known and done (literature: `literature-review.md`).
 | 7 | Algebraic families (groups, spectra) | automorphism groups of the 59 maps are known and small (max order 12, map 58) | low for this target |
 
 Taken into the plan: (3) flips at degenerate limits as a standard step after every stalled
-search; (5) automated realization archive with a bandit scheduler (see `search-algorithms.md`).
+search; (5) automated realization archive with a bandit scheduler (see `ideas/search-algorithms.md`).
 
 ## Round 3 (2026-10-30): ideas from the 2026 literature (Mizhaev arXiv:2609.17700, Röst-Vígh arXiv:2609.32998)
 

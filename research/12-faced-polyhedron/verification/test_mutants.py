@@ -1,5 +1,7 @@
 """Power check of the V2 harness: mutated versions of the Sec. 5.2 predicate must disagree with
 the direct exact point-in-polygon.  Usage: python3 test_mutants.py SEED"""
+import os as _os
+_ROOT = _os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
 import sys, random, itertools, json
 from exact_core import *
 from test_v1_v2 import designed_simple_trial
@@ -61,4 +63,4 @@ if __name__ == "__main__":
                 res[m]["tests"] += 1
                 res[m]["mismatch"] += int(IN_mut(cf, 0, Y, Z, m) != dm)
     print(json.dumps(res))
-    json.dump(res, open("/home/user/polyhedrons/research/12-faced-polyhedron/verification/test_mutants.json", "w"), indent=1)
+    json.dump(res, open(_ROOT + "/verification/test_mutants.json", "w"), indent=1)

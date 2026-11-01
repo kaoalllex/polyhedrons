@@ -1,7 +1,7 @@
 # Protocol of solution-search methods (state 2026-10-30)
 
 One page: every method used so far, what it is, how far it got, and what is next. Details and
-dates: `experiment-log.md`; engines on the small test bench: `search-algorithms.md`; all directions
+dates: `experiment-log.md`; engines on the small test bench: `ideas/search-algorithms.md`; all directions
 at a glance: `figures/research-map.png`. Target: 12 planar faces, all 66 pairs adjacent = an embedded
 polyhedron of genus 6 (V = 44, E = 66). Progress measure: the number of adjacent pairs of faces of an
 EXACTLY verified embedded 12-face polyhedron (30 + 6 g; genus g).
@@ -62,14 +62,14 @@ exploit so far (merged collinear edges, scale collapse, shared edge through a 4-
 1. Branching ladder at scale (night 3) and target-graph exact steps from extendable polyhedra.
 2. Large-neighbourhood search with an exact solver: free the 6 planes of the next handle, solve
    that subproblem exactly (CP-SAT / OM-SAT), keep the rest.
-3. Spine-seeded solids (user's idea 2026-10-30, `cross-field-ideas.md` round 2e): start from a
+3. Spine-seeded solids (user's idea 2026-10-30, `ideas/cross-field-ideas.md` round 2e): start from a
    thickened spatial graph of cycle rank 6 (K5, K3,4, knotted or branching tunnels).
 4. Quality-diversity (MAP-Elites) over (genus, extendability, beauty) to keep many different
    realized polyhedra instead of one best (started by hand: 4 genus-3 realizations of type 0).
 5. Flips through degenerate limits (singularity / branch idea, round 2f): every stalled search
    that collapses an edge points to a 2-2 flip of the map; test the valid flips.
 6. Difference map / RRR, nested sampling, cross-entropy method, MCTS, homotopy continuation,
-   LLM-guided program search (FunSearch-style) - see `search-algorithms.md` 6-13.
+   LLM-guided program search (FunSearch-style) - see `ideas/search-algorithms.md` 6-13.
 7. Impossibility: cube-and-conquer, second independent encoder, LRAT checking.
 
 ## F. Lessons

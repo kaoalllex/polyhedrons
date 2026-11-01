@@ -7,8 +7,8 @@ local machine for hours, survive interruptions, and leave results in git for lat
 
 ```bash
 git clone https://github.com/kaoalllex/polyhedrons && cd polyhedrons
-git checkout claude/wonderful-carson-saxyck
-python3 -m pip install numpy scipy numba python-sat z3-solver sympy
+git checkout main
+python3 -m pip install -r research/12-faced-polyhedron/requirements.txt
 cd research/12-faced-polyhedron/overnight
 ```
 
@@ -25,7 +25,7 @@ git clone https://github.com/marijnheule/drat-trim && (cd drat-trim && make) && 
 
 | Job | What it decides | Default per-task timeout |
 |---|---|---|
-| `gnormals` | **Main constructive experiment (recommended).** Round robin over the 59 types: anneal 12 face normals until they pass the exact Gauss-map prefilter (degree chi/2 = -5 and every direction covered by a convex corner; necessary for any embedding, see theory-notes.md), then decide EXACTLY with z3 whether some plane offsets give an embedded polyhedron with these normals and this orientation gauge. About 1-2 min per sample. SAT answers are re-checked by an independent exact checker and saved as CANDIDATES. | 900 s |
+| `gnormals` | **Main constructive experiment (recommended).** Round robin over the 59 types: anneal 12 face normals until they pass the exact Gauss-map prefilter (degree chi/2 = -5 and every direction covered by a convex corner; necessary for any embedding, see theory/theory-notes.md), then decide EXACTLY with z3 whether some plane offsets give an embedded polyhedron with these normals and this orientation gauge. About 1-2 min per sample. SAT answers are re-checked by an independent exact checker and saved as CANDIDATES. | 900 s |
 | `normals` | *(superseded)* Seeds' own normals. Every seed fails the Gauss prefilter (exact certificate, status `UNSAT-GAUSS`, instant), so this job now finishes quickly; kept for completeness. | **Main constructive experiment (E1).** For each near-miss seed (1005 configurations from HackerPoet/NeighborlyPolyhedra, `data/seeds.json`, sorted by violation count), fix the 12 face normals and decide EXACTLY (z3, linear real arithmetic) whether any choice of the 12 plane offsets gives an embedded polyhedron. Then the same for perturbed normals (sigma 0.003-0.1) of the best seeds. Every SAT answer is re-checked by an independent exact rational checker; a positive check is saved as a CANDIDATE and committed immediately. | 1800 s |
 | `sym` | Every symmetric case (each conjugacy class of half-turn and 3-fold subgroups of Aut of all 59 maps; these imply all larger groups). Expected: all UNSAT (claimed by prior work; 4 cases already reproduced here). With cadical + drat-trim each UNSAT gets a checked DRAT proof (status `UNSAT-VERIFIED`); a SAT would contradict the claimed theorem and is saved as a CANDIDATE. | 4 h |
 | `cube` | Cube-and-conquer on the full asymmetric OM-SAT instance of Lutz map(s) `--maps` (default #1, which a third party claims UNSAT after ~300 core-hours). Reports the refuted fraction of the search space; timed-out cubes are split. Experimental. | 900 s per cube |

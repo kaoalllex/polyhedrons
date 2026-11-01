@@ -71,9 +71,10 @@ property can be checked exactly, with no rounding.
 
 ## Research on the 12-face problem
 
-Ongoing computer search: `research/12-faced-polyhedron/` (notes, code, results).
+Ongoing research: start at [`research/12-faced-polyhedron/README.md`](research/12-faced-polyhedron/README.md)
+(state of the problem, verdicts, experiment queue, how to verify every claim with one command).
 To run the overnight search locally see
-[`research/12-faced-polyhedron/HOW_TO_RUN_OVERNIGHT.md`](research/12-faced-polyhedron/HOW_TO_RUN_OVERNIGHT.md).
+[`research/12-faced-polyhedron/overnight/HOW_TO_RUN.md`](research/12-faced-polyhedron/overnight/HOW_TO_RUN.md).
 
 ## Viewer controls
 

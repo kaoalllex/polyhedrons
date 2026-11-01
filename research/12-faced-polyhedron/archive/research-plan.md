@@ -15,7 +15,7 @@ a proof that no such polyhedron exists, or that specific combinatorial types are
 1. Combinatorics: settled in the literature — exactly 59 types (duals of the orientable
    neighborly 12-vertex genus-6 triangulations, Altshuler–Bokowski–Schuchert 1996). Being
    re-verified independently (Track 2).
-2. Planar-face realization: automatic in the face-plane formulation (mathematical-model.md §2).
+2. Planar-face realization: automatic in the face-plane formulation (theory/mathematical-model.md §2).
 3. Embedding (no self-intersection): the entire difficulty. All conditions are strict sign
    conditions on the oriented matroid of the 12 face planes plus the plane at infinity.
 
