@@ -8,8 +8,9 @@ Interactive 3D viewer of polyhedra in which every face shares an edge with every
 - Császár polyhedron (1949): the dual case, where every vertex is joined to every other vertex
 - Szilassi polyhedron (1977): 7 faces, genus 1
 - Mizhaev equivelar octahedron (2026): 8 faces, genus 3
+- Röst–Vígh polyhedron (2026): a second 8-face, genus-3 example, with rational coordinates
 
-Link to a specific model with a hash, e.g. `#szilassi`, `#csaszar`, `#tetrahedron`.
+Link to a specific model with a hash, e.g. `#szilassi`, `#csaszar`, `#tetrahedron`, `#rost_vigh`.
 
 ## Why these polyhedra are special
 
@@ -68,6 +69,9 @@ It cannot belong to series 1: for 8 faces the formula gives `(8−3)(8−4)/12 =
 a whole number. We know of no formula for this relaxed series, so it is not clear which polyhedron
 comes next or how many holes it would have. All its vertices have integer coordinates, so every
 property can be checked exactly, with no rounding.
+
+The [Röst–Vígh polyhedron](https://arxiv.org/abs/2609.32998) (2026) is a second, different example with the same
+counts: 8 nine-sided faces, 20 pairs sharing one edge and 8 pairs sharing two, genus 3, rational coordinates.
 
 ## Research on the 12-face problem
 
