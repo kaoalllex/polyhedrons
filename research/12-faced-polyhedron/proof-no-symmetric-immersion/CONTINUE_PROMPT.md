@@ -20,7 +20,7 @@ Background, when needed: `theory/mathematical-model.md`, `verification/foundatio
 maps has a non-trivial isometric symmetry.
 
 **The evidence.** All 25 symmetry classes are UNSAT, with DRAT proofs verified by drat-trim
-(`overnight/results/symimm/`), using one encoder. The status is EXACT. It becomes CERTIFIED after this item:
+(`experiments/E-261029-15-symmetric-immersion-certificates/results/symimm/`), using one encoder. The status is EXACT. It becomes CERTIFIED after this item:
 written soundness argument, a second encoder and published certificates.
 
 Branch: `experiment/E08-symmetric-immersion` from `main`. Use the `experiment-start` skill to create

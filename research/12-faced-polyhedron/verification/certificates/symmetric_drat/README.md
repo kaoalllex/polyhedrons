@@ -8,8 +8,8 @@ The archives are too large for git. They are attached to the GitHub release
 
 | Archive | Size | Content | Result records |
 |---|---|---|---|
-| `symmetric-sym-drat.tar.xz` | 422 MB | 25 CNF + 25 DRAT (FD5, embedding) | `overnight/results/sym/results.jsonl` |
-| `symmetric-symimm-drat.tar.xz` | 438 MB | 25 CNF + 25 DRAT (FD6, immersion) | `overnight/results/symimm/results.jsonl` |
+| `symmetric-sym-drat.tar.xz` | 422 MB | 25 CNF + 25 DRAT (FD5, embedding) | `experiments/E-261029-13-symmetric-embedding-certificates/results/sym/results.jsonl` |
+| `symmetric-symimm-drat.tar.xz` | 438 MB | 25 CNF + 25 DRAT (FD6, immersion) | `experiments/E-261029-15-symmetric-immersion-certificates/results/symimm/results.jsonl` |
 
 `SHA256SUMS` in this folder holds the archive hashes. Each record in the two `results.jsonl` files holds the
 SHA-256 of its CNF (`cnf_sha256`) and of its proof (`proof_sha256`). A copy of those records is inside each

@@ -105,7 +105,7 @@ Why (independent review 2026-10-30): the genus-4 plateau is a Gauss-map degree o
 genus-3 polyhedron the next handle contributes degree k_tau = 0, but genus 4 needs -1, so starting the next
 level from the planes of the level below starts in an excluded class. Night 5 therefore moves the NORMALS
 first and decides the offsets exactly:
-* phase 1, `gate` (minutes): for every exactly realized polyhedron (nights 3-4, `experiments/genus_ladder/`)
+* phase 1, `gate` (minutes): for every exactly realized polyhedron (nights 3-4, `experiments/E-261030-03-genus-ladder-type0-genus3/results/`)
   and every next handle: degree, k_tau, admissible orientations (test T1); and test 2.2 on the night-3 chains;
 * phase 2, `n5` (all but one core): `nfirst` = anneal the normals near a realization into the next map's
   class, then z3 decides EXACTLY whether offsets exist (SAT = next genus, re-checked by the exact

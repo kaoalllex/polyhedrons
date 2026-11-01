@@ -57,9 +57,13 @@ def s0_rejects_roest_vigh():
     return s1 and not s0, 'Roest-Vigh: all-pairs %s, S0 %s' % (s1, s0)
 
 
-GL = 'experiments/genus_ladder/'
+GL = 'experiments/E-261030-03-genus-ladder-type0-genus3/results/'
+G4 = 'experiments/E-261030-04-type0-genus4-attempts/results/'
+SF = 'experiments/E-261030-02-solid-first-exact-inner-n12/results/'
 CHECKS = [
     ('repository: English only (no Cyrillic in tracked files)', english_only),
+    ('research graph: ideas, hypotheses, experiments; links resolve; map/graph.json in sync',
+     lambda: run(['trace.py', '--check'], HERE, 'in sync; ')),
     ('combinatorics: 59 types, independent checker + relabelling selftest',
      lambda: run(['check_triangulations.py', '../data/k12_triangulations.json', '--selftest'], CODE,
                  'OK: selftest')),
@@ -69,26 +73,26 @@ CHECKS = [
     ('positive control: Roest-Vigh 8 faces, doubled adjacencies, Gauss degree -2',
      lambda: run(['control_rost_vigh.py'], CODE, 'own degree -2 target -2')),
     ('positive control: Szilassi found without a map (solid-first)',
-     lambda: files(True, 'experiments/solid_first/szilassi_found_without_map.json')),
+     lambda: files(True, 'experiments/E-261029-20-solid-first-n7/results/szilassi_found_without_map.json')),
     ('witness: type-0 genus-3 extendable realizations (5 files)',
      lambda: files(True, *[GL + 'type0_genus3_extendable%s.json' % s for s in ('', '_b', '_c', '_d', '_polished')],
                    genus=3)),
     ('witness: solid-first genus-3 (other map)',
-     lambda: files(True, 'experiments/solid_first/genus3_12faces_48pairs.json',
-                   'experiments/solid_first/genus3_12faces_48pairs_polished.json', genus=3)),
+     lambda: files(True, SF + 'genus3_12faces_48pairs.json',
+                   SF + 'genus3_12faces_48pairs_polished.json', genus=3)),
     ('witness: solid-first genus-2',
-     lambda: files(True, 'experiments/solid_first/genus2_12faces_42pairs.json', genus=2)),
+     lambda: files(True, SF + 'genus2_12faces_42pairs.json', genus=2)),
     ('negative control: --target S0 rejects Roest-Vigh (doubled adjacencies)', s0_rejects_roest_vigh),
     ('site: lab models in index.html = exactly re-verified witnesses/witnesses.json',
      lambda: run(['export_site.py', '--check'], os.path.join(ROOT, 'witnesses'), 'in sync')),
     ('negative control: genus-4 attempts are NOT embedded',
-     lambda: files(False, GL + 'type0_genus4_attempt_4viol.json', GL + 'type0_genus4_attempt_degenerate.json')),
+     lambda: files(False, G4 + 'type0_genus4_attempt_4viol.json', G4 + 'type0_genus4_attempt_degenerate.json')),
     ('certificate: type-0 handle completion genus 3 -> 6 (combinatorial)',
      lambda: run(['verify.py', 'certificate.json', '--source', '../../../' + GL + 'type0_genus3_extendable.json',
                   '--catalog', '../../../data/k12_triangulations.json'],
                  os.path.join(HERE, 'certificates', 'type0_handle_completion'), 'PASS')),
     ('archive: every genus-3 realization (nights 3-5)',
-     lambda: files(True, 'overnight/results/arch/archive.json', min_genus=3, genus=3)),
+     lambda: files(True, 'experiments/E-261030-10-realization-archive-climb/results/arch/archive.json', min_genus=3, genus=3)),
 ]
 
 

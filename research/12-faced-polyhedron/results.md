@@ -146,7 +146,7 @@ convex face). n=7 free χ: SAT (<0.1 s) under every option set.
 [computed] Lutz #54 under T: UNSAT (1.3 s; also kissat, glucose; also without normalisation);
 #3 under D3: UNSAT (9.3 s); #48 under D3: UNSAT (10.6 s); #48 under C2 (half-turn) with F4+F6: UNSAT (298 s; the plain encoding gave no result in 320 s and was stopped). Agreement with their results for these four
 cases. Our encoding differs from theirs (Lemma 5.1 triple form, 176 clauses, vs their S+X form).
-DRAT proof for #54 T saved (`experiments/omsat/sym_54_T.drat`); not checked with drat-trim (build
+DRAT proof for #54 T saved (`experiments/E-261029-03-omsat-encoder-validation/results/sym_54_T.drat`); not checked with drat-trim (build
 refused in this sandbox); own forward RUP checker `code/rup_check.py`: 1034 lemmas, all RUP, empty clause derived — VERIFIED (weaker than drat-trim: self-written checker).
 Not done: asymmetric full instances (known to stall per the prior work; not attempted per PI),
 realisation attempts (no SAT χ for n=12 arose).
@@ -243,7 +243,7 @@ the listed local families):
   normals: R^3 defect 17.6 (type 0) / 17.4 (type 58); cubic axis-aligned lattice: 15-23 (no help);
   general lattice: 0.5-8 for random phi, and **exactly 0 with a non-degenerate lattice** for type 0
   (det L = 414) and type 58 (det L = 49) within a few trials (configurations in
-  `experiments/torus/`). Caveat: these closed, locally consistently labelled configurations have
+  `experiments/E-261029-14-closure-first-torus-and-period/results/torus/`). Caveat: these closed, locally consistently labelled configurations have
   NON-SIMPLE faces (0/12 and 1/12 faces simple) — closure level only, not an immersion.
   Interpretation: at the closure level the R^3 obstruction is exactly the vanishing of the handle
   periods; whether simplicity changes this is open.

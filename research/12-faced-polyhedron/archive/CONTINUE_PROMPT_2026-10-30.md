@@ -26,7 +26,7 @@ State at the end of session 1:
 * Symmetric case: 25/25 classes UNSAT with drat-trim-verified DRAT proofs (our encoder, user's
   machine): no symmetric 12-face polyhedron. Moreover, without the global non-intersection clauses
   all 25 classes are UNSAT too (no symmetric polyhedral IMMERSION; unverified here — night 2
-  phase 1 produces the DRAT proofs into `overnight/results/symimm/`).
+  phase 1 produces the DRAT proofs into `experiments/E-261029-15-symmetric-immersion-certificates/results/symimm/`).
 * Topology: any embedding has Gauss-map degree -5 with convex covering (proved, incl. a local
   lemma). All 1005 known near-misses (HackerPoet) fail this: they are in the wrong topological
   class and not even immersions (>= 7 locally overlapping vertices each).
@@ -39,7 +39,7 @@ State at the end of session 1:
   immersion"), phase 2 `pdefect` (period-defect annealing over all 59 types; defect 0 = CANDIDATE).
 
 State at the end of session 2 (2026-10-29, evening):
-* CERTIFIED: no symmetric polyhedral immersion (25/25 UNSAT-VERIFIED, `overnight/results/symimm/`);
+* CERTIFIED: no symmetric polyhedral immersion (25/25 UNSAT-VERIFIED, `experiments/E-261029-15-symmetric-immersion-certificates/results/symimm/`);
   separate write-up task in `proof-no-symmetric-immersion/` (own CONTINUE_PROMPT).
 * Period defect (`pdefect`, night 2): zero closure defect is reachable (pd10_0, pd37_0, pd4_1, pd5_1)
   but every such normal set is a FALSE POSITIVE: exact closure needs >= 11 of 12 faces to be
@@ -78,7 +78,7 @@ State after the night of 2026-10-29/30 (most promising engine first):
 * Advisor report summary and the correction about Mizhaev's octahedron: `experiment-log.md`.
 
 State on the morning of 2026-10-30 (read `archive/METHODS_PROTOCOL.md` first: every method, result, verdict):
-* **Best: genus 3 on an EXTENDABLE map** (type 0, genus ladder): `experiments/genus_ladder/
+* **Best: genus 3 on an EXTENDABLE map** (type 0, genus ladder): `experiments/E-261030-03-genus-ladder-type0-genus3/results/
   type0_genus3_extendable.json` (exact EMBEDDED, reach 66). The solid-first genus-3 results are dead
   ends (`handle_add.reach` < 66). Only 3 of the 10 possible next handles keep it extendable;
   `code/beam_ladder.py` (branching ladder) searches them.
@@ -88,7 +88,7 @@ State on the morning of 2026-10-30 (read `archive/METHODS_PROTOCOL.md` first: ev
   each) + branching (`--branch-minutes 30`) from the highest realized level >= 2.
 * Ideas round 2e (twisted / branching / knotted tunnels; spine-seeded solids): `ideas/cross-field-ideas.md`.
 
-Later on 2026-10-30: archive of four type-0 genus-3 realizations (`experiments/genus_ladder/`);
+Later on 2026-10-30: archive of four type-0 genus-3 realizations (`experiments/E-261030-03-genus-ladder-type0-genus3/results/`);
 genus 4 stuck at 2 violations of one fixed pattern (faces 1-2, 1-6 overlap) that vanish only in a
 degenerate limit (check edge / margin with
 `ladder.degeneracy`; `--floor` options). Night 4 = job `arch` (`overnight/run_night4.sh`), run after
@@ -150,8 +150,8 @@ First tasks (session 3):
 1. Ladder n = 8: decide it exactly (OM-SAT on 9 elements with the doubled-adjacency conditions) or
    switch the rung to two 4-valent vertices; try the engines listed in `ideas/search-algorithms.md`.
 Older first tasks (session 1):
-1. `git pull`, then analyze `overnight/results/symimm/` (expect 25 UNSAT-VERIFIED) and
-   `overnight/results/pdefect/` (best defect per type; any ZERO_DEFECT / CANDIDATES first: run the
+1. `git pull`, then analyze `experiments/E-261029-15-symmetric-immersion-certificates/results/symimm/` (expect 25 UNSAT-VERIFIED) and
+   `experiments/E-261029-16-period-defect-sweep/results/pdefect/` (best defect per type; any ZERO_DEFECT / CANDIDATES first: run the
    exact gauge-fixed offset SMT `code/fixed_normals_gauge.py` on those normals, then the exact
    checker). Record results in `results.md`, `archive/sprint-board.md`, `experiment-log.md`.
 2. If defects plateau above 0 for all types: study the LP dual (Farkas) certificates of the period

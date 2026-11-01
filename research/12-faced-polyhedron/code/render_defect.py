@@ -1,4 +1,4 @@
-"""Render the best period-defect configuration of one type (from overnight/results/pdefect/results.jsonl):
+"""Render the best period-defect configuration of one type (from experiments/E-261029-16-period-defect-sweep/results/pdefect/results.jsonl):
 re-solve the closure MILP for the stored normals (phi = 0, i.e. in R^3), draw the 12 faces through the
 solved vertex positions, and mark the edges where the surface fails to close (residual > 0) in red,
 with the intended edge vector a_e d_e dashed. Four views + an interactive HTML (plotly).
@@ -19,7 +19,7 @@ FACE_COLORS = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4', '#8a63d2',
 
 
 def solve(tid):
-    recs = [json.loads(l) for l in open(os.path.join(HERE, '..', 'overnight', 'results', 'pdefect', 'results.jsonl')) if l.strip()]
+    recs = [json.loads(l) for l in open(os.path.join(HERE, '..', 'experiments', 'E-261029-16-period-defect-sweep', 'results', 'pdefect', 'results.jsonl')) if l.strip()]
     rec = min((r for r in recs if r['type_id'] == tid and r.get('best_defect') is not None), key=lambda r: r['best_defect'])
     types = json.load(open(os.path.join(HERE, '..', 'data', 'k12_triangulations.json')))
     tri = next(t for t in types if t['id'] == tid)['triangles']

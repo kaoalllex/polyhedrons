@@ -12,7 +12,7 @@ Before any write-up every row used in it must reach "full" or "partial" for the 
 | Key | Source | What we use | Read level | Our status |
 |---|---|---|---|---|
 | `abs1996` | Altshuler, Bokowski, Schuchert, *Neighborly 2-manifolds with 12 vertices*, JCTA 75 (1996) 148-162 | exactly 59 orientable neighborly genus-6 triangulations | secondary | EXACT: reproduced by two own enumerators (FD3) |
-| `lutz` | F. Lutz's list (`Hashirama1337s-szilassi-12/code/k12_g6_lutz.txt`), HackerPoet `topologies.txt` | the 59 maps as data | full (data) | EXACT: bijection with our enumeration (`experiments/omsat/lutz_to_ourid.json`) |
+| `lutz` | F. Lutz's list (`Hashirama1337s-szilassi-12/code/k12_g6_lutz.txt`), HackerPoet `topologies.txt` | the 59 maps as data | full (data) | EXACT: bijection with our enumeration (`data/lutz_to_ourid.json`) |
 | `ellingham` | Ellingham, Stephens (automorphism groups of the 59 maps) | group orders | secondary (as relayed) | EXACT: our orders match |
 | `schewe2010` | L. Schewe, *Nonrealizable minimal vertex triangulations of surfaces*, DCG 43 (2010), arXiv:0801.2582 | the VERTEX version (12 points, all pairs joined) is not realizable; OM + SAT method | secondary | CLAIMED; **does not transfer to the face version by duality** |
 | `bokowski2025` | J. Bokowski, Kevin H., *Polyhedral embeddings of triangular regular maps of genus g, 2 <= g <= 14, and neighborly spatial polyhedra*, Symmetry 17(4) (2025) 622, doi:10.3390/sym17040622 | numerical search over all 59 types found no embedding; symmetric examples are easier | secondary; Sec. 4 and 8.3 unread | CLAIMED (negative numerical evidence only) |

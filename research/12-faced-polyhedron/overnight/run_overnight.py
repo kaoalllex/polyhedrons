@@ -29,6 +29,7 @@ Examples:
   python3 run_overnight.py status
 """
 import argparse
+import glob
 import hashlib
 import itertools
 import json
@@ -56,8 +57,17 @@ def jobdir(job):
     return d
 
 
+def find_jobdir(job):
+    """Where a job's results live: the current results dir, else the newest experiment that recorded that job."""
+    d = os.path.join(RES, job)
+    if os.path.exists(os.path.join(d, 'results.jsonl')):
+        return d
+    found = sorted(glob.glob(os.path.join(HERE, '..', 'experiments', 'E-*', 'results', job, 'results.jsonl')))
+    return os.path.dirname(found[-1]) if found else jobdir(job)
+
+
 def load_results(job):
-    p = os.path.join(jobdir(job), 'results.jsonl')
+    p = os.path.join(find_jobdir(job), 'results.jsonl')
     out = []
     if os.path.exists(p):
         with open(p) as f:
@@ -513,10 +523,10 @@ def job_glad(args, committer):
 
 def job_arch(args, committer):
     """Realization archive + bandit climb (code/archive_climb.py): seeded from the glad results and the
-    realized polyhedra in experiments/genus_ladder/; every exactly embedded genus >= 2 polyhedron is a
+    realized polyhedra in experiments/E-261030-03-genus-ladder-type0-genus3/results/; every exactly embedded genus >= 2 polyhedron is a
     root, every extendable next handle an arm; a quarter of the time goes to new realizations."""
     from archive_climb import run
-    ex = os.path.normpath(os.path.join(HERE, '..', 'experiments', 'genus_ladder'))
+    ex = os.path.normpath(os.path.join(HERE, '..', 'experiments', 'E-261030-03-genus-ladder-type0-genus3', 'results'))
     seeds = [os.path.join(RES, 'glad', 'results.jsonl')]
     if os.path.isdir(ex):
         seeds += [os.path.join(ex, f) for f in sorted(os.listdir(ex)) if f.endswith('.json')]
@@ -550,7 +560,7 @@ def gate_realizations():
             return
         k = _rkey(planes, tris)
         out.setdefault(k, {'planes': planes, 'triangles': tris, 'type_id': tid, 'origin': origin})
-    ex = os.path.normpath(os.path.join(HERE, '..', 'experiments', 'genus_ladder'))
+    ex = os.path.normpath(os.path.join(HERE, '..', 'experiments', 'E-261030-03-genus-ladder-type0-genus3', 'results'))
     if os.path.isdir(ex):
         for f in sorted(os.listdir(ex)):
             if f.endswith('.json'):

@@ -1,21 +1,27 @@
 # Experiments
 
-**New experiments** (from 2026-11-01): one folder per pre-registered experiment, `E##-slug/`, copied from
-`_template/` (`PLAN.md` before compute, `run.sh` = one shard with a provenance manifest, `matrix.json` = shard list
-for GitHub Actions, `results/<shard>/`, `CONCLUSION.md` after). Branch `experiment/E##-slug`. Rules:
-`../PROTOCOL.md` section 2; the queue: `../ROADMAP.md`.
+There is one folder per experiment, `E-YYMMDD-NN-<slug>/`. A laptop night, a GitHub Actions matrix and an
+interactive session are all just ways to run an experiment. IDs, the header and the links are defined in
+`../PROTOCOL.md` §4; the interactive map is `../map/index.html`. To see what is queued, read `../ROADMAP.md` or the
+`planned` experiments here.
 
-**Legacy artifact folders** (sessions 1-5, kept as evidence; every file is re-checked by
-`../verification/verify_all.py` where marked *):
+Each folder contains:
 
-| Folder | Content |
-|---|---|
-| `genus_ladder/` | * five exact type-0 genus-3 realizations of one extendable map; * two genus-4 attempts (negative controls, NOT embedded) |
-| `solid_first/` | * Szilassi found without a map; * genus-2 and genus-3 12-face solids (dead-end maps) |
-| `gauss_class/` | k-drift class seeds (genus-4 class, on the class wall) and normals-first logs incl. the positive control |
-| `chain_normals/` | type-58 chain-consistent normals (all 7 levels in class; sphere UNSAT) - input for E03 |
-| `omsat/` | OM-SAT validation, symmetric-instance logs, Track-4 cross-check, Lutz id map |
-| `torus/` | T^3 zero-defect normal sets (closure-first, refuted direction) |
-| `track4_anneal_sphere_unif_1.json` | early Track-4 annealing output |
+- **`README.md`**: the header (origin, hypotheses tested, results produced, status, verdict) plus a summary: goal,
+  method, results, conclusions, next steps;
+- **`PLAN.md`**: the pre-registration, written before any compute (from `_template/`, skill `experiment-start`);
+- **`run.sh` and `matrix.json`**: one shard with a provenance manifest, and the shard list for GitHub Actions;
+- **`results/`**: the data. Night jobs write `results/<job>/` through `run_overnight.py --results-dir`;
+- **`CONCLUSION.md`** (and `REVIEW.md` when needed): written afterwards (skill `experiment-conclude`).
 
-Night-run outputs live in `../overnight/results/` (append-only JSONL per job; analysis scripts in `../overnight/`).
+The experiments up to 2026-11-01 were reconstructed afterwards from the experiment log, the evidence ledger and the
+night reports. They are marked `preregistered: false`. Their data was moved into their folders with history
+preserved (`git log --follow`).
+
+Files that `../verification/verify_all.py` re-checks:
+
+- `E-261029-20…/results/szilassi_found_without_map.json`: positive control;
+- `E-261030-02…/results/genus*`: solid-first witnesses;
+- `E-261030-03…/results/type0_genus3_extendable*`: the type-0 witnesses;
+- `E-261030-04…/results/type0_genus4_attempt_*`: negative controls;
+- `E-261030-10…/results/arch/archive.json`: the realization archive.

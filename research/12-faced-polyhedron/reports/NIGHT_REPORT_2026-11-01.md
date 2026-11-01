@@ -1,7 +1,7 @@
 # Night report: nights 4 and 5 (2026-10-30 23:00 -> 2026-11-01 00:45)
 
 Scripts: `overnight/run_night4.sh 8 11` (gate, then `arch --gauss-gate` + `n5`) and `overnight/run_night5.sh 8 11`
-(gate, then `n5` on 10 cores + `arch` control on 1 core). Raw results: `overnight/results/{arch,gate,n5}/`.
+(gate, then `n5` on 10 cores + `arch` control on 1 core). Raw results: `results/` of experiments E-261030-10 (arch), E-261030-06 (gate), E-261030-11 (n5).
 Analysis: `python3 overnight/analyze_n5.py` plus the per-night split and exact re-check described below.
 
 ## Headline
@@ -89,8 +89,8 @@ wall. The genus-4 class (own degree -3) was reached 11 times (types 0, 39, 53; h
 
 * `arch`, `glad`, `n5`, `kdrift`, normals-first climbing on the strict target: **DEAD at this budget**
   (~250 core-hours over nights 3-5, zero genus-4 progress). Keep the data (archive, class seeds, attempts).
-* Data products kept: `overnight/results/arch/archive.json` (247 exact realizations, chirotopes),
-  `overnight/results/n5/class_seeds/`, `overnight/results/n5/attempts/` (normals + status per decision).
+* Data products kept: `experiments/E-261030-10-realization-archive-climb/results/arch/archive.json` (247 exact realizations, chirotopes),
+  `experiments/E-261030-11-normals-first-night-runs/results/n5/class_seeds/`, `experiments/E-261030-11-normals-first-night-runs/results/n5/attempts/` (normals + status per decision).
 
 ## Follow-ups worth a small experiment (pre-register in `ROADMAP.md`)
 

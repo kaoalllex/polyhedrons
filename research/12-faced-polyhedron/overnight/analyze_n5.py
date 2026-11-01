@@ -2,7 +2,7 @@
 Gate: per realization genus / own degree, arms passing T1, the k_tau values; test 2.2 summary.
 n5: per kind (nfirst / kdrift / g6) the status counts of every decided normal set (attempt logs), kdrift
 class seeds (k_tau = -1 reached, T1 pass), and every exact realization (re-checked here with ladder_exact).
-Usage: python3 -I analyze_n5.py [RESULTS_DIR]   (default: results/)"""
+Usage: python3 -I analyze_n5.py [RESULTS_DIR]   (default: each job's newest experiment results)"""
 import json
 import os
 import sys
@@ -23,8 +23,16 @@ def jl(path):
     return out
 
 
+def job(res, name):
+    """RESULTS_DIR/name if given, else the newest experiment that recorded that job."""
+    if res:
+        return os.path.join(res, name)
+    from run_overnight import find_jobdir
+    return find_jobdir(name)
+
+
 def main(res):
-    gate = [r for r in jl(os.path.join(res, 'gate', 'results.jsonl')) if r.get('status') == 'GATE']
+    gate = [r for r in jl(os.path.join(job(res, 'gate'), 'results.jsonl')) if r.get('status') == 'GATE']
     if gate:
         by = defaultdict(list)
         for r in gate:
@@ -35,14 +43,14 @@ def main(res):
             print('  type %s genus %d: %d realizations (own degree %s), %d arms, T1 pass %d, k_tau %s' % (
                 t, g, len(rs), dict(Counter(r.get('own_degree') for r in rs)), len(arms),
                 sum(1 for a in arms if a.get('pass')), dict(Counter(a.get('k_tau') for a in arms))))
-    ch = os.path.join(res, 'gate', 'chains_2_2.json')
+    ch = os.path.join(job(res, 'gate'), 'chains_2_2.json')
     if os.path.exists(ch):
         print('TEST 2.2:', json.load(open(ch))['summary'])
-    n5 = jl(os.path.join(res, 'n5', 'results.jsonl'))
+    n5 = jl(os.path.join(job(res, 'n5'), 'results.jsonl'))
     if not n5:
         return
     print('N5: %d tasks, %s' % (len(n5), dict(Counter(r.get('status') for r in n5))))
-    att = os.path.join(res, 'n5', 'attempts')
+    att = os.path.join(job(res, 'n5'), 'attempts')
     per = defaultdict(Counter); smt = defaultdict(list)
     if os.path.isdir(att):
         for f in sorted(os.listdir(att)):
@@ -60,7 +68,7 @@ def main(res):
         d = r.get('drift') or {}
         if d.get('status') in ('T1_PASS', 'K_REACHED'):
             print('    %s %s k_tau %s margin %.4f t1 %s' % (r['task'], d['status'], d.get('k_tau'), d.get('hemisphere_margin') or 0, d.get('t1')))
-    rd = os.path.join(res, 'n5', 'realized')
+    rd = os.path.join(job(res, 'n5'), 'realized')
     if os.path.isdir(rd) and os.listdir(rd):
         from gauss_degree import coherent_triangles, links_from
         from ladder_exact import verify
@@ -75,4 +83,4 @@ def main(res):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, 'results'))
+    main(sys.argv[1] if len(sys.argv) > 1 else None)

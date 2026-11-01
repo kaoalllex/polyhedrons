@@ -8,7 +8,7 @@ EXACTLY verified embedded 12-face polyhedron (30 + 6 g; genus g).
 
 **Best so far:** genus 3 (48 of 66 pairs), exactly verified, several times: a free solid-first result
 (dead end: it cannot be completed by attaching handles) and, since 2026-10-30, a type-0 genus-ladder
-result that is still extendable to 66 (`experiments/genus_ladder/type0_genus3_extendable.json`).
+result that is still extendable to 66 (`experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable.json`).
 
 Verdict scale: **works** (reached a new level), **partial** (gives information or a plateau),
 **no** (did not help), **proof** (impossibility side).
@@ -100,7 +100,7 @@ on all night-3 realizations); variant P1 (projective ladder) proposed.
 ### Q1 (chain-consistent normals): status and next steps (2026-10-30 late; not started)
 
 Status: part 1 works (type 58: one normal set puts all 7 chain levels in their Gauss class, found in 7.5 min;
-`experiments/chain_normals/`); part 2 failed once (the 12-face sphere M0 is UNSAT at those fixed normals).
+`experiments/E-261030-09-chain-consistent-normals-q1/results/`); part 2 failed once (the 12-face sphere M0 is UNSAT at those fixed normals).
 Next, in this order: (a) loop: many diverse chain-consistent normal sets per type (restarts, different
 chains), each decided exactly level by level from M0 (~30 s per level) -> statistics of the first UNSAT
 level; (b) add realizability of M0 at the normal level to the annealer (closure / period LP of the sphere

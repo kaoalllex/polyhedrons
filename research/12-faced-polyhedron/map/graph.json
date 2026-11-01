@@ -1,6 +1,725 @@
 {
  "nodes": [
   {
+   "id": "C:symmetric_drat",
+   "kind": "certificate",
+   "title": "symmetric drat",
+   "status": "",
+   "date": "",
+   "path": "verification/certificates/symmetric_drat",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "C:type0_handle_completion",
+   "kind": "certificate",
+   "title": "type0 handle completion",
+   "status": "",
+   "date": "",
+   "path": "verification/certificates/type0_handle_completion",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "E-261029-01",
+   "kind": "experiment",
+   "title": "Enumerate the neighbourly genus-6 triangulations with 12 vertices",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-01-enumerate-59-types/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-02",
+   "kind": "experiment",
+   "title": "Benchmark of published numerical near-misses",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-02-near-miss-benchmark/README.md",
+   "direction": [
+    "DR5"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-03",
+   "kind": "experiment",
+   "title": "Validate the OM-SAT encoder against exact geometry",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-03-omsat-encoder-validation/README.md",
+   "direction": [
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-04",
+   "kind": "experiment",
+   "title": "Reproduce the symmetric impossibility on four instances",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-04-symmetric-instances-session/README.md",
+   "direction": [
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-05",
+   "kind": "experiment",
+   "title": "Geometry-first SAT: fixed planes, all maps at once",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-05-geometry-first-sat/README.md",
+   "direction": [],
+   "verdict": "LOW-YIELD@1 session",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-06",
+   "kind": "experiment",
+   "title": "Exact single-plane relocation from the best near-miss",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-06-single-plane-relocation/README.md",
+   "direction": [
+    "DR5"
+   ],
+   "verdict": "LOW-YIELD@40 min",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-07",
+   "kind": "experiment",
+   "title": "Exact offset decision at fixed normals (gauge-fixed SMT)",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-07-fixed-normals-offset-smt/README.md",
+   "direction": [
+    "DR2"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-08",
+   "kind": "experiment",
+   "title": "Gauss-map prefilter on all known near-misses",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-08-gauss-prefilter-near-misses/README.md",
+   "direction": [
+    "DR3",
+    "DR5"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-09",
+   "kind": "experiment",
+   "title": "Do Gauss clauses speed up OM-SAT?",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-09-gauss-clauses-sat-speedup/README.md",
+   "direction": [
+    "DR16"
+   ],
+   "verdict": "LOW-YIELD@1 instance",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-10",
+   "kind": "experiment",
+   "title": "Quick tests of seed sources and plane ansatzes (sprint board)",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-10-quick-seed-and-ansatz-tests/README.md",
+   "direction": [
+    "DR5",
+    "DR16"
+   ],
+   "verdict": "LOW-YIELD@minutes each",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-11",
+   "kind": "experiment",
+   "title": "Is the symmetric obstruction local (immersion level)?",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-11-symmetric-obstruction-local/README.md",
+   "direction": [
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-12",
+   "kind": "experiment",
+   "title": "Does any type admit an asymmetric polyhedral immersion?",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-12-asymmetric-immersion/README.md",
+   "direction": [
+    "DR8",
+    "DR11"
+   ],
+   "verdict": "OPEN: 8/8 timeouts",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-13",
+   "kind": "experiment",
+   "title": "Certify: no symmetric embedding (25 classes, DRAT)",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-13-symmetric-embedding-certificates/README.md",
+   "direction": [
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-14",
+   "kind": "experiment",
+   "title": "Closure first: period defects, flat 3-torus, simple faces",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-14-closure-first-torus-and-period/README.md",
+   "direction": [
+    "DR4"
+   ],
+   "verdict": "LOW-YIELD@1 session",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-15",
+   "kind": "experiment",
+   "title": "Certify: no symmetric polyhedral immersion (25 classes, DRAT)",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-15-symmetric-immersion-certificates/README.md",
+   "direction": [
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-16",
+   "kind": "experiment",
+   "title": "Period-defect search over all 59 types",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-16-period-defect-sweep/README.md",
+   "direction": [
+    "DR4"
+   ],
+   "verdict": "LOW-YIELD@night 2",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-17",
+   "kind": "experiment",
+   "title": "Structure of near-miss defects (winding number, defect positions)",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-17-near-miss-structure/README.md",
+   "direction": [
+    "DR5"
+   ],
+   "verdict": "LOW-YIELD@minutes",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-18",
+   "kind": "experiment",
+   "title": "Fresh-eyes review: face-winding identity, parity theorem, cohomological obstruction",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-18-fresh-eyes-computations/README.md",
+   "direction": [
+    "DR4",
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-19",
+   "kind": "experiment",
+   "title": "Smaller analogues n = 7, 8 with black-box engines",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-19-smaller-analogues-black-box-engines/README.md",
+   "direction": [
+    "DR6",
+    "DR15"
+   ],
+   "verdict": "LOW-YIELD@sessions 2-5",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261029-20",
+   "kind": "experiment",
+   "title": "Solid-first search: Szilassi found without a prescribed map",
+   "status": "done",
+   "date": "2026-10-29",
+   "path": "experiments/E-261029-20-solid-first-n7/README.md",
+   "direction": [
+    "DR7"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261030-01",
+   "kind": "experiment",
+   "title": "Positive controls: the 8-face Mizhaev and Roest-Vigh polyhedra",
+   "status": "done",
+   "date": "2026-10-30",
+   "path": "experiments/E-261030-01-eight-face-positive-controls/README.md",
+   "direction": [
+    "DR12"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261030-02",
+   "kind": "experiment",
+   "title": "Solid-first with an exact CP-SAT inner step at n = 12",
+   "status": "done",
+   "date": "2026-10-30",
+   "path": "experiments/E-261030-02-solid-first-exact-inner-n12/README.md",
+   "direction": [
+    "DR7"
+   ],
+   "verdict": "OPEN-LOW: dead-end maps",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261030-03",
+   "kind": "experiment",
+   "title": "Genus ladder: an extendable genus-3 polyhedron of type 0",
+   "status": "done",
+   "date": "2026-10-30",
+   "path": "experiments/E-261030-03-genus-ladder-type0-genus3/README.md",
+   "direction": [
+    "DR1"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261030-04",
+   "kind": "experiment",
+   "title": "Type 0: attempts at genus 4",
+   "status": "done",
+   "date": "2026-10-30",
+   "path": "experiments/E-261030-04-type0-genus4-attempts/README.md",
+   "direction": [
+    "DR1"
+   ],
+   "verdict": "LOW-YIELD@1 session",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261030-05",
+   "kind": "experiment",
+   "title": "Genus ladder over all 59 types",
+   "status": "done",
+   "date": "2026-10-30",
+   "path": "experiments/E-261030-05-genus-ladder-all-types/README.md",
+   "direction": [
+    "DR1"
+   ],
+   "verdict": "LOW-YIELD@night 3",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261030-06",
+   "kind": "experiment",
+   "title": "Gauss gate: degree and k_tau of every realization and next handle",
+   "status": "done",
+   "date": "2026-10-30",
+   "path": "experiments/E-261030-06-gauss-gate/README.md",
+   "direction": [
+    "DR3"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261030-07",
+   "kind": "experiment",
+   "title": "Validate the exact offset solver on sub-maps",
+   "status": "done",
+   "date": "2026-10-30",
+   "path": "experiments/E-261030-07-submap-encoder-validation/README.md",
+   "direction": [
+    "DR2"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261030-08",
+   "kind": "experiment",
+   "title": "Pilot: normals first and k-targeted drift on type 0",
+   "status": "done",
+   "date": "2026-10-30",
+   "path": "experiments/E-261030-08-normals-first-and-kdrift-pilot/README.md",
+   "direction": [
+    "DR2"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261030-09",
+   "kind": "experiment",
+   "title": "Q1: one normal set in class for a whole handle chain",
+   "status": "done",
+   "date": "2026-10-30",
+   "path": "experiments/E-261030-09-chain-consistent-normals-q1/README.md",
+   "direction": [
+    "DR14"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261030-10",
+   "kind": "experiment",
+   "title": "Realization archive with a bandit over handles",
+   "status": "done",
+   "date": "2026-10-30",
+   "path": "experiments/E-261030-10-realization-archive-climb/README.md",
+   "direction": [
+    "DR1"
+   ],
+   "verdict": "LOW-YIELD@nights 4-5",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261030-11",
+   "kind": "experiment",
+   "title": "Normals first, k-drift and direct genus 6 at scale",
+   "status": "done",
+   "date": "2026-10-30",
+   "path": "experiments/E-261030-11-normals-first-night-runs/README.md",
+   "direction": [
+    "DR2"
+   ],
+   "verdict": "LOW-YIELD@150 core-h",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-01",
+   "kind": "experiment",
+   "title": "Regenerate and publish the symmetric DRAT certificates",
+   "status": "done",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-01-drat-regeneration/README.md",
+   "direction": [
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-02",
+   "kind": "experiment",
+   "title": "Check the type-0 handle-completion certificate",
+   "status": "done",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-02-type0-handle-completion-check/README.md",
+   "direction": [
+    "DR1"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-03",
+   "kind": "experiment",
+   "title": "Type-0 genus-3 dossier: is the best result correct and new?",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-03-type0-dossier/README.md",
+   "direction": [
+    "DR1"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-04",
+   "kind": "experiment",
+   "title": "Power of normals first: how often is the control SAT at radius r?",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-04-normals-first-power-study/README.md",
+   "direction": [
+    "DR2"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-05",
+   "kind": "experiment",
+   "title": "Proof mining: small cores of fixed-normal UNSAT instances",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-05-unsat-core-mining/README.md",
+   "direction": [
+    "DR10"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-06",
+   "kind": "experiment",
+   "title": "Rank-3 (normals-only) SAT per type",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-06-rank3-sat-per-type/README.md",
+   "direction": [
+    "DR9"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-07",
+   "kind": "experiment",
+   "title": "Why does every class-reaching drift end at margin 0?",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-07-pinned-hemisphere-margin/README.md",
+   "direction": [
+    "DR3"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-08",
+   "kind": "experiment",
+   "title": "Relaxed S1 target: 12 faces with doubled pairs, symmetric ansatz",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-08-relaxed-s1-twelve-faces/README.md",
+   "direction": [
+    "DR12"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-09",
+   "kind": "experiment",
+   "title": "Compare our encoding with polyhedraproof on shared instances",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-09-encoding-comparison/README.md",
+   "direction": [
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-10",
+   "kind": "experiment",
+   "title": "Write-up: no symmetric polyhedral immersion",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-10-write-up-symmetric-immersion/README.md",
+   "direction": [
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-11",
+   "kind": "experiment",
+   "title": "External human review of FD5/FD6 and the type-0 dossier",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-11-external-human-review/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-12",
+   "kind": "experiment",
+   "title": "Maximal face-neighbourly cubic polyhedra per genus",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-12-maximal-face-neighbourly/README.md",
+   "direction": [
+    "DR12",
+    "DR15"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-13",
+   "kind": "experiment",
+   "title": "Exact covering check instead of sampled covering",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-13-exact-covering/README.md",
+   "direction": [
+    "DR3"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-14",
+   "kind": "experiment",
+   "title": "Chirotope chambers of the archived realizations",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-14-chirotope-chambers/README.md",
+   "direction": [
+    "DR13"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261101-15",
+   "kind": "experiment",
+   "title": "Cube-and-conquer pilot on 3 types (after E-261101-06 and -09)",
+   "status": "planned",
+   "date": "2026-11-01",
+   "path": "experiments/E-261101-15-cube-and-conquer-pilot/README.md",
+   "direction": [
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "FD11",
+   "kind": "foundation",
+   "title": "All 1005 known near-misses (HackerPoet) have the wrong Gauss degree and are not immersions (>= 7 vertices with two reflex corners each)",
+   "status": "",
+   "date": "",
+   "path": "STATUS.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "FD2",
+   "kind": "foundation",
+   "title": "Lemma 5.1: embedding = 176 forbidden-triple conditions on the chirotope of 12 planes + plane at infinity; `IN` predicate",
+   "status": "",
+   "date": "",
+   "path": "STATUS.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "FD3",
+   "kind": "foundation",
+   "title": "Exactly 59 types; automorphism groups (39 trivial)",
+   "status": "",
+   "date": "",
+   "path": "STATUS.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "FD4",
+   "kind": "foundation",
+   "title": "OM-SAT encoder (GP, triples, REFLEX1, POC, symmetry, normalisations)",
+   "status": "",
+   "date": "",
+   "path": "STATUS.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "FD5",
+   "kind": "foundation",
+   "title": "No symmetric embedding (all C2, C3 classes, hence all groups)",
+   "status": "",
+   "date": "",
+   "path": "STATUS.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "FD6",
+   "kind": "foundation",
+   "title": "**No symmetric polyhedral immersion** (no global clauses)",
+   "status": "",
+   "date": "",
+   "path": "STATUS.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "FD7",
+   "kind": "foundation",
+   "title": "Gauss-map degree = 1 - g in the gauge, positive covering, >= 2g+1 saddles; local lemma; face-winding identity; parity theorem; handle decomposition D_{M+tau} = D_M + k_tau",
+   "status": "",
+   "date": "",
+   "path": "STATUS.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "FD8",
+   "kind": "foundation",
+   "title": "Fixed normals make every condition linear in the offsets; exact SMT decides a normal set in seconds-minutes",
+   "status": "",
+   "date": "",
+   "path": "STATUS.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "FD9",
+   "kind": "foundation",
+   "title": "Fixed-normal obstruction is cohomological (36 handle periods); face simplicity is an independent strong wall",
+   "status": "",
+   "date": "",
+   "path": "STATUS.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "H-261029-01",
    "kind": "hypothesis",
    "title": "The Gauss-degree condition is rare: under 1e-3 of random normal sets per type pass it",
@@ -117,6 +836,17 @@
    "status": "supported",
    "date": "2026-10-29",
    "path": "hypotheses/H-261029-11-closure-failure-cohomological.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261029-12",
+   "kind": "hypothesis",
+   "title": "Adding Gauss clauses (degree, covering) to OM-SAT speeds up the symmetric certificate instances at least 3x",
+   "status": "weakened",
+   "date": "2026-10-29",
+   "path": "hypotheses/H-261029-12-gauss-clauses-speed-up-sat.md",
    "direction": [],
    "verdict": "",
    "preregistered": ""
@@ -1584,6 +2314,28 @@
    "preregistered": ""
   },
   {
+   "id": "L:abs1996",
+   "kind": "source",
+   "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "L:banchoff1967",
+   "kind": "source",
+   "title": "T. Banchoff, Critical points and curvature for embedded polyhedra, J. Diff. Geom. 1 (1967)",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:bokowski2025",
    "kind": "source",
    "title": "J. Bokowski, Kevin H., Polyhedral embeddings of triangular regular maps of genus g, 2 <= g <= 14, and neighborly spatial",
@@ -1595,9 +2347,53 @@
    "preregistered": ""
   },
   {
+   "id": "L:ellingham",
+   "kind": "source",
+   "title": "Ellingham, Stephens (automorphism groups of the 59 maps)",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "L:hackerpoet",
+   "kind": "source",
+   "title": "HackerPoet / CodeParade, NeighborlyPolyhedra (HackerPoet-NeighborlyPolyhedra/)",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "L:lutz",
+   "kind": "source",
+   "title": "F. Lutz's list (Hashirama1337s-szilassi-12/code/k12_g6_lutz.txt), HackerPoet topologies.txt",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:mizhaev2026",
    "kind": "source",
    "title": "R. Mizhaev, Integer realization of an equivelar octahedron of genus 3, arXiv:2609.17700 (2026-09-15)",
+   "status": "",
+   "date": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "L:mokijulio2026",
+   "kind": "source",
+   "title": "Moki & Julio, Szilassi polyhedra: two computer-assisted theorems, github.com/Hashirama1337s/szilassi-12, doi:10.5281/zen",
    "status": "",
    "date": "",
    "path": "literature/README.md",
@@ -1650,6 +2446,28 @@
    "preregistered": ""
   },
   {
+   "id": "W:lab_solid_genus3",
+   "kind": "witness",
+   "title": "Lab · 12 faces, genus 3 (solid-first)",
+   "status": "",
+   "date": "",
+   "path": "experiments/E-261030-02-solid-first-exact-inner-n12/results/genus3_12faces_48pairs_polished.json",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "W:lab_type0_genus3",
+   "kind": "witness",
+   "title": "Lab · 12 faces, genus 3 (type 0)",
+   "status": "",
+   "date": "",
+   "path": "experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable_polished.json",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "owner",
    "kind": "owner",
    "title": "Project owner",
@@ -1663,6 +2481,796 @@
  ],
  "edges": [
   {
+   "from": "E-261029-01",
+   "to": "FD3",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-02",
+   "to": "E-261029-06",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-02",
+   "to": "E-261029-08",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-02",
+   "to": "E-261029-17",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-03",
+   "to": "E-261029-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-03",
+   "to": "FD2",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-03",
+   "to": "FD4",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-04",
+   "to": "E-261029-11",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-04",
+   "to": "E-261029-13",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-07",
+   "to": "E-261030-07",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-07",
+   "to": "FD8",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-08",
+   "to": "E-261029-10",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-08",
+   "to": "E-261029-18",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-08",
+   "to": "FD11",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-08",
+   "to": "FD7",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-09",
+   "to": "H-261029-12",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261029-11",
+   "to": "E-261029-15",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-11",
+   "to": "E-261029-18",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-11",
+   "to": "H-261029-08",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261029-11",
+   "to": "H-261029-10",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261029-12",
+   "to": "E-261029-18",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-12",
+   "to": "H-261029-06",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261029-13",
+   "to": "C:symmetric_drat",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-13",
+   "to": "E-261101-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-13",
+   "to": "E-261101-11",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-13",
+   "to": "FD5",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-14",
+   "to": "E-261029-16",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-14",
+   "to": "FD9",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-14",
+   "to": "H-261029-11",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261029-15",
+   "to": "C:symmetric_drat",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-15",
+   "to": "E-261101-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-15",
+   "to": "E-261101-10",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-15",
+   "to": "E-261101-11",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-15",
+   "to": "FD6",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-15",
+   "to": "H-261029-08",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261029-15",
+   "to": "H-261029-10",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261029-16",
+   "to": "H-261029-11",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261029-18",
+   "to": "FD9",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261029-18",
+   "to": "H-261029-11",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261029-19",
+   "to": "E-261030-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261029-19",
+   "to": "H-261029-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261029-20",
+   "to": "E-261030-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-01",
+   "to": "E-261101-08",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-01",
+   "to": "E-261101-12",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-01",
+   "to": "H-261029-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-02",
+   "to": "E-261030-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-02",
+   "to": "H-261030-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-02",
+   "to": "W:lab_solid_genus3",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261030-03",
+   "to": "E-261030-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-03",
+   "to": "E-261030-05",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-03",
+   "to": "E-261030-07",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-03",
+   "to": "E-261101-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-03",
+   "to": "E-261101-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-03",
+   "to": "H-261030-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-03",
+   "to": "W:lab_type0_genus3",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261030-04",
+   "to": "E-261030-06",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-04",
+   "to": "H-261030-04",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-05",
+   "to": "E-261030-06",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-05",
+   "to": "E-261030-10",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-05",
+   "to": "H-261030-04",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-06",
+   "to": "E-261030-08",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-06",
+   "to": "E-261030-10",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-06",
+   "to": "FD7",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261030-06",
+   "to": "H-261030-01",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-06",
+   "to": "H-261030-05",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-07",
+   "to": "E-261030-08",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-08",
+   "to": "E-261030-11",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-08",
+   "to": "E-261101-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-08",
+   "to": "H-261029-09",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-08",
+   "to": "H-261101-04",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-09",
+   "to": "E-261101-05",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-09",
+   "to": "H-261030-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-10",
+   "to": "E-261101-14",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-10",
+   "to": "H-261030-04",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-11",
+   "to": "E-261101-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-11",
+   "to": "E-261101-05",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-11",
+   "to": "E-261101-07",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-11",
+   "to": "H-261029-09",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261030-11",
+   "to": "H-261101-04",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-01",
+   "to": "C:symmetric_drat",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261101-02",
+   "to": "C:type0_handle_completion",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261101-02",
+   "to": "E-261101-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-02",
+   "to": "H-261101-05",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-03",
+   "to": "E-261101-11",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-03",
+   "to": "H-261101-05",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-04",
+   "to": "H-261029-09",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-04",
+   "to": "H-261101-04",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-05",
+   "to": "H-261101-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-06",
+   "to": "E-261101-15",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-06",
+   "to": "H-261101-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-06",
+   "to": "H-261101-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-07",
+   "to": "H-261101-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-08",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-09",
+   "to": "E-261101-15",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-09",
+   "to": "H-261101-06",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-10",
+   "to": "H-261029-10",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-12",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-13",
+   "to": "H-261101-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-15",
+   "to": "H-261101-01",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261101-15",
+   "to": "H-261101-06",
+   "kind": "tests"
+  },
+  {
+   "from": "H-261029-06",
+   "to": "E-261029-12",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261029-08",
+   "to": "E-261029-11",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-03",
+   "to": "E-261029-14",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-03",
+   "to": "E-261101-05",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-04",
+   "to": "E-261029-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-07",
+   "to": "E-261029-19",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-13",
+   "to": "E-261029-17",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-16",
+   "to": "E-261029-17",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-17",
+   "to": "E-261029-14",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-17",
+   "to": "E-261029-16",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-26",
+   "to": "E-261029-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-27",
+   "to": "E-261029-20",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-29",
+   "to": "E-261029-19",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-30",
+   "to": "E-261029-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-31",
+   "to": "E-261029-19",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-32",
+   "to": "E-261029-19",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-33",
+   "to": "E-261029-19",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-34",
+   "to": "E-261029-19",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-36",
+   "to": "E-261030-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-38",
+   "to": "E-261030-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-42",
+   "to": "E-261029-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-44",
+   "to": "E-261029-13",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-54",
+   "to": "E-261029-12",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-55",
+   "to": "E-261029-07",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-55",
+   "to": "E-261029-09",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-55",
+   "to": "E-261029-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-56",
+   "to": "E-261029-11",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-03",
+   "to": "E-261030-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-03",
+   "to": "E-261030-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-05",
+   "to": "E-261030-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-06",
+   "to": "E-261101-08",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-07",
+   "to": "E-261101-08",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-11",
+   "to": "E-261030-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-13",
+   "to": "E-261030-09",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-16",
+   "to": "E-261030-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-22",
+   "to": "E-261030-05",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-24",
+   "to": "E-261030-08",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-24",
+   "to": "E-261030-11",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-25",
+   "to": "E-261030-08",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-25",
+   "to": "E-261030-11",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-26",
+   "to": "E-261030-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-27",
+   "to": "E-261030-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-28",
+   "to": "E-261030-11",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-29",
+   "to": "E-261101-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-01",
+   "to": "E-261101-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-02",
+   "to": "E-261101-15",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-03",
+   "to": "E-261101-09",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-04",
+   "to": "E-261101-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-06",
+   "to": "E-261101-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-01",
+   "to": "E-261101-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-02",
+   "to": "E-261101-05",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-03",
+   "to": "E-261101-07",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-04",
+   "to": "E-261101-13",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-05",
+   "to": "E-261101-14",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-06",
+   "to": "E-261101-11",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-07",
+   "to": "E-261101-12",
+   "kind": "origin"
+  },
+  {
+   "from": "L:abs1996",
+   "to": "E-261029-01",
+   "kind": "origin"
+  },
+  {
+   "from": "L:banchoff1967",
+   "to": "E-261029-08",
+   "kind": "origin"
+  },
+  {
    "from": "L:bokowski2025",
    "to": "I-261029-46",
    "kind": "origin"
@@ -1670,6 +3278,36 @@
   {
    "from": "L:bokowski2025",
    "to": "I-261029-57",
+   "kind": "origin"
+  },
+  {
+   "from": "L:ellingham",
+   "to": "E-261029-01",
+   "kind": "origin"
+  },
+  {
+   "from": "L:hackerpoet",
+   "to": "E-261029-01",
+   "kind": "origin"
+  },
+  {
+   "from": "L:hackerpoet",
+   "to": "E-261029-02",
+   "kind": "origin"
+  },
+  {
+   "from": "L:hackerpoet",
+   "to": "E-261029-08",
+   "kind": "origin"
+  },
+  {
+   "from": "L:lutz",
+   "to": "E-261029-01",
+   "kind": "origin"
+  },
+  {
+   "from": "L:mizhaev2026",
+   "to": "E-261030-01",
    "kind": "origin"
   },
   {
@@ -1698,6 +3336,21 @@
    "kind": "origin"
   },
   {
+   "from": "L:mokijulio2026",
+   "to": "E-261029-02",
+   "kind": "origin"
+  },
+  {
+   "from": "L:mokijulio2026",
+   "to": "E-261029-04",
+   "kind": "origin"
+  },
+  {
+   "from": "L:mokijulio2026",
+   "to": "E-261029-13",
+   "kind": "origin"
+  },
+  {
    "from": "L:pirozhkov2026",
    "to": "H-261101-06",
    "kind": "origin"
@@ -1710,6 +3363,11 @@
   {
    "from": "L:pirozhkov2026",
    "to": "I-261031-03",
+   "kind": "origin"
+  },
+  {
+   "from": "L:roestvigh2026",
+   "to": "E-261030-01",
    "kind": "origin"
   },
   {
@@ -1749,6 +3407,11 @@
   },
   {
    "from": "L:schewe2010",
+   "to": "E-261029-03",
+   "kind": "origin"
+  },
+  {
+   "from": "L:schewe2010",
    "to": "I-261029-41",
    "kind": "origin"
   },
@@ -1770,6 +3433,16 @@
   {
    "from": "L:szilassi1977",
    "to": "H-261101-01",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "E-261029-05",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "E-261101-02",
    "kind": "origin"
   },
   {
@@ -1820,6 +3493,11 @@
   {
    "from": "owner",
    "to": "H-261029-11",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "H-261029-12",
    "kind": "origin"
   },
   {

@@ -1,7 +1,7 @@
 """Summarize a genus-ladder run (job 'glad'): per task the highest exactly realized genus, the best
 violation count per level, the branching attempts, and for every near-realization (best < 3) whether it
 is a degenerate limit (shortest edge or corner-plane margin tiny relative to the diameter).
-Usage: python3 -I analyze_glad.py [RESULTS_JSONL]   (default: results/glad/results.jsonl)"""
+Usage: python3 -I analyze_glad.py [RESULTS_JSONL]   (default: the night-3 experiment E-261030-05)"""
 import json, os, sys
 from collections import Counter
 import numpy as np
@@ -39,4 +39,4 @@ def main(path):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, 'results', 'glad', 'results.jsonl'))
+    main(sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, '..', 'experiments', 'E-261030-05-genus-ladder-all-types', 'results', 'glad', 'results.jsonl'))

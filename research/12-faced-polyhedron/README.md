@@ -48,7 +48,7 @@ New here? Start with `GLOSSARY.md` (the key terms in plain words).
 cd research/12-faced-polyhedron
 python3 -m pip install -r requirements.txt
 python3 verification/verify_all.py          # 9 checks, ~15 s; --quick skips the archive re-check
-python3 verification/verify_candidate.py experiments/genus_ladder/type0_genus3_extendable.json
+python3 verification/verify_candidate.py experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable.json
 ```
 
 CI runs `verify_all.py` on every push touching `research/` (`.github/workflows/verify.yml`).

@@ -5,7 +5,7 @@ Our own new engine — **solid-first search with an exact CP-SAT inner step** �
 planes and without fixing any combinatorial type:
 * the Szilassi polyhedron (7 faces, all pairs adjacent) in 45 s (exactly verified);
 * **12-face embedded polyhedra of genus 2 and genus 3** (42 and 48 of the 66 pairs of faces adjacent),
-  exactly verified (`experiments/solid_first/`, picture `figures/genus3_12faces.png` / `.html`).
+  exactly verified (`experiments/E-261030-02-solid-first-exact-inner-n12/results/`, picture `figures/genus3_12faces.png` / `.html`).
 The target is genus 6 (66 pairs). The search currently plateaus at genus 3; runs continue.
 
 ## What was done (chronologically)
@@ -46,7 +46,7 @@ map-fixed genus ladder (frontier so far: genus 2, type 11). Four ladders (types 
   plateau unchanged (1).
 * Night-2 `pdefect` (user's machine) finished: 9 zero-defect normal sets, all non-simple (false).
 * **New frontier on an extendable map: genus 3** (test of the night-3 job `glad`, type 0):
-  `experiments/genus_ladder/type0_genus3_extendable.json` — 12 simple faces, V = 32, E = 48, exactly
+  `experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable.json` — 12 simple faces, V = 32, E = 48, exactly
   embedded, and still extendable to all 66 pairs (unlike every solid-first result). Only 10 handles
   can be attached to it with six new adjacencies; 3 keep the map extendable. Branching ladder
   (`code/beam_ladder.py`) tries them all.

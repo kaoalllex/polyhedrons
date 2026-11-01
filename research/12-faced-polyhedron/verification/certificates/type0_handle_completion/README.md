@@ -11,7 +11,7 @@ Source: the owner's process audit of 2026-10-31 (not kept in the repository), im
 
 ```bash
 python3 -I verify.py certificate.json \
-  --source ../../../experiments/genus_ladder/type0_genus3_extendable.json \
+  --source ../../../experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable.json \
   --catalog ../../../data/k12_triangulations.json
 ```
 

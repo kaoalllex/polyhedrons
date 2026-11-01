@@ -20,7 +20,7 @@ parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-mis
 * Experiment template and GitHub Actions runner (`experiments/_template/`, `.github/workflows/experiment.yml`).
 * DRAT certificates of `sym` / `symimm`: the night runs had deleted them after checking (no `--keep-proofs`).
   Regenerated 2026-11-01 with `--keep-proofs --keep-cnf`: all 50 CNFs and all 50 proofs are bit-identical to the
-  SHA-256 recorded in `overnight/results/{sym,symimm}/results.jsonl`, 50/50 re-VERIFIED by drat-trim. Packed as
+  SHA-256 recorded in the `results/{sym,symimm}/results.jsonl` of E-261029-13 and E-261029-15, 50/50 re-VERIFIED by drat-trim. Packed as
   `symmetric-{sym,symimm}-drat.tar.xz` (422 MB, 438 MB) and published on the GitHub release `state-2026-11-01`;
   hashes, versions and how to check: `verification/certificates/symmetric_drat/`. TODO (owner): Zenodo DOI via
   the GitHub-Zenodo integration before any write-up.
@@ -82,8 +82,8 @@ blind, retire the UNSAT counts as evidence; timeouts dominate -> encoding cost p
 
 ### E03 - proof mining from UNSAT cores
 
-Instances: the Q1 sphere (type 58, `experiments/chain_normals/`) and the 80 r = 0 kdrift seeds
-(`overnight/results/n5/attempts/kd_*`, `radius: 0.0`). Save every SMT2 instance; extract minimal cores (z3
+Instances: the Q1 sphere (type 58, `experiments/E-261030-09-chain-consistent-normals-q1/results/`) and the 80 r = 0 kdrift seeds
+(`experiments/E-261030-11-normals-first-night-runs/results/n5/attempts/kd_*`, `radius: 0.0`). Save every SMT2 instance; extract minimal cores (z3
 `unsat_core` with named assertions, then deletion-based minimisation); classify by which constraint families
 they use (closure / periods, simplicity, reflex, orientation). **Ablation**: re-solve with each constraint
 family switched off in turn (and with weaker / stronger variants) and record which families the contradiction

@@ -3,7 +3,7 @@
 Supported JSON layouts:
   * {planes, triangles} or {planes, map}  - map-based results (genus ladder, archive records);
   * {planes, links} or a list of such records - ladder results with cyclic neighbour lists;
-  * {real: [...]}                          - the realization archive (overnight/results/arch/archive.json);
+  * {real: [...]}                          - the realization archive (experiments/E-261030-10-realization-archive-climb/results/arch/archive.json);
   * {planes, solid}                        - solid-first results (delegated to code/verify_solid.py).
 Every record is checked in rational arithmetic by code/ladder_exact.verify (planes rounded at 1e-9, as everywhere).
 

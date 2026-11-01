@@ -10,7 +10,7 @@
 Audience: the next AI session (or human) continuing this project. Read this file first, then
 `METHODS_PROTOCOL.md`, `results.md`, `reviews/review-2026-10-30.md`. Everything below was checked
 against the repository state at commit `7194400` plus the unanalysed night-4/5 results
-(`overnight/results/arch`, `gate`, `n5`), which this audit analysed for the first time (section 2).
+(`experiments/E-261030-10-realization-archive-climb/results/arch`, `gate`, `n5`), which this audit analysed for the first time (section 2).
 
 Labels: **CERTIFIED** (SAT proofs checked by drat-trim), **PROVED** (written proof, reviewed by at
 least one independent reviewer), **PROVED-1** (written proof, one author, unreviewed),
@@ -39,14 +39,14 @@ refuted, low expected value), **DEAD** (do not repeat; the evidence is listed).
 | 1 | Face-plane formulation; openness of the realization space; general position WLOG; Lemma 5.1 (embedding = 176 forbidden-triple conditions on the chirotope of 12 planes + plane at infinity) | `mathematical-model.md`; adversarial review ACCEPT (`verification/foundations-report.md`); fresh-eyes review 1.3 | FOUNDATION (PROVED) |
 | 2 | 59 combinatorial types, automorphism groups, orbit data | two independent enumerators, bijection with HackerPoet and Lutz lists, group orders match Ellingham-Stephens as relayed (`results.md` Track 2) | FOUNDATION (EXACT) |
 | 3 | OM-SAT encoder (GP, triples, REFLEX1, POC, symmetry, normalisations) | 0 mismatches in 2.5 M predicate evaluations against exact geometry; Szilassi controls; cross-check with Track 4 (`results.md` Track 3) | FOUNDATION with one caveat: a single encoder; the immersion families have no second implementation |
-| 4 | No symmetric embedding (C2, C3 classes, hence all groups) | 25/25 UNSAT-VERIFIED, drat-trim, user's machine (`overnight/results/sym`) | FOUNDATION (CERTIFIED); independent reproduction of Moki & Julio 2026 |
-| 5 | No symmetric polyhedral immersion (no global clauses) | 25/25 UNSAT-VERIFIED (`overnight/results/symimm`) | FOUNDATION (CERTIFIED); new, write-up pending (`proof-no-symmetric-immersion/`) |
+| 4 | No symmetric embedding (C2, C3 classes, hence all groups) | 25/25 UNSAT-VERIFIED, drat-trim, user's machine (`experiments/E-261029-13-symmetric-embedding-certificates/results/sym`) | FOUNDATION (CERTIFIED); independent reproduction of Moki & Julio 2026 |
+| 5 | No symmetric polyhedral immersion (no global clauses) | 25/25 UNSAT-VERIFIED (`experiments/E-261029-15-symmetric-immersion-certificates/results/symimm`) | FOUNDATION (CERTIFIED); new, write-up pending (`proof-no-symmetric-immersion/`) |
 | 6 | Gauss-map degree theorem (degree 1 - g in the gauge, positive covering, >= 2g+1 saddles); local lemma; face-winding identity; parity theorem; handle decomposition D_{M+tau} = D_M + k_tau | `theory-notes.md` 2.1 + PI addendum; fresh-eyes 1.1, 2.1, 2.2; review 2026-10-30 2.1(3); controls: tetrahedron, cube, Szilassi, Roest-Vigh, 150+ genus-2/3 realizations | FOUNDATION (PROVED; the degree statement is a polyhedral form of Hopf / Gauss-Bonnet, the exact normal-only filter is this project's) |
 | 7 | Fixed normals make all conditions linear in the offsets; exact SMT/LP decides a normal set in seconds to minutes | `theory-notes.md` 3.1; `fixed_normals_gauge.py`, `normals_first.py`; positive controls SAT, exact re-check | FOUNDATION (PROVED + EXACT) |
 | 8 | Fixed-normal obstruction is cohomological (36 handle periods), and face simplicity is an independent strong obstruction (T^3 relaxation) | fresh-eyes 2.3; `period_defect.py`, `torus_simple`; night 2: 9 zero-defect normal sets, all need >= 11 non-simple faces | FOUNDATION (NUMERICAL, consistent across ~180 instances) |
 | 9 | Exact rational verifiers (`ladder_exact`, `planes.check_embedding`, `verify_solid`) | caught 4 optimizer exploits; positive controls Szilassi, Roest-Vigh, Mizhaev; the 2026-10-30 review re-ran them | FOUNDATION (EXACT) |
 | 10 | All 1005 known near-misses (HackerPoet) have the wrong Gauss degree and are not immersions (>= 7 locally overlapping vertices each) | `results.md` PI sections; exact per instance | FOUNDATION (EXACT); shareable (section 3) |
-| 11 | Realization data: 162 exact genus-2/3 polyhedra of 30 types (archive), Roest-Vigh and Mizhaev controls, chain-consistent normals for type 58 | `overnight/results/arch/archive.json`, `experiments/` | FOUNDATION as a dataset; no further climbing (see 14) |
+| 11 | Realization data: 162 exact genus-2/3 polyhedra of 30 types (archive), Roest-Vigh and Mizhaev controls, chain-consistent normals for type 58 | `experiments/E-261030-10-realization-archive-climb/results/arch/archive.json`, `experiments/` | FOUNDATION as a dataset; no further climbing (see 14) |
 | 12 | Exact decision of the asymmetric case (OM-SAT per type, cube-and-conquer, proofs) | never run here; `immersion` 8/8 timeouts at 2.2 h; third-party pilot 2 maps in 648 core-hours (CLAIMED) | **PROMISING, top priority** (section 5) |
 | 13 | Rank-3 (normals-only) SAT per type with degree, covering, saddle and face-winding clauses | proposed by review 2026-10-30 direction 6; not run | **PROMISING**: cheap first step of 12 |
 | 14 | Genus ladder, branching ladder, realization archive + bandit, solid-first exact inner step | genus 3 for types 0, 15, 39, 53 (160+ realizations); genus 4: best 4 events on 5 arms (night 4), 0 realizations; type 0 genus 4 is a proved class obstruction (review 2.1) | DEAD for the strict target (robust plateau, 3 nights); keep the data |
@@ -63,7 +63,7 @@ refuted, low expected value), **DEAD** (do not repeat; the evidence is listed).
 
 ## 2. What nights 4 and 5 showed (analysed here for the first time)
 
-Night 4, job `arch` (375 tasks, 24 core-hours; `overnight/results/arch/`):
+Night 4, job `arch` (375 tasks, 24 core-hours; `experiments/E-261030-10-realization-archive-climb/results/arch/`):
 
 | Item | Value |
 |---|---|
@@ -72,7 +72,7 @@ Night 4, job `arch` (375 tasks, 24 core-hours; `overnight/results/arch/`):
 | genus-4 arm tasks | 5 (types 39, 53), best 4.0 events, no realization |
 | archive at the end | 162 realizations, 956 arms |
 
-Night 5, jobs `gate` and `n5` (`overnight/results/gate`, `n5`; `analyze_n5.py` output):
+Night 5, jobs `gate` and `n5` (`experiments/E-261030-06-gauss-gate/results/gate`, `n5`; `analyze_n5.py` output):
 
 | Item | Value |
 |---|---|

@@ -39,7 +39,7 @@ WHERE TO READ (directory `research/12-faced-polyhedron/`):
 * code: `code/ladder.py` (pair_energy = the honest violation count; degeneracy), `code/ladder_exact.py`
   (exact rational verifier), `code/genus_ladder.py`, `code/handle_add.py` (tubes, reach),
   `code/beam_ladder.py`, `code/archive_climb.py`, `code/solid_cpsat.py` + `code/solid_exact_search.py`;
-  data: `experiments/genus_ladder/` (realized polyhedra), `overnight/results/` (night runs).
+  data: `experiments/E-261030-03-genus-ladder-type0-genus3/results/` (realized polyhedra), `overnight/results/` (night runs).
 
 STATE IN SHORT.
 * Formulation: unknowns = 12 face planes; vertices = triple points; a candidate is accepted only by an
