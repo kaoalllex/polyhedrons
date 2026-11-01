@@ -42,7 +42,7 @@ python3 run_overnight.py gnormals --hours 8 --workers 7 --git
 Other runs:
 
 ```bash
-python3 run_overnight.py sym --hours 6 --workers 7 --git
+python3 run_overnight.py sym --hours 6 --workers 7 --keep-proofs --git
 python3 run_overnight.py ils --hours 4 --workers 7 --git
 python3 run_overnight.py cube --maps 1 --hours 8 --workers 7 --git
 python3 run_overnight.py status

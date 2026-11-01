@@ -158,7 +158,7 @@ git push
 |---|---|
 | `python3 run_overnight.py immersion --hours 8 --workers 7 --git` | OM-SAT: does each type admit a polyhedral immersion (no global clauses)? |
 | `python3 run_overnight.py gnormals --hours 8 --workers 7 --git` | Gauss-admissible normals + exact offset search (all 59 types); mostly fast UNSAT expected |
-| `python3 run_overnight.py sym --hours 6 --workers 7 --git` | certified UNSAT for all symmetric cases (needs `cadical` and `drat-trim` on PATH for proofs, see `overnight/README.md`) |
+| `python3 run_overnight.py sym --hours 6 --workers 7 --keep-proofs --git` | certified UNSAT for all symmetric cases (needs `cadical` and `drat-trim` on PATH for proofs, see `overnight/README.md`) |
 | `python3 run_overnight.py cube --maps 1 --hours 8 --workers 7 --git` | cube-and-conquer on the full asymmetric SAT instance of Lutz map #1 |
 | `python3 run_overnight.py ils --hours 4 --workers 7 --git` | local search with exact plane relocation from known near-misses |
 

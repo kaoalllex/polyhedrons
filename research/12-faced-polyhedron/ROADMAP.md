@@ -18,8 +18,11 @@ parallelise. Every item states what SAT / UNSAT / timeout / near-miss would mean
 * `verification/verify_all.py` (one command, 9 checks) and `verify_candidate.py` (any file format); CI on every push.
 * `requirements.txt` pinned; hard-coded `/home/user` paths removed.
 * Experiment template and GitHub Actions runner (`experiments/_template/`, `.github/workflows/experiment.yml`).
-* TODO: archive the raw DRAT certificates of `sym` / `symimm` (GitHub release or Zenodo, SHA-256 in git) - they
-  exist only on the owner's machine (`*.drat` is git-ignored).
+* DRAT certificates of `sym` / `symimm`: the night runs had deleted them after checking (no `--keep-proofs`).
+  Regenerated 2026-11-01 with `--keep-proofs --keep-cnf`: all 50 CNFs and all 50 proofs are bit-identical to the
+  SHA-256 recorded in `overnight/results/{sym,symimm}/results.jsonl`, 50/50 re-VERIFIED by drat-trim. Packed as
+  `symmetric-{sym,symimm}-drat.tar.xz` (422 MB, 438 MB) on the owner's machine (`overnight/work/regen/release/`).
+  TODO: publish them (GitHub release, later Zenodo) and add the URLs + archive SHA-256 here.
 * TODO: tag the frozen state `state-2026-11-01` after this restructure is merged.
 
 ## Queue (in order; IDs are permanent, folders `experiments/E##-slug/` when started)
