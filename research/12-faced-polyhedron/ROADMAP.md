@@ -21,9 +21,10 @@ parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-mis
 * DRAT certificates of `sym` / `symimm`: the night runs had deleted them after checking (no `--keep-proofs`).
   Regenerated 2026-11-01 with `--keep-proofs --keep-cnf`: all 50 CNFs and all 50 proofs are bit-identical to the
   SHA-256 recorded in `overnight/results/{sym,symimm}/results.jsonl`, 50/50 re-VERIFIED by drat-trim. Packed as
-  `symmetric-{sym,symimm}-drat.tar.xz` (422 MB, 438 MB) on the owner's machine (`overnight/work/regen/release/`).
-  TODO: publish them (GitHub release, later Zenodo) and add the URLs + archive SHA-256 here.
-* TODO: tag the frozen state `state-2026-11-01` after this restructure is merged.
+  `symmetric-{sym,symimm}-drat.tar.xz` (422 MB, 438 MB) and published on the GitHub release `state-2026-11-01`;
+  hashes, versions and how to check: `verification/certificates/symmetric_drat/`. TODO (owner): Zenodo DOI via
+  the GitHub-Zenodo integration before any write-up.
+* Tag `state-2026-11-01` = `main` after merging this restructure; witnesses and site lab models (`witnesses/`).
 
 ## Queue
 

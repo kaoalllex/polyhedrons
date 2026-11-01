@@ -2,9 +2,9 @@
 name: verify
 on:
   push:
-    paths: ["research/12-faced-polyhedron/**", ".github/workflows/verify.yml"]
+    paths: ["research/12-faced-polyhedron/**", "index.html", ".github/workflows/verify.yml"]
   pull_request:
-    paths: ["research/12-faced-polyhedron/**", ".github/workflows/verify.yml"]
+    paths: ["research/12-faced-polyhedron/**", "index.html", ".github/workflows/verify.yml"]
   workflow_dispatch:
 permissions:
   contents: read

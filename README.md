@@ -12,6 +12,10 @@ Interactive 3D viewer of polyhedra in which every face shares an edge with every
 
 Link to a specific model with a hash, e.g. `#szilassi`, `#csaszar`, `#tetrahedron`, `#rost_vigh`.
 
+Models marked **Lab ·** come from our own search for the 12-face polyhedron. They are exactly verified partial
+objects (12 faces, genus 3, 48 of the 66 face pairs adjacent), **not solutions**. Each one links to its source file.
+The list is in [`research/12-faced-polyhedron/witnesses/`](research/12-faced-polyhedron/witnesses/README.md).
+
 ## Why these polyhedra are special
 
 In a typical polyhedron a face touches only a few neighbours. A cube's top face, for example, never

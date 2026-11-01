@@ -63,6 +63,8 @@ CHECKS = [
     ('witness: solid-first genus-2',
      lambda: files(True, 'experiments/solid_first/genus2_12faces_42pairs.json', genus=2)),
     ('negative control: --target S0 rejects Roest-Vigh (doubled adjacencies)', s0_rejects_roest_vigh),
+    ('site: lab models in index.html = exactly re-verified witnesses/witnesses.json',
+     lambda: run(['export_site.py', '--check'], os.path.join(ROOT, 'witnesses'), 'in sync')),
     ('negative control: genus-4 attempts are NOT embedded',
      lambda: files(False, GL + 'type0_genus4_attempt_4viol.json', GL + 'type0_genus4_attempt_degenerate.json')),
     ('certificate: type-0 handle completion genus 3 -> 6 (combinatorial)',

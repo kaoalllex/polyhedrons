@@ -665,3 +665,8 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
     * Shared agent preamble.
     * Skills `experiment-start`, `experiment-conclude`, `candidate-check`, `session-handover`.
     * `LICENSE` and `CITATION.cff`.
+* Later the same day:
+  * `witnesses/` added (`witnesses.json` + `export_site.py`). The site shows two exactly re-verified "Lab ·"
+    models (type-0 genus 3, solid-first genus 3), and `verify_all` checks that the site matches the list.
+  * DRAT certificates published on the release `state-2026-11-01` (`verification/certificates/symmetric_drat/`).
+  * Branch merged into `main` and tagged.

@@ -33,6 +33,7 @@ Paths are relative to `research/12-faced-polyhedron/`. Definitions: `SPEC.md` §
    - an S1-S4 object, naming its target;
    - not embedded.
 
-   Use the label EXACT only once `verify_all.py` reproduces it. For a lasting witness, add its file to
+   Use the label EXACT only once `verify_all.py` reproduces it. For a lasting witness, add an entry to
+   `witnesses/witnesses.json` (then run `witnesses/export_site.py` to show it on the site) and add its file to
    `verification/verify_all.py` CHECKS.
 6. **Report** with the target label. Only an S0 PASS may be called "found" or "a solution".

@@ -35,6 +35,7 @@ combinatorially completable to a target map. Genus 4 was never reached. Details 
 | `reviews/` | independent reviews and audits (2026-10-30 review, 2026-10-31 audits, fresh-eyes review) |
 | `reports/` | night reports |
 | `ideas/` | idea backlog (cross-field ideas, search algorithms, brainstorms) - not a plan |
+| `witnesses/` | curated exact objects (`witnesses.json`); source of the site's "Lab ·" models |
 | `figures/` | pictures and interactive HTML of results |
 | `archive/` | superseded documents (sprint board, old protocol, old continue prompts) |
 
