@@ -1,9 +1,9 @@
-# How to run the overnight search / Как запустить ночной расчёт
+# How to run the overnight search
 
 Everything runs locally, unattended, resumes after interruptions, and saves results into the
 repository. Details of each job: `overnight/README.md`.
 
-## 1. One-time setup / Однократная подготовка
+## 1. One-time setup
 
 ```bash
 git clone https://github.com/kaoalllex/polyhedrons
@@ -15,11 +15,11 @@ python3 -m pip install -r research/12-faced-polyhedron/requirements.txt
 Python 3.14 (the pins in `requirements.txt` come from 3.14.6); Linux or macOS (on Windows use WSL).
 
 **macOS laptop: run every night script under `caffeinate -dimsu` (e.g. `caffeinate -dimsu ./run_night5.sh 8 11`),
-otherwise the machine sleeps and the night is lost (night 4 lost 8 h). / На ноутбуке запускайте под `caffeinate -dimsu`.**
+otherwise the machine sleeps and the night is lost (night 4 lost 8 h).**
 
 New experiments are pre-registered first (`../PROTOCOL.md`); the night jobs below are the legacy framework.
 
-## 2. Start / Запуск
+## 2. Start
 
 ```bash
 cd research/12-faced-polyhedron/overnight
@@ -29,24 +29,19 @@ cd research/12-faced-polyhedron/overnight
 `8` = hours, `7` = workers (CPU cores minus one). Phase 1 verifies all symmetric cases (`sym`),
 phase 2 tests every type for a polyhedral immersion (`immersion`). An `UNSAT` in phase 2 would
 mean that type has no immersion and hence no embedding — it is committed immediately.
-Часы и число ядер — аргументы скрипта. Фаза 1 — проверка симметричных случаев, фаза 2 — есть ли
-у каждого из 59 типов погружение (UNSAT = у типа нет и вложения; коммитится сразу).
 
-Optional for certified proofs in phase 1 / для сертификатов в фазе 1: install `cadical` and
+Optional for certified proofs in phase 1: install `cadical` and
 `drat-trim` (see `overnight/README.md`); without them phase 1 results are marked unverified.
 
-* `--hours` — how long to run (the program stops by itself) / сколько часов работать.
-* `--workers` — number of CPU cores minus one / число ядер минус одно.
-* `--git` — commit results every 30 min and immediately on a candidate / коммитить результаты
-  каждые 30 минут и сразу при находке. Add `--push` to push automatically / с `--push`
-  ещё и пушить.
+* `--hours` — how long to run (the program stops by itself).
+* `--workers` — number of CPU cores minus one.
+* `--git` — commit results every 30 min and immediately on a candidate. Add `--push` to push automatically.
 
 If the computer turns off, run **the same command** again: finished tasks are skipped.
-Если компьютер выключился — запустите **ту же команду** ещё раз, работа продолжится.
 
-Progress / прогресс: `python3 run_overnight.py status`
+Progress: `python3 run_overnight.py status`
 
-### Night 2 / Вторая ночь
+### Night 2
 
 ```bash
 cd research/12-faced-polyhedron/overnight
@@ -56,14 +51,10 @@ git pull
 
 Phase 1 (~15 min): DRAT-certified proof that no SYMMETRIC polyhedral immersion exists.
 Phase 2: period-defect search over all 59 types (a defect of 0 is saved as a CANDIDATE).
-Фаза 1 — сертификаты «нет симметричных погружений», фаза 2 — поиск нормалей с нулевым
-«дефектом периодов» по всем 59 типам.
 
-### Night 3 / Третья ночь
+### Night 3
 
 Start only after the previous night job has exited (commit its results first, then merge):
-Запускать только после того, как прошлый ночной расчёт завершился (сначала закоммитить его
-результаты, потом подтянуть origin):
 
 ```bash
 cd research/12-faced-polyhedron/overnight
@@ -78,13 +69,10 @@ step by step (each level seeded from the one below, exact check). Result per typ
 exactly realized genus; genus 6 = a solution (saved as CANDIDATE and committed at once). When a chain
 reaches genus >= 2 and then stalls, the job branches for up to 30 min: from the highest realized
 polyhedron it tries every next handle that keeps all 66 pairs reachable (`code/beam_ladder.py`).
-Вся ночь — «лестница рода» по всем 59 типам: для каждого типа — наибольший точно реализованный род;
-род 6 = решение.
 
-### Night 4 / Четвёртая ночь
+### Night 4
 
 After night 3 has finished (commit its results first, then merge):
-После окончания третьей ночи (сначала закоммитить её результаты, потом подтянуть origin):
 
 ```bash
 cd research/12-faced-polyhedron/overnight
@@ -103,15 +91,12 @@ night 3 is a starting point; every next handle that keeps all 66 pairs reachable
 the most promising arms, and a quarter of it to new, different realizations of the same polyhedra
 (the trick that gave the best genus-4 attempts by hand). The log shows edge and margin of each best
 attempt: tiny values (near 3e-5 / 1e-6) mean a degenerate limit, not a near-solution.
-Архив реализаций + «бандит»: старт от всех точно реализованных полиэдров рода >= 2 из третьей ночи.
 
 Sleep: run under `caffeinate -dimsu`, on AC power, lid open; otherwise idle sleep stops the night (night 4
 lost 8 h). If the Mac does sleep (lid closed), nothing is lost but time: budgets count awake time only
 (`time.monotonic()`), so the run continues with the remaining budget on wake.
-Сон: запускайте под `caffeinate -dimsu`, от сети, с открытой крышкой. Если Mac всё же уснул, бюджет не
-сгорает, но ночь теряется.
 
-### Night 5 / Пятая ночь
+### Night 5
 
 Historical (2026-10-31, done; its jobs are parked methods in `ROADMAP.md`). The code is on `main`:
 `caffeinate -dimsu ./run_night5.sh 8 11`.
@@ -128,11 +113,8 @@ first and decides the offsets exactly:
   (staying embedded) until k_tau = -1, then the same; `g6` = genus 6 directly from random normals;
 * one core: night-4 `arch` as the control.
 Morning summary: `python3 analyze_n5.py`.
-Почему: плато рода 4 — это препятствие степени отображения Гаусса (вклад ручки 0 вместо −1). Ночь 5
-сначала двигает нормали в нужный класс, а смещения решает точно (z3); найденный род сразу
-проверяется точным верификатором и поднимается дальше. Утренняя сводка: `python3 analyze_n5.py`.
 
-## 3. After the run / После расчёта
+## 3. After the run
 
 ```bash
 cd ../../..        # repository root
@@ -142,7 +124,7 @@ git commit -m "overnight results"
 git push
 ```
 
-## 4. Other jobs (optional) / Другие задачи (по желанию)
+## 4. Other jobs (optional)
 
 | Command | Purpose |
 |---|---|

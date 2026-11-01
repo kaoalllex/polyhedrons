@@ -1,6 +1,6 @@
 # Prompt for an independent review of the whole research (2026-10-30)
 
-## How to run / Как запустить
+## How to run
 
 **Option A (recommended): a new Claude Code session with repository access.**
 1. Open claude.ai/code (or the `claude` CLI) on the repository `kaoalllex/polyhedrons`, branch
@@ -8,10 +8,7 @@
 2. Choose the strongest model available to you (`/model`).
 3. Paste everything between the two lines `-----` below as the first message.
 4. The reviewer writes its report to `research/12-faced-polyhedron/reviews/review-2026-10-30.md` and
-   pushes it; then tell the research session "прочитай ревью" (or paste the report).
-
-Вариант A (рекомендуется): новая сессия Claude Code с доступом к репозиторию, самая сильная
-доступная модель (`/model`), вставить текст между линиями `-----` первым сообщением.
+   pushes it; then tell the research session "read the review" (or paste the report).
 
 **Option B: a reviewer subagent started from the research session** (ask the research session to
 run it; it costs usage and runs without repository write access to the user's machine).

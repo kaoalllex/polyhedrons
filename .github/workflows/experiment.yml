@@ -27,7 +27,7 @@ jobs:
       id: ${{ steps.id.outputs.id }}
       shards: ${{ steps.shards.outputs.shards }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: id
         env:
           INPUT_ID: ${{ inputs.id }}
@@ -58,8 +58,8 @@ jobs:
       run:
         working-directory: research/12-faced-polyhedron
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.14"
           cache: pip
@@ -74,7 +74,7 @@ jobs:
         run: bash "experiments/$ID/run.sh" "$SHARD"
       - name: Upload shard results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ needs.plan.outputs.id }}-shard-${{ matrix.shard }}-${{ github.run_id }}
           path: research/12-faced-polyhedron/experiments/${{ needs.plan.outputs.id }}/results/${{ matrix.shard }}/

@@ -31,6 +31,21 @@ def files(expect, *paths, min_genus=None, genus=None):
     return ok, '%d record(s), EMBEDDED %s, genus %s' % (len(got), sorted(set(got)), gs)
 
 
+def english_only():
+    """Repository files are in English: no Cyrillic in any tracked text file."""
+    top = subprocess.run(['git', 'rev-parse', '--show-toplevel'], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    tracked = subprocess.run(['git', 'ls-files', '-z'], cwd=top, capture_output=True, text=True).stdout.split('\0')
+    bad = []
+    for f in filter(None, tracked):
+        try:
+            text = open(os.path.join(top, f), encoding='utf-8').read()
+        except (UnicodeDecodeError, OSError):
+            continue
+        if re.search('[\u0400-\u04ff]', text):
+            bad.append(f)
+    return not bad, '%d tracked file(s) with Cyrillic%s' % (len(bad), (': ' + ', '.join(bad[:3])) if bad else '')
+
+
 def s0_rejects_roest_vigh():
     """The strict target must reject an embedded all-pairs object with doubled adjacencies."""
     sys.path.insert(0, CODE)
@@ -44,6 +59,7 @@ def s0_rejects_roest_vigh():
 
 GL = 'experiments/genus_ladder/'
 CHECKS = [
+    ('repository: English only (no Cyrillic in tracked files)', english_only),
     ('combinatorics: 59 types, independent checker + relabelling selftest',
      lambda: run(['check_triangulations.py', '../data/k12_triangulations.json', '--selftest'], CODE,
                  'OK: selftest')),

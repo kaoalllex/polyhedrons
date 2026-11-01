@@ -1,6 +1,6 @@
 # Glossary: the 12-face polyhedron research in plain words
 
-A short guide for readers new to the project (Russian version: `GLOSSARY.ru.md`). For precise definitions see
+A short guide for readers new to the project. For precise definitions see
 `SPEC.md`. For the current state see `STATUS.md`.
 
 ## The problem

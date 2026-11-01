@@ -1,6 +1,6 @@
 # Type-0 genus-3 -> genus-6 combinatorial completion certificate
 
-Source: external audit v3 (`reviews/external-audit-2026-10-31-v3.ru.md`, section 23), imported 2026-11-01 and
+Source: external audit v3 (`reviews/external-audit-2026-10-31-v3.md`, section 23), imported 2026-11-01 and
 re-run here (PASS).
 
 * `certificate.json` - four triangulated maps (genus 3, 4, 5, 6) and the three explicit handle surgeries

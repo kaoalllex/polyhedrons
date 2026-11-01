@@ -80,7 +80,7 @@ counts: 8 nine-sided faces, 20 pairs sharing one edge and 8 pairs sharing two, g
 ## Research on the 12-face problem
 
 New to the terms (genus, map, handle, UNSAT, DRAT, Gauss degree)? Read the plain-language
-[glossary](research/12-faced-polyhedron/GLOSSARY.md) ([по-русски](research/12-faced-polyhedron/GLOSSARY.ru.md)).
+[glossary](research/12-faced-polyhedron/GLOSSARY.md).
 
 Ongoing research: start at [`research/12-faced-polyhedron/README.md`](research/12-faced-polyhedron/README.md)
 (state of the problem, verdicts, experiment queue, how to verify every claim with one command).

@@ -1,6 +1,6 @@
 # Prompt for a strategic review of the research (2026-11-01)
 
-## How to run / Как запустить
+## How to run
 
 **Option A, recommended: a new Claude Code session with access to the repository.**
 1. Open the repository `kaoalllex/polyhedrons` on branch `main`, after PR #1 is merged; before that, use branch
@@ -14,13 +14,11 @@ The reviewer writes `research/12-faced-polyhedron/reviews/strategy-review-2026-1
 `research/12-faced-polyhedron/`:
 - `SPEC.md`, `STATUS.md`, `ROADMAP.md`;
 - `reports/NIGHT_REPORT_2026-11-01.md`;
-- `reviews/external-audit-2026-10-31-v3.ru.md`;
+- `reviews/external-audit-2026-10-31-v3.md`;
 - `theory/theory-notes.md`;
 - `proof-no-symmetric-immersion/README.md`.
 
 This option is weaker: the reviewer cannot check code or data.
-
-Вариант A: новая сессия Claude Code на этом репозитории, самая сильная модель, вставить текст между линиями `-----`.
 
 -----
 
@@ -49,7 +47,7 @@ is one of the 59 neighbourly genus-6 triangulations with 12 vertices. The vertex
 - `ROADMAP.md`: the scored queue E01-E13 (each row names the hypotheses it moves) and the parked methods.
 - `SPEC.md`: the targets S0-S4, the counters, the scope of negative results and the evidence labels.
 - `reports/NIGHT_REPORT_2026-11-01.md`: the latest compute.
-- `reviews/fresh-audit-2026-11-01.md` and `reviews/external-audit-2026-10-31-v3.ru.md` (Russian): the process
+- `reviews/fresh-audit-2026-11-01.md` and `reviews/external-audit-2026-10-31-v3.md`: the process
   audits.
 - `theory/theory-notes.md` and `proof-no-symmetric-immersion/README.md`.
 - `literature/README.md`: the sources and how deeply each one was read. Two third-party repositories are only
