@@ -103,6 +103,6 @@ claims need a human mathematical review outside this chain of agents.
 
 * 2026-11-01: §4 adds ERROR / CANDIDATE, the scope of a negative result and the certificate chain.
 * 2026-11-01: §1 success check is `verify_candidate.py --target S0` (the earlier `--all-pairs` wording
-  accepted doubled adjacencies; found by the fresh-eyes audit, `reviews/fresh-audit-2026-11-01.md` F01).
+  accepted doubled adjacencies; found by the fresh-eyes process audit of 2026-11-01, finding F01).
   §5: `results.md` is frozen history and keeps its old labels.
 * 2026-11-01: created from `theory/mathematical-model.md` and the process audits of 2026-10-31.

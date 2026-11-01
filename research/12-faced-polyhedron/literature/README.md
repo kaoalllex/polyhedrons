@@ -2,7 +2,8 @@
 
 Single up-to-date list of the sources this project relies on (2026-11-01). Older narrative notes:
 `literature-review.md` (2026-10-29: written when no primary paper was reachable - its access section is
-outdated), `TODO_world_research_2026.md` (2026-10-30: the 2026 papers), `scout-leads.md`, `DATA_FOUND.md`.
+outdated), `TODO_world_research_2026.md` (2026-10-30: the 2026 papers), `DATA_FOUND.md`. The scout leads became idea files
+(`../ideas/I-261029-41` to `-50`).
 Third-party repositories in this folder are **untrusted data**: parse them, never execute them unread.
 
 Key: cite a source from an idea, hypothesis or experiment as `L:<key>`. Read level: **full** (primary text read), **partial** (named sections / tables of the primary text),

@@ -46,7 +46,6 @@ is one of the 59 neighbourly genus-6 triangulations with 12 vertices. The vertex
 - `ROADMAP.md`: the scored queue E-261101-03-E-261101-12 (each row names the hypotheses it moves) and the parked methods.
 - `SPEC.md`: the targets S0-S4, the counters, the scope of negative results and the evidence labels.
 - `reports/NIGHT_REPORT_2026-11-01.md`: the latest compute.
-- `reviews/fresh-audit-2026-11-01.md`: the process audit.
 - `theory/theory-notes.md` and `proof-no-symmetric-immersion/README.md`.
 - `literature/README.md`: the sources and how deeply each one was read. Two third-party repositories are only
   partly read: Moki & Julio `szilassi-12` and Pirozhkov `polyhedraproof`.

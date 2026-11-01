@@ -40,7 +40,7 @@ The pairwise-one-edge condition alone does not force degree 3: it gives `E = 66`
 degree 3; `V - 66 + 12 = 2 - 2g` then gives `g >= 6`, with `g = 6` iff all degrees are 3.
 The README and the mission both fix "three faces at every vertex", so this is part of the
 definition. (Vertices of degree `>= 4` mean four or more face planes through one point; that
-relaxed family is logged in `archive/open-questions.md` and not pursued.)
+relaxed family is idea I-261029-53, parked.)
 
 At a degree-3 vertex `v` with edges `e1, e2, e3` the three corners belong to pairwise distinct
 faces: if two consecutive corners belonged to the same face `A`, the edge between them would

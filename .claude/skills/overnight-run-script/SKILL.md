@@ -5,8 +5,9 @@ description: Use when writing or editing a long-running unattended run script (a
 
 # Overnight run scripts (macOS laptop)
 
-Reference implementations: `research/12-faced-polyhedron/overnight/run_night5.sh` and `run_overnight.py`.
-Check them first; extend rather than rewrite.
+Reference implementations: `research/12-faced-polyhedron/experiments/_template/run.sh` (manifest) and
+`research/12-faced-polyhedron/overnight/run_overnight.py` (jobs, resume, `--results-dir`). The old night wrappers
+`run_night*.sh` are in git tag `state-2026-11-01`. Check these first; extend rather than rewrite.
 
 ## Before writing anything
 

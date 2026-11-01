@@ -51,7 +51,7 @@ Corollary (already claimed by Moki & Julio 2026, independently reproduced here):
    preserves conv(P); lifting to a sharp cone in R^4 and averaging in the dual cone gives an invariant
    hyperplane missing conv(P); in that affine chart the group acts affinely (then isometrically after
    averaging an inner product), and the chart change keeps P a bounded planar-faced embedding/immersion.
-   Hence the theorem also excludes projective symmetries. Write out and check (`../ideas/cross-field-ideas.md`, Y9).
+   Hence the theorem also excludes projective symmetries. Write out and check (`../ideas/I-261029-15-projective-symmetries-covered-free.md`, Y9).
 
 Also worth including in the write-up as context (separate, numerical): every known near-miss fails
 the Gauss-degree condition and is not an immersion (`../theory/theory-notes.md`, `../results.md`).

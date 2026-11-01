@@ -18,7 +18,8 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
 | `CONTINUE_PROMPT.md` | hand-over to the next session | short; points to the files above |
 | `experiments/E-YYMMDD-NN-slug/` | one experiment: plan, runner, results, conclusion | see section 2 |
 | `theory/`, `ideas/`, `reviews/`, `reports/`, `literature/` | supporting material | ideas are a backlog, not a plan |
-| `archive/` | superseded documents | read-only history |
+| `ideas/`, `hypotheses/` | one file per idea / hypothesis (§4) | ideas are a backlog, not a plan |
+| `map/` | `graph.json` (built by `verification/trace.py`) and the interactive map | never edit `graph.json` by hand |
 
 ## 2. Experiment lifecycle
 

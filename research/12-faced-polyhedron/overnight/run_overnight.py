@@ -350,7 +350,7 @@ def job_pdefect(args, committer):
 
 
 # ----------------------------------------------------------------------------- job: ladder
-# Own path (ideas/cross-field-ideas.md Y1): closed polyhedra with n mutually adjacent faces, n < 12, maps
+# Own path (idea I-261029-07): closed polyhedra with n mutually adjacent faces, n < 12, maps
 # generated from scratch (no external seeds), genetic algorithm on the honest pair energy, every float
 # zero re-checked in exact rational arithmetic (code/ladder_exact.py). n = 7 (Szilassi) is found in
 # seconds; n = 8 (genus 2, two doubled adjacencies) plateaued at 1-2 violations in the cloud runs.
@@ -536,7 +536,7 @@ def job_arch(args, committer):
 
 
 # ----------------------------------------------------------------------------- night 5: Gauss gate + normals first
-# Review 2026-10-30 (reviews/review-2026-10-30.md): the type-0 genus-4 plateau is a Gauss-degree (normal-class)
+# Review 2026-10-30 (hypothesis H-261030-01): the type-0 genus-4 plateau is a Gauss-degree (normal-class)
 # obstruction. Job `gate` = test T1 for every realized polyhedron x every extendable next handle (+ test 2.2 on
 # the night-3 chains); job `n5` = the gated ladder: `nfirst` (normals first, exact offsets: normals_first.py),
 # `kdrift` (drift inside the realization space until the handle degree k_tau = -1 and the next map's class is

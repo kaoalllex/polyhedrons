@@ -1,4 +1,4 @@
-"""'Solid first' (cross-field-ideas P7, work backwards from the answer): the state is the n face planes
+"""'Solid first' (idea I-261029-27, work backwards from the answer): the state is the n face planes
 plus a set S of bounded cells of their arrangement. The solid S is ALWAYS embedded; what may be wrong
 is its face structure. For a generic arrangement:
   * a 1-cell (segment of a line X cap Y between consecutive triple points) has 4 surrounding 3-cells;

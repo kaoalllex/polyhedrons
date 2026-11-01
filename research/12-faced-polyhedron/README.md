@@ -33,16 +33,15 @@ https://kaoalllex.github.io/polyhedrons/research/12-faced-polyhedron/map/).
 | `proof-no-symmetric-immersion/` | write-up of the symmetric-immersion theorem (ROADMAP E-261101-10) |
 | `code/` | all scripts; registry with status per module: `code/README.md` |
 | `verification/` | exact verifiers, `verify_all.py`, `verify_candidate.py`, certificates, foundations report |
-| `experiments/` | `E-YYMMDD-NN-slug/` pre-registered experiments (template `_template/`); legacy artifact folders |
-| `overnight/` | night-run framework (`run_overnight.py`, `run_night*.sh`, `HOW_TO_RUN.md`) and its results |
+| `experiments/` | one folder per experiment `E-YYMMDD-NN-slug/` (past ones reconstructed, planned ones queued; template `_template/`) |
+| `overnight/` | laptop-run framework (`run_overnight.py`, jobs in `README.md`, `HOW_TO_RUN.md`); results go to experiment folders |
 | `data/` | the 59 combinatorial types with invariants (`data/README.md`) |
 | `literature/` | source matrix (`literature/README.md`), third-party data (untrusted), notes |
-| `reviews/` | independent reviews and audits (2026-10-30 review, 2026-10-31 audits, fresh-eyes review) |
+| `reviews/` | fresh-eyes review (evidence of FD9), strategic review prompt |
 | `reports/` | night reports |
-| `ideas/` | idea backlog (cross-field ideas, search algorithms, brainstorms) - not a plan |
+| `ideas/`, `hypotheses/` | one file per idea and per hypothesis (`I-…`, `H-…`), linked to the experiments |
+| `map/` | the interactive research map and its `graph.json` |
 | `witnesses/` | curated exact objects (`witnesses.json`); source of the site's "Lab ·" models |
-| `figures/` | pictures and interactive HTML of results |
-| `archive/` | superseded documents (sprint board, old protocol, old continue prompts) |
 
 ## Verify everything (one command)
 

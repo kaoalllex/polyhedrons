@@ -15,7 +15,7 @@ parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-mis
 ## Phase 0 - foundations of the workflow (done 2026-11-01 unless marked)
 
 * `SPEC.md` frozen; evidence labels and counters normalised.
-* `verification/verify_all.py` (one command, 11 checks) and `verify_candidate.py` (any file format, `--target S0` = the solution check); CI on every push.
+* `verification/verify_all.py` (one command, 14 checks) and `verify_candidate.py` (any file format, `--target S0` = the solution check); CI on every push.
 * `requirements.txt` pinned; hard-coded `/home/user` paths removed.
 * Experiment template and GitHub Actions runner (`experiments/_template/`, `.github/workflows/experiment.yml`).
 * DRAT certificates of `sym` / `symimm`: the night runs had deleted them after checking (no `--keep-proofs`).
@@ -25,6 +25,16 @@ parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-mis
   hashes, versions and how to check: `verification/certificates/symmetric_drat/`. TODO (owner): Zenodo DOI via
   the GitHub-Zenodo integration before any write-up.
 * Tag `state-2026-11-01` = `main` after merging this restructure; witnesses and site lab models (`witnesses/`).
+* Research graph: one file per idea / hypothesis / experiment with dated IDs (`PROTOCOL.md` §4), past work
+  reconstructed as experiments with their data, `verification/trace.py` (in `verify_all`), interactive `map/`.
+* TODO (infrastructure, from the 2026-11-01 process audit; each passes the infrastructure filter of `PROTOCOL.md` §3):
+  * `lint_docs.py` in `verify_all`: STATUS levels are SPEC labels, ROADMAP rows have T + D >= 3, every backticked
+    path in the control documents exists; `experiment.yml` accepts only `E-YYMMDD-NN` ids.
+  * `verify_all` runs the verifier's mutation tests (`verification/test_mutants.py`) and re-encodes 2-3 symmetric
+    instances to compare their CNF SHA-256 with the certificate records (proves HEAD still builds the certified
+    formulas).
+  * READMEs link to `STATUS.md` instead of repeating numbers.
+  * Pilot the GitHub Actions runner on E-261101-04 (small matrix) before relying on it.
 
 ## Queue
 

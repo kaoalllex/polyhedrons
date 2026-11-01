@@ -51,11 +51,11 @@ script of one sprint-board test, kept for reproducibility, not maintained.
 | `immersion_sat.py`, `immersion_anneal.py` | DR8 / DR11 immersion | OPEN (needs cubing) |
 | `geomsat.py`, `exp_n7.py`, `exp_n12.py`, `track4_common.py` | Track-4 geometry-first SAT | historical |
 
-## One-off tests (sprint board ids, `../archive/sprint-board.md`)
+## One-off tests (sprint board ids; experiments E-261029-08 to -17, the board itself is in tag `state-2026-11-01`)
 
 `q4_polar.py`, `q5_admissible_all.py`, `q10_core.py`, `q13_tube_planes.py`, `q15_symmetric_planes.py`,
 `q16_screw_planes.py`, `q17_winding.py`, `q18_gwas.py`, `szilassi.py`, `szil_test.py`, `szilassi_faceplane_check.py`.
-`q10_core.py` is the starting point for ROADMAP E-261101-05 (UNSAT cores).
+`q10_core.py` is the starting point for E-261101-05 (UNSAT cores).
 
 New code: put library functions in an existing CORE module where they belong; put an experiment's own script in
 its `experiments/E-YYMMDD-NN-slug/` folder unless it becomes a reusable tool.

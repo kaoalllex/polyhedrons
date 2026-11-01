@@ -670,3 +670,9 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
     models (type-0 genus 3, solid-first genus 3), and `verify_all` checks that the site matches the list.
   * DRAT certificates published on the release `state-2026-11-01` (`verification/certificates/symmetric_drat/`).
   * Branch merged into `main` and tagged.
+* Research graph (same day):
+  * Every idea, hypothesis and experiment is now one file with a dated ID (`PROTOCOL.md` §4). That is 108 ideas,
+    24 hypotheses and 46 experiments, of which 33 are past work reconstructed with their data and 13 are planned.
+  * The interactive map is `map/`; `verification/trace.py` checks the graph inside `verify_all`.
+  * The old idea notes, archive, night scripts and AI reviews were removed after migration; they are in tag
+    `state-2026-11-01`.
