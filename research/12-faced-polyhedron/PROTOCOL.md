@@ -43,8 +43,9 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
 * A timeout is never a negative result. An UNSAT holds only for its exact formula. A float zero is nothing until
   the exact verifier says EMBEDDED. A near-miss is not progress unless its defects are non-degenerate (SPEC §3).
 * Name the counter in every table (SPEC §4); claims use exact counters only.
-* Verdicts carry their budget: "DEAD@8 core-h, 2 seeds" - so an underpowered KILL can be reopened with a reason.
-* Before declaring a direction dead, check the positive control was able to succeed under the same budget.
+* Verdicts carry their budget: "LOW-YIELD@8 core-h, 2 seeds" - a measurement, not a ban. REFUTED needs a proof.
+* Before calling a direction low-yield, check the positive control was able to succeed under the same budget;
+  if it was not, the verdict is "underpowered".
 * A new engine must first reproduce a known object (Szilassi, Roest-Vigh, a saved genus-3 witness).
 * Theorem-level claims need two independent implementations (encoder / verifier) and a human reviewer outside
   the agent chain; the `adversarial-verifier` agent is a filter, not a referee.

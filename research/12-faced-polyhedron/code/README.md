@@ -43,11 +43,11 @@ script of one sprint-board test, kept for reproducibility, not maintained.
 
 | Module | Direction | Verdict |
 |---|---|---|
-| `genus_ladder.py`, `beam_ladder.py`, `archive_climb.py`, `level_search.py`, `seed_search.py`, `lns_handle.py`, `ladder_solid.py`, `drift_search.py`, `repair_search.py` | DR1 genus ladder family | DEAD@budget for S0 |
-| `normals_first.py`, `kdrift.py`, `chain_normals.py` | DR2 normals first / k-drift; DR14 Q1 | DEAD@budget as climbers; reusable for E02-E03 |
+| `genus_ladder.py`, `beam_ladder.py`, `archive_climb.py`, `level_search.py`, `seed_search.py`, `lns_handle.py`, `ladder_solid.py`, `drift_search.py`, `repair_search.py` | DR1 genus ladder family | LOW-YIELD@budget for S0 |
+| `normals_first.py`, `kdrift.py`, `chain_normals.py` | DR2 normals first / k-drift; DR14 Q1 | LOW-YIELD@budget as climbers; reusable for E02-E03 |
 | `solid_exact_search.py`, `solid_search.py`, `solid_search_fast.py` | DR7 solid-first | OPEN-LOW (generator) |
-| `period_anneal.py`, `gauss_search.py`, `offset_anneal.py`, `joint_anneal.py` | DR4 closure-first, normal annealers | DEAD |
-| `ladder_cma.py`, `ladder_ga.py`, `ladder_ils.py`, `ladder_ng.py`, `ladder_reloc.py`, `ladder4.py`, `anneal.py`, `reloc_descent.py` | DR6 black-box engines, DR15 n = 8 | DEAD |
+| `period_anneal.py`, `gauss_search.py`, `offset_anneal.py`, `joint_anneal.py` | DR4 closure-first, normal annealers | LOW-YIELD |
+| `ladder_cma.py`, `ladder_ga.py`, `ladder_ils.py`, `ladder_ng.py`, `ladder_reloc.py`, `ladder4.py`, `anneal.py`, `reloc_descent.py` | DR6 black-box engines, DR15 n = 8 | LOW-YIELD |
 | `immersion_sat.py`, `immersion_anneal.py` | DR8 / DR11 immersion | OPEN (needs cubing) |
 | `geomsat.py`, `exp_n7.py`, `exp_n12.py`, `track4_common.py` | Track-4 geometry-first SAT | historical |
 

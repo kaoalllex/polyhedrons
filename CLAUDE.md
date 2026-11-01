@@ -21,7 +21,8 @@ Hard rules:
 - Label every claim with a `SPEC.md` §5 label. A proof written by an AI session is at most PROVED-1. AI agents are
   not independent reviewers.
 - Start an experiment only from a `ROADMAP.md` row with T + D >= 3, and only after its `PLAN.md` is committed.
-- Do not run anything on the ROADMAP stop list. A timeout is not a result. An UNSAT holds only for its exact formula.
+- Parked methods (`ROADMAP.md`) are not banned, but a new run must say in its `PLAN.md` what is different. Never call a
+  method dead without a proof. A timeout is not a result. An UNSAT holds only for its exact formula.
 - Long runs go to the owner's laptop (under `caffeinate -dimsu`, on AC power) or to GitHub Actions. Never start
   a multi-hour run from a session.
 - Ask the owner before large subagent tasks and before long runs. SAT runs keep their proofs and CNFs.

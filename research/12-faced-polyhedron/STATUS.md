@@ -46,18 +46,20 @@ objects; catalogues of genus-3 maps not searched). Say "exact constructions new 
 
 ## 3. Directions ledger
 
-Verdicts: **FOUNDATION**, **PROMISING** (worth the next compute), **OPEN-LOW** (not refuted, low expected
-value), **DEAD@budget** (do not repeat at a similar budget; the budget is stated so it can be reopened
-with a reason).
+Verdicts: **FOUNDATION**; **PROMISING** (worth the next compute); **OPEN** / **OPEN-LOW** (not tried enough /
+low expected value); **LOW-YIELD@budget** (tried; the measured yield at the stated budget was low; not refuted, so
+a run that changes something - objective, ansatz, power, scale - is legitimate; an unchanged re-run is expected to
+repeat the result); **REFUTED** (only with a proof, at least PROVED-1, that the method cannot reach the target).
+No direction is REFUTED today.
 
 | # | Direction | Evidence | Budget spent | Verdict |
 |---|---|---|---|---|
-| DR1 | Genus ladder / branching ladder / archive + bandit (`genus_ladder`, `beam_ladder`, `archive_climb`) | genus 3 for 4 types, genus 4 never (best 4.0 events, 11 arms nights 4-5) | nights 3-5 | DEAD@budget for S0; keep the data |
-| DR2 | Normals first + exact offsets; k-drift (`normals_first`, `kdrift`, `nf_control`) | 12,202 UNSAT, 0 SAT (nights 4-5); drift reaches the class only on its wall (margin exactly 0, 153/153) | ~150 core-h | DEAD@budget as a climbing engine; **low-power evidence** (control SAT only at r = 0.05, one trial) |
+| DR1 | Genus ladder / branching ladder / archive + bandit (`genus_ladder`, `beam_ladder`, `archive_climb`) | genus 3 for 4 types, genus 4 never (best 4.0 events, 11 arms nights 4-5) | nights 3-5 | LOW-YIELD@nights 3-5 for S0 (genus 3 reached, genus 4 never); the Gauss gate (DR3) explains the plateau for type 0; keep the data |
+| DR2 | Normals first + exact offsets; k-drift (`normals_first`, `kdrift`, `nf_control`) | 12,202 UNSAT, 0 SAT (nights 4-5); drift reaches the class only on its wall (margin exactly 0, 153/153) | ~150 core-h | LOW-YIELD@150 core-h as a climbing engine; **low-power evidence** (control SAT only at r = 0.05, one trial); E02 measures the power |
 | DR3 | Gauss class as a necessary filter (gate, T1, test 2.2) | explains the type-0 genus-4 plateau (k_tau = 0 on 21/21) and 93 % of failed ladder levels | cheap | FOUNDATION as a filter; insufficient alone (Q1, DR2) |
-| DR4 | Closure-first (`pdefect`, `sdefect`, T^3 relaxation) | 9 zero defects, all with >= 11 non-simple faces | night 2 | DEAD |
-| DR5 | Near-miss repair (relocation, ILS, polar duals, dual-mesh planes) | wrong topological class (FD11) | session 1-2 | DEAD |
-| DR6 | Black-box engines on the unchanged energy (SA, CMA-ES, GA, ILS, NGOpt, DE, LNS, floors) | all solve n = 7; none breaks n = 8 (1-2) or genus 4 | sessions 2-5 | DEAD |
+| DR4 | Closure-first (`pdefect`, `sdefect`, T^3 relaxation) | 9 zero defects, all with >= 11 non-simple faces | night 2 | LOW-YIELD@night 2: zero defects only with >= 11 non-simple faces; reopen only with simplicity in the model |
+| DR5 | Near-miss repair (relocation, ILS, polar duals, dual-mesh planes) | wrong topological class (FD11) | session 1-2 | LOW-YIELD: every known near-miss has the wrong Gauss degree (FD11, EXACT), so none is close in that invariant; not a proof that repair cannot work |
+| DR6 | Black-box engines on the unchanged energy (SA, CMA-ES, GA, ILS, NGOpt, DE, LNS, floors) | all solve n = 7; none breaks n = 8 (1-2) or genus 4 | sessions 2-5 | LOW-YIELD@sessions 2-5: solve n = 7, plateau at n = 8 and genus 4; a new objective would make a new run informative, more seeds would not |
 | DR7 | Solid-first + exact CP-SAT inner step | genus 3 from random planes, always dead-end maps | night 2-3 | OPEN-LOW as a generator of new maps / benchmarks |
 | DR8 | Exact asymmetric decision per type (OM-SAT, cube-and-conquer, certificates) | never run to completion; `immersion` 8/8 timeouts at 2.2 h; third-party pilot 2 maps in 648.5 core-h (CLAIMED) | ~18 core-h | PROMISING, but only after E06/E07 show a cost below ~2,000 core-h per type |
 | DR9 | Rank-3 (normals-only) SAT per type with degree, covering, saddle, face-winding clauses | proposed (review 2026-10-30 dir. 6), not run | 0 | PROMISING: cheap, outcomes decisive either way |
@@ -66,8 +68,8 @@ with a reason).
 | DR12 | Relaxed S1 target with a symmetric orbit ansatz (Roest-Vigh style), after calibration on their polyhedron | not started; only known 8-face objects are of this kind | 0 | PROMISING as a side line (<= 25 % of compute) |
 | DR13 | Chirotope chambers of the realization spaces (type-0 variants, archive) | 247 chirotopes stored, not analysed | 0 | OPEN (cheap, data exists) |
 | DR14 | Chain-consistent normals (Q1), projective ladder (P1), flips through degeneration (Q3), spine-seeded solids | Q1: normals found, sphere UNSAT | ~1 h | OPEN-LOW; Q1 feeds DR10 |
-| DR15 | n = 8 genus-2 rung as benchmark | plateau 1-2, poor analogue (advisor) | session 2 | DEAD as benchmark; its existence question OPEN-LOW |
-| DR16 | Gauss clauses as SAT speed-up; kappa-CSP prefilter; symmetric plane sets; screw orbits; tangent planes of smooth surfaces; Szilassi embryo | `archive/sprint-board.md` | minutes each | DEAD |
+| DR15 | n = 8 genus-2 rung as benchmark | plateau 1-2, poor analogue (advisor) | session 2 | LOW-YIELD as a benchmark; its existence question OPEN-LOW |
+| DR16 | Gauss clauses as SAT speed-up; kappa-CSP prefilter; symmetric plane sets; screw orbits; tangent planes of smooth surfaces; Szilassi embryo | `archive/sprint-board.md` | minutes each | LOW-YIELD@minutes each (small budgets; see the sprint board) |
 | DR17 | Configuration-space planning / rigidity (stress matrices) / homotopy continuation between levels | external audit 17.1, 25 | 0 | OPEN: each needs a cheap falsification test first |
 
 ## 4. What may and may not be claimed

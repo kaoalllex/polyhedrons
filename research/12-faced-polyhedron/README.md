@@ -11,7 +11,7 @@ combinatorially completable to a target map. Genus 4 was never reached. Details 
 ## Read in this order
 
 1. `STATUS.md` - foundations, exact witnesses, every direction with its verdict, what may be claimed.
-2. `ROADMAP.md` - the scored, pre-registered experiment queue and the stop list.
+2. `ROADMAP.md` - the scored, pre-registered experiment queue and the parked methods.
 3. `PROTOCOL.md` - how experiments are run, verified, recorded; branches; laptop and GitHub Actions.
 4. `SPEC.md` - target, relaxed targets, degeneracies, counters, evidence labels.
 5. `experiments/E##-*/CONCLUSION.md` (evidence), `experiment-log.md` (append-only chronology), `results.md` (frozen

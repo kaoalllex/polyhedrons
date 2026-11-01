@@ -113,7 +113,7 @@ lost 8 h). If the Mac does sleep (lid closed), nothing is lost but time: budgets
 
 ### Night 5 / Пятая ночь
 
-Historical (2026-10-31, done; its jobs are on the ROADMAP stop list). The code is on `main`:
+Historical (2026-10-31, done; its jobs are parked methods in `ROADMAP.md`). The code is on `main`:
 `caffeinate -dimsu ./run_night5.sh 8 11`.
 
 Why (independent review 2026-10-30): the genus-4 plateau is a Gauss-map degree obstruction. At every saved

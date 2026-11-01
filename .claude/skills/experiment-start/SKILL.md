@@ -8,8 +8,8 @@ description: Use when starting work on a ROADMAP item (E##) of the 12-face polyh
 Paths are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2, §5, §6.
 
 1. **Gate.** Read the `ROADMAP.md` row and `STATUS.md` §3.
-   - Refuse, and say why, if T + D < 3, if the row is not `open`, or if the method is on the ROADMAP stop list
-     and `STATUS.md` has no dated reason to reopen it.
+   - Refuse, and say why, if T + D < 3, if the row is not `open`, or if the method is a parked method in
+     `ROADMAP.md` and the plan does not say what is different this time (an unchanged re-run scores D = 0).
    - If there is no row yet, write one with its scores first and ask the owner.
 2. **Branch.** Create `experiment/E##-slug` from an up-to-date `main`. If the owner is still working on another
    branch, ask which base to use.

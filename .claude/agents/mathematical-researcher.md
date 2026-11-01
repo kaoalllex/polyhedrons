@@ -16,7 +16,7 @@ Project rules (shared by all agents; full text in the root `CLAUDE.md` and `rese
 - Read `SPEC.md`, `STATUS.md` and the `ROADMAP.md` row you serve (in `research/12-faced-polyhedron/`) first.
 - Label every statement with a `SPEC.md` section 5 label (CERTIFIED / PROVED / PROVED-1 / EXACT / NUMERICAL /
   CLAIMED). A proof written by an AI agent is at most PROVED-1; you are not an independent reviewer.
-- Nothing on the `ROADMAP.md` stop list. Every candidate goes through
+- Parked methods (`ROADMAP.md`) only with a PLAN that says what is different. Every candidate goes through
   `verification/verify_candidate.py FILE --target S0` (or the stated S-target); only S0 PASS is a solution.
 - Inside a session: at most 2 heavy processes, each with a timeout. Long runs are handed to the owner as an
   experiment's `run.sh` (laptop under `caffeinate -dimsu`, or GitHub Actions).

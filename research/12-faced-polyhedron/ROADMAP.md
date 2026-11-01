@@ -46,6 +46,7 @@ the starting point.
 | E07 | open | DR8 | Encoding comparison with `pirozhkov-andrei/polyhedraproof` on shared instances | 1 2 1 1 2 | 1 day | conflicts / time per instance measured for both encoders |
 | E08 | open | FD6 | Write-up: no symmetric immersion (second encoder, soundness proofs, archived certificates) | 2 1 1 1 2 | 2-3 sessions | arXiv-ready draft reviewed by `adversarial-verifier` (a filter) and one human |
 | E12 | open | FD5, FD6, E01 | External human review: send FD5/FD6 (CNF hashes, certificates) and the E01 dossier to Pirozhkov, Moki & Julio or Bokowski | 2 2 1 1 2 | owner's e-mail, no compute | a reply, or 4 weeks without one -> next reviewer |
+| E13 | open | DR12, DR15 | Side line: maximal face-neighbourly cubic polyhedra per genus. All pairs adjacent and E = 3(F + 2g - 2) >= C(F, 2) give the largest F per genus: (F, g) = (8, 2), (9, 3), (10, 4), (11, 5), with 2, 3, 3, 2 extra edges beyond one per pair (doubled pairs); (12, 6) is Szilassi-12 itself. Which of them exist? Start with a literature check and (8, 2) | 1 2 2 2 2 | literature 1 session; then 1 night per case | stop at the first case that is UNSAT for every map tried with a written power statement, or after (9, 3) |
 
 Below the gate (T + D < 3; run only after re-scoring with a written reason):
 
@@ -99,11 +100,22 @@ identity. Controls: Szilassi normals (n = 7) SAT; the 94 genus-3 realizations' n
 random normals mostly UNSAT. Outcome: UNSAT for a type = a short human-checkable exclusion (unlikely, decisive);
 SAT = model counts and a split basis for E11.
 
-## Stop list (do not spend compute on these again for S0)
+## Parked methods (low measured yield, not refuted)
 
-Genus ladder / arch / glad / n5 / kdrift / normals-first *climbing*; pdefect / sdefect; black-box engines on the
-pair energy; near-miss repair; Gauss clauses as a SAT speed-up; asymmetric immersion instances without cubing;
-more seeds or weights on an unchanged objective. Reopening needs a written reason in `STATUS.md`.
+Tried, with little yield at the budget stated in `STATUS.md` §3 (LOW-YIELD rows). None is refuted, so none is
+forbidden. A new run needs a `PLAN.md` that says what is different this time (objective, ansatz, power, scale)
+and which outcome would change the estimate. An unchanged re-run at a similar budget is expected to repeat the
+result, so it scores D = 0 and does not pass the gate.
+
+| Method | Measured yield | What would make a new run informative |
+|---|---|---|
+| Genus ladder / arch / glad climbing (DR1) | genus 3 for 4 types, genus 4 never, nights 3-5 | a handle choice that passes the Gauss gate (k_tau = -1), or a new type |
+| Normals-first / k-drift climbing (DR2) | 12,202 UNSAT, 0 SAT, ~150 core-h; low power | E02 shows the control is SAT often enough |
+| Closure-first pdefect / sdefect (DR4) | zero defects only with >= 11 non-simple faces | face simplicity inside the model |
+| Black-box engines on the pair energy (DR6) | n = 7 solved; plateau at n = 8 and genus 4 | a different objective (e.g. with Gauss-class terms), not more seeds |
+| Near-miss repair (DR5) | all 1005 near-misses in the wrong Gauss class (FD11) | a near-miss in the right class |
+| Gauss clauses as a SAT speed-up (DR16) | no speed-up observed | - |
+| Asymmetric immersion instances without cubing (DR8) | 8/8 timeouts at 2.2 h | cube-and-conquer (E11) |
 
 ## Decision point
 
