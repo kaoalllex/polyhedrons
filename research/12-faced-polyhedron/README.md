@@ -10,6 +10,8 @@ combinatorially completable to a target map. Genus 4 was never reached. Details 
 
 ## Read in this order
 
+New here? Start with `GLOSSARY.md` (terms in plain words; Russian: `GLOSSARY.ru.md`).
+
 1. `STATUS.md` - foundations, exact witnesses, every direction with its verdict, what may be claimed.
 2. `ROADMAP.md` - the scored, pre-registered experiment queue and the parked methods.
 3. `PROTOCOL.md` - how experiments are run, verified, recorded; branches; laptop and GitHub Actions.
@@ -22,6 +24,7 @@ combinatorially completable to a target map. Genus 4 was never reached. Details 
 | Path | Content |
 |---|---|
 | `SPEC.md`, `STATUS.md`, `ROADMAP.md`, `PROTOCOL.md` | the four living control documents |
+| `GLOSSARY.md`, `GLOSSARY.ru.md` | the key terms in plain words (English, Russian) |
 | `results.md`, `experiment-log.md` | evidence up to 2026-11-01 (frozen); chronology (append-only) |
 | `CONTINUE_PROMPT.md` | hand-over prompt for a new AI session |
 | `theory/` | mathematical model, theory notes (lemmas, Gauss degree), proof roadmap |
