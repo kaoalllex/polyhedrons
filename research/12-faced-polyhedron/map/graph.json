@@ -2808,6 +2808,20 @@
    "preregistered": ""
   },
   {
+   "id": "I-261102-01",
+   "kind": "idea",
+   "title": "Adaptive time per seed on the target (successive halving / restarts), with the progress signal calibrated on the benchmark ladder",
+   "status": "open",
+   "date": "2026-11-02",
+   "path": "ideas/I-261102-01-adaptive-seed-budget.md",
+   "direction": [
+    "DR8",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -3821,6 +3835,11 @@
    "kind": "tests"
   },
   {
+   "from": "E-261101-25",
+   "to": "I-261102-01",
+   "kind": "origin"
+  },
+  {
    "from": "E-261101-26",
    "to": "H-261101-10",
    "kind": "tests"
@@ -3829,6 +3848,11 @@
    "from": "E-261101-26",
    "to": "H-261101-17",
    "kind": "tests"
+  },
+  {
+   "from": "E-261101-26",
+   "to": "I-261102-01",
+   "kind": "origin"
   },
   {
    "from": "E-261102-01",
@@ -4983,6 +5007,11 @@
   {
    "from": "owner",
    "to": "I-261101-22",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261102-01",
    "kind": "origin"
   }
  ]
