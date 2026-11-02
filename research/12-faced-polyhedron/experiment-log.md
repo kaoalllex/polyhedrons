@@ -773,3 +773,13 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 
 * Resumed with `launch.sh start ... 8`, all 80 units, 6.6 core-h in total: R1 20/20, R4 0/10 and 0/10, R5 0/10, R6k
   5/10, 1/10, 1/10; verdict unchanged (frontier R4 / R5). `CONCLUSION.md` Amendment.
+
+## 2026-11-02: E-261102-03 and E-261102-04 pre-registered (night 7)
+
+* E-261102-03 (`PLAN.md`, commit `c2b1ab6`): chirotope-first with the alternation cap lifted. Pilot 1 (`--alt 100000`)
+  realized k = 7, 8, 9 in 34 min, then ended on the 60 s SAT timeout at k = 10 (gate not passed); pilot 2
+  (`--timeout 300`) replayed it exactly and ended by TIME-CAP (gate passed). Night: 20 units x 120 min, 40-min cell
+  by truncation.
+* E-261102-04 (`PLAN.md`, commit `f90a1d9`): `ladder.py run --engine genus-ladder`; pilot R1 3/3, R5 seed 3 and R4
+  seed 0 per map TIME-CAP at 40 min (best energy 1-2), gate passed. Night: grid R1 5, R5 6 / 40, R4 40 / 120 min.
+* Both launched by the owner on night 7 (10 + 4 shards). Nothing concluded yet.
