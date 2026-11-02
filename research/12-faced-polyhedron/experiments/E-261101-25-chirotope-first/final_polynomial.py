@@ -105,6 +105,17 @@ def final_polynomial(chi, n_elems=13, tol=1e-9, time_limit=120.0):
             comb[k] = comb.get(k, 0) - yi
     out['exact'] = all(v == 0 for v in comb.values()) and sum(yr) > 0
     out['status'] = 'NONREALIZABLE-EXACT' if out['exact'] else 'NONREALIZABLE-NUMERICAL'
+    if out['exact']:
+        # what an independent checker needs: per used inequality the relation's three bracket pairs (dominant first),
+        # which of the other two it compares with, the rational multiplier; and the model's sign on every bracket used
+        out['certificate'] = {'rows': [], 'signs': {}}
+        for yi, i in zip(yr, sup):
+            if yi > 0:
+                rel = rels[rel_of_row[i]]
+                out['certificate']['rows'].append([[[list(S) for S in pair] for pair in rel], i % 2, str(yi)])
+                for pair in rel:
+                    for S in pair:
+                        out['certificate']['signs'][','.join(map(str, S))] = chi[S]
     return out
 
 

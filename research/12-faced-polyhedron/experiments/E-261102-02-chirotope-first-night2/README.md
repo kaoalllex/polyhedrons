@@ -7,11 +7,12 @@ direction: [DR8, DR9, DR17]
 origin: [E-261101-25, I-261101-21, I-261101-22]
 tests: [H-261101-17, H-261101-12, H-261101-01]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned. Scores T D F G R: 2 2 2 2 2 | budget: one laptop night, 10 shards, after the engine is scored on the
-> benchmark ladder E-261101-26 (PROTOCOL 8a). Before any compute: `PLAN.md` (skill `experiment-start`). What is
+> Pre-registered 2026-11-02 (`PLAN.md`, `run.sh` with 10 shards); launch: one laptop night. Scores T D F G R:
+> 2 2 2 2 2. Runs before the benchmark ladder E-261101-26 at the owner's request (PROTOCOL 8a gate; consequences in
+> `PLAN.md`). What is
 > different from night run 1 (`../E-261101-25-chirotope-first/CONCLUSION.md`): the final-polynomial LP has a time
 > limit, `--rounds 40` instead of 12, the per-seed cap also bounds each step, and all 10 seed slices run.
 

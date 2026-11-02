@@ -53,8 +53,11 @@ def run_one(tid, k, timeout, out_dir, log, realize_restarts=6):
     if rc == 20:
         rec['status'] = 'UNSAT'
         t1 = time.time()
-        d = subprocess.run([DRAT_TRIM, cnf, proof], capture_output=True, text=True, timeout=max(600, 4 * timeout))
-        rec['drat_trim'] = 'VERIFIED' if 's VERIFIED' in d.stdout else 'NOT-VERIFIED'
+        try:
+            d = subprocess.run([DRAT_TRIM, cnf, proof], capture_output=True, text=True, timeout=max(600, 4 * timeout))
+            rec['drat_trim'] = 'VERIFIED' if 's VERIFIED' in d.stdout else 'NOT-VERIFIED'
+        except subprocess.TimeoutExpired:
+            rec['drat_trim'] = 'CHECK-TIMEOUT'          # CNF and proof stay on disk for a longer check
         rec['drat_trim_seconds'] = round(time.time() - t1, 1)
         rec['proof_sha256'] = sha256(proof)
         rec['proof_bytes'] = os.path.getsize(proof)
@@ -83,7 +86,7 @@ def run_one(tid, k, timeout, out_dir, log, realize_restarts=6):
             try:
                 import final_polynomial as FP
                 fp = FP.final_polynomial(chi, 13)
-                rec['final_polynomial'] = {kk: fp[kk] for kk in fp if kk in ('status', 't_star', 'exact', 'n_relations')}
+                rec['final_polynomial'] = {kk: fp[kk] for kk in fp if kk in ('status', 't_star', 'exact', 'n_relations', 'certificate')}
                 if fp.get('status', '').startswith('NONREALIZABLE'):
                     rec['final_polynomial']['brackets'] = len(fp['brackets'])
             except Exception as e:
@@ -125,6 +128,7 @@ def main():
             if (tid, k) in done:
                 log('type %d k %d: already recorded, skipped' % (tid, k))
                 continue
+            log('type %d k %d: start (solver timeout %ds)' % (tid, k, to))
             rec = run_one(tid, k, to, args.out, log)
             with open(outp, 'a') as f:
                 f.write(json.dumps(rec) + '\n')

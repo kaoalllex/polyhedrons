@@ -261,14 +261,17 @@ def model_chi(C, model_pos, n):
     return {S: (1 if C.qvar[S] in pos else -1) for S in itertools.combinations(range(n + 1), 4)}
 
 
-def core_guided(C, clauses, assumptions, n, timeout, max_rounds, log, readd=0, readd_timeout=20):
+def core_guided(C, clauses, assumptions, n, timeout, max_rounds, log, readd=0, readd_timeout=20, deadline=None):
     """Release the assumptions named by each UNSAT core until SAT, TIMEOUT or no assumptions left. After SAT, try to
     re-add up to `readd` released literals one at a time (keeping those that stay SAT), so the model changes as few
-    signs of the seed as possible."""
+    signs of the seed as possible. Past `deadline` (time.monotonic()) no new round starts (TIME-CAP) and re-add stops."""
     A = list(assumptions)
     released = []
     history = []
+    late = lambda: deadline is not None and time.monotonic() > deadline
     for rnd in range(max_rounds):
+        if late():
+            return 'TIME-CAP', None, released, history
         r = solve(clauses, A, C.nv if hasattr(C, 'nv') else 0, timeout)
         history.append({'round': rnd, 'assumptions': len(A), 'status': r['status'], 'seconds': round(r.get('seconds', 0), 1),
                         'core': len(r.get('core', []))})
@@ -282,7 +285,7 @@ def core_guided(C, clauses, assumptions, n, timeout, max_rounds, log, readd=0, r
                 kept = calls = 0
                 R = list(released)
                 sel = C.nv + 1
-                while R and calls < readd:
+                while R and calls < readd and not late():
                     r2 = solve(clauses + [[-sel] + R], A + [sel], C.nv + 1, readd_timeout)
                     calls += 1
                     if r2['status'] != 'SAT':
@@ -459,7 +462,8 @@ def offsets_lp(N, chi, n, margin=1e-3):
     nq = len(quads)
     c_obj = np.zeros(n + 1); c_obj[-1] = -1.0
     A_ub = np.hstack([-A, np.ones((nq, 1))])
-    res = linprog(c_obj, A_ub=A_ub, b_ub=np.zeros(nq), bounds=[(-1, 1)] * n + [(None, None)], method='highs')
+    res = linprog(c_obj, A_ub=A_ub, b_ub=np.zeros(nq), bounds=[(-1, 1)] * n + [(None, None)], method='highs',
+                  options={'time_limit': 60.0})
     if res.status != 0:
         return None, -np.inf
     return res.x[:n], float(res.x[n])
@@ -520,6 +524,7 @@ def one_run(T, seed_planes, args, log, tag, faces_order=None):
     n = T.n
     rec = {'tag': tag, 'n': n, 'steps': []}
     t_seed = time.monotonic()                      # monotonic: does not advance while the laptop sleeps
+    deadline = t_seed + 60 * args.seed_minutes if args.seed_minutes else None
     progress = getattr(args, 'progress', None)
     def note(step):
         if progress:
@@ -554,7 +559,7 @@ def one_run(T, seed_planes, args, log, tag, faces_order=None):
                 log('  maxsat: %s in %.1fs, flipped signs %s' % (status, r.get('seconds', 0), r.get('cost')))
             else:
                 status, chi_model, released, hist = core_guided(C, C.clauses, assumptions, n, args.timeout, args.rounds, log,
-                                                                readd=args.readd, readd_timeout=min(20.0, args.timeout))
+                                                                readd=args.readd, readd_timeout=min(20.0, args.timeout), deadline=deadline)
             step = {'k': k, 'faces': faces, 'iteration': it, 'vars': C.nv, 'clauses': len(C.clauses), 'assumptions': len(assumptions),
                     'status': status, 'released': len(released), 'rounds': len(hist), 'sat_seconds': round(time.time() - t0, 1), 'history': hist}
             if status != 'SAT':
@@ -582,10 +587,11 @@ def one_run(T, seed_planes, args, log, tag, faces_order=None):
             if args.fp:
                 t1 = time.time()
                 try:
-                    fp = FPOLY.final_polynomial(chi_model, n + 1)
+                    fp = FPOLY.final_polynomial(chi_model, n + 1, time_limit=120.0 if deadline is None else
+                                                max(1.0, min(120.0, deadline - time.monotonic())))
                 except ValueError as e:
                     fp = {'status': 'GP-VIOLATION', 'error': str(e)}
-                step['final_polynomial'] = {k: fp[k] for k in fp if k in ('status', 't_star', 'exact', 'n_relations')}
+                step['final_polynomial'] = {k: fp[k] for k in fp if k in ('status', 't_star', 'exact', 'n_relations', 'certificate')}
                 if fp.get('status', '').startswith('NONREALIZABLE'):
                     step['final_polynomial']['support_relations'] = len(fp['support']); step['final_polynomial']['brackets'] = len(fp['brackets'])
                     if fp['exact']:

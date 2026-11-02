@@ -64,7 +64,7 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
 - **Manifest survives restarts.** `run.sh` writes the manifest header only if it is absent and appends a
   `restarted_utc` line otherwise; the `finish` trap appends `finished_utc`, `exit_status`, `wall_seconds` and
   `core_hours` every time, so the core-hours of a restarted shard are the sum of its lines.
-- **One command for the whole night** (`overnight/run_night6.sh`): starts N detached processes (`nohup ... &`, each
+- **One command for the whole night** (`overnight/launch.sh start EXPERIMENT_DIR N`): starts N detached processes (`nohup ... &`, each
   under its own `caffeinate -dimsu` and `nice -n 10`), one per performance core (M4 Pro: 10), with `status` and
   `stop` modes. Detached means Ctrl+C or closing the terminal does not kill them; only `stop` does.
 - **Pilot through the same code path** as the night: a positive control (expected SAT / found) and a negative
@@ -84,6 +84,10 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
   largest unit budget.
 - **Append logs, never truncate.** The launcher used `> night.log`; a second start in the morning erased the night's
   logs. Use `>>`.
+- **A launcher does nothing on a command it does not know.** `run_night6.sh` started a run on any argument other than
+  `status` / `stop`, so a typo restarted the night. `overnight/launch.sh` prints its usage on anything else,
+  refuses a second `start` while a shard is alive (pid file), and `status` flags a running shard whose logs have
+  been silent for `QUIET_MIN` minutes; runners log a line when each unit starts, so silence means a hung unit.
 
 ## Python job checklist
 
