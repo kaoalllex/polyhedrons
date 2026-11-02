@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Runner for one shard of the benchmark ladder: bash run.sh SHARD   (10 shards; shard s takes every 10th (task, seed) unit)
-# Laptop: bash overnight/launch.sh start experiments/E-261101-26-engine-benchmark-ladder 10   (caffeinate -dimsu per shard)
+# Runner for one shard of the benchmark ladder: SHARDS=N bash run.sh SHARD   (shard s takes every N-th (task, seed) unit)
+# Laptop: bash overnight/launch.sh start experiments/E-261101-26-engine-benchmark-ladder CORES   (sets SHARDS=CORES)
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(cd "$HERE/../.." && pwd)"
@@ -14,7 +14,7 @@ OUT="$HERE/results/$SHARD"
 mkdir -p "$OUT"
 T0=$(date +%s)
 if [ -f "$OUT/manifest.txt" ]; then
-  echo "restarted_utc: $(date -u +%FT%TZ) commit: $(git -C "$ROOT" rev-parse --short HEAD)" >> "$OUT/manifest.txt"   # resume: recorded units are skipped
+  echo "restarted_utc: $(date -u +%FT%TZ) commit: $(git -C "$ROOT" rev-parse --short HEAD) shards: $SHARDS" >> "$OUT/manifest.txt"   # resume: recorded units are skipped
 else
   {
     echo "experiment: $(basename "$HERE")"; echo "commit: $(git -C "$ROOT" rev-parse HEAD)"

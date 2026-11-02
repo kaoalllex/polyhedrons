@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 # Laptop launcher for one experiment: N detached shards, each `bash <experiment>/run.sh <shard>` under
 # caffeinate -dimsu (no sleep while it runs), log appended to <experiment>/results/<shard>/night.log.
-#   bash overnight/launch.sh start  EXPERIMENT_DIR SHARDS   refuses if this experiment is already running
+#   bash overnight/launch.sh start  EXPERIMENT_DIR CORES    CORES processes, one core each; refused if already running
+#     run.sh gets SHARDS=CORES and splits its units into that many shards, so any CORES covers every unit; to change
+#     the load (fewer cores by day, all at night): stop, then start with another CORES (recorded units are skipped)
 #   bash overnight/launch.sh status EXPERIMENT_DIR          per shard: state, records, minutes since the last output
 #   bash overnight/launch.sh stop   EXPERIMENT_DIR          kills this experiment's processes (run.sh, python, solvers)
 # Any other command prints this usage and does nothing. A restart (start after stop) resumes: runners skip the
-# units already in results.jsonl. QUIET_MIN (default 60): a running shard silent for longer is flagged as hung.
+# units recorded in any shard's results.jsonl. QUIET_MIN (default 60): a running shard silent for longer is flagged as hung.
 set -euo pipefail
-usage() { sed -n '2,8p' "$0" | sed 's/^# \{0,1\}//' >&2; exit 2; }
+usage() { sed -n '2,11p' "$0" | sed 's/^# \{0,1\}//' >&2; exit 2; }
 [ $# -ge 2 ] || usage
 CMD=$1
 [ -f "$2/run.sh" ] || { echo "no run.sh in '$2'" >&2; usage; }
@@ -29,7 +31,8 @@ running_count() {
 case "$CMD" in
 start)
   N=${3:-}
-  [[ "$N" =~ ^[1-9][0-9]*$ ]] || { echo "start needs the number of shards" >&2; usage; }
+  [[ "$N" =~ ^[1-9][0-9]*$ ]] || { echo "start needs the number of cores" >&2; usage; }
+  grep -q 'SHARDS' "$EXP/run.sh" || { echo "$NAME/run.sh has a fixed shard count (it does not read SHARDS): make it read SHARDS first" >&2; exit 1; }
   if [ "$(running_count)" -gt 0 ]; then
     echo "$NAME is already running ($(running_count) shards); see: bash $0 status $2" >&2; exit 1
   fi
@@ -37,10 +40,10 @@ start)
   for s in $(seq 0 $((N - 1))); do
     mkdir -p "$EXP/results/$s"
     echo "=== $(date '+%F %T') launch.sh start, shard $s" >> "$EXP/results/$s/night.log"
-    nohup caffeinate -dimsu bash "$EXP/run.sh" "$s" >> "$EXP/results/$s/night.log" 2>&1 &
+    SHARDS=$N nohup caffeinate -dimsu bash "$EXP/run.sh" "$s" >> "$EXP/results/$s/night.log" 2>&1 &
     echo "$s $!" >> "$PIDS"
   done
-  echo "started $N shards of $NAME"
+  echo "started $N shards of $NAME (SHARDS=$N)"
   echo "status: bash $0 status $2      stop: bash $0 stop $2"
   ;;
 status)

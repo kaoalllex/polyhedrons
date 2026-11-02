@@ -54,3 +54,6 @@ Pre-registration (2026-11-02, before the run). Amendments at the end.
   launched only after E-261101-26 has scored the chirotope-first engine on the rungs it can address (PROTOCOL 8a);
   the "PROTOCOL 8a gate" paragraph above no longer applies. If the ladder score changes the engine or its settings,
   that change is recorded here as an amendment before the launch.
+* 2026-11-02 (infrastructure, before any launch; no change to the engine or its settings): `run.sh` splits the 149
+  seeds by `SHARDS` (set by `overnight/launch.sh start DIR CORES`, default 10) and skips a seed recorded by any shard,
+  so the owner can run fewer cores by day and all at night without losing or repeating seeds.

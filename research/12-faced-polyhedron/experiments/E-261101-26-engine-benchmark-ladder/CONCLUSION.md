@@ -83,8 +83,9 @@
   so the night will be short unless `--alt` is raised (a change that needs an amendment); (b) at k = 7 the engine now has a realizer positive
   control, on one map. 0 realized out of 149 target seeds would therefore say more than night run 1 did, but it is
   not established that the rate on one map carries over to other maps.
-* **Next step**: optionally the 16 missing units (`launch.sh start ... 10` resumes: shards 0-7 skip their recorded
-  units, shards 8, 9 run; ~1 h wall), appended here as an amendment. Then the next engine on the same `tasks.json`.
+* **Next step**: optionally the 16 missing units (`launch.sh start DIR CORES` with any CORES since 2026-11-02: the
+  launcher sets `SHARDS`, and `ladder.py run` skips units recorded in any shard directory), appended here as an
+  amendment. Then the next engine on the same `tasks.json`.
   A chirotope-first variant with `--alt` filling the budget would test whether R4 is a cap or a wall. Then
   E-261102-02.
 * **Rows updated**: `STATUS.md` (new table "engine scores", DR8, "As of"), `ROADMAP.md` E-261101-26 (open, first scope

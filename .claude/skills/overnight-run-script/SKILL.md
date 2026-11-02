@@ -64,9 +64,11 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
 - **Manifest survives restarts.** `run.sh` writes the manifest header only if it is absent and appends a
   `restarted_utc` line otherwise; the `finish` trap appends `finished_utc`, `exit_status`, `wall_seconds` and
   `core_hours` every time, so the core-hours of a restarted shard are the sum of its lines.
-- **One command for the whole night** (`overnight/launch.sh start EXPERIMENT_DIR N`): starts N detached processes (`nohup ... &`, each
-  under its own `caffeinate -dimsu` and `nice -n 10`), one per performance core (M4 Pro: 10), with `status` and
-  `stop` modes. Detached means Ctrl+C or closing the terminal does not kill them; only `stop` does.
+- **One command for the whole night** (`overnight/launch.sh start EXPERIMENT_DIR CORES`): starts CORES detached processes (`nohup ... &`, each
+  under its own `caffeinate -dimsu` and `nice -n 10`), one core each (M4 Pro: 10 performance cores; fewer by day), with `status` and
+  `stop` modes. `run.sh` must split its units by `SHARDS` (the launcher sets `SHARDS=CORES`; it refuses a `run.sh` that
+  does not read it), and the runner must skip units recorded in any shard's `results.jsonl`, so stop + start with
+  another CORES re-splits the remaining units without repeating any. Never hard-code the shard count in `run.sh`. Detached means Ctrl+C or closing the terminal does not kill them; only `stop` does.
 - **Pilot through the same code path** as the night: a positive control (expected SAT / found) and a negative
   control (expected UNSAT with a VERIFIED proof; rebuild a certified instance and compare its CNF SHA-256 with the
   record) before the first full run.

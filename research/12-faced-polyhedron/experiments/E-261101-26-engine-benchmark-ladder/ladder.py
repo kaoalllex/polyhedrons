@@ -15,6 +15,7 @@ a k-face task, integer planes in general position whose normalised chirotope sat
 """
 import argparse
 import collections
+import glob
 import json
 import multiprocessing as mp
 import os
@@ -192,7 +193,9 @@ def run(a):
     units = [(t, i) for t in tasks for i in range(len(t['seeds']))][a.shard::a.shards]
     os.makedirs(a.out, exist_ok=True)
     path = os.path.join(a.out, 'results.jsonl')
-    done = {(r['task'], r['seed']) for r in map(json.loads, open(path))} if os.path.exists(path) else set()
+    # every sibling shard directory counts, so a restart with another shard count does not repeat a unit
+    done = {(r['task'], r['seed']) for f in glob.glob(os.path.join(os.path.dirname(os.path.abspath(a.out)), '*', 'results.jsonl'))
+            for r in map(json.loads, open(f))}
     ctx = mp.get_context('fork')
     for t, i in units:
         if (t['id'], i) in done:
