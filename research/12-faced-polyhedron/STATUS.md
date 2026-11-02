@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-02** (after night 6 and E-261102-01). Definitions, counters and evidence labels: `SPEC.md`. Evidence
+As of **2026-11-02** (after night 6, E-261102-01 and the first engine score, E-261101-26). Definitions, counters and evidence labels: `SPEC.md`. Evidence
 details: `results.md`; chronology: `experiment-log.md`; what to do next: `ROADMAP.md`. Update this file in the
 same commit as any result that changes a row. This file owns the verdicts and numbers; other files link here.
 
@@ -61,7 +61,7 @@ No direction is REFUTED today.
 | DR5 | Near-miss repair (relocation, ILS, polar duals, dual-mesh planes) | wrong topological class (FD11) | session 1-2 | LOW-YIELD: every known near-miss fails the Gauss class (FD11, EXACT), so none is close in that invariant; not a proof that repair cannot work |
 | DR6 | Black-box engines on the unchanged energy (SA, CMA-ES, GA, ILS, NGOpt, DE, LNS, floors) | all solve n = 7; none breaks n = 8 (1-2) or genus 4 | sessions 2-5 | LOW-YIELD@sessions 2-5: solve n = 7, plateau at n = 8 and genus 4; a new objective would make a new run informative, more seeds would not |
 | DR7 | Solid-first + exact CP-SAT inner step | genus 3 from random planes, always dead-end maps | night 2-3 | OPEN-LOW as a generator of new maps / benchmarks |
-| DR8 | Exact asymmetric decision per type (OM-SAT, cube-and-conquer, certificates) | never run to completion; `immersion` 8/8 timeouts at 2.2 h; third-party pilot 2 maps in 648.5 core-h (CLAIMED); night 6: k-face sub-instances on the greedy face set SAT for 27 types at k = 8 and 15 at k = 9, every k = 10 a timeout at 20 min, 0 UNSAT, 0 of 42 models realized (E-261101-23); chirotope-first k = 7 models for 6 of 27 seeds, none realized (E-261101-25); both UNDERPOWERED by a final-polynomial LP hang (see their `CONCLUSION.md`); E-261102-01 completed the sweep: k = 8 SAT for all 59 types, k = 9 SAT for 33, TIMEOUT for 25, 0 UNSAT, 0 realized, 3 exact final polynomials not independently checked (LOW-YIELD for exclusion on the greedy face set, `CONCLUSION.md`) | ~18 core-h + 104 (night 6, ~14 productive) + 4.2 | PROMISING, but only after E-261101-06/E-261101-09 show a cost below ~2,000 core-h per type |
+| DR8 | Exact asymmetric decision per type (OM-SAT, cube-and-conquer, certificates) | never run to completion; `immersion` 8/8 timeouts at 2.2 h; third-party pilot 2 maps in 648.5 core-h (CLAIMED); night 6: k-face sub-instances on the greedy face set SAT for 27 types at k = 8 and 15 at k = 9, every k = 10 a timeout at 20 min, 0 UNSAT, 0 of 42 models realized (E-261101-23); chirotope-first k = 7 models for 6 of 27 seeds, none realized (E-261101-25); both UNDERPOWERED by a final-polynomial LP hang (see their `CONCLUSION.md`); E-261102-01 completed the sweep: k = 8 SAT for all 59 types, k = 9 SAT for 33, TIMEOUT for 25, 0 UNSAT, 0 realized, 3 exact final polynomials not independently checked (LOW-YIELD for exclusion on the greedy face set, `CONCLUSION.md`); the chirotope-first engine scored on known answers (section 3b, E-261101-26): its frontier is the full 12-face genus-3 map | ~18 core-h + 104 (night 6, ~14 productive) + 4.2 + 5.3 | PROMISING, but only after E-261101-06/E-261101-09 show a cost below ~2,000 core-h per type |
 | DR9 | Rank-3 (normals-only) SAT per type with degree, covering, saddle, face-winding clauses | proposed (review 2026-10-30 dir. 6), not run | 0 | PROMISING: cheap, outcomes decisive either way |
 | DR10 | Proof mining: UNSAT cores of fixed-normal offset problems (Q1 sphere; r = 0 drift seeds) -> geometric lemmas | Q10 found cores empty of global triples (local + period conditions) | ~1 h | PROMISING |
 | DR11 | Local immersion theory (one reflex corner per vertex, crossing parity, minimal cores of symmetric instances) | REFLEX1, parity theorem PROVED-1 | - | PROMISING (turns computation into lemmas) |
@@ -101,6 +101,19 @@ The competing hypotheses that drive the queue:
   12-face instance in minutes (algorithm v2, E-261101-25).
 Added 2026-11-01 from `reviews/strategy-review-2026-11-01.md` and its follow-up; H-261101-04 is demoted (its rival is
 -09).
+
+## 3b. Engine scores (benchmark ladder, E-261101-26)
+
+Tasks with known answers, exact judge only (`experiments/E-261101-26-engine-benchmark-ladder/`); successes / seeds,
+median time to success, budget per seed. No construction engine runs on the target before it has a row here
+(PROTOCOL 8a).
+
+| Engine (configuration) | R1 Szilassi, random | R4 type-15 g3, random | R4 type-0 g3, random | R5 type-15 g3, from parents | R6k k = 7 / 8 / 9 (type-15 g3) | Core-h | Frontier |
+|---|---|---|---|---|---|---|---|
+| chirotope-first, E-261102-02 settings (`--alt 20`, 2026-11-02) | 16/16, 0.2 s, 5 min | 0/8, 40 min | 0/8, 40 min | 0/8, 40 min | 4/8 (3.2 min), 1/8 (0.6 min), 1/8 (1.3 min), 20 min | 5.3 | R4 / R5; every failure cut by the 20-alternation cap, not by the time (15-39 % of the budget used); 64 of 80 units (seeds 8, 9 not run) |
+
+R2 / R3 (the 8-face objects) are not expressible in the OM-SAT encoder (doubled adjacencies). Other engines: not
+scored yet.
 
 ## 4. What may and may not be claimed
 

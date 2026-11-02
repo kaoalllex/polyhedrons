@@ -1,0 +1,106 @@
+{
+ "engine": "chirotope-first (E-261101-25)",
+ "config": {
+  "alt": 20,
+  "timeout": 60.0,
+  "rounds": 40,
+  "readd": 1000,
+  "realize_restarts": 6,
+  "block": 1,
+  "realizer": "two-stage",
+  "simple": 1,
+  "fp": 1,
+  "assume": "all",
+  "solver": "core"
+ },
+ "judge": "exact (ladder.py)",
+ "tasks": {
+  "R1-szilassi": {
+   "rung": "R1",
+   "seeds": 16,
+   "successes": 16,
+   "budget_minutes": [
+    5
+   ],
+   "median_minutes_to_success": 0.0,
+   "engine_results": {
+    "EMBEDDED": 16
+   }
+  },
+  "R4-type15-genus3": {
+   "rung": "R4",
+   "seeds": 8,
+   "successes": 0,
+   "budget_minutes": [
+    40
+   ],
+   "median_minutes_to_success": null,
+   "engine_results": {
+    "NOT-REALIZED": 8
+   }
+  },
+  "R4-type0-genus3": {
+   "rung": "R4",
+   "seeds": 8,
+   "successes": 0,
+   "budget_minutes": [
+    40
+   ],
+   "median_minutes_to_success": null,
+   "engine_results": {
+    "NOT-REALIZED": 8
+   }
+  },
+  "R5-type15-genus3-from-parent": {
+   "rung": "R5",
+   "seeds": 8,
+   "successes": 0,
+   "budget_minutes": [
+    40
+   ],
+   "median_minutes_to_success": null,
+   "engine_results": {
+    "NOT-REALIZED": 8
+   }
+  },
+  "R6k-type15-genus3-k7": {
+   "rung": "R6k",
+   "seeds": 8,
+   "successes": 4,
+   "budget_minutes": [
+    20
+   ],
+   "median_minutes_to_success": 3.2,
+   "engine_results": {
+    "LADDER-END": 4,
+    "NOT-REALIZED": 4
+   }
+  },
+  "R6k-type15-genus3-k8": {
+   "rung": "R6k",
+   "seeds": 8,
+   "successes": 1,
+   "budget_minutes": [
+    20
+   ],
+   "median_minutes_to_success": 0.62,
+   "engine_results": {
+    "NOT-REALIZED": 7,
+    "LADDER-END": 1
+   }
+  },
+  "R6k-type15-genus3-k9": {
+   "rung": "R6k",
+   "seeds": 8,
+   "successes": 1,
+   "budget_minutes": [
+    20
+   ],
+   "median_minutes_to_success": 1.33,
+   "engine_results": {
+    "NOT-REALIZED": 7,
+    "LADDER-END": 1
+   }
+  }
+ }
+}

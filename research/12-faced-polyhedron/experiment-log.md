@@ -755,3 +755,9 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 
 * 8 shards, 40 min, 4.2 core-h, no hang: k = 8 SAT for the 32 missing types, k = 9 SAT 18 / TIMEOUT 14, 0 UNSAT,
   0 realized; LOW-YIELD for exclusion on the greedy face set. `experiments/E-261102-01-kface-sweep-completion/CONCLUSION.md`.
+
+## 2026-11-02: E-261101-26 first scope concluded (engine benchmark ladder, chirotope-first)
+
+* Daytime, 8 of 10 shards (64 of 80 units), 5.3 core-h, no HARD-CAP: R1 16/16, R4 0/8 and 0/8, R5 0/8, R6k k = 7, 8, 9
+  4/8, 1/8, 1/8; frontier R4 / R5, failures cut by `--alt 20`, not by time.
+  `experiments/E-261101-26-engine-benchmark-ladder/CONCLUSION.md`.

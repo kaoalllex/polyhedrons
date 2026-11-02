@@ -1,0 +1,1995 @@
+=== 2026-11-02 13:03:16 launch.sh start, shard 6
+13:03:17 R1-szilassi seed 6: start (budget 5 min)
+13:03:17 [R1-szilassi-seed6] k=7 faces=all: 1503 vars, 12212 clauses
+13:03:17   round 0: 70 assumptions -> UNSAT in 0.0s, core 19
+13:03:17   round 1: 51 assumptions -> UNSAT in 0.0s, core 14
+13:03:17   round 2: 37 assumptions -> UNSAT in 0.0s, core 23
+13:03:17   round 3: 14 assumptions -> SAT in 0.0s
+13:03:17   re-add (CLD): kept 35 released literals in 2 calls; 49 assumptions, 21 released
+13:03:17   realize2 restart 0: normals loss 3.56e-12, LP margin 0.00648, 0/715 signs wrong, 0.0s
+13:03:17   alternation 0: released 21, wrong signs after realization 0
+13:03:18 RESULT R1-szilassi-seed6: engine EMBEDDED, success True ({'all_pairs_adjacent': True, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}), 0s
+13:03:18 R1-szilassi seed 16: start (budget 5 min)
+13:03:18 [R1-szilassi-seed16] k=7 faces=all: 1503 vars, 12212 clauses
+13:03:18   round 0: 70 assumptions -> UNSAT in 0.0s, core 4
+13:03:18   round 1: 66 assumptions -> UNSAT in 0.0s, core 15
+13:03:18   round 2: 51 assumptions -> UNSAT in 0.0s, core 11
+13:03:18   round 3: 40 assumptions -> UNSAT in 0.0s, core 19
+13:03:18   round 4: 21 assumptions -> UNSAT in 0.0s, core 12
+13:03:18   round 5: 9 assumptions -> SAT in 0.0s
+13:03:18   re-add (CLD): kept 29 released literals in 3 calls; 38 assumptions, 32 released
+13:03:18   realize2 restart 0: normals loss 3.28e-11, LP margin 0.00692, 0/715 signs wrong, 0.0s
+13:03:18   alternation 0: released 32, wrong signs after realization 0
+13:03:18 RESULT R1-szilassi-seed16: engine EMBEDDED, success True ({'all_pairs_adjacent': True, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}), 0s
+13:03:18 R4-type15-genus3 seed 6: start (budget 40 min)
+13:03:18 [R4-type15-genus3-seed6] k=7 faces=[0, 1, 2, 3, 7, 4, 6]: 5754 vars, 431161 clauses
+13:03:18   round 0: 715 assumptions -> UNSAT in 0.0s, core 17
+13:03:18   round 1: 698 assumptions -> UNSAT in 0.0s, core 17
+13:03:18   round 2: 681 assumptions -> UNSAT in 0.0s, core 20
+13:03:19   round 3: 661 assumptions -> UNSAT in 0.0s, core 66
+13:03:19   round 4: 595 assumptions -> UNSAT in 0.0s, core 64
+13:03:19   round 5: 531 assumptions -> UNSAT in 0.0s, core 30
+13:03:19   round 6: 501 assumptions -> UNSAT in 0.0s, core 38
+13:03:19   round 7: 463 assumptions -> UNSAT in 0.0s, core 97
+13:03:19   round 8: 366 assumptions -> UNSAT in 0.0s, core 113
+13:03:19   round 9: 253 assumptions -> UNSAT in 0.0s, core 77
+13:03:20   round 10: 176 assumptions -> SAT in 0.2s
+13:03:23   re-add (CLD): kept 417 released literals in 16 calls; 593 assumptions, 122 released
+13:03:23   realize2 restart 0: normals loss 0.000377, LP margin -0, 241/715 signs wrong, 0.0s
+13:03:23   realize2 restart 1: normals loss 0.000377, LP margin -0, 311/715 signs wrong, 0.0s
+13:03:23   realize2 restart 2: normals loss 0.000377, LP margin -0, 253/715 signs wrong, 0.0s
+13:03:23   realize2 restart 3: normals loss 0.000377, LP margin -0, 204/715 signs wrong, 0.0s
+13:03:23   realize2 restart 4: normals loss 0.000377, LP margin -0, 251/715 signs wrong, 0.0s
+13:03:23   realize2 restart 5: normals loss 0.000377, LP margin -0, 224/715 signs wrong, 0.0s
+13:03:23   realize restart 0: loss 0.185, 22/715 signs wrong, 0.6s
+13:03:24   realize restart 1: loss 0.185, 22/715 signs wrong, 0.5s
+13:03:25   realize restart 2: loss 0.185, 22/715 signs wrong, 0.9s
+13:03:25   alternation 0: released 122, wrong signs after realization 22
+13:03:29   final polynomial: NONREALIZABLE-NUMERICAL (3.8s)
+13:03:29   blocked a model with 122 flipped signs (1 blocks so far)
+13:03:29   round 0: 715 assumptions -> UNSAT in 0.0s, core 9
+13:03:29   round 1: 706 assumptions -> UNSAT in 0.0s, core 27
+13:03:29   round 2: 679 assumptions -> UNSAT in 0.0s, core 37
+13:03:29   round 3: 642 assumptions -> UNSAT in 0.0s, core 68
+13:03:29   round 4: 574 assumptions -> UNSAT in 0.0s, core 93
+13:03:30   round 5: 481 assumptions -> UNSAT in 0.0s, core 60
+13:03:30   round 6: 421 assumptions -> SAT in 0.0s
+13:03:31   re-add (CLD): kept 283 released literals in 10 calls; 704 assumptions, 11 released
+13:03:31   realize2 restart 0: normals loss 3.02e-11, LP margin -0, 333/715 signs wrong, 0.0s
+13:03:31   realize2 restart 1: normals loss 1.4e-12, LP margin -0, 264/715 signs wrong, 0.0s
+13:03:31   realize2 restart 2: normals loss 3.4e-13, LP margin -0, 247/715 signs wrong, 0.0s
+13:03:31   realize2 restart 3: normals loss 1.47e-10, LP margin -0, 152/715 signs wrong, 0.0s
+13:03:32   realize2 restart 4: normals loss 1.59e-10, LP margin -0, 325/715 signs wrong, 0.0s
+13:03:32   realize2 restart 5: normals loss 8.08e-11, LP margin -0, 366/715 signs wrong, 0.0s
+13:03:32   realize restart 0: loss 0.0844, 6/715 signs wrong, 0.3s
+13:03:32   realize restart 1: loss 0.0844, 6/715 signs wrong, 0.3s
+13:03:33   realize restart 2: loss 0.0844, 6/715 signs wrong, 0.6s
+13:03:33   alternation 1: released 11, wrong signs after realization 6
+13:03:42   final polynomial: NONREALIZABLE-NUMERICAL (9.3s)
+13:03:42   blocked a model with 11 flipped signs (2 blocks so far)
+13:03:42   round 0: 715 assumptions -> UNSAT in 0.0s, core 70
+13:03:42   round 1: 645 assumptions -> UNSAT in 0.0s, core 118
+13:03:43   round 2: 527 assumptions -> UNSAT in 0.0s, core 107
+13:03:43   round 3: 420 assumptions -> SAT in 0.0s
+13:03:45   re-add (CLD): kept 288 released literals in 10 calls; 708 assumptions, 7 released
+13:03:45   realize2 restart 0: normals loss 1.77e-10, LP margin -0, 232/715 signs wrong, 0.0s
+13:03:45   realize2 restart 1: normals loss 5.7e-10, LP margin -0, 260/715 signs wrong, 0.0s
+13:03:45   realize2 restart 2: normals loss 4.43e-10, LP margin -0, 347/715 signs wrong, 0.0s
+13:03:45   realize2 restart 3: normals loss 2.94e-11, LP margin -0, 283/715 signs wrong, 0.0s
+13:03:45   realize2 restart 4: normals loss 1.18e-11, LP margin -0, 244/715 signs wrong, 0.0s
+13:03:45   realize2 restart 5: normals loss 3.46e-10, LP margin -0, 249/715 signs wrong, 0.0s
+13:03:45   realize restart 0: loss 0.0509, 5/715 signs wrong, 0.3s
+13:03:45   realize restart 1: loss 0.0509, 5/715 signs wrong, 0.3s
+13:03:46   realize restart 2: loss 0.0509, 5/715 signs wrong, 0.4s
+13:03:46   alternation 2: released 7, wrong signs after realization 5
+13:03:53   final polynomial: FEASIBLE (7.5s)
+13:03:53   blocked a model with 7 flipped signs (3 blocks so far)
+13:03:53   round 0: 715 assumptions -> UNSAT in 0.0s, core 12
+13:03:53   round 1: 703 assumptions -> UNSAT in 0.0s, core 82
+13:03:54   round 2: 621 assumptions -> UNSAT in 0.0s, core 109
+13:03:54   round 3: 512 assumptions -> UNSAT in 0.0s, core 145
+13:03:54   round 4: 367 assumptions -> SAT in 0.0s
+13:03:56   re-add (CLD): kept 329 released literals in 10 calls; 696 assumptions, 19 released
+13:03:56   realize2 restart 0: normals loss 5.98e-12, LP margin -0, 196/715 signs wrong, 0.0s
+13:03:56   realize2 restart 1: normals loss 3.4e-12, LP margin -0, 269/715 signs wrong, 0.0s
+13:03:56   realize2 restart 2: normals loss 1.53e-11, LP margin -0, 258/715 signs wrong, 0.0s
+13:03:56   realize2 restart 3: normals loss 3e-10, LP margin -0, 163/715 signs wrong, 0.0s
+13:03:56   realize2 restart 4: normals loss 4.22e-12, LP margin -0, 321/715 signs wrong, 0.0s
+13:03:56   realize2 restart 5: normals loss 5.58e-11, LP margin -0, 183/715 signs wrong, 0.0s
+13:03:56   realize restart 0: loss 0.0522, 5/715 signs wrong, 0.2s
+13:03:56   realize restart 1: loss 0.0522, 5/715 signs wrong, 0.3s
+13:03:57   realize restart 2: loss 0.0522, 5/715 signs wrong, 0.4s
+13:03:57   alternation 3: released 19, wrong signs after realization 5
+13:04:04   final polynomial: FEASIBLE (7.8s)
+13:04:04   blocked a model with 19 flipped signs (4 blocks so far)
+13:04:05   round 0: 715 assumptions -> UNSAT in 0.0s, core 74
+13:04:05   round 1: 641 assumptions -> UNSAT in 0.0s, core 107
+13:04:05   round 2: 534 assumptions -> UNSAT in 0.0s, core 163
+13:04:05   round 3: 371 assumptions -> UNSAT in 0.0s, core 164
+13:04:05   round 4: 207 assumptions -> SAT in 0.0s
+13:04:07   re-add (CLD): kept 496 released literals in 13 calls; 703 assumptions, 12 released
+13:04:07   realize2 restart 0: normals loss 9.53e-16, LP margin -0, 330/715 signs wrong, 0.0s
+13:04:07   realize2 restart 1: normals loss 5.03e-10, LP margin -0, 210/715 signs wrong, 0.0s
+13:04:07   realize2 restart 2: normals loss 1.96e-09, LP margin -0, 346/715 signs wrong, 0.0s
+13:04:07   realize2 restart 3: normals loss 8.75e-12, LP margin -0, 267/715 signs wrong, 0.0s
+13:04:08   realize2 restart 4: normals loss 5.51e-11, LP margin -0, 319/715 signs wrong, 0.0s
+13:04:08   realize2 restart 5: normals loss 1.55e-11, LP margin -0, 262/715 signs wrong, 0.0s
+13:04:08   realize restart 0: loss 0.0783, 5/715 signs wrong, 0.3s
+13:04:08   realize restart 1: loss 0.0783, 5/715 signs wrong, 0.3s
+13:04:09   realize restart 2: loss 0.0783, 5/715 signs wrong, 0.4s
+13:04:09   alternation 4: released 12, wrong signs after realization 5
+13:04:17   final polynomial: NONREALIZABLE-NUMERICAL (8.8s)
+13:04:17   blocked a model with 12 flipped signs (5 blocks so far)
+13:04:18   round 0: 715 assumptions -> UNSAT in 0.0s, core 68
+13:04:18   round 1: 647 assumptions -> UNSAT in 0.0s, core 83
+13:04:18   round 2: 564 assumptions -> UNSAT in 0.0s, core 143
+13:04:18   round 3: 421 assumptions -> UNSAT in 0.0s, core 164
+13:04:18   round 4: 257 assumptions -> SAT in 0.0s
+13:04:21   re-add (CLD): kept 445 released literals in 17 calls; 702 assumptions, 13 released
+13:04:21   realize2 restart 0: normals loss 5.8e-10, LP margin -0, 289/715 signs wrong, 0.0s
+13:04:21   realize2 restart 1: normals loss 5.78e-14, LP margin -0, 275/715 signs wrong, 0.0s
+13:04:21   realize2 restart 2: normals loss 9.48e-11, LP margin -0, 251/715 signs wrong, 0.0s
+13:04:21   realize2 restart 3: normals loss 4.8e-10, LP margin -0, 237/715 signs wrong, 0.0s
+13:04:21   realize2 restart 4: normals loss 7.9e-11, LP margin -0, 292/715 signs wrong, 0.0s
+13:04:21   realize2 restart 5: normals loss 1.26e-10, LP margin -0, 163/715 signs wrong, 0.0s
+13:04:21   realize restart 0: loss 0.0439, 4/715 signs wrong, 0.2s
+13:04:22   realize restart 1: loss 0.0439, 4/715 signs wrong, 0.3s
+13:04:22   realize restart 2: loss 0.0439, 4/715 signs wrong, 0.5s
+13:04:22   alternation 5: released 13, wrong signs after realization 4
+13:04:32   final polynomial: FEASIBLE (9.8s)
+13:04:32   blocked a model with 13 flipped signs (6 blocks so far)
+13:04:32   round 0: 715 assumptions -> UNSAT in 0.0s, core 15
+13:04:32   round 1: 700 assumptions -> UNSAT in 0.0s, core 77
+13:04:32   round 2: 623 assumptions -> UNSAT in 0.0s, core 137
+13:04:32   round 3: 486 assumptions -> SAT in 0.0s
+13:04:34   re-add (CLD): kept 225 released literals in 10 calls; 711 assumptions, 4 released
+13:04:34   realize2 restart 0: normals loss 1.73e-11, LP margin -0, 315/715 signs wrong, 0.0s
+13:04:34   realize2 restart 1: normals loss 1.47e-10, LP margin -0, 305/715 signs wrong, 0.0s
+13:04:34   realize2 restart 2: normals loss 1.38e-12, LP margin -0, 197/715 signs wrong, 0.0s
+13:04:34   realize2 restart 3: normals loss 1.3e-10, LP margin -0, 238/715 signs wrong, 0.0s
+13:04:34   realize2 restart 4: normals loss 2.37e-10, LP margin -0, 282/715 signs wrong, 0.0s
+13:04:34   realize2 restart 5: normals loss 1.19e-10, LP margin -0, 303/715 signs wrong, 0.0s
+13:04:34   realize restart 0: loss 0.0427, 2/715 signs wrong, 0.2s
+13:04:35   realize restart 1: loss 0.0427, 2/715 signs wrong, 0.2s
+13:04:35   realize restart 2: loss 0.0427, 2/715 signs wrong, 0.4s
+13:04:35   alternation 6: released 4, wrong signs after realization 2
+13:04:42   final polynomial: FEASIBLE (7.1s)
+13:04:42   blocked a model with 4 flipped signs (7 blocks so far)
+13:04:42   round 0: 715 assumptions -> UNSAT in 0.0s, core 84
+13:04:42   round 1: 631 assumptions -> UNSAT in 0.0s, core 164
+13:04:43   round 2: 467 assumptions -> UNSAT in 0.0s, core 174
+13:04:43   round 3: 293 assumptions -> SAT in 0.0s
+13:04:45   re-add (CLD): kept 410 released literals in 15 calls; 703 assumptions, 12 released
+13:04:45   realize2 restart 0: normals loss 6.48e-11, LP margin -0, 306/715 signs wrong, 0.0s
+13:04:45   realize2 restart 1: normals loss 1.44e-12, LP margin -0, 246/715 signs wrong, 0.0s
+13:04:45   realize2 restart 2: normals loss 7.65e-12, LP margin -0, 288/715 signs wrong, 0.0s
+13:04:45   realize2 restart 3: normals loss 7.34e-11, LP margin -0, 199/715 signs wrong, 0.0s
+13:04:45   realize2 restart 4: normals loss 9.55e-10, LP margin -0, 199/715 signs wrong, 0.0s
+13:04:45   realize2 restart 5: normals loss 1.03e-10, LP margin -0, 286/715 signs wrong, 0.0s
+13:04:46   realize restart 0: loss 0.0932, 12/715 signs wrong, 0.3s
+13:04:46   realize restart 1: loss 0.0932, 12/715 signs wrong, 0.3s
+13:04:47   realize restart 2: loss 0.0932, 12/715 signs wrong, 0.6s
+13:04:47   alternation 7: released 12, wrong signs after realization 12
+13:05:41   final polynomial: NONREALIZABLE-NUMERICAL (54.5s)
+13:05:41   blocked a model with 12 flipped signs (8 blocks so far)
+13:05:41   round 0: 715 assumptions -> UNSAT in 0.0s, core 15
+13:05:41   round 1: 700 assumptions -> UNSAT in 0.0s, core 72
+13:05:42   round 2: 628 assumptions -> UNSAT in 0.0s, core 74
+13:05:42   round 3: 554 assumptions -> UNSAT in 0.0s, core 45
+13:05:42   round 4: 509 assumptions -> UNSAT in 0.0s, core 106
+13:05:42   round 5: 403 assumptions -> UNSAT in 0.0s, core 147
+13:05:42   round 6: 256 assumptions -> SAT in 0.0s
+13:05:45   re-add (CLD): kept 442 released literals in 16 calls; 698 assumptions, 17 released
+13:05:45   realize2 restart 0: normals loss 1.39e-13, LP margin -0, 231/715 signs wrong, 0.0s
+13:05:45   realize2 restart 1: normals loss 1.74e-12, LP margin -0, 112/715 signs wrong, 0.0s
+13:05:45   realize2 restart 2: normals loss 2.24e-09, LP margin -0, 325/715 signs wrong, 0.0s
+13:05:45   realize2 restart 3: normals loss 1.21e-09, LP margin -0, 208/715 signs wrong, 0.0s
+13:05:45   realize2 restart 4: normals loss 7.26e-11, LP margin -0, 350/715 signs wrong, 0.0s
+13:05:45   realize2 restart 5: normals loss 2.35e-10, LP margin -0, 263/715 signs wrong, 0.0s
+13:05:45   realize restart 0: loss 0.0759, 7/715 signs wrong, 0.3s
+13:05:45   realize restart 1: loss 0.0759, 7/715 signs wrong, 0.2s
+13:05:46   realize restart 2: loss 0.0759, 7/715 signs wrong, 0.5s
+13:05:46   alternation 8: released 17, wrong signs after realization 7
+13:05:53   final polynomial: FEASIBLE (6.9s)
+13:05:53   blocked a model with 17 flipped signs (9 blocks so far)
+13:05:53   round 0: 715 assumptions -> UNSAT in 0.0s, core 20
+13:05:53   round 1: 695 assumptions -> UNSAT in 0.0s, core 55
+13:05:53   round 2: 640 assumptions -> UNSAT in 0.0s, core 143
+13:05:53   round 3: 497 assumptions -> UNSAT in 0.0s, core 92
+13:05:54   round 4: 405 assumptions -> UNSAT in 0.0s, core 180
+13:05:54   round 5: 225 assumptions -> SAT in 0.0s
+13:05:55   re-add (CLD): kept 479 released literals in 7 calls; 704 assumptions, 11 released
+13:05:55   realize2 restart 0: normals loss 1.33e-09, LP margin -0, 247/715 signs wrong, 0.0s
+13:05:55   realize2 restart 1: normals loss 4.06e-11, LP margin -0, 223/715 signs wrong, 0.0s
+13:05:55   realize2 restart 2: normals loss 2.3e-11, LP margin -0, 220/715 signs wrong, 0.0s
+13:05:55   realize2 restart 3: normals loss 3.05e-10, LP margin -0, 222/715 signs wrong, 0.0s
+13:05:55   realize2 restart 4: normals loss 2.15e-12, LP margin -0, 164/715 signs wrong, 0.0s
+13:05:55   realize2 restart 5: normals loss 8.74e-12, LP margin -0, 233/715 signs wrong, 0.0s
+13:05:55   realize restart 0: loss 0.088, 11/715 signs wrong, 0.3s
+13:05:56   realize restart 1: loss 0.088, 11/715 signs wrong, 0.3s
+13:05:56   realize restart 2: loss 0.088, 11/715 signs wrong, 0.5s
+13:05:56   alternation 9: released 11, wrong signs after realization 11
+13:06:01   final polynomial: NONREALIZABLE-NUMERICAL (5.2s)
+13:06:01   blocked a model with 11 flipped signs (10 blocks so far)
+13:06:02   round 0: 715 assumptions -> UNSAT in 0.0s, core 69
+13:06:02   round 1: 646 assumptions -> UNSAT in 0.0s, core 104
+13:06:02   round 2: 542 assumptions -> UNSAT in 0.0s, core 146
+13:06:02   round 3: 396 assumptions -> UNSAT in 0.0s, core 173
+13:06:02   round 4: 223 assumptions -> SAT in 0.0s
+13:06:04   re-add (CLD): kept 487 released literals in 9 calls; 710 assumptions, 5 released
+13:06:04   realize2 restart 0: normals loss 1.56e-13, LP margin -0, 300/715 signs wrong, 0.0s
+13:06:04   realize2 restart 1: normals loss 1e-10, LP margin -0, 267/715 signs wrong, 0.0s
+13:06:04   realize2 restart 2: normals loss 7.25e-12, LP margin -0, 206/715 signs wrong, 0.0s
+13:06:04   realize2 restart 3: normals loss 4.09e-11, LP margin -0, 263/715 signs wrong, 0.0s
+13:06:04   realize2 restart 4: normals loss 2.23e-11, LP margin -0, 184/715 signs wrong, 0.0s
+13:06:04   realize2 restart 5: normals loss 4.2e-11, LP margin -0, 164/715 signs wrong, 0.0s
+13:06:04   realize restart 0: loss 0.049, 3/715 signs wrong, 0.3s
+13:06:04   realize restart 1: loss 0.049, 3/715 signs wrong, 0.2s
+13:06:05   realize restart 2: loss 0.049, 3/715 signs wrong, 0.5s
+13:06:05   alternation 10: released 5, wrong signs after realization 3
+13:06:12   final polynomial: FEASIBLE (7.4s)
+13:06:12   blocked a model with 5 flipped signs (11 blocks so far)
+13:06:12   round 0: 715 assumptions -> UNSAT in 0.0s, core 61
+13:06:13   round 1: 654 assumptions -> UNSAT in 0.0s, core 138
+13:06:13   round 2: 516 assumptions -> UNSAT in 0.0s, core 88
+13:06:13   round 3: 428 assumptions -> UNSAT in 0.0s, core 180
+13:06:13   round 4: 248 assumptions -> UNSAT in 0.0s, core 141
+13:06:15   round 5: 107 assumptions -> SAT in 1.4s
+13:06:19   re-add (CLD): kept 473 released literals in 17 calls; 580 assumptions, 135 released
+13:06:19   realize2 restart 0: normals loss 1.51e-05, LP margin -0, 204/715 signs wrong, 0.0s
+13:06:19   realize2 restart 1: normals loss 1.51e-05, LP margin -0, 187/715 signs wrong, 0.0s
+13:06:19   realize2 restart 2: normals loss 1.5e-05, LP margin -0, 259/715 signs wrong, 0.0s
+13:06:19   realize2 restart 3: normals loss 1.5e-05, LP margin -0, 207/715 signs wrong, 0.0s
+13:06:19   realize2 restart 4: normals loss 1.53e-05, LP margin -0, 363/715 signs wrong, 0.0s
+13:06:19   realize2 restart 5: normals loss 1.57e-05, LP margin -0, 311/715 signs wrong, 0.0s
+13:06:19   realize restart 0: loss 0.0943, 10/715 signs wrong, 0.3s
+13:06:20   realize restart 1: loss 0.0943, 10/715 signs wrong, 0.3s
+13:06:20   realize restart 2: loss 0.0943, 10/715 signs wrong, 0.5s
+13:06:20   alternation 11: released 135, wrong signs after realization 10
+13:08:20   final polynomial: LP-TIMEOUT (120.2s)
+13:08:20   blocked a model with 135 flipped signs (12 blocks so far)
+13:08:20   round 0: 715 assumptions -> UNSAT in 0.0s, core 11
+13:08:21   round 1: 704 assumptions -> UNSAT in 0.0s, core 97
+13:08:21   round 2: 607 assumptions -> UNSAT in 0.0s, core 104
+13:08:21   round 3: 503 assumptions -> SAT in 0.0s
+13:08:23   re-add (CLD): kept 209 released literals in 12 calls; 712 assumptions, 3 released
+13:08:23   realize2 restart 0: normals loss 0.000883, LP margin -0, 322/715 signs wrong, 0.0s
+13:08:23   realize2 restart 1: normals loss 0.000883, LP margin -0, 329/715 signs wrong, 0.0s
+13:08:23   realize2 restart 2: normals loss 0.000883, LP margin -0, 307/715 signs wrong, 0.0s
+13:08:23   realize2 restart 3: normals loss 0.000883, LP margin -0, 240/715 signs wrong, 0.0s
+13:08:23   realize2 restart 4: normals loss 0.000883, LP margin -0, 209/715 signs wrong, 0.0s
+13:08:23   realize2 restart 5: normals loss 0.000883, LP margin -0, 268/715 signs wrong, 0.0s
+13:08:23   realize restart 0: loss 0.0544, 3/715 signs wrong, 0.2s
+13:08:24   realize restart 1: loss 0.0544, 3/715 signs wrong, 0.3s
+13:08:24   realize restart 2: loss 0.0544, 3/715 signs wrong, 0.5s
+13:08:24   alternation 12: released 3, wrong signs after realization 3
+13:08:31   final polynomial: FEASIBLE (6.9s)
+13:08:31   blocked a model with 3 flipped signs (13 blocks so far)
+13:08:31   round 0: 715 assumptions -> UNSAT in 0.0s, core 11
+13:08:31   round 1: 704 assumptions -> UNSAT in 0.0s, core 108
+13:08:32   round 2: 596 assumptions -> UNSAT in 0.0s, core 119
+13:08:32   round 3: 477 assumptions -> UNSAT in 0.0s, core 135
+13:08:32   round 4: 342 assumptions -> UNSAT in 0.0s, core 135
+13:08:32   round 5: 207 assumptions -> UNSAT in 0.0s, core 113
+13:08:32   round 6: 94 assumptions -> SAT in 0.0s
+13:08:33   re-add (CLD): kept 360 released literals in 5 calls; 454 assumptions, 261 released
+13:08:33   realize2 restart 0: normals loss 0.00539, LP margin -0, 235/715 signs wrong, 0.0s
+13:08:33   realize2 restart 1: normals loss 0.00539, LP margin -0, 196/715 signs wrong, 0.0s
+13:08:33   realize2 restart 2: normals loss 0.00539, LP margin -0, 133/715 signs wrong, 0.0s
+13:08:33   realize2 restart 3: normals loss 0.00539, LP margin -0, 189/715 signs wrong, 0.0s
+13:08:33   realize2 restart 4: normals loss 0.00539, LP margin -0, 290/715 signs wrong, 0.0s
+13:08:33   realize2 restart 5: normals loss 0.00539, LP margin -0, 306/715 signs wrong, 0.0s
+13:08:34   realize restart 0: loss 0.182, 25/715 signs wrong, 0.5s
+13:08:34   realize restart 1: loss 0.182, 25/715 signs wrong, 0.4s
+13:08:35   realize restart 2: loss 0.182, 25/715 signs wrong, 0.6s
+13:08:35   alternation 13: released 261, wrong signs after realization 25
+13:08:39   final polynomial: NONREALIZABLE-NUMERICAL (4.2s)
+13:08:39   blocked a model with 261 flipped signs (14 blocks so far)
+13:08:39   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:08:39   round 1: 714 assumptions -> UNSAT in 0.0s, core 21
+13:08:39   round 2: 693 assumptions -> UNSAT in 0.0s, core 56
+13:08:40   round 3: 637 assumptions -> UNSAT in 0.0s, core 93
+13:08:40   round 4: 544 assumptions -> UNSAT in 0.0s, core 60
+13:08:40   round 5: 484 assumptions -> UNSAT in 0.0s, core 124
+13:08:40   round 6: 360 assumptions -> UNSAT in 0.0s, core 92
+13:08:40   round 7: 268 assumptions -> SAT in 0.0s
+13:08:42   re-add (CLD): kept 437 released literals in 9 calls; 705 assumptions, 10 released
+13:08:42   realize2 restart 0: normals loss 8.83e-10, LP margin -0, 372/715 signs wrong, 0.0s
+13:08:42   realize2 restart 1: normals loss 1.49e-08, LP margin -0, 252/715 signs wrong, 0.0s
+13:08:42   realize2 restart 2: normals loss 2.96e-12, LP margin -0, 203/715 signs wrong, 0.0s
+13:08:42   realize2 restart 3: normals loss 3.63e-11, LP margin -0, 235/715 signs wrong, 0.0s
+13:08:42   realize2 restart 4: normals loss 1.19e-11, LP margin -0, 106/715 signs wrong, 0.0s
+13:08:42   realize2 restart 5: normals loss 2.72e-09, LP margin -0, 224/715 signs wrong, 0.0s
+13:08:42   realize restart 0: loss 0.0662, 4/715 signs wrong, 0.3s
+13:08:42   realize restart 1: loss 0.0662, 4/715 signs wrong, 0.2s
+13:08:43   realize restart 2: loss 0.0662, 4/715 signs wrong, 0.5s
+13:08:43   alternation 14: released 10, wrong signs after realization 4
+13:08:49   final polynomial: FEASIBLE (6.2s)
+13:08:49   blocked a model with 10 flipped signs (15 blocks so far)
+13:08:49   round 0: 715 assumptions -> UNSAT in 0.0s, core 99
+13:08:49   round 1: 616 assumptions -> UNSAT in 0.0s, core 89
+13:08:50   round 2: 527 assumptions -> SAT in 0.0s
+13:08:52   re-add (CLD): kept 185 released literals in 13 calls; 712 assumptions, 3 released
+13:08:52   realize2 restart 0: normals loss 5.39e-12, LP margin -0, 321/715 signs wrong, 0.0s
+13:08:52   realize2 restart 1: normals loss 3.22e-10, LP margin -0, 144/715 signs wrong, 0.0s
+13:08:52   realize2 restart 2: normals loss 1.91e-10, LP margin -0, 234/715 signs wrong, 0.0s
+13:08:52   realize2 restart 3: normals loss 4.03e-11, LP margin -0, 214/715 signs wrong, 0.0s
+13:08:52   realize2 restart 4: normals loss 2.42e-11, LP margin -0, 272/715 signs wrong, 0.0s
+13:08:52   realize2 restart 5: normals loss 2.37e-10, LP margin -0, 229/715 signs wrong, 0.0s
+13:08:52   realize restart 0: loss 0.0595, 2/715 signs wrong, 0.2s
+13:08:52   realize restart 1: loss 0.0595, 2/715 signs wrong, 0.2s
+13:08:53   realize restart 2: loss 0.0595, 2/715 signs wrong, 0.5s
+13:08:53   alternation 15: released 3, wrong signs after realization 2
+13:09:00   final polynomial: FEASIBLE (7.0s)
+13:09:00   blocked a model with 3 flipped signs (16 blocks so far)
+13:09:00   round 0: 715 assumptions -> UNSAT in 0.0s, core 82
+13:09:00   round 1: 633 assumptions -> UNSAT in 0.0s, core 106
+13:09:00   round 2: 527 assumptions -> UNSAT in 0.0s, core 51
+13:09:00   round 3: 476 assumptions -> UNSAT in 0.0s, core 101
+13:09:01   round 4: 375 assumptions -> UNSAT in 0.0s, core 131
+13:09:01   round 5: 244 assumptions -> SAT in 0.0s
+13:09:04   re-add (CLD): kept 462 released literals in 17 calls; 706 assumptions, 9 released
+13:09:04   realize2 restart 0: normals loss 2.87e-10, LP margin -0, 244/715 signs wrong, 0.0s
+13:09:04   realize2 restart 1: normals loss 6.53e-12, LP margin -0, 152/715 signs wrong, 0.0s
+13:09:04   realize2 restart 2: normals loss 1.04e-11, LP margin -0, 270/715 signs wrong, 0.0s
+13:09:04   realize2 restart 3: normals loss 4.37e-11, LP margin -0, 253/715 signs wrong, 0.0s
+13:09:04   realize2 restart 4: normals loss 5.25e-10, LP margin -0, 402/715 signs wrong, 0.0s
+13:09:04   realize2 restart 5: normals loss 1.73e-09, LP margin -0, 227/715 signs wrong, 0.0s
+13:09:04   realize restart 0: loss 0.0637, 5/715 signs wrong, 0.2s
+13:09:04   realize restart 1: loss 0.0637, 5/715 signs wrong, 0.2s
+13:09:05   realize restart 2: loss 0.0637, 5/715 signs wrong, 0.4s
+13:09:05   alternation 16: released 9, wrong signs after realization 5
+13:09:11   final polynomial: FEASIBLE (6.9s)
+13:09:11   blocked a model with 9 flipped signs (17 blocks so far)
+13:09:12   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:09:12   round 1: 714 assumptions -> UNSAT in 0.0s, core 15
+13:09:12   round 2: 699 assumptions -> UNSAT in 0.0s, core 95
+13:09:12   round 3: 604 assumptions -> UNSAT in 0.0s, core 104
+13:09:12   round 4: 500 assumptions -> UNSAT in 0.0s, core 105
+13:09:12   round 5: 395 assumptions -> UNSAT in 0.0s, core 158
+13:09:13   round 6: 237 assumptions -> SAT in 0.0s
+13:09:14   re-add (CLD): kept 462 released literals in 6 calls; 699 assumptions, 16 released
+13:09:14   realize2 restart 0: normals loss 4.62e-16, LP margin -0, 377/715 signs wrong, 0.0s
+13:09:14   realize2 restart 1: normals loss 1.19e-09, LP margin -0, 246/715 signs wrong, 0.0s
+13:09:14   realize2 restart 2: normals loss 7.26e-12, LP margin -0, 304/715 signs wrong, 0.0s
+13:09:14   realize2 restart 3: normals loss 7.82e-11, LP margin -0, 238/715 signs wrong, 0.0s
+13:09:14   realize2 restart 4: normals loss 2.31e-10, LP margin -0, 192/715 signs wrong, 0.0s
+13:09:14   realize2 restart 5: normals loss 1.82e-10, LP margin -0, 288/715 signs wrong, 0.0s
+13:09:14   realize restart 0: loss 0.0966, 11/715 signs wrong, 0.3s
+13:09:14   realize restart 1: loss 0.0966, 11/715 signs wrong, 0.4s
+13:09:15   realize restart 2: loss 0.0966, 11/715 signs wrong, 0.4s
+13:09:15   alternation 17: released 16, wrong signs after realization 11
+13:09:22   final polynomial: FEASIBLE (7.1s)
+13:09:22   blocked a model with 16 flipped signs (18 blocks so far)
+13:09:22   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:09:22   round 1: 714 assumptions -> UNSAT in 0.0s, core 45
+13:09:22   round 2: 669 assumptions -> UNSAT in 0.0s, core 31
+13:09:23   round 3: 638 assumptions -> UNSAT in 0.0s, core 131
+13:09:23   round 4: 507 assumptions -> UNSAT in 0.0s, core 103
+13:09:23   round 5: 404 assumptions -> UNSAT in 0.0s, core 108
+13:09:23   round 6: 296 assumptions -> SAT in 0.0s
+13:09:25   re-add (CLD): kept 410 released literals in 11 calls; 706 assumptions, 9 released
+13:09:25   realize2 restart 0: normals loss 6.83e-10, LP margin -0, 176/715 signs wrong, 0.0s
+13:09:25   realize2 restart 1: normals loss 1.5e-12, LP margin -0, 204/715 signs wrong, 0.0s
+13:09:25   realize2 restart 2: normals loss 4.64e-12, LP margin -0, 207/715 signs wrong, 0.0s
+13:09:25   realize2 restart 3: normals loss 8.26e-11, LP margin -0, 183/715 signs wrong, 0.0s
+13:09:25   realize2 restart 4: normals loss 1.66e-10, LP margin -0, 317/715 signs wrong, 0.0s
+13:09:25   realize2 restart 5: normals loss 2e-10, LP margin -0, 313/715 signs wrong, 0.0s
+13:09:25   realize restart 0: loss 0.0592, 5/715 signs wrong, 0.3s
+13:09:25   realize restart 1: loss 0.0592, 5/715 signs wrong, 0.3s
+13:09:26   realize restart 2: loss 0.0592, 5/715 signs wrong, 0.5s
+13:09:26   alternation 18: released 9, wrong signs after realization 5
+13:09:32   final polynomial: FEASIBLE (6.5s)
+13:09:32   blocked a model with 9 flipped signs (19 blocks so far)
+13:09:32   round 0: 715 assumptions -> UNSAT in 0.0s, core 39
+13:09:33   round 1: 676 assumptions -> UNSAT in 0.0s, core 62
+13:09:33   round 2: 614 assumptions -> UNSAT in 0.0s, core 110
+13:09:33   round 3: 504 assumptions -> UNSAT in 0.0s, core 134
+13:09:33   round 4: 370 assumptions -> UNSAT in 0.0s, core 140
+13:09:33   round 5: 230 assumptions -> SAT in 0.0s
+13:09:35   re-add (CLD): kept 473 released literals in 12 calls; 703 assumptions, 12 released
+13:09:35   realize2 restart 0: normals loss 3.62e-16, LP margin -0, 234/715 signs wrong, 0.0s
+13:09:35   realize2 restart 1: normals loss 3.26e-10, LP margin -0, 145/715 signs wrong, 0.0s
+13:09:35   realize2 restart 2: normals loss 2.15e-10, LP margin -0, 256/715 signs wrong, 0.0s
+13:09:35   realize2 restart 3: normals loss 2.73e-12, LP margin -0, 279/715 signs wrong, 0.0s
+13:09:35   realize2 restart 4: normals loss 9.25e-13, LP margin -0, 249/715 signs wrong, 0.0s
+13:09:35   realize2 restart 5: normals loss 6.01e-11, LP margin -0, 313/715 signs wrong, 0.0s
+13:09:36   realize restart 0: loss 0.0492, 4/715 signs wrong, 0.1s
+13:09:36   realize restart 1: loss 0.0492, 4/715 signs wrong, 0.2s
+13:09:36   realize restart 2: loss 0.0492, 4/715 signs wrong, 0.4s
+13:09:36   alternation 19: released 12, wrong signs after realization 4
+13:09:44   final polynomial: FEASIBLE (8.2s)
+13:09:44   blocked a model with 12 flipped signs (20 blocks so far)
+13:09:44 RESULT R4-type15-genus3-seed6: engine NOT-REALIZED, success False ({'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': [4, 6, 10, 11]}), 387s
+13:09:44 R4-type0-genus3 seed 6: start (budget 40 min)
+13:09:45 [R4-type0-genus3-seed6] k=7 faces=[0, 1, 2, 3, 11, 7, 4]: 5858 vars, 431572 clauses
+13:09:45   round 0: 715 assumptions -> UNSAT in 0.0s, core 10
+13:09:45   round 1: 705 assumptions -> UNSAT in 0.0s, core 43
+13:09:45   round 2: 662 assumptions -> UNSAT in 0.0s, core 71
+13:09:45   round 3: 591 assumptions -> UNSAT in 0.0s, core 74
+13:09:45   round 4: 517 assumptions -> UNSAT in 0.0s, core 107
+13:09:46   round 5: 410 assumptions -> UNSAT in 0.0s, core 78
+13:09:46   round 6: 332 assumptions -> UNSAT in 0.0s, core 107
+13:09:46   round 7: 225 assumptions -> UNSAT in 0.0s, core 58
+13:09:46   round 8: 167 assumptions -> UNSAT in 0.1s, core 97
+13:09:47   round 9: 70 assumptions -> SAT in 0.4s
+13:09:49   re-add (CLD): kept 333 released literals in 12 calls; 403 assumptions, 312 released
+13:09:49   realize2 restart 0: normals loss 0.000678, LP margin -0, 192/715 signs wrong, 0.0s
+13:09:49   realize2 restart 1: normals loss 0.000678, LP margin -0, 261/715 signs wrong, 0.0s
+13:09:49   realize2 restart 2: normals loss 0.000678, LP margin -0, 195/715 signs wrong, 0.0s
+13:09:49   realize2 restart 3: normals loss 0.000678, LP margin -0, 284/715 signs wrong, 0.0s
+13:09:49   realize2 restart 4: normals loss 0.000678, LP margin -0, 206/715 signs wrong, 0.0s
+13:09:49   realize2 restart 5: normals loss 0.000678, LP margin -0, 318/715 signs wrong, 0.0s
+13:09:49   realize restart 0: loss 0.143, 17/715 signs wrong, 0.4s
+13:09:50   realize restart 1: loss 0.143, 17/715 signs wrong, 0.4s
+13:09:50   realize restart 2: loss 0.143, 17/715 signs wrong, 0.5s
+13:09:50   alternation 0: released 312, wrong signs after realization 17
+13:11:51   final polynomial: LP-TIMEOUT (120.2s)
+13:11:51   blocked a model with 312 flipped signs (1 blocks so far)
+13:11:51   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:11:51   round 1: 714 assumptions -> UNSAT in 0.0s, core 3
+13:11:51   round 2: 711 assumptions -> UNSAT in 0.0s, core 12
+13:11:51   round 3: 699 assumptions -> UNSAT in 0.0s, core 35
+13:11:51   round 4: 664 assumptions -> UNSAT in 0.0s, core 66
+13:11:51   round 5: 598 assumptions -> UNSAT in 0.0s, core 24
+13:11:52   round 6: 574 assumptions -> UNSAT in 0.0s, core 50
+13:11:52   round 7: 524 assumptions -> UNSAT in 0.0s, core 136
+13:11:52   round 8: 388 assumptions -> SAT in 0.0s
+13:11:54   re-add (CLD): kept 318 released literals in 13 calls; 706 assumptions, 9 released
+13:11:54   realize2 restart 0: normals loss 8.7e-11, LP margin -0, 146/715 signs wrong, 0.0s
+13:11:54   realize2 restart 1: normals loss 9.66e-11, LP margin -0, 255/715 signs wrong, 0.0s
+13:11:54   realize2 restart 2: normals loss 2.05e-08, LP margin -0, 221/715 signs wrong, 0.0s
+13:11:54   realize2 restart 3: normals loss 1.49e-11, LP margin -0, 178/715 signs wrong, 0.0s
+13:11:54   realize2 restart 4: normals loss 3.28e-11, LP margin -0, 294/715 signs wrong, 0.0s
+13:11:54   realize2 restart 5: normals loss 2.59e-12, LP margin -0, 197/715 signs wrong, 0.0s
+13:11:54   realize restart 0: loss 0.0871, 11/715 signs wrong, 0.3s
+13:11:55   realize restart 1: loss 0.0871, 11/715 signs wrong, 0.3s
+13:11:55   realize restart 2: loss 0.0871, 11/715 signs wrong, 0.4s
+13:11:55   alternation 1: released 9, wrong signs after realization 11
+13:12:01   final polynomial: FEASIBLE (5.9s)
+13:12:01   blocked a model with 9 flipped signs (2 blocks so far)
+13:12:01   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:12:01   round 1: 714 assumptions -> UNSAT in 0.0s, core 14
+13:12:01   round 2: 700 assumptions -> UNSAT in 0.0s, core 36
+13:12:01   round 3: 664 assumptions -> UNSAT in 0.0s, core 47
+13:12:02   round 4: 617 assumptions -> UNSAT in 0.0s, core 131
+13:12:02   round 5: 486 assumptions -> UNSAT in 0.0s, core 123
+13:12:02   round 6: 363 assumptions -> SAT in 0.0s
+13:12:05   re-add (CLD): kept 345 released literals in 18 calls; 708 assumptions, 7 released
+13:12:05   realize2 restart 0: normals loss 4.68e-12, LP margin -0, 317/715 signs wrong, 0.0s
+13:12:05   realize2 restart 1: normals loss 4.4e-14, LP margin -0, 328/715 signs wrong, 0.0s
+13:12:05   realize2 restart 2: normals loss 2.04e-10, LP margin -0, 326/715 signs wrong, 0.0s
+13:12:05   realize2 restart 3: normals loss 3.31e-11, LP margin -0, 347/715 signs wrong, 0.0s
+13:12:05   realize2 restart 4: normals loss 3.74e-12, LP margin -0, 255/715 signs wrong, 0.0s
+13:12:05   realize2 restart 5: normals loss 1.33e-11, LP margin -0, 130/715 signs wrong, 0.0s
+13:12:05   realize restart 0: loss 0.0762, 6/715 signs wrong, 0.3s
+13:12:05   realize restart 1: loss 0.0762, 6/715 signs wrong, 0.3s
+13:12:06   realize restart 2: loss 0.0762, 6/715 signs wrong, 0.4s
+13:12:06   alternation 2: released 7, wrong signs after realization 6
+13:12:12   final polynomial: FEASIBLE (6.6s)
+13:12:12   blocked a model with 7 flipped signs (3 blocks so far)
+13:12:12   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:12:13   round 1: 714 assumptions -> UNSAT in 0.0s, core 62
+13:12:13   round 2: 652 assumptions -> UNSAT in 0.0s, core 109
+13:12:13   round 3: 543 assumptions -> UNSAT in 0.0s, core 154
+13:12:13   round 4: 389 assumptions -> UNSAT in 0.0s, core 156
+13:12:13   round 5: 233 assumptions -> SAT in 0.0s
+13:12:17   re-add (CLD): kept 474 released literals in 23 calls; 707 assumptions, 8 released
+13:12:17   realize2 restart 0: normals loss 1.97e-10, LP margin -0, 266/715 signs wrong, 0.0s
+13:12:17   realize2 restart 1: normals loss 2.53e-10, LP margin -0, 262/715 signs wrong, 0.0s
+13:12:17   realize2 restart 2: normals loss 1.6e-11, LP margin -0, 231/715 signs wrong, 0.0s
+13:12:17   realize2 restart 3: normals loss 4.46e-11, LP margin -0, 170/715 signs wrong, 0.0s
+13:12:17   realize2 restart 4: normals loss 5.82e-09, LP margin -0, 346/715 signs wrong, 0.0s
+13:12:17   realize2 restart 5: normals loss 1.37e-11, LP margin -0, 285/715 signs wrong, 0.0s
+13:12:17   realize restart 0: loss 0.0657, 3/715 signs wrong, 0.2s
+13:12:18   realize restart 1: loss 0.0657, 3/715 signs wrong, 0.2s
+13:12:18   realize restart 2: loss 0.0657, 3/715 signs wrong, 0.3s
+13:12:18   alternation 3: released 8, wrong signs after realization 3
+13:12:24   final polynomial: FEASIBLE (6.4s)
+13:12:24   blocked a model with 8 flipped signs (4 blocks so far)
+13:12:24   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:12:25   round 1: 714 assumptions -> UNSAT in 0.0s, core 24
+13:12:25   round 2: 690 assumptions -> UNSAT in 0.0s, core 96
+13:12:25   round 3: 594 assumptions -> UNSAT in 0.0s, core 150
+13:12:25   round 4: 444 assumptions -> UNSAT in 0.0s, core 160
+13:12:25   round 5: 284 assumptions -> SAT in 0.0s
+13:12:29   re-add (CLD): kept 420 released literals in 22 calls; 704 assumptions, 11 released
+13:12:29   realize2 restart 0: normals loss 2.92e-12, LP margin -0, 320/715 signs wrong, 0.0s
+13:12:29   realize2 restart 1: normals loss 1.06e-10, LP margin -0, 349/715 signs wrong, 0.0s
+13:12:29   realize2 restart 2: normals loss 7.11e-11, LP margin -0, 166/715 signs wrong, 0.0s
+13:12:29   realize2 restart 3: normals loss 7.74e-11, LP margin -0, 264/715 signs wrong, 0.0s
+13:12:29   realize2 restart 4: normals loss 1.78e-11, LP margin -0, 315/715 signs wrong, 0.0s
+13:12:29   realize2 restart 5: normals loss 3.88e-12, LP margin -0, 255/715 signs wrong, 0.0s
+13:12:29   realize restart 0: loss 0.0506, 4/715 signs wrong, 0.2s
+13:12:29   realize restart 1: loss 0.0506, 4/715 signs wrong, 0.2s
+13:12:30   realize restart 2: loss 0.0506, 4/715 signs wrong, 0.3s
+13:12:30   alternation 4: released 11, wrong signs after realization 4
+13:12:39   final polynomial: FEASIBLE (9.6s)
+13:12:39   blocked a model with 11 flipped signs (5 blocks so far)
+13:12:39   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:12:40   round 1: 714 assumptions -> UNSAT in 0.0s, core 19
+13:12:40   round 2: 695 assumptions -> UNSAT in 0.0s, core 26
+13:12:40   round 3: 669 assumptions -> UNSAT in 0.0s, core 41
+13:12:40   round 4: 628 assumptions -> UNSAT in 0.0s, core 111
+13:12:40   round 5: 517 assumptions -> SAT in 0.0s
+13:12:42   re-add (CLD): kept 185 released literals in 14 calls; 702 assumptions, 13 released
+13:12:42   realize2 restart 0: normals loss 1.04e-10, LP margin -0, 206/715 signs wrong, 0.0s
+13:12:42   realize2 restart 1: normals loss 1.02e-11, LP margin -0, 293/715 signs wrong, 0.0s
+13:12:42   realize2 restart 2: normals loss 1.12e-10, LP margin -0, 330/715 signs wrong, 0.0s
+13:12:43   realize2 restart 3: normals loss 1.84e-10, LP margin -0, 186/715 signs wrong, 0.0s
+13:12:43   realize2 restart 4: normals loss 7.38e-10, LP margin -0, 248/715 signs wrong, 0.0s
+13:12:43   realize2 restart 5: normals loss 7.84e-12, LP margin -0, 192/715 signs wrong, 0.0s
+13:12:43   realize restart 0: loss 0.0556, 2/715 signs wrong, 0.2s
+13:12:43   realize restart 1: loss 0.0556, 2/715 signs wrong, 0.2s
+13:12:43   realize restart 2: loss 0.0556, 2/715 signs wrong, 0.5s
+13:12:43   alternation 5: released 13, wrong signs after realization 2
+13:12:51   final polynomial: FEASIBLE (7.9s)
+13:12:51   blocked a model with 13 flipped signs (6 blocks so far)
+13:12:52   round 0: 715 assumptions -> UNSAT in 0.0s, core 51
+13:12:52   round 1: 664 assumptions -> UNSAT in 0.0s, core 34
+13:12:52   round 2: 630 assumptions -> UNSAT in 0.0s, core 126
+13:12:52   round 3: 504 assumptions -> SAT in 0.0s
+13:12:54   re-add (CLD): kept 208 released literals in 14 calls; 712 assumptions, 3 released
+13:12:54   realize2 restart 0: normals loss 7.6e-13, LP margin -0, 293/715 signs wrong, 0.0s
+13:12:54   realize2 restart 1: normals loss 8.02e-14, LP margin -0, 230/715 signs wrong, 0.0s
+13:12:54   realize2 restart 2: normals loss 1.86e-09, LP margin -0, 284/715 signs wrong, 0.0s
+13:12:54   realize2 restart 3: normals loss 2.77e-11, LP margin -0, 211/715 signs wrong, 0.0s
+13:12:54   realize2 restart 4: normals loss 2.21e-10, LP margin -0, 251/715 signs wrong, 0.0s
+13:12:54   realize2 restart 5: normals loss 1e-10, LP margin -0, 193/715 signs wrong, 0.0s
+13:12:55   realize restart 0: loss 0.0488, 3/715 signs wrong, 0.2s
+13:12:55   realize restart 1: loss 0.0488, 3/715 signs wrong, 0.2s
+13:12:55   realize restart 2: loss 0.0488, 3/715 signs wrong, 0.4s
+13:12:55   alternation 6: released 3, wrong signs after realization 3
+13:13:02   final polynomial: FEASIBLE (6.3s)
+13:13:02   blocked a model with 3 flipped signs (7 blocks so far)
+13:13:02   round 0: 715 assumptions -> UNSAT in 0.0s, core 54
+13:13:02   round 1: 661 assumptions -> UNSAT in 0.0s, core 58
+13:13:02   round 2: 603 assumptions -> SAT in 0.0s
+13:13:03   re-add (CLD): kept 102 released literals in 7 calls; 705 assumptions, 10 released
+13:13:03   realize2 restart 0: normals loss 6.77e-11, LP margin -0, 284/715 signs wrong, 0.0s
+13:13:03   realize2 restart 1: normals loss 1.2e-10, LP margin -0, 198/715 signs wrong, 0.0s
+13:13:03   realize2 restart 2: normals loss 2.44e-11, LP margin -0, 332/715 signs wrong, 0.0s
+13:13:03   realize2 restart 3: normals loss 8.36e-12, LP margin -0, 224/715 signs wrong, 0.0s
+13:13:03   realize2 restart 4: normals loss 9.18e-13, LP margin -0, 257/715 signs wrong, 0.0s
+13:13:03   realize2 restart 5: normals loss 2.98e-12, LP margin -0, 243/715 signs wrong, 0.0s
+13:13:03   realize restart 0: loss 0.0508, 1/715 signs wrong, 0.2s
+13:13:04   realize restart 1: loss 0.0508, 1/715 signs wrong, 0.2s
+13:13:04   realize restart 2: loss 0.0508, 1/715 signs wrong, 0.5s
+13:13:04   alternation 7: released 10, wrong signs after realization 1
+13:13:11   final polynomial: FEASIBLE (6.8s)
+13:13:11   blocked a model with 10 flipped signs (8 blocks so far)
+13:13:11   round 0: 715 assumptions -> UNSAT in 0.0s, core 11
+13:13:11   round 1: 704 assumptions -> UNSAT in 0.0s, core 38
+13:13:11   round 2: 666 assumptions -> UNSAT in 0.0s, core 81
+13:13:12   round 3: 585 assumptions -> UNSAT in 0.0s, core 149
+13:13:12   round 4: 436 assumptions -> SAT in 0.0s
+13:13:14   re-add (CLD): kept 275 released literals in 14 calls; 711 assumptions, 4 released
+13:13:14   realize2 restart 0: normals loss 5.28e-11, LP margin -0, 180/715 signs wrong, 0.0s
+13:13:14   realize2 restart 1: normals loss 2.32e-10, LP margin -0, 278/715 signs wrong, 0.0s
+13:13:14   realize2 restart 2: normals loss 1.56e-10, LP margin -0, 274/715 signs wrong, 0.0s
+13:13:14   realize2 restart 3: normals loss 9.2e-11, LP margin -0, 243/715 signs wrong, 0.0s
+13:13:14   realize2 restart 4: normals loss 9.92e-11, LP margin -0, 226/715 signs wrong, 0.0s
+13:13:14   realize2 restart 5: normals loss 2.71e-11, LP margin -0, 313/715 signs wrong, 0.0s
+13:13:14   realize restart 0: loss 0.0488, 1/715 signs wrong, 0.2s
+13:13:14   realize restart 1: loss 0.0488, 1/715 signs wrong, 0.2s
+13:13:15   realize restart 2: loss 0.0488, 1/715 signs wrong, 0.5s
+13:13:15   alternation 8: released 4, wrong signs after realization 1
+13:13:22   final polynomial: FEASIBLE (7.3s)
+13:13:22   blocked a model with 4 flipped signs (9 blocks so far)
+13:13:22   round 0: 715 assumptions -> UNSAT in 0.0s, core 15
+13:13:23   round 1: 700 assumptions -> UNSAT in 0.0s, core 49
+13:13:23   round 2: 651 assumptions -> UNSAT in 0.0s, core 99
+13:13:23   round 3: 552 assumptions -> UNSAT in 0.0s, core 146
+13:13:23   round 4: 406 assumptions -> UNSAT in 0.0s, core 175
+13:13:23   round 5: 231 assumptions -> SAT in 0.0s
+13:13:27   re-add (CLD): kept 473 released literals in 21 calls; 704 assumptions, 11 released
+13:13:27   realize2 restart 0: normals loss 5.27e-11, LP margin -0, 195/715 signs wrong, 0.0s
+13:13:27   realize2 restart 1: normals loss 4.61e-12, LP margin -0, 332/715 signs wrong, 0.0s
+13:13:27   realize2 restart 2: normals loss 6.22e-11, LP margin -0, 293/715 signs wrong, 0.0s
+13:13:27   realize2 restart 3: normals loss 1.27e-10, LP margin -0, 253/715 signs wrong, 0.0s
+13:13:27   realize2 restart 4: normals loss 3.24e-11, LP margin -0, 248/715 signs wrong, 0.0s
+13:13:27   realize2 restart 5: normals loss 2.74e-11, LP margin -0, 217/715 signs wrong, 0.0s
+13:13:27   realize restart 0: loss 0.05, 4/715 signs wrong, 0.2s
+13:13:27   realize restart 1: loss 0.05, 4/715 signs wrong, 0.2s
+13:13:28   realize restart 2: loss 0.05, 4/715 signs wrong, 0.4s
+13:13:28   alternation 9: released 11, wrong signs after realization 4
+13:13:35   final polynomial: FEASIBLE (7.4s)
+13:13:35   blocked a model with 11 flipped signs (10 blocks so far)
+13:13:35   round 0: 715 assumptions -> UNSAT in 0.0s, core 68
+13:13:35   round 1: 647 assumptions -> SAT in 0.0s
+13:13:36   re-add (CLD): kept 63 released literals in 4 calls; 710 assumptions, 5 released
+13:13:36   realize2 restart 0: normals loss 1.88e-15, LP margin -0, 238/715 signs wrong, 0.0s
+13:13:36   realize2 restart 1: normals loss 1.88e-12, LP margin -0, 267/715 signs wrong, 0.0s
+13:13:36   realize2 restart 2: normals loss 2.66e-10, LP margin -0, 281/715 signs wrong, 0.0s
+13:13:36   realize2 restart 3: normals loss 8.26e-12, LP margin -0, 315/715 signs wrong, 0.0s
+13:13:36   realize2 restart 4: normals loss 4.47e-11, LP margin -0, 186/715 signs wrong, 0.0s
+13:13:36   realize2 restart 5: normals loss 3.16e-10, LP margin -0, 284/715 signs wrong, 0.0s
+13:13:36   realize restart 0: loss 0.0444, 4/715 signs wrong, 0.2s
+13:13:37   realize restart 1: loss 0.0444, 4/715 signs wrong, 0.2s
+13:13:37   realize restart 2: loss 0.0444, 4/715 signs wrong, 0.4s
+13:13:37   alternation 10: released 5, wrong signs after realization 4
+13:13:43   final polynomial: FEASIBLE (6.3s)
+13:13:43   blocked a model with 5 flipped signs (11 blocks so far)
+13:13:43   round 0: 715 assumptions -> UNSAT in 0.0s, core 17
+13:13:44   round 1: 698 assumptions -> UNSAT in 0.0s, core 68
+13:13:44   round 2: 630 assumptions -> SAT in 0.0s
+13:13:45   re-add (CLD): kept 80 released literals in 8 calls; 710 assumptions, 5 released
+13:13:45   realize2 restart 0: normals loss 3.49e-13, LP margin -0, 280/715 signs wrong, 0.0s
+13:13:45   realize2 restart 1: normals loss 2.82e-12, LP margin -0, 227/715 signs wrong, 0.0s
+13:13:45   realize2 restart 2: normals loss 4.55e-11, LP margin -0, 367/715 signs wrong, 0.0s
+13:13:45   realize2 restart 3: normals loss 1.05e-10, LP margin -0, 174/715 signs wrong, 0.0s
+13:13:45   realize2 restart 4: normals loss 3.5e-11, LP margin -0, 241/715 signs wrong, 0.0s
+13:13:45   realize2 restart 5: normals loss 9.61e-12, LP margin -0, 257/715 signs wrong, 0.0s
+13:13:45   realize restart 0: loss 0.0357, 2/715 signs wrong, 0.2s
+13:13:46   realize restart 1: loss 0.0357, 2/715 signs wrong, 0.2s
+13:13:46   realize restart 2: loss 0.0357, 2/715 signs wrong, 0.3s
+13:13:46   alternation 11: released 5, wrong signs after realization 2
+13:13:52   final polynomial: FEASIBLE (6.2s)
+13:13:52   blocked a model with 5 flipped signs (12 blocks so far)
+13:13:52   round 0: 715 assumptions -> UNSAT in 0.0s, core 50
+13:13:52   round 1: 665 assumptions -> UNSAT in 0.0s, core 99
+13:13:53   round 2: 566 assumptions -> UNSAT in 0.0s, core 131
+13:13:53   round 3: 435 assumptions -> UNSAT in 0.0s, core 157
+13:13:53   round 4: 278 assumptions -> SAT in 0.0s
+13:13:56   re-add (CLD): kept 431 released literals in 21 calls; 709 assumptions, 6 released
+13:13:56   realize2 restart 0: normals loss 7.73e-11, LP margin -0, 285/715 signs wrong, 0.0s
+13:13:56   realize2 restart 1: normals loss 3.25e-14, LP margin -0, 298/715 signs wrong, 0.0s
+13:13:56   realize2 restart 2: normals loss 2.42e-11, LP margin -0, 263/715 signs wrong, 0.0s
+13:13:56   realize2 restart 3: normals loss 1.75e-11, LP margin -0, 280/715 signs wrong, 0.0s
+13:13:56   realize2 restart 4: normals loss 1.18e-10, LP margin -0, 325/715 signs wrong, 0.0s
+13:13:56   realize2 restart 5: normals loss 1.96e-11, LP margin -0, 320/715 signs wrong, 0.0s
+13:13:57   realize restart 0: loss 0.0399, 1/715 signs wrong, 0.2s
+13:13:57   realize restart 1: loss 0.0399, 1/715 signs wrong, 0.2s
+13:13:57   realize restart 2: loss 0.0399, 1/715 signs wrong, 0.4s
+13:13:57   alternation 12: released 6, wrong signs after realization 1
+13:14:04   final polynomial: FEASIBLE (6.8s)
+13:14:04   blocked a model with 6 flipped signs (13 blocks so far)
+13:14:04   round 0: 715 assumptions -> UNSAT in 0.0s, core 93
+13:14:04   round 1: 622 assumptions -> UNSAT in 0.0s, core 104
+13:14:04   round 2: 518 assumptions -> UNSAT in 0.0s, core 184
+13:14:05   round 3: 334 assumptions -> UNSAT in 0.0s, core 164
+13:14:05   round 4: 170 assumptions -> SAT in 0.0s
+13:14:08   re-add (CLD): kept 538 released literals in 17 calls; 708 assumptions, 7 released
+13:14:08   realize2 restart 0: normals loss 1.2e-08, LP margin -0, 193/715 signs wrong, 0.0s
+13:14:08   realize2 restart 1: normals loss 1.74e-11, LP margin -0, 202/715 signs wrong, 0.0s
+13:14:08   realize2 restart 2: normals loss 8.5e-11, LP margin -0, 264/715 signs wrong, 0.0s
+13:14:08   realize2 restart 3: normals loss 1.08e-10, LP margin -0, 278/715 signs wrong, 0.0s
+13:14:08   realize2 restart 4: normals loss 3.87e-12, LP margin -0, 331/715 signs wrong, 0.0s
+13:14:08   realize2 restart 5: normals loss 1.1e-10, LP margin -0, 257/715 signs wrong, 0.0s
+13:14:08   realize restart 0: loss 0.0409, 2/715 signs wrong, 0.1s
+13:14:08   realize restart 1: loss 0.0409, 2/715 signs wrong, 0.2s
+13:14:08   realize restart 2: loss 0.0409, 2/715 signs wrong, 0.4s
+13:14:08   alternation 13: released 7, wrong signs after realization 2
+13:14:16   final polynomial: FEASIBLE (7.5s)
+13:14:16   blocked a model with 7 flipped signs (14 blocks so far)
+13:14:16   round 0: 715 assumptions -> UNSAT in 0.0s, core 50
+13:14:16   round 1: 665 assumptions -> UNSAT in 0.0s, core 110
+13:14:16   round 2: 555 assumptions -> UNSAT in 0.0s, core 161
+13:14:16   round 3: 394 assumptions -> UNSAT in 0.0s, core 166
+13:14:17   round 4: 228 assumptions -> SAT in 0.1s
+13:14:19   re-add (CLD): kept 450 released literals in 13 calls; 678 assumptions, 37 released
+13:14:19   realize2 restart 0: normals loss 5.54e-11, LP margin -0, 113/715 signs wrong, 0.0s
+13:14:19   realize2 restart 1: normals loss 4.76e-11, LP margin -0, 221/715 signs wrong, 0.0s
+13:14:19   realize2 restart 2: normals loss 2.75e-10, LP margin -0, 246/715 signs wrong, 0.0s
+13:14:19   realize2 restart 3: normals loss 5.76e-11, LP margin -0, 271/715 signs wrong, 0.0s
+13:14:19   realize2 restart 4: normals loss 3.15e-10, LP margin -0, 189/715 signs wrong, 0.0s
+13:14:19   realize2 restart 5: normals loss 3.61e-10, LP margin -0, 167/715 signs wrong, 0.0s
+13:14:19   realize restart 0: loss 0.0868, 9/715 signs wrong, 0.3s
+13:14:20   realize restart 1: loss 0.0868, 9/715 signs wrong, 0.3s
+13:14:20   realize restart 2: loss 0.0868, 9/715 signs wrong, 0.4s
+13:14:20   alternation 14: released 37, wrong signs after realization 9
+13:16:20   final polynomial: LP-TIMEOUT (120.2s)
+13:16:20   blocked a model with 37 flipped signs (15 blocks so far)
+13:16:20   round 0: 715 assumptions -> UNSAT in 0.0s, core 8
+13:16:21   round 1: 707 assumptions -> UNSAT in 0.0s, core 89
+13:16:21   round 2: 618 assumptions -> UNSAT in 0.0s, core 152
+13:16:21   round 3: 466 assumptions -> SAT in 0.0s
+13:16:24   re-add (CLD): kept 242 released literals in 17 calls; 708 assumptions, 7 released
+13:16:24   realize2 restart 0: normals loss 2.42e-10, LP margin -0, 219/715 signs wrong, 0.0s
+13:16:24   realize2 restart 1: normals loss 2.71e-10, LP margin -0, 255/715 signs wrong, 0.0s
+13:16:24   realize2 restart 2: normals loss 1.63e-10, LP margin -0, 258/715 signs wrong, 0.0s
+13:16:24   realize2 restart 3: normals loss 9.29e-11, LP margin -0, 254/715 signs wrong, 0.0s
+13:16:24   realize2 restart 4: normals loss 1.1e-10, LP margin -0, 205/715 signs wrong, 0.0s
+13:16:24   realize2 restart 5: normals loss 1.47e-10, LP margin -0, 184/715 signs wrong, 0.0s
+13:16:24   realize restart 0: loss 0.0484, 2/715 signs wrong, 0.3s
+13:16:24   realize restart 1: loss 0.0484, 2/715 signs wrong, 0.3s
+13:16:25   realize restart 2: loss 0.0484, 2/715 signs wrong, 0.4s
+13:16:25   alternation 15: released 7, wrong signs after realization 2
+13:16:32   final polynomial: FEASIBLE (7.0s)
+13:16:32   blocked a model with 7 flipped signs (16 blocks so far)
+13:16:32   round 0: 715 assumptions -> UNSAT in 0.0s, core 51
+13:16:32   round 1: 664 assumptions -> UNSAT in 0.0s, core 81
+13:16:32   round 2: 583 assumptions -> UNSAT in 0.0s, core 143
+13:16:32   round 3: 440 assumptions -> SAT in 0.0s
+13:16:34   re-add (CLD): kept 248 released literals in 8 calls; 688 assumptions, 27 released
+13:16:34   realize2 restart 0: normals loss 4.2e-11, LP margin -0, 271/715 signs wrong, 0.0s
+13:16:34   realize2 restart 1: normals loss 3.35e-12, LP margin -0, 283/715 signs wrong, 0.0s
+13:16:34   realize2 restart 2: normals loss 1.01e-12, LP margin -0, 290/715 signs wrong, 0.0s
+13:16:34   realize2 restart 3: normals loss 1.02e-12, LP margin -0, 295/715 signs wrong, 0.0s
+13:16:34   realize2 restart 4: normals loss 3.93e-11, LP margin -0, 206/715 signs wrong, 0.0s
+13:16:34   realize2 restart 5: normals loss 4.95e-11, LP margin -0, 203/715 signs wrong, 0.0s
+13:16:34   realize restart 0: loss 0.0435, 3/715 signs wrong, 0.2s
+13:16:34   realize restart 1: loss 0.0435, 3/715 signs wrong, 0.2s
+13:16:35   realize restart 2: loss 0.0435, 3/715 signs wrong, 0.5s
+13:16:35   alternation 16: released 27, wrong signs after realization 3
+13:16:41   final polynomial: FEASIBLE (6.2s)
+13:16:41   blocked a model with 27 flipped signs (17 blocks so far)
+13:16:41   round 0: 715 assumptions -> UNSAT in 0.0s, core 84
+13:16:41   round 1: 631 assumptions -> UNSAT in 0.0s, core 146
+13:16:41   round 2: 485 assumptions -> UNSAT in 0.0s, core 171
+13:16:42   round 3: 314 assumptions -> SAT in 0.0s
+13:16:44   re-add (CLD): kept 375 released literals in 15 calls; 689 assumptions, 26 released
+13:16:44   realize2 restart 0: normals loss 3.02e-11, LP margin -0, 236/715 signs wrong, 0.0s
+13:16:44   realize2 restart 1: normals loss 1.51e-12, LP margin -0, 307/715 signs wrong, 0.0s
+13:16:44   realize2 restart 2: normals loss 6.28e-11, LP margin -0, 225/715 signs wrong, 0.0s
+13:16:44   realize2 restart 3: normals loss 8.83e-11, LP margin -0, 276/715 signs wrong, 0.0s
+13:16:44   realize2 restart 4: normals loss 1.02e-10, LP margin -0, 289/715 signs wrong, 0.0s
+13:16:44   realize2 restart 5: normals loss 5.1e-10, LP margin -0, 284/715 signs wrong, 0.0s
+13:16:44   realize restart 0: loss 0.0531, 4/715 signs wrong, 0.2s
+13:16:45   realize restart 1: loss 0.0531, 4/715 signs wrong, 0.2s
+13:16:45   realize restart 2: loss 0.0531, 4/715 signs wrong, 0.4s
+13:16:45   alternation 17: released 26, wrong signs after realization 4
+13:16:51   final polynomial: FEASIBLE (6.3s)
+13:16:51   blocked a model with 26 flipped signs (18 blocks so far)
+13:16:51   round 0: 715 assumptions -> UNSAT in 0.0s, core 8
+13:16:52   round 1: 707 assumptions -> UNSAT in 0.0s, core 11
+13:16:52   round 2: 696 assumptions -> UNSAT in 0.0s, core 78
+13:16:52   round 3: 618 assumptions -> UNSAT in 0.0s, core 126
+13:16:52   round 4: 492 assumptions -> UNSAT in 0.0s, core 179
+13:16:52   round 5: 313 assumptions -> SAT in 0.0s
+13:16:54   re-add (CLD): kept 394 released literals in 8 calls; 707 assumptions, 8 released
+13:16:54   realize2 restart 0: normals loss 1.62e-10, LP margin -0, 193/715 signs wrong, 0.0s
+13:16:54   realize2 restart 1: normals loss 3.78e-11, LP margin -0, 237/715 signs wrong, 0.0s
+13:16:54   realize2 restart 2: normals loss 8.03e-09, LP margin -0, 317/715 signs wrong, 0.0s
+13:16:54   realize2 restart 3: normals loss 6.6e-11, LP margin -0, 245/715 signs wrong, 0.0s
+13:16:54   realize2 restart 4: normals loss 1.92e-10, LP margin -0, 257/715 signs wrong, 0.0s
+13:16:54   realize2 restart 5: normals loss 1.83e-10, LP margin -0, 188/715 signs wrong, 0.0s
+13:16:54   realize restart 0: loss 0.0531, 6/715 signs wrong, 0.2s
+13:16:54   realize restart 1: loss 0.0531, 6/715 signs wrong, 0.2s
+13:16:54   realize restart 2: loss 0.0531, 6/715 signs wrong, 0.4s
+13:16:55   alternation 18: released 8, wrong signs after realization 6
+13:17:01   final polynomial: FEASIBLE (6.7s)
+13:17:01   blocked a model with 8 flipped signs (19 blocks so far)
+13:17:01   round 0: 715 assumptions -> UNSAT in 0.0s, core 7
+13:17:02   round 1: 708 assumptions -> UNSAT in 0.0s, core 11
+13:17:02   round 2: 697 assumptions -> UNSAT in 0.0s, core 83
+13:17:02   round 3: 614 assumptions -> UNSAT in 0.0s, core 160
+13:17:02   round 4: 454 assumptions -> UNSAT in 0.0s, core 197
+13:17:02   round 5: 257 assumptions -> SAT in 0.0s
+13:17:04   re-add (CLD): kept 451 released literals in 12 calls; 708 assumptions, 7 released
+13:17:04   realize2 restart 0: normals loss 5.91e-11, LP margin -0, 150/715 signs wrong, 0.0s
+13:17:04   realize2 restart 1: normals loss 1.64e-12, LP margin -0, 292/715 signs wrong, 0.0s
+13:17:04   realize2 restart 2: normals loss 1.57e-10, LP margin -0, 259/715 signs wrong, 0.0s
+13:17:04   realize2 restart 3: normals loss 6.31e-11, LP margin -0, 207/715 signs wrong, 0.0s
+13:17:04   realize2 restart 4: normals loss 5.88e-10, LP margin -0, 253/715 signs wrong, 0.0s
+13:17:04   realize2 restart 5: normals loss 3.93e-11, LP margin -0, 227/715 signs wrong, 0.0s
+13:17:05   realize restart 0: loss 0.0513, 3/715 signs wrong, 0.2s
+13:17:05   realize restart 1: loss 0.0513, 3/715 signs wrong, 0.2s
+13:17:05   realize restart 2: loss 0.0513, 3/715 signs wrong, 0.4s
+13:17:05   alternation 19: released 7, wrong signs after realization 3
+13:17:14   final polynomial: FEASIBLE (9.0s)
+13:17:14   blocked a model with 7 flipped signs (20 blocks so far)
+13:17:14 RESULT R4-type0-genus3-seed6: engine NOT-REALIZED, success False ({'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': [0, 1, 4, 5, 6, 8, 10]}), 450s
+13:17:14 R5-type15-genus3-from-parent seed 6: start (budget 40 min)
+13:17:15 [R5-type15-genus3-from-parent-seed6] k=7 faces=[0, 1, 2, 3, 7, 4, 6]: 5754 vars, 431161 clauses
+13:17:15   round 0: 715 assumptions -> UNSAT in 0.0s, core 28
+13:17:15   round 1: 687 assumptions -> UNSAT in 0.0s, core 42
+13:17:15   round 2: 645 assumptions -> UNSAT in 0.0s, core 12
+13:17:15   round 3: 633 assumptions -> UNSAT in 0.0s, core 51
+13:17:15   round 4: 582 assumptions -> UNSAT in 0.0s, core 145
+13:17:15   round 5: 437 assumptions -> UNSAT in 0.0s, core 160
+13:17:16   round 6: 277 assumptions -> SAT in 0.0s
+13:17:21   re-add (CLD): kept 415 released literals in 33 calls; 692 assumptions, 23 released
+13:17:21   realize2 restart 0: normals loss 2.15e-11, LP margin -0, 274/715 signs wrong, 0.0s
+13:17:21   realize2 restart 1: normals loss 2.94e-10, LP margin -0, 289/715 signs wrong, 0.0s
+13:17:21   realize2 restart 2: normals loss 1.76e-09, LP margin -0, 282/715 signs wrong, 0.0s
+13:17:21   realize2 restart 3: normals loss 2.94e-10, LP margin -0, 196/715 signs wrong, 0.0s
+13:17:21   realize2 restart 4: normals loss 6.83e-12, LP margin -0, 289/715 signs wrong, 0.0s
+13:17:21   realize2 restart 5: normals loss 5.82e-10, LP margin -0, 299/715 signs wrong, 0.0s
+13:17:21   realize restart 0: loss 0.0594, 5/715 signs wrong, 0.3s
+13:17:22   realize restart 1: loss 0.0594, 5/715 signs wrong, 0.3s
+13:17:22   realize restart 2: loss 0.0594, 5/715 signs wrong, 0.5s
+13:17:22   alternation 0: released 23, wrong signs after realization 5
+13:17:29   final polynomial: FEASIBLE (6.9s)
+13:17:29   blocked a model with 23 flipped signs (1 blocks so far)
+13:17:29   round 0: 715 assumptions -> UNSAT in 0.0s, core 18
+13:17:29   round 1: 697 assumptions -> UNSAT in 0.0s, core 59
+13:17:29   round 2: 638 assumptions -> SAT in 0.0s
+13:17:31   re-add (CLD): kept 75 released literals in 8 calls; 713 assumptions, 2 released
+13:17:31   realize2 restart 0: normals loss 5.1e-10, LP margin -0, 209/715 signs wrong, 0.0s
+13:17:31   realize2 restart 1: normals loss 1.44e-09, LP margin -0, 328/715 signs wrong, 0.0s
+13:17:31   realize2 restart 2: normals loss 2.29e-10, LP margin -0, 339/715 signs wrong, 0.0s
+13:17:31   realize2 restart 3: normals loss 8.68e-11, LP margin -0, 264/715 signs wrong, 0.0s
+13:17:31   realize2 restart 4: normals loss 2.34e-10, LP margin -0, 284/715 signs wrong, 0.0s
+13:17:31   realize2 restart 5: normals loss 2.22e-10, LP margin -0, 248/715 signs wrong, 0.0s
+13:17:31   realize restart 0: loss 0.0401, 3/715 signs wrong, 0.2s
+13:17:31   realize restart 1: loss 0.0401, 3/715 signs wrong, 0.2s
+13:17:32   realize restart 2: loss 0.0401, 3/715 signs wrong, 0.4s
+13:17:32   alternation 1: released 2, wrong signs after realization 3
+13:17:38   final polynomial: FEASIBLE (6.3s)
+13:17:38   blocked a model with 2 flipped signs (2 blocks so far)
+13:17:38   round 0: 715 assumptions -> UNSAT in 0.0s, core 31
+13:17:38   round 1: 684 assumptions -> UNSAT in 0.0s, core 25
+13:17:39   round 2: 659 assumptions -> UNSAT in 0.0s, core 102
+13:17:39   round 3: 557 assumptions -> SAT in 0.0s
+13:17:41   re-add (CLD): kept 155 released literals in 12 calls; 712 assumptions, 3 released
+13:17:41   realize2 restart 0: normals loss 1.6e-12, LP margin -6.11e-15, 235/715 signs wrong, 0.0s
+13:17:41   realize2 restart 1: normals loss 1.5e-10, LP margin -0, 192/715 signs wrong, 0.0s
+13:17:41   realize2 restart 2: normals loss 1.03e-13, LP margin -0, 163/715 signs wrong, 0.0s
+13:17:41   realize2 restart 3: normals loss 1.22e-12, LP margin -0, 344/715 signs wrong, 0.0s
+13:17:41   realize2 restart 4: normals loss 1.43e-11, LP margin -0, 253/715 signs wrong, 0.0s
+13:17:41   realize2 restart 5: normals loss 6.72e-11, LP margin -0, 285/715 signs wrong, 0.0s
+13:17:41   realize restart 0: loss 0.0272, 1/715 signs wrong, 0.2s
+13:17:41   realize restart 1: loss 0.0272, 1/715 signs wrong, 0.2s
+13:17:41   realize restart 2: loss 0.0272, 1/715 signs wrong, 0.4s
+13:17:41   alternation 2: released 3, wrong signs after realization 1
+13:17:48   final polynomial: FEASIBLE (6.7s)
+13:17:48   blocked a model with 3 flipped signs (3 blocks so far)
+13:17:48   round 0: 715 assumptions -> UNSAT in 0.0s, core 48
+13:17:49   round 1: 667 assumptions -> UNSAT in 0.0s, core 23
+13:17:49   round 2: 644 assumptions -> UNSAT in 0.0s, core 100
+13:17:49   round 3: 544 assumptions -> UNSAT in 0.0s, core 14
+13:17:49   round 4: 530 assumptions -> UNSAT in 0.0s, core 151
+13:17:49   round 5: 379 assumptions -> UNSAT in 0.0s, core 160
+13:17:49   round 6: 219 assumptions -> UNSAT in 0.0s, core 136
+13:17:50   round 7: 83 assumptions -> SAT in 0.3s
+13:17:52   re-add (CLD): kept 373 released literals in 13 calls; 456 assumptions, 259 released
+13:17:52   realize2 restart 0: normals loss 0.00491, LP margin -0, 270/715 signs wrong, 0.0s
+13:17:52   realize2 restart 1: normals loss 0.00491, LP margin -0, 324/715 signs wrong, 0.0s
+13:17:52   realize2 restart 2: normals loss 0.00491, LP margin -0, 241/715 signs wrong, 0.0s
+13:17:52   realize2 restart 3: normals loss 0.00491, LP margin -0, 307/715 signs wrong, 0.0s
+13:17:52   realize2 restart 4: normals loss 0.00491, LP margin -0, 216/715 signs wrong, 0.0s
+13:17:53   realize2 restart 5: normals loss 0.00491, LP margin -0, 217/715 signs wrong, 0.0s
+13:17:53   realize restart 0: loss 0.172, 22/715 signs wrong, 0.5s
+13:17:54   realize restart 1: loss 0.172, 22/715 signs wrong, 0.5s
+13:17:54   realize restart 2: loss 0.172, 22/715 signs wrong, 0.5s
+13:17:54   alternation 3: released 259, wrong signs after realization 22
+13:17:59   final polynomial: NONREALIZABLE-NUMERICAL (4.7s)
+13:17:59   blocked a model with 259 flipped signs (4 blocks so far)
+13:17:59   round 0: 715 assumptions -> UNSAT in 0.0s, core 54
+13:17:59   round 1: 661 assumptions -> UNSAT in 0.0s, core 83
+13:17:59   round 2: 578 assumptions -> UNSAT in 0.0s, core 58
+13:17:59   round 3: 520 assumptions -> UNSAT in 0.0s, core 119
+13:17:59   round 4: 401 assumptions -> SAT in 0.0s
+13:18:03   re-add (CLD): kept 310 released literals in 19 calls; 711 assumptions, 4 released
+13:18:03   realize2 restart 0: normals loss 2.64e-09, LP margin -0, 215/715 signs wrong, 0.0s
+13:18:03   realize2 restart 1: normals loss 5.46e-11, LP margin -0, 258/715 signs wrong, 0.0s
+13:18:03   realize2 restart 2: normals loss 9.81e-10, LP margin -0, 358/715 signs wrong, 0.0s
+13:18:03   realize2 restart 3: normals loss 2.67e-11, LP margin -0, 279/715 signs wrong, 0.0s
+13:18:03   realize2 restart 4: normals loss 5.91e-10, LP margin -0, 219/715 signs wrong, 0.0s
+13:18:03   realize2 restart 5: normals loss 8.45e-11, LP margin -0, 283/715 signs wrong, 0.0s
+13:18:03   realize restart 0: loss 0.0578, 4/715 signs wrong, 0.2s
+13:18:03   realize restart 1: loss 0.0578, 4/715 signs wrong, 0.2s
+13:18:04   realize restart 2: loss 0.0578, 4/715 signs wrong, 0.4s
+13:18:04   alternation 4: released 4, wrong signs after realization 4
+13:18:14   final polynomial: FEASIBLE (9.9s)
+13:18:14   blocked a model with 4 flipped signs (5 blocks so far)
+13:18:14   round 0: 715 assumptions -> UNSAT in 0.0s, core 75
+13:18:14   round 1: 640 assumptions -> UNSAT in 0.0s, core 47
+13:18:14   round 2: 593 assumptions -> UNSAT in 0.0s, core 92
+13:18:14   round 3: 501 assumptions -> UNSAT in 0.0s, core 145
+13:18:14   round 4: 356 assumptions -> SAT in 0.0s
+13:18:17   re-add (CLD): kept 348 released literals in 16 calls; 704 assumptions, 11 released
+13:18:17   realize2 restart 0: normals loss 2.42e-10, LP margin -0, 272/715 signs wrong, 0.0s
+13:18:17   realize2 restart 1: normals loss 6.55e-11, LP margin -0, 360/715 signs wrong, 0.0s
+13:18:17   realize2 restart 2: normals loss 5.44e-11, LP margin -0, 280/715 signs wrong, 0.0s
+13:18:17   realize2 restart 3: normals loss 1.95e-10, LP margin -0, 219/715 signs wrong, 0.0s
+13:18:17   realize2 restart 4: normals loss 3.86e-10, LP margin -0, 311/715 signs wrong, 0.0s
+13:18:17   realize2 restart 5: normals loss 1.9e-10, LP margin -0, 277/715 signs wrong, 0.0s
+13:18:17   realize restart 0: loss 0.064, 5/715 signs wrong, 0.2s
+13:18:18   realize restart 1: loss 0.064, 5/715 signs wrong, 0.2s
+13:18:18   realize restart 2: loss 0.064, 5/715 signs wrong, 0.4s
+13:18:18   alternation 5: released 11, wrong signs after realization 5
+13:18:24   final polynomial: FEASIBLE (6.3s)
+13:18:24   blocked a model with 11 flipped signs (6 blocks so far)
+13:18:24   round 0: 715 assumptions -> UNSAT in 0.0s, core 11
+13:18:24   round 1: 704 assumptions -> UNSAT in 0.0s, core 75
+13:18:25   round 2: 629 assumptions -> UNSAT in 0.0s, core 61
+13:18:25   round 3: 568 assumptions -> UNSAT in 0.0s, core 117
+13:18:25   round 4: 451 assumptions -> UNSAT in 0.0s, core 145
+13:18:25   round 5: 306 assumptions -> UNSAT in 0.0s, core 131
+13:18:25   round 6: 175 assumptions -> SAT in 0.0s
+13:18:29   re-add (CLD): kept 530 released literals in 24 calls; 705 assumptions, 10 released
+13:18:29   realize2 restart 0: normals loss 6.33e-16, LP margin -0, 312/715 signs wrong, 0.0s
+13:18:29   realize2 restart 1: normals loss 3.56e-12, LP margin -0, 258/715 signs wrong, 0.0s
+13:18:29   realize2 restart 2: normals loss 2.3e-11, LP margin -0, 261/715 signs wrong, 0.0s
+13:18:29   realize2 restart 3: normals loss 3.78e-10, LP margin -0, 288/715 signs wrong, 0.0s
+13:18:29   realize2 restart 4: normals loss 1.16e-10, LP margin -0, 346/715 signs wrong, 0.0s
+13:18:29   realize2 restart 5: normals loss 1.48e-10, LP margin -0, 262/715 signs wrong, 0.0s
+13:18:30   realize restart 0: loss 0.0392, 2/715 signs wrong, 0.2s
+13:18:30   realize restart 1: loss 0.0392, 2/715 signs wrong, 0.2s
+13:18:30   realize restart 2: loss 0.0392, 2/715 signs wrong, 0.4s
+13:18:30   alternation 6: released 10, wrong signs after realization 2
+13:18:37   final polynomial: FEASIBLE (6.7s)
+13:18:37   blocked a model with 10 flipped signs (7 blocks so far)
+13:18:37   round 0: 715 assumptions -> UNSAT in 0.0s, core 77
+13:18:37   round 1: 638 assumptions -> UNSAT in 0.0s, core 92
+13:18:37   round 2: 546 assumptions -> UNSAT in 0.0s, core 119
+13:18:38   round 3: 427 assumptions -> SAT in 0.0s
+13:18:40   re-add (CLD): kept 285 released literals in 15 calls; 712 assumptions, 3 released
+13:18:40   realize2 restart 0: normals loss 5.32e-12, LP margin -0, 185/715 signs wrong, 0.0s
+13:18:40   realize2 restart 1: normals loss 6.91e-11, LP margin -0, 278/715 signs wrong, 0.0s
+13:18:40   realize2 restart 2: normals loss 1.24e-10, LP margin -0, 206/715 signs wrong, 0.0s
+13:18:40   realize2 restart 3: normals loss 1.89e-10, LP margin -0, 183/715 signs wrong, 0.0s
+13:18:40   realize2 restart 4: normals loss 2.31e-11, LP margin -0, 270/715 signs wrong, 0.0s
+13:18:40   realize2 restart 5: normals loss 3.11e-10, LP margin -0, 275/715 signs wrong, 0.0s
+13:18:40   realize restart 0: loss 0.0441, 1/715 signs wrong, 0.2s
+13:18:40   realize restart 1: loss 0.0441, 1/715 signs wrong, 0.2s
+13:18:41   realize restart 2: loss 0.0441, 1/715 signs wrong, 0.3s
+13:18:41   alternation 7: released 3, wrong signs after realization 1
+13:18:48   final polynomial: FEASIBLE (7.3s)
+13:18:48   blocked a model with 3 flipped signs (8 blocks so far)
+13:18:48   round 0: 715 assumptions -> UNSAT in 0.0s, core 79
+13:18:48   round 1: 636 assumptions -> UNSAT in 0.0s, core 105
+13:18:49   round 2: 531 assumptions -> UNSAT in 0.0s, core 148
+13:18:49   round 3: 383 assumptions -> UNSAT in 0.0s, core 138
+13:18:49   round 4: 245 assumptions -> UNSAT in 0.0s, core 131
+13:18:49   round 5: 114 assumptions -> SAT in 0.2s
+13:18:51   re-add (CLD): kept 493 released literals in 13 calls; 607 assumptions, 108 released
+13:18:52   realize2 restart 0: normals loss 5.22e-09, LP margin -0, 182/715 signs wrong, 0.0s
+13:18:52   realize2 restart 1: normals loss 6.38e-07, LP margin -0, 302/715 signs wrong, 0.0s
+13:18:52   realize2 restart 2: normals loss 3.86e-09, LP margin -0, 243/715 signs wrong, 0.0s
+13:18:52   realize2 restart 3: normals loss 4.75e-10, LP margin -0, 239/715 signs wrong, 0.0s
+13:18:52   realize2 restart 4: normals loss 1.69e-07, LP margin -0, 220/715 signs wrong, 0.0s
+13:18:52   realize2 restart 5: normals loss 4.33e-09, LP margin -0, 150/715 signs wrong, 0.0s
+13:18:52   realize restart 0: loss 0.139, 17/715 signs wrong, 0.4s
+13:18:52   realize restart 1: loss 0.139, 17/715 signs wrong, 0.4s
+13:18:53   realize restart 2: loss 0.139, 17/715 signs wrong, 0.5s
+13:18:53   alternation 8: released 108, wrong signs after realization 17
+13:19:08   final polynomial: NONREALIZABLE-NUMERICAL (15.1s)
+13:19:08   blocked a model with 108 flipped signs (9 blocks so far)
+13:19:08   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:19:08   round 1: 714 assumptions -> UNSAT in 0.0s, core 40
+13:19:09   round 2: 674 assumptions -> UNSAT in 0.0s, core 26
+13:19:09   round 3: 648 assumptions -> UNSAT in 0.0s, core 119
+13:19:09   round 4: 529 assumptions -> UNSAT in 0.0s, core 135
+13:19:09   round 5: 394 assumptions -> SAT in 0.0s
+13:19:10   re-add (CLD): kept 311 released literals in 8 calls; 705 assumptions, 10 released
+13:19:10   realize2 restart 0: normals loss 0.00183, LP margin -0, 276/715 signs wrong, 0.0s
+13:19:10   realize2 restart 1: normals loss 0.00183, LP margin -0, 204/715 signs wrong, 0.0s
+13:19:10   realize2 restart 2: normals loss 0.00183, LP margin -0, 259/715 signs wrong, 0.0s
+13:19:10   realize2 restart 3: normals loss 0.00183, LP margin -0, 192/715 signs wrong, 0.0s
+13:19:10   realize2 restart 4: normals loss 0.00183, LP margin -0, 265/715 signs wrong, 0.0s
+13:19:10   realize2 restart 5: normals loss 0.00183, LP margin -0, 348/715 signs wrong, 0.0s
+13:19:11   realize restart 0: loss 0.071, 7/715 signs wrong, 0.3s
+13:19:11   realize restart 1: loss 0.071, 7/715 signs wrong, 0.3s
+13:19:11   realize restart 2: loss 0.071, 7/715 signs wrong, 0.4s
+13:19:11   alternation 9: released 10, wrong signs after realization 7
+13:19:19   final polynomial: FEASIBLE (7.5s)
+13:19:19   blocked a model with 10 flipped signs (10 blocks so far)
+13:19:19   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:19:19   round 1: 714 assumptions -> UNSAT in 0.0s, core 65
+13:19:19   round 2: 649 assumptions -> UNSAT in 0.0s, core 100
+13:19:19   round 3: 549 assumptions -> UNSAT in 0.0s, core 171
+13:19:20   round 4: 378 assumptions -> SAT in 0.0s
+13:19:22   re-add (CLD): kept 332 released literals in 13 calls; 710 assumptions, 5 released
+13:19:22   realize2 restart 0: normals loss 0.00183, LP margin -0, 243/715 signs wrong, 0.0s
+13:19:22   realize2 restart 1: normals loss 0.00183, LP margin -0, 330/715 signs wrong, 0.0s
+13:19:22   realize2 restart 2: normals loss 0.00183, LP margin -0, 179/715 signs wrong, 0.0s
+13:19:22   realize2 restart 3: normals loss 0.00183, LP margin -0, 198/715 signs wrong, 0.0s
+13:19:22   realize2 restart 4: normals loss 0.00183, LP margin -0, 254/715 signs wrong, 0.0s
+13:19:22   realize2 restart 5: normals loss 0.00183, LP margin -0, 281/715 signs wrong, 0.0s
+13:19:22   realize restart 0: loss 0.0677, 5/715 signs wrong, 0.2s
+13:19:22   realize restart 1: loss 0.0677, 5/715 signs wrong, 0.3s
+13:19:23   realize restart 2: loss 0.0677, 5/715 signs wrong, 0.4s
+13:19:23   alternation 10: released 5, wrong signs after realization 5
+13:19:29   final polynomial: NONREALIZABLE-NUMERICAL (6.5s)
+13:19:29   blocked a model with 5 flipped signs (11 blocks so far)
+13:19:29   round 0: 715 assumptions -> UNSAT in 0.0s, core 65
+13:19:30   round 1: 650 assumptions -> UNSAT in 0.0s, core 105
+13:19:30   round 2: 545 assumptions -> UNSAT in 0.0s, core 166
+13:19:30   round 3: 379 assumptions -> SAT in 0.0s
+13:19:32   re-add (CLD): kept 332 released literals in 12 calls; 711 assumptions, 4 released
+13:19:32   realize2 restart 0: normals loss 5.34e-05, LP margin -0, 186/715 signs wrong, 0.0s
+13:19:32   realize2 restart 1: normals loss 5.34e-05, LP margin -0, 177/715 signs wrong, 0.0s
+13:19:32   realize2 restart 2: normals loss 5.34e-05, LP margin -0, 99/715 signs wrong, 0.0s
+13:19:32   realize2 restart 3: normals loss 5.34e-05, LP margin -0, 209/715 signs wrong, 0.0s
+13:19:32   realize2 restart 4: normals loss 5.34e-05, LP margin -0, 96/715 signs wrong, 0.0s
+13:19:32   realize2 restart 5: normals loss 5.37e-05, LP margin -0, 224/715 signs wrong, 0.0s
+13:19:32   realize restart 0: loss 0.0503, 4/715 signs wrong, 0.2s
+13:19:33   realize restart 1: loss 0.0503, 4/715 signs wrong, 0.2s
+13:19:33   realize restart 2: loss 0.0503, 4/715 signs wrong, 0.5s
+13:19:33   alternation 11: released 4, wrong signs after realization 4
+13:19:40   final polynomial: FEASIBLE (7.3s)
+13:19:40   blocked a model with 4 flipped signs (12 blocks so far)
+13:19:40   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:19:41   round 1: 714 assumptions -> UNSAT in 0.0s, core 65
+13:19:41   round 2: 649 assumptions -> UNSAT in 0.0s, core 86
+13:19:41   round 3: 563 assumptions -> SAT in 0.0s
+13:19:41   re-add (CLD): kept 148 released literals in 3 calls; 711 assumptions, 4 released
+13:19:41   realize2 restart 0: normals loss 5.34e-05, LP margin -0, 264/715 signs wrong, 0.0s
+13:19:41   realize2 restart 1: normals loss 5.34e-05, LP margin -0, 283/715 signs wrong, 0.0s
+13:19:41   realize2 restart 2: normals loss 5.34e-05, LP margin -0, 226/715 signs wrong, 0.0s
+13:19:41   realize2 restart 3: normals loss 5.34e-05, LP margin -0, 258/715 signs wrong, 0.0s
+13:19:42   realize2 restart 4: normals loss 5.35e-05, LP margin -0, 222/715 signs wrong, 0.0s
+13:19:42   realize2 restart 5: normals loss 5.35e-05, LP margin -0, 233/715 signs wrong, 0.0s
+13:19:42   realize restart 0: loss 0.047, 4/715 signs wrong, 0.2s
+13:19:42   realize restart 1: loss 0.047, 4/715 signs wrong, 0.2s
+13:19:42   realize restart 2: loss 0.047, 4/715 signs wrong, 0.4s
+13:19:42   alternation 12: released 4, wrong signs after realization 4
+13:19:49   final polynomial: FEASIBLE (6.7s)
+13:19:49   blocked a model with 4 flipped signs (13 blocks so far)
+13:19:49   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:19:49   round 1: 714 assumptions -> UNSAT in 0.0s, core 66
+13:19:49   round 2: 648 assumptions -> UNSAT in 0.0s, core 107
+13:19:50   round 3: 541 assumptions -> UNSAT in 0.0s, core 134
+13:19:50   round 4: 407 assumptions -> UNSAT in 0.0s, core 138
+13:19:50   round 5: 269 assumptions -> UNSAT in 0.0s, core 134
+13:19:50   round 6: 135 assumptions -> SAT in 0.2s
+13:19:54   re-add (CLD): kept 514 released literals in 23 calls; 649 assumptions, 66 released
+13:19:54   realize2 restart 0: normals loss 5.38e-07, LP margin -0, 178/715 signs wrong, 0.0s
+13:19:54   realize2 restart 1: normals loss 6.62e-07, LP margin -0, 253/715 signs wrong, 0.0s
+13:19:54   realize2 restart 2: normals loss 3.57e-07, LP margin -0, 292/715 signs wrong, 0.0s
+13:19:54   realize2 restart 3: normals loss 3.37e-07, LP margin -0, 241/715 signs wrong, 0.0s
+13:19:54   realize2 restart 4: normals loss 3.48e-07, LP margin -0, 298/715 signs wrong, 0.0s
+13:19:54   realize2 restart 5: normals loss 2.57e-07, LP margin -0, 274/715 signs wrong, 0.0s
+13:19:55   realize restart 0: loss 0.114, 16/715 signs wrong, 0.3s
+13:19:55   realize restart 1: loss 0.114, 16/715 signs wrong, 0.3s
+13:19:55   realize restart 2: loss 0.114, 16/715 signs wrong, 0.4s
+13:19:55   alternation 13: released 66, wrong signs after realization 16
+13:20:01   final polynomial: NONREALIZABLE-NUMERICAL (6.0s)
+13:20:01   blocked a model with 66 flipped signs (14 blocks so far)
+13:20:02   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:20:02   round 1: 714 assumptions -> UNSAT in 0.0s, core 10
+13:20:02   round 2: 704 assumptions -> UNSAT in 0.0s, core 28
+13:20:02   round 3: 676 assumptions -> UNSAT in 0.0s, core 108
+13:20:02   round 4: 568 assumptions -> SAT in 0.0s
+13:20:04   re-add (CLD): kept 142 released literals in 8 calls; 710 assumptions, 5 released
+13:20:04   realize2 restart 0: normals loss 0.000395, LP margin -0, 229/715 signs wrong, 0.0s
+13:20:04   realize2 restart 1: normals loss 0.000395, LP margin -0, 356/715 signs wrong, 0.0s
+13:20:04   realize2 restart 2: normals loss 0.000395, LP margin -0, 272/715 signs wrong, 0.0s
+13:20:04   realize2 restart 3: normals loss 0.000395, LP margin -0, 184/715 signs wrong, 0.0s
+13:20:04   realize2 restart 4: normals loss 0.000395, LP margin -0, 267/715 signs wrong, 0.0s
+13:20:04   realize2 restart 5: normals loss 0.000395, LP margin -0, 235/715 signs wrong, 0.0s
+13:20:04   realize restart 0: loss 0.0733, 6/715 signs wrong, 0.2s
+13:20:04   realize restart 1: loss 0.0733, 6/715 signs wrong, 0.3s
+13:20:05   realize restart 2: loss 0.0733, 6/715 signs wrong, 0.5s
+13:20:05   alternation 14: released 5, wrong signs after realization 6
+13:20:13   final polynomial: FEASIBLE (7.9s)
+13:20:13   blocked a model with 5 flipped signs (15 blocks so far)
+13:20:13   round 0: 715 assumptions -> UNSAT in 0.0s, core 10
+13:20:13   round 1: 705 assumptions -> UNSAT in 0.0s, core 96
+13:20:13   round 2: 609 assumptions -> SAT in 0.0s
+13:20:14   re-add (CLD): kept 104 released literals in 8 calls; 713 assumptions, 2 released
+13:20:14   realize2 restart 0: normals loss 6.14e-08, LP margin -0, 297/715 signs wrong, 0.0s
+13:20:14   realize2 restart 1: normals loss 3.45e-09, LP margin -0, 312/715 signs wrong, 0.0s
+13:20:14   realize2 restart 2: normals loss 1.41e-08, LP margin -0, 224/715 signs wrong, 0.0s
+13:20:14   realize2 restart 3: normals loss 3.22e-08, LP margin -0, 331/715 signs wrong, 0.0s
+13:20:14   realize2 restart 4: normals loss 1.15e-09, LP margin -0, 269/715 signs wrong, 0.0s
+13:20:14   realize2 restart 5: normals loss 3.75e-09, LP margin -0, 207/715 signs wrong, 0.0s
+13:20:15   realize restart 0: loss 0.0452, 2/715 signs wrong, 0.2s
+13:20:15   realize restart 1: loss 0.0452, 2/715 signs wrong, 0.2s
+13:20:15   realize restart 2: loss 0.0452, 2/715 signs wrong, 0.5s
+13:20:15   alternation 15: released 2, wrong signs after realization 2
+13:20:21   final polynomial: FEASIBLE (5.6s)
+13:20:21   blocked a model with 2 flipped signs (16 blocks so far)
+13:20:21   round 0: 715 assumptions -> UNSAT in 0.0s, core 10
+13:20:21   round 1: 705 assumptions -> UNSAT in 0.0s, core 31
+13:20:21   round 2: 674 assumptions -> UNSAT in 0.0s, core 129
+13:20:22   round 3: 545 assumptions -> UNSAT in 0.0s, core 123
+13:20:22   round 4: 422 assumptions -> SAT in 0.0s
+13:20:24   re-add (CLD): kept 287 released literals in 16 calls; 709 assumptions, 6 released
+13:20:24   realize2 restart 0: normals loss 2.33e-11, LP margin -0, 257/715 signs wrong, 0.0s
+13:20:24   realize2 restart 1: normals loss 3.92e-11, LP margin -0, 252/715 signs wrong, 0.0s
+13:20:24   realize2 restart 2: normals loss 1.76e-10, LP margin -0, 149/715 signs wrong, 0.0s
+13:20:24   realize2 restart 3: normals loss 1.92e-08, LP margin -0, 248/715 signs wrong, 0.0s
+13:20:24   realize2 restart 4: normals loss 1.35e-09, LP margin -0, 313/715 signs wrong, 0.0s
+13:20:24   realize2 restart 5: normals loss 1.56e-10, LP margin -0, 282/715 signs wrong, 0.0s
+13:20:25   realize restart 0: loss 0.0551, 4/715 signs wrong, 0.2s
+13:20:25   realize restart 1: loss 0.0551, 4/715 signs wrong, 0.2s
+13:20:25   realize restart 2: loss 0.0551, 4/715 signs wrong, 0.4s
+13:20:25   alternation 16: released 6, wrong signs after realization 4
+13:20:33   final polynomial: FEASIBLE (7.7s)
+13:20:33   blocked a model with 6 flipped signs (17 blocks so far)
+13:20:33   round 0: 715 assumptions -> UNSAT in 0.0s, core 89
+13:20:33   round 1: 626 assumptions -> UNSAT in 0.0s, core 129
+13:20:33   round 2: 497 assumptions -> SAT in 0.0s
+13:20:36   re-add (CLD): kept 216 released literals in 15 calls; 713 assumptions, 2 released
+13:20:36   realize2 restart 0: normals loss 2.89e-06, LP margin -0, 187/715 signs wrong, 0.0s
+13:20:36   realize2 restart 1: normals loss 2.96e-06, LP margin -0, 236/715 signs wrong, 0.0s
+13:20:36   realize2 restart 2: normals loss 4.38e-06, LP margin -0, 239/715 signs wrong, 0.0s
+13:20:36   realize2 restart 3: normals loss 4.49e-06, LP margin -0, 189/715 signs wrong, 0.0s
+13:20:36   realize2 restart 4: normals loss 2.75e-06, LP margin -0, 210/715 signs wrong, 0.0s
+13:20:36   realize2 restart 5: normals loss 2.55e-06, LP margin -0, 416/715 signs wrong, 0.0s
+13:20:36   realize restart 0: loss 0.0517, 5/715 signs wrong, 0.2s
+13:20:37   realize restart 1: loss 0.0517, 5/715 signs wrong, 0.2s
+13:20:37   realize restart 2: loss 0.0517, 5/715 signs wrong, 0.4s
+13:20:37   alternation 17: released 2, wrong signs after realization 5
+13:20:44   final polynomial: FEASIBLE (6.7s)
+13:20:44   blocked a model with 2 flipped signs (18 blocks so far)
+13:20:44   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:20:44   round 1: 714 assumptions -> UNSAT in 0.0s, core 35
+13:20:44   round 2: 679 assumptions -> UNSAT in 0.0s, core 121
+13:20:44   round 3: 558 assumptions -> UNSAT in 0.0s, core 151
+13:20:44   round 4: 407 assumptions -> UNSAT in 0.0s, core 157
+13:20:44   round 5: 250 assumptions -> SAT in 0.0s
+13:20:48   re-add (CLD): kept 459 released literals in 22 calls; 709 assumptions, 6 released
+13:20:48   realize2 restart 0: normals loss 2.62e-06, LP margin -0, 186/715 signs wrong, 0.0s
+13:20:48   realize2 restart 1: normals loss 2.71e-06, LP margin -0, 241/715 signs wrong, 0.0s
+13:20:48   realize2 restart 2: normals loss 2.81e-06, LP margin -0, 236/715 signs wrong, 0.0s
+13:20:48   realize2 restart 3: normals loss 2.98e-06, LP margin -0, 334/715 signs wrong, 0.0s
+13:20:48   realize2 restart 4: normals loss 3.18e-06, LP margin -0, 133/715 signs wrong, 0.0s
+13:20:48   realize2 restart 5: normals loss 3.91e-06, LP margin -0, 241/715 signs wrong, 0.0s
+13:20:48   realize restart 0: loss 0.0549, 4/715 signs wrong, 0.2s
+13:20:49   realize restart 1: loss 0.0549, 4/715 signs wrong, 0.2s
+13:20:49   realize restart 2: loss 0.0549, 4/715 signs wrong, 0.4s
+13:20:49   alternation 18: released 6, wrong signs after realization 4
+13:20:56   final polynomial: FEASIBLE (6.7s)
+13:20:56   blocked a model with 6 flipped signs (19 blocks so far)
+13:20:56   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:20:56   round 1: 714 assumptions -> UNSAT in 0.0s, core 84
+13:20:56   round 2: 630 assumptions -> UNSAT in 0.0s, core 147
+13:20:56   round 3: 483 assumptions -> UNSAT in 0.0s, core 149
+13:20:56   round 4: 334 assumptions -> SAT in 0.0s
+13:21:00   re-add (CLD): kept 377 released literals in 20 calls; 711 assumptions, 4 released
+13:21:00   realize2 restart 0: normals loss 1.42e-09, LP margin -0, 266/715 signs wrong, 0.0s
+13:21:00   realize2 restart 1: normals loss 1.31e-10, LP margin -0, 326/715 signs wrong, 0.0s
+13:21:00   realize2 restart 2: normals loss 4.27e-11, LP margin -0, 234/715 signs wrong, 0.0s
+13:21:00   realize2 restart 3: normals loss 6.3e-10, LP margin -0, 311/715 signs wrong, 0.0s
+13:21:00   realize2 restart 4: normals loss 1.05e-10, LP margin -0, 297/715 signs wrong, 0.0s
+13:21:00   realize2 restart 5: normals loss 3.1e-11, LP margin -0, 182/715 signs wrong, 0.0s
+13:21:00   realize restart 0: loss 0.0782, 7/715 signs wrong, 0.3s
+13:21:00   realize restart 1: loss 0.0782, 7/715 signs wrong, 0.3s
+13:21:01   realize restart 2: loss 0.0782, 7/715 signs wrong, 0.4s
+13:21:01   alternation 19: released 4, wrong signs after realization 7
+13:21:07   final polynomial: NONREALIZABLE-EXACT (6.6s), sound cut on 40 brackets
+13:21:08 RESULT R5-type15-genus3-from-parent-seed6: engine NOT-REALIZED, success False ({'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': [6, 8, 10, 11]}), 233s
+13:21:08 R6k-type15-genus3-k7 seed 6: start (budget 20 min)
+13:21:08 [R6k-type15-genus3-k7-seed6] k=7 faces=[0, 1, 2, 3, 7, 4, 6]: 5754 vars, 431161 clauses
+13:21:08   round 0: 715 assumptions -> UNSAT in 0.0s, core 14
+13:21:08   round 1: 701 assumptions -> UNSAT in 0.0s, core 12
+13:21:08   round 2: 689 assumptions -> UNSAT in 0.0s, core 50
+13:21:08   round 3: 639 assumptions -> UNSAT in 0.0s, core 43
+13:21:09   round 4: 596 assumptions -> UNSAT in 0.0s, core 56
+13:21:09   round 5: 540 assumptions -> UNSAT in 0.0s, core 15
+13:21:09   round 6: 525 assumptions -> UNSAT in 0.0s, core 52
+13:21:09   round 7: 473 assumptions -> UNSAT in 0.0s, core 32
+13:21:09   round 8: 441 assumptions -> UNSAT in 0.0s, core 78
+13:21:09   round 9: 363 assumptions -> UNSAT in 0.0s, core 132
+13:21:10   round 10: 231 assumptions -> UNSAT in 0.0s, core 56
+13:21:10   round 11: 175 assumptions -> UNSAT in 0.1s, core 98
+13:21:10   round 12: 77 assumptions -> SAT in 0.2s
+13:21:12   re-add (CLD): kept 358 released literals in 9 calls; 435 assumptions, 280 released
+13:21:12   realize2 restart 0: normals loss 7.38e-05, LP margin -0, 175/715 signs wrong, 0.0s
+13:21:12   realize2 restart 1: normals loss 7.39e-05, LP margin -0, 254/715 signs wrong, 0.0s
+13:21:12   realize2 restart 2: normals loss 7.41e-05, LP margin -0, 271/715 signs wrong, 0.0s
+13:21:12   realize2 restart 3: normals loss 7.39e-05, LP margin -0, 171/715 signs wrong, 0.0s
+13:21:12   realize2 restart 4: normals loss 7.38e-05, LP margin -0, 202/715 signs wrong, 0.0s
+13:21:12   realize2 restart 5: normals loss 7.4e-05, LP margin -0, 225/715 signs wrong, 0.0s
+13:21:12   realize restart 0: loss 0.18, 23/715 signs wrong, 0.4s
+13:21:13   realize restart 1: loss 0.18, 23/715 signs wrong, 0.4s
+13:21:13   realize restart 2: loss 0.18, 23/715 signs wrong, 0.5s
+13:21:13   alternation 0: released 280, wrong signs after realization 23
+13:21:19   final polynomial: NONREALIZABLE-NUMERICAL (5.4s)
+13:21:19   blocked a model with 280 flipped signs (1 blocks so far)
+13:21:19   round 0: 715 assumptions -> UNSAT in 0.0s, core 10
+13:21:19   round 1: 705 assumptions -> UNSAT in 0.0s, core 58
+13:21:19   round 2: 647 assumptions -> UNSAT in 0.0s, core 70
+13:21:19   round 3: 577 assumptions -> UNSAT in 0.0s, core 77
+13:21:19   round 4: 500 assumptions -> UNSAT in 0.0s, core 33
+13:21:20   round 5: 467 assumptions -> UNSAT in 0.0s, core 77
+13:21:20   round 6: 390 assumptions -> UNSAT in 0.0s, core 126
+13:21:20   round 7: 264 assumptions -> SAT in 0.0s
+13:21:21   re-add (CLD): kept 413 released literals in 8 calls; 677 assumptions, 38 released
+13:21:21   realize2 restart 0: normals loss 0.00408, LP margin -0, 247/715 signs wrong, 0.0s
+13:21:21   realize2 restart 1: normals loss 0.00408, LP margin -0, 288/715 signs wrong, 0.0s
+13:21:21   realize2 restart 2: normals loss 0.00408, LP margin -0, 292/715 signs wrong, 0.0s
+13:21:21   realize2 restart 3: normals loss 0.00408, LP margin -0, 218/715 signs wrong, 0.0s
+13:21:21   realize2 restart 4: normals loss 0.00408, LP margin -0, 240/715 signs wrong, 0.0s
+13:21:21   realize2 restart 5: normals loss 0.00408, LP margin -0, 202/715 signs wrong, 0.0s
+13:21:22   realize restart 0: loss 0.139, 20/715 signs wrong, 0.4s
+13:21:22   realize restart 1: loss 0.139, 20/715 signs wrong, 0.4s
+13:21:23   realize restart 2: loss 0.139, 20/715 signs wrong, 0.6s
+13:21:23   alternation 1: released 38, wrong signs after realization 20
+13:21:28   final polynomial: NONREALIZABLE-NUMERICAL (4.8s)
+13:21:28   blocked a model with 38 flipped signs (2 blocks so far)
+13:21:28   round 0: 715 assumptions -> UNSAT in 0.0s, core 14
+13:21:28   round 1: 701 assumptions -> UNSAT in 0.0s, core 14
+13:21:28   round 2: 687 assumptions -> UNSAT in 0.0s, core 25
+13:21:28   round 3: 662 assumptions -> UNSAT in 0.0s, core 84
+13:21:28   round 4: 578 assumptions -> UNSAT in 0.0s, core 54
+13:21:29   round 5: 524 assumptions -> UNSAT in 0.0s, core 113
+13:21:29   round 6: 411 assumptions -> UNSAT in 0.0s, core 31
+13:21:29   round 7: 380 assumptions -> SAT in 0.0s
+13:21:32   re-add (CLD): kept 327 released literals in 16 calls; 707 assumptions, 8 released
+13:21:32   realize2 restart 0: normals loss 9.98e-10, LP margin -0, 219/715 signs wrong, 0.0s
+13:21:32   realize2 restart 1: normals loss 1.42e-10, LP margin -0, 163/715 signs wrong, 0.0s
+13:21:32   realize2 restart 2: normals loss 1.69e-11, LP margin -0, 222/715 signs wrong, 0.0s
+13:21:32   realize2 restart 3: normals loss 9.46e-11, LP margin -0, 375/715 signs wrong, 0.0s
+13:21:32   realize2 restart 4: normals loss 7.44e-11, LP margin -0, 241/715 signs wrong, 0.0s
+13:21:32   realize2 restart 5: normals loss 5.96e-11, LP margin -0, 252/715 signs wrong, 0.0s
+13:21:32   realize restart 0: loss 0.0848, 9/715 signs wrong, 0.3s
+13:21:32   realize restart 1: loss 0.0848, 9/715 signs wrong, 0.3s
+13:21:33   realize restart 2: loss 0.0848, 9/715 signs wrong, 0.5s
+13:21:33   alternation 2: released 8, wrong signs after realization 9
+13:23:33   final polynomial: LP-TIMEOUT (120.2s)
+13:23:33   blocked a model with 8 flipped signs (3 blocks so far)
+13:23:33   round 0: 715 assumptions -> UNSAT in 0.0s, core 21
+13:23:33   round 1: 694 assumptions -> UNSAT in 0.0s, core 21
+13:23:33   round 2: 673 assumptions -> UNSAT in 0.0s, core 59
+13:23:34   round 3: 614 assumptions -> UNSAT in 0.0s, core 45
+13:23:34   round 4: 569 assumptions -> UNSAT in 0.0s, core 123
+13:23:34   round 5: 446 assumptions -> SAT in 0.0s
+13:23:36   re-add (CLD): kept 259 released literals in 12 calls; 705 assumptions, 10 released
+13:23:36   realize2 restart 0: normals loss 7.26e-12, LP margin -0, 200/715 signs wrong, 0.0s
+13:23:36   realize2 restart 1: normals loss 5.21e-11, LP margin -0, 273/715 signs wrong, 0.0s
+13:23:36   realize2 restart 2: normals loss 6.32e-11, LP margin -0, 239/715 signs wrong, 0.0s
+13:23:36   realize2 restart 3: normals loss 1.59e-12, LP margin -0, 235/715 signs wrong, 0.0s
+13:23:36   realize2 restart 4: normals loss 3.37e-12, LP margin -0, 207/715 signs wrong, 0.0s
+13:23:36   realize2 restart 5: normals loss 2.96e-11, LP margin -0, 263/715 signs wrong, 0.0s
+13:23:36   realize restart 0: loss 0.0712, 7/715 signs wrong, 0.2s
+13:23:36   realize restart 1: loss 0.0712, 7/715 signs wrong, 0.2s
+13:23:37   realize restart 2: loss 0.0712, 7/715 signs wrong, 0.4s
+13:23:37   alternation 3: released 10, wrong signs after realization 7
+13:23:45   final polynomial: FEASIBLE (7.9s)
+13:23:45   blocked a model with 10 flipped signs (4 blocks so far)
+13:23:45   round 0: 715 assumptions -> UNSAT in 0.0s, core 20
+13:23:45   round 1: 695 assumptions -> UNSAT in 0.0s, core 18
+13:23:45   round 2: 677 assumptions -> UNSAT in 0.0s, core 62
+13:23:45   round 3: 615 assumptions -> UNSAT in 0.0s, core 129
+13:23:45   round 4: 486 assumptions -> SAT in 0.0s
+13:23:47   re-add (CLD): kept 220 released literals in 10 calls; 706 assumptions, 9 released
+13:23:47   realize2 restart 0: normals loss 2.75e-11, LP margin -0, 212/715 signs wrong, 0.0s
+13:23:47   realize2 restart 1: normals loss 2.52e-11, LP margin -0, 268/715 signs wrong, 0.0s
+13:23:47   realize2 restart 2: normals loss 5.25e-12, LP margin -0, 252/715 signs wrong, 0.0s
+13:23:47   realize2 restart 3: normals loss 4.63e-11, LP margin -0, 245/715 signs wrong, 0.0s
+13:23:47   realize2 restart 4: normals loss 8.68e-12, LP margin -0, 219/715 signs wrong, 0.0s
+13:23:47   realize2 restart 5: normals loss 3.72e-12, LP margin -0, 340/715 signs wrong, 0.0s
+13:23:48   realize restart 0: loss 0.0875, 9/715 signs wrong, 0.4s
+13:23:48   realize restart 1: loss 0.0875, 9/715 signs wrong, 0.3s
+13:23:48   realize restart 2: loss 0.0875, 9/715 signs wrong, 0.6s
+13:23:48   alternation 4: released 9, wrong signs after realization 9
+13:24:06   final polynomial: NONREALIZABLE-NUMERICAL (17.8s)
+13:24:06   blocked a model with 9 flipped signs (5 blocks so far)
+13:24:06   round 0: 715 assumptions -> UNSAT in 0.0s, core 21
+13:24:07   round 1: 694 assumptions -> UNSAT in 0.0s, core 21
+13:24:07   round 2: 673 assumptions -> UNSAT in 0.0s, core 56
+13:24:07   round 3: 617 assumptions -> UNSAT in 0.0s, core 130
+13:24:07   round 4: 487 assumptions -> UNSAT in 0.0s, core 157
+13:24:07   round 5: 330 assumptions -> SAT in 0.0s
+13:24:10   re-add (CLD): kept 363 released literals in 14 calls; 693 assumptions, 22 released
+13:24:10   realize2 restart 0: normals loss 2.16e-10, LP margin -0, 291/715 signs wrong, 0.0s
+13:24:10   realize2 restart 1: normals loss 3.36e-11, LP margin -0, 172/715 signs wrong, 0.0s
+13:24:10   realize2 restart 2: normals loss 9.53e-13, LP margin -0, 235/715 signs wrong, 0.0s
+13:24:10   realize2 restart 3: normals loss 7.53e-10, LP margin -0, 282/715 signs wrong, 0.0s
+13:24:10   realize2 restart 4: normals loss 2.27e-11, LP margin -0, 122/715 signs wrong, 0.0s
+13:24:10   realize2 restart 5: normals loss 8.72e-12, LP margin -0, 372/715 signs wrong, 0.0s
+13:24:10   realize restart 0: loss 0.117, 14/715 signs wrong, 0.5s
+13:24:11   realize restart 1: loss 0.117, 14/715 signs wrong, 0.6s
+13:24:11   realize restart 2: loss 0.117, 14/715 signs wrong, 0.6s
+13:24:11   alternation 5: released 22, wrong signs after realization 14
+13:24:15   final polynomial: NONREALIZABLE-NUMERICAL (3.9s)
+13:24:15   blocked a model with 22 flipped signs (6 blocks so far)
+13:24:15   round 0: 715 assumptions -> UNSAT in 0.0s, core 13
+13:24:15   round 1: 702 assumptions -> UNSAT in 0.0s, core 65
+13:24:16   round 2: 637 assumptions -> UNSAT in 0.0s, core 76
+13:24:16   round 3: 561 assumptions -> UNSAT in 0.0s, core 74
+13:24:16   round 4: 487 assumptions -> UNSAT in 0.0s, core 69
+13:24:16   round 5: 418 assumptions -> SAT in 0.0s
+13:24:17   re-add (CLD): kept 290 released literals in 8 calls; 708 assumptions, 7 released
+13:24:17   realize2 restart 0: normals loss 6.91e-11, LP margin -0, 208/715 signs wrong, 0.0s
+13:24:17   realize2 restart 1: normals loss 1.53e-14, LP margin -0, 283/715 signs wrong, 0.0s
+13:24:17   realize2 restart 2: normals loss 1.04e-10, LP margin -0, 295/715 signs wrong, 0.0s
+13:24:17   realize2 restart 3: normals loss 0.481, LP margin -0, 380/715 signs wrong, 0.0s
+13:24:17   realize2 restart 4: normals loss 7.35e-11, LP margin -0, 294/715 signs wrong, 0.0s
+13:24:18   realize2 restart 5: normals loss 1.13e-10, LP margin -0, 324/715 signs wrong, 0.0s
+13:24:18   realize restart 0: loss 0.0638, 6/715 signs wrong, 0.3s
+13:24:18   realize restart 1: loss 0.0638, 6/715 signs wrong, 0.3s
+13:24:19   realize restart 2: loss 0.0638, 6/715 signs wrong, 0.4s
+13:24:19   alternation 6: released 7, wrong signs after realization 6
+13:24:26   final polynomial: FEASIBLE (7.3s)
+13:24:26   blocked a model with 7 flipped signs (7 blocks so far)
+13:24:26   round 0: 715 assumptions -> UNSAT in 0.0s, core 13
+13:24:26   round 1: 702 assumptions -> UNSAT in 0.0s, core 71
+13:24:26   round 2: 631 assumptions -> UNSAT in 0.0s, core 93
+13:24:26   round 3: 538 assumptions -> UNSAT in 0.0s, core 58
+13:24:27   round 4: 480 assumptions -> UNSAT in 0.0s, core 123
+13:24:27   round 5: 357 assumptions -> SAT in 0.0s
+13:24:30   re-add (CLD): kept 352 released literals in 20 calls; 709 assumptions, 6 released
+13:24:30   realize2 restart 0: normals loss 5.14e-12, LP margin -0, 235/715 signs wrong, 0.0s
+13:24:30   realize2 restart 1: normals loss 4.02e-11, LP margin -0, 265/715 signs wrong, 0.0s
+13:24:30   realize2 restart 2: normals loss 3.71e-12, LP margin -0, 285/715 signs wrong, 0.0s
+13:24:30   realize2 restart 3: normals loss 6.2e-11, LP margin -0, 239/715 signs wrong, 0.0s
+13:24:30   realize2 restart 4: normals loss 1.48e-10, LP margin -0, 253/715 signs wrong, 0.0s
+13:24:30   realize2 restart 5: normals loss 8.07e-09, LP margin -0, 286/715 signs wrong, 0.0s
+13:24:30   realize restart 0: loss 0.0462, 4/715 signs wrong, 0.2s
+13:24:31   realize restart 1: loss 0.0462, 4/715 signs wrong, 0.2s
+13:24:31   realize restart 2: loss 0.0462, 4/715 signs wrong, 0.5s
+13:24:31   alternation 7: released 6, wrong signs after realization 4
+13:24:37   final polynomial: FEASIBLE (6.1s)
+13:24:37   blocked a model with 6 flipped signs (8 blocks so far)
+13:24:37   round 0: 715 assumptions -> UNSAT in 0.0s, core 13
+13:24:38   round 1: 702 assumptions -> UNSAT in 0.0s, core 68
+13:24:38   round 2: 634 assumptions -> UNSAT in 0.0s, core 78
+13:24:38   round 3: 556 assumptions -> UNSAT in 0.0s, core 126
+13:24:38   round 4: 430 assumptions -> UNSAT in 0.0s, core 149
+13:24:38   round 5: 281 assumptions -> SAT in 0.0s
+13:24:40   re-add (CLD): kept 412 released literals in 14 calls; 693 assumptions, 22 released
+13:24:40   realize2 restart 0: normals loss 5.13e-10, LP margin -0, 288/715 signs wrong, 0.0s
+13:24:41   realize2 restart 1: normals loss 3.81e-10, LP margin -0, 302/715 signs wrong, 0.0s
+13:24:41   realize2 restart 2: normals loss 1.09e-10, LP margin -0, 273/715 signs wrong, 0.0s
+13:24:41   realize2 restart 3: normals loss 2.24e-10, LP margin -0, 282/715 signs wrong, 0.0s
+13:24:41   realize2 restart 4: normals loss 8.07e-10, LP margin -0, 204/715 signs wrong, 0.0s
+13:24:41   realize2 restart 5: normals loss 3.81e-10, LP margin -0, 252/715 signs wrong, 0.0s
+13:24:41   realize restart 0: loss 0.0616, 6/715 signs wrong, 0.3s
+13:24:41   realize restart 1: loss 0.0616, 6/715 signs wrong, 0.3s
+13:24:42   realize restart 2: loss 0.0616, 6/715 signs wrong, 0.5s
+13:24:42   alternation 8: released 22, wrong signs after realization 6
+13:24:49   final polynomial: FEASIBLE (7.6s)
+13:24:49   blocked a model with 22 flipped signs (9 blocks so far)
+13:24:49   round 0: 715 assumptions -> UNSAT in 0.0s, core 21
+13:24:50   round 1: 694 assumptions -> UNSAT in 0.0s, core 75
+13:24:50   round 2: 619 assumptions -> UNSAT in 0.0s, core 113
+13:24:50   round 3: 506 assumptions -> UNSAT in 0.0s, core 168
+13:24:50   round 4: 338 assumptions -> SAT in 0.0s
+13:24:52   re-add (CLD): kept 370 released literals in 13 calls; 708 assumptions, 7 released
+13:24:52   realize2 restart 0: normals loss 5.43e-11, LP margin -0, 187/715 signs wrong, 0.0s
+13:24:52   realize2 restart 1: normals loss 2.99e-09, LP margin -0, 309/715 signs wrong, 0.0s
+13:24:52   realize2 restart 2: normals loss 1.33e-10, LP margin -0, 175/715 signs wrong, 0.0s
+13:24:52   realize2 restart 3: normals loss 1.29e-10, LP margin -0, 151/715 signs wrong, 0.0s
+13:24:52   realize2 restart 4: normals loss 9.85e-11, LP margin -0, 366/715 signs wrong, 0.0s
+13:24:52   realize2 restart 5: normals loss 6.17e-12, LP margin -0, 261/715 signs wrong, 0.0s
+13:24:53   realize restart 0: loss 0.0458, 4/715 signs wrong, 0.2s
+13:24:53   realize restart 1: loss 0.0458, 4/715 signs wrong, 0.2s
+13:24:53   realize restart 2: loss 0.0458, 4/715 signs wrong, 0.4s
+13:24:53   alternation 9: released 7, wrong signs after realization 4
+13:24:59   final polynomial: FEASIBLE (5.8s)
+13:24:59   blocked a model with 7 flipped signs (10 blocks so far)
+13:24:59   round 0: 715 assumptions -> UNSAT in 0.0s, core 21
+13:24:59   round 1: 694 assumptions -> UNSAT in 0.0s, core 75
+13:24:59   round 2: 619 assumptions -> UNSAT in 0.0s, core 101
+13:25:00   round 3: 518 assumptions -> UNSAT in 0.0s, core 159
+13:25:00   round 4: 359 assumptions -> SAT in 0.0s
+13:25:02   re-add (CLD): kept 349 released literals in 13 calls; 708 assumptions, 7 released
+13:25:02   realize2 restart 0: normals loss 5.08e-11, LP margin -0, 173/715 signs wrong, 0.0s
+13:25:02   realize2 restart 1: normals loss 5.58e-09, LP margin -0, 209/715 signs wrong, 0.0s
+13:25:02   realize2 restart 2: normals loss 8.56e-11, LP margin -0, 232/715 signs wrong, 0.0s
+13:25:02   realize2 restart 3: normals loss 6.76e-11, LP margin -0, 262/715 signs wrong, 0.0s
+13:25:02   realize2 restart 4: normals loss 2e-10, LP margin -0, 298/715 signs wrong, 0.0s
+13:25:02   realize2 restart 5: normals loss 1.95e-12, LP margin -0, 208/715 signs wrong, 0.0s
+13:25:02   realize restart 0: loss 0.0497, 3/715 signs wrong, 0.2s
+13:25:03   realize restart 1: loss 0.0497, 3/715 signs wrong, 0.2s
+13:25:03   realize restart 2: loss 0.0497, 3/715 signs wrong, 0.4s
+13:25:03   alternation 10: released 7, wrong signs after realization 3
+13:25:09   final polynomial: FEASIBLE (6.6s)
+13:25:09   blocked a model with 7 flipped signs (11 blocks so far)
+13:25:10   round 0: 715 assumptions -> UNSAT in 0.0s, core 68
+13:25:10   round 1: 647 assumptions -> UNSAT in 0.0s, core 91
+13:25:10   round 2: 556 assumptions -> UNSAT in 0.0s, core 155
+13:25:10   round 3: 401 assumptions -> UNSAT in 0.0s, core 177
+13:25:10   round 4: 224 assumptions -> SAT in 0.0s
+13:25:12   re-add (CLD): kept 435 released literals in 8 calls; 659 assumptions, 56 released
+13:25:12   realize2 restart 0: normals loss 0.000759, LP margin -0, 270/715 signs wrong, 0.0s
+13:25:12   realize2 restart 1: normals loss 0.000759, LP margin -0, 169/715 signs wrong, 0.0s
+13:25:12   realize2 restart 2: normals loss 0.000759, LP margin -0, 226/715 signs wrong, 0.0s
+13:25:12   realize2 restart 3: normals loss 0.000759, LP margin -0, 375/715 signs wrong, 0.0s
+13:25:12   realize2 restart 4: normals loss 0.000759, LP margin -0, 254/715 signs wrong, 0.0s
+13:25:12   realize2 restart 5: normals loss 0.000759, LP margin -0, 285/715 signs wrong, 0.0s
+13:25:12   realize restart 0: loss 0.109, 13/715 signs wrong, 0.3s
+13:25:13   realize restart 1: loss 0.109, 13/715 signs wrong, 0.4s
+13:25:13   realize restart 2: loss 0.109, 13/715 signs wrong, 0.7s
+13:25:13   alternation 11: released 56, wrong signs after realization 13
+13:27:13   final polynomial: LP-TIMEOUT (120.2s)
+13:27:13   blocked a model with 56 flipped signs (12 blocks so far)
+13:27:14   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:27:14   round 1: 714 assumptions -> UNSAT in 0.0s, core 2
+13:27:14   round 2: 712 assumptions -> UNSAT in 0.0s, core 68
+13:27:14   round 3: 644 assumptions -> UNSAT in 0.0s, core 68
+13:27:14   round 4: 576 assumptions -> UNSAT in 0.0s, core 60
+13:27:14   round 5: 516 assumptions -> UNSAT in 0.0s, core 37
+13:27:14   round 6: 479 assumptions -> UNSAT in 0.0s, core 40
+13:27:15   round 7: 439 assumptions -> UNSAT in 0.0s, core 119
+13:27:15   round 8: 320 assumptions -> SAT in 0.0s
+13:27:17   re-add (CLD): kept 383 released literals in 16 calls; 703 assumptions, 12 released
+13:27:17   realize2 restart 0: normals loss 2.81e-06, LP margin -0, 211/715 signs wrong, 0.0s
+13:27:17   realize2 restart 1: normals loss 1.83e-06, LP margin -0, 256/715 signs wrong, 0.0s
+13:27:17   realize2 restart 2: normals loss 2.55e-06, LP margin -0, 237/715 signs wrong, 0.0s
+13:27:17   realize2 restart 3: normals loss 1.9e-06, LP margin -0, 256/715 signs wrong, 0.0s
+13:27:17   realize2 restart 4: normals loss 2.63e-06, LP margin -0, 147/715 signs wrong, 0.0s
+13:27:18   realize2 restart 5: normals loss 1.78e-06, LP margin -0, 351/715 signs wrong, 0.0s
+13:27:18   realize restart 0: loss 0.091, 11/715 signs wrong, 0.2s
+13:27:18   realize restart 1: loss 0.091, 11/715 signs wrong, 0.2s
+13:27:18   realize restart 2: loss 0.091, 11/715 signs wrong, 0.5s
+13:27:19   alternation 12: released 12, wrong signs after realization 11
+13:27:24   final polynomial: NONREALIZABLE-EXACT (5.5s), sound cut on 20 brackets
+13:27:24   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:27:24   round 1: 714 assumptions -> UNSAT in 0.0s, core 68
+13:27:24   round 2: 646 assumptions -> UNSAT in 0.0s, core 50
+13:27:25   round 3: 596 assumptions -> UNSAT in 0.0s, core 49
+13:27:25   round 4: 547 assumptions -> UNSAT in 0.0s, core 73
+13:27:25   round 5: 474 assumptions -> UNSAT in 0.0s, core 66
+13:27:25   round 6: 408 assumptions -> UNSAT in 0.0s, core 145
+13:27:25   round 7: 263 assumptions -> UNSAT in 0.0s, core 154
+13:27:26   round 8: 109 assumptions -> SAT in 0.4s
+13:27:28   re-add (CLD): kept 402 released literals in 14 calls; 511 assumptions, 204 released
+13:27:28   realize2 restart 0: normals loss 0.00201, LP margin -0, 274/715 signs wrong, 0.0s
+13:27:29   realize2 restart 1: normals loss 0.00201, LP margin -0, 229/715 signs wrong, 0.0s
+13:27:29   realize2 restart 2: normals loss 0.00201, LP margin -0, 295/715 signs wrong, 0.0s
+13:27:29   realize2 restart 3: normals loss 0.00201, LP margin -0, 324/715 signs wrong, 0.0s
+13:27:29   realize2 restart 4: normals loss 0.00201, LP margin -0, 202/715 signs wrong, 0.0s
+13:27:29   realize2 restart 5: normals loss 0.00201, LP margin -0, 295/715 signs wrong, 0.0s
+13:27:29   realize restart 0: loss 0.162, 16/715 signs wrong, 0.6s
+13:27:30   realize restart 1: loss 0.162, 16/715 signs wrong, 0.6s
+13:27:31   realize restart 2: loss 0.162, 16/715 signs wrong, 0.7s
+13:27:31   alternation 13: released 204, wrong signs after realization 16
+13:27:35   final polynomial: NONREALIZABLE-NUMERICAL (4.5s)
+13:27:35   blocked a model with 204 flipped signs (13 blocks so far)
+13:27:35   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:27:35   round 1: 714 assumptions -> UNSAT in 0.0s, core 31
+13:27:35   round 2: 683 assumptions -> UNSAT in 0.0s, core 70
+13:27:36   round 3: 613 assumptions -> UNSAT in 0.0s, core 79
+13:27:36   round 4: 534 assumptions -> UNSAT in 0.0s, core 87
+13:27:36   round 5: 447 assumptions -> UNSAT in 0.0s, core 112
+13:27:36   round 6: 335 assumptions -> SAT in 0.0s
+13:27:39   re-add (CLD): kept 362 released literals in 14 calls; 697 assumptions, 18 released
+13:27:39   realize2 restart 0: normals loss 2.07e-10, LP margin -0, 306/715 signs wrong, 0.0s
+13:27:39   realize2 restart 1: normals loss 5.02e-08, LP margin -0, 300/715 signs wrong, 0.0s
+13:27:39   realize2 restart 2: normals loss 1.16e-09, LP margin -0, 180/715 signs wrong, 0.0s
+13:27:39   realize2 restart 3: normals loss 9.36e-09, LP margin -0, 259/715 signs wrong, 0.0s
+13:27:39   realize2 restart 4: normals loss 2.5e-08, LP margin -0, 317/715 signs wrong, 0.0s
+13:27:39   realize2 restart 5: normals loss 5.21e-08, LP margin -0, 245/715 signs wrong, 0.0s
+13:27:39   realize restart 0: loss 0.107, 10/715 signs wrong, 0.3s
+13:27:39   realize restart 1: loss 0.107, 10/715 signs wrong, 0.3s
+13:27:40   realize restart 2: loss 0.107, 10/715 signs wrong, 0.4s
+13:27:40   alternation 14: released 18, wrong signs after realization 10
+13:29:40   final polynomial: LP-TIMEOUT (120.2s)
+13:29:40   blocked a model with 18 flipped signs (14 blocks so far)
+13:29:40   round 0: 715 assumptions -> UNSAT in 0.0s, core 17
+13:29:40   round 1: 698 assumptions -> UNSAT in 0.0s, core 49
+13:29:41   round 2: 649 assumptions -> UNSAT in 0.0s, core 61
+13:29:41   round 3: 588 assumptions -> UNSAT in 0.0s, core 101
+13:29:41   round 4: 487 assumptions -> UNSAT in 0.0s, core 168
+13:29:41   round 5: 319 assumptions -> SAT in 0.0s
+13:29:43   re-add (CLD): kept 389 released literals in 11 calls; 708 assumptions, 7 released
+13:29:43   realize2 restart 0: normals loss 1.79e-09, LP margin -0, 281/715 signs wrong, 0.0s
+13:29:43   realize2 restart 1: normals loss 9.84e-11, LP margin -0, 146/715 signs wrong, 0.0s
+13:29:43   realize2 restart 2: normals loss 4.22e-10, LP margin -0, 277/715 signs wrong, 0.0s
+13:29:43   realize2 restart 3: normals loss 4.39e-10, LP margin -0, 188/715 signs wrong, 0.0s
+13:29:43   realize2 restart 4: normals loss 1.27e-11, LP margin -0, 254/715 signs wrong, 0.0s
+13:29:43   realize2 restart 5: normals loss 1.21e-09, LP margin -0, 257/715 signs wrong, 0.0s
+13:29:43   realize restart 0: loss 0.0694, 4/715 signs wrong, 0.3s
+13:29:44   realize restart 1: loss 0.0694, 4/715 signs wrong, 0.3s
+13:29:44   realize restart 2: loss 0.0694, 4/715 signs wrong, 0.5s
+13:29:44   alternation 15: released 7, wrong signs after realization 4
+13:29:51   final polynomial: FEASIBLE (7.0s)
+13:29:51   blocked a model with 7 flipped signs (15 blocks so far)
+13:29:51   round 0: 715 assumptions -> UNSAT in 0.0s, core 43
+13:29:51   round 1: 672 assumptions -> UNSAT in 0.0s, core 53
+13:29:51   round 2: 619 assumptions -> UNSAT in 0.0s, core 49
+13:29:52   round 3: 570 assumptions -> UNSAT in 0.0s, core 125
+13:29:52   round 4: 445 assumptions -> SAT in 0.0s
+13:29:53   re-add (CLD): kept 263 released literals in 8 calls; 708 assumptions, 7 released
+13:29:53   realize2 restart 0: normals loss 1.67e-13, LP margin -0, 273/715 signs wrong, 0.0s
+13:29:53   realize2 restart 1: normals loss 5.18e-10, LP margin -0, 247/715 signs wrong, 0.0s
+13:29:53   realize2 restart 2: normals loss 2.39e-11, LP margin -0, 281/715 signs wrong, 0.0s
+13:29:53   realize2 restart 3: normals loss 2.41e-10, LP margin -0, 324/715 signs wrong, 0.0s
+13:29:53   realize2 restart 4: normals loss 1.37e-11, LP margin -0, 227/715 signs wrong, 0.0s
+13:29:53   realize2 restart 5: normals loss 2.91e-10, LP margin -0, 256/715 signs wrong, 0.0s
+13:29:53   realize restart 0: loss 0.0673, 5/715 signs wrong, 0.2s
+13:29:54   realize restart 1: loss 0.0673, 5/715 signs wrong, 0.2s
+13:29:54   realize restart 2: loss 0.0673, 5/715 signs wrong, 0.4s
+13:29:54   alternation 16: released 7, wrong signs after realization 5
+13:30:00   final polynomial: FEASIBLE (6.2s)
+13:30:00   blocked a model with 7 flipped signs (16 blocks so far)
+13:30:00   round 0: 715 assumptions -> UNSAT in 0.0s, core 44
+13:30:01   round 1: 671 assumptions -> UNSAT in 0.0s, core 41
+13:30:01   round 2: 630 assumptions -> UNSAT in 0.0s, core 70
+13:30:01   round 3: 560 assumptions -> UNSAT in 0.0s, core 68
+13:30:01   round 4: 492 assumptions -> UNSAT in 0.0s, core 135
+13:30:01   round 5: 357 assumptions -> SAT in 0.0s
+13:30:03   re-add (CLD): kept 349 released literals in 12 calls; 706 assumptions, 9 released
+13:30:03   realize2 restart 0: normals loss 6.34e-10, LP margin -0, 218/715 signs wrong, 0.0s
+13:30:03   realize2 restart 1: normals loss 1.97e-14, LP margin -0, 263/715 signs wrong, 0.0s
+13:30:03   realize2 restart 2: normals loss 3.23e-11, LP margin -0, 326/715 signs wrong, 0.0s
+13:30:03   realize2 restart 3: normals loss 3.22e-11, LP margin -0, 251/715 signs wrong, 0.0s
+13:30:03   realize2 restart 4: normals loss 2.18e-11, LP margin -0, 238/715 signs wrong, 0.0s
+13:30:03   realize2 restart 5: normals loss 1.45e-11, LP margin -0, 240/715 signs wrong, 0.0s
+13:30:04   realize restart 0: loss 0.065, 2/715 signs wrong, 0.2s
+13:30:04   realize restart 1: loss 0.065, 2/715 signs wrong, 0.2s
+13:30:04   realize restart 2: loss 0.065, 2/715 signs wrong, 0.5s
+13:30:04   alternation 17: released 9, wrong signs after realization 2
+13:30:11   final polynomial: FEASIBLE (6.6s)
+13:30:11   blocked a model with 9 flipped signs (17 blocks so far)
+13:30:11   round 0: 715 assumptions -> UNSAT in 0.0s, core 81
+13:30:11   round 1: 634 assumptions -> UNSAT in 0.0s, core 95
+13:30:11   round 2: 539 assumptions -> UNSAT in 0.0s, core 174
+13:30:11   round 3: 365 assumptions -> SAT in 0.0s
+13:30:13   re-add (CLD): kept 341 released literals in 9 calls; 706 assumptions, 9 released
+13:30:13   realize2 restart 0: normals loss 9.5e-10, LP margin -0, 215/715 signs wrong, 0.0s
+13:30:13   realize2 restart 1: normals loss 2.2e-10, LP margin -0, 188/715 signs wrong, 0.0s
+13:30:13   realize2 restart 2: normals loss 1.02e-13, LP margin -0, 162/715 signs wrong, 0.0s
+13:30:13   realize2 restart 3: normals loss 5.68e-11, LP margin -0, 257/715 signs wrong, 0.0s
+13:30:13   realize2 restart 4: normals loss 1.28e-10, LP margin -0, 164/715 signs wrong, 0.0s
+13:30:13   realize2 restart 5: normals loss 3.54e-10, LP margin -0, 250/715 signs wrong, 0.0s
+13:30:13   realize restart 0: loss 0.0694, 3/715 signs wrong, 0.2s
+13:30:13   realize restart 1: loss 0.0694, 3/715 signs wrong, 0.2s
+13:30:14   realize restart 2: loss 0.0694, 3/715 signs wrong, 0.4s
+13:30:14   alternation 18: released 9, wrong signs after realization 3
+13:30:21   final polynomial: FEASIBLE (7.2s)
+13:30:21   blocked a model with 9 flipped signs (18 blocks so far)
+13:30:21   round 0: 715 assumptions -> UNSAT in 0.0s, core 41
+13:30:21   round 1: 674 assumptions -> UNSAT in 0.0s, core 39
+13:30:22   round 2: 635 assumptions -> UNSAT in 0.0s, core 53
+13:30:22   round 3: 582 assumptions -> UNSAT in 0.0s, core 130
+13:30:22   round 4: 452 assumptions -> SAT in 0.0s
+13:30:23   re-add (CLD): kept 255 released literals in 9 calls; 707 assumptions, 8 released
+13:30:23   realize2 restart 0: normals loss 1.91e-10, LP margin -0, 251/715 signs wrong, 0.0s
+13:30:23   realize2 restart 1: normals loss 2.66e-11, LP margin -0, 159/715 signs wrong, 0.0s
+13:30:23   realize2 restart 2: normals loss 3.8e-11, LP margin -0, 202/715 signs wrong, 0.0s
+13:30:23   realize2 restart 3: normals loss 2.08e-12, LP margin -0, 319/715 signs wrong, 0.0s
+13:30:23   realize2 restart 4: normals loss 2.64e-10, LP margin -0, 222/715 signs wrong, 0.0s
+13:30:23   realize2 restart 5: normals loss 5e-10, LP margin -0, 347/715 signs wrong, 0.0s
+13:30:24   realize restart 0: loss 0.0754, 6/715 signs wrong, 0.3s
+13:30:24   realize restart 1: loss 0.0754, 6/715 signs wrong, 0.4s
+13:30:25   realize restart 2: loss 0.0754, 6/715 signs wrong, 0.5s
+13:30:25   alternation 19: released 8, wrong signs after realization 6
+13:30:33   final polynomial: FEASIBLE (8.5s)
+13:30:33   blocked a model with 8 flipped signs (19 blocks so far)
+13:30:34 RESULT R6k-type15-genus3-k7-seed6: engine NOT-REALIZED, success False (UNSAT), 566s
+13:30:34 R6k-type15-genus3-k8 seed 6: start (budget 20 min)
+13:30:34 [R6k-type15-genus3-k8-seed6] k=8 faces=[0, 1, 2, 3, 7, 4, 6, 11]: 7285 vars, 436900 clauses
+13:30:34   round 0: 715 assumptions -> UNSAT in 0.0s, core 18
+13:30:34   round 1: 697 assumptions -> UNSAT in 0.0s, core 29
+13:30:34   round 2: 668 assumptions -> UNSAT in 0.0s, core 32
+13:30:35   round 3: 636 assumptions -> UNSAT in 0.0s, core 34
+13:30:35   round 4: 602 assumptions -> UNSAT in 0.0s, core 80
+13:30:35   round 5: 522 assumptions -> UNSAT in 0.0s, core 25
+13:30:35   round 6: 497 assumptions -> UNSAT in 0.0s, core 43
+13:30:35   round 7: 454 assumptions -> UNSAT in 0.0s, core 21
+13:30:35   round 8: 433 assumptions -> UNSAT in 0.0s, core 16
+13:30:36   round 9: 417 assumptions -> UNSAT in 0.0s, core 79
+13:30:36   round 10: 338 assumptions -> UNSAT in 0.0s, core 66
+13:30:36   round 11: 272 assumptions -> UNSAT in 0.0s, core 99
+13:30:36   round 12: 173 assumptions -> UNSAT in 0.0s, core 126
+13:30:40   round 13: 47 assumptions -> SAT in 3.6s
+13:30:45   re-add (CLD): kept 330 released literals in 9 calls; 377 assumptions, 338 released
+13:30:45   realize2 restart 0: normals loss 0.00374, LP margin -0, 211/715 signs wrong, 0.0s
+13:30:45   realize2 restart 1: normals loss 0.00374, LP margin -0, 303/715 signs wrong, 0.0s
+13:30:45   realize2 restart 2: normals loss 0.00374, LP margin -0, 123/715 signs wrong, 0.0s
+13:30:45   realize2 restart 3: normals loss 0.00374, LP margin -0, 317/715 signs wrong, 0.0s
+13:30:45   realize2 restart 4: normals loss 0.00374, LP margin -0, 281/715 signs wrong, 0.0s
+13:30:45   realize2 restart 5: normals loss 0.00374, LP margin -0, 209/715 signs wrong, 0.0s
+13:30:46   realize restart 0: loss 0.242, 28/715 signs wrong, 0.8s
+13:30:47   realize restart 1: loss 0.242, 28/715 signs wrong, 0.9s
+13:30:47   realize restart 2: loss 0.259, 31/715 signs wrong, 0.6s
+13:30:47   alternation 0: released 338, wrong signs after realization 28
+13:30:50   final polynomial: NONREALIZABLE-NUMERICAL (2.5s)
+13:30:50   blocked a model with 338 flipped signs (1 blocks so far)
+13:30:50   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:30:50   round 1: 714 assumptions -> UNSAT in 0.0s, core 1
+13:30:50   round 2: 713 assumptions -> UNSAT in 0.0s, core 3
+13:30:50   round 3: 710 assumptions -> UNSAT in 0.0s, core 7
+13:30:51   round 4: 703 assumptions -> UNSAT in 0.0s, core 27
+13:30:51   round 5: 676 assumptions -> UNSAT in 0.0s, core 53
+13:30:51   round 6: 623 assumptions -> UNSAT in 0.0s, core 99
+13:30:51   round 7: 524 assumptions -> UNSAT in 0.0s, core 79
+13:30:51   round 8: 445 assumptions -> UNSAT in 0.0s, core 102
+13:30:51   round 9: 343 assumptions -> UNSAT in 0.0s, core 89
+13:30:51   round 10: 254 assumptions -> UNSAT in 0.0s, core 128
+13:30:52   round 11: 126 assumptions -> SAT in 0.6s
+13:30:57   re-add (CLD): kept 530 released literals in 22 calls; 656 assumptions, 59 released
+13:30:57   realize2 restart 0: normals loss 3.8e-10, LP margin -0, 203/715 signs wrong, 0.0s
+13:30:57   realize2 restart 1: normals loss 2.24e-08, LP margin -0, 137/715 signs wrong, 0.0s
+13:30:57   realize2 restart 2: normals loss 4.83e-10, LP margin -0, 181/715 signs wrong, 0.0s
+13:30:57   realize2 restart 3: normals loss 5.2e-08, LP margin -0, 279/715 signs wrong, 0.0s
+13:30:57   realize2 restart 4: normals loss 9.32e-11, LP margin -0, 335/715 signs wrong, 0.0s
+13:30:57   realize2 restart 5: normals loss 9.22e-11, LP margin -0, 185/715 signs wrong, 0.0s
+13:30:57   realize restart 0: loss 0.103, 15/715 signs wrong, 0.4s
+13:30:58   realize restart 1: loss 0.103, 15/715 signs wrong, 0.5s
+13:30:58   realize restart 2: loss 0.103, 15/715 signs wrong, 0.5s
+13:30:58   alternation 1: released 59, wrong signs after realization 15
+13:31:05   final polynomial: NONREALIZABLE-NUMERICAL (7.1s)
+13:31:05   blocked a model with 59 flipped signs (2 blocks so far)
+13:31:05   round 0: 715 assumptions -> UNSAT in 0.0s, core 7
+13:31:06   round 1: 708 assumptions -> UNSAT in 0.0s, core 34
+13:31:06   round 2: 674 assumptions -> UNSAT in 0.0s, core 90
+13:31:06   round 3: 584 assumptions -> UNSAT in 0.0s, core 172
+13:31:06   round 4: 412 assumptions -> SAT in 0.0s
+13:31:10   re-add (CLD): kept 298 released literals in 25 calls; 710 assumptions, 5 released
+13:31:10   realize2 restart 0: normals loss 2.12e-10, LP margin -0, 276/715 signs wrong, 0.0s
+13:31:10   realize2 restart 1: normals loss 1.23e-10, LP margin -0, 296/715 signs wrong, 0.0s
+13:31:10   realize2 restart 2: normals loss 6.69e-13, LP margin -0, 204/715 signs wrong, 0.0s
+13:31:10   realize2 restart 3: normals loss 8.94e-11, LP margin -0, 291/715 signs wrong, 0.0s
+13:31:10   realize2 restart 4: normals loss 5.66e-10, LP margin -0, 240/715 signs wrong, 0.0s
+13:31:11   realize2 restart 5: normals loss 6.07e-12, LP margin -0, 175/715 signs wrong, 0.0s
+13:31:11   realize restart 0: loss 0.0388, 0/715 signs wrong, 0.2s
+13:31:11   alternation 2: released 5, wrong signs after realization 0
+13:31:11 RESULT R6k-type15-genus3-k8-seed6: engine LADDER-END, success True (SAT), 37s
+13:31:11 R6k-type15-genus3-k9 seed 6: start (budget 20 min)
+13:31:12 [R6k-type15-genus3-k9-seed6] k=9 faces=[0, 1, 2, 3, 7, 4, 6, 11, 5]: 8791 vars, 442440 clauses
+13:31:12   round 0: 715 assumptions -> UNSAT in 0.0s, core 41
+13:31:12   round 1: 674 assumptions -> UNSAT in 0.0s, core 50
+13:31:12   round 2: 624 assumptions -> UNSAT in 0.0s, core 85
+13:31:12   round 3: 539 assumptions -> UNSAT in 0.0s, core 46
+13:31:12   round 4: 493 assumptions -> UNSAT in 0.0s, core 98
+13:31:13   round 5: 395 assumptions -> UNSAT in 0.0s, core 77
+13:31:13   round 6: 318 assumptions -> UNSAT in 0.0s, core 77
+13:31:13   round 7: 241 assumptions -> UNSAT in 0.0s, core 68
+13:31:13   round 8: 173 assumptions -> UNSAT in 0.0s, core 112
+13:31:50   round 9: 61 assumptions -> SAT in 36.3s
+13:32:10   re-add (CLD): kept 0 released literals in 1 calls; 61 assumptions, 654 released
+13:32:10   realize2 restart 0: normals loss 0.00797, LP margin -0, 208/715 signs wrong, 0.0s
+13:32:10   realize2 restart 1: normals loss 0.00797, LP margin -0, 353/715 signs wrong, 0.0s
+13:32:10   realize2 restart 2: normals loss 0.00797, LP margin -0, 250/715 signs wrong, 0.0s
+13:32:10   realize2 restart 3: normals loss 0.00797, LP margin -0, 234/715 signs wrong, 0.0s
+13:32:10   realize2 restart 4: normals loss 0.00797, LP margin -0, 345/715 signs wrong, 0.0s
+13:32:10   realize2 restart 5: normals loss 0.00797, LP margin -0, 247/715 signs wrong, 0.0s
+13:32:11   realize restart 0: loss 0.251, 29/715 signs wrong, 1.3s
+13:32:12   realize restart 1: loss 0.252, 29/715 signs wrong, 1.3s
+13:32:13   realize restart 2: loss 0.25, 28/715 signs wrong, 1.1s
+13:32:13   alternation 0: released 654, wrong signs after realization 28
+13:32:17   final polynomial: NONREALIZABLE-NUMERICAL (3.8s)
+13:32:17   blocked a model with 341 flipped signs (1 blocks so far)
+13:32:17   round 0: 715 assumptions -> UNSAT in 0.0s, core 21
+13:32:18   round 1: 694 assumptions -> UNSAT in 0.0s, core 94
+13:32:18   round 2: 600 assumptions -> UNSAT in 0.0s, core 33
+13:32:18   round 3: 567 assumptions -> UNSAT in 0.0s, core 100
+13:32:18   round 4: 467 assumptions -> UNSAT in 0.0s, core 58
+13:32:18   round 5: 409 assumptions -> UNSAT in 0.0s, core 137
+13:32:18   round 6: 272 assumptions -> SAT in 0.0s
+13:32:22   re-add (CLD): kept 424 released literals in 18 calls; 696 assumptions, 19 released
+13:32:22   realize2 restart 0: normals loss 0.000474, LP margin -0, 294/715 signs wrong, 0.0s
+13:32:22   realize2 restart 1: normals loss 0.000474, LP margin -0, 272/715 signs wrong, 0.0s
+13:32:22   realize2 restart 2: normals loss 0.000474, LP margin -0, 336/715 signs wrong, 0.0s
+13:32:22   realize2 restart 3: normals loss 0.000474, LP margin -0, 235/715 signs wrong, 0.0s
+13:32:22   realize2 restart 4: normals loss 0.000474, LP margin -0, 213/715 signs wrong, 0.0s
+13:32:22   realize2 restart 5: normals loss 0.000474, LP margin -0, 336/715 signs wrong, 0.0s
+13:32:22   realize restart 0: loss 0.0939, 14/715 signs wrong, 0.3s
+13:32:22   realize restart 1: loss 0.0939, 14/715 signs wrong, 0.3s
+13:32:23   realize restart 2: loss 0.0939, 14/715 signs wrong, 0.4s
+13:32:23   alternation 1: released 19, wrong signs after realization 14
+13:32:31   final polynomial: FEASIBLE (8.0s)
+13:32:31   blocked a model with 19 flipped signs (2 blocks so far)
+13:32:31   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:32:31   round 1: 714 assumptions -> UNSAT in 0.0s, core 18
+13:32:31   round 2: 696 assumptions -> UNSAT in 0.0s, core 35
+13:32:31   round 3: 661 assumptions -> UNSAT in 0.0s, core 102
+13:32:32   round 4: 559 assumptions -> UNSAT in 0.0s, core 33
+13:32:32   round 5: 526 assumptions -> UNSAT in 0.0s, core 85
+13:32:32   round 6: 441 assumptions -> UNSAT in 0.0s, core 130
+13:32:32   round 7: 311 assumptions -> SAT in 0.0s
+13:32:34   re-add (CLD): kept 393 released literals in 11 calls; 704 assumptions, 11 released
+13:32:34   realize2 restart 0: normals loss 6.87e-09, LP margin -0, 206/715 signs wrong, 0.0s
+13:32:34   realize2 restart 1: normals loss 2.72e-09, LP margin -0, 251/715 signs wrong, 0.0s
+13:32:34   realize2 restart 2: normals loss 2.56e-10, LP margin -0, 144/715 signs wrong, 0.0s
+13:32:34   realize2 restart 3: normals loss 5.89e-11, LP margin -0, 238/715 signs wrong, 0.0s
+13:32:34   realize2 restart 4: normals loss 1.17e-11, LP margin -0, 258/715 signs wrong, 0.0s
+13:32:34   realize2 restart 5: normals loss 1.01e-09, LP margin -0, 281/715 signs wrong, 0.0s
+13:32:34   realize restart 0: loss 0.0595, 5/715 signs wrong, 0.2s
+13:32:35   realize restart 1: loss 0.0595, 5/715 signs wrong, 0.2s
+13:32:35   realize restart 2: loss 0.0595, 5/715 signs wrong, 0.5s
+13:32:35   alternation 2: released 11, wrong signs after realization 5
+13:32:42   final polynomial: FEASIBLE (6.8s)
+13:32:42   blocked a model with 11 flipped signs (3 blocks so far)
+13:32:42   round 0: 715 assumptions -> UNSAT in 0.0s, core 18
+13:32:42   round 1: 697 assumptions -> UNSAT in 0.0s, core 81
+13:32:42   round 2: 616 assumptions -> UNSAT in 0.0s, core 37
+13:32:43   round 3: 579 assumptions -> SAT in 0.0s
+13:32:44   re-add (CLD): kept 128 released literals in 7 calls; 707 assumptions, 8 released
+13:32:44   realize2 restart 0: normals loss 2.14e-08, LP margin -0, 178/715 signs wrong, 0.0s
+13:32:44   realize2 restart 1: normals loss 4.3e-08, LP margin -0, 221/715 signs wrong, 0.0s
+13:32:44   realize2 restart 2: normals loss 6.15e-10, LP margin -0, 275/715 signs wrong, 0.0s
+13:32:44   realize2 restart 3: normals loss 1.24e-10, LP margin -0, 231/715 signs wrong, 0.0s
+13:32:44   realize2 restart 4: normals loss 7.59e-09, LP margin -0, 194/715 signs wrong, 0.0s
+13:32:44   realize2 restart 5: normals loss 2.74e-10, LP margin -0, 231/715 signs wrong, 0.0s
+13:32:44   realize restart 0: loss 0.0616, 4/715 signs wrong, 0.2s
+13:32:44   realize restart 1: loss 0.0616, 4/715 signs wrong, 0.2s
+13:32:45   realize restart 2: loss 0.0616, 4/715 signs wrong, 0.4s
+13:32:45   alternation 3: released 8, wrong signs after realization 4
+13:32:52   final polynomial: FEASIBLE (7.7s)
+13:32:52   blocked a model with 8 flipped signs (4 blocks so far)
+13:32:53   round 0: 715 assumptions -> UNSAT in 0.0s, core 82
+13:32:53   round 1: 633 assumptions -> UNSAT in 0.0s, core 65
+13:32:53   round 2: 568 assumptions -> UNSAT in 0.0s, core 139
+13:32:53   round 3: 429 assumptions -> SAT in 0.0s
+13:32:56   re-add (CLD): kept 279 released literals in 15 calls; 708 assumptions, 7 released
+13:32:56   realize2 restart 0: normals loss 1.5e-12, LP margin -0, 296/715 signs wrong, 0.0s
+13:32:56   realize2 restart 1: normals loss 3.63e-10, LP margin -0, 303/715 signs wrong, 0.0s
+13:32:56   realize2 restart 2: normals loss 2.92e-11, LP margin -0, 244/715 signs wrong, 0.0s
+13:32:56   realize2 restart 3: normals loss 4.67e-10, LP margin -0, 226/715 signs wrong, 0.0s
+13:32:56   realize2 restart 4: normals loss 9.19e-11, LP margin -0, 290/715 signs wrong, 0.0s
+13:32:56   realize2 restart 5: normals loss 1.62e-10, LP margin -0, 240/715 signs wrong, 0.0s
+13:32:56   realize restart 0: loss 0.0687, 7/715 signs wrong, 0.2s
+13:32:56   realize restart 1: loss 0.0687, 7/715 signs wrong, 0.2s
+13:32:57   realize restart 2: loss 0.0687, 7/715 signs wrong, 0.4s
+13:32:57   alternation 4: released 7, wrong signs after realization 7
+13:33:03   final polynomial: FEASIBLE (6.7s)
+13:33:03   blocked a model with 7 flipped signs (5 blocks so far)
+13:33:04   round 0: 715 assumptions -> UNSAT in 0.0s, core 83
+13:33:04   round 1: 632 assumptions -> UNSAT in 0.0s, core 33
+13:33:04   round 2: 599 assumptions -> UNSAT in 0.0s, core 101
+13:33:04   round 3: 498 assumptions -> SAT in 0.0s
+13:33:06   re-add (CLD): kept 207 released literals in 13 calls; 705 assumptions, 10 released
+13:33:06   realize2 restart 0: normals loss 3.23e-10, LP margin -0, 174/715 signs wrong, 0.0s
+13:33:06   realize2 restart 1: normals loss 4.53e-10, LP margin -0, 192/715 signs wrong, 0.0s
+13:33:06   realize2 restart 2: normals loss 8.97e-09, LP margin -0, 264/715 signs wrong, 0.0s
+13:33:06   realize2 restart 3: normals loss 2.75e-10, LP margin -0, 294/715 signs wrong, 0.0s
+13:33:06   realize2 restart 4: normals loss 1.17e-10, LP margin -0, 198/715 signs wrong, 0.0s
+13:33:06   realize2 restart 5: normals loss 2.02e-09, LP margin -0, 257/715 signs wrong, 0.0s
+13:33:07   realize restart 0: loss 0.0636, 5/715 signs wrong, 0.2s
+13:33:07   realize restart 1: loss 0.0636, 5/715 signs wrong, 0.2s
+13:33:07   realize restart 2: loss 0.0636, 5/715 signs wrong, 0.4s
+13:33:07   alternation 5: released 10, wrong signs after realization 5
+13:33:14   final polynomial: FEASIBLE (7.0s)
+13:33:14   blocked a model with 10 flipped signs (6 blocks so far)
+13:33:14   round 0: 715 assumptions -> UNSAT in 0.0s, core 40
+13:33:15   round 1: 675 assumptions -> UNSAT in 0.0s, core 99
+13:33:15   round 2: 576 assumptions -> UNSAT in 0.0s, core 108
+13:33:15   round 3: 468 assumptions -> UNSAT in 0.0s, core 165
+13:33:15   round 4: 303 assumptions -> SAT in 0.0s
+13:33:17   re-add (CLD): kept 404 released literals in 12 calls; 707 assumptions, 8 released
+13:33:17   realize2 restart 0: normals loss 1.96e-10, LP margin -0, 367/715 signs wrong, 0.0s
+13:33:17   realize2 restart 1: normals loss 2.9e-11, LP margin -0, 327/715 signs wrong, 0.0s
+13:33:17   realize2 restart 2: normals loss 2.87e-10, LP margin -0, 187/715 signs wrong, 0.0s
+13:33:17   realize2 restart 3: normals loss 2.75e-10, LP margin -0, 279/715 signs wrong, 0.0s
+13:33:17   realize2 restart 4: normals loss 2.19e-08, LP margin -0, 346/715 signs wrong, 0.0s
+13:33:17   realize2 restart 5: normals loss 1.34e-10, LP margin -0, 235/715 signs wrong, 0.0s
+13:33:18   realize restart 0: loss 0.0651, 4/715 signs wrong, 0.2s
+13:33:18   realize restart 1: loss 0.0651, 4/715 signs wrong, 0.2s
+13:33:18   realize restart 2: loss 0.0651, 4/715 signs wrong, 0.5s
+13:33:18   alternation 6: released 8, wrong signs after realization 4
+13:33:26   final polynomial: FEASIBLE (7.8s)
+13:33:26   blocked a model with 8 flipped signs (7 blocks so far)
+13:33:26   round 0: 715 assumptions -> UNSAT in 0.0s, core 82
+13:33:26   round 1: 633 assumptions -> UNSAT in 0.0s, core 104
+13:33:26   round 2: 529 assumptions -> UNSAT in 0.0s, core 120
+13:33:27   round 3: 409 assumptions -> UNSAT in 0.0s, core 152
+13:33:27   round 4: 257 assumptions -> UNSAT in 0.0s, core 158
+13:33:29   round 5: 99 assumptions -> SAT in 2.5s
+13:33:34   re-add (CLD): kept 366 released literals in 11 calls; 465 assumptions, 250 released
+13:33:34   realize2 restart 0: normals loss 0.00095, LP margin -0, 197/715 signs wrong, 0.0s
+13:33:34   realize2 restart 1: normals loss 0.00095, LP margin -0, 290/715 signs wrong, 0.0s
+13:33:34   realize2 restart 2: normals loss 0.00095, LP margin -0, 313/715 signs wrong, 0.0s
+13:33:34   realize2 restart 3: normals loss 0.00095, LP margin -0, 221/715 signs wrong, 0.0s
+13:33:34   realize2 restart 4: normals loss 0.00095, LP margin -0, 228/715 signs wrong, 0.0s
+13:33:34   realize2 restart 5: normals loss 0.00095, LP margin -0, 325/715 signs wrong, 0.0s
+13:33:35   realize restart 0: loss 0.261, 26/715 signs wrong, 0.6s
+13:33:35   realize restart 1: loss 0.261, 26/715 signs wrong, 0.5s
+13:33:36   realize restart 2: loss 0.261, 26/715 signs wrong, 0.8s
+13:33:36   alternation 7: released 250, wrong signs after realization 26
+13:33:40   final polynomial: NONREALIZABLE-NUMERICAL (4.1s)
+13:33:40   blocked a model with 250 flipped signs (8 blocks so far)
+13:33:40   round 0: 715 assumptions -> UNSAT in 0.0s, core 11
+13:33:41   round 1: 704 assumptions -> UNSAT in 0.0s, core 22
+13:33:41   round 2: 682 assumptions -> UNSAT in 0.0s, core 86
+13:33:41   round 3: 596 assumptions -> UNSAT in 0.0s, core 82
+13:33:41   round 4: 514 assumptions -> UNSAT in 0.0s, core 41
+13:33:41   round 5: 473 assumptions -> UNSAT in 0.0s, core 17
+13:33:41   round 6: 456 assumptions -> UNSAT in 0.0s, core 111
+13:33:42   round 7: 345 assumptions -> UNSAT in 0.0s, core 110
+13:33:42   round 8: 235 assumptions -> SAT in 0.0s
+13:33:43   re-add (CLD): kept 469 released literals in 7 calls; 704 assumptions, 11 released
+13:33:43   realize2 restart 0: normals loss 0.000735, LP margin -0, 199/715 signs wrong, 0.0s
+13:33:43   realize2 restart 1: normals loss 0.000735, LP margin -0, 189/715 signs wrong, 0.0s
+13:33:43   realize2 restart 2: normals loss 0.000735, LP margin -0, 221/715 signs wrong, 0.0s
+13:33:43   realize2 restart 3: normals loss 0.000735, LP margin -0, 288/715 signs wrong, 0.0s
+13:33:43   realize2 restart 4: normals loss 0.000735, LP margin -0, 172/715 signs wrong, 0.0s
+13:33:43   realize2 restart 5: normals loss 0.000735, LP margin -0, 188/715 signs wrong, 0.0s
+13:33:43   realize restart 0: loss 0.181, 15/715 signs wrong, 0.3s
+13:33:44   realize restart 1: loss 0.181, 15/715 signs wrong, 0.3s
+13:33:44   realize restart 2: loss 0.181, 15/715 signs wrong, 0.6s
+13:33:44   alternation 8: released 11, wrong signs after realization 15
+13:33:48   final polynomial: NONREALIZABLE-NUMERICAL (3.3s)
+13:33:48   blocked a model with 11 flipped signs (9 blocks so far)
+13:33:48   round 0: 715 assumptions -> UNSAT in 0.0s, core 12
+13:33:48   round 1: 703 assumptions -> UNSAT in 0.0s, core 25
+13:33:48   round 2: 678 assumptions -> UNSAT in 0.0s, core 51
+13:33:48   round 3: 627 assumptions -> UNSAT in 0.0s, core 78
+13:33:49   round 4: 549 assumptions -> UNSAT in 0.0s, core 68
+13:33:49   round 5: 481 assumptions -> UNSAT in 0.0s, core 28
+13:33:49   round 6: 453 assumptions -> UNSAT in 0.0s, core 106
+13:33:49   round 7: 347 assumptions -> UNSAT in 0.0s, core 110
+13:33:49   round 8: 237 assumptions -> UNSAT in 0.0s, core 138
+13:33:54   round 9: 99 assumptions -> SAT in 4.3s
+13:34:06   re-add (CLD): kept 455 released literals in 14 calls; 554 assumptions, 161 released
+13:34:06   realize2 restart 0: normals loss 0.00222, LP margin -0, 290/715 signs wrong, 0.0s
+13:34:06   realize2 restart 1: normals loss 0.00222, LP margin -0, 155/715 signs wrong, 0.0s
+13:34:06   realize2 restart 2: normals loss 0.00222, LP margin -0, 288/715 signs wrong, 0.0s
+13:34:07   realize2 restart 3: normals loss 0.00222, LP margin -0, 284/715 signs wrong, 0.0s
+13:34:07   realize2 restart 4: normals loss 0.00222, LP margin -0, 218/715 signs wrong, 0.0s
+13:34:07   realize2 restart 5: normals loss 0.00222, LP margin -0, 290/715 signs wrong, 0.0s
+13:34:07   realize restart 0: loss 0.149, 19/715 signs wrong, 0.4s
+13:34:07   realize restart 1: loss 0.149, 19/715 signs wrong, 0.4s
+13:34:08   realize restart 2: loss 0.149, 19/715 signs wrong, 0.7s
+13:34:08   alternation 9: released 161, wrong signs after realization 19
+13:34:12   final polynomial: NONREALIZABLE-NUMERICAL (4.4s)
+13:34:12   blocked a model with 161 flipped signs (10 blocks so far)
+13:34:13   round 0: 715 assumptions -> UNSAT in 0.0s, core 11
+13:34:13   round 1: 704 assumptions -> UNSAT in 0.0s, core 59
+13:34:13   round 2: 645 assumptions -> UNSAT in 0.0s, core 61
+13:34:13   round 3: 584 assumptions -> UNSAT in 0.0s, core 78
+13:34:13   round 4: 506 assumptions -> UNSAT in 0.0s, core 98
+13:34:13   round 5: 408 assumptions -> UNSAT in 0.0s, core 90
+13:34:14   round 6: 318 assumptions -> SAT in 0.0s
+13:34:16   re-add (CLD): kept 389 released literals in 15 calls; 707 assumptions, 8 released
+13:34:16   realize2 restart 0: normals loss 3.43e-05, LP margin -0, 216/715 signs wrong, 0.0s
+13:34:16   realize2 restart 1: normals loss 3.42e-05, LP margin -0, 224/715 signs wrong, 0.0s
+13:34:16   realize2 restart 2: normals loss 3.47e-05, LP margin -0, 312/715 signs wrong, 0.0s
+13:34:16   realize2 restart 3: normals loss 3.46e-05, LP margin -0, 290/715 signs wrong, 0.0s
+13:34:16   realize2 restart 4: normals loss 3.43e-05, LP margin -0, 228/715 signs wrong, 0.0s
+13:34:16   realize2 restart 5: normals loss 3.41e-05, LP margin -0, 173/715 signs wrong, 0.0s
+13:34:17   realize restart 0: loss 0.0561, 7/715 signs wrong, 0.3s
+13:34:17   realize restart 1: loss 0.0561, 7/715 signs wrong, 0.3s
+13:34:17   realize restart 2: loss 0.0561, 7/715 signs wrong, 0.4s
+13:34:17   alternation 10: released 8, wrong signs after realization 7
+13:34:26   final polynomial: FEASIBLE (8.8s)
+13:34:26   blocked a model with 8 flipped signs (11 blocks so far)
+13:34:26   round 0: 715 assumptions -> UNSAT in 0.0s, core 1
+13:34:26   round 1: 714 assumptions -> UNSAT in 0.0s, core 43
+13:34:27   round 2: 671 assumptions -> UNSAT in 0.0s, core 73
+13:34:27   round 3: 598 assumptions -> UNSAT in 0.0s, core 97
+13:34:27   round 4: 501 assumptions -> UNSAT in 0.0s, core 127
+13:34:27   round 5: 374 assumptions -> UNSAT in 0.0s, core 127
+13:34:27   round 6: 247 assumptions -> SAT in 0.0s
+13:34:29   re-add (CLD): kept 428 released literals in 9 calls; 675 assumptions, 40 released
+13:34:29   realize2 restart 0: normals loss 3.36e-10, LP margin -0, 328/715 signs wrong, 0.0s
+13:34:29   realize2 restart 1: normals loss 1.89e-10, LP margin -0, 255/715 signs wrong, 0.0s
+13:34:29   realize2 restart 2: normals loss 4.13e-10, LP margin -0, 278/715 signs wrong, 0.0s
+13:34:29   realize2 restart 3: normals loss 3.35e-12, LP margin -0, 274/715 signs wrong, 0.0s
+13:34:29   realize2 restart 4: normals loss 2.68e-10, LP margin -0, 283/715 signs wrong, 0.0s
+13:34:29   realize2 restart 5: normals loss 1.22e-10, LP margin -0, 206/715 signs wrong, 0.0s
+13:34:29   realize restart 0: loss 0.0695, 4/715 signs wrong, 0.3s
+13:34:30   realize restart 1: loss 0.0695, 4/715 signs wrong, 0.3s
+13:34:30   realize restart 2: loss 0.0695, 4/715 signs wrong, 0.4s
+13:34:30   alternation 11: released 40, wrong signs after realization 4
+13:36:30   final polynomial: LP-TIMEOUT (120.2s)
+13:36:30   blocked a model with 40 flipped signs (12 blocks so far)
+13:36:30   round 0: 715 assumptions -> UNSAT in 0.0s, core 9
+13:36:30   round 1: 706 assumptions -> UNSAT in 0.0s, core 73
+13:36:31   round 2: 633 assumptions -> UNSAT in 0.0s, core 134
+13:36:31   round 3: 499 assumptions -> UNSAT in 0.0s, core 140
+13:36:31   round 4: 359 assumptions -> SAT in 0.0s
+13:36:33   re-add (CLD): kept 350 released literals in 14 calls; 709 assumptions, 6 released
+13:36:33   realize2 restart 0: normals loss 1.87e-09, LP margin -0, 170/715 signs wrong, 0.0s
+13:36:33   realize2 restart 1: normals loss 1.89e-11, LP margin -0, 314/715 signs wrong, 0.0s
+13:36:33   realize2 restart 2: normals loss 3.11e-11, LP margin -0, 201/715 signs wrong, 0.0s
+13:36:33   realize2 restart 3: normals loss 5.46e-11, LP margin -0, 125/715 signs wrong, 0.0s
+13:36:33   realize2 restart 4: normals loss 3.11e-10, LP margin -0, 385/715 signs wrong, 0.0s
+13:36:33   realize2 restart 5: normals loss 7.28e-12, LP margin -0, 362/715 signs wrong, 0.0s
+13:36:34   realize restart 0: loss 0.0499, 4/715 signs wrong, 0.3s
+13:36:34   realize restart 1: loss 0.0499, 4/715 signs wrong, 0.2s
+13:36:34   realize restart 2: loss 0.0499, 4/715 signs wrong, 0.5s
+13:36:34   alternation 12: released 6, wrong signs after realization 4
+13:36:41   final polynomial: FEASIBLE (6.7s)
+13:36:41   blocked a model with 6 flipped signs (13 blocks so far)
+13:36:41   round 0: 715 assumptions -> UNSAT in 0.0s, core 9
+13:36:41   round 1: 706 assumptions -> UNSAT in 0.0s, core 95
+13:36:42   round 2: 611 assumptions -> UNSAT in 0.0s, core 18
+13:36:42   round 3: 593 assumptions -> UNSAT in 0.0s, core 71
+13:36:42   round 4: 522 assumptions -> UNSAT in 0.0s, core 92
+13:36:42   round 5: 430 assumptions -> UNSAT in 0.0s, core 117
+13:36:42   round 6: 313 assumptions -> SAT in 0.0s
+13:36:44   re-add (CLD): kept 392 released literals in 10 calls; 705 assumptions, 10 released
+13:36:44   realize2 restart 0: normals loss 1.36e-10, LP margin -0, 149/715 signs wrong, 0.0s
+13:36:44   realize2 restart 1: normals loss 1.56e-10, LP margin -0, 225/715 signs wrong, 0.0s
+13:36:44   realize2 restart 2: normals loss 7.18e-12, LP margin -0, 174/715 signs wrong, 0.0s
+13:36:44   realize2 restart 3: normals loss 1.28e-11, LP margin -0, 287/715 signs wrong, 0.0s
+13:36:44   realize2 restart 4: normals loss 8.02e-10, LP margin -0, 247/715 signs wrong, 0.0s
+13:36:44   realize2 restart 5: normals loss 8.4e-11, LP margin -0, 187/715 signs wrong, 0.0s
+13:36:44   realize restart 0: loss 0.0558, 5/715 signs wrong, 0.2s
+13:36:44   realize restart 1: loss 0.0558, 5/715 signs wrong, 0.2s
+13:36:45   realize restart 2: loss 0.0558, 5/715 signs wrong, 0.4s
+13:36:45   alternation 13: released 10, wrong signs after realization 5
+13:36:53   final polynomial: FEASIBLE (7.6s)
+13:36:53   blocked a model with 10 flipped signs (14 blocks so far)
+13:36:53   round 0: 715 assumptions -> UNSAT in 0.0s, core 43
+13:36:53   round 1: 672 assumptions -> UNSAT in 0.0s, core 62
+13:36:53   round 2: 610 assumptions -> UNSAT in 0.0s, core 99
+13:36:53   round 3: 511 assumptions -> UNSAT in 0.0s, core 63
+13:36:53   round 4: 448 assumptions -> UNSAT in 0.0s, core 133
+13:36:53   round 5: 315 assumptions -> SAT in 0.0s
+13:36:56   re-add (CLD): kept 392 released literals in 16 calls; 707 assumptions, 8 released
+13:36:56   realize2 restart 0: normals loss 8.3e-13, LP margin -0, 120/715 signs wrong, 0.0s
+13:36:56   realize2 restart 1: normals loss 7.23e-10, LP margin -0, 270/715 signs wrong, 0.0s
+13:36:56   realize2 restart 2: normals loss 2.88e-13, LP margin -0, 203/715 signs wrong, 0.0s
+13:36:56   realize2 restart 3: normals loss 3.9e-11, LP margin -0, 179/715 signs wrong, 0.0s
+13:36:56   realize2 restart 4: normals loss 3.8e-11, LP margin -0, 309/715 signs wrong, 0.0s
+13:36:56   realize2 restart 5: normals loss 1.53e-11, LP margin -0, 254/715 signs wrong, 0.0s
+13:36:56   realize restart 0: loss 0.0578, 4/715 signs wrong, 0.2s
+13:36:57   realize restart 1: loss 0.0578, 4/715 signs wrong, 0.2s
+13:36:57   realize restart 2: loss 0.0578, 4/715 signs wrong, 0.6s
+13:36:57   alternation 14: released 8, wrong signs after realization 4
+13:37:03   final polynomial: FEASIBLE (5.7s)
+13:37:03   blocked a model with 8 flipped signs (15 blocks so far)
+13:37:03   round 0: 715 assumptions -> UNSAT in 0.0s, core 9
+13:37:03   round 1: 706 assumptions -> UNSAT in 0.0s, core 81
+13:37:03   round 2: 625 assumptions -> UNSAT in 0.0s, core 125
+13:37:04   round 3: 500 assumptions -> UNSAT in 0.0s, core 134
+13:37:04   round 4: 366 assumptions -> SAT in 0.0s
+13:37:06   re-add (CLD): kept 345 released literals in 16 calls; 711 assumptions, 4 released
+13:37:06   realize2 restart 0: normals loss 7.38e-11, LP margin -0, 303/715 signs wrong, 0.0s
+13:37:06   realize2 restart 1: normals loss 1.37e-10, LP margin -0, 282/715 signs wrong, 0.0s
+13:37:07   realize2 restart 2: normals loss 2.53e-16, LP margin -0, 333/715 signs wrong, 0.0s
+13:37:07   realize2 restart 3: normals loss 4.47e-11, LP margin -0, 252/715 signs wrong, 0.0s
+13:37:07   realize2 restart 4: normals loss 3.54e-11, LP margin -0, 239/715 signs wrong, 0.0s
+13:37:07   realize2 restart 5: normals loss 2.72e-11, LP margin -0, 256/715 signs wrong, 0.0s
+13:37:07   realize restart 0: loss 0.0523, 4/715 signs wrong, 0.2s
+13:37:07   realize restart 1: loss 0.0523, 4/715 signs wrong, 0.2s
+13:37:07   realize restart 2: loss 0.0523, 4/715 signs wrong, 0.4s
+13:37:07   alternation 15: released 4, wrong signs after realization 4
+13:37:14   final polynomial: FEASIBLE (6.6s)
+13:37:14   blocked a model with 4 flipped signs (16 blocks so far)
+13:37:14   round 0: 715 assumptions -> UNSAT in 0.0s, core 9
+13:37:14   round 1: 706 assumptions -> UNSAT in 0.0s, core 81
+13:37:14   round 2: 625 assumptions -> UNSAT in 0.0s, core 128
+13:37:15   round 3: 497 assumptions -> UNSAT in 0.0s, core 129
+13:37:15   round 4: 368 assumptions -> UNSAT in 0.0s, core 136
+13:37:15   round 5: 232 assumptions -> SAT in 0.0s
+13:37:18   re-add (CLD): kept 470 released literals in 19 calls; 702 assumptions, 13 released
+13:37:18   realize2 restart 0: normals loss 2.1e-10, LP margin -0, 286/715 signs wrong, 0.0s
+13:37:18   realize2 restart 1: normals loss 2.74e-12, LP margin -0, 181/715 signs wrong, 0.0s
+13:37:18   realize2 restart 2: normals loss 8.5e-11, LP margin -0, 327/715 signs wrong, 0.0s
+13:37:18   realize2 restart 3: normals loss 3e-11, LP margin -0, 303/715 signs wrong, 0.0s
+13:37:18   realize2 restart 4: normals loss 2.4e-10, LP margin -0, 228/715 signs wrong, 0.0s
+13:37:18   realize2 restart 5: normals loss 4.49e-11, LP margin -0, 278/715 signs wrong, 0.0s
+13:37:18   realize restart 0: loss 0.0609, 5/715 signs wrong, 0.3s
+13:37:19   realize restart 1: loss 0.0609, 5/715 signs wrong, 0.3s
+13:37:19   realize restart 2: loss 0.0609, 5/715 signs wrong, 0.4s
+13:37:19   alternation 16: released 13, wrong signs after realization 5
+13:37:25   final polynomial: FEASIBLE (6.2s)
+13:37:25   blocked a model with 13 flipped signs (17 blocks so far)
+13:37:26   round 0: 715 assumptions -> UNSAT in 0.0s, core 9
+13:37:26   round 1: 706 assumptions -> UNSAT in 0.0s, core 83
+13:37:26   round 2: 623 assumptions -> UNSAT in 0.0s, core 109
+13:37:26   round 3: 514 assumptions -> UNSAT in 0.0s, core 115
+13:37:26   round 4: 399 assumptions -> UNSAT in 0.0s, core 120
+13:37:26   round 5: 279 assumptions -> UNSAT in 0.0s, core 143
+13:37:30   round 6: 136 assumptions -> SAT in 3.4s
+13:37:38   re-add (CLD): kept 553 released literals in 25 calls; 689 assumptions, 26 released
+13:37:38   realize2 restart 0: normals loss 5.91e-10, LP margin -0, 280/715 signs wrong, 0.0s
+13:37:38   realize2 restart 1: normals loss 5.2e-12, LP margin -0, 296/715 signs wrong, 0.0s
+13:37:38   realize2 restart 2: normals loss 2.15e-11, LP margin -0, 249/715 signs wrong, 0.0s
+13:37:38   realize2 restart 3: normals loss 8.59e-11, LP margin -0, 164/715 signs wrong, 0.0s
+13:37:38   realize2 restart 4: normals loss 9.33e-11, LP margin -0, 192/715 signs wrong, 0.0s
+13:37:38   realize2 restart 5: normals loss 2.9e-11, LP margin -0, 179/715 signs wrong, 0.0s
+13:37:38   realize restart 0: loss 0.0673, 6/715 signs wrong, 0.3s
+13:37:38   realize restart 1: loss 0.0673, 6/715 signs wrong, 0.3s
+13:37:39   realize restart 2: loss 0.0673, 6/715 signs wrong, 0.5s
+13:37:39   alternation 17: released 26, wrong signs after realization 6
+13:37:45   final polynomial: FEASIBLE (6.4s)
+13:37:45   blocked a model with 26 flipped signs (18 blocks so far)
+13:37:45   round 0: 715 assumptions -> UNSAT in 0.0s, core 73
+13:37:45   round 1: 642 assumptions -> UNSAT in 0.0s, core 76
+13:37:46   round 2: 566 assumptions -> UNSAT in 0.0s, core 113
+13:37:46   round 3: 453 assumptions -> SAT in 0.0s
+13:37:48   re-add (CLD): kept 256 released literals in 11 calls; 709 assumptions, 6 released
+13:37:48   realize2 restart 0: normals loss 7.55e-12, LP margin -0, 153/715 signs wrong, 0.0s
+13:37:48   realize2 restart 1: normals loss 1.34e-11, LP margin -0, 229/715 signs wrong, 0.0s
+13:37:48   realize2 restart 2: normals loss 1.65e-11, LP margin -0, 310/715 signs wrong, 0.0s
+13:37:48   realize2 restart 3: normals loss 1.02e-10, LP margin -0, 175/715 signs wrong, 0.0s
+13:37:48   realize2 restart 4: normals loss 1.63e-08, LP margin -0, 238/715 signs wrong, 0.0s
+13:37:48   realize2 restart 5: normals loss 4.01e-10, LP margin -0, 270/715 signs wrong, 0.0s
+13:37:48   realize restart 0: loss 0.0426, 2/715 signs wrong, 0.2s
+13:37:48   realize restart 1: loss 0.0426, 2/715 signs wrong, 0.3s
+13:37:49   realize restart 2: loss 0.0426, 2/715 signs wrong, 0.5s
+13:37:49   alternation 18: released 6, wrong signs after realization 2
+13:37:56   final polynomial: FEASIBLE (7.2s)
+13:37:56   blocked a model with 6 flipped signs (19 blocks so far)
+13:37:56   round 0: 715 assumptions -> UNSAT in 0.0s, core 11
+13:37:56   round 1: 704 assumptions -> UNSAT in 0.0s, core 78
+13:37:56   round 2: 626 assumptions -> UNSAT in 0.0s, core 98
+13:37:56   round 3: 528 assumptions -> UNSAT in 0.0s, core 126
+13:37:57   round 4: 402 assumptions -> UNSAT in 0.0s, core 124
+13:37:57   round 5: 278 assumptions -> UNSAT in 0.0s, core 146
+13:37:58   round 6: 132 assumptions -> SAT in 1.0s
+13:38:01   re-add (CLD): kept 546 released literals in 15 calls; 678 assumptions, 37 released
+13:38:01   realize2 restart 0: normals loss 8.09e-16, LP margin -0, 184/715 signs wrong, 0.0s
+13:38:01   realize2 restart 1: normals loss 2.65e-11, LP margin -0, 151/715 signs wrong, 0.0s
+13:38:01   realize2 restart 2: normals loss 7.29e-11, LP margin -0, 162/715 signs wrong, 0.0s
+13:38:02   realize2 restart 3: normals loss 5.87e-11, LP margin -0, 269/715 signs wrong, 0.0s
+13:38:02   realize2 restart 4: normals loss 3.67e-10, LP margin -0, 293/715 signs wrong, 0.0s
+13:38:02   realize2 restart 5: normals loss 6.35e-12, LP margin -0, 168/715 signs wrong, 0.0s
+13:38:02   realize restart 0: loss 0.0605, 8/715 signs wrong, 0.2s
+13:38:02   realize restart 1: loss 0.0605, 8/715 signs wrong, 0.3s
+13:38:02   realize restart 2: loss 0.0605, 8/715 signs wrong, 0.4s
+13:38:02   alternation 19: released 37, wrong signs after realization 8
+13:38:10   final polynomial: FEASIBLE (7.3s)
+13:38:10   blocked a model with 37 flipped signs (20 blocks so far)
+13:38:10 RESULT R6k-type15-genus3-k9-seed6: engine NOT-REALIZED, success False (UNSAT), 418s
+13:38:11 R1-szilassi 2/2 0.0 {'EMBEDDED': 2}
+13:38:11 R4-type15-genus3 0/1 None {'NOT-REALIZED': 1}
+13:38:11 R4-type0-genus3 0/1 None {'NOT-REALIZED': 1}
+13:38:11 R5-type15-genus3-from-parent 0/1 None {'NOT-REALIZED': 1}
+13:38:11 R6k-type15-genus3-k7 0/1 None {'NOT-REALIZED': 1}
+13:38:11 R6k-type15-genus3-k8 1/1 0.62 {'LADDER-END': 1}
+13:38:11 R6k-type15-genus3-k9 0/1 None {'NOT-REALIZED': 1}
