@@ -13,24 +13,20 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 3. Unless the owner names another task, work on the top `open` row of `ROADMAP.md`, using the `experiment-start`
    skill.
 
-## Hand-over (2026-11-02, afternoon)
+## Hand-over (2026-11-02, evening)
 
 * **Branch.** Still `experiment/E-261101-25-chirotope-first` (on top of `claude/strategy-review-2026-11-01`); all
   work committed there. Owner: one PR of the stack into `main` when convenient (`verify` green).
 * **Done this session**: E-261101-26 first scope concluded (`CONCLUSION.md`, `STATUS.md` 3b): chirotope-first with
-  the E-261102-02 settings reaches R1 16/16 and R6k k = 7 / 8 / 9 at 4/8, 1/8, 1/8, but R4 0/8 and 0/8 and R5 0/8.
-  Every failure stopped at `--alt 20` after 15-39 % of its time. `launch.sh start DIR CORES` now sets `SHARDS`, and
+  the E-261102-02 settings reaches R1 20/20 and R6k k = 7 / 8 / 9 at 5/10, 1/10, 1/10, but R4 0/10 and 0/10 and R5
+  0/10 (80 units, 6.6 core-h). Every failure stopped at `--alt 20` after 16-36 % of its time. `launch.sh start DIR CORES` now sets `SHARDS`, and
   runners skip units recorded in any shard. PROTOCOL §2.4 / §2.5: the pilot gates the long run (binding limit,
   budget fraction, projected outcome, one prediction that can fail), and a long run is a grid over the binding
   parameter. E-261102-02 is **blocked**; new rows E-261102-03 and E-261102-04 (folders with README, no PLAN yet).
-* **Running (owner's laptop, started 2026-11-02 ~15:20 local)**: the 16 missing units of E-261101-26 (seeds 8, 9),
-  `launch.sh start ... 8`, re-split over 8 shards into the existing `results/0-7`. Collect: `bash overnight/launch.sh
-  status experiments/E-261101-26-engine-benchmark-ladder` shows all shards `ended`, 80 records.
+* **Completed**: the 16 missing units of E-261101-26 (resumed run, all 80 units, `CONCLUSION.md` Amendment: R1 20/20,
+  R4 0/10 and 0/10, R5 0/10, R6k 5/10, 1/10, 1/10; verdict unchanged). Nothing is running.
 * **Next session, in order**:
-  1. E-261101-26: `ladder.py score results/[0-7] --to results/scores.json`; core-hours = the sum of every
-     `core_hours` line in the manifests (restarted shards have two); `candidate-check` on any R4 / R5 success. Then a
-     dated amendment in `CONCLUSION.md` with the 80-unit scores, and update `STATUS.md` 3b and the README verdict to
-     match. If the totals change a verdict, say so.
+  1. (done 2026-11-02) E-261101-26 scored on all 80 units.
   2. `experiment-start` E-261102-03 (cap or wall): an `--alt` override in `ladder.py`, the PLAN with the pilot gate
      and a budget grid (40 / 120 min), a day pilot of one R4 type-15 seed.
   3. `experiment-start` E-261102-04 (genus-ladder search on the ladder): `ladder.py --engine genus-ladder` calling

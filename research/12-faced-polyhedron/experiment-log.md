@@ -768,3 +768,8 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * PROTOCOL §2.4 pilot gate and §2.5 grid rule, `_template/PLAN.md`; E-261102-02 blocked (`PLAN.md` Amendments); new
   rows E-261102-03 (chirotope-first, cap or wall) and E-261102-04 (genus-ladder search on the ladder). The 16 missing
   units of E-261101-26 are running on the laptop.
+
+## 2026-11-02: E-261101-26 completed (the 16 missing units)
+
+* Resumed with `launch.sh start ... 8`, all 80 units, 6.6 core-h in total: R1 20/20, R4 0/10 and 0/10, R5 0/10, R6k
+  5/10, 1/10, 1/10; verdict unchanged (frontier R4 / R5). `CONCLUSION.md` Amendment.

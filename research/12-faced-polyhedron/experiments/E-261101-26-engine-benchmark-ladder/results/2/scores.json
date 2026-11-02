@@ -17,14 +17,14 @@
  "tasks": {
   "R1-szilassi": {
    "rung": "R1",
-   "seeds": 2,
-   "successes": 2,
+   "seeds": 3,
+   "successes": 3,
    "budget_minutes": [
     5
    ],
    "median_minutes_to_success": 0.0,
    "engine_results": {
-    "EMBEDDED": 2
+    "EMBEDDED": 3
    }
   },
   "R4-type15-genus3": {
@@ -65,14 +65,15 @@
   },
   "R6k-type15-genus3-k7": {
    "rung": "R6k",
-   "seeds": 1,
+   "seeds": 2,
    "successes": 1,
    "budget_minutes": [
     20
    ],
    "median_minutes_to_success": 4.86,
    "engine_results": {
-    "LADDER-END": 1
+    "LADDER-END": 1,
+    "NOT-REALIZED": 1
    }
   },
   "R6k-type15-genus3-k8": {

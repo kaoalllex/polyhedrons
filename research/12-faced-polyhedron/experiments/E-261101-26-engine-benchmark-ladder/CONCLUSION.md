@@ -91,3 +91,36 @@
 * **Rows updated**: `STATUS.md` (new table "engine scores", DR8, "As of"), `ROADMAP.md` E-261101-26 (open, first scope
   done), `experiment-log.md` (2026-11-02), `hypotheses/H-261101-17`, `ideas/I-261102-01`. Daytime run, so no night
   report.
+
+## Amendment 2026-11-02: the 16 missing units (all 80 units now run; these numbers supersede the 64-unit ones above)
+
+* **Run**: restarted at 2026-11-02T12:53:23Z, commit `3e8a54b`, `launch.sh start ... 8` (`SHARDS = 8`): the 16
+  units not run before (seeds 8, 9; R1 seeds 8, 9, 18, 19) were re-split over the existing `results/0-7`; the 64
+  recorded units were skipped. 80 records, 80 distinct (task, seed), no duplicate, all `exit_status: 0`, no HARD-CAP,
+  no CRASH; `tasks.json` hash unchanged. Core-hours: 6.57 in total (5.34 + 1.23 from the 8 restart lines).
+* **Scores, all 80 units** (`results/scores.json`):
+
+  | Task | Rung | Budget | Successes / seeds | Median time to success | Wall used of the budget |
+  |---|---|---|---|---|---|
+  | Szilassi from random planes | R1 | 5 min | 20 / 20 | 0.2 s | 0 % |
+  | type-15 genus-3 map from random planes | R4 | 40 min | 0 / 10 | - | 17 % |
+  | type-0 genus-3 map from random planes | R4 | 40 min | 0 / 10 | - | 17 % |
+  | type-15 genus-3 map from its genus-2 parents | R5 | 40 min | 0 / 10 | - | 16 % |
+  | type-15 map, first 7 faces | R6k | 20 min | 5 / 10 | 2.0 min | 29 % |
+  | type-15 map, first 8 faces | R6k | 20 min | 1 / 10 | 0.6 min | 32 % |
+  | type-15 map, first 9 faces | R6k | 20 min | 1 / 10 | 1.3 min | 36 % |
+
+* **What changed**: R1 is 20/20, so P1 (>= 18/20) now holds as stated. The new R6k k = 7 success came after 11
+  alternations; the successes now came after 3-16 alternations. All 53 failures again stopped at the 20-alternation
+  cap. The furthest full-map unit is now R5 seed 9, a parent with noise 0.01: k = 7, 8 and 9 realized, then 20
+  alternations without success at k = 10. So on the face ladder the parent seeds are not worse than random planes
+  (P4: 0 = 0 at the full map; per alternation at k = 7, R5 1 of 189, random type-15 7 of 352). Per-alternation
+  realization counts (engine label, as above): type 15 from random k = 7 / 8 / 9: 7/352, 1/223, 1/186; type 0:
+  2/177, 1/26, 0/20; R5: 1/189, 1/3, 1/8, 0/20 at k = 10.
+* **Exact verification**: the 20 R1 planes sets pass `verify_candidate.py --all-pairs` (S4) and fail `--target S0`;
+  the 7 R6k successes re-judged in a fresh process, 7/7. No R4 / R5 success.
+* **Verdict (final, first scope)**: FRONTIER at R4 / R5 for chirotope-first with `--alt 20`: 0/30 at 40 min (0/10 per
+  task bounds the per-seed rate below ~26 %, 95 %, one-sided); LOW-YIELD@6.6 core-h for full genus-3 maps; R1 20/20;
+  R6k k = 7, 8, 9: 5/10, 1/10, 1/10. The claims, the not-claims and the consequence for E-261102-02 above stand with
+  these numbers. The next step is E-261102-03 (the cap lifted) and E-261102-04 (the genus-ladder search on the same
+  tasks).

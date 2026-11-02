@@ -3,7 +3,7 @@ id: E-261101-26
 title: Engine benchmark ladder - tasks with known answers on which every construction engine is scored before the target
 date: 2026-11-01
 status: done
-verdict: "first scope (chirotope-first, --alt 20): frontier at R4 / R5, 0/24 at 40 min (LOW-YIELD@5.3 core-h for full genus-3 maps); R1 16/16; R6k k = 7, 8, 9: 4/8, 1/8, 1/8; 64 of 80 units"
+verdict: "first scope (chirotope-first, --alt 20): frontier at R4 / R5, 0/30 at 40 min (LOW-YIELD@6.6 core-h for full genus-3 maps); R1 20/20; R6k k = 7, 8, 9: 5/10, 1/10, 1/10"
 direction: [DR1, DR7, DR17]
 origin: [I-261101-22, E-261030-01, E-261030-03, E-261101-25]
 tests: [H-261101-17, H-261101-10]
@@ -14,8 +14,8 @@ preregistered: true
 > First scope done 2026-11-02 (`CONCLUSION.md`; score in `STATUS.md` section 3b): the chirotope-first engine with the
 > E-261102-02 settings realizes Szilassi from random planes every time and k-face parts of a genus-3 map up to k = 9
 > on some seeds. It reached neither full genus-3 map, from random planes or from genus-2 parents; every failure was
-> cut by the 20-alternation cap, not by the time budget. 8 of the 10 shards ran (seeds 8, 9 missing). The row stays
-> open for the other engines. Scores T D F G R: 1 2 2 2 2.
+> cut by the 20-alternation cap, not by the time budget. All 80 units ran (16 of them in a resumed run; `CONCLUSION.md`
+> Amendment). The row stays open for the other engines. Scores T D F G R: 1 2 2 2 2.
 
 ## Goal
 
