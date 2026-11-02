@@ -20,7 +20,10 @@ information), so the loop degenerates to the unassumed instance.
 
 ## Evidence so far
 
-None at n = 12. Control at n = 7 planned (E-261101-25).
+Control at n = 7 passed (E-261101-25 pilot: random planes -> EMBEDDED). Night run 1 (k = 7 sub-instances only,
+UNDERPOWERED): cores of tens of literals solved in under a second and small minimal correction sets, in line with the
+"small cores" part; most seeds used up the 12-round budget, and no model realized (`CONCLUSION.md` of E-261101-25).
+Nothing yet on the full 12-face instance.
 
 ## What would move it
 

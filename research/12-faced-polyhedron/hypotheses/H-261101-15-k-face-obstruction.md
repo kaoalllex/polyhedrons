@@ -21,6 +21,10 @@ Every sub-instance with k <= 11 is SAT: an obstruction, if any, needs all twelve
 None for asymmetric types. For symmetric classes, face simplicity alone is UNSAT in the D3 case (`results.md`), a
 hint that few clause families suffice, not that few faces do.
 
+E-261101-23 (night 6, UNDERPOWERED): on the greedy face set (one set per type and k), no UNSAT at k = 8 for the 27
+types reached or at k = 9 for the 26 tried; k = 10 timed out everywhere; 32 types not reached (`CONCLUSION.md` of
+E-261101-23). Says nothing about other face sets; the hypothesis stays open.
+
 ## What would move it
 
 E-261101-23: UNSAT at k <= 9 for a type supports it (and excludes that type, EXACT after drat-trim); all k <= 9

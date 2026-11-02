@@ -49,9 +49,9 @@ def relations(chi, n_elems):
             yield terms[dom][0], others[0], others[1]
 
 
-def final_polynomial(chi, n_elems=13, tol=1e-9):
+def final_polynomial(chi, n_elems=13, tol=1e-9, time_limit=120.0):
     """Returns dict(status, t_star, support (list of relation indices), brackets (sorted 4-subsets in the support),
-    exact (bool), n_relations)."""
+    exact (bool), n_relations). status LP-TIMEOUT: HiGHS hit time_limit (no information)."""
     keys = sorted(chi)
     kidx = {k: i for i, k in enumerate(keys)}
     rows, cols, vals, rel_of_row = [], [], [], []
@@ -72,10 +72,12 @@ def final_polynomial(chi, n_elems=13, tol=1e-9):
         from scipy.sparse import hstack
         A_ub = hstack([-A, csr_matrix(np.ones((r, 1)))]).tocsr()
     c = np.zeros(len(keys) + 1); c[-1] = -1.0
-    res = linprog(c, A_ub=A_ub, b_ub=np.zeros(r), bounds=[(-1, 1)] * len(keys) + [(None, None)], method='highs')
+    # HiGHS can run for hours on degenerate (t* = 0) instances
+    res = linprog(c, A_ub=A_ub, b_ub=np.zeros(r), bounds=[(-1, 1)] * len(keys) + [(None, None)], method='highs',
+                  options={'time_limit': time_limit})
     out = {'n_relations': len(rels), 'n_inequalities': r, 'lp_status': int(res.status)}
     if res.status != 0:
-        out['status'] = 'LP-ERROR'; return out
+        out['status'] = 'LP-TIMEOUT' if res.status == 1 else 'LP-ERROR'; return out
     t_star = float(res.x[-1]); out['t_star'] = t_star
     if t_star > tol:
         out['status'] = 'FEASIBLE'; out['exact'] = False; return out

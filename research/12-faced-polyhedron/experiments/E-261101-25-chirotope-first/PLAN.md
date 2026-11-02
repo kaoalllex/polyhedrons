@@ -112,3 +112,8 @@ Amendments.
   (records are written per seed at the end). Night settings therefore add `--progress` (one line per alternation
   step, survives a kill) and `--seed-minutes 75` (a seed that has not realized within 75 minutes is recorded as
   TIME-CAP and the shard moves on), so that a night of 4 shards covers 20-40 seeds instead of 4-8.
+* 2026-11-02 (morning, after night run 1; not a change of the pre-registered run): all four shards hung in
+  `final_polynomial`'s HiGHS LP (no time limit; reproduced in E-261101-23, inferred here from the code path), and
+  `--seed-minutes` is checked only between steps, so it did not stop them. Fix: `final_polynomial(..., time_limit=120)`
+  returns `LP-TIMEOUT`. Not changed (for night run 2, E-261102-02): `--rounds 12` ended 21 of 27 seeds at the first
+  step; the cap inside a step. Conclusion: `CONCLUSION.md`.

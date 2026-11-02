@@ -77,6 +77,13 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
 - **Forked SAT children.** When a SAT call runs in a forked child with `p.join(timeout)`, the timeout is monotonic
   and the child is terminated on expiry; solver binaries (`cadical -t`) use wall time, which is fine while
   `caffeinate` holds the machine awake.
+- **Every in-process solver call has its own limit** (night 6 lost ~90 of 104 core-h): a HiGHS `linprog` without
+  `options={'time_limit': ...}` spun at 100 % CPU for 9+ hours on degenerate LPs, and a per-unit cap checked only
+  between steps (`--seed-minutes`) cannot stop a step that never returns. Cap LP / MaxSAT / optimizer calls inside
+  the step, record the cap as its own status, and have `status` flag a shard whose `results.jsonl` is older than its
+  largest unit budget.
+- **Append logs, never truncate.** The launcher used `> night.log`; a second start in the morning erased the night's
+  logs. Use `>>`.
 
 ## Python job checklist
 

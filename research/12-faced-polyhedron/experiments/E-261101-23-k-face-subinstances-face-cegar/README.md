@@ -2,15 +2,19 @@
 id: E-261101-23
 title: k-face sub-instances of the asymmetric OM-SAT encoding, and face-CEGAR seeds from their models
 date: 2026-11-01
-status: running
+status: done
 direction: [DR8, DR11]
 origin: [I-261101-18, E-261029-12, E-261101-18]
 tests: [H-261101-15, H-261101-02, H-261101-12]
 produces: []
+verdict: UNDERPOWERED@59.75 core-h (night 6; LP hang, 27 of 59 types reached; see CONCLUSION.md)
 preregistered: true
 ---
 
-> Running: `PLAN.md` pre-registered 2026-11-01; runner `kface_sweep.py`, `run.sh` with 6 shards (types mod 6).
+> Done 2026-11-02 (night 6). Results: on the greedy face set, k = 8 and k = 9 sub-instances were SAT wherever
+> decided, every k = 10 run timed out, no UNSAT, no SAT model realized; five of six shards hung in the
+> final-polynomial LP, so 32 types were never reached. Numbers, claims and labels: `CONCLUSION.md`; follow-up
+> E-261102-01.
 
 ## Goal
 

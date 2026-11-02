@@ -56,3 +56,8 @@ Pre-registration (2026-11-01, before the night run). Amendments at the end.
   `run_overnight.sym_build_immersion` has the recorded CNF SHA-256 (e9b15e62c33b43d3...), CaDiCaL 3.0.1 returns UNSAT
   in 51 s and drat-trim VERIFIES the proof in 25 s through the same code path as `kface_sweep.py`. Pipeline ready for
   night 6 (shards 0-5).
+* 2026-11-02 (morning, after the night; not a change of the pre-registered run): five shards hung in
+  `final_polynomial`'s HiGHS LP, which had no time limit (reproduced on type 19 k = 8 with a stack dump). Fix for any
+  later run: `final_polynomial(..., time_limit=120)` returns `LP-TIMEOUT` (re-run of type 19 k = 8 with a 60 s limit:
+  SAT, 11 wrong signs, `LP-TIMEOUT`, record written). `overnight/run_night6.sh` now appends to `night.log` instead
+  of truncating it. Conclusion: `CONCLUSION.md`.

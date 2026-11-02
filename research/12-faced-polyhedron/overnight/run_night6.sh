@@ -22,11 +22,11 @@ if [ "${1:-}" = "status" ]; then
 fi
 for s in 0 1 2 3 4 5; do
   mkdir -p "$E23/results/$s"
-  nohup caffeinate -dimsu bash "$E23/run.sh" "$s" > "$E23/results/$s/night.log" 2>&1 &
+  nohup caffeinate -dimsu bash "$E23/run.sh" "$s" >> "$E23/results/$s/night.log" 2>&1 &
 done
 for s in 0 1 2 3; do
   mkdir -p "$E25/results/$s"
-  nohup caffeinate -dimsu bash "$E25/run.sh" "$s" > "$E25/results/$s/night.log" 2>&1 &
+  nohup caffeinate -dimsu bash "$E25/run.sh" "$s" >> "$E25/results/$s/night.log" 2>&1 &
 done
 sleep 2
 echo "started: $(pgrep -f 'kface_sweep.py|chirotope_first.py run' | wc -l | tr -d ' ') worker processes (expect 10 after a few seconds)"

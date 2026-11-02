@@ -743,3 +743,10 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * Restartability: both runners skip units already recorded in `results.jsonl` (E-23 also skips larger k after a
   recorded UNSAT), manifests append on restart, `nice -n 10`; tested (skips in 0.5 s). Lessons written into the
   `overnight-run-script` skill ("Lessons of night 6").
+
+## 2026-11-02: night 6 concluded (E-261101-23, E-261101-25)
+
+* Both UNDERPOWERED: a HiGHS LP without a time limit in `final_polynomial.py` hung 9 of 10 shards for ~9 h
+  (reproduced, fixed with `time_limit` -> `LP-TIMEOUT`); no UNSAT, no realized model, nothing EMBEDDED.
+  `experiments/E-261101-23-k-face-subinstances-face-cegar/CONCLUSION.md`, `experiments/E-261101-25-chirotope-first/CONCLUSION.md`,
+  `reports/NIGHT_REPORT_2026-11-02.md`; follow-ups E-261102-01, E-261102-02.

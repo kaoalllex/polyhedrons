@@ -718,14 +718,14 @@
    "id": "E-261101-23",
    "kind": "experiment",
    "title": "k-face sub-instances of the asymmetric OM-SAT encoding, and face-CEGAR seeds from their models",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-01",
    "path": "experiments/E-261101-23-k-face-subinstances-face-cegar/README.md",
    "direction": [
     "DR8",
     "DR11"
    ],
-   "verdict": "",
+   "verdict": "UNDERPOWERED@59.75 core-h (night 6; LP hang, 27 of 59 types reached; see CONCLUSION.md)",
    "preregistered": "true"
   },
   {
@@ -747,7 +747,7 @@
    "id": "E-261101-25",
    "kind": "experiment",
    "title": "Chirotope-first realization - core-guided SAT with geometric assumptions, numerical realization, exact check",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-01",
    "path": "experiments/E-261101-25-chirotope-first/README.md",
    "direction": [
@@ -755,7 +755,7 @@
     "DR9",
     "DR17"
    ],
-   "verdict": "",
+   "verdict": "UNDERPOWERED@44.1 core-h (night 6; LP hang and --rounds 12; see CONCLUSION.md)",
    "preregistered": "true"
   },
   {
@@ -768,6 +768,35 @@
    "direction": [
     "DR1",
     "DR7",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261102-01",
+   "kind": "experiment",
+   "title": "Completion of the k-face sweep - the types night 6 did not reach, with a time-limited final-polynomial LP",
+   "status": "planned",
+   "date": "2026-11-02",
+   "path": "experiments/E-261102-01-kface-sweep-completion/README.md",
+   "direction": [
+    "DR8",
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261102-02",
+   "kind": "experiment",
+   "title": "Chirotope-first engine, night run 2 - LP time limit, 40 core-guided rounds, cap inside each step, all seed slices",
+   "status": "planned",
+   "date": "2026-11-02",
+   "path": "experiments/E-261102-02-chirotope-first-night2/README.md",
+   "direction": [
+    "DR8",
+    "DR9",
     "DR17"
    ],
    "verdict": "",
@@ -3738,6 +3767,11 @@
   },
   {
    "from": "E-261101-23",
+   "to": "E-261102-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-23",
    "to": "H-261101-02",
    "kind": "tests"
   },
@@ -3768,6 +3802,11 @@
   },
   {
    "from": "E-261101-25",
+   "to": "E-261102-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-25",
    "to": "H-261101-01",
    "kind": "tests"
   },
@@ -3788,6 +3827,36 @@
   },
   {
    "from": "E-261101-26",
+   "to": "H-261101-17",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261102-01",
+   "to": "H-261101-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261102-01",
+   "to": "H-261101-12",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261102-01",
+   "to": "H-261101-15",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261102-02",
+   "to": "H-261101-01",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261102-02",
+   "to": "H-261101-12",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261102-02",
    "to": "H-261101-17",
    "kind": "tests"
   },
@@ -4338,6 +4407,11 @@
   },
   {
    "from": "I-261101-18",
+   "to": "E-261102-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-18",
    "to": "H-261101-15",
    "kind": "origin"
   },
@@ -4363,12 +4437,22 @@
   },
   {
    "from": "I-261101-21",
+   "to": "E-261102-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-21",
    "to": "H-261101-17",
    "kind": "origin"
   },
   {
    "from": "I-261101-22",
    "to": "E-261101-26",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-22",
+   "to": "E-261102-02",
    "kind": "origin"
   },
   {
