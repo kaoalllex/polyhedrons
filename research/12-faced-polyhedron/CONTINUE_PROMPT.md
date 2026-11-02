@@ -26,13 +26,16 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 * **Running (daytime, owner's laptop)**: E-261102-01, the 32 types night 6 did not reach at k = 8, 9, 8 shards
   (`PLAN.md` pre-registered with predictions P1-P5). Expected wall time ~1.5 h.
 * **Evening session**: (1) `experiment-conclude` for E-261102-01 (core-hours from the manifests, P1-P5,
-  `candidate-check` on any realized model, keep every UNSAT's CNF / proof / hashes); (2) write an independent
-  checker for the stored final-polynomial certificates (re-derive each three-term Grassmann-Pluecker relation and its
-  sign pattern from the bracket indices, check the multipliers' identity in exact arithmetic) and run it on the
-  type 0 k = 9 certificate; (3) set E-261102-02 to `running` in ROADMAP and its README when the owner launches it.
-* **Night 7**: E-261102-02 (chirotope-first night run 2: `--rounds 40`, `--seed-minutes 40`, all 10 seed slices),
-  pre-registered; it runs before the benchmark ladder E-261101-26 at the owner's request (PROTOCOL 8a gate and its
-  consequences in its `PLAN.md`).
+  `candidate-check` on any realized model, keep every UNSAT's CNF / proof / hashes); (2) `experiment-start` for
+  E-261101-26, the engine benchmark ladder (owner's decision 2026-11-02: no construction engine on the target before
+  it). First scope: the chirotope-first engine on the rungs it can address with known answers (R1 Szilassi from random
+  planes; then whichever of R2-R5 its encoder supports, said explicitly in the PLAN), harness with a fixed budget per
+  rung and seed, `scores.json`, pilot in the session; the night run of the ladder is night 7 if the harness is ready,
+  otherwise night 7 is not used; (3) if time is left: an independent checker for the stored final-polynomial
+  certificates (re-derive each three-term Grassmann-Pluecker relation and its sign pattern from the bracket indices,
+  check the multipliers' identity exactly), run on the type 0 k = 9 certificate.
+* **After the ladder**: E-261102-02 (chirotope-first night run 2: `--rounds 40`, `--seed-minutes 40`, all 10 seed
+  slices), pre-registered, launched only after E-261101-26 has scored the engine (its `PLAN.md` Amendments).
 * **Open owner actions:** merge the branches; send the first external e-mail (E-261101-11 README "Why and whom");
   Zenodo DOI (Phase 0 TODO).
 * **Next ROADMAP items:** E-261101-26 (benchmark ladder), E-261101-06 (rank-3), E-261101-21, E-261101-22,

@@ -50,3 +50,7 @@ Pre-registration (2026-11-02, before the run). Amendments at the end.
 * 2026-11-02 smoke run (session, before the run): seed type39-kd_4aecd06992 with the night settings and
   `--seed-minutes 1`: 5 alternation steps, final polynomials NUMERICAL, FEASIBLE, FEASIBLE, EXACT (step 3, 98 rows,
   135 brackets, as in night run 1; certificate with 222 bracket signs stored), result TIME-CAP after 62 s.
+* 2026-11-02 (owner, before any launch): the request to run before the benchmark ladder is withdrawn. The run is
+  launched only after E-261101-26 has scored the chirotope-first engine on the rungs it can address (PROTOCOL 8a);
+  the "PROTOCOL 8a gate" paragraph above no longer applies. If the ladder score changes the engine or its settings,
+  that change is recorded here as an amendment before the launch.
