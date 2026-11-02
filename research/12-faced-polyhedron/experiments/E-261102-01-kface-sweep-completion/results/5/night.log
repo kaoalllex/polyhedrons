@@ -1,0 +1,90 @@
+=== 2026-11-02 11:42:53 launch.sh start, shard 5
+11:42:55 type 25 k 8: start (solver timeout 300s)
+11:44:09   realize2 restart 0: normals loss 0.000123, LP margin -0, 255/715 signs wrong, 0.0s
+11:44:09   realize2 restart 1: normals loss 0.000123, LP margin -0, 268/715 signs wrong, 0.0s
+11:44:09   realize2 restart 2: normals loss 0.000123, LP margin -0, 298/715 signs wrong, 0.0s
+11:44:09   realize2 restart 3: normals loss 0.000123, LP margin -0, 245/715 signs wrong, 0.0s
+11:44:09   realize2 restart 4: normals loss 0.000123, LP margin -0, 260/715 signs wrong, 0.0s
+11:44:09   realize2 restart 5: normals loss 0.000123, LP margin -0, 410/715 signs wrong, 0.0s
+11:44:10   realize restart 0: loss 0.072, 10/715 signs wrong, 0.5s
+11:44:10   realize restart 1: loss 0.072, 10/715 signs wrong, 0.4s
+11:44:11   realize restart 2: loss 0.072, 10/715 signs wrong, 0.4s
+11:44:11   realize restart 3: loss 0.072, 10/715 signs wrong, 0.4s
+11:44:11   realize restart 4: loss 0.072, 10/715 signs wrong, 0.5s
+11:44:12   realize restart 5: loss 0.072, 10/715 signs wrong, 0.4s
+11:44:18 type 25 k 8: SAT in 73s, realized wrong signs 10, FP FEASIBLE
+11:44:18 type 25 k 9: start (solver timeout 600s)
+11:54:19 type 25 k 9: TIMEOUT after 600s
+11:54:19 type 36 k 8: start (solver timeout 300s)
+11:55:01   realize2 restart 0: normals loss 0.000485, LP margin -0, 300/715 signs wrong, 0.0s
+11:55:01   realize2 restart 1: normals loss 0.000485, LP margin -0, 133/715 signs wrong, 0.0s
+11:55:01   realize2 restart 2: normals loss 0.000485, LP margin -0, 307/715 signs wrong, 0.0s
+11:55:01   realize2 restart 3: normals loss 0.000485, LP margin -0, 248/715 signs wrong, 0.0s
+11:55:01   realize2 restart 4: normals loss 0.000485, LP margin -0, 219/715 signs wrong, 0.0s
+11:55:01   realize2 restart 5: normals loss 0.000485, LP margin -0, 162/715 signs wrong, 0.0s
+11:55:01   realize restart 0: loss 0.171, 19/715 signs wrong, 0.6s
+11:55:02   realize restart 1: loss 0.171, 19/715 signs wrong, 0.7s
+11:55:03   realize restart 2: loss 0.171, 19/715 signs wrong, 0.6s
+11:55:03   realize restart 3: loss 0.171, 19/715 signs wrong, 0.5s
+11:55:04   realize restart 4: loss 0.171, 19/715 signs wrong, 0.6s
+11:55:04   realize restart 5: loss 0.171, 19/715 signs wrong, 0.8s
+11:55:08 type 36 k 8: SAT in 41s, realized wrong signs 19, FP NONREALIZABLE-NUMERICAL
+11:55:08 type 36 k 9: start (solver timeout 600s)
+12:05:09 type 36 k 9: TIMEOUT after 600s
+12:05:09 type 46 k 8: start (solver timeout 300s)
+12:05:53   realize2 restart 0: normals loss 0.0167, LP margin -0, 392/715 signs wrong, 0.0s
+12:05:53   realize2 restart 1: normals loss 0.0167, LP margin -0, 300/715 signs wrong, 0.0s
+12:05:53   realize2 restart 2: normals loss 0.0167, LP margin -0, 213/715 signs wrong, 0.0s
+12:05:53   realize2 restart 3: normals loss 0.0167, LP margin -0, 252/715 signs wrong, 0.0s
+12:05:53   realize2 restart 4: normals loss 0.0167, LP margin -0, 278/715 signs wrong, 0.0s
+12:05:53   realize2 restart 5: normals loss 0.0167, LP margin -0, 219/715 signs wrong, 0.0s
+12:05:54   realize restart 0: loss 0.178, 23/715 signs wrong, 0.5s
+12:05:54   realize restart 1: loss 0.178, 23/715 signs wrong, 0.5s
+12:05:55   realize restart 2: loss 0.178, 23/715 signs wrong, 0.5s
+12:05:55   realize restart 3: loss 0.178, 23/715 signs wrong, 0.4s
+12:05:56   realize restart 4: loss 0.178, 23/715 signs wrong, 0.5s
+12:05:56   realize restart 5: loss 0.178, 23/715 signs wrong, 0.7s
+12:06:00 type 46 k 8: SAT in 44s, realized wrong signs 23, FP NONREALIZABLE-NUMERICAL
+12:06:00 type 46 k 9: start (solver timeout 600s)
+12:07:25   realize2 restart 0: normals loss 0.00438, LP margin -0, 227/715 signs wrong, 0.0s
+12:07:25   realize2 restart 1: normals loss 0.00438, LP margin -0, 287/715 signs wrong, 0.0s
+12:07:25   realize2 restart 2: normals loss 0.00438, LP margin -0, 249/715 signs wrong, 0.0s
+12:07:26   realize2 restart 3: normals loss 0.00438, LP margin -0, 209/715 signs wrong, 0.0s
+12:07:26   realize2 restart 4: normals loss 0.00438, LP margin -0, 264/715 signs wrong, 0.0s
+12:07:26   realize2 restart 5: normals loss 0.00438, LP margin -0, 178/715 signs wrong, 0.0s
+12:07:26   realize restart 0: loss 0.188, 23/715 signs wrong, 0.7s
+12:07:27   realize restart 1: loss 0.188, 23/715 signs wrong, 0.7s
+12:07:28   realize restart 2: loss 0.188, 23/715 signs wrong, 0.7s
+12:07:28   realize restart 3: loss 0.188, 23/715 signs wrong, 0.7s
+12:07:29   realize restart 4: loss 0.188, 23/715 signs wrong, 0.6s
+12:07:30   realize restart 5: loss 0.188, 23/715 signs wrong, 0.7s
+12:07:36 type 46 k 9: SAT in 85s, realized wrong signs 23, FP NONREALIZABLE-NUMERICAL
+12:07:36 type 55 k 8: start (solver timeout 300s)
+12:07:51   realize2 restart 0: normals loss 0.00327, LP margin -0, 220/715 signs wrong, 0.0s
+12:07:51   realize2 restart 1: normals loss 0.00327, LP margin -0, 183/715 signs wrong, 0.0s
+12:07:51   realize2 restart 2: normals loss 0.00327, LP margin -0, 259/715 signs wrong, 0.0s
+12:07:51   realize2 restart 3: normals loss 0.00327, LP margin -0, 151/715 signs wrong, 0.0s
+12:07:51   realize2 restart 4: normals loss 0.00327, LP margin -0, 269/715 signs wrong, 0.0s
+12:07:51   realize2 restart 5: normals loss 0.00327, LP margin -0, 277/715 signs wrong, 0.0s
+12:07:52   realize restart 0: loss 0.137, 16/715 signs wrong, 0.4s
+12:07:52   realize restart 1: loss 0.137, 16/715 signs wrong, 0.6s
+12:07:53   realize restart 2: loss 0.137, 16/715 signs wrong, 0.6s
+12:07:53   realize restart 3: loss 0.137, 16/715 signs wrong, 0.5s
+12:07:54   realize restart 4: loss 0.137, 16/715 signs wrong, 0.4s
+12:07:54   realize restart 5: loss 0.137, 16/715 signs wrong, 0.5s
+12:07:58 type 55 k 8: SAT in 14s, realized wrong signs 16, FP NONREALIZABLE-NUMERICAL
+12:07:58 type 55 k 9: start (solver timeout 600s)
+12:09:47   realize2 restart 0: normals loss 0.00168, LP margin -0, 241/715 signs wrong, 0.0s
+12:09:48   realize2 restart 1: normals loss 0.00168, LP margin -0, 202/715 signs wrong, 0.0s
+12:09:48   realize2 restart 2: normals loss 0.00168, LP margin -0, 209/715 signs wrong, 0.0s
+12:09:48   realize2 restart 3: normals loss 0.00168, LP margin -0, 292/715 signs wrong, 0.0s
+12:09:48   realize2 restart 4: normals loss 0.00168, LP margin -0, 173/715 signs wrong, 0.0s
+12:09:48   realize2 restart 5: normals loss 0.00168, LP margin -0, 285/715 signs wrong, 0.0s
+12:09:48   realize restart 0: loss 0.122, 16/715 signs wrong, 0.4s
+12:09:49   realize restart 1: loss 0.122, 16/715 signs wrong, 0.4s
+12:09:49   realize restart 2: loss 0.122, 16/715 signs wrong, 0.5s
+12:09:50   realize restart 3: loss 0.122, 16/715 signs wrong, 0.5s
+12:09:50   realize restart 4: loss 0.122, 16/715 signs wrong, 0.6s
+12:09:51   realize restart 5: loss 0.122, 16/715 signs wrong, 0.5s
+12:09:55 type 55 k 9: SAT in 109s, realized wrong signs 16, FP NONREALIZABLE-NUMERICAL
+counts (k, status): {(8, 'SAT'): 4, (9, 'TIMEOUT'): 2, (9, 'SAT'): 2} | realized k-face models: 0

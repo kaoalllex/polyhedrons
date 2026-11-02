@@ -750,3 +750,8 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   (reproduced, fixed with `time_limit` -> `LP-TIMEOUT`); no UNSAT, no realized model, nothing EMBEDDED.
   `experiments/E-261101-23-k-face-subinstances-face-cegar/CONCLUSION.md`, `experiments/E-261101-25-chirotope-first/CONCLUSION.md`,
   `reports/NIGHT_REPORT_2026-11-02.md`; follow-ups E-261102-01, E-261102-02.
+
+## 2026-11-02: E-261102-01 concluded (k-face sweep completion)
+
+* 8 shards, 40 min, 4.2 core-h, no hang: k = 8 SAT for the 32 missing types, k = 9 SAT 18 / TIMEOUT 14, 0 UNSAT,
+  0 realized; LOW-YIELD for exclusion on the greedy face set. `experiments/E-261102-01-kface-sweep-completion/CONCLUSION.md`.

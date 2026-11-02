@@ -2,7 +2,8 @@
 id: E-261102-01
 title: Completion of the k-face sweep - the types night 6 did not reach, with a time-limited final-polynomial LP
 date: 2026-11-02
-status: running
+status: done
+verdict: LOW-YIELD@4.2 core-h (exclusion, greedy face set, k <= 9); UNDERPOWERED (realization, no positive control)
 direction: [DR8, DR11]
 origin: [E-261101-23, I-261101-18]
 tests: [H-261101-15, H-261101-02, H-261101-12]
@@ -10,9 +11,9 @@ produces: []
 preregistered: true
 ---
 
-> Running: `PLAN.md` pre-registered 2026-11-02; `run.sh` with 8 shards of 4 types (laptop, daytime). Scores
-> T D F G R: 2 2 2 2 2. What is different from E-261101-23: the final-polynomial LP has a time limit, so the
-> sweep reaches the types night 6 never reached (numbers: `../E-261101-23-k-face-subinstances-face-cegar/CONCLUSION.md`).
+> Done 2026-11-02 (laptop, daytime, 8 shards, 40 min wall). k = 8 SAT for all 32 types, k = 9 SAT for 18 and
+> TIMEOUT for 14; 0 UNSAT, 0 realized models, no hang; two more exact final polynomials stored (type 57 k = 8,
+> type 53 k = 9), not yet independently checked. Numbers, claims and scope: `CONCLUSION.md`.
 
 ## Goal
 

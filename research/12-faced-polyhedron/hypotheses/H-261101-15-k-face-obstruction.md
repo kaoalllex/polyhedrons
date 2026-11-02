@@ -25,6 +25,10 @@ E-261101-23 (night 6, UNDERPOWERED): on the greedy face set (one set per type an
 types reached or at k = 9 for the 26 tried; k = 10 timed out everywhere; 32 types not reached (`CONCLUSION.md` of
 E-261101-23). Says nothing about other face sets; the hypothesis stays open.
 
+E-261102-01 (LOW-YIELD for exclusion on the greedy face set): the 32 types night 6 did not reach are SAT at k = 8;
+at k = 9, 18 SAT and 14 timeouts at 10 min. Together: k = 8 SAT for all 59 types, k = 9 SAT for 33, no UNSAT
+(`CONCLUSION.md` of E-261102-01). Other face sets and k >= 10 are untested; the hypothesis stays open.
+
 ## What would move it
 
 E-261101-23: UNSAT at k <= 9 for a type supports it (and excludes that type, EXACT after drat-trim); all k <= 9
