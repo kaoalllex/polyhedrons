@@ -1,0 +1,1654 @@
+[
+ {
+  "id": "R1-szilassi",
+  "rung": "R1",
+  "n": 7,
+  "triangles": [
+   [
+    0,
+    1,
+    4
+   ],
+   [
+    0,
+    1,
+    6
+   ],
+   [
+    0,
+    2,
+    3
+   ],
+   [
+    0,
+    2,
+    6
+   ],
+   [
+    0,
+    3,
+    5
+   ],
+   [
+    0,
+    4,
+    5
+   ],
+   [
+    1,
+    2,
+    3
+   ],
+   [
+    1,
+    2,
+    5
+   ],
+   [
+    1,
+    3,
+    4
+   ],
+   [
+    1,
+    5,
+    6
+   ],
+   [
+    2,
+    4,
+    5
+   ],
+   [
+    2,
+    4,
+    6
+   ],
+   [
+    3,
+    4,
+    6
+   ],
+   [
+    3,
+    5,
+    6
+   ]
+  ],
+  "faces": null,
+  "kmax": 0,
+  "minutes": 5,
+  "seeds": [
+   {
+    "random": 0
+   },
+   {
+    "random": 1
+   },
+   {
+    "random": 2
+   },
+   {
+    "random": 3
+   },
+   {
+    "random": 4
+   },
+   {
+    "random": 5
+   },
+   {
+    "random": 6
+   },
+   {
+    "random": 7
+   },
+   {
+    "random": 8
+   },
+   {
+    "random": 9
+   },
+   {
+    "random": 10
+   },
+   {
+    "random": 11
+   },
+   {
+    "random": 12
+   },
+   {
+    "random": 13
+   },
+   {
+    "random": 14
+   },
+   {
+    "random": 15
+   },
+   {
+    "random": 16
+   },
+   {
+    "random": 17
+   },
+   {
+    "random": 18
+   },
+   {
+    "random": 19
+   }
+  ],
+  "reference": {
+   "file": "experiments/E-261101-25-chirotope-first/szilassi_control.json",
+   "perturbation_trial": 1
+  },
+  "genus": 1,
+  "face_order": [
+   0,
+   1,
+   4,
+   3,
+   2,
+   5,
+   6
+  ],
+  "ladder": 7,
+  "controls": {
+   "reference_judged": [
+    true,
+    "{'all_pairs_adjacent': True, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}"
+   ],
+   "reference_in_cnf": [
+    true,
+    "SAT"
+   ],
+   "random_judged": [
+    false,
+    "{'all_pairs_adjacent': True, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': [0, 2, 4, 5, 6]}"
+   ],
+   "cnf": [
+    1503,
+    12212
+   ]
+  }
+ },
+ {
+  "id": "R4-type15-genus3",
+  "rung": "R4",
+  "n": 12,
+  "triangles": [
+   [
+    0,
+    2,
+    3
+   ],
+   [
+    0,
+    2,
+    7
+   ],
+   [
+    0,
+    3,
+    4
+   ],
+   [
+    0,
+    4,
+    5
+   ],
+   [
+    0,
+    5,
+    6
+   ],
+   [
+    0,
+    6,
+    7
+   ],
+   [
+    1,
+    3,
+    7
+   ],
+   [
+    1,
+    3,
+    10
+   ],
+   [
+    1,
+    4,
+    5
+   ],
+   [
+    1,
+    4,
+    8
+   ],
+   [
+    1,
+    5,
+    10
+   ],
+   [
+    1,
+    6,
+    9
+   ],
+   [
+    1,
+    6,
+    11
+   ],
+   [
+    1,
+    7,
+    11
+   ],
+   [
+    1,
+    8,
+    9
+   ],
+   [
+    2,
+    3,
+    8
+   ],
+   [
+    2,
+    4,
+    7
+   ],
+   [
+    2,
+    4,
+    11
+   ],
+   [
+    2,
+    6,
+    8
+   ],
+   [
+    2,
+    6,
+    11
+   ],
+   [
+    3,
+    4,
+    6
+   ],
+   [
+    3,
+    6,
+    7
+   ],
+   [
+    3,
+    8,
+    10
+   ],
+   [
+    4,
+    6,
+    9
+   ],
+   [
+    4,
+    7,
+    10
+   ],
+   [
+    4,
+    8,
+    10
+   ],
+   [
+    4,
+    9,
+    11
+   ],
+   [
+    5,
+    6,
+    8
+   ],
+   [
+    5,
+    8,
+    11
+   ],
+   [
+    5,
+    10,
+    11
+   ],
+   [
+    7,
+    10,
+    11
+   ],
+   [
+    8,
+    9,
+    11
+   ]
+  ],
+  "faces": null,
+  "kmax": 0,
+  "minutes": 40,
+  "seeds": [
+   {
+    "random": 0
+   },
+   {
+    "random": 1
+   },
+   {
+    "random": 2
+   },
+   {
+    "random": 3
+   },
+   {
+    "random": 4
+   },
+   {
+    "random": 5
+   },
+   {
+    "random": 6
+   },
+   {
+    "random": 7
+   },
+   {
+    "random": 8
+   },
+   {
+    "random": 9
+   }
+  ],
+  "reference": {
+   "archive": 72,
+   "perturbation_trial": 0
+  },
+  "genus": 3,
+  "face_order": [
+   0,
+   1,
+   2,
+   3,
+   7,
+   4,
+   6,
+   11,
+   5,
+   8,
+   10,
+   9
+  ],
+  "ladder": 7,
+  "controls": {
+   "reference_judged": [
+    true,
+    "{'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}"
+   ],
+   "reference_in_cnf": [
+    true,
+    "SAT"
+   ],
+   "random_judged": [
+    false,
+    "{'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': [2, 3, 4, 7, 8, 9, 10, 11]}"
+   ],
+   "cnf": [
+    15055,
+    465310
+   ]
+  }
+ },
+ {
+  "id": "R4-type0-genus3",
+  "rung": "R4",
+  "n": 12,
+  "triangles": [
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    0,
+    2,
+    3
+   ],
+   [
+    0,
+    3,
+    4
+   ],
+   [
+    0,
+    4,
+    5
+   ],
+   [
+    0,
+    8,
+    9
+   ],
+   [
+    0,
+    1,
+    11
+   ],
+   [
+    1,
+    3,
+    5
+   ],
+   [
+    1,
+    4,
+    6
+   ],
+   [
+    1,
+    4,
+    5
+   ],
+   [
+    1,
+    6,
+    8
+   ],
+   [
+    1,
+    8,
+    10
+   ],
+   [
+    1,
+    3,
+    11
+   ],
+   [
+    2,
+    7,
+    11
+   ],
+   [
+    2,
+    3,
+    8
+   ],
+   [
+    2,
+    6,
+    10
+   ],
+   [
+    2,
+    8,
+    11
+   ],
+   [
+    3,
+    6,
+    10
+   ],
+   [
+    3,
+    4,
+    7
+   ],
+   [
+    3,
+    6,
+    8
+   ],
+   [
+    3,
+    7,
+    11
+   ],
+   [
+    4,
+    8,
+    11
+   ],
+   [
+    4,
+    8,
+    9
+   ],
+   [
+    4,
+    6,
+    11
+   ],
+   [
+    5,
+    8,
+    10
+   ],
+   [
+    6,
+    7,
+    9
+   ],
+   [
+    6,
+    9,
+    11
+   ],
+   [
+    1,
+    2,
+    10
+   ],
+   [
+    4,
+    7,
+    9
+   ],
+   [
+    0,
+    5,
+    8
+   ],
+   [
+    2,
+    6,
+    7
+   ],
+   [
+    0,
+    9,
+    11
+   ],
+   [
+    3,
+    5,
+    10
+   ]
+  ],
+  "faces": null,
+  "kmax": 0,
+  "minutes": 40,
+  "seeds": [
+   {
+    "random": 0
+   },
+   {
+    "random": 1
+   },
+   {
+    "random": 2
+   },
+   {
+    "random": 3
+   },
+   {
+    "random": 4
+   },
+   {
+    "random": 5
+   },
+   {
+    "random": 6
+   },
+   {
+    "random": 7
+   },
+   {
+    "random": 8
+   },
+   {
+    "random": 9
+   }
+  ],
+  "reference": {
+   "file": "experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable.json",
+   "perturbation_trial": 0
+  },
+  "genus": 3,
+  "face_order": [
+   0,
+   1,
+   2,
+   3,
+   11,
+   7,
+   4,
+   5,
+   8,
+   6,
+   9,
+   10
+  ],
+  "ladder": 7,
+  "controls": {
+   "reference_judged": [
+    true,
+    "{'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}"
+   ],
+   "reference_in_cnf": [
+    true,
+    "SAT"
+   ],
+   "random_judged": [
+    false,
+    "{'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}"
+   ],
+   "cnf": [
+    15031,
+    465212
+   ]
+  }
+ },
+ {
+  "id": "R5-type15-genus3-from-parent",
+  "rung": "R5",
+  "n": 12,
+  "triangles": [
+   [
+    0,
+    2,
+    3
+   ],
+   [
+    0,
+    2,
+    7
+   ],
+   [
+    0,
+    3,
+    4
+   ],
+   [
+    0,
+    4,
+    5
+   ],
+   [
+    0,
+    5,
+    6
+   ],
+   [
+    0,
+    6,
+    7
+   ],
+   [
+    1,
+    3,
+    7
+   ],
+   [
+    1,
+    3,
+    10
+   ],
+   [
+    1,
+    4,
+    5
+   ],
+   [
+    1,
+    4,
+    8
+   ],
+   [
+    1,
+    5,
+    10
+   ],
+   [
+    1,
+    6,
+    9
+   ],
+   [
+    1,
+    6,
+    11
+   ],
+   [
+    1,
+    7,
+    11
+   ],
+   [
+    1,
+    8,
+    9
+   ],
+   [
+    2,
+    3,
+    8
+   ],
+   [
+    2,
+    4,
+    7
+   ],
+   [
+    2,
+    4,
+    11
+   ],
+   [
+    2,
+    6,
+    8
+   ],
+   [
+    2,
+    6,
+    11
+   ],
+   [
+    3,
+    4,
+    6
+   ],
+   [
+    3,
+    6,
+    7
+   ],
+   [
+    3,
+    8,
+    10
+   ],
+   [
+    4,
+    6,
+    9
+   ],
+   [
+    4,
+    7,
+    10
+   ],
+   [
+    4,
+    8,
+    10
+   ],
+   [
+    4,
+    9,
+    11
+   ],
+   [
+    5,
+    6,
+    8
+   ],
+   [
+    5,
+    8,
+    11
+   ],
+   [
+    5,
+    10,
+    11
+   ],
+   [
+    7,
+    10,
+    11
+   ],
+   [
+    8,
+    9,
+    11
+   ]
+  ],
+  "faces": null,
+  "kmax": 0,
+  "minutes": 40,
+  "seeds": [
+   {
+    "parent": 26,
+    "noise": 0.0
+   },
+   {
+    "parent": 165,
+    "noise": 0.0
+   },
+   {
+    "parent": 229,
+    "noise": 0.0
+   },
+   {
+    "parent": 26,
+    "noise": 0.01
+   },
+   {
+    "parent": 165,
+    "noise": 0.01
+   },
+   {
+    "parent": 229,
+    "noise": 0.01
+   },
+   {
+    "parent": 26,
+    "noise": 0.01
+   },
+   {
+    "parent": 165,
+    "noise": 0.01
+   },
+   {
+    "parent": 229,
+    "noise": 0.01
+   },
+   {
+    "parent": 26,
+    "noise": 0.01
+   }
+  ],
+  "reference": {
+   "archive": 72,
+   "perturbation_trial": 0
+  },
+  "genus": 3,
+  "face_order": [
+   0,
+   1,
+   2,
+   3,
+   7,
+   4,
+   6,
+   11,
+   5,
+   8,
+   10,
+   9
+  ],
+  "ladder": 7,
+  "controls": {
+   "reference_judged": [
+    true,
+    "{'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}"
+   ],
+   "reference_in_cnf": [
+    true,
+    "SAT"
+   ],
+   "random_judged": [
+    false,
+    "{'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': [1, 4, 5, 6, 8, 9, 10, 11]}"
+   ],
+   "cnf": [
+    15055,
+    465310
+   ]
+  }
+ },
+ {
+  "id": "R6k-type15-genus3-k7",
+  "rung": "R6k",
+  "n": 12,
+  "triangles": [
+   [
+    0,
+    2,
+    3
+   ],
+   [
+    0,
+    2,
+    7
+   ],
+   [
+    0,
+    3,
+    4
+   ],
+   [
+    0,
+    4,
+    5
+   ],
+   [
+    0,
+    5,
+    6
+   ],
+   [
+    0,
+    6,
+    7
+   ],
+   [
+    1,
+    3,
+    7
+   ],
+   [
+    1,
+    3,
+    10
+   ],
+   [
+    1,
+    4,
+    5
+   ],
+   [
+    1,
+    4,
+    8
+   ],
+   [
+    1,
+    5,
+    10
+   ],
+   [
+    1,
+    6,
+    9
+   ],
+   [
+    1,
+    6,
+    11
+   ],
+   [
+    1,
+    7,
+    11
+   ],
+   [
+    1,
+    8,
+    9
+   ],
+   [
+    2,
+    3,
+    8
+   ],
+   [
+    2,
+    4,
+    7
+   ],
+   [
+    2,
+    4,
+    11
+   ],
+   [
+    2,
+    6,
+    8
+   ],
+   [
+    2,
+    6,
+    11
+   ],
+   [
+    3,
+    4,
+    6
+   ],
+   [
+    3,
+    6,
+    7
+   ],
+   [
+    3,
+    8,
+    10
+   ],
+   [
+    4,
+    6,
+    9
+   ],
+   [
+    4,
+    7,
+    10
+   ],
+   [
+    4,
+    8,
+    10
+   ],
+   [
+    4,
+    9,
+    11
+   ],
+   [
+    5,
+    6,
+    8
+   ],
+   [
+    5,
+    8,
+    11
+   ],
+   [
+    5,
+    10,
+    11
+   ],
+   [
+    7,
+    10,
+    11
+   ],
+   [
+    8,
+    9,
+    11
+   ]
+  ],
+  "faces": [
+   0,
+   1,
+   2,
+   3,
+   7,
+   4,
+   6
+  ],
+  "kmax": 7,
+  "minutes": 20,
+  "seeds": [
+   {
+    "random": 0
+   },
+   {
+    "random": 1
+   },
+   {
+    "random": 2
+   },
+   {
+    "random": 3
+   },
+   {
+    "random": 4
+   },
+   {
+    "random": 5
+   },
+   {
+    "random": 6
+   },
+   {
+    "random": 7
+   },
+   {
+    "random": 8
+   },
+   {
+    "random": 9
+   }
+  ],
+  "reference": {
+   "archive": 72,
+   "perturbation_trial": 0
+  },
+  "genus": 3,
+  "face_order": [
+   0,
+   1,
+   2,
+   3,
+   7,
+   4,
+   6,
+   11,
+   5,
+   8,
+   10,
+   9
+  ],
+  "ladder": 7,
+  "controls": {
+   "reference_judged": [
+    true,
+    "SAT"
+   ],
+   "reference_in_cnf": [
+    true,
+    "SAT"
+   ],
+   "random_judged": [
+    false,
+    "UNSAT"
+   ],
+   "cnf": [
+    5754,
+    431161
+   ]
+  }
+ },
+ {
+  "id": "R6k-type15-genus3-k8",
+  "rung": "R6k",
+  "n": 12,
+  "triangles": [
+   [
+    0,
+    2,
+    3
+   ],
+   [
+    0,
+    2,
+    7
+   ],
+   [
+    0,
+    3,
+    4
+   ],
+   [
+    0,
+    4,
+    5
+   ],
+   [
+    0,
+    5,
+    6
+   ],
+   [
+    0,
+    6,
+    7
+   ],
+   [
+    1,
+    3,
+    7
+   ],
+   [
+    1,
+    3,
+    10
+   ],
+   [
+    1,
+    4,
+    5
+   ],
+   [
+    1,
+    4,
+    8
+   ],
+   [
+    1,
+    5,
+    10
+   ],
+   [
+    1,
+    6,
+    9
+   ],
+   [
+    1,
+    6,
+    11
+   ],
+   [
+    1,
+    7,
+    11
+   ],
+   [
+    1,
+    8,
+    9
+   ],
+   [
+    2,
+    3,
+    8
+   ],
+   [
+    2,
+    4,
+    7
+   ],
+   [
+    2,
+    4,
+    11
+   ],
+   [
+    2,
+    6,
+    8
+   ],
+   [
+    2,
+    6,
+    11
+   ],
+   [
+    3,
+    4,
+    6
+   ],
+   [
+    3,
+    6,
+    7
+   ],
+   [
+    3,
+    8,
+    10
+   ],
+   [
+    4,
+    6,
+    9
+   ],
+   [
+    4,
+    7,
+    10
+   ],
+   [
+    4,
+    8,
+    10
+   ],
+   [
+    4,
+    9,
+    11
+   ],
+   [
+    5,
+    6,
+    8
+   ],
+   [
+    5,
+    8,
+    11
+   ],
+   [
+    5,
+    10,
+    11
+   ],
+   [
+    7,
+    10,
+    11
+   ],
+   [
+    8,
+    9,
+    11
+   ]
+  ],
+  "faces": [
+   0,
+   1,
+   2,
+   3,
+   7,
+   4,
+   6,
+   11
+  ],
+  "kmax": 8,
+  "minutes": 20,
+  "seeds": [
+   {
+    "random": 0
+   },
+   {
+    "random": 1
+   },
+   {
+    "random": 2
+   },
+   {
+    "random": 3
+   },
+   {
+    "random": 4
+   },
+   {
+    "random": 5
+   },
+   {
+    "random": 6
+   },
+   {
+    "random": 7
+   },
+   {
+    "random": 8
+   },
+   {
+    "random": 9
+   }
+  ],
+  "reference": {
+   "archive": 72,
+   "perturbation_trial": 0
+  },
+  "genus": 3,
+  "face_order": [
+   0,
+   1,
+   2,
+   3,
+   7,
+   4,
+   6,
+   11,
+   5,
+   8,
+   10,
+   9
+  ],
+  "ladder": 8,
+  "controls": {
+   "reference_judged": [
+    true,
+    "SAT"
+   ],
+   "reference_in_cnf": [
+    true,
+    "SAT"
+   ],
+   "random_judged": [
+    false,
+    "UNSAT"
+   ],
+   "cnf": [
+    7285,
+    436900
+   ]
+  }
+ },
+ {
+  "id": "R6k-type15-genus3-k9",
+  "rung": "R6k",
+  "n": 12,
+  "triangles": [
+   [
+    0,
+    2,
+    3
+   ],
+   [
+    0,
+    2,
+    7
+   ],
+   [
+    0,
+    3,
+    4
+   ],
+   [
+    0,
+    4,
+    5
+   ],
+   [
+    0,
+    5,
+    6
+   ],
+   [
+    0,
+    6,
+    7
+   ],
+   [
+    1,
+    3,
+    7
+   ],
+   [
+    1,
+    3,
+    10
+   ],
+   [
+    1,
+    4,
+    5
+   ],
+   [
+    1,
+    4,
+    8
+   ],
+   [
+    1,
+    5,
+    10
+   ],
+   [
+    1,
+    6,
+    9
+   ],
+   [
+    1,
+    6,
+    11
+   ],
+   [
+    1,
+    7,
+    11
+   ],
+   [
+    1,
+    8,
+    9
+   ],
+   [
+    2,
+    3,
+    8
+   ],
+   [
+    2,
+    4,
+    7
+   ],
+   [
+    2,
+    4,
+    11
+   ],
+   [
+    2,
+    6,
+    8
+   ],
+   [
+    2,
+    6,
+    11
+   ],
+   [
+    3,
+    4,
+    6
+   ],
+   [
+    3,
+    6,
+    7
+   ],
+   [
+    3,
+    8,
+    10
+   ],
+   [
+    4,
+    6,
+    9
+   ],
+   [
+    4,
+    7,
+    10
+   ],
+   [
+    4,
+    8,
+    10
+   ],
+   [
+    4,
+    9,
+    11
+   ],
+   [
+    5,
+    6,
+    8
+   ],
+   [
+    5,
+    8,
+    11
+   ],
+   [
+    5,
+    10,
+    11
+   ],
+   [
+    7,
+    10,
+    11
+   ],
+   [
+    8,
+    9,
+    11
+   ]
+  ],
+  "faces": [
+   0,
+   1,
+   2,
+   3,
+   7,
+   4,
+   6,
+   11,
+   5
+  ],
+  "kmax": 9,
+  "minutes": 20,
+  "seeds": [
+   {
+    "random": 0
+   },
+   {
+    "random": 1
+   },
+   {
+    "random": 2
+   },
+   {
+    "random": 3
+   },
+   {
+    "random": 4
+   },
+   {
+    "random": 5
+   },
+   {
+    "random": 6
+   },
+   {
+    "random": 7
+   },
+   {
+    "random": 8
+   },
+   {
+    "random": 9
+   }
+  ],
+  "reference": {
+   "archive": 72,
+   "perturbation_trial": 0
+  },
+  "genus": 3,
+  "face_order": [
+   0,
+   1,
+   2,
+   3,
+   7,
+   4,
+   6,
+   11,
+   5,
+   8,
+   10,
+   9
+  ],
+  "ladder": 9,
+  "controls": {
+   "reference_judged": [
+    true,
+    "SAT"
+   ],
+   "reference_in_cnf": [
+    true,
+    "SAT"
+   ],
+   "random_judged": [
+    false,
+    "UNSAT"
+   ],
+   "cnf": [
+    8791,
+    442440
+   ]
+  }
+ }
+]

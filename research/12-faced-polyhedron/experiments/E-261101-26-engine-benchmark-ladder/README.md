@@ -2,16 +2,18 @@
 id: E-261101-26
 title: Engine benchmark ladder - tasks with known answers on which every construction engine is scored before the target
 date: 2026-11-01
-status: planned
+status: running
 direction: [DR1, DR7, DR17]
 origin: [I-261101-22, E-261030-01, E-261030-03, E-261101-25]
 tests: [H-261101-17, H-261101-10]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned. Scores T D F G R: 1 2 2 2 2 | budget: 1-2 days of harness code, then one laptop night per engine. Before
-> any compute: `PLAN.md` (skill `experiment-start`).
+> Running (first scope: the chirotope-first engine): `PLAN.md` pre-registered 2026-11-02; harness `ladder.py`
+> (`build` writes `tasks.json` with its controls, `run`, `score`); `run.sh SHARD`, 10 shards, laptop night 7. Rungs
+> R1, R4 (two genus-3 maps), R5, R6k (k-face sub-instances of a genus-3 map with a known realization); R2 / R3 are
+> not expressible in the encoder (doubled adjacencies). Scores T D F G R: 1 2 2 2 2.
 
 ## Goal
 
