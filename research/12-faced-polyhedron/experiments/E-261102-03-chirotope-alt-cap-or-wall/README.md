@@ -2,15 +2,15 @@
 id: E-261102-03
 title: Chirotope-first on the full-map rungs with the alternation cap lifted - is the R4 / R5 frontier a cap or a wall?
 date: 2026-11-02
-status: planned
+status: running
 direction: [DR8, DR17]
 origin: [E-261101-26, I-261102-01]
 tests: [H-261101-17]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned 2026-11-02 from `../E-261101-26-engine-benchmark-ladder/CONCLUSION.md`; PLAN not written yet. Scores
+> Planned 2026-11-02 from `../E-261101-26-engine-benchmark-ladder/CONCLUSION.md`; pre-registered in `PLAN.md` (two pilots in its Amendments). Scores
 > T D F G R: 1 2 2 1 2.
 
 ## Goal

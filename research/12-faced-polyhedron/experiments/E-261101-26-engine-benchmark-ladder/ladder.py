@@ -3,12 +3,14 @@
   python3 ladder.py build
       writes tasks.json; every task's judge must accept its reference realization, the reference chirotope must
       satisfy the task's CNF (the answer is in the engine's search space), and the judge must reject random planes
-  python3 ladder.py run --shard S --shards N --out DIR [--only TASK ...] [--seeds K] [--minutes M]
+  python3 ladder.py run --shard S --shards N --out DIR [--only TASK ...] [--seeds K] [--minutes M] [--alt A] [--timeout S]
       the chirotope-first engine (E-261101-25, E-261102-02 configuration) on the shard's (task, seed) units; one record
       per unit in DIR/results.jsonl, recorded units are skipped on restart; each unit runs in its own process group
       with a hard cap of (budget + 15) minutes (HARD-CAP)
-  python3 ladder.py score DIR ... --to FILE
-      per task: successes / seeds, median minutes to an exact success, the budget
+  python3 ladder.py score DIR ... --to FILE [--cutoffs M ...]
+      per task: successes / seeds, median minutes to an exact success, the budget; with cutoffs, the successes within
+      each M minutes (the engine's budget is only a deadline, so a long unit truncated at M scores an M-minute unit),
+      the limit that ended each failure, the fraction of the budget used and the highest k realized
 
 The judge is exact: `ladder_exact.verify` for a full map (all pairs adjacent required only for a neighborly map); for
 a k-face task, integer planes in general position whose normalised chirotope satisfies the task's CNF.
@@ -173,7 +175,7 @@ def unit(task, i, out):
     ok, detail = judge(task, T, planes)
     keep = ('k', 'iteration', 'status', 'released', 'rounds', 'sat_seconds', 'realized_wrong_signs', 'EMBEDDED')
     steps = [{**{a: s[a] for a in keep if a in s}, 'fp': s.get('final_polynomial', {}).get('status')} for s in rec['steps']]
-    out_rec = {'task': task['id'], 'rung': task['rung'], 'seed': i, 'tag': tag, 'minutes': task['minutes'],
+    out_rec = {'task': task['id'], 'rung': task['rung'], 'seed': i, 'tag': tag, 'minutes': task['minutes'], 'alt': ENGINE['alt'], 'timeout': ENGINE['timeout'],
                'engine_result': rec.get('result'), 'success': ok, 'judge': str(detail), 'seconds': round(seconds, 1),
                'steps': steps, 'planes': planes if ok else None}
     with open(os.path.join(out, 'results.jsonl'), 'a') as f:
@@ -182,6 +184,10 @@ def unit(task, i, out):
 
 
 def run(a):
+    if a.alt:
+        ENGINE['alt'] = a.alt                      # before the fork, so every unit inherits it
+    if a.timeout:
+        ENGINE['timeout'] = a.timeout
     tasks = json.load(open(TASKS))
     if a.only:
         tasks = [t for t in tasks if t['id'] in a.only]
@@ -212,7 +218,7 @@ def run(a):
         if p.exitcode != 0:
             status = 'HARD-CAP' if time.monotonic() - t0 >= 60 * (t['minutes'] + CAP_MARGIN_MIN) else 'CRASH %s' % p.exitcode
             with open(path, 'a') as f:
-                f.write(json.dumps({'task': t['id'], 'rung': t['rung'], 'seed': i, 'minutes': t['minutes'],
+                f.write(json.dumps({'task': t['id'], 'rung': t['rung'], 'seed': i, 'minutes': t['minutes'], 'alt': ENGINE['alt'], 'timeout': ENGINE['timeout'],
                                     'engine_result': status, 'success': False, 'seconds': round(time.monotonic() - t0, 1)}) + '\n')
             log('%s seed %d: %s' % (t['id'], i, status))
 
@@ -230,7 +236,15 @@ def score(a):
         out[t['id']] = {'rung': t['rung'], 'seeds': len(rs), 'successes': len(won), 'budget_minutes': sorted({r['minutes'] for r in rs}),
                         'median_minutes_to_success': round(statistics.median(won), 2) if won else None,
                         'engine_results': dict(collections.Counter(r['engine_result'] for r in rs))}
-    json.dump({'engine': 'chirotope-first (E-261101-25)', 'config': ENGINE, 'judge': 'exact (ladder.py)', 'tasks': out},
+        if a.cutoffs:
+            out[t['id']]['successes_within_minutes'] = {m: sum(r['success'] and r['seconds'] <= 60 * m for r in rs) for m in a.cutoffs}
+            out[t['id']]['units'] = [{'seed': r['seed'], 'result': r['engine_result'], 'success': r['success'],
+                                      'budget_fraction': round(r['seconds'] / (60 * r['minutes']), 2),
+                                      'alternations': len(r.get('steps', [])),
+                                      'k_realized': max([s['k'] for s in r.get('steps', []) if s.get('realized_wrong_signs') == 0], default=None)}
+                                     for r in sorted(rs, key=lambda r: r['seed'])]
+    seen = lambda key: (lambda v: v if len(v) > 1 else v[0])(sorted({r.get(key, ENGINE[key]) for r in recs}))
+    json.dump({'engine': 'chirotope-first (E-261101-25)', 'config': {**ENGINE, 'alt': seen('alt'), 'timeout': seen('timeout')}, 'judge': 'exact (ladder.py)', 'tasks': out},
               open(a.to, 'w'), indent=1)
     for k, v in out.items():
         log(k, '%d/%d' % (v['successes'], v['seeds']), v['median_minutes_to_success'], v['engine_results'])
@@ -247,9 +261,12 @@ def main():
     r.add_argument('--only', nargs='*', default=[])
     r.add_argument('--seeds', type=int, default=0, help='at most this many seeds per task (pilot)')
     r.add_argument('--minutes', type=float, default=0, help='override every budget (pilot)')
+    r.add_argument('--alt', type=int, default=0, help='override ENGINE alt, the alternations per face-ladder step')
+    r.add_argument('--timeout', type=float, default=0, help='override ENGINE timeout, seconds per SAT call')
     s = sub.add_parser('score')
     s.add_argument('dirs', nargs='+')
     s.add_argument('--to', required=True)
+    s.add_argument('--cutoffs', type=int, nargs='*', default=[])
     a = ap.parse_args()
     build() if a.cmd == 'build' else run(a) if a.cmd == 'run' else score(a)
 
