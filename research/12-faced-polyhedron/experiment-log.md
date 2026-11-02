@@ -761,3 +761,10 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * Daytime, 8 of 10 shards (64 of 80 units), 5.3 core-h, no HARD-CAP: R1 16/16, R4 0/8 and 0/8, R5 0/8, R6k k = 7, 8, 9
   4/8, 1/8, 1/8; frontier R4 / R5, failures cut by `--alt 20`, not by time.
   `experiments/E-261101-26-engine-benchmark-ladder/CONCLUSION.md`.
+
+## 2026-11-02: process changes after the first engine score
+
+* `overnight/launch.sh start DIR CORES` (sets `SHARDS`; runners skip units recorded in any shard), commit `3e8a54b`.
+* PROTOCOL §2.4 pilot gate and §2.5 grid rule, `_template/PLAN.md`; E-261102-02 blocked (`PLAN.md` Amendments); new
+  rows E-261102-03 (chirotope-first, cap or wall) and E-261102-04 (genus-ladder search on the ladder). The 16 missing
+  units of E-261101-26 are running on the laptop.

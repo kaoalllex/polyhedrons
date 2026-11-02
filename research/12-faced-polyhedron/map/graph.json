@@ -803,6 +803,34 @@
    "preregistered": "true"
   },
   {
+   "id": "E-261102-03",
+   "kind": "experiment",
+   "title": "Chirotope-first on the full-map rungs with the alternation cap lifted - is the R4 / R5 frontier a cap or a wall?",
+   "status": "planned",
+   "date": "2026-11-02",
+   "path": "experiments/E-261102-03-chirotope-alt-cap-or-wall/README.md",
+   "direction": [
+    "DR8",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261102-04",
+   "kind": "experiment",
+   "title": "The genus-ladder search (the engine of the 94 archived genus-3 realizations) scored on the benchmark ladder",
+   "status": "planned",
+   "date": "2026-11-02",
+   "path": "experiments/E-261102-04-genus-ladder-engine-score/README.md",
+   "direction": [
+    "DR1",
+    "DR6"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -3521,6 +3549,11 @@
   },
   {
    "from": "E-261030-10",
+   "to": "E-261102-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-10",
    "to": "H-261030-04",
    "kind": "tests"
   },
@@ -3841,6 +3874,16 @@
   },
   {
    "from": "E-261101-26",
+   "to": "E-261102-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-26",
+   "to": "E-261102-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-26",
    "to": "H-261101-10",
    "kind": "tests"
   },
@@ -3882,6 +3925,16 @@
   {
    "from": "E-261102-02",
    "to": "H-261101-17",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261102-03",
+   "to": "H-261101-17",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261102-04",
+   "to": "H-261101-10",
    "kind": "tests"
   },
   {
@@ -4477,6 +4530,16 @@
   {
    "from": "I-261101-22",
    "to": "E-261102-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-22",
+   "to": "E-261102-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261102-01",
+   "to": "E-261102-03",
    "kind": "origin"
   },
   {

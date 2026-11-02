@@ -57,3 +57,8 @@ Pre-registration (2026-11-02, before the run). Amendments at the end.
 * 2026-11-02 (infrastructure, before any launch; no change to the engine or its settings): `run.sh` splits the 149
   seeds by `SHARDS` (set by `overnight/launch.sh start DIR CORES`, default 10) and skips a seed recorded by any shard,
   so the owner can run fewer cores by day and all at night without losing or repeating seeds.
+* 2026-11-02 (owner, after E-261101-26, before any launch): **blocked**. The ladder's pre-registered rule ("goes ahead
+  unchanged if R4 or R6k k = 9 has a success") is met, with R6k k = 9 at 1/8. But every ladder failure stopped at
+  `--alt 20` after 15-39 % of its time, so this run would end in ~2.5 h, and a realized k = 7 model is expected
+  rather than informative (k = 7: 4/8 on a known map). This fails the pilot gate of PROTOCOL §2.4. The run waits for
+  E-261102-03 (the cap lifted on the full-map rungs) and gets a new amendment with its setting, or is killed.

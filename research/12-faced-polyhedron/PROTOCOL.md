@@ -29,7 +29,21 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
    compute: hypothesis, controls, what each outcome (SAT / UNSAT / timeout / near-miss) will mean, budget, stop
    rule, power statement (what effect size the budget can detect).
 4. **Pilot** -> the smallest instance that could expose a bug in the idea (minutes). Positive control must pass.
-5. **Run** -> on branch `experiment/E-YYMMDD-NN-slug`, on the laptop (`caffeinate -dimsu bash run.sh`) or on GitHub
+   The pilot is also the gate of the long run (the lesson of E-261101-26, whose units all stopped at an
+   alternation cap after 15-39 % of their time). It reports:
+   * per unit, which limit ended it (alternations, rounds, time, solver timeout, hard cap) and the fraction of the
+     budget it used;
+   * a projection of the long run's outcome from these numbers.
+
+   The long run starts only if three things hold:
+   * the binding limit is the one the PLAN intends;
+   * at least one pre-registered prediction still has a real chance (roughly 30-70 %) of failing;
+   * every outcome is tied to a decision written in the PLAN.
+
+   Re-check the ROADMAP D score against the pilot; if T + D drops below 3, the run does not start. Otherwise the
+   PLAN gets a dated amendment (another limit, a grid, a sharper question) or the run is dropped.
+5. **Run** -> when the outcome depends on a parameter (a cap, a budget, a step count), the long run is a small grid
+   over that parameter with fewer seeds per cell, not one setting with many seeds. On branch `experiment/E-YYMMDD-NN-slug`, on the laptop (`caffeinate -dimsu bash run.sh`) or on GitHub
    Actions (section 6). Every run writes a manifest (section 5).
 6. **Verify** -> every candidate through `verification/verify_candidate.py`; every UNSAT that is used as evidence
    keeps its formula (SMT2 / CNF hash) so it can be re-checked.
@@ -47,7 +61,9 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
 * Verdicts carry their budget: "LOW-YIELD@8 core-h, 2 seeds" - a measurement, not a ban. REFUTED needs a proof.
 * Before calling a direction low-yield, check the positive control was able to succeed under the same budget;
   if it was not, the verdict is "underpowered".
-* A new engine must first reproduce a known object (Szilassi, Roest-Vigh, a saved genus-3 witness).
+* A new engine must first reproduce a known object (Szilassi, Roest-Vigh, a saved genus-3 witness), and is scored
+  on the benchmark ladder next to the engines already scored there (`STATUS.md` 3b). A ladder table with one engine
+  ranks nothing.
 * Theorem-level claims need two independent implementations (encoder / verifier) and a human reviewer outside
   the agent chain; the `adversarial-verifier` agent is a filter, not a referee. Every claim that changes a
   FD / witness row gets a `REVIEW.md` (`experiments/_template/REVIEW.md`) written by someone other than its author.
@@ -111,7 +127,9 @@ keeps the URL, size and SHA-256.
 ## 6. Compute
 
 **Laptop** (owner's MacBook, 11 workers): always under `caffeinate -dimsu` (night 4 lost 8 h to sleep); jobs
-checkpoint and resume (`overnight/run_overnight.py` does). Use the `overnight-run-script` skill to write night
+checkpoint and resume (`overnight/run_overnight.py` does). Launch with `overnight/launch.sh start DIR CORES`: CORES
+is how many cores to give (fewer by day, all at night); `run.sh` splits its units by `SHARDS = CORES`, and a stop +
+start with another CORES re-splits the remaining units. Use the `overnight-run-script` skill to write night
 scripts. Long runs belong to the owner's machine, not to a cloud AI session (its background processes die).
 
 **GitHub Actions** (public repository, free standard runners): `.github/workflows/experiment.yml` runs

@@ -10,7 +10,7 @@ produces: []
 preregistered: true
 ---
 
-> Pre-registered 2026-11-02 (`PLAN.md`, `run.sh` with 10 shards); launch: one laptop night. Scores T D F G R:
+> **Blocked** 2026-11-02 until E-261102-03 decides (`PLAN.md` Amendments). Pre-registered 2026-11-02 (`PLAN.md`, `run.sh` with 10 shards); launch: one laptop night. Scores T D F G R:
 > 2 2 2 2 2. Launch only after the benchmark ladder E-261101-26 has scored the engine (PROTOCOL 8a; `PLAN.md`
 > Amendments). What is
 > different from night run 1 (`../E-261101-25-chirotope-first/CONCLUSION.md`): the final-polynomial LP has a time
