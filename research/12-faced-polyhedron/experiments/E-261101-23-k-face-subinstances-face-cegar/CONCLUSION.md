@@ -10,8 +10,8 @@
   k = 8, type 16 k = 8, type 29 k = 8), from 21:29-22:47 local time (UTC+3) until the stop at 07:42.
   Reproduced on type 19 k = 8 in the morning session with a stack dump: CaDiCaL returns SAT, both realizers finish in
   seconds, and the process then stays at 100 % CPU in `scipy.optimize.linprog` (HiGHS) called from
-  `final_polynomial.py` line 75, which had no time limit (the dump at 4 minutes and 100 % CPU at 6 minutes;
-  this LP took 3-8 s on the other models). The other four hung units are inferred to be the same (same code path,
+  `final_polynomial.py` line 75, which had no time limit (stack dumps every 4 minutes, all in the LP; still there
+  when the reproduction was killed at 20 minutes; this LP took 3-8 s on the other models). The other four hung units are inferred to be the same (same code path,
   no record, same symptom), not reproduced. Fixed after the night: `final_polynomial(..., time_limit=120)` returns
   `LP-TIMEOUT` (`PLAN.md` Amendments). The restart at 07:41:59 also truncated every `night.log` (the launcher used
   `>`; now `>>`), so the night's logs are lost; the records, manifests and `progress.jsonl` files are intact.
