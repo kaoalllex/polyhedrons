@@ -101,3 +101,7 @@ Amendments at the end.
   `--timeout 300` (in `run.sh`); a SAT call can overrun the deadline by up to 300 s plus a final polynomial of up to
   120 s, inside the 15-min hard-cap margin. P4 now reads: every failure ends by `TIME-CAP` with >= 95 % of the budget
   used, or by a solver status that is reported as the binding limit of that unit.
+* 2026-11-02 (before the night, nothing run since the pre-registration): E-261102-04 shares the night on 4 more
+  shards, so 14 processes run on 10 performance and 4 efficiency cores. Budgets are wall-clock, so the compute per
+  unit depends on the core the scheduler gives it (not recorded); the pairing with E-261101-26 (8-10 processes) is
+  close, not exact, after the first divergence.

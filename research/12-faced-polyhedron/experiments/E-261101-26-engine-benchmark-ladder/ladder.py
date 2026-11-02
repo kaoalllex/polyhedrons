@@ -4,7 +4,10 @@
       writes tasks.json; every task's judge must accept its reference realization, the reference chirotope must
       satisfy the task's CNF (the answer is in the engine's search space), and the judge must reject random planes
   python3 ladder.py run --shard S --shards N --out DIR [--only TASK ...] [--seeds K] [--minutes M] [--alt A] [--timeout S]
-      the chirotope-first engine (E-261101-25, E-261102-02 configuration) on the shard's (task, seed) units; one record
+                    [--engine chirotope-first|genus-ladder]
+      the chirotope-first engine (E-261101-25, E-261102-02 configuration), or the genus-ladder search
+      (`genus_ladder.search` with the degeneracy floor of `archive_climb`, full maps only), on the shard's (task, seed)
+      units; one record
       per unit in DIR/results.jsonl, recorded units are skipped on restart; each unit runs in its own process group
       with a hard cap of (budget + 15) minutes (HARD-CAP)
   python3 ladder.py score DIR ... --to FILE [--cutoffs M ...]
@@ -44,6 +47,7 @@ SZILASSI = os.path.join(ROOT, 'experiments/E-261101-25-chirotope-first/szilassi_
 ENGINE = dict(alt=20, timeout=60.0, rounds=40, readd=1000, realize_restarts=6, block=1, realizer='two-stage',
               simple=1, fp=1, assume='all', solver='core')
 CAP_MARGIN_MIN = 15   # hard cap of a unit = its budget + this margin
+ENGINE_NAME = 'chirotope-first'
 log = lambda *a: print(time.strftime('%H:%M:%S'), *a, flush=True)
 
 
@@ -161,10 +165,43 @@ def seed_planes(task, i):
     return (P + rng.normal(scale=s['noise'], size=P.shape)).tolist()
 
 
+def unit_genus_ladder(task, i, T, tag):
+    """genus_ladder.search as archive_climb runs it (the engine of the archived genus-3 realizations): half annealing,
+    half CMA-ES on the pair energy with the degeneracy floor, until a float zero (energy < 0.5) or the budget."""
+    import genus_ladder
+    from archive_climb import FLOOR_EDGE, FLOOR_MARGIN
+    from gauss_degree import coherent_triangles, links_from
+    genus_ladder.use_floor(edge=FLOOR_EDGE, margin=FLOOR_MARGIN)
+    if task['kmax']:
+        raise ValueError('genus-ladder searches full maps only, not the k-face task %s' % task['id'])
+    L = links_from(coherent_triangles([tuple(t) for t in task['triangles']]), task['n'])
+    seed = task['seeds'][i]
+    # random-plane seeds: the engine draws its own random starts; a parent seed is passed as its seed planes
+    sp = None if 'random' in seed else seed_planes(task, i)
+    rng = np.random.default_rng([zlib.crc32(tag.encode()), 1])
+    (b, H), runs = genus_ladder.search(L, task['n'], task['minutes'], rng, sp)
+    rec = {'result': 'FLOAT-ZERO' if b < 0.5 else 'TIME-CAP', 'best_energy': round(float(b), 4), 'restarts': runs, 'steps': []}
+    if b < 0.5:
+        rec['planes'] = H.tolist()                 # ladder_exact.verify rounds to integers itself, as in archive_climb
+    return rec
+
+
 def unit(task, i, out):
     os.setpgrp()                                   # the parent can kill this unit with every solver child it forked
     T = make_T(task)
     tag = '%s-seed%d' % (task['id'], i)
+    if ENGINE_NAME == 'genus-ladder':
+        t0 = time.monotonic()
+        rec = unit_genus_ladder(task, i, T, tag)
+        seconds = time.monotonic() - t0
+        ok, detail = judge(task, T, rec.get('planes'))
+        with open(os.path.join(out, 'results.jsonl'), 'a') as f:
+            f.write(json.dumps({'task': task['id'], 'rung': task['rung'], 'seed': i, 'tag': tag, 'minutes': task['minutes'],
+                                'engine': ENGINE_NAME, 'engine_result': rec['result'], 'best_energy': rec['best_energy'],
+                                'restarts': rec['restarts'], 'success': ok, 'judge': str(detail), 'seconds': round(seconds, 1),
+                                'planes': rec.get('planes') if ok else None}) + '\n')
+        log('RESULT %s: engine %s (energy %.3f), success %s (%s), %.0fs' % (tag, rec['result'], rec['best_energy'], ok, detail, seconds))
+        return
     args = argparse.Namespace(**ENGINE, ladder=task['ladder'], kmax=task['kmax'], seed_minutes=task['minutes'],
                               progress=os.path.join(out, 'progress.jsonl'))
     t0 = time.monotonic()
@@ -188,6 +225,8 @@ def run(a):
         ENGINE['alt'] = a.alt                      # before the fork, so every unit inherits it
     if a.timeout:
         ENGINE['timeout'] = a.timeout
+    global ENGINE_NAME
+    ENGINE_NAME = a.engine
     tasks = json.load(open(TASKS))
     if a.only:
         tasks = [t for t in tasks if t['id'] in a.only]
@@ -199,12 +238,13 @@ def run(a):
     units = [(t, i) for t in tasks for i in range(len(t['seeds']))][a.shard::a.shards]
     os.makedirs(a.out, exist_ok=True)
     path = os.path.join(a.out, 'results.jsonl')
-    # every sibling shard directory counts, so a restart with another shard count does not repeat a unit
-    done = {(r['task'], r['seed']) for f in glob.glob(os.path.join(os.path.dirname(os.path.abspath(a.out)), '*', 'results.jsonl'))
+    # every sibling shard directory counts, so a restart with another shard count does not repeat a unit; the budget is
+    # part of the key, so one task can run at several budgets (a grid) into the same directories
+    done = {(r['task'], r['seed'], r['minutes']) for f in glob.glob(os.path.join(os.path.dirname(os.path.abspath(a.out)), '*', 'results.jsonl'))
             for r in map(json.loads, open(f))}
     ctx = mp.get_context('fork')
     for t, i in units:
-        if (t['id'], i) in done:
+        if (t['id'], i, t['minutes']) in done:
             log('skip %s seed %d: recorded' % (t['id'], i))
             continue
         log('%s seed %d: start (budget %g min)' % (t['id'], i, t['minutes']))
@@ -218,7 +258,8 @@ def run(a):
         if p.exitcode != 0:
             status = 'HARD-CAP' if time.monotonic() - t0 >= 60 * (t['minutes'] + CAP_MARGIN_MIN) else 'CRASH %s' % p.exitcode
             with open(path, 'a') as f:
-                f.write(json.dumps({'task': t['id'], 'rung': t['rung'], 'seed': i, 'minutes': t['minutes'], 'alt': ENGINE['alt'], 'timeout': ENGINE['timeout'],
+                f.write(json.dumps({'task': t['id'], 'rung': t['rung'], 'seed': i, 'minutes': t['minutes'], 'engine': ENGINE_NAME,
+                                    'alt': ENGINE['alt'], 'timeout': ENGINE['timeout'],
                                     'engine_result': status, 'success': False, 'seconds': round(time.monotonic() - t0, 1)}) + '\n')
             log('%s seed %d: %s' % (t['id'], i, status))
 
@@ -228,23 +269,26 @@ def run(a):
 def score(a):
     recs = [json.loads(line) for d in a.dirs for line in open(os.path.join(d, 'results.jsonl'))]
     out = {}
-    for t in json.load(open(TASKS)):
-        rs = [r for r in recs if r['task'] == t['id']]
-        if not rs:
-            continue
+    cells = [(t, m) for t in json.load(open(TASKS)) for m in sorted({r['minutes'] for r in recs if r['task'] == t['id']})]
+    for t, m in cells:
+        rs = [r for r in recs if r['task'] == t['id'] and r['minutes'] == m]
+        key = t['id'] if sum(c[0] is t for c in cells) == 1 else '%s@%gmin' % (t['id'], m)
         won = [r['seconds'] / 60 for r in rs if r['success']]
-        out[t['id']] = {'rung': t['rung'], 'seeds': len(rs), 'successes': len(won), 'budget_minutes': sorted({r['minutes'] for r in rs}),
+        out[key] = {'rung': t['rung'], 'seeds': len(rs), 'successes': len(won), 'budget_minutes': sorted({r['minutes'] for r in rs}),
                         'median_minutes_to_success': round(statistics.median(won), 2) if won else None,
                         'engine_results': dict(collections.Counter(r['engine_result'] for r in rs))}
         if a.cutoffs:
-            out[t['id']]['successes_within_minutes'] = {m: sum(r['success'] and r['seconds'] <= 60 * m for r in rs) for m in a.cutoffs}
-            out[t['id']]['units'] = [{'seed': r['seed'], 'result': r['engine_result'], 'success': r['success'],
+            out[key]['successes_within_minutes'] = {m: sum(r['success'] and r['seconds'] <= 60 * m for r in rs) for m in a.cutoffs}
+            out[key]['units'] = [{'seed': r['seed'], 'result': r['engine_result'], 'success': r['success'],
                                       'budget_fraction': round(r['seconds'] / (60 * r['minutes']), 2),
-                                      'alternations': len(r.get('steps', [])),
+                                      'alternations': len(r.get('steps', [])), 'best_energy': r.get('best_energy'),
                                       'k_realized': max([s['k'] for s in r.get('steps', []) if s.get('realized_wrong_signs') == 0], default=None)}
                                      for r in sorted(rs, key=lambda r: r['seed'])]
     seen = lambda key: (lambda v: v if len(v) > 1 else v[0])(sorted({r.get(key, ENGINE[key]) for r in recs}))
-    json.dump({'engine': 'chirotope-first (E-261101-25)', 'config': {**ENGINE, 'alt': seen('alt'), 'timeout': seen('timeout')}, 'judge': 'exact (ladder.py)', 'tasks': out},
+    engines = sorted({r.get('engine', 'chirotope-first') for r in recs})
+    config = ({'search': 'genus_ladder.search', 'floor': 'archive_climb FLOOR_EDGE, FLOOR_MARGIN'} if engines == ['genus-ladder'] else
+              {**ENGINE, 'alt': seen('alt'), 'timeout': seen('timeout')})
+    json.dump({'engine': engines if len(engines) > 1 else engines[0], 'config': config, 'judge': 'exact (ladder.py)', 'tasks': out},
               open(a.to, 'w'), indent=1)
     for k, v in out.items():
         log(k, '%d/%d' % (v['successes'], v['seeds']), v['median_minutes_to_success'], v['engine_results'])
@@ -263,6 +307,7 @@ def main():
     r.add_argument('--minutes', type=float, default=0, help='override every budget (pilot)')
     r.add_argument('--alt', type=int, default=0, help='override ENGINE alt, the alternations per face-ladder step')
     r.add_argument('--timeout', type=float, default=0, help='override ENGINE timeout, seconds per SAT call')
+    r.add_argument('--engine', choices=['chirotope-first', 'genus-ladder'], default='chirotope-first')
     s = sub.add_parser('score')
     s.add_argument('dirs', nargs='+')
     s.add_argument('--to', required=True)

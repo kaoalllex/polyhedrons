@@ -2,15 +2,15 @@
 id: E-261102-04
 title: The genus-ladder search (the engine of the 94 archived genus-3 realizations) scored on the benchmark ladder
 date: 2026-11-02
-status: planned
+status: running
 direction: [DR1, DR6]
 origin: [E-261101-26, E-261030-10, I-261101-22]
 tests: [H-261101-10]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned 2026-11-02 from `../E-261101-26-engine-benchmark-ladder/CONCLUSION.md`; PLAN not written yet. Scores
+> Planned 2026-11-02 from `../E-261101-26-engine-benchmark-ladder/CONCLUSION.md`; pre-registered in `PLAN.md` (pilot in its Amendments). Scores
 > T D F G R: 1 2 2 1 2.
 
 ## Goal
