@@ -37,7 +37,7 @@ status and links (read the files themselves only for the candidates you rank).
 3. **Propose the queue**: the top 5-8 items in order, each with its hypothesis, the cheapest falsifying test, what
    each outcome changes, the budget and the stop rule; mark which are "explore". Name the single first item.
 4. **Missing ideas**: at most 5 new ones, concrete enough for an idea file (statement, why, cheapest test). Prefer
-   ideas from neighbouring fields; label each CONJECTURE.
+   ideas from neighbouring fields; identify each as an untested proposal, distinct from supporting evidence.
 5. **Audit**: claims stronger than their evidence, underpowered verdicts, follow-up chains that should stop
    (STRATEGY.md §2 follow-up rule), with file:line.
 6. **Scenario credences**: propose new values with one line of evidence each, or say why they stay.
@@ -45,7 +45,7 @@ status and links (read the files themselves only for the candidates you rank).
 ## Output
 
 `reviews/strategy-review-YYYY-MM-DD.md`: a 10-line verdict; the answers above; the scored table; the proposed queue;
-new ideas; audit findings; the 3 things to do first. Label every factual statement VERIFIED (checked in code or
-data), PLAUSIBLE or CONJECTURE. Commit the report on the current branch; do not push. Then tell the owner, in
+new ideas; audit findings; the 3 things to do first. Label factual claims with `SPEC.md` §5 evidence levels;
+identify untested hypotheses and recommendations separately. Commit the report on the current branch; do not push. Then tell the owner, in
 Russian, the verdict and the proposed first item; the owner decides, and a working session applies the approved
 changes to `ROADMAP.md`, `STATUS.md` and the idea files.
