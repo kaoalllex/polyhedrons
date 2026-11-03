@@ -35,8 +35,9 @@ Hard rules:
 - Long runs go to the owner's laptop (under `caffeinate -dimsu`, on AC power) or to GitHub Actions. Never start
   a multi-hour run from a session.
 - Ask the owner before large subagent tasks and before long runs. SAT runs keep their proofs and CNFs.
-- Verify before and after changes. The venv is `~/.venvs/polyhedra`; the system `python3` has no numpy:
-  `~/.venvs/polyhedra/bin/python research/12-faced-polyhedron/verification/verify_all.py --quick`.
+- Verify before and after changes. Use `python3` from an activated environment with the dependencies in
+  `research/12-faced-polyhedron/requirements.txt` installed:
+  `python3 research/12-faced-polyhedron/verification/verify_all.py --quick` (from the repository root).
 - Never push research work straight to `main`. Work on `experiment/E-YYMMDD-NN-slug` or `claude/<topic>`; changes reach
   `main` through a PR with `verify` green.
 - Talk to the owner in Russian. Write files, code and commits in English.

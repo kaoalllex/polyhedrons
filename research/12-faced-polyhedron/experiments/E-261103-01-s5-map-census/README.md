@@ -2,17 +2,19 @@
 id: E-261103-01
 title: Census of face-neighbourly triangular maps for (7, 1), (8, 2), (9, 3), (10, 4) - the candidate maps of the S5 targets
 date: 2026-11-03
-status: planned
+status: done
 direction: [DR19]
 origin: [I-261101-07, E-261101-12, L:review2026-11-03]
 tests: [H-261103-01, H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
+verdict: PROMISING
+concluded: 2026-11-03
 ---
 
-> Planned. Scores T D F G R: 2 2 2 2 2 | budget: 2 sessions, minutes to hours of CPU (laptop, daytime). Before any
-> compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). **First item of the queue since the strategy
-> review of 2026-11-03** (`reviews/strategy-review-2026-11-03.md` section 2.1 and 3.3).
+> Completed. EXACT computation with PROVED-1 coverage; no geometric realization claim.
+> Results, counts, controls, provenance and limitations: [CONCLUSION.md](CONCLUSION.md).
+> Reproduce focused checks: `python test_census.py`; bounded census: `bash run.sh SHARD` (0..4).
 
 ## Goal
 
@@ -46,10 +48,11 @@ planes would coincide, so a map with a repeated triple has no realization).
 * Output: `results/maps_F_g.json` per case with the fields above; a summary table in `CONCLUSION.md`; the admissible
   symmetric maps listed first (they are the input of E-261103-03 and E-261103-05).
 
-## Next
+## Results and next step
 
-Stop rule: the four censuses with every control passed, or a written reason why a case does not finish (then the
-sampled set stands in for it, labelled as such). Outcomes: 240 / 203 / 8 and 2 / 2 confirmed -> H-261103-01 supported, the
-geometric queue runs as planned; more maps -> re-plan E-261103-03 with the new count; fewer -> the sampler has a bug, fix and
-re-run before anything geometric. Scenario move: none (combinatorics only; the credences of the S5 table move only through
-geometric decisions).
+The complete datasets and raw-run manifests are in `results/`; `results/exports.json` records their
+archive/export hashes. Admissible symmetric maps are listed first. All counts and limitations live
+in `CONCLUSION.md` and `STATUS.md` section 3c. The C3 cross-check uses a separate triangle-orbit
+exact cover, an implicit Z3 lift enumeration, rather than the primary dart-rotation search.
+
+Next: E-261103-02 (multiple-adjacency OM-SAT encoder); no geometry before its controls pass.

@@ -22,6 +22,11 @@ automorphism).
 
 ## Starting point
 
+The census part was completed by E-261103-01 later on 2026-11-03 (counts and evidence in
+`STATUS.md` section 3c). Reuse its `results/maps_10_4.json`; do not repeat enumeration.
+This item remains planned for the geometric compatibility analysis of its symmetry actions.
+
+
 * The enumerator and controls of E-261103-01; the sampled (10, 4) classes of the review as a containment control.
 * Riemann-Hurwitz bookkeeping for the symmetric sub-list: a free C2 on 10 faces (5 orbits) or a C2 with fixed faces; a C5
   needs 4 fixed polyhedron vertices on the axis.

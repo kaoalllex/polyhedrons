@@ -11,8 +11,8 @@ preregistered: false
 ---
 
 > Planned. Scores T D F G R: 2 2 2 2 2 | budget: hours for (8, 2); one laptop night (10 cores) for (9, 3). Before any
-> compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). Blocked by E-261103-01 (the maps) and
-> E-261103-02 (the encoder). Third item of the queue (`reviews/strategy-review-2026-11-03.md` section 2.2 item 1 and 3.3).
+> compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). Maps and the encoder are available
+> from E-261103-01 and E-261103-02; read the symmetry restriction below before planning. Third item of the queue (`reviews/strategy-review-2026-11-03.md` section 2.2 item 1 and 3.3).
 
 ## Goal
 
@@ -47,3 +47,17 @@ NONREALIZABLE-EXACT -> the non-existence note, focus moves to (10, 4) with E-261
 realize nor certify -> build the realizability stage (I-261029-57) before more SAT. Scenario move (S5 table of
 `ROADMAP.md`): (8, 2) decided moves its row to 1 / 0 / 0 or 0 / 1 / 0; each decided (9, 3) sub-case moves A or B by the
 fraction of maps decided, "cannot tell" by the fraction left undecided.
+
+## Encoder hand-over from E-261103-02
+
+Reuse the census datasets; do not enumerate them again. Build `Triangulation(F, triangles, links)` with
+triangles the distinct corner triples in the links; parallel-edge pairing is checked at construction.
+`code/omsat_sym.build_sym` uses F automatically. A first unsolved (8,2) CNF and its map are in
+`../E-261103-02-s5-omsat-multi-adjacency-encoder/results/0/first_8_2.*`.
+
+**PROVED-1 limitation:** the uniform cooriented C2 ansatz with a fixed face forces zero chirotope
+values; the controlled D3 action has this limitation too. Their symmetry-only UNSATs cannot decide
+these geometric families. Do not count them as excluded maps. Use the asymmetric formulas, or
+pre-register a nonuniform extension separately; free C2 at (8,2) and free C3 at (9,3) have positive
+uniform controls. Details and exact formula artifacts: the encoder experiment's `SOUNDNESS.md` and
+`CONCLUSION.md`. No target instance has been solved by that experiment.

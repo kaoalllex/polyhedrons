@@ -25,15 +25,18 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
 
 0. The owner launches it as `caffeinate -dimsu bash run.sh ...`, on AC power, lid open. Print that line in the
    hand-over. Without it, idle sleep stops the night (night 4 lost 8 h).
-1. `cd "$(dirname "$0")"`, activate `~/.venvs/polyhedra` if present, `export PATH="$HOME/bin:$PATH"` (cadical, drat-trim).
-2. Usage line `[HOURS] [WORKERS]`; default workers = `ncpu - 1`.
+1. Keep the template's `HERE` (experiment directory) and `ROOT` (research directory), derived from the script's
+   location. Use `python3` from an activated environment with `requirements.txt` installed; required solver
+   executables must be on `PATH`. Do not embed machine-specific environment or executable locations.
+2. Keep the template's `[SHARD]` argument. Read the shard count from `SHARDS` for laptop launches; configure
+   time and worker budgets explicitly in the plan and runner rather than adding positional arguments.
 3. Pin BLAS/numba to one thread per worker, otherwise N workers x M BLAS threads oversubscribe the cores:
    `export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1`
-4. Run every phase as `nice -n 10 python3 run_overnight.py <job> ... --git` so the laptop stays usable.
+4. Run every phase as `nice -n 10 python3 "$ROOT/overnight/run_overnight.py" <job> ... --git` so the laptop stays usable.
 5. Phases run sequentially; each phase's `--hours` is a ceiling, not a reservation. Phases often finish early
    (everything done), so compute the next phase's budget from the time actually spent, not from a fixed split.
 6. Measure elapsed time with `time.monotonic()`, never `$SECONDS` or `date` (see below).
-7. End with `python3 run_overnight.py status`.
+7. End with `python3 "$ROOT/overnight/run_overnight.py" status`.
 
 ## Sleep / lid-close semantics
 

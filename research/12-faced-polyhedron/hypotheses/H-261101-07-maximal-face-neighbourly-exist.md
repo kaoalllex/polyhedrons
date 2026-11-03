@@ -20,8 +20,9 @@ They stop below genus 6.
 (E-261029-19: plateau at 1-2 violations, no symmetric ansatz, no attempts saved), so it is underpowered, not
 untested; (9,3), (10,4), (11,5) are untested geometrically. For 12 faces the smallest S1 relaxation has 3 doubled pairs and genus 7
 (d = 6g - 36). Literature check of 2026-11-03 (`literature/review-2026-11-03.md`): no (8, 2), (9, 3), (10, 4) or (11, 5)
-object in print (CLAIMED). Candidate maps sampled 2026-11-03 (`STATUS.md` 3c; H-261103-01): 2 at (8, 2), 240 at (9, 3)
-of which 203 admissible and 8 with a free C3, >= 113 at (10, 4); so the maps exist and the question is geometric.
+object in print (CLAIMED). E-261103-01 has since exhausted the maximal-case map families, with controls
+(EXACT computation, coverage PROVED-1; `STATUS.md` section 3c). This supplies geometric inputs
+but does not move the existence hypothesis; its status remains open.
 
 ## What would move it
 

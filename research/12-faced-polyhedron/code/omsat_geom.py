@@ -68,7 +68,9 @@ class Geometry:
         return dot(self.u(X, Y), p)
 
     def E(self, X, W, V):
-        A, B = self.T.part(X, W)
+        return any(self.segment(X, W, A, B, V) for A, B in self.T.segments(X, W))
+
+    def segment(self, X, W, A, B, V):
         if V in (A, B):
             return False
         ta = self.t(X, W, self.P(X, W, A))
@@ -150,6 +152,8 @@ class Geometry:
             mid = tuple((v[i] + q[i]) / 2 for i in range(3))
         else:
             mid = tuple(2 * v[i] - w[i] for i in range(3))
+        if self.T.multi:
+            return self.in_closed(X, mid)
         # mid must not be on the boundary
         poly = self.polygon2d(X)
         p = self.to2d(X, mid)
@@ -238,15 +242,19 @@ class Geometry:
 
     def pair_ok(self, X, Y):
         """F_X cap F_Y == e_XY (closed regions; valid as a test when polygons are simple)."""
-        C, D = self.T.part(X, Y)
-        tc, td = self.t(X, Y, self.P(X, Y, C)), self.t(X, Y, self.P(X, Y, D))
-        lo, hi = min(tc, td), max(tc, td)
+        intervals = []
+        for C, D in self.T.segments(X, Y):
+            tc, td = self.t(X, Y, self.P(X, Y, C)), self.t(X, Y, self.P(X, Y, D))
+            intervals.append((min(tc, td), max(tc, td)))
+        intervals.sort()
+        if any(a[1] >= b[0] for a, b in zip(intervals, intervals[1:])):
+            return False
         br = self.line_breaks(X, Y)
         tests = list(br) + [(br[i] + br[i + 1]) / 2 for i in range(len(br) - 1)]
         for tv in tests:
             p = self.point_on_line(X, Y, tv)
             both = self.in_closed(X, p) and self.in_closed(Y, p)
-            if both != (lo <= tv <= hi):
+            if both != any(lo <= tv <= hi for lo, hi in intervals):
                 return False
         return True
 

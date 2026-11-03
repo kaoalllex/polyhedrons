@@ -27,7 +27,8 @@ ALL_OPTS = dict(gp=True, triples=True, inconsist=True, reflex=True, reflexconsis
 
 def szilassi():
     """(planes, Triangulation) of the Szilassi polyhedron from index.html (MODELS.szilassi)."""
-    s = open(os.path.join(ROOT, 'index.html')).read()
+    with open(os.path.join(ROOT, 'index.html')) as f:
+        s = f.read()
     i = s.index('szilassi: {')
     blk = s[i:i + 3000]
     vt = blk[blk.index('vertices:'):blk.index('faces:')]
@@ -109,20 +110,26 @@ def compare_direct(planes, T, B, stats):
             if V in (X, W):
                 continue
             stats['E'] = stats.get('E', 0) + 1
-            if bool(P.E(X, W, V)) != G.E(X, W, V):
+            edge = G.E(X, W, V)
+            stats['E_true'] = stats.get('E_true', 0) + int(edge)
+            if bool(P.E(X, W, V)) != edge:
                 mism.append((('E', X, W, V),))
             for Z in range(n):
                 if Z in (X, W, V):
                     continue
                 stats['lt'] = stats.get('lt', 0) + 1
-                if bool(P.lt(X, W, V, Z)) != G.lt(X, W, V, Z):
+                order = G.lt(X, W, V, Z)
+                stats['lt_true'] = stats.get('lt_true', 0) + int(order)
+                if bool(P.lt(X, W, V, Z)) != order:
                     mism.append((('lt', X, W, V, Z),))
     for (a, b, c) in itertools.combinations(range(n), 3):
         for d in range(n):
             if d in (a, b, c):
                 continue
             stats['side'] = stats.get('side', 0) + 1
-            if bool(P.sd(a, b, c, d)) != (G.side(a, b, c, d) < 0):
+            side = G.side(a, b, c, d) < 0
+            stats['side_true'] = stats.get('side_true', 0) + int(side)
+            if bool(P.sd(a, b, c, d)) != side:
                 mism.append((('sd', a, b, c, d),))
     # soundness spot checks of derived families on SIMPLE polygons:
     simple = [G.simple(X) for X in range(n)]
@@ -138,7 +145,7 @@ def compare_direct(planes, T, B, stats):
             if G.REFLEX(X, A, Bv) != reflex_angle or G.REFLEX(X, Bv, A) != reflex_angle:
                 mism.append((('POC-geom', X, A, Bv),))
     emb = G.embedded()
-    trip_ok = 'TRIPLE' not in B.violations
+    trip_ok = not any(tag in B.violations for tag in ('TRIPLE', 'SEGMENT_DISJOINT'))
     if emb != trip_ok:
         mism.append((('LEMMA5.1', emb, trip_ok),))
     return mism, emb, simple

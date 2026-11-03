@@ -2,17 +2,17 @@
 id: E-261103-02
 title: OM-SAT encoder for multiple adjacencies and F != 12, validated on the two 8-face objects
 date: 2026-11-03
-status: planned
+status: done
 direction: [DR19, DR8]
 origin: [E-261030-01, I-261030-31, L:roestvigh2026, L:mizhaev2026]
 tests: []
 produces: []
-preregistered: false
+verdict: FOUNDATION
+preregistered: true
 ---
 
-> Planned. Scores T D F G R: 2 2 2 2 2 | budget: 1-2 sessions, minutes of CPU. Before any compute: `PLAN.md` from
-> `experiments/_template/` (skill `experiment-start`). Second item of the queue (`reviews/strategy-review-2026-11-03.md`
-> section 2.2 item 1 and 3.3).
+> Completed, 2026-11-03. Controls and scope: `CONCLUSION.md`; predicate argument and symmetry limitation: `SOUNDNESS.md`.
+> Pre-registration: `5dc2caa`. The first (8,2) formula is built, not solved.
 
 ## Goal
 
@@ -43,3 +43,10 @@ REFLEX / RTURN predicates keep their form with the partners read from the map's 
 Stop rule: the three controls pass and the first (8, 2) instance is built, or a written obstruction (a predicate that cannot
 be expressed in the chirotope, which would take the exact route out for S5 and leave the heuristic engines). Outcomes feed
 E-261103-03 directly. Scenario move: none.
+
+## Outcome
+
+The bounded controls pass (EXACT); S0 circuit baselines are unchanged. The extension's soundness is
+PROVED-1 only. Free C2/C3 have positive uniform controls; fixed-face C2 and the tested D3 action
+force zeros, so uniform symmetry-only UNSATs must not be used as geometric exclusions.
+See `CONCLUSION.md` for counts, resources, evidence and what remains untested.

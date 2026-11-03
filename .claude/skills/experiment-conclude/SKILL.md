@@ -5,7 +5,8 @@ description: Use when a run of a 12-face research experiment has finished (lapto
 
 # Conclude an experiment and update the ledger
 
-Paths are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2.6-§2.8 and §3.
+Paths and commands are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2.6-§2.8 and §3.
+Use `python3` from an activated environment with `requirements.txt` installed.
 
 1. **Collect.**
    - Actions: `gh run download <run-id>`.
@@ -43,8 +44,9 @@ Paths are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2.
    - wall time vs budget, and any sleep gaps;
    - per job: tasks, outcomes, exact checks;
    - the verdict.
-7. **Close.** Run `verification/verify_all.py`. Propose a PR into `main`, and open it only when the owner says
-   so. Report to the owner in Russian: the outcome, what changed in STATUS, the next ROADMAP item.
+7. **Close.** Run `python3 verification/verify_all.py --quick` and the smallest additional checks required by the
+   experiment; run the full suite only when explicitly requested. Propose a PR into `main`, and open it only
+   when the owner says so. Report to the owner in Russian: the outcome, what changed in STATUS, the next ROADMAP item.
 
 Labels: an AI-written proof is at most PROVED-1. CERTIFIED needs a checked certificate, a written soundness
 argument and recorded hashes.

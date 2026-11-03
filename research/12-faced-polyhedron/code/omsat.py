@@ -27,6 +27,7 @@ The module provides two interchangeable "backends" for the same predicate formul
 """
 import itertools
 import json
+from collections import Counter
 from fractions import Fraction
 
 
@@ -85,13 +86,17 @@ class Triangulation:
         self.n = n
         self.tris = [tuple(t) for t in triangles]
         self.triset = set(frozenset(t) for t in triangles)
+        assert len(self.triset) == len(self.tris), 'repeated corner triple'
+        assert all(len(t) == 3 and all(0 <= x < n for x in t) for t in self.triset)
         self.partners = {}
         for t in self.tris:
             for a, b in itertools.combinations(t, 2):
                 c = [x for x in t if x not in (a, b)][0]
                 self.partners.setdefault(frozenset((a, b)), []).append(c)
         for k, v in self.partners.items():
-            assert len(v) == 2, (k, v)
+            assert len(v) >= 2 and len(v) % 2 == 0, (k, v)
+        self.multi = any(len(v) > 2 for v in self.partners.values())
+        assert not self.multi or links is not None, 'multiple adjacencies require links'
         if not submap:
             assert len(self.partners) == n * (n - 1) // 2, "not neighborly"
         self.neighborly = len(self.partners) == n * (n - 1) // 2
@@ -110,10 +115,25 @@ class Triangulation:
                     a, b = nb[cyc[-1]]
                     cyc.append(a if a != cyc[-2] else b)
                 assert cyc[0] in nb[cyc[-1]]
-            assert sorted(cyc) == nbrs, 'link of %d is not one cycle through all its neighbours' % X
+            assert sorted(set(cyc)) == nbrs, 'link of %d has wrong neighbours' % X
+            assert len(cyc) == sum(len(self.partners[frozenset((X, Y))]) // 2 for Y in nbrs)
+            m = len(cyc)
             for i in range(m):
                 assert frozenset((X, cyc[i], cyc[(i + 1) % m])) in self.triset
             self.link[X] = cyc
+        corners = Counter(frozenset((X, A, B)) for X in range(n) for A, B in self.corners(X))
+        assert corners == Counter({t: 3 for t in self.triset}), 'repeated or missing corner triple'
+        self._segments = {}
+        for X, Y in itertools.combinations(range(n), 2):
+            if not self.adjacent(X, Y):
+                continue
+            def ends(a, b):
+                c = self.link[a]
+                return [tuple(sorted((c[i - 1], c[(i + 1) % len(c)])))
+                        for i, v in enumerate(c) if v == b]
+            sx, sy = ends(X, Y), ends(Y, X)
+            assert Counter(sx) == Counter(sy), ('inconsistent segment pairing', X, Y)
+            self._segments[frozenset((X, Y))] = sx
 
     def adjacent(self, a, b):
         return frozenset((a, b)) in self.partners
@@ -122,9 +142,19 @@ class Triangulation:
         return frozenset((a, b, c)) in self.triset
 
     def part(self, a, b):
+        """All endpoint partners; use segments() to retain parallel-edge pairing."""
         return self.partners[frozenset((a, b))]
 
+    def segments(self, a, b):
+        """Endpoint partners of each shared segment, paired by both face cycles."""
+        return self._segments.get(frozenset((a, b)), [])
+
     def other_partner(self, a, b, not_c):
+        if self.multi:
+            seg = [s for s in self.segments(a, b) if not_c in s]
+            assert len(seg) == 1, ('ambiguous corner', a, b, not_c)
+            p = seg[0]
+            return p[0] if p[1] == not_c else p[1]
         p = self.partners[frozenset((a, b))]
         assert not_c in p
         return p[0] if p[1] == not_c else p[1]
@@ -395,11 +425,42 @@ class Predicates:
         def f():
             if not self.T.adjacent(X, W):
                 return self.B.FALSE                   # sub-map: no edge e_XW
+            if self.T.multi:
+                return self.B.or_([self.segment(X, W, A, C, V) for A, C in self.T.segments(X, W)])
             A, Bp = self.T.part(X, W)
             if V in (A, Bp):
                 return self.B.FALSE
             return self.B.xor([self.sd(X, W, A, V), self.sd(X, W, Bp, V)])
         return self._memo(key, f)
+
+    def segment(self, X, W, A, C, V):
+        """P_XWV in the open segment with endpoint partners A,C."""
+        if V in (A, C):
+            return self.B.FALSE
+        return self.B.xor([self.sd(X, W, A, V), self.sd(X, W, C, V)])
+
+    def ray(self, X, Y, Z, away=None):
+        """Crossing parity on L_XY; away selects the ray opposite its endpoint partner."""
+        B, T = self.B, self.T
+        def far(W):
+            return (B.NOT(self.lt(X, Y, Z, W)) if away is None else
+                    B.xor([self.lt(X, Y, Z, W), self.lt(X, Y, Z, away)]))
+        terms = []
+        for W in range(T.n):
+            if W in (X, Y, Z):
+                continue
+            for A, C in T.segments(X, W):
+                if Y not in (A, C):
+                    terms.append(B.and_([far(W), self.segment(X, W, A, C, Y)]))
+        boundary = []
+        for C, D in T.segments(X, Y):
+            if Z in (C, D):
+                continue
+            Cp, Dp = T.other_partner(X, C, Y), T.other_partner(X, D, Y)
+            cross = B.xor([self.sd(X, C, Cp, Y), self.sd(X, D, Dp, Y)])
+            terms.append(B.and_([far(C), far(D), cross]))
+            boundary.append(self.segment(X, Y, C, D, Z))
+        return B.or_([B.or_(boundary), B.xor(terms)])
 
     def IN(self, X, Y, Z):
         """TRUE iff P_XYZ lies in the closed region F_X (boundary or odd crossing parity),
@@ -411,6 +472,8 @@ class Predicates:
         def f():
             B, T = self.B, self.T
             assert not T.is_tri(X, Y, Z)
+            if T.multi:
+                return B.or_([self.E(X, Z, Y), self.ray(X, Y, Z)])
             if not T.adjacent(X, Y):
                 terms = [B.and_([B.NOT(self.lt(X, Y, Z, W)), self.E(X, W, Y)])
                          for W in range(T.n) if W not in (X, Y, Z) and T.adjacent(X, W)]
@@ -440,6 +503,8 @@ class Predicates:
             B, T = self.B, self.T
             assert T.is_tri(X, Y, Z)
             D = T.other_partner(X, Y, Z)
+            if T.multi:
+                return self.ray(X, Y, Z, away=D)
             ltD = self.lt(X, Y, Z, D)
             terms = []
             for W in range(T.n):
@@ -493,6 +558,14 @@ def build(B, T, opts=None, sym=None):
     INF = n
     if o['gp']:
         B.gp()
+    if o['triples'] and T.multi:
+        # Distinct boundary runs on one line must have disjoint closed intervals.
+        for X, Y in itertools.combinations(range(n), 2):
+            for (A, C), (D, E) in itertools.combinations(T.segments(X, Y), 2):
+                for V in (D, E):
+                    B.clause([B.NOT(P.segment(X, Y, A, C, V))], 'SEGMENT_DISJOINT')
+                for V in (A, C):
+                    B.clause([B.NOT(P.segment(X, Y, D, E, V))], 'SEGMENT_DISJOINT')
     nt = T.nontriangles()
     if o['triples']:
         for X, Y, Z in nt:
@@ -536,6 +609,12 @@ def build(B, T, opts=None, sym=None):
             B.clause([B.NOT(B.chi_neg((0, 1, 2, 3)))], 'SB_MIRROR')
     if sym:
         for perm, ds in sym:
+            assert sorted(perm) == list(range(n)) and ds in (-1, 1), 'invalid symmetry'
+            assert {frozenset(perm[x] for x in t) for t in T.tris} == T.triset, 'not a map automorphism'
+            for pair, segs in T._segments.items():
+                X, Y = pair
+                assert {frozenset(perm[z] for z in s) for s in segs} == {
+                    frozenset(s) for s in T.segments(perm[X], perm[Y])}, 'symmetry changes segment pairing'
             for S in itertools.combinations(range(n + 1), 4):
                 img = tuple(perm[e] if e < n else INF for e in S)
                 a = B.chi_neg(S)
@@ -553,5 +632,6 @@ def load_types(path):
     out = []
     for e in d:
         links = {int(k): v for k, v in e['links'].items()} if 'links' in e else None
-        out.append((e['id'], Triangulation(12, e['triangles'], links), e))
+        n = len(links) if links is not None else 1 + max(max(t) for t in e['triangles'])
+        out.append((e['id'], Triangulation(n, e['triangles'], links), e))
     return out

@@ -5,7 +5,8 @@ description: Use at the end of a 12-face research session, before the owner clos
 
 # Hand over a research session
 
-Paths are relative to `research/12-faced-polyhedron/`.
+Paths and commands are relative to `research/12-faced-polyhedron/`. Use `python3` from an activated environment
+with `requirements.txt` installed.
 
 1. **Uncommitted work.** Run `git status`.
    - Commit your own work on the session branch.
@@ -21,7 +22,7 @@ Paths are relative to `research/12-faced-polyhedron/`.
 
    Standing rules live in the root `CLAUDE.md`; do not copy them into the prompt.
 4. **Ledger.** Check that `STATUS.md` "As of" and the ROADMAP State column match reality.
-5. **Verify.** Run `~/.venvs/polyhedra/bin/python verification/verify_all.py --quick` and report its last line.
+5. **Verify.** Run `python3 verification/verify_all.py --quick` and report its last line.
 6. **Tell the owner,** in Russian:
    - the exact commands left for them (push, merge, launch with `caffeinate -dimsu`);
    - what was not checked.
