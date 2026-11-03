@@ -29,3 +29,9 @@ but does not move the existence hypothesis; its status remains open.
 E-261103-03 (exact decision per map): a realized model at (8, 2) or (9, 3) proves the case; all maps of a case
 UNSAT-VERIFIED refutes it for that case. E-261103-04, -05, -06 (searches): an S5 PASS proves the case; a failed run moves
 nothing.
+
+## 2026-11-04 update
+
+E-261103-03 decides both plain (8,2) formulas UNSAT-VERIFIED (EXACT); the geometric
+interpretation is conditional PROVED-1, see its CONCLUSION and STATUS section 3d.
+The genus-2 case is excluded at that level; genus 3-5 remain open, so the umbrella status stays open.

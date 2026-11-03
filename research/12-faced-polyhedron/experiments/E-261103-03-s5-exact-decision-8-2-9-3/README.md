@@ -10,9 +10,9 @@ produces: []
 preregistered: true
 ---
 
-> Planned. Scores T D F G R: 2 2 2 2 2 | budget: hours for (8, 2); one laptop night (10 cores) for (9, 3). Before any
-> compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). Maps and the encoder are available
-> from E-261103-01 and E-261103-02; read the symmetry restriction below before planning. Third item of the queue (`reviews/strategy-review-2026-11-03.md` section 2.2 item 1 and 3.3).
+> Running, with the (8,2) stage completed. See [CONCLUSION.md](CONCLUSION.md) and
+> [STATUS.md](../../STATUS.md) for the exact decisions, controls and claim boundaries.
+> The (9,3) stage needs a committed PLAN amendment before target computation. No process is active.
 
 ## Goal
 
@@ -27,8 +27,8 @@ until `verify_candidate.py --target S5` passes and `candidate-check` is run.
 ## Starting point
 
 * The (8, 2) decision alone is a result either way: an object is the first genus-2 face-neighbourly polyhedron; two
-  UNSAT-VERIFIED instances are the first non-existence theorem for a face-neighbourly case (CERTIFIED after the soundness
-  write-up of the encoder, PROVED-1 until then).
+  UNSAT-VERIFIED instances give a conditional non-existence argument, subject to census coverage and encoder
+  soundness review. They do not alone establish novelty or CERTIFIED theorem status.
 * Positive control inside the run: the Roest-Vigh and Mizhaev instances (their maps, 8 planes) are SAT and their models
   realize (the realizer at 8 planes must recover an embedded object from a model; this is the k-face realizer control the
   S0 runs never had). Negative control: the 37 non-admissible (9, 3) maps are rejected before solving or are UNSAT.
