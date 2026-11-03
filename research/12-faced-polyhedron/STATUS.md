@@ -4,14 +4,14 @@ As of **2026-11-04** (after night 7: E-261102-03 and E-261102-04, two engines sc
 details: `results.md`; chronology: `experiment-log.md`; what to do next: `ROADMAP.md`. Update this file in the
 same commit as any result that changes a row. This file owns the verdicts and numbers; other files link here.
 
-E-261103-03 (8,2) pilot completed 2026-11-04; its (9,3) stages remain pending. See section 3d.
+E-261103-03 (8,2) pilot completed 2026-11-04; its bounded (9,3) paired pilot is complete; wider coverage remains pending. See section 3e. See section 3d.
 
 ## 0. State in one paragraph
 
 **Focus since 2026-11-03 (`STRATEGY.md`): S5 at (9, 3)**, a maximal face-neighbourly polyhedron with 9 faces and genus
-3 (stretch (10, 4)). Nothing geometric has run on it yet; the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes
+3 (stretch (10, 4)). No geometric witness is known; the paired exact pilot is complete (section 3e); the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes
 at (9, 3), 203 admissible, 8 with a free C3, 2 at (8, 2), 1183 at (10, 4), 1117 admissible. The exact route
-(OM-SAT per map at 10 elements) is affordable and is the queue (`ROADMAP.md`); its multi-adjacency encoder
+(OM-SAT per map at 10 elements) has partial pilot coverage and remains in the queue (`ROADMAP.md`); its multi-adjacency encoder
 passes the bounded controls (E-261103-02, EXACT). Both plain (8,2) warm-up formulas are now
 UNSAT-VERIFIED (E-261103-03, section 3d; geometric interpretation conditional PROVED-1). Uniform fixed-face C2/D3 formulas cannot decide those
 geometric symmetry families (PROVED-1 scope warning in the experiment). **S0 (Szilassi-12) is parked, not abandoned**: the paragraph below and
@@ -83,7 +83,7 @@ No direction is REFUTED today.
 | DR16 | Gauss clauses as SAT speed-up; kappa-CSP prefilter; symmetric plane sets; screw orbits; tangent planes of smooth surfaces; Szilassi embryo | E-261029-09, E-261029-10 | minutes each | LOW-YIELD@minutes each (small budgets; see the sprint board) |
 | DR17 | Configuration-space planning / rigidity (stress matrices) / homotopy continuation between levels | proposed, not tested | 0 | OPEN: E-261101-19 (barrier continuation with a non-saturating measure) and E-261101-17 (geometry of the realization spaces) are its first cheap tests |
 | DR18 | Arrangement first: exact chamber-SAT on structured arrangements (a symmetric arrangement with an asymmetric solid is the one loophole FD5 leaves; archived and near-miss arrangements with any solid) | proposed (strategy review 2026-11-01); the inner solver exists (`code/solid_cpsat.best_solid`) | 0 | OPEN: E-261101-16 |
-| DR19 | S5 exact pipeline: census of the candidate maps (E-261103-01), OM-SAT per map with multiple adjacencies and symmetry clauses (E-261103-02, -03), realization or final polynomial; the dress rehearsal of the S0 pipeline at 10 elements | E-261103-01 census complete (section 3c); E-261103-02 multi-adjacency encoder controls pass (EXACT), soundness PROVED-1; free C2/C3 calibrated, fixed-face C2/D3 uniformity obstruction documented, both plain (8,2) formulas now UNSAT-VERIFIED in E-261103-03 (section 3d), no (9,3) decision | ~0.4 core-h (sampler) + 0.02273 recorded (census) + 0.058735 recorded (encoder controls) + 0.009883 recorded (decision pilot; control recheck separately manifested) | PROMISING (the queue since 2026-11-03) |
+| DR19 | S5 exact pipeline: census of the candidate maps (E-261103-01), OM-SAT per map with multiple adjacencies and symmetry clauses (E-261103-02, -03), realization or final polynomial; the dress rehearsal of the S0 pipeline at 10 elements | E-261103-01 census complete (section 3c); E-261103-02 multi-adjacency encoder controls pass (EXACT), soundness PROVED-1; free C2/C3 calibrated, fixed-face C2/D3 uniformity obstruction documented, both plain (8,2) formulas now UNSAT-VERIFIED in E-261103-03 (section 3d), partial (9,3) decisions (section 3e) | ~0.4 core-h (sampler) + 0.02273 recorded (census) + 0.058735 recorded (encoder controls) + 0.009883 recorded (decision pilot; control recheck separately manifested) | PROMISING (the queue since 2026-11-03) |
 
 ## 3a. Competing hypotheses
 
@@ -176,7 +176,23 @@ manifest records its resources. Regression commands are outside these run totals
 **PROVED-1 conditional interpretation:** S5 (8,2) is excluded by the two plain decisions plus
 the census coverage and encoder/general-position arguments; those arguments lack human review
 and external second-encoder validation. Do not call this a CERTIFIED non-existence theorem.
-No focus (9,3) formula was solved. E-261103-03 remains running, with no active process.
+This was the completed (8,2) stage; see section 3e for the subsequent focus pilot. E-261103-03 remains running, with no active process.
+
+## 3e. S5 (9,3) paired C3/plain pilot (2026-11-04)
+
+E-261103-03 CONCLUSION: 20 dispatched formulas on 12 maps; all eight uniform free-C3
+formulas and three plain formulas (maps 5,6,30) UNSAT-VERIFIED (**EXACT** instance decisions).
+The other plain calls: eight timeouts, one interrupted during the documented panel correction;
+no target SAT or geometric witness. Required controls pass, including the nine-plane predicate
+control and saved (8,2) proof replays. Two manifests total 622.250497958 wall seconds,
+0.172847360544 core-hours; preparation/packing/verification outside these measured run totals.
+
+Geometric interpretation remains **PROVED-1 conditional** on encoding/general-position arguments.
+No asymmetric exclusion follows from C3 decisions; geometric C3-family coverage additionally
+needs an equivariant argument. Plain coverage is incomplete. No CERTIFIED theorem or S0 result.
+The affordability prediction of at least one plain completion holds, six completions fails.
+No automatic night: next consider a separately registered small 60/300-second grid or an explore
+pilot from the completed strategy review. The experiment remains running; no process is active.
 
 ## 4. What may and may not be claimed
 
@@ -185,7 +201,7 @@ four types, one on a map combinatorially completable to a target map".
 
 May not: "the 12-face polyhedron does not exist"; "we are close to genus 6" (18 missing adjacencies are not a
 local defect); "correct Gauss degree implies realizability" (refuted by Q1); "covering is proved" (sampled);
-"no type is realizable"; "no symmetric immersion" for mirrors or point reflections until I-261101-16 is reviewed (the certificates cover rotations); anything about the hemisphere wall from the nights-4/5 drift (E-261101-07); any statement from a timeout; any UNSAT beyond its exact formula; that census completeness has an independent human review (the coverage argument is PROVED-1); anything about (9, 3) realizability (no target decision), or an unconditional/human-reviewed (8, 2) non-existence theorem (section 3d).
+"no type is realizable"; "no symmetric immersion" for mirrors or point reflections until I-261101-16 is reviewed (the certificates cover rotations); anything about the hemisphere wall from the nights-4/5 drift (E-261101-07); any statement from a timeout; any UNSAT beyond its exact formula; that census completeness has an independent human review (the coverage argument is PROVED-1); a general (9, 3) non-existence claim (only partial plain coverage, section 3e), or an unconditional/human-reviewed (8, 2) non-existence theorem (section 3d).
 
 ## 5. Results worth sharing (ranked, with prerequisites)
 

@@ -12,14 +12,14 @@ preregistered: true
 
 > Running, with the (8,2) stage completed. See [CONCLUSION.md](CONCLUSION.md) and
 > [STATUS.md](../../STATUS.md) for the exact decisions, controls and claim boundaries.
-> The owner-requested paired C3/plain (9,3) pilot is registered in the dated PLAN amendment.
-> Run with `bash run.sh paired`; this does not authorize a night run.
+> The paired C3/plain (9,3) pilot is complete; see CONCLUSION and STATUS section 3e.
+> Its result directories are immutable; a follow-up needs a new committed PLAN amendment. No process is active.
 
 ## Goal
 
 Decide the focus and warm-up cases exactly, map by map. Order: (a) the 2 (8, 2) maps (9 elements, 126 bases), plain and
 with the C2 clauses; (b) the 8 admissible (9, 3) maps with a free order-3 automorphism (10 elements, 210 bases) with C3
-clauses, the 2 of them with |Aut+| = 6 also with D3 clauses; (c) the 24 maps with an involution, with C2 clauses; (d) all
+clauses; no D3 or fixed-face C2 uniform exclusions; (c) plain formulas for the maps with involutions; (d) all
 203 admissible (9, 3) maps without symmetry. Every SAT model goes to the two realizers (hinge and two-stage, at F planes)
 and, if unrealized, to the final-polynomial LP (120-s limit, certificate stored, independent checker in
 `verification/certificates/final_polynomial/`). Every UNSAT keeps CNF and DRAT (drat-trim). A realized model is a CANDIDATE

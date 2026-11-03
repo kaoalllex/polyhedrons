@@ -1,10 +1,31 @@
 """Artifact and process-boundary regressions; no target decisions."""
 import json
+import gzip
+import hashlib
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
 import pilot
 from omsat import CNF
+
+
+def artifact_sha(path):
+    opener = path.open if path.exists() else path.with_suffix(path.suffix + '.gz').open
+    with opener('rb') as raw:
+        stream = raw if path.exists() else gzip.GzipFile(fileobj=raw)
+        digest = hashlib.sha256()
+        for chunk in iter(lambda: stream.read(1024 * 1024), b''):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def unpack(path, destination):
+    if path.exists():
+        return path
+    with gzip.open(str(path) + '.gz', 'rb') as src, destination.open('wb') as dst:
+        shutil.copyfileobj(src, dst)
+    return destination
 
 
 class PilotTests(unittest.TestCase):
@@ -70,6 +91,62 @@ class PilotTests(unittest.TestCase):
 
 
 class EvidenceTests(unittest.TestCase):
+    def test_paired_evidence(self):
+        base = Path(__file__).resolve().parent / 'results'
+        out = base / 'paired_9_3_continued'
+        if not (out / 'manifest.json').exists():
+            self.skipTest('paired pilot artifacts unavailable')
+        manifest = json.loads((out / 'manifest.json').read_text())
+        if manifest['status'] == 'RUNNING':
+            self.skipTest('paired pilot still running')
+        summary = json.loads((out / 'summary.json').read_text())
+        self.assertEqual(summary['status'], 'PILOT-COMPLETE')
+        self.assertEqual(len(summary['targets']), 20)
+        self.assertLess(sum(json.loads((d / 'manifest.json').read_text())['core_hours']
+                            for d in (base / 'paired_9_3', out)), 1)
+        for folder in (base / 'paired_9_3', out):
+            record = json.loads((folder / 'manifest.json').read_text())
+            for name, digest in record['outputs_sha256'].items():
+                path = folder / name
+                target = summary['targets'].get(name.removesuffix('.drat'), {})
+                if (name.endswith('.drat') and target.get('status') in ('TIMEOUT', 'INTERRUPTED')
+                        and not path.exists() and not Path(str(path) + '.gz').exists()):
+                    # Partial proofs stay on the run host; they support no negative claim.
+                    continue
+                self.assertEqual(artifact_sha(path), digest, name)
+        from omsat_sym import closure
+        for name, r in summary['targets'].items():
+            folder = base / Path(r.get('artifact_dir', str(out))).name
+            i = r['map_index']; rec = pilot.census(9, 3)['maps'][i]
+            t = pilot.from_links(rec['links'])
+            if name.endswith('C3'):
+                p = pilot.free_c3(rec['links']); group = sorted(closure([p], 9))
+                c, _, _ = pilot.build_sym(t, group, {g: 1 for g in group}, pilot.ALL_OPTS)
+            else:
+                c = pilot.CNF(9); pilot.build(c, t, pilot.ALL_OPTS)
+            with tempfile.TemporaryDirectory() as tmp:
+                rebuilt = Path(tmp) / 'rebuilt.cnf'
+                c.dimacs(rebuilt, comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
+                self.assertEqual(pilot.sha(rebuilt), artifact_sha(folder / (name + '.cnf')))
+                if r['status'] == 'UNSAT-VERIFIED':
+                    if Path(pilot.DRAT).is_file():
+                        proof = unpack(folder / (name + '.drat'), Path(tmp) / 'proof.drat')
+                        self.assertTrue(pilot.check_proof(rebuilt, proof, Path(tmp) / 'log', 60))
+                    else:
+                        self.assertIn('s VERIFIED', (folder / (name + '.checker.log')).read_text())
+                elif r['status'] == 'SAT':
+                    self.assertTrue(pilot.model_valid(c.clauses, json.loads((folder / (name + '.model.json')).read_text())))
+                else:
+                    self.assertIn(r['status'], ('TIMEOUT', 'INTERRUPTED'))
+        self.assertEqual(summary['controls']['nine_plane_control']['status'], 'SAT')
+        self.assertEqual(summary['controls']['C3_control']['status'], 'SAT')
+        from omsat_validate import eval_all, compare_direct
+        inp = json.loads((out / 'nine_plane_control.input.json').read_text())
+        t = pilot.from_links(pilot.census(9, 3)['maps'][0]['links'])
+        _, ev = eval_all(inp['planes'], t)
+        mismatches, _, _ = compare_direct(inp['planes'], t, ev, {})
+        self.assertEqual(mismatches, [])
+
     def test_saved_evidence(self):
         out = Path(__file__).resolve().parent / 'results/pilot'
         manifest = json.loads((out / 'manifest.json').read_text())
