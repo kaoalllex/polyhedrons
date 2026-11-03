@@ -28,7 +28,11 @@ settings, `--alt 20`): on two full 12-face genus-3 maps with known realizations,
 0/10 from genus-2 parents reached an embedding within 40 min. The face ladder realized at most k = 9, and every
 failure was cut by the alternation cap, with the SAT calls always fast and SAT. The first 7 / 8 / 9 faces of the
 type-15 map: 5/10, 1/10, 1/10. Weakens the "full instance in minutes" part for this configuration; the "small cores" part
-holds (`CONCLUSION.md` of E-261101-26).
+holds (`CONCLUSION.md` of E-261101-26). With the cap lifted (E-261102-03, 2026-11-03, 120 min per seed, 4 seeds per
+task): first 8 / 9 faces 4/4 and 4/4, but 0/12 on the two full maps and from parents; the face ladder realized k = 10
+in 3 units and never k = 11, and single SAT calls took 100-300+ s at k = 10-11 (5 units ended on the 300-s timeout).
+Weakens it further: the "small, fast cores" part holds up to k = 9 and fails at k = 10-11; the "full instance in
+minutes" part fails at 120 min on known maps (`CONCLUSION.md` of E-261102-03).
 
 ## What would move it
 

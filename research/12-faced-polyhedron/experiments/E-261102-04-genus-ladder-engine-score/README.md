@@ -2,7 +2,9 @@
 id: E-261102-04
 title: The genus-ladder search (the engine of the 94 archived genus-3 realizations) scored on the benchmark ladder
 date: 2026-11-02
-status: running
+status: done
+concluded: 2026-11-03
+verdict: "frontier at R4: 0/14 at 40 / 120 min (LOW-YIELD@17.8 core-h for full genus-3 maps from random planes); R5 5/10 at 6 min, 3/5 at 40 min; R1 20/20"
 direction: [DR1, DR6]
 origin: [E-261101-26, E-261030-10, I-261101-22]
 tests: [H-261101-10]
@@ -10,6 +12,11 @@ produces: []
 preregistered: true
 ---
 
+> Done 2026-11-03 (night 7, `CONCLUSION.md`; score in `STATUS.md` section 3b). The genus-ladder search realizes
+> Szilassi 20/20 and the type-15 genus-3 map from its genus-2 parents in about half the seeds (5/10 at 6 min, 3/5 at
+> 40 min, every success within 3 min), and neither full genus-3 map from random planes (0/14). It wins R5 against
+> chirotope-first; R4 is now a rung where both scored engines fail.
+>
 > Planned 2026-11-02 from `../E-261101-26-engine-benchmark-ladder/CONCLUSION.md`; pre-registered in `PLAN.md` (pilot in its Amendments). Scores
 > T D F G R: 1 2 2 1 2.
 

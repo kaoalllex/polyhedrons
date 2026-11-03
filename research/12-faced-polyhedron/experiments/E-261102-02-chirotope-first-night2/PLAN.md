@@ -62,3 +62,8 @@ Pre-registration (2026-11-02, before the run). Amendments at the end.
   `--alt 20` after 15-39 % of its time, so this run would end in ~2.5 h, and a realized k = 7 model is expected
   rather than informative (k = 7: 4/8 on a known map). This fails the pilot gate of PROTOCOL §2.4. The run waits for
   E-261102-03 (the cap lifted on the full-map rungs) and gets a new amendment with its setting, or is killed.
+* 2026-11-03 (after E-261102-03, nothing of this PLAN was run): **killed**. E-261102-03 (`CONCLUSION.md`) ended with
+  0 of 12 full-map units at 120 min and R6k k = 8, 9 at 4/4 each, the outcome whose pre-registered consequence is
+  "E-261102-02 is killed in its full-map form". The k = 7 form of this PLAN is not run either: on a known map k = 7
+  to 9 now succeed with near certainty, so a realized k = 7 model on a target type would be expected, not
+  informative. A target run of this engine waits until some engine passes R4.

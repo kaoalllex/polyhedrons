@@ -3,6 +3,7 @@ id: E-261101-25
 title: Chirotope-first realization - core-guided SAT with geometric assumptions, numerical realization, exact check
 date: 2026-11-01
 status: done
+concluded: 2026-11-02
 direction: [DR8, DR9, DR17]
 origin: [I-261101-21, I-261101-18, E-261029-12, E-261030-11]
 tests: [H-261101-17, H-261101-12, H-261101-01]

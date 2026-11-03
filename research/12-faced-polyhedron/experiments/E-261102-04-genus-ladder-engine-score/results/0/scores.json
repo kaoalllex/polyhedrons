@@ -1,0 +1,71 @@
+{
+ "engine": "genus-ladder",
+ "config": {
+  "search": "genus_ladder.search",
+  "floor": "archive_climb FLOOR_EDGE, FLOOR_MARGIN"
+ },
+ "judge": "exact (ladder.py)",
+ "tasks": {
+  "R1-szilassi": {
+   "rung": "R1",
+   "seeds": 5,
+   "successes": 5,
+   "budget_minutes": [
+    5.0
+   ],
+   "median_minutes_to_success": 0.16,
+   "engine_results": {
+    "FLOAT-ZERO": 5
+   }
+  },
+  "R4-type15-genus3@40min": {
+   "rung": "R4",
+   "seeds": 1,
+   "successes": 0,
+   "budget_minutes": [
+    40.0
+   ],
+   "median_minutes_to_success": null,
+   "engine_results": {
+    "TIME-CAP": 1
+   }
+  },
+  "R4-type15-genus3@120min": {
+   "rung": "R4",
+   "seeds": 1,
+   "successes": 0,
+   "budget_minutes": [
+    120.0
+   ],
+   "median_minutes_to_success": null,
+   "engine_results": {
+    "TIME-CAP": 1
+   }
+  },
+  "R5-type15-genus3-from-parent@6min": {
+   "rung": "R5",
+   "seeds": 3,
+   "successes": 2,
+   "budget_minutes": [
+    6.0
+   ],
+   "median_minutes_to_success": 2.75,
+   "engine_results": {
+    "FLOAT-ZERO": 2,
+    "TIME-CAP": 1
+   }
+  },
+  "R5-type15-genus3-from-parent@40min": {
+   "rung": "R5",
+   "seeds": 2,
+   "successes": 2,
+   "budget_minutes": [
+    40.0
+   ],
+   "median_minutes_to_success": 2.8,
+   "engine_results": {
+    "FLOAT-ZERO": 2
+   }
+  }
+ }
+}

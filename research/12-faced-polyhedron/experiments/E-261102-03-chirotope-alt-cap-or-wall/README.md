@@ -2,7 +2,9 @@
 id: E-261102-03
 title: Chirotope-first on the full-map rungs with the alternation cap lifted - is the R4 / R5 frontier a cap or a wall?
 date: 2026-11-02
-status: running
+status: done
+concluded: 2026-11-03
+verdict: "full-map frontier unchanged: R4 / R5 0/12 at 120 min with the cap lifted (LOW-YIELD@35.9 core-h, 4 seeds per task); R6k k = 8, 9: 4/4, 4/4; E-261102-02 killed"
 direction: [DR8, DR17]
 origin: [E-261101-26, I-261102-01]
 tests: [H-261101-17]
@@ -10,6 +12,12 @@ produces: []
 preregistered: true
 ---
 
+> Done 2026-11-03 (night 7, `CONCLUSION.md`; score in `STATUS.md` section 3b). With the alternation cap lifted the
+> first 8 and 9 faces of the type-15 map were realized in every seed (4/4, 4/4, median ~28 min), but neither full
+> genus-3 map nor the R5 task (0/12 at 120 min); the face ladder realized k = 10 in 3 units, and 5 units stopped on
+> the 300-s SAT timeout at k = 10-11. The cap was a cap for k <= 9; the full map stays the frontier. E-261102-02 is
+> killed.
+>
 > Planned 2026-11-02 from `../E-261101-26-engine-benchmark-ladder/CONCLUSION.md`; pre-registered in `PLAN.md` (two pilots in its Amendments). Scores
 > T D F G R: 1 2 2 1 2.
 

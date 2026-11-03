@@ -3,6 +3,7 @@ id: E-261101-26
 title: Engine benchmark ladder - tasks with known answers on which every construction engine is scored before the target
 date: 2026-11-01
 status: done
+concluded: 2026-11-02
 verdict: "first scope (chirotope-first, --alt 20): frontier at R4 / R5, 0/30 at 40 min (LOW-YIELD@6.6 core-h for full genus-3 maps); R1 20/20; R6k k = 7, 8, 9: 5/10, 1/10, 1/10"
 direction: [DR1, DR7, DR17]
 origin: [I-261101-22, E-261030-01, E-261030-03, E-261101-25]

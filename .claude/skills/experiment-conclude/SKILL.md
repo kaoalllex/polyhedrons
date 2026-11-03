@@ -33,7 +33,7 @@ Paths are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2.
      stop rule and its DR/FD link.
    - **`experiment-log.md`:** a 1-3 line dated entry pointing to `CONCLUSION.md`.
 
-   - **Experiment `README.md`:** `status: done` (or `killed`), `verdict`, `produces` (FD / W: / C: it established),
+   - **Experiment `README.md`:** `status: done` (or `killed`), `concluded: YYYY-MM-DD`, `verdict`, `produces` (FD / W: / C: it established),
      and a short results / conclusions summary.
    - **New ideas or hypotheses** that came out of it: one file each, with this experiment in their `origin`.
    - Run `verification/trace.py` so the map is up to date.

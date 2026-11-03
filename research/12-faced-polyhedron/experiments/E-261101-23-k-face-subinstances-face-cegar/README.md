@@ -3,6 +3,7 @@ id: E-261101-23
 title: k-face sub-instances of the asymmetric OM-SAT encoding, and face-CEGAR seeds from their models
 date: 2026-11-01
 status: done
+concluded: 2026-11-02
 direction: [DR8, DR11]
 origin: [I-261101-18, E-261029-12, E-261101-18]
 tests: [H-261101-15, H-261101-02, H-261101-12]

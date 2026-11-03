@@ -41,3 +41,16 @@ labels, showed no pattern either.
 ## Source
 
 Owner's question in the session of 2026-11-02 (should the per-seed timeout grow with the chance of success).
+
+## Night 7 data (E-261102-03, E-261102-04, 2026-11-03)
+
+* Chirotope-first with the cap lifted: on R6k the successes came after 6-284 alternations (k = 8: 22, 31, 183, 270;
+  k = 9: 6, 91, 92, 284), 8/8 within 120 min against 2/20 at the 20-alternation cap; spread like a geometric count
+  at ~1 % per alternation (n = 8). For this engine a longer chain was worth it at k <= 9. On the full maps the new
+  limits are time and the SAT cost at k >= 10, not the seed.
+* Genus-ladder search on R5: every success within 3 min; the two seeds that failed at 6 min failed again at 40 min
+  (164-167 restarts each, best energy 1). For this engine the outcome per seed is decided early: more seeds, not more
+  minutes, which is the case for restarts / successive halving.
+* So the two engines want opposite schedules; a halving schedule needs a signal per engine, still not found for
+  chirotope-first (wrong signs did not separate in E-261101-26). Status stays open.
+

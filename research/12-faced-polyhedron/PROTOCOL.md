@@ -104,6 +104,7 @@ origin: [I-261030-04, H-261101-04, E-261030-07, L:schewe2010]   # where it came 
 tests: [H-261101-04]    # experiments only: hypotheses it can move
 produces: [FD7, W:lab_type0_genus3]                              # experiments only: results it established
 verdict: LOW-YIELD@150 core-h                                    # experiments only, when done
+concluded: 2026-11-01   # experiments only, when done or killed: the date of CONCLUSION.md (omit if equal to date)
 preregistered: false    # experiments only; false for work reconstructed after the fact
 ---
 ```

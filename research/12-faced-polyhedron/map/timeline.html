@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Szilassi-12 Experiment Timeline</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* Layout: one time axis (days) across, one lane per direction down; a mark per experiment, table below. */
+  :root {
+    --bg: #0b0f14; --panel: #121820; --text: #e6edf3; --muted: #94a3b8; --line: #2a3644; --grid: #1c2530;
+    --accent: #7cc4ff; --result: #3987e5; --low: #d95926; --none: #7d8a99;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f5f7fa; --panel: #ffffff; --text: #1b2430; --muted: #5b6676; --line: #d5dce5; --grid: #e6ebf1;
+      --accent: #1c6a98; --result: #2a78d6; --low: #eb6834; --none: #8a95a3; color-scheme: light;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f5f7fa; --panel: #ffffff; --text: #1b2430; --muted: #5b6676; --line: #d5dce5; --grid: #e6ebf1;
+    --accent: #1c6a98; --result: #2a78d6; --low: #eb6834; --none: #8a95a3; color-scheme: light;
+  }
+  html, body { margin: 0; background: var(--bg); color: var(--text);
+    font: 13px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1200px; margin: 0 auto; padding-block: 18px 40px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: grid; gap: 14px; }
+  h1 { font-size: 18px; margin: 0; text-wrap: balance; }
+  h2 { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 6px 0 0; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover, a:focus-visible { text-decoration: underline; }
+  .muted { color: var(--muted); }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+  .key { display: inline-flex; gap: 5px; align-items: center; }
+  button { padding: 4px 9px; border-radius: 6px; border: 1px solid var(--line); background: transparent;
+    color: var(--text); cursor: pointer; font: inherit; }
+  button:focus-visible, .mk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .chart { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+  svg text { fill: var(--text); font-size: 12px; }
+  svg .ax { fill: var(--muted); font-size: 11px; }
+  .mk { cursor: pointer; }
+  #tip { position: fixed; pointer-events: none; max-width: 360px; background: var(--panel); color: var(--text);
+    border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.25); }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; }
+  td.nw { white-space: nowrap; }
+</style>
+</head>
+<body>
+<main>
+  <div class="bar" style="justify-content: space-between">
+    <h1>Szilassi-12: experiments over time</h1>
+    <div class="bar"><a href="index.html">Research map</a><button id="theme" type="button">Light / dark</button></div>
+  </div>
+  <div class="muted">Each mark is one experiment, placed on the day it was concluded (or registered, if it has not
+    run yet), in the lane of its first direction (<code>STATUS.md</code> §3). Hover or focus a mark for its verdict;
+    click to open its folder.</div>
+  <div class="bar" id="legend"></div>
+  <div class="chart" id="chart" role="img" aria-label="Timeline of experiments by direction"></div>
+  <h2>All experiments, newest first</h2>
+  <div class="tablewrap"><table id="table"><thead><tr><th>Day</th><th>Experiment</th><th>Outcome</th><th>Verdict or result</th></tr></thead><tbody></tbody></table></div>
+  <div class="muted">Data: <a href="graph.json">graph.json</a>, built by <code>verification/trace.py</code> from the
+    experiment headers (<code>date</code>, <code>concluded</code>, <code>status</code>, <code>verdict</code>,
+    <code>produces</code>).</div>
+</main>
+<div id="tip" hidden></div>
+<script>
+const BLOB = 'https://github.com/kaoalllex/polyhedrons/blob/main/research/12-faced-polyhedron/';
+const OUT = {
+  result: {label: 'established a result (FD / witness / certificate)', color: 'var(--result)', shape: 'star'},
+  low:    {label: 'no result at its budget (LOW-YIELD, frontier, open)', color: 'var(--low)', shape: 'circle'},
+  noinfo: {label: 'no information (underpowered, artefact)', color: 'var(--none)', shape: 'diamond'},
+  done:   {label: 'done, verdict not recorded', color: 'var(--none)', shape: 'circle'},
+  killed: {label: 'killed', color: 'var(--none)', shape: 'cross'},
+  open:   {label: 'planned or running', color: 'var(--none)', shape: 'ring'},
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const unq = s => (s || '').replace(/^"|"$/g, '');
+const shortDir = t => (t.split(/ \(|:| \/|;| - /)[0] || t).slice(0, 34);
+const day = s => new Date(s + 'T00:00:00Z');
+const fmt = d => d.toISOString().slice(5, 10);
+
+function outcome(n, prod) {
+  if (n.status === 'planned' || n.status === 'running') return 'open';
+  if (n.status === 'killed') return 'killed';
+  if (prod.length) return 'result';
+  const v = unq(n.verdict).toUpperCase();
+  if (/LOW-YIELD|FRONTIER/.test(v)) return 'low';
+  if (/UNDERPOWERED|ARTEFACT/.test(v)) return 'noinfo';
+  return v ? 'low' : 'done';
+}
+
+function shape(kind, x, y, color) {
+  const r = 6;
+  if (kind === 'star') {
+    const p = [];
+    for (let i = 0; i < 10; i++) {
+      const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.6 : r * 1.45;
+      p.push((x + rr * Math.cos(a)).toFixed(1) + ',' + (y + rr * Math.sin(a)).toFixed(1));
+    }
+    return `<polygon points="${p.join(' ')}" fill="${color}" stroke="var(--panel)" stroke-width="1.5"/>`;
+  }
+  if (kind === 'diamond') return `<rect x="${x - 5}" y="${y - 5}" width="10" height="10" transform="rotate(45 ${x} ${y})" fill="${color}" stroke="var(--panel)" stroke-width="1.5"/>`;
+  if (kind === 'cross') return `<path d="M${x - 5} ${y - 5}L${x + 5} ${y + 5}M${x + 5} ${y - 5}L${x - 5} ${y + 5}" stroke="${color}" stroke-width="2.5" fill="none"/>`;
+  if (kind === 'ring') return `<circle cx="${x}" cy="${y}" r="5" fill="var(--panel)" stroke="${color}" stroke-width="2"/>`;
+  return `<circle cx="${x}" cy="${y}" r="6" fill="${color}" stroke="var(--panel)" stroke-width="1.5"/>`;
+}
+
+function draw(g, showOpen) {
+  const prod = {};
+  g.edges.forEach(e => { if (e.kind === 'produces') (prod[e.from] = prod[e.from] || []).push(e.to); });
+  const dirs = g.directions || {};
+  const all = g.nodes.filter(n => n.kind === 'experiment').map(n => {
+    const p = prod[n.id] || [], o = outcome(n, p);
+    const dl = Array.isArray(n.direction) ? n.direction : (n.direction ? [n.direction] : []);
+    return {...n, prod: p, o, lane: dl[0] || '-', dl, when: o === 'open' ? n.date : (n.concluded || n.date)};
+  });
+  const exps = all.filter(e => showOpen || e.o !== 'open');
+  const laneIds = [...new Set(exps.map(e => e.lane))].sort((a, b) =>
+    (a === '-') - (b === '-') || (+a.slice(2) || 0) - (+b.slice(2) || 0));
+  const days = exps.map(e => day(e.when));
+  const d0 = new Date(Math.min(...days)), d1 = new Date(Math.max(...days));
+  const nDays = Math.round((d1 - d0) / 864e5) + 1;
+  const cell = {};
+  exps.sort((a, b) => a.id < b.id ? -1 : 1).forEach(e => {
+    const k = e.lane + '|' + e.when; e.slot = (cell[k] = (cell[k] || 0) + 1) - 1;
+  });
+  const maxCell = Math.max(1, ...Object.values(cell));
+  const L = 230, top = 34, laneH = 30, step = 17, colW = Math.max(90, maxCell * step + 26);
+  const W = L + nDays * colW + 10, H = top + laneIds.length * laneH + 26;
+  let s = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
+  for (let i = 0; i < nDays; i++) {
+    const x = L + i * colW, d = new Date(+d0 + i * 864e5);
+    const n = exps.filter(e => e.when === d.toISOString().slice(0, 10)).length;
+    s += `<rect x="${x}" y="${top - 6}" width="${colW}" height="${laneIds.length * laneH + 6}" fill="${i % 2 ? 'var(--grid)' : 'transparent'}"/>`;
+    s += `<text x="${x + colW / 2}" y="${top - 14}" text-anchor="middle">${fmt(d)}</text>`;
+    s += `<text class="ax" x="${x + colW / 2}" y="${H - 8}" text-anchor="middle">${n || ''}</text>`;
+  }
+  laneIds.forEach((id, j) => {
+    const y = top + j * laneH + laneH / 2;
+    s += `<line x1="${L}" x2="${W - 10}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-width="1"/>`;
+    s += `<text x="8" y="${y + 4}"><tspan font-weight="600">${esc(id === '-' ? 'none' : id)}</tspan><tspan class="ax" dx="6">${esc(id === '-' ? '' : shortDir(dirs[id] || ''))}</tspan></text>`;
+  });
+  exps.forEach(e => {
+    const i = Math.round((day(e.when) - d0) / 864e5), j = laneIds.indexOf(e.lane);
+    const k = cell[e.lane + '|' + e.when];
+    const x = L + i * colW + colW / 2 + (e.slot - (k - 1) / 2) * step, y = top + j * laneH + laneH / 2;
+    s += `<a class="mk" href="${BLOB + esc(e.path.replace(/README\.md$/, ''))}" target="_blank" rel="noopener" data-id="${e.id}" aria-label="${esc(e.id + ': ' + e.title)}">` +
+      `<circle cx="${x}" cy="${y}" r="9" fill="transparent"/>${shape(OUT[e.o].shape, x, y, OUT[e.o].color)}</a>`;
+  });
+  s += `<text class="ax" x="8" y="${H - 8}">experiments per day</text></svg>`;
+  const chart = document.getElementById('chart');
+  chart.innerHTML = s;
+  const byId = Object.fromEntries(all.map(e => [e.id, e]));
+  const tip = document.getElementById('tip');
+  const show = (el, x, y) => {
+    const e = byId[el.dataset.id];
+    tip.innerHTML = `<b>${esc(e.id)}</b> <span class="muted">${esc(OUT[e.o].label)}</span><div>${esc(e.title)}</div>` +
+      `<div class="muted">registered ${esc(e.date)}${e.concluded ? ', concluded ' + esc(e.concluded) : ''}; ${esc(e.dl.join(', ') || 'no direction')}</div>` +
+      (e.prod.length ? `<div>produced ${esc(e.prod.join(', '))}</div>` : '') + (e.verdict ? `<div>${esc(unq(e.verdict))}</div>` : '');
+    tip.hidden = false;
+    tip.style.left = Math.max(8, Math.min(x + 14, innerWidth - tip.offsetWidth - 8)) + 'px';
+    tip.style.top = Math.max(8, Math.min(y + 14, innerHeight - tip.offsetHeight - 8)) + 'px';
+  };
+  chart.querySelectorAll('.mk').forEach(el => {
+    el.addEventListener('mousemove', ev => show(el, ev.clientX, ev.clientY));
+    el.addEventListener('focus', () => { const r = el.getBoundingClientRect(); show(el, r.right, r.bottom); });
+    el.addEventListener('mouseleave', () => { tip.hidden = true; });
+    el.addEventListener('blur', () => { tip.hidden = true; });
+  });
+  document.querySelector('#table tbody').innerHTML = all.slice().sort((a, b) => a.when < b.when ? 1 : a.when > b.when ? -1 : a.id < b.id ? 1 : -1)
+    .filter(e => showOpen || e.o !== 'open').map(e =>
+      `<tr><td class="nw">${esc(e.when)}</td><td><a href="${BLOB + esc(e.path.replace(/README\.md$/, ''))}" target="_blank" rel="noopener">${esc(e.id)}</a> ${esc(e.title)}</td>` +
+      `<td class="nw"><svg width="16" height="16" aria-hidden="true">${shape(OUT[e.o].shape, 8, 8, OUT[e.o].color)}</svg> ${esc(e.o === 'result' ? 'result' : e.o === 'low' ? 'no result' : e.o === 'noinfo' ? 'no information' : e.o === 'open' ? e.status : e.o)}</td>` +
+      `<td>${e.prod.length ? 'produced ' + esc(e.prod.join(', ')) + (e.verdict ? '; ' : '') : ''}${esc(unq(e.verdict))}</td></tr>`).join('');
+}
+
+function legend(showOpen, rerender) {
+  const el = document.getElementById('legend');
+  el.innerHTML = Object.entries(OUT).map(([k, v]) =>
+    `<span class="key"><svg width="16" height="16" aria-hidden="true">${shape(v.shape, 8, 8, v.color)}</svg>${esc(v.label)}</span>`).join('') +
+    `<label class="key"><input id="showopen" type="checkbox" ${showOpen ? 'checked' : ''}> show planned and running</label>`;
+  document.getElementById('showopen').onchange = ev => rerender(ev.target.checked);
+}
+
+function theme() {
+  const r = document.documentElement;
+  const dark = r.dataset.theme ? r.dataset.theme === 'dark' : !matchMedia('(prefers-color-scheme: light)').matches;
+  r.dataset.theme = dark ? 'light' : 'dark';
+  try { localStorage.setItem('map-theme', r.dataset.theme); } catch (e) {}
+}
+try { const t = localStorage.getItem('map-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+document.getElementById('theme').onclick = theme;
+
+(window.GRAPH ? Promise.resolve(window.GRAPH) : fetch('graph.json').then(r => r.json())).then(g => {
+  const render = showOpen => { legend(showOpen, render); draw(g, showOpen); };
+  render(false);
+}).catch(err => {
+  document.getElementById('chart').textContent = 'Could not load graph.json (' + err + '). Open this page over http, not file://.';
+});
+</script>
+</body>
+</html>

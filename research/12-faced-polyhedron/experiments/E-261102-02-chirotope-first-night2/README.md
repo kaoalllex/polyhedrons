@@ -2,7 +2,9 @@
 id: E-261102-02
 title: Chirotope-first engine, night run 2 - LP time limit, 40 core-guided rounds, cap inside each step, all seed slices
 date: 2026-11-02
-status: planned
+status: killed
+concluded: 2026-11-03
+verdict: "killed before any run by the pre-registered rule of E-261102-03 (full map a wall at <= 120 min; k = 7 expected, not informative)"
 direction: [DR8, DR9, DR17]
 origin: [E-261101-25, I-261101-21, I-261101-22]
 tests: [H-261101-17, H-261101-12, H-261101-01]
@@ -10,6 +12,10 @@ produces: []
 preregistered: true
 ---
 
+> **Killed** 2026-11-03, never run: E-261102-03 found 0/12 full genus-3 maps at 120 min with the cap lifted while
+> k = 8, 9 rose to 4/4, which by its pre-registered rule kills this run in its full-map form; its k = 7 form stays
+> below the pilot gate (`PLAN.md` Amendments).
+>
 > **Blocked** 2026-11-02 until E-261102-03 decides (`PLAN.md` Amendments). Pre-registered 2026-11-02 (`PLAN.md`, `run.sh` with 10 shards); launch: one laptop night. Scores T D F G R:
 > 2 2 2 2 2. Launch only after the benchmark ladder E-261101-26 has scored the engine (PROTOCOL 8a; `PLAN.md`
 > Amendments). What is
