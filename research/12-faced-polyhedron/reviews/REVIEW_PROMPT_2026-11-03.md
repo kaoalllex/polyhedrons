@@ -34,6 +34,12 @@ owner in Russian; write the report in English.
    k-face sub-instances) are now checked independently. Our 255 realizations have 6-13 convex corners, never 4
    (I-261101-20). New idea: embedded first, planar later (I-261103-01).
 
+4. **Literature check done 2026-11-03** (`literature/review-2026-11-03.md`, read its "Project notes" first; an
+   external AI-written search, level secondary): no (8, 2), (9, 3), (10, 4) or (11, 5) polyhedron found in print;
+   no census of maps with doubled adjacencies exists (the simplicial censuses of Lutz and Sulanke-Lutz miss them),
+   so the candidate maps must be enumerated by us; the 9- and 10-vertex spatial polyhedra of Altshuler-Bokowski-
+   Schuchert are pseudomanifolds of the vertex version and give no seeds. Treat "not found" as unverified scope.
+
 **Questions, in priority order.**
 
 1. **Is (9, 3) the right focus?** Compare (8, 2), (9, 3), (10, 4), (11, 5) on feasibility with our tools, novelty
