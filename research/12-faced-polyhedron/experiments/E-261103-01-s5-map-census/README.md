@@ -2,12 +2,12 @@
 id: E-261103-01
 title: Census of face-neighbourly triangular maps for (7, 1), (8, 2), (9, 3), (10, 4) - the candidate maps of the S5 targets
 date: 2026-11-03
-status: planned
+status: running
 direction: [DR19]
 origin: [I-261101-07, E-261101-12, L:review2026-11-03]
 tests: [H-261103-01, H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned. Scores T D F G R: 2 2 2 2 2 | budget: 2 sessions, minutes to hours of CPU (laptop, daytime). Before any
