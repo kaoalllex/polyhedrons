@@ -130,7 +130,9 @@ keeps the URL, size and SHA-256.
 **Laptop** (owner's MacBook, 11 workers): always under `caffeinate -dimsu` (night 4 lost 8 h to sleep); jobs
 checkpoint and resume (`overnight/run_overnight.py` does). Launch with `overnight/launch.sh start DIR CORES`: CORES
 is how many cores to give (fewer by day, all at night); `run.sh` splits its units by `SHARDS = CORES`, and a stop +
-start with another CORES re-splits the remaining units. Use the `overnight-run-script` skill to write night
+start with another CORES re-splits the remaining units. At most 10 cores in total (more freezes the laptop; the
+launcher refuses, `MAX_CORES`): two experiments in one night go in one queue, `start DIR1 CORES DIR2`, not side by
+side. A stop loses the units in flight (they rerun from their start). Use the `overnight-run-script` skill to write night
 scripts. Long runs belong to the owner's machine, not to a cloud AI session (its background processes die).
 
 **GitHub Actions** (public repository, free standard runners): `.github/workflows/experiment.yml` runs

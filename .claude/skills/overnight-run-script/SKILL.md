@@ -68,7 +68,7 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
   under its own `caffeinate -dimsu` and `nice -n 10`), one core each (M4 Pro: 10 performance cores; fewer by day), with `status` and
   `stop` modes. `run.sh` must split its units by `SHARDS` (the launcher sets `SHARDS=CORES`; it refuses a `run.sh` that
   does not read it), and the runner must skip units recorded in any shard's `results.jsonl`, so stop + start with
-  another CORES re-splits the remaining units without repeating any. Never hard-code the shard count in `run.sh`. Detached means Ctrl+C or closing the terminal does not kill them; only `stop` does.
+  another CORES re-splits the remaining units without repeating any. Never hard-code the shard count in `run.sh`. Detached means Ctrl+C or closing the terminal does not kill them; only `stop` does. At most 10 cores for all launches together (night 7: 10 + 4 froze the laptop; the launcher refuses past `MAX_CORES=10`); several experiments in one night form a queue on the same cores, `start DIR1 CORES DIR2 ...` (shard s of DIR2 starts when shard s of DIR1 ends), so give the night plan the sum of their wall times per shard. A stop loses every unit in flight (night 7: 8.9 core-h of 120-min units), so stop between units or not at all.
 - **Pilot through the same code path** as the night: a positive control (expected SAT / found) and a negative
   control (expected UNSAT with a VERIFIED proof; rebuild a certified instance and compare its CNF SHA-256 with the
   record) before the first full run.
