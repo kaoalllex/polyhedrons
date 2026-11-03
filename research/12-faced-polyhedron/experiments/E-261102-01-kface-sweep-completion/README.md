@@ -7,7 +7,7 @@ verdict: LOW-YIELD@4.2 core-h (exclusion, greedy face set, k <= 9); UNDERPOWERED
 direction: [DR8, DR11]
 origin: [E-261101-23, I-261101-18]
 tests: [H-261101-15, H-261101-02, H-261101-12]
-produces: []
+produces: [C:final_polynomial]
 preregistered: true
 ---
 

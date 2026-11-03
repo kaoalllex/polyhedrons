@@ -91,6 +91,8 @@ CHECKS = [
      lambda: run(['verify.py', 'certificate.json', '--source', '../../../' + GL + 'type0_genus3_extendable.json',
                   '--catalog', '../../../data/k12_triangulations.json'],
                  os.path.join(HERE, 'certificates', 'type0_handle_completion'), 'PASS')),
+    ('certificate: three biquadratic final polynomials (k-face SAT models of types 0, 53, 57), independent checker',
+     lambda: run(['-I', 'verify.py', 'certificates.json', '--selftest'], os.path.join(HERE, 'certificates', 'final_polynomial'), 'ALL PASS')),
     ('archive: every genus-3 realization (nights 3-5)',
      lambda: files(True, 'experiments/E-261030-10-realization-archive-climb/results/arch/archive.json', min_genus=3, genus=3)),
 ]

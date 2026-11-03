@@ -1,6 +1,18 @@
 {
  "nodes": [
   {
+   "id": "C:final_polynomial",
+   "kind": "certificate",
+   "title": "final polynomial",
+   "status": "",
+   "date": "",
+   "concluded": "",
+   "path": "verification/certificates/final_polynomial",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "C:symmetric_drat",
    "kind": "certificate",
    "title": "symmetric drat",
@@ -4065,6 +4077,11 @@
   },
   {
    "from": "E-261101-23",
+   "to": "C:final_polynomial",
+   "kind": "produces"
+  },
+  {
+   "from": "E-261101-23",
    "to": "E-261102-01",
    "kind": "origin"
   },
@@ -4147,6 +4164,11 @@
    "from": "E-261101-26",
    "to": "I-261102-01",
    "kind": "origin"
+  },
+  {
+   "from": "E-261102-01",
+   "to": "C:final_polynomial",
+   "kind": "produces"
   },
   {
    "from": "E-261102-01",

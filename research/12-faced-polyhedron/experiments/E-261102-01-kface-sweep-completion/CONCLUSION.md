@@ -60,3 +60,13 @@
   only in a new pre-registered row.
 * **Rows updated**: `STATUS.md` DR8 and the "As of" line, `ROADMAP.md` E-261102-01 State done, `experiment-log.md`
   (2026-11-02), `hypotheses/H-261101-15`. Daytime run, so no night report.
+
+## Amendment 2026-11-03: the three exact final polynomials checked independently
+
+`verification/certificates/final_polynomial/verify.py` (standard library, no shared code with the producer) accepts
+the certificates of type 53 k = 9 and type 57 k = 8 from this run and of type 0 k = 9 (night 6, multipliers
+regenerated from the stored model), with self-tests (mutated certificates and realizable signs rejected); the
+rebuilt CNFs match the recorded SHA-256 and the certificate signs match the recorded models. Now in `verify_all`, so
+the claim "those three SAT models are not realizable" is EXACT (not CERTIFIED: the checker is not third-party). Scope
+unchanged: no type and no sub-instance is excluded.
+

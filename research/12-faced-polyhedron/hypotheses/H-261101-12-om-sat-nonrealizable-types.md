@@ -18,7 +18,9 @@ All 59 types are UNSAT at the OM level, as in the vertex version (Schewe 2010).
 ## Evidence so far
 
 Relaxed instances are SAT (C2 #48 without SIMPLE, `reviews/fresh-eyes-review.md` 2.4); two full instances were
-refuted by a third party (CLAIMED, `literature/README.md`). Nothing on realizability of any model.
+refuted by a third party (CLAIMED, `literature/README.md`). Before 2026-11-03 nothing was known on the realizability of any model.
+
+Independent check (2026-11-03): the three exact final polynomials (k-face SAT models of types 0 k = 9, 53 k = 9, 57 k = 8) pass a standard-library checker in `verify_all` (`verification/certificates/final_polynomial/`): three OM-SAT models that are not realizable, EXACT. Each is one model of a sub-instance; nothing says every model of a type is non-realizable.
 
 ## What would move it
 

@@ -7,7 +7,7 @@ concluded: 2026-11-02
 direction: [DR8, DR11]
 origin: [I-261101-18, E-261029-12, E-261101-18]
 tests: [H-261101-15, H-261101-02, H-261101-12]
-produces: []
+produces: [C:final_polynomial]
 verdict: UNDERPOWERED@59.75 core-h (night 6; LP hang, 27 of 59 types reached; see CONCLUSION.md)
 preregistered: true
 ---

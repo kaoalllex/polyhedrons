@@ -792,3 +792,9 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * E-261102-04 (genus-ladder search, 17.8 core-h): R1 20/20, R5 5/10 at 6 min and 3/5 at 40 min (P2 fails by one
   unit; same seeds, every success within 3 min), R4 0/14. `experiments/E-261102-04-genus-ladder-engine-score/CONCLUSION.md`.
 * Both scored engines fail R4. Night report `reports/NIGHT_REPORT_2026-11-03.md`.
+
+## 2026-11-03: independent check of the three final-polynomial certificates
+
+* `verification/certificates/final_polynomial/verify.py` (standard library): types 0 k = 9 (regenerated from the
+  night-6 model), 53 k = 9, 57 k = 8 PASS, self-tests PASS; added to `verify_all`. Vertex types of the 255
+  realizations (`code/vertex_types.py`, I-261101-20): no c = 4 in our data.
