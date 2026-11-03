@@ -64,11 +64,11 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
 - **Manifest survives restarts.** `run.sh` writes the manifest header only if it is absent and appends a
   `restarted_utc` line otherwise; the `finish` trap appends `finished_utc`, `exit_status`, `wall_seconds` and
   `core_hours` every time, so the core-hours of a restarted shard are the sum of its lines.
-- **One command for the whole night** (`overnight/launch.sh start EXPERIMENT_DIR CORES`): starts CORES detached processes (`nohup ... &`, each
-  under its own `caffeinate -dimsu` and `nice -n 10`), one core each (M4 Pro: 10 performance cores; fewer by day), with `status` and
-  `stop` modes. `run.sh` must split its units by `SHARDS` (the launcher sets `SHARDS=CORES`; it refuses a `run.sh` that
+- **One command for the whole night** (`overnight/launch.sh CODE [CODE ...] start [CORES]`, CODE = the end of the experiment id, CORES default 10): starts CORES detached processes (`nohup ... &`, each
+  under its own `caffeinate -dimsu` and `nice -n 10`), one core each (M4 Pro: 10 performance cores; fewer by day), with `status`, `stop` (after the current unit) and
+  `kill` (now) modes. `run.sh` must split its units by `SHARDS` (the launcher sets `SHARDS=CORES`; it refuses a `run.sh` that
   does not read it), and the runner must skip units recorded in any shard's `results.jsonl`, so stop + start with
-  another CORES re-splits the remaining units without repeating any. Never hard-code the shard count in `run.sh`. Detached means Ctrl+C or closing the terminal does not kill them; only `stop` does. At most 10 cores for all launches together (night 7: 10 + 4 froze the laptop; the launcher refuses past `MAX_CORES=10`); several experiments in one night form a queue on the same cores, `start DIR1 CORES DIR2 ...` (shard s of DIR2 starts when shard s of DIR1 ends), so give the night plan the sum of their wall times per shard. A stop loses every unit in flight (night 7: 8.9 core-h of 120-min units), so stop between units or not at all.
+  another CORES re-splits the remaining units without repeating any. Never hard-code the shard count in `run.sh`. Detached means Ctrl+C or closing the terminal does not kill them; only `stop` does. At most 10 cores for all launches together (night 7: 10 + 4 froze the laptop; the launcher refuses past `MAX_CORES=10`); several experiments in one night form a queue on the same cores, `launch.sh 02-03 02-04 start` (shard s of the second starts when shard s of the first ends), so give the night plan the sum of their wall times per shard. `stop` waits for each shard's current unit (it watches `results.jsonl` for the next record), `kill` stops at once and the units in flight rerun from their start (night 7: 8.9 core-h of 120-min units recomputed).
 - **Pilot through the same code path** as the night: a positive control (expected SAT / found) and a negative
   control (expected UNSAT with a VERIFIED proof; rebuild a certified instance and compare its CNF SHA-256 with the
   record) before the first full run.

@@ -786,7 +786,7 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 
 ## 2026-11-03: night 7 concluded (E-261102-03, E-261102-04)
 
-* E-261102-03 (chirotope-first, cap lifted, 35.9 core-h, 8.9 lost to a stop and restart): R4 / R5 0/12 at 120 min,
+* E-261102-03 (chirotope-first, cap lifted, 35.9 core-h, 8.9 of them recomputed after a stop and restart; all 20 units complete): R4 / R5 0/12 at 120 min,
   R6k k = 8, 9 4/4 each; k = 10 realized in 3 units, 5 units ended on the 300-s SAT timeout. P1-P3 hold, P4 as amended.
   E-261102-02 killed by the pre-registered rule. `experiments/E-261102-03-chirotope-alt-cap-or-wall/CONCLUSION.md`.
 * E-261102-04 (genus-ladder search, 17.8 core-h): R1 20/20, R5 5/10 at 6 min and 3/5 at 40 min (P2 fails by one

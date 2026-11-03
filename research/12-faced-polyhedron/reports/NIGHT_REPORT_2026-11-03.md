@@ -5,7 +5,8 @@
   `exit_status: 0`; the logs do not record why). E-261102-04 restarted at 18:15Z on 10 shards, E-261102-03 at 18:57Z
   on 8 (shards 8 and 9 of the first segment were not resumed; their units were re-split over shards 0-7). Last shard
   ended at 23:54Z (02:54 local): ~6.6 h wall against the planned 4.5-5.2 h. Manifests: 53.7 core-h (E-261102-03 35.9,
-  of which 8.9 in the first segment produced no record because every unit in flight was a 120-min unit;
+  of which 8.9 in the first segment were spent on 120-min units cut short by the stop and recomputed from their start
+  after the restart (no unit is missing);
   E-261102-04 17.8), against ~45 + ~21 budgeted.
 * **Sleep gaps**: none seen. The only gap in E-261102-03's logs is the 45-min stop / restart; E-261102-04 logs once per
   unit, and its units used exactly their wall budgets (2400 s, 7200 s).

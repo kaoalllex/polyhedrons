@@ -159,4 +159,4 @@ From now on every run records its core-hours in its manifest (`PROTOCOL.md` §5)
 | Nights 1-2 (sym, symimm, pdefect, immersion) | not recorded (immersion alone 8 x 2.2 h) | FD5 (certified), FD6 (DRAT-checked); closure-first refuted |
 | Night 3 (glad) | not recorded | genus 3 for types 39, 53; class diagnosis of failed levels |
 | Nights 4-5 (arch, gate, n5) | ~200 (n5 147.5 measured; arch ~50) | 203 more genus-2/3 realizations; plateau confirmed; 12,202 low-power UNSATs; pinned margin |
-| Night 7 (E-261102-03, E-261102-04) | 53.7 measured (35.9 + 17.8; 8.9 of them lost to a stop and restart) | both scored engines fail R4 (full genus-3 map from random planes, 2 h per seed); genus-ladder wins R5; chirotope-first reaches k = 10 |
+| Night 7 (E-261102-03, E-261102-04) | 53.7 measured (35.9 + 17.8; 8.9 of them spent on units that a stop cut short and the restart recomputed) | both scored engines fail R4 (full genus-3 map from random planes, 2 h per seed); genus-ladder wins R5; chirotope-first reaches k = 10 |

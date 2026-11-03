@@ -4,14 +4,14 @@
   `launch.pids`), `tasks.json` hash in every manifest, unchanged. Two segments, both through `overnight/launch.sh`:
   1. 2026-11-02T17:18:56Z, `SHARDS = 10` as pre-registered; all 10 shards ended at 18:12:33Z (`exit_status: 0` from
      the exit trap; the night log does not say why, presumably `launch.sh stop`). No unit finished in these 54 min
-     (each shard's first unit was a 120-min full-map unit), so this segment produced **no record**: 10 x 0.894 = 8.9
-     core-h lost.
-  2. Restarted at 18:57:29Z with `SHARDS = 8` (shards 0-7; `results/8` and `results/9` hold only the lost segment).
+     (each shard's first unit was a 120-min full-map unit), so this segment produced no record: its 10 x 0.894 = 8.9
+     core-h were spent on units that the restart recomputed from their start (wasted time, no missing unit).
+  2. Restarted at 18:57:29Z with `SHARDS = 8` (shards 0-7; `results/8` and `results/9` hold only the first segment).
      Shards ended 20:54Z-23:54Z, all `exit_status: 0`. From 18:57Z the laptop ran 8 + 4 processes (this run and
      E-261102-04) on 14 cores, not the 14 processes the PLAN amendment expected.
 
   All 20 units ran, 20 distinct (task, seed), no duplicate, no HARD-CAP, no CRASH. Core-hours from
-  `results/*/manifest.txt`: **35.9** in total, of which 27.0 in segment 2 (8.9 lost), against the 40-45 core-h
+  `results/*/manifest.txt`: **35.9** in total, of which 27.0 in segment 2 (8.9 recomputed), against the 40-45 core-h
   budget. Scores: `results/scores.json` over shards 0-7 (`ladder.py score ... --cutoffs 40 120`).
 * **Controls**: positive: the `tasks.json` controls (hash unchanged); the replay control R6k k = 9 seed 1 succeeded
   again after 6 alternations (80 s), as in E-261101-26, so the harness and the override reproduce a known trajectory;
