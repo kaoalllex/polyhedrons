@@ -34,3 +34,43 @@ had subprocess limits and a cooperative Python deadline, without the new alarm.
 No amended target computation was run; old artifacts retain their original provenance.
 Warm two-stage reconstruction uses two restart slots because the existing realizer only
 uses supplied normals when k < restarts // 2; random-start controls use one slot.
+
+### 2026-11-04: owner-requested paired C3/plain (9,3) affordability pilot
+
+* Continue this experiment on its existing branch. T + D remains 4. This bounded pilot precedes any night;
+  the separately due strategy review is not performed here.
+* Target S5 (F=9,g=3). H1: free-C3 formulas decide substantially more cheaply than their plain partners;
+  rival: symmetry yields no usable decision advantage at this cutoff. Existence H-261103-02 and H-261101-07
+  move only after a verified geometric witness, or sufficient formula coverage plus soundness arguments.
+* Deterministic sample: census indices 0..7, all eight admissible free-C3 maps, each C3 then plain;
+  indices 8..11, the first four other admissible maps, plain only. Exactly 20 target formulas on 12 maps.
+  Controls are separate from that target-formula count. Reuse the saved census; no new census or (8,2) solves.
+  Recover C3 permutations from cyclic links and check order, absence of fixed faces and cyclic-link preservation.
+* One worker, BLAS/OpenMP/Accelerate threads capped at one. Hard computation deadline 3300 wall seconds,
+  with 300 seconds reserved for hashing/reporting, at most 1 core-hour conservatively as wall time x one worker.
+  Controls <=480 seconds; each solver <=30 seconds and DRAT checker <=30 seconds, both bounded by remaining time.
+  SAT postprocessing is after all formulas: hinge <=15 s, two-stage <=15 s, final-polynomial subprocess <=30 s/model.
+  The existing internal LP limit of 120 s is superseded by that subprocess deadline. No enumeration or new seeds.
+* Required controls before targets: pinned Roest-Vigh and Mizhaev SAT; warm exact recovery by both realizers;
+  cross-map pinned negative UNSAT-VERIFIED; all inadmissible census maps rejected. Unseeded reconstructions
+  are reported separately and failure means UNDERPOWERED for construction. Additional size-10-element C3
+  control: exact uniform symmetric planes pinned in a GP + symmetry formula, SAT with clause-checked model.
+  This calibrates symmetry, not existence of an S5 (9,3) embedding. No known geometric positive at (9,3).
+* Predictions: at least four of eight C3 calls decide in 30 s; at least one paired plain call decides in 30 s.
+  These are affordability predictions, not existence claims. Report paired decision counts, censored times,
+  time fractions, and binding limits; do not replace timeouts by completed times or infer a median speedup
+  from censored pairs. A longer campaign needs a committed budget grid and a separately passed long-run gate.
+* Stop immediately on required-control failure, ERROR/invalid SAT model, failed or timed-out proof check,
+  exact geometric CANDIDATE, hard deadline, or completion of all target calls and bounded model processing.
+  A solver timeout alone continues to the next formula and carries no negative mathematical information.
+* Retain CNF, full/partial DRAT, models, raw logs, original inputs, parameters and SHA-256 provenance;
+  never overwrite results/paired_9_3. No floating diagnostic enters a verdict: exact signs and EMBEDDED only.
+  An exact geometric candidate invokes candidate-check and verify_candidate --target S5, explicitly F=9,g=3.
+* UNSAT-VERIFIED is EXACT for the saved formula; symmetry UNSAT concerns only the uniform free-C3 ansatz.
+  A final polynomial excludes only its one model; numerical reconstruction failure excludes nothing.
+  No symmetric-only UNSAT, nonrealizable model or timeout decides a map's asymmetric geometric existence.
+* Decision: if both affordability predictions fail, stop this route at this budget pending strategy review;
+  if C3 succeeds and plain stalls, retain C3 as the cheap ansatz and keep asymmetric existence unresolved;
+  if plain decisions complete, consider a budget grid on the remaining admissible maps after review;
+  if SAT models stall in realization/final polynomials, record the model bottleneck and do not buy a night.
+  No automatic long run, push, PR or subagent work is authorized by this amendment.
