@@ -78,8 +78,11 @@ def solve(c, out, name, timeout):
         r.update(status='SAT', model_checked=True)
     elif rc == 20:
         # Checking has its own bounded allocation; the caller bounds the whole unit too.
+        check_started = time.monotonic()
         ok = check_proof(cnf, proof, out / (name + '.checker.log'), timeout)
-        r.update(status='UNSAT-VERIFIED' if ok else 'UNSAT-UNCHECKED')
+        r.update(status='UNSAT-VERIFIED' if ok else 'UNSAT-UNCHECKED',
+                 checker_seconds=time.monotonic() - check_started, checker_budget_seconds=timeout,
+                 checker_ended_by='completed' if ok else 'failed_or_timeout')
     if proof.exists():
         r['proof_sha256'] = sha(proof)
     return r
@@ -145,6 +148,20 @@ def paired_formulas():
     return early + extra + rest
 
 
+def grid_units():
+    baseline = json.loads((HERE / 'results/paired_9_3_continued/summary.json').read_text())['targets']
+    maps = census(9, 3)['maps']
+    units = []
+    for cap in (60, 300):
+        for i in (0, 1, 40, 48):
+            r = baseline[f'map{i}_plain']
+            assert r['status'] in ('TIMEOUT', 'INTERRUPTED')
+            if cap == 60 and r['status'] == 'TIMEOUT' and r['budget_seconds'] >= 60:
+                continue
+            units.append((i, maps[i], None, cap))
+    return units
+
+
 def reconstruction_ok(wrong_signs, exact_match):
     return wrong_signs == 0 and exact_match
 
@@ -200,10 +217,10 @@ def arm_deadline(seconds):
     signal.setitimer(signal.ITIMER_REAL, seconds)
 
 
-def main(out, paired=False, resume=None):
+def main(out, paired=False, resume=None, grid=False):
     out.mkdir(parents=True, exist_ok=False)
     previous = json.loads((resume / 'manifest.json').read_text()) if resume else None
-    prior_seconds = previous['wall_seconds'] if previous else 0
+    prior_seconds = previous['wall_seconds'] if previous and not grid else 0
     start = time.monotonic(); deadline = start + (3300 - prior_seconds if paired else 900); control_deadline = start + 300
     report = dict(status='RUNNING', controls={}, targets={})
     manifest = dict(commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
@@ -211,7 +228,7 @@ def main(out, paired=False, resume=None):
                     python=sys.version, host=platform.platform(), started_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
                     workers=1, wall_budget_seconds=3300 if paired else 900,
                     branch=subprocess.check_output(['git', 'branch', '--show-current'], text=True).strip(),
-                    cpu_count=os.cpu_count(), family='paired_9_3' if paired else 'warmup_8_2')
+                    cpu_count=os.cpu_count(), family='grid_9_3' if grid else ('paired_9_3' if paired else 'warmup_8_2'))
     manifest['prior_wall_seconds'] = prior_seconds
     manifest['resume'] = str(resume) if resume else None
     dump(out / 'manifest.json', manifest)
@@ -258,7 +275,7 @@ def main(out, paired=False, resume=None):
         if paired:
             from controls import symmetric_planes
             units = paired_formulas()
-            if resume:
+            if resume and not grid:
                 prior = json.loads((resume / 'summary.json').read_text())
                 report['targets'] = prior['targets']
                 for log in resume.glob('map*.solver.log'):
@@ -312,11 +329,21 @@ def main(out, paired=False, resume=None):
         else:
             units = [(i, rec, free_c2(rec['links']) if sym else None)
                      for i, rec in enumerate(census(8, 2)['maps']) for sym in (False, True)]
+        if grid:
+            baseline_path = HERE / 'results/paired_9_3_continued/summary.json'
+            report['baseline'] = dict(path=str(baseline_path), sha256=sha(baseline_path),
+                                      maps=[0, 1, 40, 48], reused_sixty_second_cells=[40, 48])
+            units = grid_units()
+        else:
+            units = [(i, rec, p, 60) for i, rec, p in units]
+        decided = set()
         # Solve every formula before spending the residual budget on model processing.
         formulas = {}
-        for i, rec, p in units:
+        for i, rec, p, cap in units:
+            if grid and i in decided:
+                continue
             mode = ('C3' if paired else 'C2') if p is not None else 'plain'
-            name = f'map{i}_{mode}'
+            name = f'map{i}_{mode}' + (f'_t{cap}' if grid else '')
             if name in report['targets']:
                 continue
             t = from_links(rec['links']); dump(out / f'map{i}.json', rec)
@@ -326,9 +353,14 @@ def main(out, paired=False, resume=None):
                 c, _, _ = build_sym(t, group, {g: 1 for g in group}, ALL_OPTS)
             else:
                 c = CNF(t.n); build(c, t, ALL_OPTS)
-            r = solve(c, out, name, remaining(120) / 2)
+            r = solve(c, out, name, remaining(cap, deadline - 360) if grid else remaining(120) / 2)
             r.update(scope=f'uniform free-{mode} ansatz' if p is not None else 'plain embedding formula',
                      map_index=i, permutation=p)
+            if grid:
+                r['cutoff_seconds'] = cap
+                r['formula_sha256'] = hashlib.sha256(json.dumps([c.nv, c.clauses], separators=(',', ':')).encode()).hexdigest()
+                if r['status'] in ('SAT', 'UNSAT-VERIFIED'):
+                    decided.add(i)
             report['targets'][name] = r
             if r['status'] == 'SAT':
                 formulas[name] = (c, rec)
@@ -373,6 +405,7 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', type=Path)
     ap.add_argument('--paired', action='store_true')
+    ap.add_argument('--grid', action='store_true')
     ap.add_argument('--resume', type=Path)
     ap.add_argument('--task', choices=('hinge', 'two_stage', 'fp'))
     ap.add_argument('--input', type=Path); ap.add_argument('--output', type=Path)
@@ -381,4 +414,4 @@ if __name__ == '__main__':
         worker(args)
     else:
         assert args.out is not None
-        main(args.out, paired=args.paired, resume=args.resume)
+        main(args.out, paired=args.paired or args.grid, resume=args.resume, grid=args.grid)

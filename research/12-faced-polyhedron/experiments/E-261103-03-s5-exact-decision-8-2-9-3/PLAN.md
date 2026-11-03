@@ -100,3 +100,50 @@ same caps. Results go to results/paired_9_3_continued; inherited outcomes point 
 The continuation's computation cap is 3300 seconds minus the first manifest's wall seconds, leaving
 300 seconds total reserve for reporting. Both attempts together stay below 1 core-hour; all manifests
 are summed. No night or repeated target call is authorized. A control failure ends the pilot.
+
+### 2026-11-04: autonomous follow-through, 60/300-second plain grid
+
+Owner authorization: continue this experiment autonomously. This amendment changes the target-call
+cutoff and freezes a stopping decision; it does not silently repeat the same pilot. T+D=4 remains
+above gate. Target S5 (9,3); no S0, new census, fixed-face symmetry or model enumeration.
+
+* Panel: unresolved plain maps 0,1,40,48, purposively covering the earlier short/interrupted calls
+  and two nonsymmetric extra-edge patterns, including tripled adjacency. Reuse recorded 60-second
+  cells of maps 40/48. Map 0 gets its first 60-second cutoff; map 1 gets its first uninterrupted
+  60-second call. Then each still-unresolved map gets one 300-second call. No rerun of SAT or
+  UNSAT-VERIFIED cells; at most six new solver calls. Retain earlier C3 decisions as comparison
+  only; do not rerun them or infer a median speedup from censored pairs.
+* H1/prediction: at least two of four selected plain maps decide by 300 seconds with valid checked
+  evidence; H0/rival: fewer than two, or proof checking prevents use of the decisions. At least one
+  new decision is a weaker secondary prediction. These concern affordability, not non-existence.
+* Budget: one worker, nice priority, all numerical threads pinned to one. Computation hard cap
+  3300 seconds plus 300 seconds reporting reserve. New solver/checker worst case 2640 seconds
+  (2x60 + 4x300 each), below 0.8 core-hours; controls <=300 seconds. Prior grid baseline cells are
+  reused evidence, not charged again as new computation. Sum all manifests for cumulative experiment
+  accounting. At most one target SAT is processed, with three <=120-second stages; no night launch.
+* Controls: the existing pinned positives, warm reconstructions (required), unseeded reconstructions
+  (construction power), checked cross-map negative, inadmissibility and malformed-pairing guards,
+  rebuilt/replayed (8,2) evidence, exact nine-plane predicate/GP positive and free-C3 arrangement
+  positive all run before targets. The same hard limits and failure gates apply. These do not supply
+  a positive S5 (9,3) embedding or a runtime distribution for target maps.
+* Exact outputs/counters: clause-validated SAT, UNSAT-VERIFIED only with retained checked CNF/DRAT,
+  TIMEOUT, ERROR, exact sign match, EMBEDDED. No float diagnostic contributes to a verdict. Record
+  solver and checker budgets/durations separately. The checker has the cell's cap too; all processes
+  are bounded by the remaining global deadline. A decision at 60 skips its 300-second cell.
+* SAT: stop further dispatch, save/check the full assignment, try both existing realizers then final
+  polynomial, <=120 seconds each. An exact candidate invokes candidate-check and verify_candidate
+  --target S5, with F=9,g=3, (V,E,F,chi)=(26,39,9,-4). Sign invariance does not certify a rotation.
+  A nonrealizable model leaves its map open. Numerical failure or timeout gives no mathematical negative.
+* Stop: control mismatch, invalid model, ERROR, unchecked/failed proof, first processed SAT, exhausted
+  grid or hard deadline. All timeout/partial proofs and CNFs are retained and hashed; completed proofs
+  are compressed without loss and versioned. Large partial proofs stay local with hashes.
+* Decision after the grid: fewer than two checked new decisions, or dominant proof cost, stops the
+  unchanged full-sweep route at this budget. Conclude it as LOW-YIELD@the measured budget, leaving
+  unrun maps and geometric existence explicitly unresolved; changing solver/encoding needs a new
+  rationale, not more identical seeds. If at least two complete, assess a costed tranche with the
+  unresolved tail and the strategy review's explore-before-tranche gate; do not extrapolate an easy
+  median or start a multi-hour session run. A first SAT with no witness ends this affordability stage
+  and makes a bounded model-level study the next task, not collecting more models.
+* Provenance: results/grid_9_3, immutable original pilot directories, census hash, map identities,
+  identical clause hashes across cutoff cells, baseline summary hash, source commit/dirty state,
+  dependencies, platform, exact wall/core durations and full/partial evidence. No push, PR or release.

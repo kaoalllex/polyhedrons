@@ -2,6 +2,11 @@
 # Bounded interactive pilot; no unattended long run is registered yet.
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
+if [[ "${1:-pilot}" == grid ]]; then
+  export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1
+  PYTHON="${PYTHON:-$HOME/.venvs/polyhedra/bin/python}"
+  exec nice -n 10 "$PYTHON" "$HERE/pilot.py" --grid --out "$HERE/results/grid_9_3"
+fi
 if [[ "${1:-pilot}" == paired ]]; then
   export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
   PYTHON="${PYTHON:-$HOME/.venvs/polyhedra/bin/python}"
