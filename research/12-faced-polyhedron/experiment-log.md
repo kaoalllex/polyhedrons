@@ -831,3 +831,5 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   Both plain formulas and free-C2 ansatzes UNSAT-VERIFIED; known-object reconstruction controls pass.
   EXACT formula decisions; geometric interpretation conditional PROVED-1. See the experiment CONCLUSION;
   (9,3) unrun, experiment remains running, no active process, push or PR.
+
+* 2026-11-04: E-261103-03 paired C3/plain focus pilot completed after a documented panel correction; pre-registrations bc0ae0e and 0db8d8e. See its CONCLUSION and STATUS 3e for checked instance decisions, controls, resources and conditional claim boundaries. No night, push or PR.

@@ -1,6 +1,6 @@
 # E-261103-03: (8,2) pilot conclusion
 
-2026-11-04. Partial conclusion: the (8,2) stage is complete; the (9,3) stage has not started.
+2026-11-04. Partial conclusion: the (8,2) stage is complete; the bounded (9,3) paired pilot is now complete (see the appended section); wider coverage is unfinished.
 Pre-registration ac2ad98; computation c48ab73 on this experiment branch, clean tree.
 
 ## Controls, resources and predictions
@@ -87,3 +87,90 @@ verify_all.py --quick: ALL PASS (18 checks, archive skipped), including saved fo
 reconstruction and fresh drat-trim replay. Five dedicated runner regressions pass.
 Source/document git diff --check passes with raw results excluded; the unrestricted check
 reports only preserved solver/checker transcript whitespace. GitHub CI was not run.
+
+
+## 2026-11-04: paired C3/plain (9,3) pilot
+
+Pre-registration bc0ae0e; corrected panel/controls/first-SAT stop pre-registered in 0db8d8e.
+The first attempt used the stale hand-over before review 69caae8 was noticed. It was stopped
+by SIGINT during map1_plain (manifest ERROR / KeyboardInterrupt). Its artifacts were retained;
+no formula was retried. The continuation inherits three completed decisions and one interrupted
+call, then finishes the corrected purposive panel: pairs 0..7 and plain 10/30/40/48.
+Actual dispatch differs from the review's proposed order because map 1 had already started.
+All six extra-edge patterns are covered; this is not an unbiased runtime sample.
+
+Both attempts together: 622.250497958 wall seconds, 0.172847360544 core-hours (one worker), below the 1 core-hour cap.
+These are the sum of the run manifests, including failed-attempt time and repeated controls;
+preparation, lossless packing and subsequent verification are separate, not estimated run time.
+The continuation spent 561.971181625 seconds. No night, push, PR, target model enumeration or long run.
+
+Required controls pass: own pinned Roest-Vigh/Mizhaev SAT, both warm and unseeded exact
+reconstructions with wrong_signs=0 and EMBEDDED; cross-map negative UNSAT-VERIFIED;
+inadmissible-map and malformed-pairing guards; rebuilt/replayed saved (8,2) proofs;
+nine-plane definitions/GP pinned SAT and exact predicate/geometry agreement; free-C3
+arrangement pinned SAT. The nine-plane/C3 controls are arrangements, not S5 (9,3) embeddings.
+No float diagnostic enters the verdict. There is no target SAT, realizer or final-polynomial run.
+
+| Plain map index | Solver seconds | Outcome / binding limit |
+|---|---:|---|
+| 0 | 30.005248 | TIMEOUT / solver_timeout |
+| 1 | not separately recorded | INTERRUPTED / panel_correction |
+| 2 | 60.006014 | TIMEOUT / solver_timeout |
+| 3 | 60.011203 | TIMEOUT / solver_timeout |
+| 4 | 60.015539 | TIMEOUT / solver_timeout |
+| 5 | 22.514486 | UNSAT-VERIFIED / completed |
+| 6 | 27.000345 | UNSAT-VERIFIED / completed |
+| 7 | 60.014110 | TIMEOUT / solver_timeout |
+| 10 | 60.005450 | TIMEOUT / solver_timeout |
+| 30 | 30.386661 | UNSAT-VERIFIED / completed |
+| 40 | 60.008245 | TIMEOUT / solver_timeout |
+| 48 | 60.009194 | TIMEOUT / solver_timeout |
+
+All eight C3 formulas are UNSAT-VERIFIED, in 0.071..0.256 solver seconds, with retained
+CNF/DRAT and accepted drat-trim checks. Plain: three UNSAT-VERIFIED (5,6,30), eight TIMEOUT,
+one INTERRUPTED. The first plain timeout used 30 seconds; subsequent timeouts used 60 seconds.
+The interrupted call has no measured standalone duration and is not counted as a timeout.
+Completed plain solver calls took 22.514..30.387 seconds; checker time is additional
+(the checker logs record it, but summary.seconds measures the solver only). C3 calls
+ended by completion, eight plain calls by solver cap, and one by the documented panel correction.
+The global deadline did not bind. The pre-registered stop was exhausted panel, without target SAT.
+
+The corrected prediction of at least one plain completion holds; at least six of twelve fails
+(only three complete). The earlier four-C3-decision prediction holds. Mixed/censored times
+support no aggregate speedup estimate and no whole-census runtime extrapolation. Warm and
+unseeded known-object controls pass, but construction power at nine planes remains unknown.
+
+**EXACT, instance scope:** eleven saved formulas have independently accepted DRAT proofs.
+The quick verification reconstructs the panel formulas and compares CNF hashes, validates run
+artifact hashes, repeats the nine-plane exact predicate comparison, and replays completed proofs
+when drat-trim is installed. The two original and continued manifests retain their source provenance.
+Compressed CNF/DRAT bytes are lossless: packing.json records packed and original hashes;
+original output hashes refer to decompressed bytes. Partial timeout/interruption proofs are retained
+locally with hashes but excluded from git bulk; they support no negative claim. CNFs and completed
+proofs are kept in git. Portable verification skips absent partial proofs only, never a completed proof.
+Without drat-trim it checks saved accepted transcripts/hashes rather than claiming a fresh proof replay.
+
+**PROVED-1, conditional interpretation:** plain decisions exclude uniform embedding chirotopes
+for maps 5,6,30 under the existing encoder/general-position arguments; those arguments lack human
+review. Eight C3 negatives exclude their exact uniform cooriented ansatzes. This is not a geometric
+C3-family exclusion without equivariant general-position/coorientation/coverage arguments, and
+never an asymmetric exclusion of those eight maps. No CERTIFIED theorem, S5 witness, (9,3)
+non-existence statement or S0 result follows. The remaining plain formulas are unresolved.
+
+H-261103-02 stays open: its uniform C3 ansatz is weakened, geometric-family interpretation needs
+review. H-261101-07 stays open for genus 3-5; H-261103-03 retains the prior (8,2) evidence.
+No existence credence change is inferred from a timeout or the number of easy formulas.
+Verdict: useful cheap symmetry-ansatz decisions, partial plain coverage; no automatic full sweep.
+Next decision: a separately registered 60/300-second paired grid on at most four unresolved plain
+maps (the 30-second timeout and interruption must be identified as such), or an exploration pilot
+from the strategy review. A night/full-census launch has not passed its gate. E-261103-03 stays
+running only because wider plain coverage remains unfinished; no process remains active.
+
+### Local verification after the paired pilot
+
+verify_all.py --quick: ALL PASS (18 checks; archive skipped). Its saved S5 evidence check now
+also reconstructs and replays the paired (9,3) evidence through EvidenceTests. The dedicated
+paired evidence test passes; six runner regressions pass. Selected text artifacts contain no
+Cyrillic; source/document diff checks pass. Raw checker/solver whitespace is preserved.
+GitHub CI and the full archive were not run. Completed proofs and CNFs are versioned; the nine
+large partial proofs remain local, listed by packing.json with their hashes. No external upload.

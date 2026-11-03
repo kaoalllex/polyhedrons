@@ -1,0 +1,125 @@
+c --- [ banner ] -------------------------------------------------------------
+c 
+c CaDiCaL SAT Solver
+c Copyright (c) 2016-2026
+c A. Biere, M. Fleury, N. Froleyks, K. Fazekas, F. Pollitt, T. Faller
+c JKU Linz, University of Freiburg, TU Wien
+c 
+c Version 3.0.1 c60730422e758ef1cebe7aeddf2dda31c996bf04
+c Apple clang version 21.0.0 (clang-2100.3.34.2) -Wall -Wextra -O3 -DNDEBUG -DNCLOSEFROM
+c Thu Oct 29 12:02:02 +03 2026 Darwin IOSM-FQNJVXCGPH 25.6.0 arm64
+c 
+c --- [ proof tracing ] ------------------------------------------------------
+c 
+c opening file to write '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/results/paired_9_3_continued/map3_C3.drat'
+c writing binary proof trace to '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/results/paired_9_3_continued/map3_C3.drat'
+c 
+c --- [ parsing input ] ------------------------------------------------------
+c 
+c reading DIMACS file from '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/results/paired_9_3_continued/map3_C3.cnf'
+c opening file to read '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/results/paired_9_3_continued/map3_C3.cnf'
+c found 'p cnf 7840 79506' header
+c parsed 79506 clauses in 0.01 seconds process time
+c 
+c --- [ options ] ------------------------------------------------------------
+c 
+c all options are set to their default value
+c 
+c --- [ solving ] ------------------------------------------------------------
+c 
+c time measured in process time since initialization
+c 
+c  seconds  reduction conflicts       size tier2      variables
+c         MB    restarts   redundant    glue  trail        remaining
+c          level     rate       size/glu tier1  irredundant
+c 
+c *  0.01  0  0 0   0  0    0    0 0.0 0 0 2 6  0% 78936 7686 98%
+c )  0.02  0  0 0   0  0    0    0 0.0 0 0 2 6  0% 78936 7686 98%
+c {  0.02  0  0 0   0  0    0    0 0.0 0 0 2 6  0% 78936 7686 98%
+c -  0.05  0 13 1  37  2  302  197 1.9 11 6 2 6 18% 70784 7686 98%
+c i  0.11  0  9 1  49  2  726  449 2.2 11 5 2 6 25% 70784 7683 98%
+c -  0.12  0  9 2  49  2  736  310 2.2 11 5 2 6 25% 68808 7683 98%
+c }  0.15  0  8 2  81  2 1002  481 2.1 11 5 2 6 24% 68808 7683 98%
+c [  0.15  0  0 2  81  0 1002  481 0.0 0 0 2 6  0% 68808 7683 98%
+c O  0.15  0  9 2  81 10 1003  482 1.1 8 7 2 6  7% 68808 7683 98%
+c i  0.17  0  5 2  81  1 1194  577 1.8 8 4 2 6 19% 68808 7677 98%
+c i  0.18  0  5 2  81  1 1224  590 1.8 7 4 2 6 19% 68808 7660 98%
+c i  0.18  0  5 2  81  1 1250  598 1.8 7 4 2 6 19% 68808 7651 98%
+c i  0.18  0  5 2  81  1 1256  601 1.8 7 4 2 6 19% 68808 7624 97%
+c i  0.18  0  4 2  81  1 1260  603 1.8 7 4 2 6 19% 68808 7621 97%
+c i  0.18  0  4 2  81  1 1261  603 1.8 7 4 2 6 19% 68808 7527 96%
+c ]  0.18  0  4 2  81  1 1264  603 1.8 7 4 2 6 19% 68808 7198 92%
+c 0  0.18  0  4 2  81  1 1264  603 1.8 7 4 2 6 19% 68808 7198 92%
+c 
+c --- [ closing proof ] ------------------------------------------------------
+c 
+c DRAT proof file '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/results/paired_9_3_continued/map3_C3.drat' closed
+c DRAT 10252 added clauses 34.22%
+c DRAT 19704 deleted clauses 65.78%
+c DRAT 349023 bytes (0.33 MB)
+c 
+c --- [ result ] -------------------------------------------------------------
+c 
+s UNSATISFIABLE
+c 
+c --- [ run-time profiling ] -------------------------------------------------
+c 
+c process time taken by individual solving procedures
+c (percentage relative to process time for solving)
+c 
+c         0.17   99.97% search
+c         0.14   80.37% unstable
+c         0.03   17.60% stable
+c         0.01    7.78% parse
+c         0.00    1.99% lucky
+c         0.00    0.00% simplify
+c   =================================
+c         0.17   92.56% solve
+c 
+c last line shows process time for solving
+c (percentage relative to total process time)
+c 
+c --- [ statistics ] ---------------------------------------------------------
+c 
+c chronological:               132        10.44 %  of conflicts
+c conflicts:                  1264      7449.45    per second
+c decisions:                  1794     10573.03    per second
+c fixed:                       642         8.19 %  of all variables
+c learned:                    1231        97.39 %  per conflict
+c learned_lits:              26484       100.00 %  learned literals
+c minimized:                     0         0.00 %  learned literals
+c shrunken:                  11111        41.95 %  learned literals
+c minishrunken:               3017        11.39 %  learned literals
+c otfs:                         17         1.34 %  of conflict
+c propagations:            1171887         6.91 M  per second
+c reduced:                     101         7.99 %  per conflict
+c rephased:                      1      1264.00    interval
+c restarts:                     81        15.60    interval
+c stabilizing:                   1        20.49 %  of conflicts
+c subsumed:                    405         0.51 %  of all clauses
+c strengthened:                 17         0.02 %  of all clauses
+c ticks:                  16552577        14.12    propagation
+c 
+c seconds are measured in process time for solving
+c 
+c --- [ glue usage ] ---------------------------------------------------------
+c 
+c focused glue 2 used 255 clauses 17.25% accumulated 33.82% tier1
+c focused glue 3 used 218 clauses 14.74% accumulated 48.57%
+c focused glue 4 used 245 clauses 16.57% accumulated 65.15%
+c focused glue 5 used 159 clauses 10.75% accumulated 75.91%
+c focused glue 6 used 134 clauses 9.066% accumulated 84.97% tier2
+c 
+c stable glue 2 used 111 clauses 22.46% accumulated 51.61% tier1
+c stable glue 3 used 97 clauses 19.63% accumulated 71.25% tier2
+c 
+c 
+c --- [ resources ] ----------------------------------------------------------
+c 
+c total process time since initialization:         0.18    seconds
+c total real time since initialization:            0.19    seconds
+c maximum resident set size of process:           28.48    MB
+c 
+c --- [ shutting down ] ------------------------------------------------------
+c 
+c exit 20

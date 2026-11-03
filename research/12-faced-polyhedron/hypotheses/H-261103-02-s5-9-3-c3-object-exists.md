@@ -26,3 +26,11 @@ free C3 on 9 faces leaves about 7 parameters, a small space.
 
 E-261103-03 (b): a realized model with C3 clauses proves it; 8 UNSAT-VERIFIED instances with C3 clauses refute the C3
 form (the asymmetric form stays open until (d)). E-261103-05: a C3 solid with 36 pairs proves it.
+
+## 2026-11-04 paired-pilot evidence
+
+E-261103-03 CONCLUSION reports checked UNSATs for every tested uniform free-C3 formula
+(EXACT instances). This weakens the uniform ansatz; the hypothesis stays open pending a
+sound equivariant general-position/coorientation and family-coverage argument (PROVED-1 at best
+until reviewed). C3-invariant signs alone would also not certify a geometric rotation.
+No asymmetric non-existence claim follows; possible realizations with other symmetry groups remain open.
