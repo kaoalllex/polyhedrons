@@ -46,6 +46,7 @@ class PilotTests(unittest.TestCase):
 
     def test_paired_selection_has_twenty_formulas_on_twelve_maps(self):
         units = pilot.paired_formulas()
+        self.assertEqual([i for i, _, p in units if p is None], [0, 5, 10, 30, 40, 48, 1, 2, 3, 4, 6, 7])
         self.assertEqual(len(units), 20)
         self.assertEqual(len({i for i, rec, perm in units}), 12)
         symmetric = [(i, rec, p) for i, rec, p in units if p is not None]

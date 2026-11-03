@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT / 'experiments/E-261101-25-chirotope-first'))
 from test_encoder import controls, from_links, EncoderTests
 from omsat import CNF, build, chirotope_from_planes
 from omsat_validate import ALL_OPTS
-from omsat_sym import build_sym
+from omsat_sym import build_sym, closure
 from ladder_exact import verify
 
 CADICAL = os.environ.get('CADICAL', str(Path.home() / 'bin/cadical'))
@@ -136,8 +136,13 @@ def paired_formulas():
     paired = [(i, rec, p) for i, rec, p in paired if p is not None]
     assert len(paired) == 8
     ids = {i for i, _, _ in paired}
-    extra = [(i, rec, None) for i, rec in enumerate(maps) if rec['admissible'] and i not in ids][:4]
-    return [unit for i, rec, p in paired for unit in ((i, rec, p), (i, rec, None))] + extra
+    order = [paired[0], paired[5]]
+    early = [unit for i, rec, p in order for unit in ((i, rec, p), (i, rec, None))]
+    extra = [(i, maps[i], None) for i in (10, 30, 40, 48)]
+    assert all(rec['admissible'] for _, rec, _ in extra)
+    rest = [unit for i, rec, p in paired if i not in (0, 5)
+            for unit in ((i, rec, p), (i, rec, None))]
+    return early + extra + rest
 
 
 def reconstruction_ok(wrong_signs, exact_match):
@@ -195,9 +200,11 @@ def arm_deadline(seconds):
     signal.setitimer(signal.ITIMER_REAL, seconds)
 
 
-def main(out, paired=False):
+def main(out, paired=False, resume=None):
     out.mkdir(parents=True, exist_ok=False)
-    start = time.monotonic(); deadline = start + (3300 if paired else 900); control_deadline = start + 480
+    previous = json.loads((resume / 'manifest.json').read_text()) if resume else None
+    prior_seconds = previous['wall_seconds'] if previous else 0
+    start = time.monotonic(); deadline = start + (3300 - prior_seconds if paired else 900); control_deadline = start + 300
     report = dict(status='RUNNING', controls={}, targets={})
     manifest = dict(commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
                     dirty=subprocess.check_output(['git', 'status', '--porcelain'], text=True),
@@ -205,6 +212,8 @@ def main(out, paired=False):
                     workers=1, wall_budget_seconds=3300 if paired else 900,
                     branch=subprocess.check_output(['git', 'branch', '--show-current'], text=True).strip(),
                     cpu_count=os.cpu_count(), family='paired_9_3' if paired else 'warmup_8_2')
+    manifest['prior_wall_seconds'] = prior_seconds
+    manifest['resume'] = str(resume) if resume else None
     dump(out / 'manifest.json', manifest)
     command([sys.executable, '-m', 'pip', 'freeze'], out / 'pip-freeze.txt', 20)
     def remaining(cap, end=deadline):
@@ -248,8 +257,42 @@ def main(out, paired=False):
         save()
         if paired:
             from controls import symmetric_planes
-            from omsat_sym import closure
             units = paired_formulas()
+            if resume:
+                prior = json.loads((resume / 'summary.json').read_text())
+                report['targets'] = prior['targets']
+                for log in resume.glob('map*.solver.log'):
+                    name = log.name.removesuffix('.solver.log')
+                    if name not in report['targets']:
+                        report['targets'][name] = dict(status='INTERRUPTED', ended_by='panel_correction',
+                                                      map_index=int(name.split('_')[0][3:]))
+                for r in report['targets'].values():
+                    r['artifact_dir'] = str(resume)
+            # Rebuild/replay the completed small-case evidence; no new target solve.
+            from test_pilot import EvidenceTests
+            EvidenceTests('test_saved_evidence').test_saved_evidence()
+            report['controls']['eight_face_evidence'] = 'REPLAY-PASS'
+            EncoderTests('test_one_sided_parallel_pairing_is_rejected').test_one_sided_parallel_pairing_is_rejected()
+            report['controls']['malformed_pairing'] = 'REJECTED'
+            from omsat_validate import eval_all, compare_direct
+            import random
+            rng = random.Random(261104)
+            while True:
+                h = [[rng.randint(-100, 100) for _ in range(4)] for _ in range(9)]
+                chi = chirotope_from_planes(h)
+                if all(chi.values()):
+                    break
+            t = from_links(units[0][1]['links'])
+            _, ev = eval_all(h, t)
+            stats = {}; mismatches, embedded, simple = compare_direct(h, t, ev, stats)
+            assert not mismatches, mismatches
+            c = CNF(9); c.defs_only = True; build(c, t, ALL_OPTS)
+            c.gp()
+            c.clauses.extend([[c.qvar[q] if v > 0 else -c.qvar[q]] for q, v in chi.items()])
+            dump(out / 'nine_plane_control.input.json', dict(planes=h, seed=261104, stats=stats))
+            r = solve(c, out, 'nine_plane_control', remaining(60, control_deadline) / 2)
+            report['controls']['nine_plane_control'] = r; save()
+            assert r['status'] == 'SAT', r
             i, rec, p = units[0]
             group = sorted(closure([p], 9))
             for seed in range(100):
@@ -272,16 +315,18 @@ def main(out, paired=False):
         # Solve every formula before spending the residual budget on model processing.
         formulas = {}
         for i, rec, p in units:
-            t = from_links(rec['links']); dump(out / f'map{i}.json', rec)
             mode = ('C3' if paired else 'C2') if p is not None else 'plain'
             name = f'map{i}_{mode}'
+            if name in report['targets']:
+                continue
+            t = from_links(rec['links']); dump(out / f'map{i}.json', rec)
+            dump(out / f'map{i}.identity.json', dict(canonical_sha256=hashlib.sha256(json.dumps(rec['code'], separators=(',', ':')).encode()).hexdigest(), group=sorted(closure([p], t.n)) if p is not None else []))
             if p is not None:
-                from omsat_sym import closure
                 group = sorted(closure([p], t.n))
                 c, _, _ = build_sym(t, group, {g: 1 for g in group}, ALL_OPTS)
             else:
                 c = CNF(t.n); build(c, t, ALL_OPTS)
-            r = solve(c, out, name, remaining(60 if paired else 120) / 2)
+            r = solve(c, out, name, remaining(120) / 2)
             r.update(scope=f'uniform free-{mode} ansatz' if p is not None else 'plain embedding formula',
                      map_index=i, permutation=p)
             report['targets'][name] = r
@@ -290,6 +335,8 @@ def main(out, paired=False):
             save(); print(name, r['status'], round(r['seconds'], 2), flush=True)
             if r['status'] in ('ERROR', 'UNSAT-UNCHECKED'):
                 raise RuntimeError((name, r))
+            if paired and r['status'] == 'SAT':
+                break
         for name, (c, rec) in formulas.items():
             if report['targets'][name]['status'] != 'SAT':
                 continue
@@ -298,12 +345,12 @@ def main(out, paired=False):
             inp = payload(chi, rec['links']); results = {}
             report['targets'][name]['processing'] = results
             for task in ('hinge', 'two_stage', 'fp'):
-                result = stage(out, name + '_' + task, task, inp, remaining((30 if task == 'fp' else 15) if paired else 120))
+                result = stage(out, name + '_' + task, task, inp, remaining(120))
                 results[task] = result; save()
                 if result.get('geometry', {}).get('EMBEDDED'):
                     dump(out / (name + '.candidate.json'), dict(planes=result['planes'], links=dict(enumerate(rec['links']))))
                     report['status'] = 'CANDIDATE'; save(); return
-        report['status'] = 'PILOT-COMPLETE'
+        report['status'] = 'FIRST-SAT-PROCESSED' if paired and formulas else 'PILOT-COMPLETE'
     except TimeoutError as exc:
         report.update(status='PILOT-TIMEOUT', error=str(exc))
     except BaseException as exc:
@@ -326,6 +373,7 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', type=Path)
     ap.add_argument('--paired', action='store_true')
+    ap.add_argument('--resume', type=Path)
     ap.add_argument('--task', choices=('hinge', 'two_stage', 'fp'))
     ap.add_argument('--input', type=Path); ap.add_argument('--output', type=Path)
     args = ap.parse_args()
@@ -333,4 +381,4 @@ if __name__ == '__main__':
         worker(args)
     else:
         assert args.out is not None
-        main(args.out, paired=args.paired)
+        main(args.out, paired=args.paired, resume=args.resume)
