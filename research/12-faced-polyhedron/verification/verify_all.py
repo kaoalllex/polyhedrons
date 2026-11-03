@@ -67,6 +67,9 @@ CHECKS = [
     ('combinatorics: 59 types, independent checker + relabelling selftest',
      lambda: run(['check_triangulations.py', '../data/k12_triangulations.json', '--selftest'], CODE,
                  'OK: selftest')),
+    ('combinatorics: S5 census, saved maps, sampler and K12 controls, C3 cross-check',
+     lambda: run(['test_census.py'], os.path.join(ROOT, 'experiments', 'E-261103-01-s5-map-census'),
+                 lambda out: '\nOK' in out)),
     ('Lemma 5.1 on perturbed Szilassi planes (n = 7, 0 mismatches)',
      lambda: run(['test_szilassi.py'], HERE, lambda out: re.findall(r"'trials': \d+", out) and not re.search(
          r"'zero_viol_NOT_embedded': [1-9]|'pos_viol_but_embedded': [1-9]", out))),

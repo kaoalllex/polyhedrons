@@ -58,11 +58,11 @@ Pre-registration. Commit this plan before enumeration; append dated amendments a
 
 ## Implementation checklist
 
-- [ ] Add focused failing tests for a one-class control, parallel darts, mirror invariance, and timeouts.
-- [ ] Add a bounded C enumerator beside the experiment and a Python driver reusing review checks.
-- [ ] Run focused tests, then the registered pilots; save manifests and input/output hashes.
-- [ ] Compare finished cases with sampled maps, record limitations and prepare the next command.
-- [ ] Re-run `verify_all.py --quick` and `trace.py`; leave unrelated files unchanged.
+- [x] Add focused failing tests for a one-class control, parallel darts, mirror invariance, and timeouts.
+- [x] Add a bounded C enumerator beside the experiment and a Python driver reusing review checks.
+- [x] Run focused tests, then the registered pilots; save manifests and input/output hashes.
+- [x] Compare finished cases with sampled maps, record limitations and prepare the next command.
+- [x] Re-run `verify_all.py --quick` and `trace.py`; leave unrelated files unchanged.
 
 Scope: this folder and its README, ROADMAP state, generated research graph, and session handover.
 Existing `enum_k12.c`, geometric encoders, witnesses and the public viewer remain unchanged.
@@ -72,3 +72,21 @@ Existing `enum_k12.c`, geometric encoders, witnesses and the public viewer remai
 * 2026-11-03: Baseline `verification/verify_all.py --quick`: ALL PASS; archive check skipped by
   quick mode. Base a037d4e (merged strategy review); local branch `experiment/E-261103-01-s5-map-census`.
   Work in the existing checkout per owner instructions. No additional dependencies or subagents.
+* 2026-11-03, after the first pilot: (7,1), (8,2) and (9,3) exhaust their graph families
+  within the registered caps; focused controls pass. Attempt (10,4) with a 60-second enumeration
+  cap, on one core, to measure its runtime frontier. If incomplete, retain its partial list and
+  do not infer a total count or launch an unchanged longer run. Run the (12,6) control with
+  the same 60-second cap. No geometry or long computation is authorized by this amendment.
+* 2026-11-03, symmetry cross-check: use a separate triangle-orbit exact cover rather than
+  a second dart-rotation search. Fix rho=(012)(345)(678), enumerate invariant admissible triangle
+  sets and every rho-equivariant pairing of parallel edges. This enumerates Z3 lifts implicitly:
+  there are three quotient vertices, thirteen quotient edges, eight triangle orbits and two fixed
+  triangles (branch points). A free C3 action on an admissible nine-vertex map has at most three
+  invariant unordered triples; Riemann-Hurwitz gives r=5-3h, hence exactly r=2 and quotient genus h=1.
+  This coverage argument is PROVED-1. Compare canonical codes, not just the number of maps.
+  Budget: 60 seconds, one core; timeout leaves this control incomplete and the experiment running.
+* 2026-11-03, conclusion: all four cases and the K12 control exhausted; code-set and automorphism
+  comparisons pass. The C3 control used the amended exact-cover method, not an explicit voltage-table
+  generator. The optional (8,3) census was not attempted. No subagents or long jobs were used.
+  Final tests also cover refusal to overwrite an occupied output directory. ASan/UBSan completed
+  the (9,3) enumeration with the same class count and no diagnostics. See CONCLUSION.md for all counts.
