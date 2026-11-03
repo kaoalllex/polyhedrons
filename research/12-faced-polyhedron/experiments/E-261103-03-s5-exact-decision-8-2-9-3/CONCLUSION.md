@@ -174,3 +174,154 @@ paired evidence test passes; six runner regressions pass. Selected text artifact
 Cyrillic; source/document diff checks pass. Raw checker/solver whitespace is preserved.
 GitHub CI and the full archive were not run. Completed proofs and CNFs are versioned; the nine
 large partial proofs remain local, listed by packing.json with their hashes. No external upload.
+
+## Conditional free-C3 coverage argument (draft, 2026-11-04)
+
+**PROVED-1, single-author draft, not independently reviewed.** This addresses the extra C3-specific
+coverage obligations raised in the strategy review. It assumes the existing census coverage,
+nondegenerate face-plane openness, and encoder soundness arguments. It does not upgrade the
+ledger to CERTIFIED or silently reinterpret a formula decision as an unconditional theorem.
+The family here is proper order-three rotations acting freely on all nine faces; fixed-face
+order-three actions and other symmetry groups are outside this statement.
+
+1. Conjugate a putative proper order-three Euclidean rotation by a rigid motion so that its axis
+   passes through the origin and its linear part is the cyclic coordinate permutation R, or R^-1.
+   On each of the three free face orbits choose one homogeneous plane vector h and propagate it
+   by R. This chooses compatible coorientations without imposing extra geometric conditions:
+   R^3=I closes each orbit. Thus the parameter space is three arbitrary four-component seed
+   vectors, an open part of R^12, with h_(p i)=R h_i and infinity fixed. Proper rotation gives
+   chi(p S)=chi(S). Inverting p gives the same subgroup and same invariance constraints.
+
+2. For any specified three disjoint 3-cycles p, every determinant of four rows drawn from the
+   nine planes and infinity is a polynomial in those twelve parameters. None is identically
+   zero: the saved exact C3_control.input.json supplies one simultaneous uniform arrangement
+   for one such p, and relabeling transports it to every free action of cycle type 3+3+3.
+   An independent Leibniz expansion rechecks all 210 determinants as nonzero and verifies the
+   actual coordinate action. A finite product of nonzero real polynomials has zero set with
+   empty interior. Uniform configurations are therefore dense in this equivariant parameter space.
+   Intersecting with the relatively open neighborhood of a nondegenerate embedding of its fixed
+   paired-link map yields a symmetry-preserving uniform embedding. This step depends explicitly
+   on the existing face-plane openness argument, extended to paired multiple segments; it is not
+   inferred from the arrangement control being an embedded target (it is not).
+
+3. The orbit reorientation gauge loses no geometry. Changing a seed vector's sign changes all
+   three vectors in that orbit. On an infinity quadruple its sign changes by the parity of the
+   number of entries from that orbit. The three INF-quadruples consisting of one entire orbit
+   have the three unit parity vectors. Hence the parity map has rank three; any basis chosen by
+   orbfix_quads permits making its three signs positive independently. Whole-orbit reorientation
+   preserves the cooriented C3 relations.
+
+4. The finite-quadruple mirror gauge is compatible with those INF signs and the fixed R. Reflect
+   space in the plane perpendicular to the rotation axis, a determinant-minus-one map commuting
+   with R, then negate every finite plane vector. A four-finite-row determinant changes sign;
+   a three-finite-row plus infinity determinant does not. Thus chi(0,1,2,3) can be made positive
+   while retaining every orbit-gauge sign and C3 invariance. For R cycling x,y,z this operation
+   has the exact integer formula h=(a,b,c,d) -> (2s-3a,2s-3b,2s-3c,-3d), s=a+b+c,
+   after a positive scale of three. The independent control checks all determinant signs before
+   and after this transformation. No symmetry-fixed C2 or D3 normalization is used.
+
+5. On the saved eight free-C3 maps, Aut+ has order three or six. Sylow's count gives a unique
+   subgroup of order three in either case (its count divides one or two and is one modulo three).
+   The stored generator preserves the actual cyclic links and segment pairing; its inverse
+   generates the same subgroup. Thus one subgroup per such map covers its free order-three
+   actions, conditional on the census/isomorphism coverage already claimed at PROVED-1.
+   An orientation-preserving ambient rotation of an embedded closed orientable surface preserves
+   the boundary orientation of its bounded side, so its map action belongs to Aut+.
+
+Conditional consequence: accepting those premises and this draft, the eight checked formulas
+exclude this free-face proper-C3 geometric family at PROVED-1. Asymmetric realizations of the
+same maps, fixed-face actions, C2/D3 families, and arbitrary (9,3) existence remain outside the
+consequence. The conservative ledger continues to distinguish exact formulas from this draft
+until its premises and argument receive external review. No new target SAT call was used here.
+
+
+## 2026-11-04: autonomous 60/300-second grid conclusion
+
+Pre-registration/computation source: 8f8132c. One worker, 3300-second computation ceiling;
+results/grid_9_3 preserves the manifest, full inputs, models, CNFs, full/partial DRAT and logs.
+Recorded wall seconds: 989.340322667; core-hours: 0.274816756296. The five experiment manifests, including the
+original (8,2) pilot, control recheck and interrupted paired attempt, sum to 1647.726973708 wall seconds
+and 0.457701937141 core-hours. Preparation, packing and regression/proof replays are outside those measured
+run totals. No target solve or result directory was overwritten.
+
+Required controls pass, including warm and unseeded known-object reconstructions, exact nine-plane
+predicates, free-C3 arrangement, pairing/admissibility guards and saved (8,2) proof replay. This
+calibrates the pipeline, not target construction power. Launcher stderr was `nice: setpriority:
+Operation not permitted`; the job continued at its inherited priority. launcher.log retains that
+output. One worker and the numerical thread limits were applied; no lowered nice priority is claimed.
+
+| New cell | Solver seconds | Checker seconds | Outcome |
+|---|---:|---:|---|
+| map0_plain_t60 | 60.007075 | not run | TIMEOUT |
+| map1_plain_t60 | 60.009009 | not run | TIMEOUT |
+| map0_plain_t300 | 300.015313 | not run | TIMEOUT |
+| map1_plain_t300 | 300.012950 | not run | TIMEOUT |
+| map40_plain_t300 | 75.728226 | 62.166003 | UNSAT-VERIFIED |
+| map48_plain_t300 | 62.514461 | 44.730775 | UNSAT-VERIFIED |
+
+The prior 60-second cells of maps 40/48 were reused as baseline, not rerun. Maps 0/1 receive
+complete 60-second cells in place of the earlier 30-second/interrupted observations; both remain
+unresolved at 300 seconds. The two new plain decisions pass independent DRAT checking. Solver
+and checker costs are distinct: map 40's proof check itself exceeds 60 seconds. A later tranche
+must budget proof replay separately, not call the solver timing the total decision cost.
+The binding limit on four new calls was solver timeout; the other two completed with checked proof.
+No hard global cap or model/iteration limit bound the run. Stop: exhausted prescribed grid.
+There was no target SAT and therefore no target realization/final-polynomial processing.
+
+**EXACT, instance scope:** two additional saved plain formulas, maps 40 and 48, are UNSAT-VERIFIED.
+The quick suite reconstructs each new CNF and its clause hash, validates the baseline and artifact
+hashes, and replays completed proofs when drat-trim is available. Both limits of a given map have
+the same clause formula; comments/cell names are not treated as semantic changes. Portable mode
+without drat-trim validates hashes and accepted saved transcripts, not a fresh proof replay.
+Compressed files retain decompressed original hashes in packing.json. Large partial proofs are
+local-only; they support no negative assertion and need not be downloaded by portable verification.
+
+Cumulative (9,3) plain coverage: five verified formulas (5,6,30,40,48), seven attempted maps still
+unresolved (0,1 at 300 seconds; 2,3,4,7,10 at 60 seconds), and 191 admissible maps not attempted.
+All eight C3 formulas remain checked ansatz negatives. These are thirteen distinct checked (9,3)
+formulas, not thirteen excluded geometric maps. The same **PROVED-1 conditional** encoder/census
+interpretation applies; arbitrary (9,3) existence and S0 remain open. The C3 coverage draft above
+has only single-author/AI review, not independent human validation.
+
+Both grid predictions hold: at least one new decision, and at least two of four selected maps
+complete by 300 seconds. This permits assessing a bounded coverage tranche; it does not establish
+a median cost for the full census. Two selected maps remain censored and the panel is purposive.
+Verdict: **PROMISING for bounded additional plain coverage at the measured budget**, with the
+unresolved tail explicitly retained. No full-sweep or geometric non-existence conclusion.
+H-261103-02 and H-261101-07 remain open; H-261103-03 retains its earlier conditional evidence.
+
+### Costed next tranche proposal, not an executable pre-registration
+
+The registered grid decision explicitly retains the explore-before-tranche condition of the
+strategy review (section 5, E-261103-05). That control pilot is a separate experiment and has not
+run. E-261103-03 remains running, with no active process; the next coverage stage is not launched.
+This is a scientific scheduling gate, not an unrequested approval to publish or push.
+
+After that gate is concluded, propose the first 80 previously unattempted admissible maps in saved
+census order, excluding all previously dispatched plain maps. No retries of checked formulas and
+no unchanged repeat of the hard tail. Use solver <=60 seconds and independent proof checker <=120
+seconds per map, calibrated by the observed proof cost. Worst-case target solver/checker work is
+4 core-hours. Eight one-worker shards would receive at most ten maps each, a control allowance of
+300 seconds, first-SAT processing <=360 seconds, and setup/report allowance <=300 seconds; the
+conservative tranche bound is below 6.2 core-hours and the review's 10-core-hour ceiling. Numerical
+threads remain one per worker, at most eight workers total. A target SAT stops further dispatch
+and gets the existing exact model/candidate pipeline. No inference uses unchecked proofs/timeouts.
+
+This proposal needs its own committed PLAN activation, deterministic frozen queue, bounded
+checkpoint/resume runner and a same-path pilot after the explore gate. No multi-hour session job,
+night, push, PR or external proof upload is started. The remaining maps cannot be called decided.
+
+### Internal review
+
+A small read-only reviewer pass found no significant issue in the grid time bounds, baseline and
+skip-decided logic, or conditional C3 argument. It ran no solver and changed no files. It is an
+AI-session filter, not an independent mathematical reviewer and not a CERTIFIED upgrade.
+
+### Final local verification after autonomous follow-through
+
+verify_all.py --quick: ALL PASS (18 checks; full archive skipped). The saved S5 evidence check
+includes the new grid, fresh DRAT replay, baseline/CNF reconstruction, and the independent exact
+C3 determinant and mirror-gauge controls. Seven bounded runner regressions pass; research graph
+has no link errors. Source/document diff checks and selected text-artifact English checks pass.
+Raw solver/checker transcript whitespace is preserved. No GitHub CI, full archive, external human
+review or external artifact publication was performed.

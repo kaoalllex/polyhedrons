@@ -83,7 +83,7 @@ No direction is REFUTED today.
 | DR16 | Gauss clauses as SAT speed-up; kappa-CSP prefilter; symmetric plane sets; screw orbits; tangent planes of smooth surfaces; Szilassi embryo | E-261029-09, E-261029-10 | minutes each | LOW-YIELD@minutes each (small budgets; see the sprint board) |
 | DR17 | Configuration-space planning / rigidity (stress matrices) / homotopy continuation between levels | proposed, not tested | 0 | OPEN: E-261101-19 (barrier continuation with a non-saturating measure) and E-261101-17 (geometry of the realization spaces) are its first cheap tests |
 | DR18 | Arrangement first: exact chamber-SAT on structured arrangements (a symmetric arrangement with an asymmetric solid is the one loophole FD5 leaves; archived and near-miss arrangements with any solid) | proposed (strategy review 2026-11-01); the inner solver exists (`code/solid_cpsat.best_solid`) | 0 | OPEN: E-261101-16 |
-| DR19 | S5 exact pipeline: census of the candidate maps (E-261103-01), OM-SAT per map with multiple adjacencies and symmetry clauses (E-261103-02, -03), realization or final polynomial; the dress rehearsal of the S0 pipeline at 10 elements | E-261103-01 census complete (section 3c); E-261103-02 multi-adjacency encoder controls pass (EXACT), soundness PROVED-1; free C2/C3 calibrated, fixed-face C2/D3 uniformity obstruction documented, both plain (8,2) formulas now UNSAT-VERIFIED in E-261103-03 (section 3d), partial (9,3) decisions (section 3e) | ~0.4 core-h (sampler) + 0.02273 recorded (census) + 0.058735 recorded (encoder controls) + 0.009883 recorded (decision pilot; control recheck separately manifested) | PROMISING (the queue since 2026-11-03) |
+| DR19 | S5 exact pipeline: census of the candidate maps (E-261103-01), OM-SAT per map with multiple adjacencies and symmetry clauses (E-261103-02, -03), realization or final polynomial; the dress rehearsal of the S0 pipeline at 10 elements | E-261103-01 census complete (section 3c); E-261103-02 multi-adjacency encoder controls pass (EXACT), soundness PROVED-1; free C2/C3 calibrated, fixed-face C2/D3 uniformity obstruction documented, both plain (8,2) formulas now UNSAT-VERIFIED in E-261103-03 (section 3d), partial (9,3) decisions (sections 3e-3f) | ~0.4 core-h (sampler) + 0.02273 recorded (census) + 0.058735 recorded (encoder controls) + 0.009883 recorded (decision pilot; control recheck separately manifested) | PROMISING (the queue since 2026-11-03) |
 
 ## 3a. Competing hypotheses
 
@@ -193,6 +193,25 @@ needs an equivariant argument. Plain coverage is incomplete. No CERTIFIED theore
 The affordability prediction of at least one plain completion holds, six completions fails.
 No automatic night: next consider a separately registered small 60/300-second grid or an explore
 pilot from the completed strategy review. The experiment remains running; no process is active.
+
+## 3f. S5 (9,3) autonomous cutoff grid (2026-11-04)
+
+E-261103-03 CONCLUSION: the committed 60/300-second grid adds plain UNSAT-VERIFIED formulas
+for maps 40 and 48 (**EXACT** instances); maps 0 and 1 time out at both new cutoffs. Prior 60-second
+cells for 40/48 were reused. All controls pass. Grid manifest: 989.340322667 wall seconds,
+0.274816756296 core-hours. All five experiment manifests total 1647.726973708 wall seconds,
+0.457701937141 core-hours; preparation, packing and replay tests are outside those totals.
+
+Cumulative plain census coverage: 5 verified formulas (5,6,30,40,48), 7 attempted/unresolved maps,
+191 unattempted admissible maps. All 8 C3 formulas remain checked. No target SAT or witness;
+existence remains open. Geometric interpretations stay **PROVED-1 conditional**. The experiment
+CONCLUSION contains a new conditional free-C3 coverage draft, with independent determinant/gauge
+controls and AI review only; no independent human review or CERTIFIED upgrade.
+
+The grid's two-of-four affordability prediction passes. A costed tranche proposal is in CONCLUSION,
+with solver/checker time separated and the hard tail preserved. Its registered explore prerequisite
+(E-261103-05) is not completed, so no coverage campaign is launched. The experiment remains running;
+there is no active process, night, push, PR or external upload.
 
 ## 4. What may and may not be claimed
 
