@@ -826,3 +826,8 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   controls pass (EXACT); extended soundness and fixed-face symmetry limitation PROVED-1. The first (8,2)
   CNF is built, not solved. Evidence: `experiments/E-261103-02-s5-omsat-multi-adjacency-encoder/CONCLUSION.md`.
   Next E-261103-03; no target run, long run, subagents, push or PR.
+
+* 2026-11-04: E-261103-03 (8,2) stage completed after pre-registration ac2ad98 and runner c48ab73.
+  Both plain formulas and free-C2 ansatzes UNSAT-VERIFIED; known-object reconstruction controls pass.
+  EXACT formula decisions; geometric interpretation conditional PROVED-1. See the experiment CONCLUSION;
+  (9,3) unrun, experiment remains running, no active process, push or PR.

@@ -21,3 +21,16 @@ Pre-registration, 2026-11-03. Focus S5 (9,3); this stage is S5 (8,2).
 * Ledger: record a pilot conclusion and leave the experiment running if the wider queue remains undecided. No long run, push, PR or subagent is part of this stage.
 
 ## Amendments
+
+### 2026-11-04: post-pilot hardening (no target rerun)
+
+The recorded c48ab73 pilot finished in 35.58 s. Review found that a realizer fallback
+could be misclassified if signs matched despite wrong_signs != 0. Require both checks;
+all eight recorded recoveries have wrong_signs = 0, so this does not change their verdicts.
+Add a main-process alarm as well as subprocess timeouts: the 900-s computation deadline
+now covers Python formula building too. Final evidence hashing/reporting is outside the
+alarm and its elapsed time is included in the manifest wall duration. The original run
+had subprocess limits and a cooperative Python deadline, without the new alarm.
+No amended target computation was run; old artifacts retain their original provenance.
+Warm two-stage reconstruction uses two restart slots because the existing realizer only
+uses supplied normals when k < restarts // 2; random-start controls use one slot.

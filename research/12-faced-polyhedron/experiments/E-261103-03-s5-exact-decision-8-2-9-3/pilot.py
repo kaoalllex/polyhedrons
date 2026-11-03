@@ -2,7 +2,6 @@
 import argparse
 import hashlib
 import importlib.util
-import itertools
 import json
 import os
 from pathlib import Path
@@ -107,6 +106,10 @@ def free_c2(links):
     raise ValueError('no free orientation-preserving C2')
 
 
+def reconstruction_ok(wrong_signs, exact_match):
+    return wrong_signs == 0 and exact_match
+
+
 def worker(args):
     data = json.loads(args.input.read_text())
     chi = {tuple(map(int, k.split(','))): v for k, v in data['chi'].items()}
@@ -127,7 +130,7 @@ def worker(args):
         planes, bad = fn(chi, len(data['links']), start_planes=data.get('start_planes'),
                          restarts=2 if args.task == 'two_stage' and data.get('start_planes') is not None else 1,
                          rng=np.random.default_rng(26110303))
-        match = planes is not None and chirotope_from_planes(planes) == chi
+        match = reconstruction_ok(bad, planes is not None and chirotope_from_planes(planes) == chi)
         result = dict(wrong_signs=bad, signs_match=match)
         if match:
             result['geometry'] = verify(planes, dict(enumerate(data['links'])))
@@ -151,6 +154,13 @@ def payload(chi, links, start=None):
     return dict(chi={','.join(map(str, k)): v for k, v in chi.items()}, links=links, start_planes=start)
 
 
+def arm_deadline(seconds):
+    def expired(signum, frame):
+        raise TimeoutError("pilot computation deadline exhausted")
+    signal.signal(signal.SIGALRM, expired)
+    signal.setitimer(signal.ITIMER_REAL, seconds)
+
+
 def main(out):
     out.mkdir(parents=True, exist_ok=False)
     start = time.monotonic(); deadline = start + 900; control_deadline = start + 480
@@ -168,6 +178,7 @@ def main(out):
         return value
     def save():
         dump(out / 'summary.json', report)
+    arm_deadline(max(.001, deadline - time.monotonic()))
     try:
         fixtures = controls()[:2]
         unseeded = []
@@ -226,7 +237,7 @@ def main(out):
                 result = stage(out, name + '_' + task, task, inp, remaining(120))
                 results[task] = result; save()
                 if result.get('geometry', {}).get('EMBEDDED'):
-                    dump(out / (name + '.candidate.json'), dict(planes=result['planes'], links=rec['links']))
+                    dump(out / (name + '.candidate.json'), dict(planes=result['planes'], links=dict(enumerate(rec['links']))))
                     report['status'] = 'CANDIDATE'; save(); return
         report['status'] = 'PILOT-COMPLETE'
     except TimeoutError as exc:
@@ -235,6 +246,7 @@ def main(out):
         report.update(status='ERROR', error=repr(exc))
         raise
     finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
         save()
         manifest.update(wall_seconds=time.monotonic() - start, status=report['status'])
         manifest['core_hours'] = manifest['wall_seconds'] / 3600
