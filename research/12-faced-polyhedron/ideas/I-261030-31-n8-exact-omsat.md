@@ -22,3 +22,8 @@ Hours.
 ## Source
 
 review 2026-10-30 direction 8.
+
+## Status (2026-11-03)
+
+Became part (a) of E-261103-03: the two (8, 2) candidate maps (`STATUS.md` 3c) on 9 elements, after the encoder of
+E-261103-02.

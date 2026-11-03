@@ -20,7 +20,9 @@ value the function cannot return (artefact, `reviews/strategy-review-2026-11-01.
 ## Evidence so far
 
 k_tau = 0 on all 21 type-0 arms at the realizations' own normals (E-261030-06) and in 40 random projective charts of
-one witness (strategy review, Appendix A.1, EXACT on that instance). The drift evidence of nights 4-5 is void.
+one witness (strategy review, Appendix A.1, EXACT on that instance). The drift evidence of nights 4-5 is void. Scope note (2026-11-03): this hypothesis is about handle ladders on the
+12-face maps at genus 3 -> 4; it is not evidence about the (9, 3) target at genus 3, where the ladder reaches the target
+genus from parents (`reviews/strategy-review-2026-11-03.md` section 6, finding 1).
 
 ## What would move it
 
