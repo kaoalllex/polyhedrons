@@ -1,0 +1,35 @@
+=== 2026-11-02 20:19:15 launch.sh start, shard 1
+20:19:17 R1-szilassi seed 1: start (budget 5 min)
+20:19:26 RESULT R1-szilassi-seed1: engine FLOAT-ZERO (energy 0.000), success True ({'all_pairs_adjacent': True, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}), 9s
+20:19:26 R1-szilassi seed 5: start (budget 5 min)
+20:19:31 RESULT R1-szilassi-seed5: engine FLOAT-ZERO (energy 0.000), success True ({'all_pairs_adjacent': True, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}), 5s
+20:19:31 R1-szilassi seed 9: start (budget 5 min)
+20:19:35 RESULT R1-szilassi-seed9: engine FLOAT-ZERO (energy 0.000), success True ({'all_pairs_adjacent': True, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}), 4s
+20:19:35 R1-szilassi seed 13: start (budget 5 min)
+20:19:44 RESULT R1-szilassi-seed13: engine FLOAT-ZERO (energy 0.000), success True ({'all_pairs_adjacent': True, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}), 9s
+20:19:44 R1-szilassi seed 17: start (budget 5 min)
+20:19:47 RESULT R1-szilassi-seed17: engine FLOAT-ZERO (energy 0.000), success True ({'all_pairs_adjacent': True, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}), 3s
+20:19:50 R5-type15-genus3-from-parent seed 1: start (budget 6 min)
+20:21:38 RESULT R5-type15-genus3-from-parent-seed1: engine FLOAT-ZERO (energy 0.000), success True ({'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}), 108s
+20:21:38 R5-type15-genus3-from-parent seed 5: start (budget 6 min)
+20:27:42 RESULT R5-type15-genus3-from-parent-seed5: engine TIME-CAP (energy 2.001), success False (no planes), 364s
+20:27:42 R5-type15-genus3-from-parent seed 9: start (budget 6 min)
+20:30:25 RESULT R5-type15-genus3-from-parent-seed9: engine FLOAT-ZERO (energy 0.000), success True ({'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}), 162s
+20:30:30 R5-type15-genus3-from-parent seed 1: start (budget 40 min)
+20:32:24 RESULT R5-type15-genus3-from-parent-seed1: engine FLOAT-ZERO (energy 0.000), success True ({'all_pairs_adjacent': False, 'points_distinct': True, 'corner_triples_distinct': True, 'nonsimple_faces': []}), 114s
+20:32:28 R4-type15-genus3 seed 1: start (budget 40 min)
+21:12:30 RESULT R4-type15-genus3-seed1: engine TIME-CAP (energy 2.000), success False (no planes), 2403s
+21:12:30 R4-type0-genus3 seed 0: start (budget 40 min)
+=== 2026-11-02 21:15:44 launch.sh start, shard 1
+21:15:46 skip R1-szilassi seed 1: recorded
+21:15:46 skip R1-szilassi seed 11: recorded
+21:15:46 skip R5-type15-genus3-from-parent seed 1: recorded
+21:15:47 skip R5-type15-genus3-from-parent seed 1: recorded
+21:15:47 skip R4-type15-genus3 seed 1: recorded
+21:15:48 R4-type15-genus3 seed 1: start (budget 120 min)
+23:15:48 RESULT R4-type15-genus3-seed1: engine TIME-CAP (energy 1.000), success False (no planes), 7200s
+23:15:51 R1-szilassi 5/5 0.08 {'FLOAT-ZERO': 5}
+23:15:51 R4-type15-genus3@40min 0/1 None {'TIME-CAP': 1}
+23:15:51 R4-type15-genus3@120min 0/1 None {'TIME-CAP': 1}
+23:15:51 R5-type15-genus3-from-parent@6min 2/3 2.26 {'FLOAT-ZERO': 2, 'TIME-CAP': 1}
+23:15:51 R5-type15-genus3-from-parent@40min 1/1 1.89 {'FLOAT-ZERO': 1}

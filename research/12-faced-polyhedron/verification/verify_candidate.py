@@ -7,11 +7,15 @@ Supported JSON layouts:
   * {planes, solid}                        - solid-first results (delegated to code/verify_solid.py).
 Every record is checked in rational arithmetic by code/ladder_exact.verify (planes rounded at 1e-9, as everywhere).
 
-Usage: python3 verify_candidate.py FILE.json [--all-pairs | --target S0] [--min-genus G]
+Usage: python3 verify_candidate.py FILE.json [--all-pairs | --target S0 | --target S5] [--min-genus G]
   (default)    EMBEDDED: an embedded polyhedron on the given map (any face count, doubled adjacencies allowed);
   --all-pairs  ... and every two faces are adjacent (S1 allows doubled adjacencies);
   --target S0  the strict target of SPEC.md section 1: EMBEDDED, 12 faces, every two faces share exactly one
                edge, (V, E, F, chi) = (44, 66, 12, -10). This is the only check that may be called a solution.
+  --target S5  a maximal face-neighbourly polyhedron (SPEC.md section 2): EMBEDDED, every two faces adjacent
+               (doubled adjacencies allowed), F = F_max(g), the most faces a face-neighbourly cubic polyhedron
+               of genus g can have; (7, 1) is Szilassi, (12, 6) is S0. The success check of the focus target
+               (STRATEGY.md).
 Prints one line per record with its PASS flag; exit status 1 if any checked record fails."""
 import ast
 import json
@@ -60,7 +64,19 @@ def passes(rep, target=None):
         ok = ok and bool(rep.get('all_pairs_adjacent'))
     if target == 'S0':
         ok = ok and bool(rep.get('single_adjacency')) and tuple(rep.get('V_E_F_chi', ())) == (44, 66, 12, -10)
+    if target == 'S5':
+        V, E, F, chi = rep.get('V_E_F_chi', (0, 0, 0, 2))
+        g = (2 - chi) // 2
+        ok = ok and bool(rep.get('all_pairs_adjacent')) and g >= 1 and F == f_max(g)
     return ok
+
+
+def f_max(g):
+    """Largest F with F (F - 1) / 2 <= E = 3 (F + 2 g - 2): the most faces of a face-neighbourly cubic polyhedron of genus g."""
+    F = 4
+    while (F + 1) * F // 2 <= 3 * (F + 1 + 2 * g - 2):
+        F += 1
+    return F
 
 
 def verify_file(path, all_pairs=False, min_genus=None, target=None):
@@ -86,8 +102,8 @@ def main():
         sys.exit(__doc__)
     mg = int(args[args.index('--min-genus') + 1]) if '--min-genus' in args else None
     target = args[args.index('--target') + 1] if '--target' in args else None
-    if target not in (None, 'S0'):
-        sys.exit('only --target S0 is implemented (S1 = --all-pairs)')
+    if target not in (None, 'S0', 'S5'):
+        sys.exit('only --target S0 and S5 are implemented (S1 = --all-pairs)')
     reps = verify_file(args[0], '--all-pairs' in args, mg, target)
     for i, r in enumerate(reps):
         print(i, json.dumps({k: v for k, v in r.items() if k != 'corner_triples_distinct'}, default=str))

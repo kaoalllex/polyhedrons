@@ -676,3 +676,125 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   * The interactive map is `map/`; `verification/trace.py` checks the graph inside `verify_all`.
   * The old idea notes, archive, night scripts and AI reviews were removed after migration; they are in tag
     `state-2026-11-01`.
+
+## 2026-11-01: strategy review applied; new directions queued (branch `claude/strategy-review-2026-11-01`)
+
+* `reviews/strategy-review-2026-11-01.md` (commit 97e40a5): verdict, ranked directions, errors with file:line. Checks
+  run: `verify_all --quick` ALL PASS; `k_tau` of the type-0 witness unchanged (never -1) in 40 projective charts; all
+  1005 near-miss seeds re-counted (multi-reflex min 4, no immersion); `gauss_gate.hemisphere_margin` floors at 0;
+  an improper C2 symmetry forces 15 zero quadruples in the uniform encoding.
+* Ledger corrections: FD6 restated for rotations (improper isometries by Lemma A, `theory/theory-notes.md` addendum,
+  PROVED-1, unreviewed); FD11 re-worded; DR2 drift evidence void; DR3 scope; new DR18 (arrangement first);
+  `theory-notes.md` 15 -> 16 dims; `proof-no-symmetric-immersion/README.md` scope note.
+* E-261101-07 concluded without compute: ARTEFACT (`CONCLUSION.md`); I-261101-03 tried.
+* New ideas I-261101-08..17, hypotheses H-261101-08..14, planned experiments E-261101-16..22 (arrangement first with
+  asymmetric solids on symmetric arrangements; realization-space geometry by hit-and-run; face-grouped MUS of the
+  50 certified instances; barrier continuation with a non-saturating measure; incremental SAT with shared GP
+  lemmas; fold-map topology of the convex region; equivelar {p,3} literature). ROADMAP queue re-ordered, E-261101-15
+  promoted to a row, E-261101-04 re-scored below the gate, decision point now a three-scenario credence table.
+* Process: agent preambles, `experiment-start`, `experiment-conclude`, the PLAN template and `CLAUDE.md` now require
+  counter calibration and the scope of every negative statement.
+
+## 2026-11-01 (later): follow-up of the strategy review, the "from the future" pass
+
+* New: I-261101-18 (the face ladder is monotone, the genus ladder is not: k-face sub-instances and face-CEGAR seeds),
+  I-261101-19 (Farkas-certificate descent on the normals), H-261101-15, H-261101-16, E-261101-23 (k-face
+  sub-instances), E-261101-24 (Farkas pilot).
+* Refined: E-261101-06 (exact covering on chambers, vertex-type patterns as cube basis; E-261101-13 merged and
+  killed), E-261101-15 (cubes on the 44 vertex-type bits, LRAT on the fly), E-261101-16 (exact disk constraint;
+  normals from SAT models as a third source), E-261101-17 (offsets and normals measured separately; float prefilter),
+  E-261101-18 (asymmetric half moved to E-261101-23), E-261101-22 (primary reads of Bokowski-H. 8.3 and Roest-Vigh 4
+  first), E-261101-08 (S1 is a goal in itself; I-261030-09 undoubling parked: a surgery, not a path).
+* ROADMAP queue re-ordered: E-261101-23 and -06 first, -21 and -22 next; STATUS 3a lists H-261101-15, -16.
+
+## 2026-11-01 (evening): primary sources read
+
+* `literature/primary-reads-2026-11-01.md`: Bokowski-H. 2025 (full HTML text), Roest-Vigh 2026 and Mizhaev 2026
+  (arXiv PDFs). The "empty set" sentence (Sec. 7.3) is the vertex version; the face version is open in print.
+  Both 8-face objects have exactly 4 convex vertices (20 reflex corners, one per saddle). Mizhaev's planes and face
+  walks transcribed to `literature/mizhaev2026-planes.json` and checked with `ladder_exact.verify`: EMBEDDED,
+  20 single + 8 doubled pairs (EXACT, session check).
+* New idea I-261101-20 (few convex vertices); E-06, E-16, E-08, E-12 and E-22 READMEs updated; literature rows
+  added (bokowski-schewe2002, arseneva2024, sequin2004, schulte-wills2012); E-11 README and ROADMAP Phase 0 carry the
+  justification for the e-mail to the `polyhedraproof` author and the Szeged contacts.
+
+## 2026-11-01 (night): algorithm v2, chirotope-first realization (branch `experiment/E-261101-25-chirotope-first`)
+
+* New engine `experiments/E-261101-25-chirotope-first/chirotope_first.py` (idea I-261101-21, hypothesis H-261101-17,
+  experiment E-261101-25 pre-registered in its `PLAN.md`): SAT over the OM-SAT encoding with the signs of a
+  geometric seed as assumptions, core-guided release with a greedy re-add pass (minimal correction set), realization of
+  models by hinge-loss descent with analytic gradients, exact rounding and `ladder_exact.verify`, alternating
+  projections, heuristic no-good blocking, optional face ladder on k-face sub-instances (`build_faces` reproduces
+  `omsat.build` exactly on the full face set).
+* Controls: n = 7 from random planes -> exact EMBEDDED (5/5 across modes); realizer recovers the exact chirotopes of
+  the type-0 witness and a class seed from random starts in 0.3 s.
+* Pilots at n = 12 (type 0): full instance under rank-3 assumptions UNSAT in 0.3 s (core ~77), then TIMEOUT once
+  most assumptions are released; k = 7 sub-instance SAT in seconds with a minimal correction set of 8-9 signs, but
+  the nearest embedding models did not realize (8 wrong signs): the SAT instance lacks realizability constraints.
+  Details and the blocking pilot in `PLAN.md` Amendments. Night run handed to the owner (`run.sh`, 10 shards).
+* Same night, later: `final_polynomial.py` (biquadratic final polynomials with an exact rational re-check; sound cuts
+  in the loop) and CLD minimal correction sets added to the engine; idea I-261101-22 (exploit / explore research loop
+  with a mutation quota and a benchmark gate), experiment E-261101-26 (engine benchmark ladder), `PROTOCOL.md` 8a
+  (how the next experiment is chosen; a night run is part of an experiment); night run 1 of E-261101-25
+  pre-registered with predictions P1-P4 in its `PLAN.md`.
+* Night-6 launcher `overnight/run_night6.sh` (start / status / stop; 10 single-core processes for the M4 Pro's 10
+  performance cores, each under `caffeinate -dimsu`); E-25 night settings add a 75-minute cap per seed and a
+  per-step `progress.jsonl`; both runners pin BLAS threads to 1. Pilot L stopped unfinished before the night.
+* Restartability: both runners skip units already recorded in `results.jsonl` (E-23 also skips larger k after a
+  recorded UNSAT), manifests append on restart, `nice -n 10`; tested (skips in 0.5 s). Lessons written into the
+  `overnight-run-script` skill ("Lessons of night 6").
+
+## 2026-11-02: night 6 concluded (E-261101-23, E-261101-25)
+
+* Both UNDERPOWERED: a HiGHS LP without a time limit in `final_polynomial.py` hung 9 of 10 shards for ~9 h
+  (reproduced, fixed with `time_limit` -> `LP-TIMEOUT`); no UNSAT, no realized model, nothing EMBEDDED.
+  `experiments/E-261101-23-k-face-subinstances-face-cegar/CONCLUSION.md`, `experiments/E-261101-25-chirotope-first/CONCLUSION.md`,
+  `reports/NIGHT_REPORT_2026-11-02.md`; follow-ups E-261102-01, E-261102-02.
+
+## 2026-11-02: E-261102-01 concluded (k-face sweep completion)
+
+* 8 shards, 40 min, 4.2 core-h, no hang: k = 8 SAT for the 32 missing types, k = 9 SAT 18 / TIMEOUT 14, 0 UNSAT,
+  0 realized; LOW-YIELD for exclusion on the greedy face set. `experiments/E-261102-01-kface-sweep-completion/CONCLUSION.md`.
+
+## 2026-11-02: E-261101-26 first scope concluded (engine benchmark ladder, chirotope-first)
+
+* Daytime, 8 of 10 shards (64 of 80 units), 5.3 core-h, no HARD-CAP: R1 16/16, R4 0/8 and 0/8, R5 0/8, R6k k = 7, 8, 9
+  4/8, 1/8, 1/8; frontier R4 / R5, failures cut by `--alt 20`, not by time.
+  `experiments/E-261101-26-engine-benchmark-ladder/CONCLUSION.md`.
+
+## 2026-11-02: process changes after the first engine score
+
+* `overnight/launch.sh start DIR CORES` (sets `SHARDS`; runners skip units recorded in any shard), commit `3e8a54b`.
+* PROTOCOL §2.4 pilot gate and §2.5 grid rule, `_template/PLAN.md`; E-261102-02 blocked (`PLAN.md` Amendments); new
+  rows E-261102-03 (chirotope-first, cap or wall) and E-261102-04 (genus-ladder search on the ladder). The 16 missing
+  units of E-261101-26 are running on the laptop.
+
+## 2026-11-02: E-261101-26 completed (the 16 missing units)
+
+* Resumed with `launch.sh start ... 8`, all 80 units, 6.6 core-h in total: R1 20/20, R4 0/10 and 0/10, R5 0/10, R6k
+  5/10, 1/10, 1/10; verdict unchanged (frontier R4 / R5). `CONCLUSION.md` Amendment.
+
+## 2026-11-02: E-261102-03 and E-261102-04 pre-registered (night 7)
+
+* E-261102-03 (`PLAN.md`, commit `c2b1ab6`): chirotope-first with the alternation cap lifted. Pilot 1 (`--alt 100000`)
+  realized k = 7, 8, 9 in 34 min, then ended on the 60 s SAT timeout at k = 10 (gate not passed); pilot 2
+  (`--timeout 300`) replayed it exactly and ended by TIME-CAP (gate passed). Night: 20 units x 120 min, 40-min cell
+  by truncation.
+* E-261102-04 (`PLAN.md`, commit `f90a1d9`): `ladder.py run --engine genus-ladder`; pilot R1 3/3, R5 seed 3 and R4
+  seed 0 per map TIME-CAP at 40 min (best energy 1-2), gate passed. Night: grid R1 5, R5 6 / 40, R4 40 / 120 min.
+* Both launched by the owner on night 7 (10 + 4 shards). Nothing concluded yet.
+
+## 2026-11-03: night 7 concluded (E-261102-03, E-261102-04)
+
+* E-261102-03 (chirotope-first, cap lifted, 35.9 core-h, 8.9 of them recomputed after a stop and restart; all 20 units complete): R4 / R5 0/12 at 120 min,
+  R6k k = 8, 9 4/4 each; k = 10 realized in 3 units, 5 units ended on the 300-s SAT timeout. P1-P3 hold, P4 as amended.
+  E-261102-02 killed by the pre-registered rule. `experiments/E-261102-03-chirotope-alt-cap-or-wall/CONCLUSION.md`.
+* E-261102-04 (genus-ladder search, 17.8 core-h): R1 20/20, R5 5/10 at 6 min and 3/5 at 40 min (P2 fails by one
+  unit; same seeds, every success within 3 min), R4 0/14. `experiments/E-261102-04-genus-ladder-engine-score/CONCLUSION.md`.
+* Both scored engines fail R4. Night report `reports/NIGHT_REPORT_2026-11-03.md`.
+
+## 2026-11-03: independent check of the three final-polynomial certificates
+
+* `verification/certificates/final_polynomial/verify.py` (standard library): types 0 k = 9 (regenerated from the
+  night-6 model), 53 k = 9, 57 k = 8 PASS, self-tests PASS; added to `verify_all`. Vertex types of the 255
+  realizations (`code/vertex_types.py`, I-261101-20): no c = 4 in our data.

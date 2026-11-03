@@ -9,7 +9,10 @@ reviewable proof and share it with experts.
 genus-6 triangulations with 12 vertices (12 faces, every two sharing exactly one edge, 3 faces per
 vertex). There is no polyhedral IMMERSION of M in R^3 with planar faces — faces are simple planar
 polygons and every vertex star is embedded — that is invariant under a non-trivial isometry of R^3
-(acting on M by a combinatorial automorphism).
+(acting on M by a combinatorial automorphism). **Scope note 2026-11-01:** the 25 certified instances encode
+`det rho(g) = eps(g) = +1`, i.e. rotations. Mirrors and point reflections (which may induce an orientation-preserving
+involution of an immersion) are excluded by Lemma A of `../theory/theory-notes.md` (addendum 2026-11-01), which is
+unreviewed; until it is reviewed the theorem must be stated for rotations.
 
 Corollary (already claimed by Moki & Julio 2026, independently reproduced here): no
 12-face Series-1 polyhedron (embedded) has a non-trivial symmetry.
@@ -27,6 +30,8 @@ Corollary (already claimed by Moki & Julio 2026, independently reproduced here):
 
 ## What remains (in order)
 
+0. **Review Lemma A** (improper isometries; `../ideas/I-261101-16-improper-isometry-lemma-immersions.md`) by a
+   human, or restate the theorem for rotations. Without this step the title claim is wider than the evidence.
 1. **Second, independent encoding of the local families** (SIMPLE, REFLEX1, POC, symmetry action),
    written from the geometric definitions without reading `omsat.py`; it must give UNSAT on all 25
    classes and SAT on the controls (Szilassi n=7; symmetric instances without SIMPLE, e.g. #48 C2

@@ -19,4 +19,15 @@ Refuted fraction per core-hour on type 0, type 58 and one trivial-Aut type.
 
 ## Next
 
-Stop rule: campaign only if the extrapolation is below ~2,000 core-h per type
+Stop rule: one type decided or the matrix exhausted; report refuted fraction per core-hour and the cost of proof
+handling. Revised 2026-11-01: the 2,000 core-h threshold is not the gate any more (`ROADMAP.md`, decision table).
+
+## Starting point (2026-11-01)
+
+* Cube on the 44 vertex-type bits (F3: convex iff chi(X, Y, Z, inf) = +1), not on the 220 rank-3 signs: the
+  patterns allowed by degree -5, >= 13 saddles and the fold-locus identities of E-261101-21 are far fewer than the
+  rank-3 chirotopes, and every refuted cube reads as a lemma about a saddle arrangement. Take the pattern list from
+  E-261101-06's models.
+* Per cube: CaDiCaL with LRAT, `cake_lpr` on the fly inside the shard, keep cube, verdict and hashes, discard the
+  checked proof (the policy of the Keller and Schur-5 campaigns). Shards under 5 h (`PROTOCOL.md` section 6).
+* Coordinate with `polyhedraproof` after E-261101-09: same type, both encodings, compare verdict and cost.

@@ -1,0 +1,22 @@
+{
+ "engine": "genus-ladder",
+ "config": {
+  "search": "genus_ladder.search",
+  "floor": "archive_climb FLOOR_EDGE, FLOOR_MARGIN"
+ },
+ "judge": "exact (ladder.py)",
+ "tasks": {
+  "R4-type15-genus3": {
+   "rung": "R4",
+   "seeds": 1,
+   "successes": 0,
+   "budget_minutes": [
+    40.0
+   ],
+   "median_minutes_to_success": null,
+   "engine_results": {
+    "TIME-CAP": 1
+   }
+  }
+ }
+}

@@ -2,16 +2,18 @@
 id: E-261101-07
 title: Why does every class-reaching drift end at margin 0?
 date: 2026-11-01
-status: planned
+status: done
 direction: [DR3]
 origin: [I-261101-03, E-261030-11]
 tests: [H-261101-03]
 produces: []
+verdict: ARTEFACT (measuring function floors at 0; see CONCLUSION.md)
 preregistered: false
 ---
 
-> Planned. Scores T D F G R: 2 2 2 2 1 | budget: 1 session theory + 1 core-h. Before any compute: `PLAN.md` from `experiments/_template/` (skill
-> `experiment-start`).
+> Done 2026-11-01 without compute: the margin is an artefact of `gauss_gate.hemisphere_margin`, which returns 0 for
+> every set not in an open hemisphere; and k_tau != 0 forces that anyway. Details: `CONCLUSION.md`. The real question
+> (can in-class normals be reached inside the realization space?) is E-261101-19.
 
 ## Goal
 

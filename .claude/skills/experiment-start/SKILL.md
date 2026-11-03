@@ -25,6 +25,9 @@ Paths are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2,
    - the target (S0-S4) and the counters by their `SPEC.md` §4 names;
    - a positive control that must succeed and a negative control that must fail;
    - a power statement;
+   - **counter calibration**: for every float diagnostic that may appear in the verdict, one control input on each
+     side of its threshold (a clamped or saturating measure is not a measurement; `gauss_gate.hemisphere_margin`
+     floors at 0, E-261101-07);
    - the meaning of every outcome (SAT / UNSAT / timeout / near-miss);
    - budget and stop rule, both from the row.
 5. **Runner.** Replace the placeholder in `run.sh` with one bounded command that writes into `$OUT`.

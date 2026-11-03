@@ -79,6 +79,8 @@ def build():
                 errors.append('%s: file name does not start with its id %s' % (rel, nid))
             if h.get('date', '').replace('-', '')[2:] != m.group(2):
                 errors.append('%s: date %r does not match id %s' % (rel, h.get('date'), nid))
+            if h.get('concluded') and not (re.fullmatch(r'\d{4}-\d{2}-\d{2}', h['concluded']) and h['concluded'] >= h.get('date', '')):
+                errors.append('%s: concluded %r is not a date on or after %r' % (rel, h['concluded'], h.get('date')))
             if not h.get('title'):
                 errors.append('%s: no title' % rel)
             if h.get('status') not in statuses:
@@ -89,7 +91,7 @@ def build():
                 if k in h and not isinstance(h[k], list):
                     errors.append('%s: %s must be a [list]' % (rel, k))
             nodes[nid] = {'id': nid, 'kind': kind, 'title': h.get('title', ''), 'status': h.get('status', ''),
-                          'date': h.get('date', ''), 'path': rel, 'direction': h.get('direction', []),
+                          'date': h.get('date', ''), 'concluded': h.get('concluded', ''), 'path': rel, 'direction': h.get('direction', []),
                           'verdict': h.get('verdict', ''), 'preregistered': h.get('preregistered', ''), '_h': h}
     ext = ledger()
     used = set()
@@ -111,10 +113,11 @@ def build():
     for ref in sorted(used):
         if ref in ext:
             kind, title, path = ext[ref]
-            nodes[ref] = {'id': ref, 'kind': kind, 'title': title, 'status': '', 'date': '', 'path': path,
+            nodes[ref] = {'id': ref, 'kind': kind, 'title': title, 'status': '', 'date': '', 'concluded': '', 'path': path,
                           'direction': [], 'verdict': '', 'preregistered': ''}
     graph = {'nodes': sorted(nodes.values(), key=lambda n: n['id']),
-             'edges': sorted(edges, key=lambda e: (e['from'], e['to'], e['kind']))}
+             'edges': sorted(edges, key=lambda e: (e['from'], e['to'], e['kind'])),
+             'directions': {k: v[1] for k, v in sorted(ext.items()) if k.startswith('DR')}}   # lane titles of map/timeline.html
     return errors, graph
 
 

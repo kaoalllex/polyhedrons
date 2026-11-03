@@ -13,7 +13,10 @@ Paths are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2.
 
    Sum the core-hours from every `manifest.txt`. If a manifest is missing, say so; do not estimate.
 2. **Controls first.** If the positive control failed, or never had the chance to succeed under the same budget,
-   the verdict is "underpowered", not LOW-YIELD.
+   the verdict is "underpowered", not LOW-YIELD. If a verdict rests on a diagnostic that was constant across the
+   runs (pinned, exactly 0, always even), check the measuring function on controls that must give the other sign
+   before interpreting it (`reviews/strategy-review-2026-11-01.md` 5.1). A negative statement names its scope
+   (`SPEC.md` section 4) and what was not run.
 3. **Verify.** Run every candidate through the `candidate-check` skill. Every UNSAT used as evidence keeps its
    formula (CNF / SMT2 file or its SHA-256) and, for SAT, its proof.
 4. **Conclude.** Fill in `CONCLUSION.md` from the template:
@@ -30,7 +33,7 @@ Paths are relative to `research/12-faced-polyhedron/`. Rules: `PROTOCOL.md` §2.
      stop rule and its DR/FD link.
    - **`experiment-log.md`:** a 1-3 line dated entry pointing to `CONCLUSION.md`.
 
-   - **Experiment `README.md`:** `status: done` (or `killed`), `verdict`, `produces` (FD / W: / C: it established),
+   - **Experiment `README.md`:** `status: done` (or `killed`), `concluded: YYYY-MM-DD`, `verdict`, `produces` (FD / W: / C: it established),
      and a short results / conclusions summary.
    - **New ideas or hypotheses** that came out of it: one file each, with this experiment in their `origin`.
    - Run `verification/trace.py` so the map is up to date.

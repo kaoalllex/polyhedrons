@@ -11,8 +11,17 @@ add dated amendments at the end instead.
 * **Method**: scripts, parameters, target (SPEC S0-S4), counters used (SPEC §4).
 * **Controls**: positive (must succeed: ...), negative (must fail: ...).
 * **Pilot** (minutes; what bug in the idea it could expose):
+* **Pilot gate** (PROTOCOL §2.4): the limit that should bind in the long run, and what the pilot must show
+  (per unit: the limit that ended it and the budget fraction used; the projected outcome) for the long run to start.
+* **Predictions** (written before the run): at least one with a real chance (~30-70 %) of failing, each tied to
+  a decision.
+* **Grid** (PROTOCOL §2.5): the parameter the outcome depends on and its values, or why one setting suffices.
 * **Budget**: core-hours, wall time, shards (`matrix.json`), where (laptop / Actions).
 * **Power statement**: what the budget can and cannot detect.
+* **Counter calibration**: for every float diagnostic in the planned verdict, a control input on each side of its
+  threshold (a saturating measure is not a measurement).
+* **Scenario move**: how each outcome moves the three credences of the `ROADMAP.md` decision point (A exists /
+  B all OM-UNSAT / C OM-SAT but non-realizable), one line each.
 * **Outcomes and their meaning** (decided now):
   * SAT / found: ...
   * UNSAT: ... (scope of the formula)

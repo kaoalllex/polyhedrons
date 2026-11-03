@@ -36,6 +36,7 @@ evidence of a solution.
 | S1 | **Doubled adjacencies**: every pair of faces adjacent, some pairs share two collinear edges; d doubled pairs raise the genus | the 2026 eight-face objects (Mizhaev, Roest-Vigh) are of this kind; 12-face version untried |
 | S2 | **Polyhedral immersion**: conditions 1-3 plus *local* embeddedness (simple faces, at most one reflex corner per vertex, orientation consistency); global intersections allowed | symmetric case excluded (CERTIFIED); asymmetric open |
 | S3 | **Partial polyhedron**: 12 planar simple faces, embedded, genus g < 6, 30 + 6g adjacent pairs, every adjacency single | genus 3 reached (types 0, 15, 39, 53) |
+| S5 | **Maximal face-neighbourly polyhedron (F, g)**: embedded, cubic, every two of the F faces adjacent (doubled adjacencies allowed), and F = F_max(g), the most faces possible at genus g (F (F - 1) / 2 <= E = 3 (F + 2g - 2)): (7, 1) Szilassi, (8, 2), (9, 3), (10, 4), (11, 5); (12, 6) is S0. Success check: `verify_candidate.py FILE --target S5` PASS | (7, 1) known; the 2026 eight-face objects are (8, 3), not maximal; (8, 2) to (11, 5) unknown to us (literature check open); symmetric realizations allowed (FD5 is about S0 only) |
 | S4 | **Smaller analogues**: n mutually adjacent faces, n = 7 (Szilassi, genus 1), n = 8 (genus 2 needs doubled adjacencies or 4-valent vertices) | n = 7 solved by every engine; n = 8 strict rungs open |
 
 "Extendable" (for S3) means only: the abstract map can be completed to a genus-6 target map by handle
@@ -100,6 +101,9 @@ AI agents working on the same code and premises are **not** independent reviewer
 claims need a human mathematical review outside this chain of agents.
 
 ## Change log
+
+* 2026-11-03: §2 adds S5 (maximal face-neighbourly polyhedra) and its check `--target S5`; the owner made S5 at
+  (9, 3) the focus target (`STRATEGY.md`); S0 stays the defining problem of the project, parked, not weakened.
 
 * 2026-11-01: §4 adds ERROR / CANDIDATE, the scope of a negative result and the certificate chain.
 * 2026-11-01: §1 success check is `verify_candidate.py --target S0` (the earlier `--all-pairs` wording

@@ -29,7 +29,21 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
    compute: hypothesis, controls, what each outcome (SAT / UNSAT / timeout / near-miss) will mean, budget, stop
    rule, power statement (what effect size the budget can detect).
 4. **Pilot** -> the smallest instance that could expose a bug in the idea (minutes). Positive control must pass.
-5. **Run** -> on branch `experiment/E-YYMMDD-NN-slug`, on the laptop (`caffeinate -dimsu bash run.sh`) or on GitHub
+   The pilot is also the gate of the long run (the lesson of E-261101-26, whose units all stopped at an
+   alternation cap after 15-39 % of their time). It reports:
+   * per unit, which limit ended it (alternations, rounds, time, solver timeout, hard cap) and the fraction of the
+     budget it used;
+   * a projection of the long run's outcome from these numbers.
+
+   The long run starts only if three things hold:
+   * the binding limit is the one the PLAN intends;
+   * at least one pre-registered prediction still has a real chance (roughly 30-70 %) of failing;
+   * every outcome is tied to a decision written in the PLAN.
+
+   Re-check the ROADMAP D score against the pilot; if T + D drops below 3, the run does not start. Otherwise the
+   PLAN gets a dated amendment (another limit, a grid, a sharper question) or the run is dropped.
+5. **Run** -> when the outcome depends on a parameter (a cap, a budget, a step count), the long run is a small grid
+   over that parameter with fewer seeds per cell, not one setting with many seeds. On branch `experiment/E-YYMMDD-NN-slug`, on the laptop (`caffeinate -dimsu bash run.sh`) or on GitHub
    Actions (section 6). Every run writes a manifest (section 5).
 6. **Verify** -> every candidate through `verification/verify_candidate.py`; every UNSAT that is used as evidence
    keeps its formula (SMT2 / CNF hash) so it can be re-checked.
@@ -47,7 +61,9 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
 * Verdicts carry their budget: "LOW-YIELD@8 core-h, 2 seeds" - a measurement, not a ban. REFUTED needs a proof.
 * Before calling a direction low-yield, check the positive control was able to succeed under the same budget;
   if it was not, the verdict is "underpowered".
-* A new engine must first reproduce a known object (Szilassi, Roest-Vigh, a saved genus-3 witness).
+* A new engine must first reproduce a known object (Szilassi, Roest-Vigh, a saved genus-3 witness), and is scored
+  on the benchmark ladder next to the engines already scored there (`STATUS.md` 3b). A ladder table with one engine
+  ranks nothing.
 * Theorem-level claims need two independent implementations (encoder / verifier) and a human reviewer outside
   the agent chain; the `adversarial-verifier` agent is a filter, not a referee. Every claim that changes a
   FD / witness row gets a `REVIEW.md` (`experiments/_template/REVIEW.md`) written by someone other than its author.
@@ -88,6 +104,7 @@ origin: [I-261030-04, H-261101-04, E-261030-07, L:schewe2010]   # where it came 
 tests: [H-261101-04]    # experiments only: hypotheses it can move
 produces: [FD7, W:lab_type0_genus3]                              # experiments only: results it established
 verdict: LOW-YIELD@150 core-h                                    # experiments only, when done
+concluded: 2026-11-01   # experiments only, when done or killed: the date of CONCLUSION.md (omit if equal to date)
 preregistered: false    # experiments only; false for work reconstructed after the fact
 ---
 ```
@@ -111,7 +128,12 @@ keeps the URL, size and SHA-256.
 ## 6. Compute
 
 **Laptop** (owner's MacBook, 11 workers): always under `caffeinate -dimsu` (night 4 lost 8 h to sleep); jobs
-checkpoint and resume (`overnight/run_overnight.py` does). Use the `overnight-run-script` skill to write night
+checkpoint and resume (`overnight/run_overnight.py` does). Launch with `overnight/launch.sh CODE [CODE ...] start
+[CORES]` (CODE: the end of an experiment id, e.g. `02-03`; CORES default 10, fewer by day); `run.sh` splits its units
+by `SHARDS = CORES`, and a restart with another CORES re-splits the remaining units. At most 10 cores in total (more
+freezes the laptop; the launcher refuses past `MAX_CORES`): several experiments in one night are one queue on the
+same cores (`launch.sh 02-03 02-04 start`), never side by side. `stop` lets each shard finish its current unit;
+`kill` stops at once, and the units in flight rerun from their start. Use the `overnight-run-script` skill to write night
 scripts. Long runs belong to the owner's machine, not to a cloud AI session (its background processes die).
 
 **GitHub Actions** (public repository, free standard runners): `.github/workflows/experiment.yml` runs
@@ -132,6 +154,21 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 * One branch per experiment: `experiment/E-YYMMDD-NN-slug`; documentation / infrastructure work: `claude/<topic>`.
 * Night results are committed by the runner (`--git`); push them before starting a new session.
 * Tags freeze citable states (`state-YYYY-MM-DD`), e.g. before a write-up or an external review.
+
+## 8a. Choosing the next experiment
+
+* The default next experiment is the top `open` row of `ROADMAP.md`; the order follows the credence table of the
+  decision point and the T D F G R scores, and every `CONCLUSION.md` moves the credences by the line its `PLAN.md`
+  pre-registered ("scenario move").
+* `STRATEGY.md` sets the focus target and may set another exploration share (2026-11-03: one in two).
+* One run in four is an **explore** run drawn from the mutation pool (a parked method with one stated change, a
+  below-gate row re-scored with a written reason, or a new idea file); it is logged as "explore" and its PLAN says
+  what result would make it the new default.
+* A construction engine runs on the 12-face target only after it is scored on the benchmark ladder (E-261101-26);
+  a failure on the target is not evidence about the engine, a failure on a rung with a known answer is.
+* A night run is part of an experiment: it is launched only from an experiment's `run.sh`, after its `PLAN.md` is
+  committed, and it is concluded with the `experiment-conclude` skill. "Go and run this" without a PLAN is not a
+  valid hand-over.
 
 ## 8. AI sessions and agents
 

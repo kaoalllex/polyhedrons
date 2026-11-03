@@ -1,0 +1,292 @@
+{
+ "engine": "chirotope-first",
+ "config": {
+  "alt": 100000,
+  "timeout": 300.0,
+  "rounds": 40,
+  "readd": 1000,
+  "realize_restarts": 6,
+  "block": 1,
+  "realizer": "two-stage",
+  "simple": 1,
+  "fp": 1,
+  "assume": "all",
+  "solver": "core"
+ },
+ "judge": "exact (ladder.py)",
+ "tasks": {
+  "R4-type15-genus3": {
+   "rung": "R4",
+   "seeds": 4,
+   "successes": 0,
+   "budget_minutes": [
+    120.0
+   ],
+   "median_minutes_to_success": null,
+   "engine_results": {
+    "TIMEOUT": 2,
+    "TIME-CAP": 2
+   },
+   "successes_within_minutes": {
+    "40": 0,
+    "120": 0
+   },
+   "units": [
+    {
+     "seed": 0,
+     "result": "TIMEOUT",
+     "success": false,
+     "budget_fraction": 0.71,
+     "alternations": 132,
+     "best_energy": null,
+     "k_realized": 9
+    },
+    {
+     "seed": 1,
+     "result": "TIMEOUT",
+     "success": false,
+     "budget_fraction": 0.59,
+     "alternations": 159,
+     "best_energy": null,
+     "k_realized": 10
+    },
+    {
+     "seed": 2,
+     "result": "TIME-CAP",
+     "success": false,
+     "budget_fraction": 1.0,
+     "alternations": 346,
+     "best_energy": null,
+     "k_realized": 8
+    },
+    {
+     "seed": 3,
+     "result": "TIME-CAP",
+     "success": false,
+     "budget_fraction": 1.0,
+     "alternations": 299,
+     "best_energy": null,
+     "k_realized": 7
+    }
+   ]
+  },
+  "R4-type0-genus3": {
+   "rung": "R4",
+   "seeds": 4,
+   "successes": 0,
+   "budget_minutes": [
+    120.0
+   ],
+   "median_minutes_to_success": null,
+   "engine_results": {
+    "TIME-CAP": 3,
+    "TIMEOUT": 1
+   },
+   "successes_within_minutes": {
+    "40": 0,
+    "120": 0
+   },
+   "units": [
+    {
+     "seed": 0,
+     "result": "TIME-CAP",
+     "success": false,
+     "budget_fraction": 1.0,
+     "alternations": 277,
+     "best_energy": null,
+     "k_realized": 9
+    },
+    {
+     "seed": 1,
+     "result": "TIME-CAP",
+     "success": false,
+     "budget_fraction": 1.0,
+     "alternations": 263,
+     "best_energy": null,
+     "k_realized": 8
+    },
+    {
+     "seed": 2,
+     "result": "TIMEOUT",
+     "success": false,
+     "budget_fraction": 0.92,
+     "alternations": 222,
+     "best_energy": null,
+     "k_realized": 10
+    },
+    {
+     "seed": 3,
+     "result": "TIME-CAP",
+     "success": false,
+     "budget_fraction": 1.0,
+     "alternations": 311,
+     "best_energy": null,
+     "k_realized": 8
+    }
+   ]
+  },
+  "R5-type15-genus3-from-parent": {
+   "rung": "R5",
+   "seeds": 4,
+   "successes": 0,
+   "budget_minutes": [
+    120.0
+   ],
+   "median_minutes_to_success": null,
+   "engine_results": {
+    "TIME-CAP": 2,
+    "TIMEOUT": 2
+   },
+   "successes_within_minutes": {
+    "40": 0,
+    "120": 0
+   },
+   "units": [
+    {
+     "seed": 0,
+     "result": "TIME-CAP",
+     "success": false,
+     "budget_fraction": 1.01,
+     "alternations": 375,
+     "best_energy": null,
+     "k_realized": 10
+    },
+    {
+     "seed": 1,
+     "result": "TIME-CAP",
+     "success": false,
+     "budget_fraction": 1.0,
+     "alternations": 317,
+     "best_energy": null,
+     "k_realized": null
+    },
+    {
+     "seed": 2,
+     "result": "TIMEOUT",
+     "success": false,
+     "budget_fraction": 1.02,
+     "alternations": 328,
+     "best_energy": null,
+     "k_realized": 9
+    },
+    {
+     "seed": 3,
+     "result": "TIMEOUT",
+     "success": false,
+     "budget_fraction": 0.65,
+     "alternations": 210,
+     "best_energy": null,
+     "k_realized": 9
+    }
+   ]
+  },
+  "R6k-type15-genus3-k8": {
+   "rung": "R6k",
+   "seeds": 4,
+   "successes": 4,
+   "budget_minutes": [
+    120.0
+   ],
+   "median_minutes_to_success": 28.64,
+   "engine_results": {
+    "LADDER-END": 4
+   },
+   "successes_within_minutes": {
+    "40": 2,
+    "120": 4
+   },
+   "units": [
+    {
+     "seed": 0,
+     "result": "LADDER-END",
+     "success": true,
+     "budget_fraction": 0.03,
+     "alternations": 22,
+     "best_energy": null,
+     "k_realized": 8
+    },
+    {
+     "seed": 1,
+     "result": "LADDER-END",
+     "success": true,
+     "budget_fraction": 0.43,
+     "alternations": 183,
+     "best_energy": null,
+     "k_realized": 8
+    },
+    {
+     "seed": 2,
+     "result": "LADDER-END",
+     "success": true,
+     "budget_fraction": 0.05,
+     "alternations": 31,
+     "best_energy": null,
+     "k_realized": 8
+    },
+    {
+     "seed": 3,
+     "result": "LADDER-END",
+     "success": true,
+     "budget_fraction": 0.83,
+     "alternations": 270,
+     "best_energy": null,
+     "k_realized": 8
+    }
+   ]
+  },
+  "R6k-type15-genus3-k9": {
+   "rung": "R6k",
+   "seeds": 4,
+   "successes": 4,
+   "budget_minutes": [
+    120.0
+   ],
+   "median_minutes_to_success": 27.78,
+   "engine_results": {
+    "LADDER-END": 4
+   },
+   "successes_within_minutes": {
+    "40": 3,
+    "120": 4
+   },
+   "units": [
+    {
+     "seed": 0,
+     "result": "LADDER-END",
+     "success": true,
+     "budget_fraction": 0.76,
+     "alternations": 284,
+     "best_energy": null,
+     "k_realized": 9
+    },
+    {
+     "seed": 1,
+     "result": "LADDER-END",
+     "success": true,
+     "budget_fraction": 0.01,
+     "alternations": 6,
+     "best_energy": null,
+     "k_realized": 9
+    },
+    {
+     "seed": 2,
+     "result": "LADDER-END",
+     "success": true,
+     "budget_fraction": 0.19,
+     "alternations": 91,
+     "best_energy": null,
+     "k_realized": 9
+    },
+    {
+     "seed": 3,
+     "result": "LADDER-END",
+     "success": true,
+     "budget_fraction": 0.27,
+     "alternations": 92,
+     "best_energy": null,
+     "k_realized": 9
+    }
+   ]
+  }
+ }
+}

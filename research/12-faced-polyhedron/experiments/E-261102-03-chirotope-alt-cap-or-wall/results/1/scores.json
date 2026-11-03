@@ -1,0 +1,100 @@
+{
+ "engine": "chirotope-first",
+ "config": {
+  "alt": 100000,
+  "timeout": 300.0,
+  "rounds": 40,
+  "readd": 1000,
+  "realize_restarts": 6,
+  "block": 1,
+  "realizer": "two-stage",
+  "simple": 1,
+  "fp": 1,
+  "assume": "all",
+  "solver": "core"
+ },
+ "judge": "exact (ladder.py)",
+ "tasks": {
+  "R4-type15-genus3": {
+   "rung": "R4",
+   "seeds": 1,
+   "successes": 0,
+   "budget_minutes": [
+    120.0
+   ],
+   "median_minutes_to_success": null,
+   "engine_results": {
+    "TIMEOUT": 1
+   },
+   "successes_within_minutes": {
+    "40": 0,
+    "120": 0
+   },
+   "units": [
+    {
+     "seed": 1,
+     "result": "TIMEOUT",
+     "success": false,
+     "budget_fraction": 0.59,
+     "alternations": 159,
+     "best_energy": null,
+     "k_realized": 10
+    }
+   ]
+  },
+  "R5-type15-genus3-from-parent": {
+   "rung": "R5",
+   "seeds": 1,
+   "successes": 0,
+   "budget_minutes": [
+    120.0
+   ],
+   "median_minutes_to_success": null,
+   "engine_results": {
+    "TIME-CAP": 1
+   },
+   "successes_within_minutes": {
+    "40": 0,
+    "120": 0
+   },
+   "units": [
+    {
+     "seed": 1,
+     "result": "TIME-CAP",
+     "success": false,
+     "budget_fraction": 1.0,
+     "alternations": 317,
+     "best_energy": null,
+     "k_realized": null
+    }
+   ]
+  },
+  "R6k-type15-genus3-k9": {
+   "rung": "R6k",
+   "seeds": 1,
+   "successes": 1,
+   "budget_minutes": [
+    120.0
+   ],
+   "median_minutes_to_success": 1.33,
+   "engine_results": {
+    "LADDER-END": 1
+   },
+   "successes_within_minutes": {
+    "40": 1,
+    "120": 1
+   },
+   "units": [
+    {
+     "seed": 1,
+     "result": "LADDER-END",
+     "success": true,
+     "budget_fraction": 0.01,
+     "alternations": 6,
+     "best_energy": null,
+     "k_realized": 9
+    }
+   ]
+  }
+ }
+}
