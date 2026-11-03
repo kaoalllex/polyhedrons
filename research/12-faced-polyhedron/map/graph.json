@@ -3092,6 +3092,20 @@
    "preregistered": ""
   },
   {
+   "id": "I-261103-01",
+   "kind": "idea",
+   "title": "Embedded first, planar later - flatten the faces of an embedded genus-6 surface with the target adjacency, never leaving embedding",
+   "status": "open",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "ideas/I-261103-01-embedded-first-planar-later.md",
+   "direction": [
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -4206,9 +4220,19 @@
    "kind": "tests"
   },
   {
+   "from": "E-261102-03",
+   "to": "I-261103-01",
+   "kind": "origin"
+  },
+  {
    "from": "E-261102-04",
    "to": "H-261101-10",
    "kind": "tests"
+  },
+  {
+   "from": "E-261102-04",
+   "to": "I-261103-01",
+   "kind": "origin"
   },
   {
    "from": "FD2",
@@ -4298,6 +4322,11 @@
   {
    "from": "H-261101-09",
    "to": "H-261101-16",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261101-10",
+   "to": "I-261103-01",
    "kind": "origin"
   },
   {
@@ -5348,6 +5377,11 @@
   {
    "from": "owner",
    "to": "I-261102-01",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261103-01",
    "kind": "origin"
   }
  ],
