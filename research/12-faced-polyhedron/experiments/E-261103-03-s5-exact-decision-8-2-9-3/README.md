@@ -2,12 +2,12 @@
 id: E-261103-03
 title: Exact decision per candidate map - OM-SAT for the 2 (8, 2) maps, then the symmetric and all admissible (9, 3) maps
 date: 2026-11-03
-status: planned
+status: running
 direction: [DR19, DR8]
 origin: [E-261103-01, E-261103-02, I-261030-31, I-261029-45, I-261029-57, H-261101-07]
 tests: [H-261103-03, H-261103-02, H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned. Scores T D F G R: 2 2 2 2 2 | budget: hours for (8, 2); one laptop night (10 cores) for (9, 3). Before any
