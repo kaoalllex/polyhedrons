@@ -160,6 +160,7 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 * The default next experiment is the top `open` row of `ROADMAP.md`; the order follows the credence table of the
   decision point and the T D F G R scores, and every `CONCLUSION.md` moves the credences by the line its `PLAN.md`
   pre-registered ("scenario move").
+* `STRATEGY.md` sets the focus target and may set another exploration share (2026-11-03: one in two).
 * One run in four is an **explore** run drawn from the mutation pool (a parked method with one stated change, a
   below-gate row re-scored with a written reason, or a new idea file); it is logged as "explore" and its PLAN says
   what result would make it the new default.

@@ -1,5 +1,10 @@
 # Roadmap: the experiment queue
 
+**Focus changed 2026-11-03** (`STRATEGY.md`): the focus target is S5 at (9, 3), S0 is parked. The queue below is
+the S0 queue as it stood; it is kept unchanged until the strategy review (`reviews/REVIEW_PROMPT_2026-11-03.md`)
+proposes the new order and the owner approves it. Until then: no new S0 night runs; E-261101-12 and E-261101-22
+(the S5 literature check) are the natural first items.
+
 As of 2026-11-02. Principle: **theory and a cheap filter first -> a discriminating experiment -> an exact
 solver -> a lemma or a certificate**. We do not try to enumerate the search space; we pick small, motivated
 regions where one experiment can exclude a whole class or reveal a new constraint. How to run an item:

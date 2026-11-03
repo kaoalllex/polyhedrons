@@ -53,8 +53,8 @@ def s0_rejects_roest_vigh():
     from verify_candidate import _verify
     H, links = build()
     rep = _verify({'planes': H, 'links': links})
-    s1, s0 = passes(rep, 'all-pairs'), passes(rep, 'S0')
-    return s1 and not s0, 'Roest-Vigh: all-pairs %s, S0 %s' % (s1, s0)
+    s1, s0, s5 = passes(rep, 'all-pairs'), passes(rep, 'S0'), passes(rep, 'S5')
+    return s1 and not s0 and not s5, 'Roest-Vigh: all-pairs %s, S0 %s, S5 %s (8 faces at genus 3, maximum 9)' % (s1, s0, s5)
 
 
 GL = 'experiments/E-261030-03-genus-ladder-type0-genus3/results/'
@@ -82,7 +82,10 @@ CHECKS = [
                    SF + 'genus3_12faces_48pairs_polished.json', genus=3)),
     ('witness: solid-first genus-2',
      lambda: files(True, SF + 'genus2_12faces_42pairs.json', genus=2)),
-    ('negative control: --target S0 rejects Roest-Vigh (doubled adjacencies)', s0_rejects_roest_vigh),
+    ('negative control: --target S0 and S5 reject Roest-Vigh (doubled adjacencies; not maximal)', s0_rejects_roest_vigh),
+    ('positive control: --target S5 accepts Szilassi (7 faces, genus 1, maximal)',
+     lambda: (lambda r: (all(x['PASS'] for x in r), '%d record(s), S5 PASS %s' % (len(r), [x['PASS'] for x in r])))(
+         verify_file(os.path.join(ROOT, 'experiments/E-261029-20-solid-first-n7/results/szilassi_found_without_map.json'), target='S5'))),
     ('site: lab models in index.html = exactly re-verified witnesses/witnesses.json',
      lambda: run(['export_site.py', '--check'], os.path.join(ROOT, 'witnesses'), 'in sync')),
     ('negative control: genus-4 attempts are NOT embedded',

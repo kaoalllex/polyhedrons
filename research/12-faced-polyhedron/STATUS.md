@@ -6,6 +6,10 @@ same commit as any result that changes a row. This file owns the verdicts and nu
 
 ## 0. State in one paragraph
 
+**Focus since 2026-11-03 (`STRATEGY.md`): S5 at (9, 3)**, a maximal face-neighbourly polyhedron with 9 faces and genus
+3 (stretch (10, 4)); nothing run on it yet. **S0 (Szilassi-12) is parked, not abandoned**: the paragraph below and
+every row of this file are its snapshot at parking time and stay valid.
+
 Combinatorics is finished (59 types). Impossibility side: no symmetric embedding (25/25 cases, CERTIFIED) and
 no polyhedral immersion with a rotational symmetry (25/25 DRAT-checked, EXACT; mirrors and point reflections rest on the unreviewed lemma I-261101-16; CERTIFIED after E-261101-10); the asymmetric case is open. Construction side: the best exact object
 has genus 3 (48 of 66 adjacent pairs; 94 realizations of 4 types, one of them on a map that is

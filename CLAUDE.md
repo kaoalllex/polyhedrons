@@ -2,22 +2,28 @@
 
 This repository has two parts:
 - the public 3D viewer: `index.html`, published by GitHub Pages from `main`, so every commit on `main` is live;
-- the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist?
+- the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
+  (`STRATEGY.md`, 2026-11-03): a maximal face-neighbourly polyhedron (SPEC S5) at (9, 3); the 12-face problem is
+  parked, not abandoned.
 
 ## Research work
 
-- **Read first:** `STATUS.md`, then `ROADMAP.md`, `PROTOCOL.md` and `SPEC.md`, all in `research/12-faced-polyhedron/`.
+- **Read first:** `STRATEGY.md`, `STATUS.md`, then `ROADMAP.md`, `PROTOCOL.md` and `SPEC.md`, all in
+  `research/12-faced-polyhedron/`.
 - **Hand-over notes:** `CONTINUE_PROMPT.md`, in the same folder.
 - **Skills** (`.claude/skills/`):
   - `experiment-start`: from a ROADMAP row to a pre-registered experiment;
   - `experiment-conclude`: results to `CONCLUSION.md` and the ledger, night reports included;
   - `candidate-check`: run before anyone calls anything a result;
   - `session-handover`: end of a session;
+  - `strategy-review`: the regular review of strategy and queue (separate session, strongest model);
   - `overnight-run-script`: laptop runs.
 
 Hard rules:
 - Never weaken the target, never fabricate a result, and report failures with their output. Only
-  `verification/verify_candidate.py FILE --target S0` returning PASS is a solution.
+  `verification/verify_candidate.py FILE --target S0` returning PASS is a solution of the 12-face problem; for the
+  focus target only `--target S5` PASS (with the face count and genus of `STRATEGY.md`) is a result. Never report
+  an S5 object as an S0 solution.
 - Label every claim with a `SPEC.md` §5 label. A proof written by an AI session is at most PROVED-1. AI agents are
   not independent reviewers.
 - Start an experiment only from a `ROADMAP.md` row with T + D >= 3, and only after its `PLAN.md` is committed.
