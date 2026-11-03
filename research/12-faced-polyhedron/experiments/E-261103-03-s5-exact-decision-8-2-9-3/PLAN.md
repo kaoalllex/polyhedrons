@@ -74,3 +74,29 @@ uses supplied normals when k < restarts // 2; random-start controls use one slot
   if plain decisions complete, consider a budget grid on the remaining admissible maps after review;
   if SAT models stall in realization/final polynomials, record the model bottleneck and do not buy a night.
   No automatic long run, push, PR or subagent work is authorized by this amendment.
+
+### 2026-11-04: panel correction before continuation
+
+The hand-over was stale: commit 69caae8 already contains the strategy review of 2026-11-04.
+The first dispatch used the preceding amendment before that review was noticed. It was interrupted
+by SIGINT during map1_plain; its manifest and partial proof remain untouched in results/paired_9_3.
+This is an execution correction, not a mathematical outcome. No dispatched formula will be retried.
+The interrupted call counts toward the 20-formula limit and remains unresolved.
+
+For continuation, follow review section 4: pairs on maps 0 and 5, plain 10/30/40/48, then the other
+six pairs in index order, skipping the already dispatched calls. This panel covers six excess patterns.
+Use 60 s solver + 60 s checker for remaining formulas. Preserve the original 30-s cutoff and actual
+interruption for earlier calls; mixed/censored timings do not estimate a speedup. Stop further target
+dispatch on the first SAT, process that one model through both realizers and final polynomial, each
+<=120 s, then stop even if no witness. Predictions become at least one plain completion and at least
+six plain completions unless SAT interrupts; the interrupted plain is unresolved, not a timeout result.
+
+Add the review's omitted control gates before continuation: rebuild and replay both saved (8,2)
+proofs (no solver rerun), malformed pairing guard, and a deterministic nine-plane pinned definitions
++ GP positive with all evaluated predicates compared to direct exact geometry. These are arrangement
+controls, not known (9,3) embeddings. Retest the selected free-C3 action. Controls <=300 s.
+Record canonical-code hashes and the full group closure. Existing controls are repeated under the
+same caps. Results go to results/paired_9_3_continued; inherited outcomes point to their original files.
+The continuation's computation cap is 3300 seconds minus the first manifest's wall seconds, leaving
+300 seconds total reserve for reporting. Both attempts together stay below 1 core-hour; all manifests
+are summed. No night or repeated target call is authorized. A control failure ends the pilot.
