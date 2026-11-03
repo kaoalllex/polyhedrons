@@ -44,6 +44,20 @@ class PilotTests(unittest.TestCase):
             r = pilot.command([sys.executable, '-c', 'import time; time.sleep(10)'], Path(tmp) / 'log', .05)
             self.assertEqual(r, None)
 
+    def test_paired_selection_has_twenty_formulas_on_twelve_maps(self):
+        units = pilot.paired_formulas()
+        self.assertEqual(len(units), 20)
+        self.assertEqual(len({i for i, rec, perm in units}), 12)
+        symmetric = [(i, rec, p) for i, rec, p in units if p is not None]
+        self.assertEqual(len(symmetric), 8)
+        for i, rec, p in symmetric:
+            self.assertTrue(rec['admissible'])
+            self.assertTrue(all(p[k] != k and p[p[p[k]]] == k for k in range(9)))
+            self.assertTrue(any(j == i and q is None for j, _, q in units))
+            for k, link in enumerate(rec['links']):
+                a = [p[v] for v in link]; b = rec['links'][p[k]]
+                self.assertTrue(any(a == b[j:] + b[:j] for j in range(len(b))))
+
     def test_free_involutions_preserve_cyclic_links(self):
         maps = pilot.census(8, 2)['maps']
         for m in maps:

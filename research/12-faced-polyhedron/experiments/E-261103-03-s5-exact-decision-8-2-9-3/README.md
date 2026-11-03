@@ -12,7 +12,8 @@ preregistered: true
 
 > Running, with the (8,2) stage completed. See [CONCLUSION.md](CONCLUSION.md) and
 > [STATUS.md](../../STATUS.md) for the exact decisions, controls and claim boundaries.
-> The (9,3) stage needs a committed PLAN amendment before target computation. No process is active.
+> The owner-requested paired C3/plain (9,3) pilot is registered in the dated PLAN amendment.
+> Run with `bash run.sh paired`; this does not authorize a night run.
 
 ## Goal
 

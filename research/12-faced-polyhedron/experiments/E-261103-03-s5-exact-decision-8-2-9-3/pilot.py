@@ -106,6 +106,40 @@ def free_c2(links):
     raise ValueError('no free orientation-preserving C2')
 
 
+def free_c3(links):
+    # The image of face 0 and its cyclic link determines every face image.
+    for image, link in enumerate(links):
+        if len(link) != len(links[0]):
+            continue
+        for shift in range(len(link)):
+            p = {0: image}
+            for a, b in zip(links[0], link[shift:] + link[:shift]):
+                if a in p and p[a] != b:
+                    break
+                p[a] = b
+            else:
+                if len(p) != 9 or len(set(p.values())) != 9:
+                    continue
+                q = tuple(p[k] for k in range(9))
+                if not all(q[k] != k and q[q[q[k]]] == k for k in range(9)):
+                    continue
+                if all(any([q[v] for v in a] == links[q[k]][j:] + links[q[k]][:j]
+                           for j in range(len(a))) for k, a in enumerate(links)):
+                    return q
+    return None
+
+
+def paired_formulas():
+    maps = census(9, 3)['maps']
+    paired = [(i, rec, free_c3(rec['links'])) for i, rec in enumerate(maps)
+              if rec['admissible'] and rec['aut_plus'] % 3 == 0]
+    paired = [(i, rec, p) for i, rec, p in paired if p is not None]
+    assert len(paired) == 8
+    ids = {i for i, _, _ in paired}
+    extra = [(i, rec, None) for i, rec in enumerate(maps) if rec['admissible'] and i not in ids][:4]
+    return [unit for i, rec, p in paired for unit in ((i, rec, p), (i, rec, None))] + extra
+
+
 def reconstruction_ok(wrong_signs, exact_match):
     return wrong_signs == 0 and exact_match
 
@@ -161,14 +195,16 @@ def arm_deadline(seconds):
     signal.setitimer(signal.ITIMER_REAL, seconds)
 
 
-def main(out):
+def main(out, paired=False):
     out.mkdir(parents=True, exist_ok=False)
-    start = time.monotonic(); deadline = start + 900; control_deadline = start + 480
+    start = time.monotonic(); deadline = start + (3300 if paired else 900); control_deadline = start + 480
     report = dict(status='RUNNING', controls={}, targets={})
     manifest = dict(commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
                     dirty=subprocess.check_output(['git', 'status', '--porcelain'], text=True),
                     python=sys.version, host=platform.platform(), started_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
-                    workers=1, wall_budget_seconds=900)
+                    workers=1, wall_budget_seconds=3300 if paired else 900,
+                    branch=subprocess.check_output(['git', 'branch', '--show-current'], text=True).strip(),
+                    cpu_count=os.cpu_count(), family='paired_9_3' if paired else 'warmup_8_2')
     dump(out / 'manifest.json', manifest)
     command([sys.executable, '-m', 'pip', 'freeze'], out / 'pip-freeze.txt', 20)
     def remaining(cap, end=deadline):
@@ -210,22 +246,50 @@ def main(out):
         report['controls']['inadmissible_maps'] = 'REJECTED'
         report['construction_power'] = 'CONTROL-PASS' if all(unseeded) else 'UNDERPOWERED'
         save()
+        if paired:
+            from controls import symmetric_planes
+            from omsat_sym import closure
+            units = paired_formulas()
+            i, rec, p = units[0]
+            group = sorted(closure([p], 9))
+            for seed in range(100):
+                h = symmetric_planes(p, 3, seed)
+                chi = chirotope_from_planes(h)
+                if all(chi.values()):
+                    break
+            else:
+                raise AssertionError('no uniform C3 control')
+            c, _, _ = build_sym(from_links(rec['links']), group, {g: 1 for g in group},
+                                dict(gp=True, triples=False), mirror=False, orbfix=False)
+            c.clauses.extend([[c.qvar[q] if v > 0 else -c.qvar[q]] for q, v in chi.items()])
+            dump(out / 'C3_control.input.json', dict(planes=h, permutation=p, seed=seed))
+            r = solve(c, out, 'C3_control', remaining(30, control_deadline) / 2)
+            report['controls']['C3_control'] = r; save()
+            assert r['status'] == 'SAT', r
+        else:
+            units = [(i, rec, free_c2(rec['links']) if sym else None)
+                     for i, rec in enumerate(census(8, 2)['maps']) for sym in (False, True)]
         # Solve every formula before spending the residual budget on model processing.
         formulas = {}
-        for i, rec in enumerate(census(8, 2)['maps']):
+        for i, rec, p in units:
             t = from_links(rec['links']); dump(out / f'map{i}.json', rec)
-            for symmetric in (False, True):
-                name = f'map{i}_{"C2" if symmetric else "plain"}'
-                if symmetric:
-                    p = free_c2(rec['links']); identity = tuple(range(8)); group = [identity, p]
-                    c, _, _ = build_sym(t, group, {g: 1 for g in group}, ALL_OPTS)
-                else:
-                    c = CNF(8); build(c, t, ALL_OPTS)
-                # Allow a full solver interval and a proof-check interval within the hard cap.
-                r = solve(c, out, name, remaining(120) / 2)
-                r['scope'] = 'uniform free-C2 ansatz' if symmetric else 'plain embedding formula'
-                report['targets'][name] = r; formulas[name] = (c, rec)
-                save(); print(name, r['status'], round(r['seconds'], 2), flush=True)
+            mode = ('C3' if paired else 'C2') if p is not None else 'plain'
+            name = f'map{i}_{mode}'
+            if p is not None:
+                from omsat_sym import closure
+                group = sorted(closure([p], t.n))
+                c, _, _ = build_sym(t, group, {g: 1 for g in group}, ALL_OPTS)
+            else:
+                c = CNF(t.n); build(c, t, ALL_OPTS)
+            r = solve(c, out, name, remaining(60 if paired else 120) / 2)
+            r.update(scope=f'uniform free-{mode} ansatz' if p is not None else 'plain embedding formula',
+                     map_index=i, permutation=p)
+            report['targets'][name] = r
+            if r['status'] == 'SAT':
+                formulas[name] = (c, rec)
+            save(); print(name, r['status'], round(r['seconds'], 2), flush=True)
+            if r['status'] in ('ERROR', 'UNSAT-UNCHECKED'):
+                raise RuntimeError((name, r))
         for name, (c, rec) in formulas.items():
             if report['targets'][name]['status'] != 'SAT':
                 continue
@@ -234,7 +298,7 @@ def main(out):
             inp = payload(chi, rec['links']); results = {}
             report['targets'][name]['processing'] = results
             for task in ('hinge', 'two_stage', 'fp'):
-                result = stage(out, name + '_' + task, task, inp, remaining(120))
+                result = stage(out, name + '_' + task, task, inp, remaining((30 if task == 'fp' else 15) if paired else 120))
                 results[task] = result; save()
                 if result.get('geometry', {}).get('EMBEDDED'):
                     dump(out / (name + '.candidate.json'), dict(planes=result['planes'], links=dict(enumerate(rec['links']))))
@@ -248,17 +312,20 @@ def main(out):
     finally:
         signal.setitimer(signal.ITIMER_REAL, 0)
         save()
-        manifest.update(wall_seconds=time.monotonic() - start, status=report['status'])
-        manifest['core_hours'] = manifest['wall_seconds'] / 3600
+        manifest.update(status=report['status'], ended_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()))
         manifest['outputs_sha256'] = {p.name: sha(p) for p in out.iterdir() if p.is_file() and p.name != 'manifest.json'}
         manifest['sources_sha256'] = {str(p.relative_to(ROOT)): sha(p) for p in
                                       [Path(__file__).resolve(), ROOT / 'code/omsat.py', ROOT / 'code/omsat_geom.py', ROOT / 'code/omsat_sym.py']}
+        manifest['wall_seconds'] = time.monotonic() - start
+        manifest['core_hours'] = manifest['wall_seconds'] / 3600
+        manifest['inputs_sha256'] = {'maps': sha(ROOT / ('experiments/E-261103-01-s5-map-census/results/maps_9_3.json' if paired else 'experiments/E-261103-01-s5-map-census/results/maps_8_2.json'))}
         dump(out / 'manifest.json', manifest)
 
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', type=Path)
+    ap.add_argument('--paired', action='store_true')
     ap.add_argument('--task', choices=('hinge', 'two_stage', 'fp'))
     ap.add_argument('--input', type=Path); ap.add_argument('--output', type=Path)
     args = ap.parse_args()
@@ -266,4 +333,4 @@ if __name__ == '__main__':
         worker(args)
     else:
         assert args.out is not None
-        main(args.out)
+        main(args.out, paired=args.paired)
