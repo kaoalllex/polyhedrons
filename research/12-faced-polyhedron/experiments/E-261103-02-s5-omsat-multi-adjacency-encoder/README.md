@@ -2,12 +2,12 @@
 id: E-261103-02
 title: OM-SAT encoder for multiple adjacencies and F != 12, validated on the two 8-face objects
 date: 2026-11-03
-status: planned
+status: running
 direction: [DR19, DR8]
 origin: [E-261030-01, I-261030-31, L:roestvigh2026, L:mizhaev2026]
 tests: []
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned. Scores T D F G R: 2 2 2 2 2 | budget: 1-2 sessions, minutes of CPU. Before any compute: `PLAN.md` from
