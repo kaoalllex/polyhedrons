@@ -72,6 +72,13 @@ def verify(H, links, require_all_pairs=True):
     out['all_pairs_adjacent'] = all(Y in links[X] for X, Y in combinations(range(n), 2))
     V = len(corners); E = sum(len(L) for L in links.values()) // 2
     out['V_E_F_chi'] = (V, E, n, V - E + n)
+    if not out['corner_triples_distinct']:
+        # a repeated corner triple puts two vertices at the same triple point, so no realization exists; the
+        # geometric checks below would meet zero-length edges and raise
+        bad_faces = sorted({X for t, v in corners.items() if len(t) != 3 or len(v) != 3 for X in t})
+        out.update(points_distinct=False, simple_faces=n - len(bad_faces), nonsimple_faces=bad_faces,
+                   edges_consistent=False, bad_pairs=[], EMBEDDED=False)
+        return out
     # ---- geometry
     P = {t: solve3([H[x] for x in sorted(t)]) for t in corners}
     out['points_distinct'] = len(set(P.values())) == len(P)

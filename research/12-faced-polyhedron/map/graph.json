@@ -906,6 +906,110 @@
    "preregistered": "true"
   },
   {
+   "id": "E-261103-01",
+   "kind": "experiment",
+   "title": "Census of face-neighbourly triangular maps for (7, 1), (8, 2), (9, 3), (10, 4) - the candidate maps of the S5 targets",
+   "status": "planned",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "experiments/E-261103-01-s5-map-census/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261103-02",
+   "kind": "experiment",
+   "title": "OM-SAT encoder for multiple adjacencies and F != 12, validated on the two 8-face objects",
+   "status": "planned",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "experiments/E-261103-02-s5-omsat-multi-adjacency-encoder/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261103-03",
+   "kind": "experiment",
+   "title": "Exact decision per candidate map - OM-SAT for the 2 (8, 2) maps, then the symmetric and all admissible (9, 3) maps",
+   "status": "planned",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "experiments/E-261103-03-s5-exact-decision-8-2-9-3/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261103-04",
+   "kind": "experiment",
+   "title": "Genus ladder on 9 faces - the admissible (9, 3) maps from their sphere down and up again (explore)",
+   "status": "planned",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "experiments/E-261103-04-s5-genus-ladder-9-faces/README.md",
+   "direction": [
+    "DR1",
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261103-05",
+   "kind": "experiment",
+   "title": "Symmetric solid-first for S5 - C3, D3 and C2 arrangements of 9 planes with the exact inner solver (the Roest-Vigh route)",
+   "status": "planned",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "experiments/E-261103-05-s5-symmetric-solid-first/README.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261103-06",
+   "kind": "experiment",
+   "title": "Embedded first, planar later - pilot on Szilassi from a torus, then an 8-face object from a smooth genus-3 surface",
+   "status": "planned",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "experiments/E-261103-06-embedded-first-pilot/README.md",
+   "direction": [
+    "DR17",
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
+   "id": "E-261103-07",
+   "kind": "experiment",
+   "title": "Census and symmetric sub-list of the (10, 4) candidate maps - preparation of the stretch target",
+   "status": "planned",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "experiments/E-261103-07-s5-10-4-census-symmetry/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false"
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -1417,6 +1521,42 @@
    "date": "2026-11-01",
    "concluded": "",
    "path": "hypotheses/H-261101-17-chirotope-first-reaches-models.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261103-01",
+   "kind": "hypothesis",
+   "title": "(9, 3) has exactly 240 candidate maps up to isomorphism and mirror, 203 admissible, 8 with a free C3; (8, 2) has exactly 2",
+   "status": "open",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "hypotheses/H-261103-01-s5-9-3-map-census.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261103-02",
+   "kind": "hypothesis",
+   "title": "A (9, 3) polyhedron exists with a 3-fold rotational symmetry, on one of the 8 admissible maps with a free C3",
+   "status": "open",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "hypotheses/H-261103-02-s5-9-3-c3-object-exists.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261103-03",
+   "kind": "hypothesis",
+   "title": "Both (8, 2) candidate maps are UNSAT at the oriented-matroid level - no 8-face genus-2 face-neighbourly polyhedron",
+   "status": "open",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "hypotheses/H-261103-03-s5-8-2-maps-om-unsat.md",
    "direction": [],
    "verdict": "",
    "preregistered": ""
@@ -2491,7 +2631,7 @@
    "id": "I-261030-19",
    "kind": "idea",
    "title": "Canonical comparison of the 8-face objects",
-   "status": "open",
+   "status": "tried",
    "date": "2026-10-30",
    "concluded": "",
    "path": "ideas/I-261030-19-canonical-comparison-8-face-objects.md",
@@ -3106,6 +3246,82 @@
    "preregistered": ""
   },
   {
+   "id": "I-261103-02",
+   "kind": "idea",
+   "title": "Census-free exact search - select the solid's topes inside the oriented matroid, chirotope and cell set in one SAT instance",
+   "status": "open",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "ideas/I-261103-02-om-level-tope-selection-census-free.md",
+   "direction": [
+    "DR19",
+    "DR7",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261103-03",
+   "kind": "idea",
+   "title": "Interval branch-and-bound over the C3 ansatz - a complete decision of the symmetric (9, 3) case by validated numerics",
+   "status": "open",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "ideas/I-261103-03-interval-branch-and-bound-c3-ansatz.md",
+   "direction": [
+    "DR19",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261103-04",
+   "kind": "idea",
+   "title": "Ninth-plane sweep - add one plane to the Roest-Vigh or Mizhaev arrangement and let the exact inner solver re-select the solid",
+   "status": "open",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "ideas/I-261103-04-ninth-plane-sweep-known-8-plane-arrangements.md",
+   "direction": [
+    "DR7",
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261103-05",
+   "kind": "idea",
+   "title": "Spectral start for embedded-first - a Tutte / Colin de Verdiere type 3D drawing of the cubic 1-skeleton as the initial embedded surface",
+   "status": "open",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "ideas/I-261103-05-spectral-start-embedded-first.md",
+   "direction": [
+    "DR17",
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261103-06",
+   "kind": "idea",
+   "title": "Z3 fundamental piece - build a C3-symmetric (9, 3) polyhedron as three copies of a planar-faced patch whose boundary matches its rotated image",
+   "status": "open",
+   "date": "2026-11-03",
+   "concluded": "",
+   "path": "ideas/I-261103-06-z3-fundamental-piece-construction.md",
+   "direction": [
+    "DR19",
+    "DR12"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -3265,6 +3481,18 @@
    "id": "L:quine1978",
    "kind": "source",
    "title": "J. R. Quine, A global theorem for singularities of maps between oriented 2-manifolds, Trans. AMS 236 (1978)",
+   "status": "",
+   "date": "",
+   "concluded": "",
+   "path": "literature/README.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "L:review2026-11-03",
+   "kind": "source",
+   "title": "review-2026-11-03.md (external AI-written literature search, 2026-11-03)",
    "status": "",
    "date": "",
    "concluded": "",
@@ -3620,6 +3848,11 @@
    "kind": "tests"
   },
   {
+   "from": "E-261029-19",
+   "to": "H-261103-03",
+   "kind": "origin"
+  },
+  {
    "from": "E-261029-20",
    "to": "E-261030-02",
    "kind": "origin"
@@ -3641,8 +3874,18 @@
   },
   {
    "from": "E-261030-01",
+   "to": "E-261103-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261030-01",
    "to": "H-261029-07",
    "kind": "tests"
+  },
+  {
+   "from": "E-261030-01",
+   "to": "I-261103-04",
+   "kind": "origin"
   },
   {
    "from": "E-261030-02",
@@ -4016,6 +4259,11 @@
   },
   {
    "from": "E-261101-12",
+   "to": "E-261103-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-12",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -4033,6 +4281,11 @@
    "from": "E-261101-15",
    "to": "H-261101-06",
    "kind": "tests"
+  },
+  {
+   "from": "E-261101-16",
+   "to": "E-261103-05",
+   "kind": "origin"
   },
   {
    "from": "E-261101-16",
@@ -4166,6 +4419,11 @@
   },
   {
    "from": "E-261101-26",
+   "to": "E-261103-06",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261101-26",
    "to": "H-261101-10",
    "kind": "tests"
   },
@@ -4226,6 +4484,11 @@
   },
   {
    "from": "E-261102-04",
+   "to": "E-261103-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261102-04",
    "to": "H-261101-10",
    "kind": "tests"
   },
@@ -4233,6 +4496,81 @@
    "from": "E-261102-04",
    "to": "I-261103-01",
    "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
+   "to": "E-261103-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
+   "to": "E-261103-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
+   "to": "E-261103-07",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261103-01",
+   "to": "H-261103-01",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261103-02",
+   "to": "E-261103-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "H-261103-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "H-261103-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261103-04",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261103-04",
+   "to": "H-261103-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261103-05",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261103-05",
+   "to": "H-261103-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261103-06",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261103-07",
+   "to": "H-261101-07",
+   "kind": "tests"
   },
   {
    "from": "FD2",
@@ -4320,6 +4658,26 @@
    "kind": "origin"
   },
   {
+   "from": "H-261101-07",
+   "to": "E-261103-03",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261101-07",
+   "to": "E-261103-04",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261101-07",
+   "to": "H-261103-02",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261101-07",
+   "to": "H-261103-03",
+   "kind": "origin"
+  },
+  {
    "from": "H-261101-09",
    "to": "H-261101-16",
    "kind": "origin"
@@ -4332,6 +4690,16 @@
   {
    "from": "H-261101-12",
    "to": "H-261101-17",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261103-02",
+   "to": "I-261103-03",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261103-02",
+   "to": "I-261103-06",
    "kind": "origin"
   },
   {
@@ -4410,6 +4778,16 @@
    "kind": "origin"
   },
   {
+   "from": "I-261029-27",
+   "to": "I-261103-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-27",
+   "to": "I-261103-04",
+   "kind": "origin"
+  },
+  {
    "from": "I-261029-29",
    "to": "E-261029-19",
    "kind": "origin"
@@ -4460,6 +4838,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261029-45",
+   "to": "E-261103-03",
+   "kind": "origin"
+  },
+  {
    "from": "I-261029-54",
    "to": "E-261029-12",
    "kind": "origin"
@@ -4486,6 +4869,11 @@
   },
   {
    "from": "I-261029-57",
+   "to": "E-261103-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-57",
    "to": "H-261101-12",
    "kind": "origin"
   },
@@ -4502,6 +4890,11 @@
   {
    "from": "I-261030-03",
    "to": "E-261030-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-04",
+   "to": "I-261103-06",
    "kind": "origin"
   },
   {
@@ -4526,7 +4919,27 @@
   },
   {
    "from": "I-261030-07",
+   "to": "E-261103-05",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-07",
+   "to": "H-261103-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-07",
    "to": "I-261101-08",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-07",
+   "to": "I-261103-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-10",
+   "to": "E-261103-04",
    "kind": "origin"
   },
   {
@@ -4547,6 +4960,11 @@
   {
    "from": "I-261030-16",
    "to": "I-261101-22",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-18",
+   "to": "I-261103-06",
    "kind": "origin"
   },
   {
@@ -4602,6 +5020,16 @@
   {
    "from": "I-261030-29",
    "to": "E-261101-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-31",
+   "to": "E-261103-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-31",
+   "to": "E-261103-03",
    "kind": "origin"
   },
   {
@@ -4690,13 +5118,38 @@
    "kind": "origin"
   },
   {
+   "from": "I-261101-07",
+   "to": "E-261103-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-07",
+   "to": "E-261103-07",
+   "kind": "origin"
+  },
+  {
    "from": "I-261101-08",
    "to": "E-261101-16",
    "kind": "origin"
   },
   {
    "from": "I-261101-08",
+   "to": "E-261103-05",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-08",
    "to": "H-261101-08",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-08",
+   "to": "I-261103-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-08",
+   "to": "I-261103-03",
    "kind": "origin"
   },
   {
@@ -4810,6 +5263,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261101-20",
+   "to": "E-261103-05",
+   "kind": "origin"
+  },
+  {
    "from": "I-261101-21",
    "to": "E-261101-25",
    "kind": "origin"
@@ -4842,6 +5300,21 @@
   {
    "from": "I-261102-01",
    "to": "E-261102-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261103-01",
+   "to": "E-261103-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261103-01",
+   "to": "I-261103-05",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261103-05",
+   "to": "E-261103-06",
    "kind": "origin"
   },
   {
@@ -4916,7 +5389,17 @@
   },
   {
    "from": "L:mizhaev2026",
+   "to": "E-261103-02",
+   "kind": "origin"
+  },
+  {
+   "from": "L:mizhaev2026",
    "to": "H-261101-07",
+   "kind": "origin"
+  },
+  {
+   "from": "L:mizhaev2026",
+   "to": "H-261103-02",
    "kind": "origin"
   },
   {
@@ -4947,6 +5430,11 @@
   {
    "from": "L:mizhaev2026",
    "to": "I-261101-20",
+   "kind": "origin"
+  },
+  {
+   "from": "L:mizhaev2026",
+   "to": "I-261103-04",
    "kind": "origin"
   },
   {
@@ -5000,13 +5488,43 @@
    "kind": "origin"
   },
   {
+   "from": "L:review2026-11-03",
+   "to": "E-261103-01",
+   "kind": "origin"
+  },
+  {
+   "from": "L:review2026-11-03",
+   "to": "H-261103-01",
+   "kind": "origin"
+  },
+  {
+   "from": "L:review2026-11-03",
+   "to": "H-261103-03",
+   "kind": "origin"
+  },
+  {
    "from": "L:roestvigh2026",
    "to": "E-261030-01",
    "kind": "origin"
   },
   {
    "from": "L:roestvigh2026",
+   "to": "E-261103-02",
+   "kind": "origin"
+  },
+  {
+   "from": "L:roestvigh2026",
+   "to": "E-261103-05",
+   "kind": "origin"
+  },
+  {
+   "from": "L:roestvigh2026",
    "to": "H-261101-07",
+   "kind": "origin"
+  },
+  {
+   "from": "L:roestvigh2026",
+   "to": "H-261103-02",
    "kind": "origin"
   },
   {
@@ -5047,6 +5565,16 @@
   {
    "from": "L:roestvigh2026",
    "to": "I-261101-20",
+   "kind": "origin"
+  },
+  {
+   "from": "L:roestvigh2026",
+   "to": "I-261103-02",
+   "kind": "origin"
+  },
+  {
+   "from": "L:roestvigh2026",
+   "to": "I-261103-04",
    "kind": "origin"
   },
   {
@@ -5207,6 +5735,21 @@
   {
    "from": "owner",
    "to": "H-261101-05",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "H-261103-01",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "H-261103-02",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "H-261103-03",
    "kind": "origin"
   },
   {
@@ -5392,10 +5935,11 @@
   "DR12": "Relaxed S1 target with a symmetric orbit ansatz (Roest-Vigh style), after calibration on their polyhedron",
   "DR13": "Chirotope chambers of the realization spaces (type-0 variants, archive)",
   "DR14": "Chain-consistent normals (Q1), projective ladder (P1), flips through degeneration (Q3), spine-seeded solids",
-  "DR15": "n = 8 genus-2 rung as benchmark",
+  "DR15": "n = 8 genus-2 rung, i.e. (8, 2), as benchmark and as the smallest S5 case",
   "DR16": "Gauss clauses as SAT speed-up; kappa-CSP prefilter; symmetric plane sets; screw orbits; tangent planes of smooth surfaces; Szilassi embryo",
   "DR17": "Configuration-space planning / rigidity (stress matrices) / homotopy continuation between levels",
   "DR18": "Arrangement first: exact chamber-SAT on structured arrangements (a symmetric arrangement with an asymmetric solid is the one loophole FD5 leaves; archived and near-miss arrangements with any solid)",
+  "DR19": "S5 exact pipeline: census of the candidate maps (E-261103-01), OM-SAT per map with multiple adjacencies and symmetry clauses (E-261103-02, -03), realization or final polynomial; the dress rehearsal of the S0 pipeline at 10 elements",
   "DR2": "Normals first + exact offsets; k-drift (`normals_first`, `kdrift`, `nf_control`)",
   "DR3": "Gauss class as a necessary filter (gate, T1, test 2.2)",
   "DR4": "Closure-first (`pdefect`, `sdefect`, T^3 relaxation)",

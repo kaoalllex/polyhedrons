@@ -798,3 +798,12 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * `verification/certificates/final_polynomial/verify.py` (standard library): types 0 k = 9 (regenerated from the
   night-6 model), 53 k = 9, 57 k = 8 PASS, self-tests PASS; added to `verify_all`. Vertex types of the 255
   realizations (`code/vertex_types.py`, I-261101-20): no c = 4 in our data.
+
+## 2026-11-03: strategy review under the new focus, applied the same day
+
+* `reviews/strategy-review-2026-11-03.md`: (9, 3) focus confirmed. A flip-walk sampler (~25 min single core, every run
+  <= 4 min) found 240 candidate-map classes at (9, 3) (203 admissible, 8 with a free C3), 2 at (8, 2), >= 113 at (10, 4),
+  >= 22,666 at (8, 3); controls: K7 (1 class, |Aut+| 42), the 59 K12 codes with the FD3 orders, the two 8-face dual maps
+  from the published data. Applied with the owner's approval: S5 queue E-261103-01 to -07 in `ROADMAP.md` (S0 queue
+  parked), `STATUS.md` 3c and DR19, SPEC S5 wording (multiplicity >= 2), hypotheses H-261103-01 to -03, ideas
+  I-261103-02 to -06, `ladder_exact.verify` guard against repeated corner triples (review finding 6).

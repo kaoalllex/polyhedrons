@@ -38,3 +38,8 @@ active (the same wall seen from the other side).
 
 Owner, 2026-11-03 (session after night 7: "we need creative and risky methods"); suggested in the discussion of the
 ravine between genus 3 and 4.
+
+## Status (2026-11-03)
+
+Planned as the pilot E-261103-06 with S5 rungs (R1 Szilassi from a torus, then an (8, 3) object from a smooth genus-3
+surface); I-261103-05 proposes the starting surface.
