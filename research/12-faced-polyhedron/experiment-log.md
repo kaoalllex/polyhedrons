@@ -807,3 +807,9 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   from the published data. Applied with the owner's approval: S5 queue E-261103-01 to -07 in `ROADMAP.md` (S0 queue
   parked), `STATUS.md` 3c and DR19, SPEC S5 wording (multiplicity >= 2), hypotheses H-261103-01 to -03, ideas
   I-261103-02 to -06, `ladder_exact.verify` guard against repeated corner triples (review finding 6).
+
+## 2026-11-03: session hand-over (strategy review session)
+
+* Commits on `claude/strategy-review-2026-11-03`: `c699387` (the review, sampler, sampled maps), `48caade` (the review
+  applied: S5 queue, STATUS 3c / DR19, SPEC S5 wording, hypotheses, ideas, verifier guard), plus this hand-over
+  (`CONTINUE_PROMPT.md`). No runs in flight. Next item: E-261103-01.

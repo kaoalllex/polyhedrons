@@ -13,28 +13,29 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 3. Unless the owner names another task, work on the top `open` row of `ROADMAP.md`, using the `experiment-start`
    skill.
 
-## Hand-over (2026-11-02, evening, before night 7)
+## Hand-over (2026-11-03, evening, after the strategy review was applied)
 
-* **Branch.** Still `experiment/E-261101-25-chirotope-first` (on top of `claude/strategy-review-2026-11-01`); all
-  work committed there. Owner: one PR of the stack into `main` when convenient (`verify` green).
-* **Done this session**: E-261102-03 and E-261102-04 pre-registered with their pilots (`PLAN.md` Amendments of each;
-  `experiment-log.md`). `ladder.py` (E-261101-26 harness) gained `run --alt`, `--timeout`, `--engine genus-ladder`, a
-  budget in each unit's key (a task can run at several budgets), and `score --cutoffs` with per-unit binding limit,
-  budget fraction, alternations, highest k realized, best energy.
-* **In flight (night 7, owner launches ~21:00 from `research/12-faced-polyhedron/`)**:
-  * `bash overnight/launch.sh start experiments/E-261102-03-chirotope-alt-cap-or-wall 10` (20 units x 120 min,
-    ~45 core-h, ~4.5 h);
-  * `bash overnight/launch.sh start experiments/E-261102-04-genus-ladder-engine-score 4` (~20 core-h, ~5.2 h).
-  * Collect: `launch.sh status DIR`; results in `DIR/results/<shard>/results.jsonl`; score over all shards with
-    `cd experiments/E-261101-26-engine-benchmark-ladder && python ladder.py score ../E-261102-0N-.../results/[0-9]*
-    --to ../E-261102-0N-.../results/scores.json` (`--cutoffs 40 120` for -03).
+* **Branch.** `claude/strategy-review-2026-11-03`, pushed; PR into `main` opened 2026-11-03 (`gh pr view` on the branch).
+  If the PR is merged, branch `experiment/E-261103-01-s5-map-census` from `main` for the next item; if not, continue on
+  this branch.
+* **Done this session**: `reviews/strategy-review-2026-11-03.md` (verdict, answers, queue, audit, S5 credences) with its
+  reproducible sampler `reviews/strategy-review-2026-11-03-flipwalk.py` and the sampled maps
+  `reviews/strategy-review-2026-11-03-maps.json`; the review applied with the owner's approval: S5 queue E-261103-01 to
+  -07 in `ROADMAP.md` (S0 queue parked), `STATUS.md` 3c and DR19, SPEC S5 wording (multiplicity >= 2), H-261103-01 to
+  -03, I-261103-02 to -06, `ladder_exact.verify` guard against repeated corner triples. `experiment-log.md` 2026-11-03.
+* **In flight**: nothing. No night run is planned; the first candidates for a night are E-261103-03 ((9, 3) part) and
+  E-261103-04, each only after its `PLAN.md`.
 * **Next session, in order**:
-  1. `experiment-conclude` E-261102-03 and E-261102-04 (any R4 / R5 success: `candidate-check` first). Then the
-     decision on E-261102-02 written in -03's PLAN (amend / kill full-map form / engine-change row), and the STATUS 3b
-     engine-score table gets both rows.
-  2. By day: E-261101-06 (rank-3 SAT per type), the exact side; an independent checker of the three stored
-     final-polynomial certificates (types 0 k = 9, 53 k = 9, 57 k = 8).
-* **E-261102-02** stays blocked until E-261102-03 is concluded.
-* **Open owner actions:** launch night 7 (above); merge the branches; send the first external e-mail (E-261101-11
-  README "Why and whom"); Zenodo DOI (Phase 0 TODO).
-* **Do not** use `gauss_gate.hemisphere_margin` as an objective or a diagnostic (floors at 0, E-261101-07).
+  1. **E-261103-01 (census of the candidate maps)** with `experiment-start`: `PLAN.md`, then the enumerator (design in
+     the README: `enum_k12.c` generalised to multiple edges, or the (phi, alpha) dart representation of the sampler),
+     controls (7, 1) = 1 class with |Aut+| 42, (12, 6) = 59 with the FD3 orders, every sampled class of the review's JSON
+     contained, the two (8, 3) maps contained if that case finishes. Output in `links` format with admissibility and
+     automorphism data.
+  2. **E-261103-02 (OM-SAT encoder for multiple adjacencies)** can start in parallel: it does not depend on the census;
+     validation on the Roest-Vigh and Mizhaev chirotopes, negative control, 0 predicate mismatches.
+  3. Then E-261103-03 part (a): the two (8, 2) maps, hours of compute, DRAT kept, realizers on any model.
+* **Open owner actions**: merge the PR (`verify` green); delete the merged branches (`claude/strategy-review-2026-11-01`,
+  `experiment/E-261101-25-chirotope-first`, `claude/research-restructure`); the S5 letter to Roest-Vigh and Mizhaev and
+  the first `polyhedraproof` e-mail (E-261101-11); Zenodo DOI (Phase 0 TODO).
+* **Do not**: run any geometry on the (9, 3) target before E-261103-01 and -02 are done; call the sampled counts (240 /
+  203 / 8, 2) a census; use `gauss_gate.hemisphere_margin` as an objective or a diagnostic (E-261101-07).
