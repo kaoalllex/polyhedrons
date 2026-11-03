@@ -65,6 +65,13 @@ class PilotTests(unittest.TestCase):
             r = pilot.command([sys.executable, '-c', 'import time; time.sleep(10)'], Path(tmp) / 'log', .05)
             self.assertEqual(r, None)
 
+    def test_grid_uses_prior_sixty_second_cells_without_repeating_decisions(self):
+        units = pilot.grid_units()
+        self.assertEqual([(i, cap) for i, rec, p, cap in units],
+                         [(0, 60), (1, 60), (0, 300), (1, 300), (40, 300), (48, 300)])
+        self.assertTrue(all(rec['admissible'] and p is None for _, rec, p, _ in units))
+        self.assertEqual({i for i, _, _, _ in units}, {0, 1, 40, 48})
+
     def test_paired_selection_has_twenty_formulas_on_twelve_maps(self):
         units = pilot.paired_formulas()
         self.assertEqual([i for i, _, p in units if p is None], [0, 5, 10, 30, 40, 48, 1, 2, 3, 4, 6, 7])

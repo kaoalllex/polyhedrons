@@ -13,7 +13,8 @@ preregistered: true
 > Running, with the (8,2) stage completed. See [CONCLUSION.md](CONCLUSION.md) and
 > [STATUS.md](../../STATUS.md) for the exact decisions, controls and claim boundaries.
 > The paired C3/plain (9,3) pilot is complete; see CONCLUSION and STATUS section 3e.
-> Its result directories are immutable; a follow-up needs a new committed PLAN amendment. No process is active.
+> Its result directories are immutable. The autonomous 60/300-second follow-through is registered
+> in the latest PLAN amendment; invoke `bash run.sh grid` once.
 
 ## Goal
 
