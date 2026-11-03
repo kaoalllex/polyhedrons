@@ -30,3 +30,28 @@ Pre-registration, 2026-11-03. No experimental run precedes this commit.
 ## Amendments
 
 Append dated implementation findings, control failures and pilot results here; preserve this pre-registration.
+
+### 2026-11-03: implementation findings before full controls
+
+The original Roest-Vigh and Mizhaev plane sets are already uniform (no zero determinants); they are the
+primary pinned positive controls. Only raw Szilassi needs a uniform perturbation. The initial wording
+above overestimated degeneracy of the eight-face inputs. Own-map Eval and pinned CNF SAT pass for both
+original eight-face inputs. Development checks on 20 broad perturbations per object found no mismatch.
+All development checks are bounded, not target searches; the original quick verifier passed (archive skipped).
+
+Symmetry needs an explicit scope restriction: a proper half-turn fixing a cooriented face plane and
+swapping two others forces chi(fixed, swapped pair, infinity) = 0. Thus uniform C2 with fixed faces
+(and the (9,3) D3 actions containing these) can be encoded but cannot cover such geometric realizations.
+The controls must exhibit the forced-zero quadruple and retain the symmetry-only contradictory CNF;
+no geometric exclusion follows. C2 free and C3 free get positive uniform symmetry-only pinned controls.
+The general asymmetric formulas remain available for every admissible census map.
+
+### 2026-11-03: bounded pilot gate
+
+`results/pilot/manifest.json` records a completed 4.92-second single-worker pilot (0.001366 core-hours).
+All own-map pinned controls, both negatives, independent unit refutations, the six S0 hashes and
+C2-free/C3-free symmetry controls pass. C2-fixed/D3 symmetry-only contradictions are explicitly scoped
+to the uniform ansatz. One direct perturbation per object has zero mismatches; the first (8,2) CNF
+was built, never solved. The next bounded validation is exactly the pre-registered 1,000 accepted
+perturbations per object. Its binding limit should be count completion; the 600/900-second caps remain.
+No long-run gate is opened: this infrastructure experiment has no target run.

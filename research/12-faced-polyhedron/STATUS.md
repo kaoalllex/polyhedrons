@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-03** (after night 7: E-261102-03 and E-261102-04, two engines scored on the ladder; E-261102-02 killed; strategy review of 2026-11-03 applied the same day: S5 queue in `ROADMAP.md`, candidate maps in section 3c, direction DR19; E-261103-01 census completed later the same day). Definitions, counters and evidence labels: `SPEC.md`. Evidence
+As of **2026-11-03** (after night 7: E-261102-03 and E-261102-04, two engines scored on the ladder; E-261102-02 killed; strategy review of 2026-11-03 applied the same day: S5 queue in `ROADMAP.md`, candidate maps in section 3c, direction DR19; E-261103-01 census and E-261103-02 encoder controls completed later the same day). Definitions, counters and evidence labels: `SPEC.md`. Evidence
 details: `results.md`; chronology: `experiment-log.md`; what to do next: `ROADMAP.md`. Update this file in the
 same commit as any result that changes a row. This file owns the verdicts and numbers; other files link here.
 
@@ -9,7 +9,9 @@ same commit as any result that changes a row. This file owns the verdicts and nu
 **Focus since 2026-11-03 (`STRATEGY.md`): S5 at (9, 3)**, a maximal face-neighbourly polyhedron with 9 faces and genus
 3 (stretch (10, 4)). Nothing geometric has run on it yet; the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes
 at (9, 3), 203 admissible, 8 with a free C3, 2 at (8, 2), 1183 at (10, 4), 1117 admissible. The exact route
-(OM-SAT per map at 10 elements) is affordable and is the queue (`ROADMAP.md`). **S0 (Szilassi-12) is parked, not abandoned**: the paragraph below and
+(OM-SAT per map at 10 elements) is affordable and is the queue (`ROADMAP.md`); its multi-adjacency encoder
+passes the bounded controls (E-261103-02, EXACT). Uniform fixed-face C2/D3 formulas cannot decide those
+geometric symmetry families (PROVED-1 scope warning in the experiment). **S0 (Szilassi-12) is parked, not abandoned**: the paragraph below and
 every row of this file are its snapshot at parking time and stay valid.
 
 Combinatorics is finished (59 types). Impossibility side: no symmetric embedding (25/25 cases, CERTIFIED) and
@@ -78,7 +80,7 @@ No direction is REFUTED today.
 | DR16 | Gauss clauses as SAT speed-up; kappa-CSP prefilter; symmetric plane sets; screw orbits; tangent planes of smooth surfaces; Szilassi embryo | E-261029-09, E-261029-10 | minutes each | LOW-YIELD@minutes each (small budgets; see the sprint board) |
 | DR17 | Configuration-space planning / rigidity (stress matrices) / homotopy continuation between levels | proposed, not tested | 0 | OPEN: E-261101-19 (barrier continuation with a non-saturating measure) and E-261101-17 (geometry of the realization spaces) are its first cheap tests |
 | DR18 | Arrangement first: exact chamber-SAT on structured arrangements (a symmetric arrangement with an asymmetric solid is the one loophole FD5 leaves; archived and near-miss arrangements with any solid) | proposed (strategy review 2026-11-01); the inner solver exists (`code/solid_cpsat.best_solid`) | 0 | OPEN: E-261101-16 |
-| DR19 | S5 exact pipeline: census of the candidate maps (E-261103-01), OM-SAT per map with multiple adjacencies and symmetry clauses (E-261103-02, -03), realization or final polynomial; the dress rehearsal of the S0 pipeline at 10 elements | E-261103-01 census complete, controls passed (section 3c; EXACT computation, coverage PROVED-1); nothing geometric run | ~0.4 core-h (sampler) + 0.02273 recorded (census) | PROMISING (the queue since 2026-11-03) |
+| DR19 | S5 exact pipeline: census of the candidate maps (E-261103-01), OM-SAT per map with multiple adjacencies and symmetry clauses (E-261103-02, -03), realization or final polynomial; the dress rehearsal of the S0 pipeline at 10 elements | E-261103-01 census complete (section 3c); E-261103-02 multi-adjacency encoder controls pass (EXACT), soundness PROVED-1; free C2/C3 calibrated, fixed-face C2/D3 uniformity obstruction documented, no target decision | ~0.4 core-h (sampler) + 0.02273 recorded (census) + 0.058735 recorded (encoder controls) | PROMISING (the queue since 2026-11-03) |
 
 ## 3a. Competing hypotheses
 
@@ -121,8 +123,11 @@ median time to success, budget per seed. No construction engine runs on the targ
 | chirotope-first, cap lifted (`--alt 100000 --timeout 300`, E-261102-03, 2026-11-03) | - | 0/4 at 40 and 120 min | 0/4 at 40 and 120 min | 0/4 at 40 and 120 min | not run, 4/4 (28.6 min), 4/4 (27.8 min), 120 min; at 40 min 2/4, 3/4 | 35.9 | R4 / R5 (furthest: k = 10 realized in 3 of 12 units, k = 11 never); failures ended by time (7) or the 300-s SAT timeout at k = 10-11 (5) |
 | genus-ladder search (`archive_climb` floor, E-261102-04, 2026-11-03) | 20/20, 0.1 min, 5 min | 0/5 at 40 min, 0/2 at 120 min | 0/5 at 40 min, 0/2 at 120 min | 5/10 at 6 min (2.7 min), 3/5 at 40 min (same seeds) | not addressable (takes a full map) | 17.8 | R4 (best energy 1-3, every failure by time); the outcome per seed is decided in ~3 min |
 
-R2 / R3 (the 8-face objects) are not expressible in the OM-SAT encoder (doubled adjacencies) and were not run with the
-genus-ladder search; E-261103-02 closes the encoder gap (2026-11-03). Other engines (solid-first, normals-first, black-box DR6): not scored yet. **R4 is the first rung
+R2 / R3 (the 8-face objects) were not expressible in the original OM-SAT encoder and were not run with the
+genus-ladder search. E-261103-02 closes the encoder gap (2026-11-03, EXACT controls: own-map Eval / pinned CNF,
+predicate comparisons and S0 hashes; `experiments/E-261103-02-s5-omsat-multi-adjacency-encoder/CONCLUSION.md`).
+This is validation on supplied planes, not an engine score from random planes. Fixed-face C2/D3 require a
+nonuniform encoder for symmetry-preserving geometric decisions (PROVED-1). Other engines (solid-first, normals-first, black-box DR6): not scored yet. **R4 is the first rung
 where every scored engine fails**: no construction engine runs on the target until one passes it (PROTOCOL 8a).
 
 ## 3c. Focus target S5: candidate-map census (2026-11-03)
@@ -148,8 +153,8 @@ pairings, including on inadmissible maps; `links` alone need not determine them.
 
 The (8,2) and (9,3) code sets equal the previous sampled sets, including inadmissible maps. A separate
 C3 triangle-orbit exact cover with equivariant edge gluing gives exactly the same eight admissible
-free-C3 maps. The two C2 maps at (8,2) and the C3/C2 lists at (9,3) are ready for E-261103-03 after
-E-261103-02 validates its encoder. The (9,3) face sizes remain in {8,9,10,11}; ten admissible maps
+free-C3 maps. The two C2 maps at (8,2) and the C3/C2 lists at (9,3) are ready for E-261103-03;
+E-261103-02 has validated its encoder (read its fixed-face C2/D3 uniformity restriction). The (9,3) face sizes remain in {8,9,10,11}; ten admissible maps
 have a tripled pair. Chirality at (8,2) and (9,3) follows at the census' coverage level (PROVED-1).
 
 The (8,3) family is not censused here. The review's >=22,666 sampled classes and its checks of the

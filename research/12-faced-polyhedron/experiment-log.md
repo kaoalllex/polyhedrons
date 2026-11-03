@@ -819,3 +819,10 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * Pre-registered at `e834e86`; all required cases and K12 control exhausted; sampled-code and independent C3
   comparisons pass. EXACT computations, coverage PROVED-1; no geometry. Counts, manifests and limitations:
   `experiments/E-261103-01-s5-map-census/CONCLUSION.md`. Next: E-261103-02; no runs in flight.
+
+## 2026-11-03: E-261103-02 multi-adjacency OM-SAT encoder
+
+* Pre-registered at `5dc2caa` from `e13b79e`; bounded known-object, predicate, negative and S0 compatibility
+  controls pass (EXACT); extended soundness and fixed-face symmetry limitation PROVED-1. The first (8,2)
+  CNF is built, not solved. Evidence: `experiments/E-261103-02-s5-omsat-multi-adjacency-encoder/CONCLUSION.md`.
+  Next E-261103-03; no target run, long run, subagents, push or PR.

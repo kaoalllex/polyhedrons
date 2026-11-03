@@ -337,13 +337,13 @@ def orbfix_quads(G, n=12):
 
 
 def build_sym(T, G, eps, opts, mirror=True, orbfix=True):
-    C = CNF(12)
-    sym = [(g, eps[g]) for g in G if g != tuple(range(12))]
+    C = CNF(T.n)
+    sym = [(g, eps[g]) for g in G if g != tuple(range(T.n))]
     o = dict(opts)
     o['symbreak'] = False
     o['mirror'] = False
     build(C, T, o, sym=sym)
-    basis, orbs = orbfix_quads(G)
+    basis, orbs = orbfix_quads(G, T.n)
     for S in (basis if orbfix else []):
         C.clause([C.chi_pos_lit(S)], 'SB_ORBFLIP')
     if mirror:

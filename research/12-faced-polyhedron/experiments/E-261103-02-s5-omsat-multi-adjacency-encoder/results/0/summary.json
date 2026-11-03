@@ -1,0 +1,286 @@
+{
+  "trials_per_object": 1000,
+  "status": "PASS",
+  "controls": {
+    "roest_vigh": {
+      "status": "SAT",
+      "cnf_sha256": "89fd9c965833ea20cd400dcb83e245cebc056953e3a4c26d269dc318f1495250",
+      "variables": 4879,
+      "clauses": 38055,
+      "seconds": 0.09145829197950661,
+      "budget_fraction": 0.0015243048663251102,
+      "ended_by": "completed",
+      "independently_unit_refuted": false,
+      "backend_check": {
+        "named": 408,
+        "named_mismatch": 0,
+        "sat": true,
+        "eval_ok": true,
+        "agree": true,
+        "core_size": null,
+        "violations": []
+      },
+      "perturbations": {
+        "accepted": 1000,
+        "rejected_degenerate": 0,
+        "mismatches": 0,
+        "embedded": 416,
+        "defective": 584,
+        "predicate_counts": {
+          "IN": 192000,
+          "IN_true": 109174,
+          "RF": 144000,
+          "RF_true": 42016,
+          "RT": 72000,
+          "RT_true": 37285,
+          "E": 336000,
+          "E_true": 66194,
+          "lt": 1680000,
+          "lt_true": 840000,
+          "side": 280000,
+          "side_true": 187337,
+          "poc_tests": 33408
+        },
+        "ended_by": "completed",
+        "seconds": 80.32071454194374
+      }
+    },
+    "mizhaev": {
+      "status": "SAT",
+      "cnf_sha256": "5a0ba2230498ffc4f8f540f914f0267504f416f4ed0e1988cdb39f6a1346b12f",
+      "variables": 4891,
+      "clauses": 38103,
+      "seconds": 0.09425958292558789,
+      "budget_fraction": 0.0015709930487597982,
+      "ended_by": "completed",
+      "independently_unit_refuted": false,
+      "backend_check": {
+        "named": 408,
+        "named_mismatch": 0,
+        "sat": true,
+        "eval_ok": true,
+        "agree": true,
+        "core_size": null,
+        "violations": []
+      },
+      "perturbations": {
+        "accepted": 1000,
+        "rejected_degenerate": 0,
+        "mismatches": 0,
+        "embedded": 356,
+        "defective": 644,
+        "predicate_counts": {
+          "IN": 192000,
+          "IN_true": 107316,
+          "RF": 144000,
+          "RF_true": 42116,
+          "RT": 72000,
+          "RT_true": 35866,
+          "E": 336000,
+          "E_true": 65422,
+          "lt": 1680000,
+          "lt_true": 840000,
+          "side": 280000,
+          "side_true": 140087,
+          "poc_tests": 29817
+        },
+        "ended_by": "completed",
+        "seconds": 80.67867837497033
+      }
+    },
+    "szilassi": {
+      "status": "SAT",
+      "cnf_sha256": "1349a60b159305b2b5f1b6af62b7f0d4586c968e54d168c542aae2fe93df0d9e",
+      "variables": 1891,
+      "clauses": 13784,
+      "seconds": 0.032667707884684205,
+      "budget_fraction": 0.0005444617980780701,
+      "ended_by": "completed",
+      "independently_unit_refuted": false,
+      "backend_check": {
+        "named": 252,
+        "named_mismatch": 0,
+        "sat": true,
+        "eval_ok": true,
+        "agree": true,
+        "core_size": null,
+        "violations": []
+      },
+      "perturbations": {
+        "accepted": 1000,
+        "rejected_degenerate": 25,
+        "mismatches": 0,
+        "embedded": 506,
+        "defective": 494,
+        "predicate_counts": {
+          "IN": 126000,
+          "IN_true": 55402,
+          "RF": 84000,
+          "RF_true": 15102,
+          "RT": 42000,
+          "RT_true": 14455,
+          "E": 210000,
+          "E_true": 29644,
+          "lt": 840000,
+          "lt_true": 420000,
+          "side": 140000,
+          "side_true": 88216,
+          "poc_tests": 28752
+        },
+        "ended_by": "completed",
+        "seconds": 40.927828249987215
+      }
+    }
+  },
+  "s0_regression": {
+    "0_plain": {
+      "sha256": "6bca5f22d8728f4dd902a9dd940dba366b1535f0cde2e7baad97a4932acb54dd",
+      "variables": 28098,
+      "clauses": 512677
+    },
+    "0_symmetric": {
+      "sha256": "2cc7a43f372aa1ec9539ce6c234a94b369c32e2f731c853aede586ab71004b64",
+      "variables": 28098,
+      "clauses": 512690
+    },
+    "15_plain": {
+      "sha256": "6b62bd4c2b0aa6f105b8c75ec3eb9f85ffc490fe8f588ee37b2cd73e65ee0563",
+      "variables": 28100,
+      "clauses": 512685
+    },
+    "15_symmetric": {
+      "sha256": "4c031f52a0f6eadae274d56e89794edb8f1ec2f588ca4774bc9b40af5f4bd932",
+      "variables": 28100,
+      "clauses": 512698
+    },
+    "58_plain": {
+      "sha256": "a0348ea20ef3ef0cba42168561f975a46a12e7c823b9cab0e522e32415d9eab4",
+      "variables": 28101,
+      "clauses": 512689
+    },
+    "58_symmetric": {
+      "sha256": "8d6d678ddd1761a8820d90aad002ff315f0bd22555960fa3de1b2a50f701546e",
+      "variables": 28101,
+      "clauses": 512702
+    }
+  },
+  "negative_cross_map": {
+    "status": "UNSAT",
+    "cnf_sha256": "1550858184289fba31284623e8f658d4fa55957496b9f781523458834d2f3274",
+    "variables": 4891,
+    "clauses": 38103,
+    "seconds": 0.12156287510879338,
+    "budget_fraction": 0.00202604791847989,
+    "ended_by": "completed",
+    "independently_unit_refuted": true,
+    "violations": {
+      "SEGMENT_DISJOINT": 12,
+      "TRIPLE": 16,
+      "RFCONS": 14,
+      "REFLEX1": 7,
+      "POC": 29
+    }
+  },
+  "negative_pairing": "REJECTED",
+  "symmetry": {
+    "C2_free": {
+      "status": "SAT",
+      "cnf_sha256": "e005857061c64d86810ddce3e7f9ce9a16414d9cbacd322d4d93fe6a7150129a",
+      "variables": 127,
+      "clauses": 20539,
+      "seconds": 0.04590329201892018,
+      "budget_fraction": 0.000765054866982003,
+      "ended_by": "completed",
+      "independently_unit_refuted": false
+    },
+    "C3_free": {
+      "status": "SAT",
+      "cnf_sha256": "9576979db36bd111140ba1aed4fa5676e34863c67ee755611d1f96be9fc75a40",
+      "variables": 211,
+      "clauses": 51451,
+      "seconds": 0.12167379190213978,
+      "budget_fraction": 0.0020278965317023297,
+      "ended_by": "completed",
+      "independently_unit_refuted": false
+    },
+    "C2_fixed": {
+      "status": "UNSAT",
+      "cnf_sha256": "a71880876f1f54e9ef49c986ae86e8a0b57bb3a4298bde48829d0455b220d9b7",
+      "variables": 211,
+      "clauses": 421,
+      "seconds": 0.0025716249365359545,
+      "budget_fraction": 4.286041560893258e-05,
+      "ended_by": "completed",
+      "independently_unit_refuted": true,
+      "group_order": 2,
+      "forced_zero_quadruples": 4,
+      "example": [
+        [
+          0,
+          1,
+          8,
+          9
+        ],
+        [
+          1,
+          0,
+          3,
+          2,
+          6,
+          7,
+          4,
+          5,
+          8
+        ]
+      ],
+      "scope": "uniform cooriented symmetry only; no geometric exclusion"
+    },
+    "D3": {
+      "status": "UNSAT",
+      "cnf_sha256": "a619482178320a3042140351f8616a119b7252a42e65d39a3e5e4e51950f817f",
+      "variables": 211,
+      "clauses": 2101,
+      "seconds": 0.007725917035713792,
+      "budget_fraction": 0.0001287652839285632,
+      "ended_by": "completed",
+      "independently_unit_refuted": true,
+      "group_order": 6,
+      "forced_zero_quadruples": 12,
+      "example": [
+        [
+          0,
+          1,
+          8,
+          9
+        ],
+        [
+          1,
+          0,
+          3,
+          2,
+          6,
+          7,
+          4,
+          5,
+          8
+        ]
+      ],
+      "scope": "uniform cooriented symmetry only; no geometric exclusion"
+    }
+  },
+  "first_8_2": {
+    "variables": 4269,
+    "chirotope_variables": 126,
+    "clauses": 35651,
+    "tags": {
+      "GP": 20160,
+      "SEGMENT_DISJOINT": 12,
+      "TRIPLE": 36,
+      "INCONS": 216,
+      "RFCONS": 120,
+      "REFLEX1": 60,
+      "POC": 104
+    },
+    "solved": false
+  }
+}
