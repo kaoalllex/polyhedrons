@@ -98,6 +98,84 @@ class PilotTests(unittest.TestCase):
 
 
 class EvidenceTests(unittest.TestCase):
+    def test_free_c3_control_and_mirror_gauge_by_determinant_expansion(self):
+        import itertools
+        import math
+        inp = json.loads((Path(__file__).resolve().parent / 'results/paired_9_3_continued/C3_control.input.json').read_text())
+        h = inp['planes']; p = inp['permutation']
+        self.assertTrue(all(h[p[i]] == [h[i][1], h[i][2], h[i][0], h[i][3]] for i in range(9)))
+        # Independent Leibniz expansion; no encoder determinant helper.
+        def signs(planes):
+            rows = planes + [[0, 0, 0, 1]]
+            result = {}
+            for q in itertools.combinations(range(10), 4):
+                det = sum((-1) ** sum(a > b for i, a in enumerate(perm) for b in perm[i + 1:])
+                          * math.prod(rows[q[i]][perm[i]] for i in range(4))
+                          for perm in itertools.permutations(range(4)))
+                self.assertNotEqual(det, 0)
+                result[q] = 1 if det > 0 else -1
+            return result
+        original = signs(h)
+        # Reflection perpendicular to (1,1,1), global face reorientation, positive scale 3.
+        reflected = [[2 * sum(row[:3]) - 3 * a for a in row[:3]] + [-3 * row[3]] for row in h]
+        mirrored = signs(reflected)
+        self.assertTrue(all(mirrored[q] == (value if 9 in q else -value) for q, value in original.items()))
+        self.assertTrue(all(reflected[p[i]] == [reflected[i][1], reflected[i][2], reflected[i][0], reflected[i][3]] for i in range(9)))
+        self.assertTrue(all(rec['aut_plus'] in (3, 6) for rec in pilot.census(9, 3)['maps'][:8]))
+
+    def test_grid_evidence(self):
+        out = Path(__file__).resolve().parent / 'results/grid_9_3'
+        if not (out / 'manifest.json').exists():
+            self.skipTest('grid artifacts unavailable')
+        manifest = json.loads((out / 'manifest.json').read_text())
+        if manifest['status'] == 'RUNNING':
+            self.skipTest('grid still running')
+        summary = json.loads((out / 'summary.json').read_text())
+        self.assertIn(summary['status'], ('PILOT-COMPLETE', 'FIRST-SAT-PROCESSED', 'CANDIDATE'))
+        self.assertEqual(manifest['family'], 'grid_9_3')
+        self.assertLess(manifest['core_hours'], 1)
+        for name, digest in manifest['outputs_sha256'].items():
+            path = out / name
+            r = summary['targets'].get(name.removesuffix('.drat'), {})
+            if (name.endswith('.drat') and r.get('status') == 'TIMEOUT'
+                    and not path.exists() and not Path(str(path) + '.gz').exists()):
+                continue
+            self.assertEqual(artifact_sha(path), digest, name)
+        baseline = out.parent / 'paired_9_3_continued/summary.json'
+        self.assertEqual(pilot.sha(baseline), summary['baseline']['sha256'])
+        decided = set()
+        for name, r in summary['targets'].items():
+            i = r['map_index']; cap = r['cutoff_seconds']
+            self.assertIn(i, (0, 1, 40, 48))
+            self.assertIn(cap, (60, 300))
+            self.assertNotIn(i, decided)
+            self.assertLessEqual(r['budget_seconds'], cap)
+            rec = pilot.census(9, 3)['maps'][i]
+            c = pilot.CNF(9); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
+            self.assertEqual(hashlib.sha256(json.dumps([c.nv, c.clauses], separators=(',', ':')).encode()).hexdigest(), r['formula_sha256'])
+            with tempfile.TemporaryDirectory() as tmp:
+                rebuilt = Path(tmp) / 'rebuilt.cnf'
+                c.dimacs(rebuilt, comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
+                self.assertEqual(pilot.sha(rebuilt), artifact_sha(out / (name + '.cnf')))
+                if r['status'] == 'UNSAT-VERIFIED':
+                    decided.add(i)
+                    self.assertLessEqual(r['checker_budget_seconds'], cap)
+                    if Path(pilot.DRAT).is_file():
+                        proof = unpack(out / (name + '.drat'), Path(tmp) / 'proof.drat')
+                        self.assertTrue(pilot.check_proof(rebuilt, proof, Path(tmp) / 'log', cap))
+                    else:
+                        self.assertIn('s VERIFIED', (out / (name + '.checker.log')).read_text())
+                elif r['status'] == 'SAT':
+                    decided.add(i)
+                    self.assertTrue(pilot.model_valid(c.clauses, json.loads((out / (name + '.model.json')).read_text())))
+                else:
+                    self.assertEqual(r['status'], 'TIMEOUT')
+        if summary['status'] == 'PILOT-COMPLETE':
+            for i in (0, 1, 40, 48):
+                self.assertTrue(i in decided or f'map{i}_plain_t300' in summary['targets'])
+        self.assertEqual(summary['controls']['nine_plane_control']['status'], 'SAT')
+        self.assertEqual(summary['controls']['C3_control']['status'], 'SAT')
+
     def test_paired_evidence(self):
         base = Path(__file__).resolve().parent / 'results'
         out = base / 'paired_9_3_continued'
