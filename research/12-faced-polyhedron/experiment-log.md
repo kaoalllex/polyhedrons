@@ -841,3 +841,8 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-04: clarified continuation after the committed E-261103-05 result (4e77a88): E-261103-03 tranche activation has priority over the generic open-row fallback. Refreshed the owner's ignored local TODO; verify_all --quick ALL PASS (archive skipped), no new research run or night launch.
 
 * 2026-11-04: E-261103-03 coverage tranche pre-registered in c707bc5, bounded runner in 697e3e5; same-path pilot and resume completed. CONCLUSION / STATUS 3h record timeouts, controls, resources, unchanged mathematical coverage and launch readiness. Production inherits the pilot without reruns; no tranche, night, push or PR launched.
+
+* 2026-11-04: concluded the owner-run E-261103-03 new-map tranche; see its CONCLUSION,
+  results/tranche_audit.json and STATUS 3i. Queue complete, LOW-YIELD, no target SAT.
+  Added hash/transcript reuse to the conclusion harness; fresh DRAT replay is an explicit audit.
+  Recorded on Codex/s5-coverage-tranche with prior owner launch fixes preserved; no push/PR.

@@ -41,3 +41,10 @@ The genus-2 case is excluded at that level; genus 3-5 remain open, so the umbrel
 E-261103-05 passes its disk-aware solid-first R2/R3 controls (CONCLUSION / STATUS 3g).
 The exact auxiliary recovery is at (8,3), not maximal S5 (9,3), and supplies no focus existence
 conclusion. This is engine-power evidence; the hypothesis remains open.
+
+## 2026-11-04 new-map tranche
+
+E-261103-03 completed its registered bounded coverage tranche (STATUS 3i / CONCLUSION).
+EXACT decisions concern saved formulas only; geometric interpretation remains conditional
+PROVED-1. No target SAT or geometric candidate. This hypothesis retains its preceding status;
+partial coverage and timeouts do not decide existence.

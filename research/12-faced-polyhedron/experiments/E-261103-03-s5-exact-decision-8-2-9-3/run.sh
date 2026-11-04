@@ -3,6 +3,7 @@
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(cd "$HERE/../.." && pwd)"
+PYTHON="${PYTHON:-${VIRTUAL_ENV:-$HOME/.venvs/polyhedra}/bin/python}"
 SHARDS="${SHARDS:-1}"
 if [[ "${1:-pilot}" == coverage-pilot || "${1:-pilot}" =~ ^[0-9]+$ ]]; then
   SHARD="${1:-0}"
@@ -21,9 +22,9 @@ if [[ "${1:-pilot}" == coverage-pilot || "${1:-pilot}" =~ ^[0-9]+$ ]]; then
   fi
   export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1
   export CADICAL="${CADICAL:-cadical}" DRAT_TRIM="${DRAT_TRIM:-drat-trim}"
-  nice -n 10 python3 "$ROOT/overnight/run_overnight.py" s5 --workers 1 --shard "$SHARD" --shards "$SHARDS" \
-    --results-dir "$OUT" "${PILOT[@]}"
-  python3 "$ROOT/overnight/run_overnight.py" status --results-dir "$(dirname "$OUT")"
+  nice -n 10 "$PYTHON" "$ROOT/overnight/run_overnight.py" s5 --workers 1 --shard "$SHARD" --shards "$SHARDS" \
+    --results-dir "$OUT" ${PILOT[@]+"${PILOT[@]}"}
+  "$PYTHON" "$ROOT/overnight/run_overnight.py" status --results-dir "$(dirname "$OUT")"
   exit 0
 fi
 if [[ "${1:-pilot}" == grid ]]; then

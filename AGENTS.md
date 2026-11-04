@@ -54,9 +54,18 @@ Hard rules:
 - Long runs go to the owner's laptop (under `caffeinate -dimsu`, on AC power) or to GitHub Actions. Never start
   a multi-hour run from a session.
 - Ask the owner before large subagent tasks and before long runs. SAT runs keep their proofs and CNFs.
-- Verify before and after changes. Use `python3` from an activated environment with the dependencies in
-  `research/12-faced-polyhedron/requirements.txt` installed:
-  `python3 research/12-faced-polyhedron/verification/verify_all.py --quick` (from the repository root).
+- Run checks only when their result can change a decision. Reuse a recorded successful check when its
+  relevant code, inputs, dependencies and environment are unchanged, including across handover/session
+  boundaries. Do not rerun merely to refresh a report or final response.
+- Before behavioral changes, reuse a valid baseline or run the smallest relevant baseline once. After
+  changes, run only affected checks. Use `python3 research/12-faced-polyhedron/verification/verify_all.py --quick` once for integrated code/evidence changes when focused checks leave an integration concern;
+  reuse that result at conclusion and handover. Do not also run a standalone suite already covered by it.
+- Documentation, ledger, prompt and skill wording edits require review of the diff and relevant links or
+  metadata only; they do not require solver, certificate or regression runs. Changes to mathematical claims,
+  executable instructions or evidence references require the specific checks that substantiate them.
+- Repeat a check only after a relevant change, a failure/unresolved concern, missing baseline evidence or an
+  explicit audit request; state the reason before rerunning. New candidates and certificates still require
+  their initial exact verification. Use an activated Python environment with the research requirements.
 - Never push research work straight to `main`. Work on `experiment/E-YYMMDD-NN-slug` or `Codex/<topic>`; changes reach
   `main` through a PR with `verify` green.
 - Talk to the owner in Russian. Write files, code and commits in English.

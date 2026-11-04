@@ -33,3 +33,10 @@ E-261103-03 (8,2) pilot: both plain formulas UNSAT-VERIFIED, retained CNF/DRAT,
 checked by drat-trim and replayed in verify_all (EXACT). Conditional geometric exclusion
 is PROVED-1, relying on census coverage and encoding/general-position soundness without
 human review. See the experiment CONCLUSION. No CERTIFIED theorem or novelty claim.
+
+## 2026-11-04 new-map tranche
+
+E-261103-03 completed its registered bounded coverage tranche (STATUS 3i / CONCLUSION).
+EXACT decisions concern saved formulas only; geometric interpretation remains conditional
+PROVED-1. No target SAT or geometric candidate. This hypothesis retains its preceding status;
+partial coverage and timeouts do not decide existence.

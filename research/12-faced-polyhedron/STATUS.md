@@ -4,14 +4,14 @@ As of **2026-11-04** (after night 7: E-261102-03 and E-261102-04, two engines sc
 details: `results.md`; chronology: `experiment-log.md`; what to do next: `ROADMAP.md`. Update this file in the
 same commit as any result that changes a row. This file owns the verdicts and numbers; other files link here.
 
-E-261103-03 (8,2) pilot completed 2026-11-04; its bounded (9,3) paired pilot is complete; wider coverage remains pending. See section 3e. See section 3d.
+E-261103-03 (8,2) pilot completed 2026-11-04; its bounded (9,3) paired pilot is complete; the registered new-map tranche is complete (section 3i); wider census coverage remains unresolved.
 
 ## 0. State in one paragraph
 
 **Focus since 2026-11-03 (`STRATEGY.md`): S5 at (9, 3)**, a maximal face-neighbourly polyhedron with 9 faces and genus
 3 (stretch (10, 4)). No geometric witness is known; the paired exact pilot is complete (section 3e); the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes
 at (9, 3), 203 admissible, 8 with a free C3, 2 at (8, 2), 1183 at (10, 4), 1117 admissible. The exact route
-(OM-SAT per map at 10 elements) has partial pilot coverage and remains in the queue (`ROADMAP.md`); its multi-adjacency encoder
+(OM-SAT per map at 10 elements) has partial coverage and remains in the queue (`ROADMAP.md`); its multi-adjacency encoder
 passes the bounded controls (E-261103-02, EXACT). Both plain (8,2) warm-up formulas are now
 UNSAT-VERIFIED (E-261103-03, section 3d; geometric interpretation conditional PROVED-1). Uniform fixed-face C2/D3 formulas cannot decide those
 geometric symmetry families (PROVED-1 scope warning in the experiment). **S0 (Szilassi-12) is parked, not abandoned**: the paragraph below and
@@ -256,6 +256,29 @@ CONCLUSION records the bounded AI review and its regression-tested fixes. No the
 row changes, human review, real eight-shard run, night, push, PR or external upload. The
 experiment remains running, with no active process; the next action is the owner's laptop
 command in its README. The complete tranche is not a session job.
+
+## 3i. S5 completed new-map tranche (2026-11-04)
+
+The frozen 80-map queue is exhausted, including the two inherited pilot timeouts:
+14 new UNSAT-VERIFIED plain formulas (19,20,29,31,43,52,58,59,60,66,67,75,83,90),
+66 TIMEOUT, no SAT or geometric candidate. The >=20-decision prediction failed.
+Cumulative plain coverage: 19 checked formulas, 73 attempted/unresolved maps and 111
+unattempted admissible maps. The eight prior C3 decisions are unchanged.
+
+The eight final shards completed between 05:24:00 and 05:35:36 UTC (696 seconds elapsed).
+Their summed wall time is 4885.465871168 seconds. All 18 numeric attempt manifests, including
+10 interrupted startup diagnostics, sum to 5261.281011751 seconds / 1.461466947709 core-hours.
+Including the inherited pilot, this tranche consumes 5403.269883292 seconds /
+1.500908300915 core-hours, below its registered ceiling. Older stages and post-run audits
+are outside this tranche total. No missing numeric attempt manifest was observed.
+
+All final-shard controls pass and all 1574 recorded output hashes match. Evidence:
+experiment results/tranche_audit.json and CONCLUSION. EXACT applies to checked formulas;
+geometric exclusion remains conditional PROVED-1. No CERTIFIED, existence or S0 claim.
+Verdict: LOW-YIELD at the registered budget for this frozen queue; no unchanged expansion
+or timeout retry is activated. E-261103-03 remains running because its broader census goal
+is incomplete; this tranche is finished and no further run is requested. Next queued
+exploration is E-261103-04, requiring its own committed plan and calibrated controls.
 
 ## 4. What may and may not be claimed
 

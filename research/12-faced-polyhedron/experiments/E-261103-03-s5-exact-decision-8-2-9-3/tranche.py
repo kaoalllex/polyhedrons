@@ -144,9 +144,9 @@ def pending(root, queue, shard, shards):
                     name = f'map{rec["map_index"]}_plain'
                     needed = ['.cnf'] + (['.drat'] if rec['status'] == 'UNSAT-VERIFIED' else [])
                     for suffix in needed:
-                        path = work / (name + suffix)
-                        if not path.exists() and not Path(str(path) + '.gz').exists():
-                            raise ValueError(f'missing saved evidence: {path}')
+                        artifact = work / (name + suffix)
+                        if not artifact.exists() and not Path(str(artifact) + '.gz').exists():
+                            raise ValueError(f'missing saved evidence: {artifact}')
                     if rec['status'] == 'SAT' and not (work / (name + '.model.json')).exists():
                         raise ValueError('missing saved SAT model')
                 done.add(rec['map_index'])

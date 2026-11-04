@@ -1,5 +1,6 @@
 """Artifact and process-boundary regressions; no target decisions."""
 import json
+import os
 import gzip
 import hashlib
 import shutil
@@ -8,6 +9,13 @@ import unittest
 from pathlib import Path
 import pilot
 from omsat import CNF
+
+
+def replay_requested():
+    requested = os.environ.get('REPLAY_DRAT') == '1'
+    if requested and not Path(pilot.DRAT).is_file():
+        raise RuntimeError('REPLAY_DRAT=1 requires drat-trim')
+    return requested
 
 
 def artifact_sha(path):
@@ -29,6 +37,17 @@ def unpack(path, destination):
 
 
 class PilotTests(unittest.TestCase):
+    def test_saved_proof_replay_requires_explicit_opt_in(self):
+        from unittest.mock import patch
+        with patch.dict(os.environ, {}, clear=True), patch.object(Path, 'is_file', return_value=True):
+            self.assertFalse(replay_requested())
+        with patch.dict(os.environ, {'REPLAY_DRAT': '1'}):
+            with patch.object(Path, 'is_file', return_value=True):
+                self.assertTrue(replay_requested())
+            with patch.object(Path, 'is_file', return_value=False):
+                with self.assertRaises(RuntimeError):
+                    replay_requested()
+
     @unittest.skipUnless(Path(pilot.CADICAL).is_file() and Path(pilot.DRAT).is_file(), "external proof tools unavailable")
     def test_saved_models_and_proofs(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -160,7 +179,7 @@ class EvidenceTests(unittest.TestCase):
                 if r['status'] == 'UNSAT-VERIFIED':
                     decided.add(i)
                     self.assertLessEqual(r['checker_budget_seconds'], cap)
-                    if Path(pilot.DRAT).is_file():
+                    if replay_requested():
                         proof = unpack(out / (name + '.drat'), Path(tmp) / 'proof.drat')
                         self.assertTrue(pilot.check_proof(rebuilt, proof, Path(tmp) / 'log', cap))
                     else:
@@ -214,7 +233,7 @@ class EvidenceTests(unittest.TestCase):
                 c.dimacs(rebuilt, comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
                 self.assertEqual(pilot.sha(rebuilt), artifact_sha(folder / (name + '.cnf')))
                 if r['status'] == 'UNSAT-VERIFIED':
-                    if Path(pilot.DRAT).is_file():
+                    if replay_requested():
                         proof = unpack(folder / (name + '.drat'), Path(tmp) / 'proof.drat')
                         self.assertTrue(pilot.check_proof(rebuilt, proof, Path(tmp) / 'log', 60))
                     else:
@@ -247,7 +266,7 @@ class EvidenceTests(unittest.TestCase):
                 chi = pilot.chirotope_from_planes(result['planes'])
                 self.assertEqual({','.join(map(str, k)): v for k, v in chi.items()}, inp['chi'])
                 self.assertTrue(pilot.verify(result['planes'], dict(enumerate(inp['links'])))['EMBEDDED'])
-        print('DRAT replay: fresh external checks' if Path(pilot.DRAT).is_file() else 'DRAT replay: hashes and saved transcripts only', flush=True)
+        print('DRAT replay: fresh external checks' if replay_requested() else 'DRAT replay: hashes and saved transcripts only', flush=True)
         for name, result in summary['targets'].items():
             self.assertEqual(result['status'], 'UNSAT-VERIFIED')
             i = int(name[3]); rec = pilot.census(8, 2)['maps'][i]
@@ -262,7 +281,7 @@ class EvidenceTests(unittest.TestCase):
                 rebuilt = Path(tmp) / 'rebuilt.cnf'
                 c.dimacs(rebuilt, comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
                 self.assertEqual(pilot.sha(rebuilt), result['cnf_sha256'])
-                if Path(pilot.DRAT).is_file():
+                if replay_requested():
                     self.assertTrue(pilot.check_proof(out / (name + '.cnf'), out / (name + '.drat'), Path(tmp) / 'checker.log', 60))
                 else:
                     self.assertIn('s VERIFIED', (out / (name + '.checker.log')).read_text())

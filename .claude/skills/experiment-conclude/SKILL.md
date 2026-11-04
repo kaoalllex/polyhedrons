@@ -20,6 +20,13 @@ Use `python3` from an activated environment with `requirements.txt` installed.
    (`SPEC.md` section 4) and what was not run.
 3. **Verify.** Run every candidate through the `candidate-check` skill. Every UNSAT used as evidence keeps its
    formula (CNF / SMT2 file or its SHA-256) and, for SAT, its proof.
+   - Routine conclusions reuse a saved successful proof check when CNF, proof and checker provenance
+     are bound by recorded hashes and the success transcript is intact. Validate hashes and transcripts;
+     do not replay DRAT merely because a new session starts or drat-trim is installed. Replay once for
+     missing evidence/provenance, changed formula/proof/checker, suspected corruption, or an explicit
+     audit request. A hash mismatch must be investigated, never silently accepted. Report cached
+     acceptance separately from fresh replay. E-261103-03 evidence tests use `REPLAY_DRAT=1` for
+     explicit audit replay; initial checking of new UNSAT certificates remains mandatory.
 4. **Conclude.** Fill in `CONCLUSION.md` from the template:
    - prediction vs outcome;
    - claims with `SPEC.md` §5 labels and their scope (instance / family / theorem), and what must not be
@@ -44,9 +51,12 @@ Use `python3` from an activated environment with `requirements.txt` installed.
    - wall time vs budget, and any sleep gaps;
    - per job: tasks, outcomes, exact checks;
    - the verdict.
-7. **Close.** Run `python3 verification/verify_all.py --quick` and the smallest additional checks required by the
-   experiment; run the full suite only when explicitly requested. Propose a PR into `main`, and open it only
-   when the owner says so. Report to the owner in Russian: the outcome, what changed in STATUS, the next ROADMAP item.
+7. **Close.** Reuse applicable successful checks from the run/session; conclusion and ledger wording edits
+   alone do not trigger tests. For relevant code/evidence changes, run only affected checks not already
+   covered; run `python3 verification/verify_all.py --quick` once if an integration concern remains. State
+   the reason before repeating any check; reuse the result at handover. Follow `PROTOCOL.md` section 8.
+   Run the full suite only when explicitly requested. Propose a PR into `main`, and open it only when the
+   owner says so. Report in Russian: outcomes, verification scope, STATUS changes and next ROADMAP item.
 
 Labels: an AI-written proof is at most PROVED-1. CERTIFIED needs a checked certificate, a written soundness
 argument and recorded hashes.

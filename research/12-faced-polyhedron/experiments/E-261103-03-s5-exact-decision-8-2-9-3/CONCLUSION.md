@@ -403,3 +403,47 @@ verify_all.py --quick ALL PASS (20 checks, full archive skipped). Checked eviden
 new saved CNFs are reconstructed, and all retained small artifacts are hashed. CNFs and small control proofs are packed losslessly using the existing gzip artifact pattern.
 Original raw files remain local; large timeout proofs remain local and untracked, with recorded SHA-256. Not checked: a real concurrent eight-
 shard run, target-SAT realizability, the full archive, external human review, or GitHub CI.
+
+## Owner-run new-map tranche concluded (2026-11-04)
+
+The frozen queue is complete. Canonical outcomes, coverage and measured costs are in STATUS
+section 3i; per-unit hashes and per-attempt manifests are indexed by results/tranche_audit.json.
+All production controls pass, including construction_power CONTROL-PASS. Every recorded output
+hash matches. Completed UNSATs retain CNF, DRAT and successful checker transcripts. The audit
+also reconstructs new UNSAT clause formulas and replays their proofs; audit time is separate
+from the registered run cost. No target SAT occurred, so no target model/realizer/FP stage ran.
+
+The registered affordable-decision prediction failed. Verdict: LOW-YIELD for this queue at
+its measured budget, not a refutation of the method. EXACT instance evidence adds checked
+plain formulas; the census/encoder geometric interpretation remains conditional PROVED-1.
+Timeouts provide no negative evidence. Arbitrary (9,3) existence and S0 remain open.
+H-261103-02 and H-261101-07 stay open; H-261103-03 retains its earlier (8,2) evidence.
+No foundation or witness row changes and no CERTIFIED upgrade.
+
+All final shards reached SHARD-COMPLETE. Earlier INTERRUPTED attempts are retained and charged;
+resume did not duplicate completed units. UTC timestamps and monotonic elapsed costs show no
+obvious long sleep gap, but no OS sleep telemetry was collected. Partial timeout proofs remain
+local; no release, upload, push or PR was made. Do not automatically rerun this queue, expand
+coverage, or retry the hard tail. The broader experiment stays running with incomplete census
+coverage; the next queued exploration is E-261103-04, subject to experiment-start.
+
+Routine conclusions now reuse hash-bound successful proof checks. Saved-evidence tests default
+to integrity/transcript checks; REPLAY_DRAT=1 explicitly requests fresh audit replay. Initial
+proof checking remains mandatory. Missing provenance, changed inputs/checker or suspected
+corruption requires investigation/replay rather than silently accepting stale evidence.
+
+Verification: all new target proofs passed the explicit fresh audit (recorded in tranche_audit.json).
+The revised saved-evidence path passes 34 focused tests using hashes/transcripts by default;
+its opt-in/missing-tool behavior is regression-tested. Initial proof acceptance and rejection
+controls still run. No full archive, GitHub CI or external human review was performed.
+
+Final verify_all.py --quick: ALL PASS; full archive skipped.
+
+Commit packaging: numeric-shard CNFs, completed target proofs and small control proofs are
+stored as lossless gzip; results/packing_tranche.json binds raw and compressed SHA-256 hashes.
+Large completed proofs are local-only, as marked in that index; git retains their hashes and
+successful checker/audit transcripts. External certificate publication is still pending.
+Each compressed stream was checked against its original before removing the redundant raw copy.
+Large partial proofs remain local and ignored; manifests and resource guards are retained.
+The stale launch.pids file was removed after acquiring every shard lock; lock files remain
+local and ignored. No solver or proof replay was repeated for packaging.
