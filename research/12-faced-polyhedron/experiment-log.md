@@ -863,3 +863,8 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   Gate passed, PROVED-1 supplied-input computation; CONCLUSION / STATUS 3k own scope,
   controls and resources. Compressed evidence and source-bound replay retained.
   Next register geometric recovery calibration; experiment running, no active process.
+
+* 2026-11-04: registered E-261103-04's bounded geometric recovery amendment on
+  Codex/s5-coverage-tranche. PLAN fixes known controls, seeds, time limits, labelled
+  export checks and exact per-level acceptance. Next implement and exercise the
+  recovery dispatch. Surgery evidence reused; no geometric search or night launched.

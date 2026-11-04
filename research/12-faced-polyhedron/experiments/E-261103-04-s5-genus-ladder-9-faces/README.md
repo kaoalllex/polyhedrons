@@ -11,8 +11,8 @@ preregistered: true
 ---
 
 > Representation audit pre-registered, **explore** (counts towards the one-in-two exploration share of `STRATEGY.md`). Scores T D F G R: 1 2 2 1 2 |
-> current stage: the dart-preserving surgery gate is concluded (CONCLUSION / STATUS 3k). Geometric recovery needs its amendment.
-> The geometric pilot and night require a committed amendment. What is different from the parked DR1 runs: a new target with
+> current stage: the bounded geometric recovery pilot is registered in PLAN.md and awaits implementation.
+> The night requires a separate committed amendment. What is different from the parked DR1 runs: a new target with
 > genus 3 (below the S0 "ravine" at 3 -> 4), 9 faces (12 free parameters instead of 21), and all pairs adjacent.
 
 ## Goal
@@ -87,4 +87,13 @@ PROVED-1. CONCLUSION and STATUS 3k own the counts, resources and interpretation.
 Saved chains and their original manifest are in `results/surgery-audit/`.
 `audit.json.gz` losslessly retains the original output. The manifest's `audit.json`
 hash applies to its decompressed bytes. Use `audit.py --check-saved PATH` to check
-either plain or compressed evidence. Next register geometric recovery calibration.
+either plain or compressed evidence. The next section records recovery registration.
+
+## Registered recovery pilot
+
+The dated geometric amendment in `PLAN.md` fixes the three controls, seeds, budgets,
+label-preserving links export, exact checks and stop rules. Next implement its
+experiment-local recovery dispatch and exercise the bounded entry point. The
+`STAGE=recovery` interface is planned and has not been implemented or exercised.
+The commands above reproduce the completed combinatorial stages only. Focus
+geometry and a night remain gated. No owner launch command is pending.
