@@ -320,3 +320,78 @@ next affected check. Repeat the bounded entry point with
 per-level budgets and outer cap. No search seed or attempted optimization is
 repeated because the first attempt stopped before geometry. Both attempts enter
 the resource total. No focus run or calibration expansion is activated.
+
+### 2026-11-04. Conditional failed-level calibration grid
+
+**Decision and scope.** Select the costed grid proposed in CONCLUSION, rather than
+repeat the full pilot. T + D remains 3 (T=1, D=2): this tests whether either saved
+bottleneck can be crossed at the original short/night budget choices. Unlike the
+completed pilot, no sphere search or ascent is repeated. This amendment registers
+the implementation and bounded startup only; the owner must authorize the full
+grid under the standing long-run rule before launch. Commit before implementation.
+No focus geometry, night or alternative-chain search is authorized.
+
+**Frozen units and paired seeds.** Use only the saved Roest-Vigh genus-one and
+Mizhaev genus-two maps exported by `results/recovery-pilot-oriented/recovery.json`.
+Start each cell independently from `roest_vigh-g0.json` or `mizhaev-g1.json` in that
+attempt, respectively. Check the input bytes against the original manifest; match
+the parent's labelled links and saved exact PASS to its current exported level.
+Reuse the source-bound two-scale independent acceptance and successful transcript
+for these unchanged parents. A mismatch is ERROR, never a reason to regenerate a
+parent. Do not initialize from rejected planes or any other grid cell.
+
+Use RNG seeds 1040201 and 1040302, respectively, unchanged from the failed levels,
+paired across 180- and 600-second cells. Order cells by budget, then Roest-Vigh,
+Mizhaev. Keep one worker and the existing thread limits. Use the unchanged
+`genus_ladder.search`, EXTRA=None, DEPTH_W=0.01 and its half-annealing/half-CMA-ES
+allocation. Equal seeds pair initialization, not identical trajectories: wall-time
+phase boundaries depend on hardware and budget. Results need not be monotone.
+
+**H1/H0 and decisions.** H1 predicts that at least one failed level passes exact
+checking within this grid; H0 is no accepted cell under these limits. This is an
+uncalibrated prediction, not a justified 30-70 percent success estimate. A pass
+establishes conditional level recovery only (PROVED-1 supplied-input computation)
+and selects the cheapest observed passing budget for a separately registered
+full-control continuation. A pass at 600 but not 180 seconds supports retaining
+both budgets in that continuation, not an estimated speed threshold. If no cell
+passes, retain UNDERPOWERED and reassess intermediate-map realizability or chain
+selection before proposing further geometry. Do not simply increase the cap.
+All cells run even after a conditional success; no ascent follows a cell.
+No outcome opens the full eight-face gate or changes any existence hypothesis,
+FD/witness row or scenario credence. Scenario move: none.
+
+**Controls and acceptance.** Reuse the existing deterministic positive and
+duplicate-plane negative controls and labelled round trips through the actual
+recovery worker before any grid cell. Stop on CONTROL-FAIL, REPRESENTATION-FAIL
+or ERROR. These controls test infrastructure; they do not establish search power
+at the intermediate maps. Save and exactly check every cell's best planes,
+regardless of its objective, using the same in-process and saved-file verifiers
+and expected topology. Require only the embedded target at these auxiliary levels.
+Retain rejected candidates and transcripts. Accepted cells require candidate-check
+before a result claim. Counters: exact EMBEDDED, nonsimple_faces, bad_pairs,
+adjacent_pairs, topology and accepted levels. Counter calibration: unchanged
+objective controls; no verdict uses a floating threshold. Time, objective and
+restarts remain diagnostics. TIMEOUT and exact rejection do not decide map
+realizability; no LOW-YIELD or nonexistence interpretation is available.
+
+**Budget and provenance.** Four cells request at most 1560 optimizer seconds
+(26 minutes) on one core. The outer wall limit is 1800 seconds including at most
+237 seconds for startup, deterministic controls, saved-input checks and exact
+verification, and three seconds reserved for termination/finalization. Record
+requested/actual cell seconds, budget fraction, restarts, optimizer stop reason,
+exact outcome, all source/input/output hashes and dependency versions. Checkpoint
+before and after every cell; retain partial output on timeout. Fresh default OUT
+is `results/recovery-grid`; never overwrite an attempt. Preserve all older modes.
+The outer cap bounds the attempt; it does not guarantee that every cell runs.
+
+**Bounded startup and affected checks.** Add `STAGE=calibration` to the existing
+`run.sh 0` and a `STARTUP_ONLY=1` switch valid only for that stage. Startup uses the
+same dispatch, controls, exports, parent validation and worker, with a 120-second
+outer cap and no optimization. It records four planned cells and returns
+STARTUP-PASS, with conditional/full recovery flags false. Exercise this once in
+`results/recovery-grid-startup` after implementation; it cannot count as a grid
+outcome. Check Python/shell syntax, cell budget/seed/parent identity and rejection
+of unsupported stage/startup combinations. Reuse the recorded shared-code suite
+and saved surgery acceptance: no shared algorithm is changed. No owner launch
+command is ready until this startup passes. The full grid then awaits explicit
+owner authorization, even though its plan is committed.
