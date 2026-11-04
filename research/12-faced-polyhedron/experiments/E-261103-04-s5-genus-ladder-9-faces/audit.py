@@ -93,7 +93,7 @@ def main(out):
             mizhaev = [mizhaev[str(v)] for v in range(len(mizhaev))]
         for name, link in (('roest_vigh', [links[v] for v in range(len(links))]),
                            ('mizhaev', mizhaev)):
-            result['rows'].append(roundtrip(name, census.from_links(link), census))
+            result['rows'].append(roundtrip(name, census.from_links(list(census.review.coherent(dict(enumerate(link))).values())), census))
             save()
         rows = result['rows']
         positive = [r for r in rows if r['name'].startswith('szilassi_')]
