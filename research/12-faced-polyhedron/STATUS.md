@@ -7,6 +7,8 @@ same commit as any result that changes a row. This file owns the verdicts and nu
 E-261103-03 (8,2) pilot completed 2026-11-04; its bounded (9,3) paired pilot is complete; the registered new-map tranche is complete (section 3i); wider census coverage remains unresolved.
 E-261103-04's replacement surgery gate is complete (section 3k); its bounded
 geometric recovery pilot is concluded, UNDERPOWERED (section 3l).
+Its conditional failed-level grid is registered and startup-checked, awaiting
+owner authorization; no optimizer is active (section 3m).
 
 ## 0. State in one paragraph
 
@@ -360,6 +362,33 @@ Both recovery attempts sum to 109.27383250000094 seconds /
 checks and preparation are outside these totals. Source/output hashes pass;
 prior surgery acceptance is reused. CONCLUSION records timing detail, exact
 commands, full scope and the costed conditional grid proposal, which is unactivated.
+
+## 3m. Conditional failed-level grid readiness (2026-11-04)
+
+E-261103-04 amendment `b851f8c`, implementation `3f3aeda`. The actual
+`STARTUP_ONLY=1 STAGE=calibration .../run.sh 0` returned STARTUP-PASS, exit zero.
+All three deterministic positive/negative controls and ten labelled round trips
+pass. The four planned cells match the registered maps, paired seeds, budgets
+and saved accepted parents. Their maximum requested optimizer time is 1560 seconds;
+the full attempt has a 1800-second outer wall cap, one worker.
+
+**PROVED-1, implementation readiness only.** Original pilot output hashes, current
+source/input hashes, parent-link identities and saved two-scale independent
+acceptance pass. The independent checker and surgery acceptance are reused,
+not replayed. Invalid stage/startup combinations reject with exit two. Python and
+shell syntax and diff/graph metadata checks pass. No optimization or new recovery,
+candidate, scenario move, integrated suite, CI or human review.
+
+The startup used 1.7459750840025663 wall seconds / 0.00048499307888960174 core-hours,
+fraction 0.014549792366688052 of its 120-second cap. All six experiment manifests
+sum to 124.14264650100267 wall seconds / 0.03448406847250074 core-hours; preparation
+and post-run checks are outside the manifests. The startup's pip provenance command
+disabled its unwritable cache; it completed successfully and retained dependency
+versions. Worker stderr is empty.
+
+The full grid awaits explicit owner authorization under the standing long-run
+rule. Full eight-face recovery and focus geometry remain gated. No active process.
+See PLAN and CONCLUSION for decisions after conditional success or UNDERPOWERED.
 
 ## 4. What may and may not be claimed
 

@@ -307,3 +307,51 @@ pilot, exact saved-file checks and independent portable checker supply the affec
 verification. Static Python/shell checks and diff/graph metadata checks pass.
 The recorded shared-code quick-suite PASS is reused for unchanged scope. No fresh
 solver, certificate replay or integrated suite was needed for this isolated path.
+
+## Conditional grid registration and startup (2026-11-04)
+
+The preceding proposal is selected as a conditional calibration, not a repeated
+pilot or a focus expansion. Pre-registration `b851f8c`, implementation `3f3aeda`.
+The uncertainty is whether either frozen failed level can be recovered from its
+saved accepted parent at the original short/night budget choices. A success can
+select a budget for a separately registered continuation. No accepted cell would
+justify another cap increase without reassessing the intermediate maps or chain.
+No probability estimate or production/night power claim is made.
+
+The actual entry point was exercised once in the activated research environment
+from the repository root, with no executable or scheduler substitution:
+
+```bash
+STARTUP_ONLY=1 STAGE=calibration bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0
+```
+
+It returned STARTUP-PASS, exit zero, using 1.7459750840025663 wall seconds /
+0.00048499307888960174 core-hours, fraction 0.014549792366688052 of its cap.
+All six experiment manifests now sum to 124.14264650100267 wall seconds /
+0.03448406847250074 core-hours. Preparation and post-run checks are outside
+these totals. Evidence is in `results/recovery-grid-startup/`. The generating
+implementation commit, parameters, dependency versions, input/output hashes,
+thread limits and logs are retained in its manifest. The pip provenance command
+printed an unwritable-cache warning and successfully recorded dependency versions;
+worker stderr is empty.
+
+All deterministic positive/negative controls and ten labelled round trips pass.
+All declared startup input/output hashes pass. The four frozen planned cells match
+PLAN, with no optimization and no completed search units. The prior pilot output
+hashes, exact parent PASS and labelled links match; saved independent acceptance
+at both scales is bound to the same parent bytes and checker sources. Its saved
+successful transcript and the unchanged surgery acceptance are reused, not replayed.
+Python compilation, shell syntax and three invalid stage/startup combinations pass
+(the latter reject with exit two). Static review confirms each full-grid cell
+initializes from its original parent, never another cell, and calls the unchanged
+shared optimizer. The optimization loop itself has not run in calibration mode.
+The previous shared-code quick-suite PASS is reused; no new integrated suite or
+CI was needed for the isolated dispatch and parameter-selection change.
+
+**PROVED-1, implementation readiness only.** STARTUP-PASS is not a geometric
+recovery result. The completed pilot's UNDERPOWERED verdict, hypotheses and
+credences are unchanged. The full grid awaits explicit owner authorization under
+the standing long-run rule; no active process, focus geometry or night. README
+records the ready launch command. Conditional successes still require exact saved
+checks and candidate-check before any result claim. Even a full grid with accepted
+cells leaves full eight-face recovery gated. No human review or FD/witness change.

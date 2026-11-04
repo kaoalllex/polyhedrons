@@ -11,7 +11,8 @@ preregistered: true
 ---
 
 > Representation audit pre-registered, **explore** (counts towards the one-in-two exploration share of `STRATEGY.md`). Scores T D F G R: 1 2 2 1 2 |
-> current stage: bounded geometric recovery pilot concluded, UNDERPOWERED. See CONCLUSION / STATUS 3l.
+> current stage: conditional failed-level grid registered; startup passes, full grid awaits owner authorization.
+> The completed geometric pilot remains UNDERPOWERED. See CONCLUSION / STATUS 3l-3m.
 > The night requires a separate committed amendment. What is different from the parked DR1 runs: a new target with
 > genus 3 (below the S0 "ravine" at 3 -> 4), 9 faces (12 free parameters instead of 21), and all pairs adjacent.
 
@@ -105,6 +106,23 @@ STAGE=recovery bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genu
 This command refuses to overwrite its existing attempt. It is recorded for
 provenance. A repeat requires a committed amendment, a stated reason and a fresh
 OUT. The completed pilot leaves the full eight-face recovery gate closed.
-Next decide whether to register the costed conditional level grid in CONCLUSION
-or reassess the intermediate maps/chain. Focus geometry and a night remain gated.
-No owner launch command is pending.
+The conditional grid is now registered and startup-checked; see the next section.
+Focus geometry and a night remain gated.
+
+## Conditional failed-level grid ready (2026-11-04)
+
+PLAN's conditional calibration amendment was committed in `b851f8c`, implementation
+in `3f3aeda`. The actual `STARTUP_ONLY=1 STAGE=calibration .../run.sh 0` returned
+STARTUP-PASS without optimization. CONCLUSION / STATUS 3m record verification.
+
+The full grid awaits explicit owner authorization under the project's long-run
+rule. Once authorized, run from the repository root in the activated research
+environment, on AC power with the lid open:
+
+```bash
+STAGE=calibration caffeinate -dimsu nice -n 10 bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0
+```
+
+Default OUT is `results/recovery-grid`. Existing output is never overwritten.
+This bounded calibration is not a night or a focus search. Both conditional PASS
+and UNDERPOWERED require conclusion before any new ascent or budget expansion.
