@@ -1,0 +1,18 @@
+szilassi: deterministic controls PASS, 2 labelled round trips PASS
+roest_vigh: deterministic controls PASS, 4 labelled round trips PASS
+mizhaev: deterministic controls PASS, 4 labelled round trips PASS
+szilassi: searching genus 0, seed 1040100
+szilassi: genus 0 EXACT-PASS, objective 0.0, optimizer 0.029s
+szilassi: searching genus 1, seed 1040101
+szilassi: genus 1 EXACT-PASS, objective 0.0, optimizer 3.590s
+roest_vigh: searching genus 0, seed 1040200
+roest_vigh: genus 0 EXACT-PASS, objective 0.0, optimizer 0.034s
+roest_vigh: searching genus 1, seed 1040201
+roest_vigh: genus 1 EXACT-REJECTION, objective 2.0, optimizer 45.001s
+mizhaev: searching genus 0, seed 1040300
+mizhaev: genus 0 EXACT-PASS, objective 0.0, optimizer 0.046s
+mizhaev: searching genus 1, seed 1040301
+mizhaev: genus 1 EXACT-PASS, objective 0.0, optimizer 9.819s
+mizhaev: searching genus 2, seed 1040302
+mizhaev: genus 2 EXACT-REJECTION, objective 2.0, optimizer 45.002s
+{"controls_pass": true, "recovery_pass": false, "stop_reason": "UNDERPOWERED"}
