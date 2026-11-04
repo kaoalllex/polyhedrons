@@ -235,6 +235,28 @@ Existence hypotheses remain open. The E-261103-03 explore prerequisite is now co
 costed tranche still requires a committed activation. The constructive engine earns a separate
 small target pilot, not an automatic night. No active process, push, PR or external upload.
 
+## 3h. S5 new-map coverage readiness (2026-11-04)
+
+E-261103-03's new-map tranche is pre-registered (c707bc5); its same-path pilot used source
+697e3e5. All required controls pass. Plain maps 8 and 9 both hit their 60-second solver cap;
+these are unresolved instances, not negative mathematical evidence. Resume dispatches neither
+again. Manifest: 141.988871541 wall seconds, 0.039441353206 core-hours. All six experiment
+manifests sum to 1789.715845249 wall seconds, 0.497143290347 core-hours; regression/replay and
+packing are outside those measured totals. No new target SAT, exclusion or candidate.
+
+Cumulative plain coverage: five UNSAT-VERIFIED formulas, nine attempted/unresolved maps,
+189 unattempted admissible maps. Existing C3 decisions are unchanged. EXACT formula scope
+and conditional PROVED-1 geometric interpretation remain unchanged; existence is open.
+The frozen 80-map queue inherits the two pilot records, leaving 78 pending units without
+repeating the old hard tail. The runner caps solver/checker separately, checkpoints/resumes,
+and shares a first-SAT stop; all attempts including the pilot count against a <6.2 core-hour
+ceiling. Controls and mechanical launch gates pass; tranche yield remains unmeasured.
+
+CONCLUSION records the bounded AI review and its regression-tested fixes. No theorem/witness
+row changes, human review, real eight-shard run, night, push, PR or external upload. The
+experiment remains running, with no active process; the next action is the owner's laptop
+command in its README. The complete tranche is not a session job.
+
 ## 4. What may and may not be claimed
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for

@@ -331,3 +331,75 @@ review or external artifact publication was performed.
 E-261103-05 has now concluded its registered R2/R3 explore prerequisite (STATUS 3g).
 The costed coverage proposal above can proceed to a committed activation and bounded same-path
 pilot; no E-261103-03 coverage computation was performed in that explore session.
+
+
+## New-map coverage activation and same-path pilot (2026-11-04)
+
+Pre-registration c707bc5, source 697e3e5, branch Codex/s5-coverage-tranche from 9f9f898.
+The E-261103-05 explore prerequisite was already concluded. The frozen tranche_queue.json
+contains the first 80 previously unattempted admissible maps, excluding all twelve previously
+dispatched plain maps. Its new budget is solver 60 seconds, checker 120 seconds, at most eight
+single-worker shards, with a persistent conservative ceiling below 6.2 core-hours.
+
+### Observed pilot and controls
+
+The registered same-path pilot used one shard on maps 8 and 9. Both calls ended by the intended
+60-second solver timeout (60.007556 and 60.010907 seconds); no target SAT, UNSAT decision,
+proof-check call or geometric candidate occurred. These are unresolved instances, not negative
+mathematical results. Each map retains its CNF, partial DRAT and raw solver transcript with hashes.
+Artifacts: results/coverage_pilot/0/attempt_98a31f50327c40b6aeab9018e20eac1b/.
+
+All required controls pass: pinned known-object SAT assignments, both warm and unseeded
+reconstructions (construction_power CONTROL-PASS), checked cross-map negative, inadmissibility
+and malformed-pairing guards, saved (8,2) proof replay, exact nine-plane predicate/GP positive,
+and the uniform free-C3 arrangement positive. Controls supply exact formula/geometry checks;
+they do not supply a positive geometric S5 (9,3) object. No float diagnostic enters a verdict.
+
+Manifest: 141.988871541 wall seconds, 0.039441353206 core-hours, including the run's controls,
+setup and evidence hashing. A subsequent same-command resume prints "no pending units;
+recorded units skipped", dispatches no target and creates no new measured attempt. Regression
+checks, proof replay and post-run packaging are outside the measured run totals. All six
+experiment manifests now sum to 1789.715845249 wall seconds, 0.497143290347 core-hours.
+The sandbox printed "nice: setpriority: Operation not permitted"; the short pilot proceeded
+at the sandbox's default priority. The laptop wrapper still requests nice priority. The
+DRAT tool's source commit is unknown; its binary SHA-256 and raw version/help output are retained.
+
+### Coverage, decision and limits
+
+Cumulative plain census coverage is five UNSAT-VERIFIED formulas (5,6,30,40,48), nine
+attempted/unresolved maps (0,1,2,3,4,7,8,9,10), and 189 unattempted admissible maps. All eight
+previous uniform C3 decisions remain checked. No new exclusion, target SAT or focus witness.
+EXACT remains scoped to checked saved formulas; geometric interpretations remain conditional
+PROVED-1. Existence hypotheses and scenario credences are unchanged. S0 is untouched.
+
+The launch gate passes for controls, timeout binding, evidence retention and resume. The
+prediction of at least 20 affordable decisions in the frozen tranche is still untested; two
+censored calls cannot estimate its yield or any median speedup. This is readiness for a bounded
+coverage measurement, not evidence that its yield will be high. The owner can launch the remaining
+78 units; production imports the two pilot checkpoints and charges their resources against the
+same ceiling. No automatic retry of the old hard tail or either new timeout is permitted.
+A first target SAT atomically halts new solver dispatch and enters only its bounded model study.
+No tranche, night, push, PR or external upload was launched from this session.
+
+### Implementation review and regression evidence
+
+A bounded read-only AI review found four runner issues before the pilot: orphan nested solver
+processes on stop; a race between SAT-latch checking and solver spawn; missing ALL_OPTS source
+identity; and repeated/overwritten interrupted SAT stages. All were corrected with failing-then-
+passing tests. Cleanup now cascades SIGTERM through nested wrappers before a SIGKILL fallback;
+a real nested-process test confirms the solver is reaped. The shared lock covers actual solver
+spawn. Formula options are hashed. SAT stages checkpoint fresh artifact directories and charge
+an interrupted stage's allocation without retrying it. This is an AI code-review filter, not
+an independent human mathematical review or a CERTIFIED upgrade.
+
+Post-pilot integration imports completed pilot units into production, includes pilot resource
+accounting, and reports a saved failure stop as an error rather than an empty completed queue. The original run's source/proof provenance is retained. The saved CNFs rebuild exactly
+from current source, and the inheritance regression passes without another target call. The runner
+refuses source/input drift and a previous control/error stop; an interrupted unit gets a fresh
+attempt directory. A torn final checkpoint is truncated without rewriting completed bytes.
+
+Local verification: 19 tranche/evidence tests and seven existing runner regressions pass;
+verify_all.py --quick ALL PASS (20 checks, full archive skipped). Checked evidence is replayed,
+new saved CNFs are reconstructed, and all retained small artifacts are hashed. CNFs and small control proofs are packed losslessly using the existing gzip artifact pattern.
+Original raw files remain local; large timeout proofs remain local and untracked, with recorded SHA-256. Not checked: a real concurrent eight-
+shard run, target-SAT realizability, the full archive, external human review, or GitHub CI.

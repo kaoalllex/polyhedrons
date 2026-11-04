@@ -15,7 +15,7 @@ preregistered: true
 > The paired C3/plain (9,3) pilot is complete; see CONCLUSION and STATUS section 3e.
 > The autonomous cutoff grid is also complete (CONCLUSION / STATUS 3f). Result directories are
 > immutable. The explore prerequisite is concluded. The new-map tranche is activated in PLAN.md;
-> launch readiness depends on its same-path pilot. No coverage process is active.
+> its same-path pilot is concluded (CONCLUSION / STATUS 3h). No coverage process is active.
 
 ## Goal
 
@@ -64,3 +64,31 @@ these geometric families. Do not count them as excluded maps. Use the asymmetric
 pre-register a nonuniform extension separately; free C2 at (8,2) and free C3 at (9,3) have positive
 uniform controls. Details and exact formula artifacts: the encoder experiment's `SOUNDNESS.md` and
 `CONCLUSION.md`. No target instance has been solved by that experiment.
+
+
+## Activated coverage: laptop command
+
+The registered same-path pilot is complete; do not rerun the old pilot, paired or grid modes.
+Production reuses its recorded units, and the old unresolved tail stays outside this queue.
+On AC power with the lid open, from the repository root:
+
+```bash
+source "$HOME/.venvs/polyhedra/bin/activate"
+export PATH="$HOME/bin:$PATH"
+caffeinate -dimsu bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 start 8
+```
+
+The existing launcher detaches each shard under its own caffeinate and appends logs. Solver
+executables must be on PATH (CADICAL and DRAT_TRIM may override them). No automatic commits
+or pushes occur. Fewer than eight workers are supported; never request more than eight.
+
+```bash
+bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 status
+bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 stop
+```
+
+Repeat the start command after interruption to resume. Completed units are skipped across all
+shards and the pilot checkpoint. An abruptly killed attempt retains its conservative budget
+reservation and immutable files. A source/input change, exhausted cumulative budget or saved
+failure stop requires review; do not delete those guards to force a restart. A first target SAT
+stops coverage globally and is processed only once through the registered bounded stages.

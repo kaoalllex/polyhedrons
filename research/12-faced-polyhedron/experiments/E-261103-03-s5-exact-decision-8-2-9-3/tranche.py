@@ -133,15 +133,19 @@ def dispatch_gate(root):
 
 def pending(root, queue, shard, shards):
     done = set()
-    for path in root.glob('[0-9]*/results.jsonl'):
+    checkpoints = list(root.glob('[0-9]*/results.jsonl'))
+    if root == HERE / 'results':
+        checkpoints += list((root / 'coverage_pilot').glob('[0-9]*/results.jsonl'))
+    for path in checkpoints:
         for rec in records(path):
             if rec['status'] in ('SAT', 'UNSAT-VERIFIED', 'TIMEOUT'):
                 if 'unit' in rec:
-                    work = Path(rec['unit']); name = f'map{rec["map_index"]}_plain'
+                    work = path.parent.parent.joinpath(*Path(rec['unit']).parts[-3:])
+                    name = f'map{rec["map_index"]}_plain'
                     needed = ['.cnf'] + (['.drat'] if rec['status'] == 'UNSAT-VERIFIED' else [])
                     for suffix in needed:
                         path = work / (name + suffix)
-                        if not path.exists():
+                        if not path.exists() and not Path(str(path) + '.gz').exists():
                             raise ValueError(f'missing saved evidence: {path}')
                     if rec['status'] == 'SAT' and not (work / (name + '.model.json')).exists():
                         raise ValueError('missing saved SAT model')
@@ -156,7 +160,12 @@ def pending(root, queue, shard, shards):
 
 def charged_seconds(root):
     path = root / 'budget.json'
-    return sum(json.loads(path.read_text()).values()) if path.exists() else 0
+    inherited = sum(json.loads(p.read_text())['wall_seconds'] for p in pilot_manifests(root))
+    return inherited + (sum(json.loads(path.read_text()).values()) if path.exists() else 0)
+
+
+def pilot_manifests(root):
+    return sorted((root / 'coverage_pilot').glob('[0-9]*/attempt_*/manifest.json')) if root == HERE / 'results' else []
 
 
 def reserve(root, seconds):
@@ -275,6 +284,11 @@ def run(args):
         queue = load_queue()[:2] if args.s5_pilot else load_queue()
         identity = dict(sources=sources(), queue_sha256=sha(QUEUE), pilot=args.s5_pilot,
                         cadical_sha256=sha(Path(pilot.CADICAL)), drat_sha256=sha(Path(pilot.DRAT)))
+        if root == HERE / 'results':
+            inherited = pilot_manifests(root)
+            if not inherited or any(json.loads(p.read_text())['status'] != 'SHARD-COMPLETE' for p in inherited):
+                raise ValueError('production requires a completed same-path pilot without first SAT or error')
+            identity['pilot_manifests_sha256'] = {str(p.relative_to(root)): sha(p) for p in inherited}
         check_identity(root, identity)
         with locked(root / 'dispatch.lock'):
             cohort = root / 'cohort.json'
@@ -286,10 +300,10 @@ def run(args):
                             pass
             atomic(cohort, shards)
         todo = list(pending(root, queue, shard, shards))
-        if not todo and not (root / 'first_sat.json').exists():
-            print('no pending units; recorded units skipped', flush=True); return
         if (root / 'stop.json').exists():
             raise RuntimeError('saved failure stop requires review; no automatic retry')
+        if not todo and not (root / 'first_sat.json').exists():
+            print('no pending units; recorded units skipped', flush=True); return
         if (root / 'first_sat.json').exists():
             if json.loads((root / 'first_sat.json').read_text())['status'] != 'SAT-PENDING':
                 print('first SAT already processed; coverage remains stopped', flush=True); return

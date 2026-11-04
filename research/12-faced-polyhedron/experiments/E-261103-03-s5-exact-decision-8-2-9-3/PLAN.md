@@ -235,3 +235,14 @@ consumes that allocation, and is not rerun; processing resumes with the next una
 This makes immutable evidence and the per-model stage budget take precedence over reconstructing
 an interrupted numerical attempt. It gives no negative mathematical conclusion. Ctrl+C/SIGTERM
 is resumable; a failed control, invalid model or unchecked proof requires review instead.
+
+#### Post-pilot integration: reuse completed pilot units, no target rerun
+
+The same-path pilot is complete. Production imports its checkpoint as read-only evidence,
+so maps 8 and 9 are not dispatched again. Their measured pilot resources count against the
+same cumulative ceiling; the 80-map frozen queue is unchanged. The pending work is therefore
+78 maps. A regression exercises inheritance and resource accounting on a separate fixture.
+The pilot's original source hashes and files remain unchanged; current-CNF reconstruction
+checks equivalence. Post-pilot runner changes are checkpoint/resource inheritance and fail-closed reporting of a
+saved failure stop, plus support for the existing lossless gzip artifact format. These changes
+require no new target solve. Changed live source still blocks resuming an old run.
