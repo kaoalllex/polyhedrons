@@ -857,3 +857,9 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   structural controls, simple sphere endpoints and bounded deterministic chain search.
   Diff/source-contract review only, with existing graph metadata and evidence unchanged.
   Next implement the surgery audit, then calibrate geometry under a separate amendment.
+
+* 2026-11-04: implemented and concluded E-261103-04's bounded dart-preserving surgery
+  audit (pre-registration 5725a38, implementation cfb99e2, saved checker 2ff5953).
+  Gate passed, PROVED-1 supplied-input computation; CONCLUSION / STATUS 3k own scope,
+  controls and resources. Compressed evidence and source-bound replay retained.
+  Next register geometric recovery calibration; experiment running, no active process.

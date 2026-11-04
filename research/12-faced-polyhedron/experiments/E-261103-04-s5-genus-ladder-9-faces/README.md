@@ -11,7 +11,7 @@ preregistered: true
 ---
 
 > Representation audit pre-registered, **explore** (counts towards the one-in-two exploration share of `STRATEGY.md`). Scores T D F G R: 1 2 2 1 2 |
-> current stage: the dart-preserving surgery amendment in `PLAN.md`; implementation and its bounded audit are next.
+> current stage: the dart-preserving surgery gate is concluded (CONCLUSION / STATUS 3k). Geometric recovery needs its amendment.
 > The geometric pilot and night require a committed amendment. What is different from the parked DR1 runs: a new target with
 > genus 3 (below the S0 "ravine" at 3 -> 4), 9 faces (12 free parameters instead of 21), and all pairs adjacent.
 
@@ -61,8 +61,8 @@ they cannot do so. The audit records the exact scope on the frozen census and co
 See `CONCLUSION.md` and `STATUS.md` section 3j for the completed audit, resources,
 failed initial attempt and control-orientation correction. The legacy conversion
 loses parallel-edge identities (PROVED-1 implementation limitation). The experiment
-stays running. The dated dart-preserving surgery amendment in `PLAN.md` specifies
-the next implementation and bounded combinatorial audit before geometric work.
+stays running. The dated dart-preserving surgery amendment in `PLAN.md` and the
+subsequent implementation pass the bounded combinatorial gate. See CONCLUSION.
 The saved audit directories are immutable attempts; the runner refuses to overwrite
 an existing output directory. A new audit requires a stated reason and a fresh OUT.
 
@@ -79,3 +79,12 @@ The default output is `results/surgery-audit`. The registered controls precede f
 maps. The manifest records the implementation commit and source/input hashes. Saved
 chains retain labelled dart data, inverse surgery records and canonical top-map checks.
 The original invocation without `STAGE` still selects the legacy representation audit.
+
+## Surgery stage concluded
+
+The registered controls and focus-map scope pass the surgery gate, with claims at
+PROVED-1. CONCLUSION and STATUS 3k own the counts, resources and interpretation.
+Saved chains and their original manifest are in `results/surgery-audit/`.
+`audit.json.gz` losslessly retains the original output. The manifest's `audit.json`
+hash applies to its decompressed bytes. Use `audit.py --check-saved PATH` to check
+either plain or compressed evidence. Next register geometric recovery calibration.

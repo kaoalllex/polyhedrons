@@ -1,7 +1,9 @@
-# E-261103-04: representation gate concluded
+# E-261103-04: representation and dart-preserving surgery gates
 
-This concludes the first registered stage. The broader experiment stays running while
-its geometric recovery pilot awaits a dart-preserving implementation and amendment.
+The two combinatorial stages are concluded. The broader experiment stays running while
+its geometric recovery pilot awaits a separately committed amendment.
+
+## Legacy representation audit
 
 ## Runs and controls
 
@@ -75,3 +77,91 @@ versions are retained in its commit. This audit has no `verify_all.py` integrati
 and no EXACT ledger upgrade is made. The unchanged previously checked research
 suite is reused for its former scope. Ledger wording and evidence links receive
 focused review only.
+
+## Dart-preserving surgery audit (2026-11-04)
+
+The surgery amendment was pre-registered in `5725a38`. Implementation `cfb99e2`
+ran from a clean working tree in the activated research environment through the
+actual bounded entry point, from the repository root
+
+```bash
+STAGE=surgery bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0
+```
+
+No executable, scheduler or fixture substitution was used. The run completed
+normally with exit status zero and stop reason COMPLETE. The finite search ended
+before its wall and state caps. The manifest records 11.100107874999594 wall seconds,
+0.0030833632986109983 core-hours, and a budget fraction of 0.03700035958333198.
+Including the two legacy attempts, all three experiment manifests sum to
+13.1228389169991713 wall seconds and 0.00364523303249976984 core-hours. Preparation,
+packing and post-run evidence checking are outside those measured run totals.
+
+| Input scope | Inputs | Checked chains to simple spheres | Unresolved |
+|---|---:|---:|---:|
+| Szilassi (7,1) | 1 | 1 | 0 |
+| Roest-Vigh and Mizhaev (8,3) | 2 | 2 | 0 |
+| Admissible frozen focus maps (9,3) | 203 | 203 | 0 |
+
+Every accepted transition preserves outside triangle cycles and surviving alpha
+pairings, reduces the genus by one, and passes the direct surface check. The saved
+patch check verifies boundary incidence, connected patch vertex links, annulus
+Euler characteristic and patch connectivity. Every chain reverses to exactly its
+labelled top data and the same canonical code. All sphere endpoints pass the simple
+triangulation checks. The negative controls reject a broken alpha involution, a
+mismatched tail label and the disconnected cap-triangle fixture. The Szilassi
+capped-map compatibility check agrees with the legacy tube finder. H1 for the
+registered combinatorial controls holds on the supplied inputs.
+
+### Evidence and reproduction
+
+The immutable run output is retained losslessly as `results/surgery-audit/audit.json.gz`.
+Its decompressed bytes have the original `audit.json` SHA-256 recorded in the run
+manifest. Compression SHA-256 is
+`7abf382cf134792b897cdeb9854ddfb75e1444b35b2e0772951534b12f1c2fcc`.
+All declared input hashes were compared both with the run's files and with their
+versions in the recorded implementation commit. The original output hash and exact
+gzip round-trip equality pass. The manifest retains the original generating code
+provenance.
+
+After the run, commit `2ff5953` strengthened the saved checker to compare every top
+map with its named census/control input, reject duplicate or incomplete rows, and
+read compressed evidence. The saved evidence was checked once with that version
+
+```bash
+python3 research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/audit.py \
+  --check-saved research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/surgery-audit/audit.json.gz
+```
+
+It returned `PASS: 206 saved maps, source identities, surface/patch checks and reversible chains`.
+The actual transcript is `results/surgery-audit/check-saved.txt`. The search was
+not repeated for this additional provenance check. Source binding and all recorded
+transitions pass. The checker uses direct permutations and patch edge incidence
+alongside the surgery implementation's TriMap operations. It has the same AI author
+and no external human review.
+
+### Claim, verdict and next stage
+
+**PROVED-1, supplied-input computation.** Every admissible map in the frozen (9,3)
+census, and the supplied Szilassi and two (8,3) controls, has a checked reversible
+chain of the registered six-triangle surgeries to a simple sphere triangulation.
+This is a representation-readiness claim. It is conditional on the checks in the
+recorded implementation and saved checker. The audit is outside `verify_all.py`
+and receives no EXACT promotion. Census completeness retains its prior label.
+
+**OPEN, surgery gate passed.** The failed legacy conversion remains documented.
+The replacement meets the registered combinatorial gate. Geometric recovery power,
+embeddedness at intermediate levels and focus realizability remain unmeasured.
+No candidate, SAT call or proof replay was produced. H-261101-07, H-261103-02 and
+the A/B/C credences retain their previous statuses. No FD or witness row changes.
+
+Next register the R1 and both (8,3) geometric recovery controls with explicit seeds,
+budgets and stop rules. Export geometry inputs with preserved face labels and
+verify the links-to-dart round trip before passing each level to the energy and
+exact verifier. Focus geometry remains gated on those recovery controls. The
+experiment remains running, with no active process or pending owner launch.
+
+Only experiment-local executable code changed. The actual runner, its structural
+controls and the enhanced saved-evidence checker supplied the affected checks.
+The previous quick-suite result is reused for its unchanged shared-code scope.
+The graph/ledger update receives its required metadata check. No new CI, external
+human review, geometric search or sleep telemetry was checked.
