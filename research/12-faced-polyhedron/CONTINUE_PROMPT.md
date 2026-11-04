@@ -13,40 +13,54 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 3. Unless the owner names another task, work on the top `open` row of `ROADMAP.md`, using the `experiment-start`
    skill.
 
-## Hand-over (2026-11-04, solid-first explore pilot complete)
+## Hand-over (2026-11-04, exact coverage launch ready)
 
-* Current branch: `experiment/E-261103-05-s5-symmetric-solid-first`, local, not pushed. It inherits
-  the completed E-261103-03 cutoff-grid state at 7509f39; pilot pre-registration/source f9b9744,
-  results/verification committed in 4e77a88. Local TODO.md is ignored and intentionally uncommitted.
-* Done: E-261103-05's registered R2/R3 explore pilot (CONCLUSION / STATUS 3g). Known-plane controls
-  and random D2 recovery pass. This is an auxiliary (8,3) known-map reconstruction, not S5 (9,3).
-  E-261103-05 is marked done for that bounded pilot; no target/night phase was activated.
-* Raw pilot artifacts remain unchanged. Canonical exports and exact rechecks are separate;
-  legacy solid-parser failure and post-run strict error-path fixes are documented. A standalone
-  standard-library Fraction checker and REVIEW.md recheck the one random recovery. AI review is
-  not an independent human referee. No CERTIFIED statement or novelty claim.
-* Next continuation priority: resume the owner's unfinished E-261103-03 exact-decision work,
-  ahead of the generic top-open fallback above (which would otherwise select E-261103-04).
-  Activate the costed proposal in its CONCLUSION: 80 previously unattempted admissible maps,
-  solver <=60 seconds, DRAT checker <=120 seconds, at most eight single-thread workers,
-  conservative bound <6.2 core-hours. First commit the PLAN, freeze the queue and implement
-  bounded checkpoint/resume plus first-SAT handling; run controls and a small same-path pilot.
-  Only then provide the exact laptop command. No tranche or night is launched by this hand-over.
-* Launch readiness: there is no coverage/night command yet. E-261103-03/run.sh currently supports
-  only the completed pilot/paired/grid modes and their existing result directories; do not invoke
-  the old generic night launcher as if this new tranche were already activated.
-* In flight: nothing. E-261103-03 remains running with partial plain coverage. Its explore
-  prerequisite is now concluded; its costed tranche proposal can be activated only after a
-  committed PLAN and a bounded same-path pilot. Preserve its hard unresolved tail and all
-  previous source/proof provenance. Use this tip as the dependency base, not stale main.
-* For the constructive engine, a small separately registered nine-plane target pilot is now
-  justified; no automatic night. Do not reopen the census or repeat completed decisions.
-* Original S0 scope and hypotheses are unchanged. No focus geometric candidate is known.
-* Owner actions: external/human encoder and symmetry-coverage review; integrate via PR with
-  verify green when ready. No push, PR, release, mail or external proof upload was performed.
-* Large E-261103-03 timeout proofs remain local and untracked with recorded hashes; keep them.
-* Not checked: nine-plane construction, full census realizability, nonuniform extension,
-  external human review, full archive or GitHub CI. No launch command applies to this completed pilot.
-* Final local verification: `verify_all.py --quick` ALL PASS (19 checks, archive skipped), including
-  all nine explore-pilot regressions, fresh saved-model replay and the standalone exact checker.
-  Research graph and source/document diff checks pass; raw parser-failure output is retained.
+* Current branch: `Codex/s5-coverage-tranche`, local, not pushed, based on 9f9f898 with the
+  completed E-261103-05 dependency. Coverage pre-registration c707bc5, runner/pilot source
+  697e3e5. Local TODO.md remains ignored and intentionally uncommitted.
+* E-261103-03 remains running. Its new-map tranche is activated; see PLAN, tranche_queue.json,
+  CONCLUSION and STATUS 3h. The same-path pilot and no-op resume completed. No target decision
+  or candidate was added; timeouts do not exclude maps. S0 and existence hypotheses are unchanged.
+* Production imports the pilot checkpoint and its resource charge. It must not repeat either
+  pilot unit, the old hard tail, old grid, paired pilot, census or completed explore controls.
+  Saved artifacts retain original source hashes; post-pilot changes import the checkpoint/resource charge and make saved failure stops report
+  an error. Current-source CNF reconstruction and inheritance regressions pass.
+* The runner uses separate solver/checker caps, shared first-SAT stopping at actual solver
+  spawn, durable per-unit checkpoints, source/input guards, fresh attempt directories and a
+  conservative cumulative budget across restarts. Interrupted SAT stages retain files and
+  consume their allocation without retry. Nested process cleanup is regression-tested.
+* Next action belongs to the owner: launch the activated E-261103-03 tranche on the laptop,
+  on AC power with the lid open, from the repository root:
+
+  ```bash
+  source "$HOME/.venvs/polyhedra/bin/activate"
+  export PATH="$HOME/bin:$PATH"
+  caffeinate -dimsu bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 start 8
+  ```
+
+  Status and graceful stop:
+
+  ```bash
+  bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 status
+  bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 stop
+  ```
+
+  The existing launcher is now applicable and detaches each shard under caffeinate. Repeat
+  start to resume completed checkpoints; fewer workers are supported. Never remove a saved
+  failure stop or source/budget guard to force continuation. No automatic git writes.
+* In flight: nothing. No tranche, night, push, PR, release, e-mail or external upload launched.
+  Do not start a long run from an AI session. If the owner has run the tranche, collect numeric
+  results directories and all attempt manifests, then use experiment-conclude. First SAT
+  takes priority over further coverage; a geometric candidate requires candidate-check.
+* Large old timeout proofs and the new pilot's partial proofs remain local and untracked,
+  with recorded hashes; retain them. Small saved artifacts and manifests are versioned.
+  The sandbox denied nice priority for the short pilot; it ran at default priority. The DRAT
+  binary is hashed, but its source commit is unknown. Details are in CONCLUSION.
+* Verification: verify_all.py --quick ALL PASS (20 checks; full archive skipped); tranche
+  scheduling/evidence regressions and the existing pilot runner regressions pass. Research
+  graph has no link errors. Not checked: real concurrent multi-shard execution, target-SAT
+  realization, full archive, external human review, or GitHub CI. Mathematical scope remains
+  EXACT instance decisions and conditional PROVED-1 geometric interpretation.
+* Other owner actions: external/human encoder and symmetry-coverage review; integrate through
+  a PR with verify green when authorized. Do not return to the generic top-open fallback while
+  this activated exact-decision work is awaiting the owner's run/results.

@@ -81,6 +81,28 @@ class TrancheTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 t.check_identity(root, {'source': 'b'})
 
+    @unittest.skipUnless(Path(pilot.CADICAL).is_file() and Path(pilot.DRAT).is_file(), 'external proof tools unavailable')
+    def test_saved_failure_stop_is_an_error_instead_of_completed_work(self):
+        from types import SimpleNamespace
+        t = self.module()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); (root / 'stop.json').write_text('{"error":"failed control"}')
+            args = SimpleNamespace(shard=0, shards=1, workers=1, results_dir=str(root / '0'), s5_pilot=True)
+            with patch.dict('os.environ', {'CADICAL': pilot.CADICAL, 'DRAT_TRIM': pilot.DRAT}):
+                with self.assertRaisesRegex(RuntimeError, 'saved failure stop'):
+                    t.run(args)
+
+    def test_production_inherits_pilot_units_and_charges_its_resources(self):
+        t = self.module()
+        with tempfile.TemporaryDirectory() as tmp:
+            here = Path(tmp); root = here / 'results'; saved = root / 'coverage_pilot/0'
+            saved.mkdir(parents=True); attempt = saved / 'attempt_test'; attempt.mkdir()
+            (attempt / 'manifest.json').write_text('{"status":"SHARD-COMPLETE","wall_seconds":142}')
+            t.append_checkpoint(saved / 'results.jsonl', dict(map_index=8, status='TIMEOUT'))
+            with patch.object(t, 'HERE', here):
+                self.assertEqual([r['index'] for r in t.pending(root, [dict(index=8), dict(index=9)], 0, 1)], [9])
+                self.assertEqual(t.charged_seconds(root), 142)
+
     def test_executable_names_resolve_from_path_before_hashing(self):
         t = self.module()
         with tempfile.TemporaryDirectory() as tmp:
@@ -99,6 +121,16 @@ class TrancheTests(unittest.TestCase):
                 unit=str(work), cnf_sha256='lost', proof_sha256='lost'))
             with self.assertRaises(ValueError):
                 list(t.pending(root, [dict(index=8)], 0, 1))
+
+    def test_resume_accepts_losslessly_archived_cnf_without_rerunning(self):
+        import gzip
+        t = self.module()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); work = root / '0/attempt_saved/map8'; work.mkdir(parents=True)
+            with gzip.open(work / 'map8_plain.cnf.gz', 'wb') as f:
+                f.write(b'p cnf 1 1\n1 0\n')
+            t.append_checkpoint(root / '0/results.jsonl', dict(map_index=8, status='TIMEOUT', unit=str(work)))
+            self.assertEqual(list(t.pending(root, [dict(index=8)], 0, 1)), [])
 
     def test_invalid_wrapper_modes_and_excess_workers_do_no_work(self):
         import os
@@ -186,6 +218,61 @@ class TrancheTests(unittest.TestCase):
                             on_sat=lambda: called.append((out / 'positive.model.json').exists()))
             self.assertEqual(r['status'], 'SAT')
             self.assertEqual(called, [True])
+
+
+class TrancheEvidenceTests(unittest.TestCase):
+    def test_saved_same_path_pilot_evidence(self):
+        import hashlib
+        import tranche
+        from test_pilot import artifact_sha, unpack
+        root = pilot.HERE / 'results/coverage_pilot'
+        manifests = list(root.glob('[0-9]*/attempt_*/manifest.json'))
+        if not manifests:
+            self.skipTest('same-path pilot has not run')
+        for path in manifests:
+            manifest = json.loads(path.read_text())
+            if manifest['status'] == 'RUNNING':
+                self.skipTest('same-path pilot still running')
+            self.assertIn(manifest['status'], ('SHARD-COMPLETE', 'FIRST-SAT-STOP'))
+            self.assertLess(manifest['wall_seconds'], manifest['budget_seconds'])
+            self.assertEqual(manifest['workers'], 1)
+            controls = json.loads((path.parent / 'controls/summary.json').read_text())
+            self.assertEqual(controls['status'], 'CONTROLS-PASS')
+            targets = {f'map{r["map_index"]}_plain': r for r in tranche.records(path.parent.parent / 'results.jsonl')}
+            for name, digest in manifest['outputs_sha256'].items():
+                artifact = path.parent / name
+                rec = targets.get(artifact.stem.removesuffix('.drat'), {})
+                if (name.endswith('.drat') and rec.get('status') == 'TIMEOUT'
+                        and not artifact.exists() and not Path(str(artifact) + '.gz').exists()):
+                    continue
+                self.assertEqual(artifact_sha(artifact), digest, name)
+        recs = tranche.records(root / '0/results.jsonl')
+        self.assertTrue(recs)
+        self.assertTrue({r['map_index'] for r in recs} <= {8, 9})
+        for rec in recs:
+            index = rec['map_index']; name = f'map{index}_plain'
+            # Recorded launch paths are provenance; artifact checks also work in a fresh checkout.
+            relative = Path(rec['unit']).parts[-3:]
+            self.assertTrue(relative[0].isdigit())
+            self.assertEqual(relative[-1], f'map{index}')
+            work = root.joinpath(*relative)
+            c = pilot.CNF(9); pilot.build(c, pilot.from_links(pilot.census(9, 3)['maps'][index]['links']), pilot.ALL_OPTS)
+            self.assertEqual(rec['formula_sha256'], hashlib.sha256(json.dumps([c.nv, c.clauses], separators=(',', ':')).encode()).hexdigest())
+            with tempfile.TemporaryDirectory() as tmp:
+                tmp = Path(tmp)
+                c.dimacs(tmp / 'rebuilt.cnf', comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
+                self.assertEqual(pilot.sha(tmp / 'rebuilt.cnf'), rec['cnf_sha256'])
+                self.assertEqual(artifact_sha(work / (name + '.cnf')), rec['cnf_sha256'])
+                if rec['status'] == 'UNSAT-VERIFIED':
+                    proof = unpack(work / (name + '.drat'), tmp / 'proof.drat')
+                    self.assertEqual(artifact_sha(work / (name + '.drat')), rec['proof_sha256'])
+                    self.assertTrue(pilot.check_proof(tmp / 'rebuilt.cnf', proof, tmp / 'check.log', 120))
+                elif rec['status'] == 'SAT':
+                    self.assertTrue(pilot.model_valid(c.clauses, json.loads((work / (name + '.model.json')).read_text())))
+                else:
+                    self.assertEqual(rec['status'], 'TIMEOUT')
+            self.assertEqual(rec['budget_seconds'], 60)
+        self.assertLess(tranche.charged_seconds(root), 6.2 * 3600)
 
 
 if __name__ == '__main__':
