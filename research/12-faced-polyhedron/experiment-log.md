@@ -879,3 +879,7 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   implemented in 3f3aeda; actual startup returned STARTUP-PASS without optimization.
   CONCLUSION / STATUS 3m record readiness and checks. Full grid awaits explicit
   owner authorization; full-control/focus gates remain closed.
+
+* 2026-11-04: owner authorized E-261103-04 conditional grid. Actual registered
+  caffeinate/nice dispatch launched from 281881d on AC power; deterministic
+  controls pass, first cell active. Collect results/recovery-grid; verdict pending.

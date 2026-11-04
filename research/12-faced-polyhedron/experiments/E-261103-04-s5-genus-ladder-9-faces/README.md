@@ -11,7 +11,7 @@ preregistered: true
 ---
 
 > Representation audit pre-registered, **explore** (counts towards the one-in-two exploration share of `STRATEGY.md`). Scores T D F G R: 1 2 2 1 2 |
-> current stage: conditional failed-level grid registered; startup passes, full grid awaits owner authorization.
+> current stage: conditional failed-level grid running after owner authorization; verdict pending.
 > The completed geometric pilot remains UNDERPOWERED. See CONCLUSION / STATUS 3l-3m.
 > The night requires a separate committed amendment. What is different from the parked DR1 runs: a new target with
 > genus 3 (below the S0 "ravine" at 3 -> 4), 9 faces (12 free parameters instead of 21), and all pairs adjacent.
@@ -115,9 +115,9 @@ PLAN's conditional calibration amendment was committed in `b851f8c`, implementat
 in `3f3aeda`. The actual `STARTUP_ONLY=1 STAGE=calibration .../run.sh 0` returned
 STARTUP-PASS without optimization. CONCLUSION / STATUS 3m record verification.
 
-The full grid awaits explicit owner authorization under the project's long-run
-rule. Once authorized, run from the repository root in the activated research
-environment, on AC power with the lid open:
+The owner authorized the full grid and the command below is now running from
+the repository root in the activated research environment, under caffeinate/nice
+on AC power. Collect the existing attempt; do not launch it again:
 
 ```bash
 STAGE=calibration caffeinate -dimsu nice -n 10 bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0

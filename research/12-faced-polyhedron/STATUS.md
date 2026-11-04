@@ -7,8 +7,8 @@ same commit as any result that changes a row. This file owns the verdicts and nu
 E-261103-03 (8,2) pilot completed 2026-11-04; its bounded (9,3) paired pilot is complete; the registered new-map tranche is complete (section 3i); wider census coverage remains unresolved.
 E-261103-04's replacement surgery gate is complete (section 3k); its bounded
 geometric recovery pilot is concluded, UNDERPOWERED (section 3l).
-Its conditional failed-level grid is registered and startup-checked, awaiting
-owner authorization; no optimizer is active (section 3m).
+Its conditional failed-level grid is registered and startup-checked; the owner
+authorized launch and the run is active (section 3m).
 
 ## 0. State in one paragraph
 
@@ -386,8 +386,10 @@ and post-run checks are outside the manifests. The startup's pip provenance comm
 disabled its unwritable cache; it completed successfully and retained dependency
 versions. Worker stderr is empty.
 
-The full grid awaits explicit owner authorization under the standing long-run
-rule. Full eight-face recovery and focus geometry remain gated. No active process.
+The owner subsequently authorized the full grid. The registered command is active
+from HEAD `281881d` under caffeinate/nice on AC power, one worker; all deterministic
+controls pass and the first cell started. Collect `results/recovery-grid` on completion;
+no grid verdict yet. Full eight-face recovery and focus geometry remain gated.
 See PLAN and CONCLUSION for decisions after conditional success or UNDERPOWERED.
 
 ## 4. What may and may not be claimed
