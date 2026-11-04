@@ -531,3 +531,94 @@ Reuse unchanged surgery/parent acceptance and the recorded shared-code quick
 suite; do not rerun previous recovery attempts or an integrated suite merely
 to refresh this report. Any later amendment requires registration before its
 new computation.
+
+### 2026-11-04. Alternative first-step Mizhaev chains
+
+**Question and decision.** The frozen Mizhaev genus-two intermediate formula is
+UNSAT-VERIFIED in `results/submap-feasibility-audit`; its published genus-three
+top is embedded. Reassess the first removal rather than increasing any recovery
+budget. T=1, D=2: a different SAT intermediate changes which chain deserves a
+descendant audit; exhausting the exact finite removal scope with checked UNSATs
+would reject this particular removal route. This stage authorizes no geometry,
+descendant search, focus-map search or night. Commit this amendment before any
+enumeration or formula construction.
+
+**Frozen scope.** Restore the `mizhaev` row's labelled `levels[0]` from
+`results/surgery-audit/audit.json.gz` (SHA-256
+`7abf382cf134792b897cdeb9854ddfb75e1444b35b2e0772951534b12f1c2fcc`).
+Keep its dart/face labels, published-top alignment and inverse surgery witnesses.
+The existing `recovery.json` frozen above binds the old labelled exports to this
+chain. The known rejected class is that row's `levels[1]`, whose labelled export
+must equal the frozen `mizhaev-g2.json` links.
+
+Enumerate the top's connected six-triangle subsets on at most six face labels
+in existing `patches` order; valid patches require exactly six labels. The
+complete scope is six-label annular removals accepted by `patch_caps` and the
+checks below. Apply `patch_caps`, `remove_patch`, `check_surface`,
+`check_step`, exact `reverse_step` equality and `recovery.export_level` without
+relabelling the parent. Require a valid eight-vertex genus-two triangulation,
+distinct corner triples and uniquely preserved parallel-edge pairing. The raw
+subset bound is C(24,6)=134596; the number of valid distinct children is unknown.
+Deduplicate by canonical map code, retaining one full labelled representative,
+its removal step and inverse per class. If its code matches the old rejected
+class, require an explicit checked map isomorphism before attaching the old
+CNF/proof decision. Do not infer map identity from genus or adjacency counts.
+Save class multiplicities and the number of valid patches separately.
+
+The decision queue is the first eight OTHER canonical classes in first-encounter
+order. Finish enumeration if possible even after eight classes are discovered;
+save every discovered class but solve only this registered prefix. Record
+`enumeration_complete` separately from `tested_prefix_complete`. A 20-second
+enumeration cap can leave a deterministic discovery prefix, which is not a full
+first-step census. A smaller complete queue does not justify filling a night.
+
+**Controls and representation gates.** Reuse the just-passed positive/negative
+submap controls and certificates from `results/submap-feasibility-audit`:
+manifest SHA-256 `11c8599ce486b981d52810678035d843bbb5ba1502b0e5e0e8fb23f1a4f164af`,
+summary SHA-256 `d647563830d257468da5f7b07c5786c6bdd29dff61f11b0929107fd28e624db4`.
+Check their saved output hashes, successful statuses, relevant unchanged core
+source/input hashes, Python/dependency/tool identities and thread limits. The
+existing formula, model-checking and proof-checking path is unchanged; do not
+rerun these controls merely to refresh them. A mismatch stops the stage for
+review rather than silently rerunning controls. Reuse saved parent/surgery
+acceptance and shared-code quick-suite baseline. Newly exercised representation
+requires the per-child labelled export/inverse checks above and matching the
+old genus-two export, not a fresh geometric recovery.
+
+**Formula and limits.** Use the same plain `submap=True`, `ALL_OPTS` formula,
+with no pinned planes, symmetry, symmetry breaking or mirror clauses. One shard,
+one worker; outer cap 180 seconds, three seconds for termination/finalization,
+all worker operations sharing the 177-second monotonic deadline. Enumeration
+has at most 20 seconds; each selected class has at most 10 solver seconds and
+five proof-checker seconds, clipped to the common remaining time. Keep every
+CNF, model, proof and transcript; SAT requires exact satisfaction of saved
+DIMACS, UNSAT-VERIFIED a successful independent proof check. An unresolved class
+does not block later prefix classes; ERROR or outer cap stops the stage.
+
+Checkpoint the discovered queue and witnesses after each distinct class and
+each solver unit. A restart of the same output directory resumes unfinished
+units without repeating recorded decisions or replacing their evidence. A
+partially enumerated queue may be deterministically rebuilt under the same
+20-second cap, checking equality of already saved discovery records. Record
+each invocation separately, actual/maximum times, binding limits and cumulative
+work. Restart is a recovery mechanism, not authorization to expand this pilot.
+Use `STAGE=alternatives`, output `results/mizhaev-first-step-audit`; preserve all
+earlier stages and outputs unchanged.
+
+**Predictions and interpretation.** H1: at least one of the first eight other
+classes is SAT; H0: every class in that prefix is UNSAT-VERIFIED. An empty prefix
+tests neither; unresolved classes prevent H0, while any checked SAT establishes
+H1. Alternative SAT permits only a separately
+registered g1-descendant assessment. A complete enumeration with every class
+decided UNSAT-VERIFIED rejects only this finite six-triangle first-removal scope
+of this labelled top, conditional on the PROVED-1 encoding; a prefix verdict
+never excludes the untested remainder. Timeout/UNVERIFIED leave feasibility
+open. Only measured queue size and throughput can justify a later bounded
+remaining-queue run; no automatic three-hour or overnight run. No outcome is a
+geometric S5 result or a theorem about all chains.
+
+**Verification.** Review the amendment before its registration commit. Before
+execution, review the minimal stage implementation and Python/shell syntax.
+After release, exercise this entry point once, checking queue order, class
+identity, completeness flags, reused-control provenance and saved evidence.
+Do not rerun the first submap audit, recovery grids or integrated suite.
