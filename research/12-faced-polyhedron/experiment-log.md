@@ -846,3 +846,8 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   results/tranche_audit.json and STATUS 3i. Queue complete, LOW-YIELD, no target SAT.
   Added hash/transcript reuse to the conclusion harness; fresh DRAT replay is an explicit audit.
   Recorded on Codex/s5-coverage-tranche with prior owner launch fixes preserved; no push/PR.
+
+* 2026-11-04: E-261103-04 representation gate pre-registered (040562a), control-loading
+  amendment committed (2eeb39f), and bounded audit concluded; see CONCLUSION / STATUS 3j.
+  Legacy conversion cannot retain focus-map parallel edges (PROVED-1); dart-preserving
+  surgery is the next stage. Both attempts retained; geometric recovery unactivated.

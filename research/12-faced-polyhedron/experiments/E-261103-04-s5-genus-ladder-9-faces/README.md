@@ -55,3 +55,12 @@ bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-face
 The original ladder proposal above is subject to this gate. Its triangle-only helpers must
 preserve parallel-edge identities before any recovery search. Source inspection suggests
 they cannot do so. The audit records the exact scope on the frozen census and controls.
+
+## Representation gate concluded
+
+See `CONCLUSION.md` and `STATUS.md` section 3j for the completed audit, resources,
+failed initial attempt and control-orientation correction. The legacy conversion
+loses parallel-edge identities (PROVED-1 implementation limitation). The experiment
+stays running. Prepare a dart-preserving surgery amendment before geometric work.
+The saved audit directories are immutable attempts; the runner refuses to overwrite
+an existing output directory. A new audit requires a stated reason and a fresh OUT.

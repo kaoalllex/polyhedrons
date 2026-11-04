@@ -280,6 +280,26 @@ or timeout retry is activated. E-261103-03 remains running because its broader c
 is incomplete; this tranche is finished and no further run is requested. Next queued
 exploration is E-261103-04, requiring its own committed plan and calibrated controls.
 
+## 3j. S5 genus-ladder representation gate (2026-11-04)
+
+E-261103-04's first registered stage is complete (CONCLUSION). Szilassi round-trips;
+all 203 admissible (9,3) maps and both known (8,3) controls fail the legacy
+`coherent_triangles` conversion. **PROVED-1, implementation scope:** the routine
+allows each directed label pair once, while these maps require more darts than
+F(F-1). This does not decide their geometric realizability or the power of a
+ladder preserving parallel-edge identities.
+
+The first attempt stopped on a Mizhaev control-loading ValueError. The committed
+amendment coherently orients its supplied face cycles using the existing helper;
+the second attempt completes with the positive and negative controls passing.
+Both manifests total 2.0227310419995774 wall seconds / 0.0005618697338887716 core-hours.
+Their output hashes match. The audit is outside `verify_all.py`; no EXACT upgrade.
+
+Verdict OPEN with the representation gate failed. The experiment remains running;
+next prepare a dart-preserving tube-removal amendment and then calibrate geometric
+recovery. No geometric pilot or night is activated. Existence hypotheses and
+scenario credences retain their prior statuses.
+
 ## 4. What may and may not be claimed
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for
