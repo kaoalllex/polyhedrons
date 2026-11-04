@@ -837,3 +837,5 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-04: E-261103-03 autonomous cutoff grid (8f8132c) completed with additional checked plain decisions; CONCLUSION / STATUS 3f record resources, controls and unresolved coverage. Added a conditional C3 coverage draft and independent determinant/gauge controls; prepared a costed tranche proposal behind its explore prerequisite. No campaign or push.
 
 * 2026-11-04: E-261103-05 registered R2/R3 explore pilot (f9b9744) passes; see CONCLUSION / STATUS 3g. Saved model replays and independent rational checks reproduce an auxiliary known-map recovery; no S5 witness or nine-plane run. Post-run export/error-path fixes preserve original provenance; E-261103-03's explore prerequisite is concluded.
+
+* 2026-11-04: clarified continuation after the committed E-261103-05 result (4e77a88): E-261103-03 tranche activation has priority over the generic open-row fallback. Refreshed the owner's ignored local TODO; verify_all --quick ALL PASS (archive skipped), no new research run or night launch.
