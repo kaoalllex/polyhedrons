@@ -132,8 +132,9 @@ def objective(planes, links, ladder, np):
         return dict(status='INVALID-INPUT', error=f'{type(error).__name__}: {error}')
 
 
-def worker(out):
-    result = dict(stage='recovery', controls=[], units=[], exports={}, controls_pass=False,
+def worker(out, calibration=False, startup_only=False):
+    result = dict(stage='calibration' if calibration else 'recovery', controls=[], units=[],
+                  exports={}, controls_pass=False, conditional_pass=False,
                   recovery_pass=False, stop_reason='ERROR', timings={})
     def save():
         write_json(out / 'recovery.json', result)
@@ -216,6 +217,75 @@ def worker(out):
             print(f'{name}: deterministic controls PASS, {len(levels)} labelled round trips PASS', flush=True)
         result['controls_pass'] = True
         save()
+        if calibration:
+            previous = HERE / 'results/recovery-pilot-oriented'
+            prior_manifest = json.loads((previous / 'manifest.json').read_text())
+            for filename, expected in prior_manifest['outputs'].items():
+                assert digest(previous / filename) == expected, filename
+            prior = json.loads((previous / 'recovery.json').read_text())
+            review_dir = HERE / 'results/recovery-review'
+            review = json.loads((review_dir / 'report.json').read_text())
+            assert review['pilot_sha256'] == digest(previous / 'recovery.json')
+            assert review['verifier_sha256'] == digest(review_dir / 'independent.py')
+            assert review['driver_sha256'] == digest(review_dir / 'run_check.py')
+            assert review['reused_source_sha256'] == digest(HERE.parent /
+                'E-261103-05-s5-symmetric-solid-first/verify_independent.py')
+            assert review['verdict'] == 'ACCEPT'
+            transcript = gzip.decompress((review_dir / 'check-saved.txt.gz').read_bytes()).decode()
+            assert transcript.strip().splitlines()[-1].split()[:2] == ['ACCEPT', '5']
+            result['reused_parent_review'] = dict(report_sha256=digest(review_dir / 'report.json'),
+                transcript_sha256=digest(review_dir / 'check-saved.txt.gz'))
+            cells = []
+            parents = {}
+            for name, genus, seed in [('roest_vigh', 1, 1040201), ('mizhaev', 2, 1040302)]:
+                _, levels, _ = prepared[name]
+                assert json.loads(json.dumps(levels)) == prior['exports'][name], name
+                unit = next(unit for unit in prior['units'] if unit['name'] == name)
+                parent_level = next(level for level in unit['levels'] if level['genus'] == genus - 1)
+                failed = next(level for level in unit['levels'] if level['genus'] == genus)
+                assert parent_level['exact']['PASS'] and not failed['exact']['PASS']
+                assert failed['rng_seed'] == seed
+                filename = f'{name}-g{genus - 1}.json'
+                parent = json.loads((previous / filename).read_text())
+                assert parent['links'] == json.loads(json.dumps(levels[genus - 1]['links']))
+                accepted = next(row for row in review['rows'] if row['file'] == filename)
+                assert accepted['input_sha256'] == digest(previous / filename)
+                assert len(accepted['scales']) == 2
+                assert all(scale['verdict'] == 'ACCEPT' for scale in accepted['scales'])
+                parents[name] = parent['planes']
+                for seconds in (180, 600):
+                    cells.append(dict(name=name, genus=genus, rng_seed=seed,
+                        parent_file=filename, parent_sha256=digest(previous / filename),
+                        requested_seconds=seconds))
+            cells.sort(key=lambda cell: (cell['requested_seconds'], cell['name'] != 'roest_vigh'))
+            result['planned_cells'] = cells
+            save()
+            if startup_only:
+                result['stop_reason'] = 'STARTUP-PASS'
+                return 0
+            for cell in cells:
+                name, genus, seconds = cell['name'], cell['genus'], cell['requested_seconds']
+                n, levels, _ = prepared[name]
+                record = dict(cell, status='RUNNING')
+                result['units'].append(record)
+                save()
+                print(f'{name}: conditional genus {genus}, budget {seconds}s', flush=True)
+                begin = time.monotonic()
+                (best, planes), restarts = ladder.search(levels[genus]['links'], n, seconds / 60,
+                    np.random.default_rng(cell['rng_seed']), seed_planes=parents[name])
+                elapsed = time.monotonic() - begin
+                record.update(optimization_seconds=elapsed, budget_fraction=elapsed / seconds,
+                    restarts=restarts, objective=float(best),
+                    optimizer_stop='ENERGY-THRESHOLD' if best < 0.5 else 'REQUESTED-TIME')
+                if planes is None:
+                    raise RuntimeError('optimizer returned no plane set')
+                record['exact'] = exact_check(out, f'{name}-g{genus}-{seconds}s', planes.tolist(),
+                    levels[genus], None, verifier)
+                record['status'] = 'EXACT-PASS' if record['exact']['PASS'] else 'EXACT-REJECTION'
+                result['conditional_pass'] |= record['exact']['PASS']
+                save()
+            result['stop_reason'] = 'CONDITIONAL-PASS' if result['conditional_pass'] else 'UNDERPOWERED'
+            return 0
         for name, seed in CONTROLS:
             n, levels, target = prepared[name]
             unit = dict(name=name, seed=seed, levels=[], status='RUNNING')
@@ -267,15 +337,19 @@ def worker(out):
         print(json.dumps({k: result[k] for k in ('controls_pass', 'recovery_pass', 'stop_reason')}), flush=True)
 
 
-def run(out):
+def run(out, calibration=False, startup_only=False):
     started = time.monotonic()
+    wall_seconds = 120 if startup_only else 1800 if calibration else 600
     out.mkdir(parents=True, exist_ok=False)
     manifest = dict(started_utc=datetime.now(timezone.utc).isoformat(), workers=1,
                     host=platform.platform(), cpu_count=os.cpu_count(), python=sys.version,
                     executable=sys.executable, virtual_env=os.environ.get('VIRTUAL_ENV'),
                     cwd=os.getcwd(), shard=0,
-                    parameters=dict(stage='recovery', wall_seconds=600, level_seconds=45,
-                                    seeds=dict(CONTROLS), finalization_reserve_seconds=3))
+                    parameters=dict(stage='calibration' if calibration else 'recovery',
+                                    startup_only=startup_only, wall_seconds=wall_seconds,
+                                    level_seconds=[180, 600] if calibration else 45,
+                                    seeds={'roest_vigh': 1040201, 'mizhaev': 1040302} if calibration else dict(CONTROLS),
+                                    finalization_reserve_seconds=3))
     result = dict(stop_reason='ERROR', controls_pass=False, recovery_pass=False)
     exit_status = 1
     try:
@@ -297,16 +371,27 @@ def run(out):
                  ROOT / 'verification/verify_candidate.py']
         paths += [ROOT / 'code' / f'{name}.py' for name in
                   ('genus_ladder', 'ladder', 'ladder_exact', 'gauss_degree', 'control_rost_vigh', 'tubes')]
+        if calibration:
+            paths += [HERE / 'results' / directory / filename for directory, filenames in (
+                ('recovery-pilot-oriented', ('manifest.json', 'recovery.json', 'roest_vigh-g0.json', 'mizhaev-g1.json')),
+                ('recovery-review', ('report.json', 'independent.py', 'run_check.py', 'check-saved.txt.gz')))
+                for filename in filenames]
+            paths.append(HERE.parent / 'E-261103-05-s5-symmetric-solid-first/verify_independent.py')
         manifest['inputs'] = {str(path.relative_to(ROOT)): digest(path) for path in paths}
         manifest['thread_limits'] = {key: os.environ.get(key) for key in
                                     ('OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS',
                                      'VECLIB_MAXIMUM_THREADS', 'NUMBA_NUM_THREADS')}
         write_json(out / 'manifest.json', manifest)
         with (out / 'stdout.txt').open('w') as stdout, (out / 'stderr.txt').open('w') as stderr:
-            process = subprocess.Popen([sys.executable, str(Path(__file__).resolve()), '--worker', str(out)],
+            command = [sys.executable, str(Path(__file__).resolve()), '--worker', str(out)]
+            if calibration:
+                command += ['--calibration']
+            if startup_only:
+                command += ['--startup-only']
+            process = subprocess.Popen(command,
                                        stdout=stdout, stderr=stderr, start_new_session=True)
             try:
-                exit_status = process.wait(timeout=max(0.01, 597 - (time.monotonic() - started)))
+                exit_status = process.wait(timeout=max(0.01, wall_seconds - 3 - (time.monotonic() - started)))
             except subprocess.TimeoutExpired:
                 os.killpg(process.pid, signal.SIGTERM)
                 try:
@@ -328,7 +413,7 @@ def run(out):
         write_json(out / 'recovery.json', result)
         elapsed = time.monotonic() - started
         manifest.update(finished_utc=datetime.now(timezone.utc).isoformat(), exit_status=exit_status,
-                        wall_seconds=elapsed, core_hours=elapsed / 3600, budget_fraction=elapsed / 600,
+                        wall_seconds=elapsed, core_hours=elapsed / 3600, budget_fraction=elapsed / wall_seconds,
                         stop_reason=result['stop_reason'],
                         outputs={path.name: digest(path) for path in out.iterdir()
                                  if path.is_file() and path.name != 'manifest.json'})
@@ -342,9 +427,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path)
     parser.add_argument('--worker', type=Path)
+    parser.add_argument('--calibration', action='store_true')
+    parser.add_argument('--startup-only', action='store_true')
     args = parser.parse_args()
+    if args.startup_only and not args.calibration:
+        parser.error('--startup-only requires --calibration')
     if args.worker:
-        sys.exit(worker(args.worker.resolve()))
+        sys.exit(worker(args.worker.resolve(), args.calibration, args.startup_only))
     if args.out is None:
         parser.error('--out is required')
-    sys.exit(run(args.out.resolve()))
+    sys.exit(run(args.out.resolve(), args.calibration, args.startup_only))
