@@ -320,7 +320,8 @@ All three experiment manifests total 13.1228389169991713 wall seconds /
 these totals. Compressed evidence, original manifest and replay transcript are
 in `results/surgery-audit/`; source/output hashes and lossless compression pass.
 
-Verdict OPEN, surgery gate passed. Next register the geometric recovery pilot.
+Verdict OPEN, surgery gate passed. The geometric recovery pilot is registered in
+the dated PLAN amendment and awaits implementation and bounded startup checking.
 Geometric recovery power and focus realizability are unmeasured. No candidate,
 night or new existence claim. The experiment stays running without an active process.
 

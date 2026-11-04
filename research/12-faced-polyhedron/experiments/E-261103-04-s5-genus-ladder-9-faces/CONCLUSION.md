@@ -1,7 +1,7 @@
 # E-261103-04: representation and dart-preserving surgery gates
 
 The two combinatorial stages are concluded. The broader experiment stays running while
-its geometric recovery pilot awaits a separately committed amendment.
+its geometric recovery pilot has a dated PLAN amendment awaiting implementation.
 
 ## Legacy representation audit
 
@@ -154,9 +154,9 @@ embeddedness at intermediate levels and focus realizability remain unmeasured.
 No candidate, SAT call or proof replay was produced. H-261101-07, H-261103-02 and
 the A/B/C credences retain their previous statuses. No FD or witness row changes.
 
-Next register the R1 and both (8,3) geometric recovery controls with explicit seeds,
-budgets and stop rules. Export geometry inputs with preserved face labels and
-verify the links-to-dart round trip before passing each level to the energy and
+The dated geometric recovery amendment in PLAN now registers R1 and both (8,3)
+controls with explicit seeds, budgets and stop rules. Next implement that pilot.
+Export geometry inputs with preserved face labels and verify the links-to-dart round trip before passing each level to the energy and
 exact verifier. Focus geometry remains gated on those recovery controls. The
 experiment remains running, with no active process or pending owner launch.
 

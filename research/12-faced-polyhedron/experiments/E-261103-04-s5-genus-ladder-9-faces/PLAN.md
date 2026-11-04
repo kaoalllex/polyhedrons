@@ -173,3 +173,128 @@ review. Claims remain PROVED-1 until the SPEC requirements for promotion are met
 If any control fails, repair only through a documented committed amendment before
 rerunning affected scope. If controls pass, register R1 and both (8,3) geometric
 recovery budgets and seeds next. Focus geometry remains gated on their success.
+
+### 2026-11-04. Bounded geometric recovery pilot
+
+Commit this amendment before implementing or executing the pilot. The surgery gate
+and its saved checker evidence are reused unchanged. This stage registers controls
+only. T + D remains 3 because a successful recovery would establish that the
+replacement representation can feed the geometric engine at genus three.
+
+**Question and prediction.** Can the dart-preserving ladder recover R1 Szilassi and
+both supplied (8,3) controls from their saved sphere endpoints? H1 predicts all three
+recoveries within this pilot. H0 is failure to recover at least one under these
+limits. The prediction is uncalibrated. A failure with passing deterministic
+controls is UNDERPOWERED at this budget, with the failed level identified. It does
+not refute the engine or move H-261101-07, H-261103-02 or the A/B/C credences. A pass
+permits preparation of a focus amendment. Any night still requires its own committed
+plan and an uncertain, decision-linked prediction under PROTOCOL section 2.
+
+**Frozen inputs and representation.** Read only the `szilassi`, `roest_vigh` and
+`mizhaev` rows of `results/surgery-audit/audit.json.gz`. Bind the decompressed input
+hash to its original manifest and bind these rows to the named source maps. Reuse
+the recorded successful saved-chain check when its code and inputs are unchanged.
+Do not rerun the surgery search. Reverse the saved level order to genus zero first.
+For each level, export neighbour cycles by walking the saved dart permutations,
+retaining the original face labels, repeated neighbours and cycle orientation.
+Reconstruct with `census.from_links`, compare canonical codes, and require a
+label-preserving isomorphism that maps oriented triangle cycles and alpha pairs.
+Record that isomorphism and check it directly. Numeric dart IDs may change during
+reconstruction. Any ambiguous parallel-edge pairing, changed label or edge copy,
+or failed round trip is REPRESENTATION-FAIL before energy evaluation. Do not use
+`coherent_triangles` to reconstruct the multi-adjacency levels.
+
+**Surface checks.** Reuse the validated direct surface conditions at every level,
+including connected vertex links, the intended genus and unchanged label set. At
+genus zero require a simple sphere triangulation. Require complete adjacency only
+on the three top maps. Lower levels use `require_all_pairs=False` for exact
+geometric verification. Record expected V, E, F and chi from each saved map and
+compare them with each exact geometric report.
+
+**Deterministic geometric controls.** Before optimization, feed the published
+Roest-Vigh planes from `control_rost_vigh.build`, the supplied Mizhaev planes from
+`literature/mizhaev2026-planes.json`, and the Szilassi planes from
+`experiments/E-261101-25-chirotope-first/szilassi_control.json` through the same
+export and verification path. Derive and check an explicit labelled map isomorphism
+for any plane-label permutation. All three must be EMBEDDED with complete adjacency
+and their expected topology. Check Szilassi with `--target S5`, and the two (8,3)
+objects with `--all-pairs`. The latter are auxiliary controls under SPEC S1.
+They do not satisfy the maximal S5 face count at genus three. Duplicate one plane
+in each fixture to produce a degenerate negative input. It must receive a recorded
+rejection before entering optimization. A controlled rejection of singular input
+may be an explicit invalid-input outcome. An unhandled exception is ERROR.
+A failed positive or unexpectedly accepted negative control stops the pilot.
+
+**Search contract.** Reuse `genus_ladder.search`, with its half-annealing,
+half-CMA-ES allocation and honest `pair_energy`. Set `EXTRA=None` explicitly and
+retain the default `DEPTH_W=0.01`. No new penalty or degeneracy floor is introduced.
+Use one serial unit for each control, ordered Szilassi, Roest-Vigh and Mizhaev. Seeds are respectively 10401, 10402 and 10403, using
+NumPy `default_rng(100 * seed + genus)` independently at each level. Start the
+sphere from random planes. Seed each higher level only with the preceding exactly
+accepted plane set under the unchanged labels. The published top planes serve
+only the deterministic controls. They never seed the recovery search.
+
+At every visited level, save and exactly check the best returned planes regardless
+of the energy value, including when the optimizer stopped below its 0.5 threshold.
+Use `ladder_exact.verify` and the saved-file `verify_candidate.py` entry point.
+Only an exact PASS and the expected topology allow ascent. For the Szilassi top
+use `--target S5`. For both (8,3) tops use `--all-pairs`. For intermediate levels
+use the default embedded target. Stop that unit at its first unaccepted level,
+then process the next control, unless an infrastructure/control error stopped the
+whole pilot. A float zero remains a CANDIDATE until exact acceptance. Apply the
+`candidate-check` skill to any accepted recovery before reporting it as a result.
+Preserve rejected outputs and exact reports. An exact verifier exception is ERROR,
+with its traceback retained, and cannot count as a search failure.
+
+**Budget, limits and startup.** One shard, one core, one seed per control, 45 seconds
+of optimization per visited level. The maximum ten levels consume at most 450
+seconds of requested optimizer time. Enforce a 600-second outer wall cap including
+imports, JIT warm-up, controls, verification and manifest finalization. Reserve
+finalization time within that cap, checkpoint each completed level, and record
+partial progress on timeout. Run the pilot through an explicit `STAGE=recovery`
+selection of the existing `run.sh 0`, with a fresh default output directory
+`results/recovery-pilot`. Preserve the default legacy and surgery dispatches.
+The command is a planned interface until implementation and bounded startup have
+been checked. No owner launch is pending at registration.
+
+Record optimization wall time separately from JIT, controls and exact checks.
+For each level record requested/actual time, budget fraction, restart count and
+binding stop reason, including early energy threshold, requested time, outer cap,
+exact rejection or error. A wall cap is TIMEOUT with remaining scope unresolved.
+A short readiness pilot uses one fixed budget. The original 3/10-minute per-level
+grid remains reserved for a separately registered calibration expansion, with
+explicit seeds and total costs, if this pilot leaves a decision worth testing.
+Do not silently extend this pilot or activate that grid.
+
+**Counters, power and decisions.** Verdicts use only exact EMBEDDED,
+`nonsimple_faces`, `bad_pairs`, `adjacent_pairs`, topology, round-trip equality and
+accepted levels. `pair_energy`, elapsed time and restart counts describe the
+optimizer. The 0.5 threshold stops optimization early in the reused engine,
+and never certifies acceptance. Evaluate and retain the objective on the positive
+and degenerate negative fixtures to expose diagnostic errors. Degenerate inputs
+may yield a nonfinite value or a controlled exception. Neither is evidence for a
+geometric claim. No verdict depends on a floating diagnostic threshold, and no
+new float acceptance threshold is calibrated by this pilot.
+
+RECOVERY-PASS requires every level of all three controls to pass exactly.
+Partial recovery reports its exact accepted levels and the remaining unprocessed
+or rejected scope. A completed unsuccessful search is UNDERPOWERED at this budget.
+CONTROL-FAIL, REPRESENTATION-FAIL and ERROR stop implementation readiness and
+require a documented, committed correction before repeating affected scope.
+TIMEOUT does not measure nonexistence. Even a pass estimates no reliable recovery
+probability from one seed. These limits can detect representation/dispatch errors
+and rapid recoveries. They cannot justify LOW-YIELD or select a production budget.
+A pass leads to a new focus/calibration plan, and an underpowered pilot leads to a
+costed expansion proposal or a different approach. Neither launches a focus run.
+
+**Provenance and evidence.** Keep the existing manifest fields, all supplied input,
+plan and source hashes, the implementation commit, dependency versions, seeds,
+limits, stop reasons and every output hash. Preserve stdout/stderr and saved exact
+verifier transcripts, including negative controls. Refuse to overwrite an attempt.
+Implement only the experiment-local recovery path, reusing the shared optimizer
+and exact verifiers. Before behavioral changes use the recorded structural checks
+for unchanged surgery code and register the smallest affected recovery checks.
+Record the actual bounded entry-point command and outcome in CONCLUSION. Saved
+recoveries remain PROVED-1 supplied-input computations until the requirements for
+another SPEC evidence level are met. No FD/witness row or existence claim changes
+merely because known control geometry is recovered.
