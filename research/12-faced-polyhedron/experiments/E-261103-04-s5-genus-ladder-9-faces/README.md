@@ -2,17 +2,17 @@
 id: E-261103-04
 title: Genus ladder on 9 faces - the admissible (9, 3) maps from their sphere down and up again (explore)
 date: 2026-11-03
-status: planned
+status: running
 direction: [DR1, DR19]
 origin: [E-261103-01, E-261102-04, I-261030-10, H-261101-07]
 tests: [H-261101-07, H-261103-02]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned, **explore** (counts towards the one-in-two exploration share of `STRATEGY.md`). Scores T D F G R: 1 2 2 1 2 |
-> budget: one laptop night, 10 cores. Before any compute: `PLAN.md` from `experiments/_template/` (skill
-> `experiment-start`). Blocked by E-261103-01 (the maps). What is different from the parked DR1 runs: a new target with
+> Representation audit pre-registered, **explore** (counts towards the one-in-two exploration share of `STRATEGY.md`). Scores T D F G R: 1 2 2 1 2 |
+> current stage: a bounded single-core representation audit in `PLAN.md`; the census prerequisite is complete.
+> The geometric pilot and night require a committed amendment. What is different from the parked DR1 runs: a new target with
 > genus 3 (below the S0 "ravine" at 3 -> 4), 9 faces (12 free parameters instead of 21), and all pairs adjacent.
 
 ## Goal
@@ -42,3 +42,16 @@ none -> the per-level failure statistics (which level fails, how often the genus
 control passes) decide whether the ladder keeps a place on the S5 side (passes the (8, 3) control: one more night with the
 other seed kind; fails it: parked for S5 with the failure mode written). Scenario move: a PASS sets the (9, 3) row to
 exists; a failed night moves nothing (search failure).
+
+## Activated stage (2026-11-04)
+
+The owner requested continuing on the current local branch, without creating another branch.
+`PLAN.md` activates the representation gate only. Run with the research environment activated:
+
+```bash
+bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0
+```
+
+The original ladder proposal above is subject to this gate. Its triangle-only helpers must
+preserve parallel-edge identities before any recovery search. Source inspection suggests
+they cannot do so. The audit records the exact scope on the frozen census and controls.
