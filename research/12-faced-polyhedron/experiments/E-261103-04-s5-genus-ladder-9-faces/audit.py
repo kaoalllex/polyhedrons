@@ -2,6 +2,7 @@
 import argparse
 from collections import Counter
 from datetime import datetime, timezone
+import gzip
 import hashlib
 import importlib.util
 import json
@@ -309,7 +310,27 @@ def surgery_chain(name, top, n, genus, census, global_deadline):
 
 
 def check_saved_surgery(path, census):
-    evidence = json.loads(path.read_text())
+    raw = gzip.decompress(path.read_bytes()) if path.suffix == '.gz' else path.read_bytes()
+    evidence = json.loads(raw)
+    expected = {}
+    for filename, prefix in (('maps_7_1.json', 'szilassi'), ('maps_9_3.json', 'focus')):
+        records = json.loads((CENSUS / 'results' / filename).read_text())['maps']
+        for index, record in enumerate(records):
+            if record['admissible']:
+                name = 'szilassi' if prefix == 'szilassi' else f'focus_{index}'
+                expected[name] = census.from_code(record['code'])
+    from control_rost_vigh import build
+    _, links = build()
+    mizhaev = json.loads((ROOT / 'literature/mizhaev2026-planes.json').read_text())['links_0based']
+    if isinstance(mizhaev, dict):
+        mizhaev = {int(v): neighbors for v, neighbors in mizhaev.items()}
+    else:
+        mizhaev = dict(enumerate(mizhaev))
+    for name, link in (('roest_vigh', links), ('mizhaev', mizhaev)):
+        coherent = census.review.coherent(link)
+        expected[name] = census.from_links([coherent[v] for v in range(8)])
+    names = [row['name'] for row in evidence['rows']]
+    assert len(names) == len(set(names)), 'duplicate evidence rows'
     for row in evidence['rows']:
         n, genus = row['n'], row['top_genus']
         levels, steps = row['levels'], row['steps']
@@ -321,6 +342,7 @@ def check_saved_surgery(path, census):
         for index, step in enumerate(steps):
             check_step(levels[index], levels[index + 1], step, n, genus - index)
         top = restore(levels[0], census)
+        assert snapshot(top) == snapshot(expected[row['name']]), 'saved input-map identity'
         rebuilt = restore(levels[-1], census)
         for step in reversed(steps):
             rebuilt = reverse_step(rebuilt, step, census)
@@ -328,6 +350,18 @@ def check_saved_surgery(path, census):
         assert rebuilt.canon()[0] == top.canon()[0], 'saved canonical top'
         if row['status'] == 'CHAIN-PASS':
             assert row['reached_genus'] == 0, 'saved endpoint genus'
+    controls = {'szilassi', 'roest_vigh', 'mizhaev'}
+    if evidence['controls_pass']:
+        assert controls <= set(names), 'missing control rows'
+        assert all(row['status'] == 'CHAIN-PASS' for row in evidence['rows']
+                   if row['name'] in controls), 'failed positive control'
+        assert evidence['structural_controls'] == dict(
+            negative=dict(broken_alpha='alpha involution', wrong_tail='endpoint labels',
+                          disconnected_caps='rejected'), legacy_capped_map_match=True), 'structural outcomes'
+    if evidence['stop_reason'] == 'COMPLETE':
+        assert set(names) == set(expected), 'incomplete saved scope'
+        assert evidence['focus_processed'] == len(set(expected) - controls), 'saved focus count'
+    return len(names)
 
 
 def surgery_controls(m, row, census):
@@ -530,7 +564,14 @@ def main(out, stage='representation'):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--out', type=Path, required=True)
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument('--out', type=Path)
+    mode.add_argument('--check-saved', type=Path)
     parser.add_argument('--stage', choices=('representation', 'surgery'), default='representation')
     args = parser.parse_args()
-    main(args.out, args.stage)
+    if args.check_saved:
+        census = load_module('s5_census', CENSUS / 'census.py')
+        count = check_saved_surgery(args.check_saved, census)
+        print(f'PASS: {count} saved maps, source identities, surface/patch checks and reversible chains')
+    else:
+        main(args.out, args.stage)
