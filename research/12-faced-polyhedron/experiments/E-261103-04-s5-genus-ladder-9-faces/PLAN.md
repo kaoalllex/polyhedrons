@@ -395,3 +395,139 @@ of unsupported stage/startup combinations. Reuse the recorded shared-code suite
 and saved surgery acceptance: no shared algorithm is changed. No owner launch
 command is ready until this startup passes. The full grid then awaits explicit
 owner authorization, even though its plan is committed.
+
+### 2026-11-04. Bounded intermediate-map feasibility audit
+
+**Decision and registration.** Follow the completed grid's no-success branch:
+test the two frozen intermediate maps with the existing exact submap encoding
+before considering any further geometry. T + D remains 3 (T=1, D=2). A checked
+formula obstruction changes which chain can be pursued; SAT leaves geometry
+open and requires a separate realization proposal; timeout identifies an
+unresolved exact question without earning a larger cap. This is a bounded audit,
+not a new recovery grid, chain search or focus night. Commit this amendment
+before formula construction, solving or proof checking. Preserve all previous
+attempts, especially `results/recovery-grid`, unchanged.
+
+**Frozen inputs.** All four JSON files below are in
+`results/recovery-pilot-oriented/`. Use their labelled `links` without relabelling
+or changing cyclic order or parallel-edge pairing. Bind them to the same labelled
+exports and checked surgery chain in `recovery.json`; canonical equivalence alone
+does not preserve the association with supplied planes.
+
+| Role | File | SHA-256 of file bytes |
+|---|---|---|
+| Unpinned target, Roest-Vigh genus one | `roest_vigh-g1.json` | `c26ff6f254c9ff8fab5b58949be71dcdbba76e45de9ea095de084a444b49832b` |
+| Unpinned target, Mizhaev genus two | `mizhaev-g2.json` | `45d961c197548c94f074400f491dd2b13cd8e604add133d80ada5875d30c1980` |
+| Pinned positive, Roest-Vigh genus zero | `roest_vigh-g0.json` | `75607a1793514a6edc9572ccd02e404e37ed336658a80663c54695df8a83967f` |
+| Pinned positive, Mizhaev genus one | `mizhaev-g1.json` | `c1446ff315c9369b9d8f541f30afb0481d1008f09d140137e9aa67c11a5d3f7a` |
+
+The exports file `recovery.json` has SHA-256
+`57bf8ce5247aef6cb515f7265375a145d2b9cce554c9d522d013ff3a86e119cd`.
+Reuse the parents' saved exact acceptance and independent two-scale acceptance:
+`results/recovery-review/report.json`, SHA-256
+`96123d22ee993888d42a6fc29a4619c064987f4621e8c218e9808bccc9e5e573`,
+and successful `check-saved.txt.gz`, SHA-256
+`52c5a7a6b9d52a1a52af86e858967004526678c2b08a978259fdaeee8da9d65c`.
+A hash, labelled-link or pairing mismatch is ERROR; do not regenerate an input.
+
+**Formula and target scope.** Construct each map with
+`Triangulation(n, triangles, links=labelled_links, submap=True)`. Derive corner
+triples from the supplied cyclic links and check preservation of the labelled
+segment pairings. Do not use the default-full-map `test_encoder.from_links`
+helper. Build the plain uniform rank-4 oriented-matroid relaxation on eight face
+elements and infinity with `build(..., ALL_OPTS)`, recording the actual options
+and clause-family counts. Use no symmetry, symmetry breaking or mirror clauses.
+Absent pairs have `E=False` and no prescribed segments; retain all non-corner
+TRIPLE and parallel SEGMENT_DISJOINT constraints. For an absent pair the compact
+intersection on the two planes' line has no permitted boundary endpoints, so an
+embedded realization must have empty intersection. The encoding soundness and
+uniform-perturbation interpretation remain PROVED-1, with the existing argument
+in `../E-261103-02-s5-omsat-multi-adjacency-encoder/SOUNDNESS.md`.
+
+These are auxiliary eight-face maps in preparation for S5 (9,3), not S5 targets.
+The free target formulas fix neither supplied planes nor a parent chirotope.
+Target order is Roest-Vigh genus one, then Mizhaev genus two. No other maps,
+chains, seeds, symmetry families, realization or optimization are in scope.
+
+**H1/H0 and controls.** H1 predicts that both unpinned target formulas are SAT;
+H0 is at least one verified UNSAT formula. Unresolved units distinguish neither.
+This is a falsifiable audit prediction, not a calibrated probability estimate.
+Before any free target decision, require the following controls through the same
+submap construction, clause options, solver and saved-evidence path:
+
+* For each accepted parent, rationalize every plane coefficient to an integer
+  row using `int(round(1e9 * coefficient))`. Save these integer rows and use
+  exactly those rows both for `chirotope_from_planes` and `compare_direct`.
+  Passing the original float rows to `Geometry` would truncate them with
+  `int(x)` and is invalid. Require uniformity, no Eval violations, agreement of
+  all named predicates with direct geometry, and SAT of the chi-pinned CNF.
+  Save the model and check that it satisfies every clause of the stored DIMACS
+  and every pinned chirotope sign. Roest-Vigh g0 exercises absent pairs;
+  Mizhaev g1 exercises absent pairs and parallel segments together.
+* Use the frozen rejected `roest_vigh-g1.json` as a meaningful negative
+  fixed-chirotope fixture, rationalized by the identical integer-row rule.
+  Require uniformity, its saved exact rejection, agreement with direct
+  geometry and nonzero Eval violations before solving. Its chi-pinned formula
+  must be UNSAT with retained CNF and proof accepted by an independent proof
+  checker. For a unit-refutable formula, retain an empty-clause RUP certificate
+  and independently replay unit propagation on the stored DIMACS. Otherwise
+  retain DRAT and its independent checker transcript. A missing or unchecked
+  proof is not control success. Do not replace a failed fixture with an
+  artificial contradiction or a duplicate-plane degeneracy.
+
+Any control timeout, mismatch, nonuniformity, unexpected solver answer or failed
+certificate check stops the stage before free targets. The old complete-map
+cross-fixture in E-261103-02 is reusable background evidence, not a substitute
+for these submap controls. There is no floating diagnostic threshold in a
+verdict; objective values and elapsed time are diagnostics only.
+
+**Budget and stopping.** One shard, one worker, existing single-thread limits,
+180 seconds outer wall time (at most 0.05 core-hours), with three seconds reserved
+for termination/finalization. All worker operations share a monotonic deadline
+at 177 seconds, including imports, formula construction, input/control checks,
+model checking and metadata. Each positive-control solver call has at most
+10 seconds. The negative-control solver has at most 10 seconds and its proof
+check at most 10 seconds. Each free-target solver has at most 45 seconds and
+its proof check at most 15 seconds. Clip every subordinate limit to the common
+remaining time; these maxima do not guarantee all units complete. Do not raise
+any limit or transfer unused time by increasing another unit's cap. The parent
+watchdog terminates the entire worker process group at the deadline and finalizes
+the manifest within the outer cap. Checkpoint before and after each unit and
+retain partial CNF/proof/model/log output on interruption. Record requested/actual
+unit time, solver/checker time, budget fraction and binding stop reason
+(completed, solver timeout, checker timeout, outer cap, control failure or error).
+Run both targets after successful controls even if the first returns SAT,
+verified UNSAT or timeout; stop immediately on ERROR or outer cap.
+
+**Evidence and decisions.** Save fresh immutable evidence in
+`results/submap-feasibility-audit`; refuse to overwrite an attempt. Record
+generating commit/dirty state, dependencies, source and input hashes, integer
+rows, maps, clause options/counts, CNF hashes, solver answers, models/proofs,
+independent checks and full stdout/stderr. SAT requires exact satisfaction of
+the saved CNF by the saved model. UNSAT-VERIFIED requires a retained formula,
+certificate and successful independent proof check; a bare solver UNSAT is
+UNVERIFIED, not a negative result.
+
+* SAT yields only an abstract oriented-matroid candidate. It neither establishes
+  geometric realizability nor explains recovery failure. Both SAT outcomes
+  permit preparation of a separately registered realization question only.
+* UNSAT-VERIFIED excludes that exact formula. Conditional on the PROVED-1
+  encoding and uniform-perturbation argument, reassess the affected intermediate
+  map or chain before proposing geometry. Do not generalize to another chain,
+  the published control, a focus census or an existence theorem.
+* UNKNOWN/timeout/UNVERIFIED leave feasibility open. ERROR invalidates the
+  affected computation; control failure invalidates the target stage. Neither
+  justifies increasing the cap or repeating geometry by default.
+
+No outcome opens the full-eight-face recovery gate, authorizes a night, changes
+an existence hypothesis or scenario credence, or supplies an S5 result. Evidence
+claims remain PROVED-1 unless an applicable stronger SPEC evidence chain is
+actually completed. This audit contains no realizability extension.
+
+**Affected verification.** After implementation, exercise this bounded actual
+entry point once, with controls before target decisions. Review Python/shell
+syntax, hashes, labelled map identities, deadline handling and saved evidence.
+Reuse unchanged surgery/parent acceptance and the recorded shared-code quick
+suite; do not rerun previous recovery attempts or an integrated suite merely
+to refresh this report. Any later amendment requires registration before its
+new computation.
