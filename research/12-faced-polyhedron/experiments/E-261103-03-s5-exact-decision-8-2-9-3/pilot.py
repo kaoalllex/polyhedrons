@@ -1,5 +1,6 @@
 """Bounded S5 decision pilot. Each negative claim is scoped to its saved formula."""
 import argparse
+from contextlib import nullcontext
 import hashlib
 import importlib.util
 import json
@@ -38,17 +39,34 @@ def sha(path):
     return h.hexdigest()
 
 
-def command(args, log, timeout):
+def command(args, log, timeout, gate=None):
+    def interrupted(signum, frame):
+        raise InterruptedError('command interrupted by SIGTERM')
+    old_handler = signal.signal(signal.SIGTERM, interrupted)
     with log.open('w') as stream:
-        p = subprocess.Popen(args, stdout=stream, stderr=subprocess.STDOUT, start_new_session=True)
         try:
-            return p.wait(timeout=max(.001, timeout))
-        except BaseException as exc:
-            os.killpg(p.pid, signal.SIGKILL)
-            p.wait()
-            if not isinstance(exc, subprocess.TimeoutExpired):
-                raise
-            return None
+            with gate() if gate is not None else nullcontext():
+                p = subprocess.Popen(args, stdout=stream, stderr=subprocess.STDOUT, start_new_session=True)
+            try:
+                return p.wait(timeout=max(.001, timeout))
+            except BaseException as exc:
+                # Nested command wrappers get a chance to reap their own process groups.
+                try:
+                    os.killpg(p.pid, signal.SIGTERM)
+                    p.wait(timeout=1)
+                except (ProcessLookupError, subprocess.TimeoutExpired):
+                    pass
+                finally:
+                    try:
+                        os.killpg(p.pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+                    p.wait()
+                if not isinstance(exc, subprocess.TimeoutExpired):
+                    raise
+                return None
+        finally:
+            signal.signal(signal.SIGTERM, old_handler)
 
 
 def model_valid(clauses, model):
@@ -61,11 +79,12 @@ def check_proof(cnf, proof, log, timeout):
     return rc == 0 and 's VERIFIED' in log.read_text()
 
 
-def solve(c, out, name, timeout):
+def solve(c, out, name, timeout, checker_timeout=None, on_sat=None, solver_gate=None):
+    checker_timeout = timeout if checker_timeout is None else checker_timeout
     cnf = out / (name + '.cnf'); proof = out / (name + '.drat')
     c.dimacs(cnf, comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
     started = time.monotonic()
-    rc = command([CADICAL, str(cnf), str(proof)], out / (name + '.solver.log'), timeout)
+    rc = command([CADICAL, str(cnf), str(proof)], out / (name + '.solver.log'), timeout, gate=solver_gate)
     elapsed = time.monotonic() - started
     r = dict(status='TIMEOUT' if rc is None else 'ERROR', seconds=elapsed, budget_seconds=timeout,
              budget_fraction=elapsed / timeout, ended_by='solver_timeout' if rc is None else 'completed',
@@ -76,12 +95,14 @@ def solve(c, out, name, timeout):
         assert model_valid(c.clauses, model), 'invalid SAT assignment'
         dump(out / (name + '.model.json'), model)
         r.update(status='SAT', model_checked=True)
+        if on_sat is not None:
+            on_sat()
     elif rc == 20:
         # Checking has its own bounded allocation; the caller bounds the whole unit too.
         check_started = time.monotonic()
-        ok = check_proof(cnf, proof, out / (name + '.checker.log'), timeout)
+        ok = check_proof(cnf, proof, out / (name + '.checker.log'), checker_timeout)
         r.update(status='UNSAT-VERIFIED' if ok else 'UNSAT-UNCHECKED',
-                 checker_seconds=time.monotonic() - check_started, checker_budget_seconds=timeout,
+                 checker_seconds=time.monotonic() - check_started, checker_budget_seconds=checker_timeout,
                  checker_ended_by='completed' if ok else 'failed_or_timeout')
     if proof.exists():
         r['proof_sha256'] = sha(proof)
@@ -217,7 +238,7 @@ def arm_deadline(seconds):
     signal.setitimer(signal.ITIMER_REAL, seconds)
 
 
-def main(out, paired=False, resume=None, grid=False):
+def main(out, paired=False, resume=None, grid=False, controls_only=False):
     out.mkdir(parents=True, exist_ok=False)
     previous = json.loads((resume / 'manifest.json').read_text()) if resume else None
     prior_seconds = previous['wall_seconds'] if previous and not grid else 0
@@ -329,6 +350,8 @@ def main(out, paired=False, resume=None, grid=False):
         else:
             units = [(i, rec, free_c2(rec['links']) if sym else None)
                      for i, rec in enumerate(census(8, 2)['maps']) for sym in (False, True)]
+        if controls_only:
+            report['status'] = 'CONTROLS-PASS'; save(); return
         if grid:
             baseline_path = HERE / 'results/paired_9_3_continued/summary.json'
             report['baseline'] = dict(path=str(baseline_path), sha256=sha(baseline_path),
@@ -407,6 +430,7 @@ if __name__ == '__main__':
     ap.add_argument('--paired', action='store_true')
     ap.add_argument('--grid', action='store_true')
     ap.add_argument('--resume', type=Path)
+    ap.add_argument('--controls-only', action='store_true')
     ap.add_argument('--task', choices=('hinge', 'two_stage', 'fp'))
     ap.add_argument('--input', type=Path); ap.add_argument('--output', type=Path)
     args = ap.parse_args()
@@ -414,4 +438,5 @@ if __name__ == '__main__':
         worker(args)
     else:
         assert args.out is not None
-        main(args.out, paired=args.paired or args.grid, resume=args.resume, grid=args.grid)
+        main(args.out, paired=args.paired or args.grid or args.controls_only, resume=args.resume,
+             grid=args.grid, controls_only=args.controls_only)

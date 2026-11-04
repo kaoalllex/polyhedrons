@@ -219,3 +219,19 @@ retaining the completed explore dependency and every previous artifact. T D F G 
   4. Run focused regressions and the registered same-path pilot, record its conclusion and
      gate verdict, run verify_all.py --quick, update handover and supply the exact laptop
      launch/status/stop commands. Do not launch the tranche, push, open a PR or upload proofs.
+
+#### Activation implementation clarifications before the same-path pilot
+
+The shared dispatch lock covers the actual solver spawn, not just queue selection.
+A task selected before another worker's SAT but not yet dispatched records SKIPPED-STOP;
+it is unattempted and never counted as a timeout or exclusion. Nested command cleanup sends
+SIGTERM first so Python wrappers reap their solver/checker groups, then SIGKILL as a fallback.
+The shard deadline polls the monotonic clock, including hashing/finalization; interrupted
+attempts retain their files and budget charge. No unchanged hard-tail map is dispatched.
+
+Each first-SAT stage records its reserved <=120-second allocation and fresh artifact directory
+before execution. A hard-killed stage is retained as INTERRUPTED on resume, conservatively
+consumes that allocation, and is not rerun; processing resumes with the next unattempted stage.
+This makes immutable evidence and the per-model stage budget take precedence over reconstructing
+an interrupted numerical attempt. It gives no negative mathematical conclusion. Ctrl+C/SIGTERM
+is resumable; a failed control, invalid model or unchecked proof requires review instead.
