@@ -19,9 +19,10 @@ This repository has two parts:
 ## CodeGraph
 
 - This repository has its own index. Set `projectPath` to the current checkout root, obtained at runtime with `git rev-parse --show-toplevel`.
-- Use CodeGraph for symbol lookup, call paths, and the impact of code changes. Query specific symbols or a call
-  path with a small file limit. Read only a missing excerpt when the graph result is insufficient. Use `rg` for
-  literal text and research documents.
+- Use CodeGraph when a symbol's callers, callees, or cross-file relationships affect a code decision. Prefer a
+  single-symbol lookup with `codegraph node` or a focused caller query. Use `codegraph_explore` for an actual
+  multi-file question, starting with one or two files. Use `rg` and targeted reads for known excerpts, research
+  documents, logs, literal text, and shell wrappers. If the graph misses, check the source directly.
 - Treat graph relationships as navigation aids; check dynamic imports and subprocess calls directly when needed.
 - An absent graph edge does not prove independence. Preserve independent verification implementations even when helpers look alike.
 

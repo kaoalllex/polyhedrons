@@ -6,12 +6,28 @@ This repository has two parts:
   (`STRATEGY.md`, 2026-11-03): a maximal face-neighbourly polyhedron (SPEC S5) at (9, 3); the 12-face problem is
   parked, not abandoned.
 
+## Implementation preferences
+
+- The Ponytail plugin is disabled for this repository, overriding the global default.
+- Superpowers is off by default. Opt in only for a dedicated complex engineering task that benefits from a
+  specific skill, such as debugging a runner or reviewing an encoder change. Use the selected skill without
+  the general Superpowers workflow. Follow the research protocol for mathematics, experiments, and handovers.
+  To opt in for one session: `claude --settings '{"enabledPlugins":{"superpowers@claude-plugins-official":true}}'`.
+- For code changes, reuse existing code, keep diffs small, and avoid unnecessary dependencies and speculative abstractions.
+- Mathematical rigor, controls, independent verification, and reproducibility take precedence over code size and brevity.
+
+## CodeGraph
+
+- This repository has its own index. Set `projectPath` to the current checkout root, obtained at runtime with `git rev-parse --show-toplevel`.
+- Use CodeGraph when a symbol's callers, callees, or cross-file relationships affect a code decision. Prefer a
+  single-symbol lookup with `codegraph node` or a focused caller query. Use `codegraph_explore` for an actual
+  multi-file question, starting with one or two files. Use `rg` and targeted reads for known excerpts, research
+  documents, logs, literal text, and shell wrappers. If the graph misses, check the source directly.
+- Treat graph relationships as navigation aids; check dynamic imports and subprocess calls directly when needed.
+- An absent graph edge does not prove independence. Preserve independent verification implementations even when helpers look alike.
+
 ## Research work
 
-- Superpowers is off by default. Opt in only for a dedicated complex engineering task that benefits from a
-  specific skill. Use the selected skill without the general Superpowers workflow. Follow the research protocol
-  for mathematics, experiments, and handovers.
-  To opt in for one session: `claude --settings '{"enabledPlugins":{"superpowers@claude-plugins-official":true}}'`.
 - **Read first:** the relevant sections of `STRATEGY.md`, `STATUS.md`, then `ROADMAP.md`, `PROTOCOL.md`
   and `SPEC.md` in `research/12-faced-polyhedron/`. Reuse material already in context.
 - **Session workflow and handover:** follow `PROTOCOL.md` §8 and keep one short block in `CONTINUE_PROMPT.md`.
