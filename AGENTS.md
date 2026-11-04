@@ -9,21 +9,27 @@ This repository has two parts:
 ## Implementation preferences
 
 - The Ponytail plugin is disabled for this repository, overriding the global default.
+- Superpowers is off by default. Opt in only for a dedicated complex engineering task that benefits from a
+  specific skill, such as debugging a runner or reviewing an encoder change. Use the selected skill without
+  the general Superpowers workflow. Follow the research protocol for mathematics, experiments, and handovers.
+  To opt in for one session: `codex -c 'plugins = { "superpowers@claude-plugins-official" = { enabled = true } }'`.
 - For code changes, reuse existing code, keep diffs small, and avoid unnecessary dependencies and speculative abstractions.
 - Mathematical rigor, controls, independent verification, and reproducibility take precedence over code size and brevity.
 
 ## CodeGraph
 
 - This repository has its own index. Set `projectPath` to the current checkout root, obtained at runtime with `git rev-parse --show-toplevel`.
-- Use CodeGraph for symbol lookup, call paths, and the impact of code changes. Use `rg` for literal text and research documents.
+- Use CodeGraph for symbol lookup, call paths, and the impact of code changes. Query specific symbols or a call
+  path with a small file limit. Read only a missing excerpt when the graph result is insufficient. Use `rg` for
+  literal text and research documents.
 - Treat graph relationships as navigation aids; check dynamic imports and subprocess calls directly when needed.
 - An absent graph edge does not prove independence. Preserve independent verification implementations even when helpers look alike.
 
 ## Research work
 
-- **Read first:** `STRATEGY.md`, `STATUS.md`, then `ROADMAP.md`, `PROTOCOL.md` and `SPEC.md`, all in
-  `research/12-faced-polyhedron/`.
-- **Hand-over notes:** `CONTINUE_PROMPT.md`, in the same folder.
+- **Read first:** the relevant sections of `STRATEGY.md`, `STATUS.md`, then `ROADMAP.md`, `PROTOCOL.md`
+  and `SPEC.md` in `research/12-faced-polyhedron/`. Reuse material already in context.
+- **Session workflow and handover:** follow `PROTOCOL.md` §8 and keep one short block in `CONTINUE_PROMPT.md`.
 - **Skills** (`.agents/skills/`; Claude copies in `.claude/skills/`):
   - `experiment-start`: from a ROADMAP row to a pre-registered experiment;
   - `experiment-conclude`: results to `CONCLUSION.md` and the ledger, night reports included;

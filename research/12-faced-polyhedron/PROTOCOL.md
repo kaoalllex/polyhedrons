@@ -172,8 +172,23 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 
 ## 8. AI sessions and agents
 
-* Start from `CONTINUE_PROMPT.md`; read `STATUS.md` and `ROADMAP.md` before acting; the first task is the top
-  open `ROADMAP.md` item unless the owner says otherwise.
+* Start from `CONTINUE_PROMPT.md` and read the relevant ledger and protocol sections. Follow the owner's current
+  request, then any unfinished work in the handover, then the top open `ROADMAP.md` item. Use the project skill
+  for the current stage and reuse its instructions while they are in context. The committed experiment plan
+  governs that stage.
+* Work on one stage at a time. Start each check or run once per set of relevant inputs and wait on its existing
+  handle. For a finite command, use a wait suited to its expected duration and read the final status or a short
+  log excerpt. Check sooner when a result can change the next action. Reuse a passing verification for the same
+  relevant files and environment, including at handover.
+* For code navigation, query CodeGraph for the specific symbol or call path with a small file limit. Use
+  targeted text searches for research documents and log excerpts.
+* Before handing over a launch, exercise the owner's actual entry point in a bounded startup check from the
+  same working directory with the same shell, environment, and executable selection. Use a bounded budget or
+  fixture without bypassing normal dispatch. Confirm that workers reach the intended job and stop cleanly.
+  Record the command, outcome, and any substitutions or limits. If that path cannot be exercised, mark
+  startup unverified in the handover. The project's before and after verification still applies.
+* Keep one short handover block in `CONTINUE_PROMPT.md`: branch or commit, in-flight state, next action and
+  exact command if needed, and verification scope. Link to the plan, ledger, and artifacts for details.
 * Ask the owner before launching large subagent tasks (usage limits). Agents: `.claude/agents/` (7 roles).
 * Report to the owner in Russian; write repository files in English. Never weaken the requirements, never
   fabricate results, report failures with their output.
