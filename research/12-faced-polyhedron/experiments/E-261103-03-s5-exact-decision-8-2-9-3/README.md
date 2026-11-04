@@ -14,7 +14,8 @@ preregistered: true
 > [STATUS.md](../../STATUS.md) for the exact decisions, controls and claim boundaries.
 > The paired C3/plain (9,3) pilot is complete; see CONCLUSION and STATUS section 3e.
 > The autonomous cutoff grid is also complete (CONCLUSION / STATUS 3f). Result directories are
-> immutable. A costed next tranche awaits its registered explore prerequisite; no process is active.
+> immutable. The explore prerequisite is concluded. The new-map tranche is activated in PLAN.md;
+> launch readiness depends on its same-path pilot. No coverage process is active.
 
 ## Goal
 
