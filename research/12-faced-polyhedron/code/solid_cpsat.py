@@ -41,7 +41,34 @@ def allowed_octants():
 ALLOWED = allowed_octants()
 
 
-def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, hint=None, target_adj=None, target_pairs=None):
+def connected_faces(model, selected, planes, links):
+    incoming = [[] for _ in selected]; outgoing = [[] for _ in selected]
+    groups = {}
+    for f, plane in enumerate(planes):
+        groups.setdefault(int(plane), []).append(f)
+    for a, b in links:
+        a, b = int(a), int(b)
+        assert planes[a] == planes[b]
+        capacity = len(groups[int(planes[a])])
+        for u, v in ((a, b), (b, a)):
+            flow = model.NewIntVar(0, capacity, 'flow%d_%d' % (u, v))
+            model.Add(flow <= capacity * selected[u]); model.Add(flow <= capacity * selected[v])
+            outgoing[u].append(flow); incoming[v].append(flow)
+    for plane, facets in groups.items():
+        roots = []
+        for f in facets:
+            root = model.NewBoolVar('root%d' % f); roots.append(root)
+            model.Add(root <= selected[f])
+            supply = model.NewIntVar(0, len(facets), 'supply%d' % f)
+            model.Add(supply <= len(facets) * root)
+            model.Add(supply + sum(incoming[f]) - sum(outgoing[f]) == selected[f])
+        model.Add(sum(roots) == 1)
+
+
+def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, hint=None, target_adj=None, target_pairs=None,
+               max_runs=1, target_edges=None, model_path=None):
+    if target_edges is not None:
+        assert target_adj is None and target_pairs is None and require_one_face
     T = T or Tables(A)
     nc = len(T.cells)
     model = cp_model.CpModel()
@@ -82,8 +109,8 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
     for p, ss in starts_by_pair.items():
         a = model.NewBoolVar('a%d' % p)
         if target_adj is None:
-            model.Add(sum(ss) <= 1)
-            model.Add(sum(ss) == 1).OnlyEnforceIf(a); model.Add(sum(ss) == 0).OnlyEnforceIf(a.Not())
+            model.Add(sum(ss) <= max_runs)
+            model.Add(sum(ss) >= 1).OnlyEnforceIf(a); model.Add(sum(ss) == 0).OnlyEnforceIf(a.Not())
         else:                                            # soft: extra runs of a pair are penalized
             ex = model.NewIntVar(0, len(ss), 'x%d' % p)
             model.Add(sum(ss) >= 1).OnlyEnforceIf(a); model.Add(sum(ss) == 0).OnlyEnforceIf(a.Not())
@@ -131,8 +158,15 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
                 model.Add(d >= sum(chi_terms[X]) - sum(neg[X]) + sum(pos_v[X]) - 1)
                 model.Add(d >= 1 - (sum(chi_terms[X]) - sum(neg[X]) + sum(pos_v[X])))
                 slack.append(d)
+    if target_edges is not None:
+        connected_faces(model, bf, T.fplane, list(T.FX) + list(T.FY))
+        model.Add(sum(s for ss in starts_by_pair.values() for s in ss) == target_edges)
+        for a in adj:
+            model.Add(a == 1)
     model.Add(sum(x) >= 1)
-    if target_pairs is not None and target_adj is None:   # match a prescribed adjacency graph
+    if target_edges is not None:
+        pass
+    elif target_pairs is not None and target_adj is None:   # match a prescribed adjacency graph
         good = [a for p, a in adj_by_pair.items() if pairs_list[p] in target_pairs]
         bad = [a for p, a in adj_by_pair.items() if pairs_list[p] not in target_pairs]
         model.Maximize(sum(good) - 2 * sum(bad))
@@ -148,10 +182,17 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
         for i, k in enumerate(T.cells):
             model.AddHint(x[i], 1 if k in hint else 0)
     solver = cp_model.CpSolver(); solver.parameters.max_time_in_seconds = time_limit; solver.parameters.num_workers = 1
+    if model_path is not None:
+        model.ExportToFile(str(model_path))
     cuts = 0; t0 = time.monotonic()
     while True:
+        if target_edges is not None:
+            solver.parameters.max_time_in_seconds = max(.001, time_limit - (time.monotonic() - t0))
         st = solver.Solve(model)
         if st not in (cp_model.OPTIMAL, cp_model.FEASIBLE):
+            if target_edges is not None:
+                return None, dict(status=solver.StatusName(st), seconds=time.monotonic() - t0,
+                                  ended_by='solver_timeout' if st == cp_model.UNKNOWN else 'completed')
             return None
         inS = np.array([solver.Value(v) for v in x], np.int64)
         f, dsk, adjv, miss, diag, badv, chi, rt = fast_eval(inS, *T.args())
@@ -166,13 +207,18 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
                 if solver.Value(d) > 0:
                     hot.add(X)
             return inS, dict(slack=val, hot=sorted(hot), status=solver.StatusName(st), seconds=round(time.monotonic() - t0, 2))
+        if target_edges is not None:
+            val = sum(solver.Value(a) for a in adj)
         info = dict(adjacent=val, faces=int(f), disks=int(dsk), chi=int(chi), status=solver.StatusName(st), cuts=cuts,
                     seconds=round(time.monotonic() - t0, 2))
+        if target_edges is not None:
+            info['edge_runs'] = sum(solver.Value(s) for ss in starts_by_pair.values() for s in ss)
+            info['ended_by'] = 'completed' if st == cp_model.OPTIMAL else 'solver_timeout'
         if target_pairs is not None:
             got = {pairs_list[p] for p, a in adj_by_pair.items() if solver.Value(a)}
             info['matched'] = len(got & set(target_pairs)); info['extra'] = len(got - set(target_pairs))
             info['adjacent'] = len(got)
-        if not require_one_face or (f == 0 and dsk == 0) or cuts >= max_cuts:
+        if target_edges is not None or not require_one_face or (f == 0 and dsk == 0) or cuts >= max_cuts:
             info['valid'] = bool(f == 0 and dsk == 0 and diag == 0 and badv == 0)
             return inS, info
         model.AddBoolOr([x[i].Not() if inS[i] else x[i] for i in range(nc)])   # no-good cut
