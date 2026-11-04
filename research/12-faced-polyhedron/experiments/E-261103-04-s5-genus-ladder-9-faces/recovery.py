@@ -43,9 +43,11 @@ def isomorphism(source, target, preserve_labels=False):
             if code != other_code:
                 continue
             darts = dict(zip(order, other_order))
+            tail = target.head if mirror else lambda d: target.tail[d]
+            head = (lambda d: target.tail[d]) if mirror else target.head
             labels = {}
             for d, e in darts.items():
-                labels.setdefault(source.tail[d], set()).add(target.tail[e])
+                labels.setdefault(source.tail[d], set()).add(tail(e))
             if any(len(values) != 1 for values in labels.values()):
                 continue
             labels = {label: next(iter(values)) for label, values in labels.items()}
@@ -56,7 +58,8 @@ def isomorphism(source, target, preserve_labels=False):
             step = target.prv if mirror else target.nxt
             assert all(darts[source.nxt(d)] == step(e)
                        and darts[source.alpha[d]] == target.alpha[e]
-                       and labels[source.tail[d]] == target.tail[e]
+                       and labels[source.tail[d]] == tail(e)
+                       and labels[source.head(d)] == head(e)
                        for d, e in darts.items())
             return dict(darts=sorted(darts.items()), labels=sorted(labels.items()),
                         orientation_reversed=mirror)
@@ -184,6 +187,9 @@ def worker(out):
             coherent = census.review.coherent(source_links[name])
             reference = census.from_links([coherent[v] for v in range(n)])
             reference.tail = [v for v in range(n) for _ in coherent[v]]
+            reflected = census.review.TriMap([list(reversed(t)) for t in top.tri],
+                top.alpha, [top.head(d) if d in top.pos else 0 for d in range(len(top.tail))])
+            isomorphism(top, reflected)
             alignment = isomorphism(top, reference)
             labels = dict(alignment['labels'])
             planes = [[float(v) for v in source_planes[name][labels[label]]] for label in range(n)]

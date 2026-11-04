@@ -298,3 +298,25 @@ Record the actual bounded entry-point command and outcome in CONCLUSION. Saved
 recoveries remain PROVED-1 supplied-input computations until the requirements for
 another SPEC evidence level are met. No FD/witness row or existence claim changes
 merely because known control geometry is recovered.
+
+### 2026-11-04. Reflected reference alignment correction
+
+The first recovery attempt at implementation `5643bc5` stopped before geometric
+verification or optimization with REPRESENTATION-FAIL while aligning the Szilassi
+top to its reference. Retain `results/recovery-pilot` unchanged. Its exported
+Szilassi levels passed the labelled round trips. The rooted isomorphism lookup
+compared tails even when its target triangle traversal was reversed. For that
+traversal a dart's tail is the original head, so the proposed label mapping split
+vertices and rejected the reflected reference.
+
+Correct the alignment lookup to use the head as tail for reflected traversals,
+and check both endpoints, triangle successor/predecessor and alpha explicitly.
+Add a reflected-map fixture using reversed triangle cycles and swapped endpoints;
+it must admit a directly checked isomorphism before reference alignment. This
+changes only reference alignment. Label-preserving round trips still require the
+original orientation and identity on labels. Commit this correction before the
+next affected check. Repeat the bounded entry point with
+`OUT=.../results/recovery-pilot-oriented`, retaining the same controls, seeds,
+per-level budgets and outer cap. No search seed or attempted optimization is
+repeated because the first attempt stopped before geometry. Both attempts enter
+the resource total. No focus run or calibration expansion is activated.
