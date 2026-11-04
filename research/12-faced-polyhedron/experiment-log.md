@@ -874,3 +874,8 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   70347ad. Both attempts retained. CONCLUSION / STATUS 3l own controls, accepted
   auxiliary levels, independent two-scale checks and resources. Focus gate closed;
   conditional grid is a costed proposal only. No active run or owner launch.
+
+* 2026-11-04: E-261103-04 conditional failed-level grid registered in b851f8c,
+  implemented in 3f3aeda; actual startup returned STARTUP-PASS without optimization.
+  CONCLUSION / STATUS 3m record readiness and checks. Full grid awaits explicit
+  owner authorization; full-control/focus gates remain closed.

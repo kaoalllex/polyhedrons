@@ -9,25 +9,25 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-04, bounded recovery pilot concluded)
+## Hand-over (2026-11-04, conditional grid ready; launch awaits owner)
 
-* Stay on `Codex/s5-coverage-tranche`; the owner requested no new branch.
-  E-261103-04 remains running, without an active process. The registered geometric
-  pilot is concluded UNDERPOWERED (CONCLUSION / STATUS 3l). Pre-registration
-  `871d8cc`, implementation `5643bc5`, reflected-reference correction `70347ad`.
-* All deterministic controls and labelled round trips pass. Szilassi recovers;
-  the two eight-face chains stop below their tops. Exact/independent checks at
-  both rounding scales accept the saved successful levels (PROVED-1). Preserve
-  both recovery attempts, manifests, rejected outputs and recovery-review evidence.
-* Next decide whether to register the costed conditional 3/10-minute grid on the
-  two failed levels from their saved accepted parents, or reassess the intermediate
-  maps/chain. CONCLUSION gives cost and scope. No expansion, focus geometry or
-  night is activated. No owner launch command is pending. A rerun needs a committed
-  amendment, a reason and fresh OUT. Do not repeat the completed pilot by default.
-* Reuse the passed surgery gate, saved source-bound checker acceptance and prior
-  shared-code quick-suite PASS. Actual recovery dispatch, static checks, output
-  hashes and portable independent checker pass. Diff/graph metadata reviewed.
-  No fresh integrated suite, CI, solver/proof replay, sleep telemetry or human review.
-* E-261103-03's tranche is complete (STATUS 3i), without an active retry or expansion.
-  Human encoder/coverage review and publication of large local certificates remain
-  owner actions.
+* Stay on `Codex/s5-coverage-tranche`; no new branch. E-261103-04 remains running
+  without an active process. The completed pilot remains UNDERPOWERED (STATUS 3l).
+* Conditional failed-level grid pre-registration `b851f8c`, implementation
+  `3f3aeda`. Actual `STARTUP_ONLY=1 STAGE=calibration .../run.sh 0` returned
+  STARTUP-PASS (STATUS 3m). No optimization ran. Four cells use the frozen accepted
+  parents, original paired RNG seeds and independent 3/10-minute budgets.
+* Next obtain the owner's explicit long-run authorization, unless already given
+  later in this conversation. No full grid has been launched. Then, from the
+  repository root with the research environment activated, on AC power, lid open:
+  `STAGE=calibration caffeinate -dimsu nice -n 10 bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0`.
+  Default OUT `results/recovery-grid` refuses overwrite. See PLAN for the cap,
+  power limits and outcome decisions. Do not repeat startup or the old pilot.
+* Reuse startup input/output hashes, exact deterministic controls, labelled round
+  trips, saved source-bound independent parent acceptance and surgery acceptance.
+  Static checks, invalid dispatch checks and graph/diff metadata pass. No new
+  independent replay, integrated suite, CI, solver/proof replay or human review.
+  Full eight-face recovery, focus geometry and night remain gated even if a cell
+  passes. Accepted cells need candidate-check before a result claim.
+* E-261103-03's tranche remains complete (STATUS 3i). Human encoder/coverage review
+  and publication of large local certificates remain owner actions.
