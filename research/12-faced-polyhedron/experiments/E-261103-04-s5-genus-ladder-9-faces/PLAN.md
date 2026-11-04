@@ -622,3 +622,115 @@ execution, review the minimal stage implementation and Python/shell syntax.
 After release, exercise this entry point once, checking queue order, class
 identity, completeness flags, reused-control provenance and saved evidence.
 Do not rerun the first submap audit, recovery grids or integrated suite.
+
+### 2026-11-04. Bounded descendants and concrete alternative chain
+
+**Question and decision.** The completed first-removal census has one new
+OM-SAT genus-two class. Assess its genus-one descendants and seek a concrete
+simple-sphere endpoint in one bounded pilot, rather than register separate
+enumeration, decision and chain-export runs. T=1, D=2: a fully checked chain
+whose positive-genus intermediate formulas are SAT selects a new route for a
+separately registered geometric control; a checked obstruction or unresolved
+endpoint does not. Commit this amendment before implementation, enumeration or
+formula construction. No geometry, focus search or night is authorized.
+
+**Frozen source.** Use only class
+`cfcddf639ecbc6e834985732af94405b24abc80bbed425feb03830349bf3dd3c`
+from `results/mizhaev-first-step-audit/alternatives.json`, retaining its original
+`labelled_map`, `step` and exported links. Pin that JSON's SHA-256 to
+`b5ae33fe7e016b2baa0d7d6c795797225e0cd8565a0aa4d54eae9bfe5abfef0f`
+and its manifest to
+`2aec3c82e688520992d6c94c594e384628b2339afc9ecc56232f855a7cef585c`.
+The saved SAT model `mizhaev-alt-00-try1.model.json` has SHA-256
+`9c13c565f88d897b40c2a78f9fb96dc2bab144a0be0a54917c2938cdf5ec5fb4`;
+its result JSON has SHA-256
+`e8f4e06a3ad702cfc4b63f27f7f0776daa4338a6c79bbc1d06cc973d78d5323b`.
+Reuse its recorded model acceptance, retaining its CNF and model hashes. Restore
+the unchanged Mizhaev top from the surgery artifact pinned above. Check the
+saved first step, exact labelled reverse equality to that top and the existing
+published-top alignment. Do not replace its representative with another member
+of the same class or relabel the parent to resemble an accepted map.
+
+**Finite scope and queue.** Enumerate connected six-triangle, six-label annular patches of the
+frozen genus-two map in existing `patches` order. Use `patch_caps` and
+`remove_patch`; every accepted child must pass `check_surface` at (8,1),
+`check_step`, exact `reverse_step` equality and `recovery.export_level` with its
+label-preserving reconstruction check. Deduplicate by canonical code, retaining
+each first labelled representative, its inverse step and multiplicity. The raw
+subset bound is C(20,6)=38760. Finish enumeration if possible under 20 seconds;
+record completion independently from the decision queue. Assess only the first
+eight distinct genus-one classes in first-encounter order. Fewer classes do not
+justify expanding another scope or budget. Preserve all discovered classes,
+including those outside the registered decision prefix.
+
+**Accepted-parent shortcut.** Compare selected genus-one representatives with
+the saved, independently accepted Mizhaev genus-one parent, using the checked
+dart-map isomorphism, never counts or canonical-code equality alone. First seek
+`preserve_labels=True`. If only a label permutation or orientation reversal
+matches, record the complete label/dart/orientation witness; do not relabel the
+new parent or top. A checked isomorphism permits reuse of the
+accepted parent's existing pinned SAT evidence as an existence witness for
+this genus-one formula class; record this as reused evidence, without inventing
+a fresh solver/model-check status for a differently numbered CNF. Transported
+planes or prior geometry do not constitute fresh geometric acceptance here.
+If no valid shortcut is found, use the unchanged plain `submap=True`, `ALL_OPTS`
+formula with no pins, symmetry or symmetry breaking. Each selected new class
+gets at most 10 solver seconds and five proof-checker seconds. Keep its CNF,
+model/proof, hashes and transcripts. New SAT models require saved-CNF checking;
+new UNSATs require initial independent proof acceptance. Unresolved classes
+leave their feasibility open and do not block subsequent prefix units.
+
+**Sphere witness and concrete export.** For selected genus-one classes with
+checked SAT or accepted-parent reuse, seek a six-triangle removal to a simple
+(8,0) sphere, in deterministic patch order, with a shared 20-second endpoint
+budget. The raw per-class subset bound is C(16,6)=8008. Require all per-step,
+inverse and labelled-export checks above plus `check_surface(..., simple=True)`.
+Generate the sphere step directly on the selected original-labelled
+representative rather than transporting an older chain. Stop the pilot at the
+first valid full route; save separate endpoint completeness/stop flags for each
+visited class and mark the remaining prefix units unrun. Export that full
+chain as original-labelled snapshots for genera 3,2,1,0, all three forward and
+inverse step witnesses, and `recovery.export_level` records in ascending genus
+order. Reverse the complete saved chain and require exact equality with the
+frozen labelled published top, as well as canonical equality. A simple-sphere
+endpoint and OM-SAT intermediates are a combinatorial/OM route, not recovered
+planes or a geometric ladder success.
+
+**Controls, resources and provenance.** Reuse the passed submap audit controls,
+their pinned manifest/summary and initial model/proof acceptance, as above.
+Check matching saved output hashes, unchanged encoder/census/recovery sources,
+Python/dependency/tool identities and thread limits before any descendant unit.
+Only the experiment-local dispatcher and stage implementation may differ; a
+core/evidence mismatch stops for review, rather than refreshing old controls.
+Reuse surgery acceptance and the shared-code quick-suite baseline. New
+representation work receives the explicit checks above. One shard, one worker,
+180-second outer cap, 177-second common monotonic worker deadline and three
+seconds for finalization. The 20-second enumeration, up to eight 10+5-second
+decisions and shared 20-second sphere budget leave 17 seconds for other worker
+operations; every operation is clipped to the common remaining time. Record
+actual/requested times, binding limits, queue order, class multiplicities,
+source/input/output hashes and reuse witnesses. Checkpoint after each new class,
+decision and complete chain. Resume unfinished units without replacing completed
+evidence; deterministic queue rebuild must match the saved discovery prefix.
+Use `STAGE=descendants`, fresh `results/mizhaev-descendant-audit`; preserve every
+older stage and attempt.
+
+**Prediction, scope and checks.** H1 predicts a selected genus-one class with
+checked SAT/reused accepted evidence and a fully checked sphere extension;
+H0 is supported only if every selected class is UNSAT-VERIFIED or has a complete
+no-witness sphere scan in the registered scope. Unresolved decisions or
+budget-bound endpoint scans give UNDERPOWERED for the chain question, unless
+another class supplies H1. Keep per-class, prefix and whole-census coverage
+separate. A full chain permits only
+preparation of a new geometric control amendment. Complete enumeration with
+every genus-one class UNSAT-VERIFIED conditionally rejects this second-removal
+scope of the frozen alternative parent; prefix decisions do not exclude the
+remainder. Endpoint exhaustion excludes only the enumerated six-triangle sphere
+removals. Timeout/UNVERIFIED or a budget-bound endpoint scan give no exclusion.
+Claims remain PROVED-1 standalone computation, conditional on encoding
+soundness; no scenario, existence, full-eight-face or focus gate changes.
+Review this amendment before its isolated registration commit, then review
+minimal `audit.py`/`run.sh` changes and syntax. Execute the actual bounded entry
+point only after code review/release; verify the saved decisions, full/prefix
+flags, label/inverse witnesses and exported chain without rerunning unchanged
+controls, old grids or the integrated suite.
