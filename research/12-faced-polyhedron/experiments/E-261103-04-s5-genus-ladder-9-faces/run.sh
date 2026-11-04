@@ -8,16 +8,27 @@ if [[ "${1:-0}" != 0 || "${SHARDS:-1}" != 1 ]]; then
 fi
 PYTHON="${PYTHON:-python3}"
 STAGE="${STAGE:-representation}"
+STARTUP_ONLY="${STARTUP_ONLY:-0}"
+if [[ "$STARTUP_ONLY" != 0 && ( "$STARTUP_ONLY" != 1 || "$STAGE" != calibration ) ]]; then
+  echo 'STARTUP_ONLY=1 requires STAGE=calibration.' >&2
+  exit 2
+fi
 case "$STAGE" in
   representation) DEFAULT_OUT="$HERE/results/representation-audit" ;;
   surgery) DEFAULT_OUT="$HERE/results/surgery-audit" ;;
   recovery) DEFAULT_OUT="$HERE/results/recovery-pilot" ;;
+  calibration)
+    DEFAULT_OUT="$HERE/results/recovery-grid"
+    if [[ "$STARTUP_ONLY" == 1 ]]; then DEFAULT_OUT="$HERE/results/recovery-grid-startup"; fi ;;
   *) echo "Unknown audit stage: $STAGE" >&2; exit 2 ;;
 esac
 OUT="${OUT:-$DEFAULT_OUT}"
-if [[ "$STAGE" == recovery ]]; then
+if [[ "$STAGE" == recovery || "$STAGE" == calibration ]]; then
   export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
   export VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1 PYTHONUNBUFFERED=1
-  exec "$PYTHON" "$HERE/recovery.py" --out "$OUT"
+  ARGS=(--out "$OUT")
+  if [[ "$STAGE" == calibration ]]; then ARGS+=(--calibration); fi
+  if [[ "$STARTUP_ONLY" == 1 ]]; then ARGS+=(--startup-only); fi
+  exec "$PYTHON" "$HERE/recovery.py" "${ARGS[@]}"
 fi
 exec "$PYTHON" "$HERE/audit.py" --stage "$STAGE" --out "$OUT"
