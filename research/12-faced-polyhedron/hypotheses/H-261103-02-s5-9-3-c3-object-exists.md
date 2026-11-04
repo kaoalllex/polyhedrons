@@ -52,3 +52,9 @@ E-261103-03 completed its registered bounded coverage tranche (STATUS 3i / CONCL
 EXACT decisions concern saved formulas only; geometric interpretation remains conditional
 PROVED-1. No target SAT or geometric candidate. This hypothesis retains its preceding status;
 partial coverage and timeouts do not decide existence.
+
+## 2026-11-04 ladder representation gate
+
+E-261103-04 CONCLUSION / STATUS 3j diagnose a PROVED-1 limitation of the legacy
+triangle-to-links conversion on parallel-edge maps. Geometric recovery has not
+been attempted by this stage. The hypothesis retains its preceding status.
