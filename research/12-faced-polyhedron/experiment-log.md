@@ -883,3 +883,11 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-04: owner authorized E-261103-04 conditional grid. Actual registered
   caffeinate/nice dispatch launched from 281881d on AC power; deterministic
   controls pass, first cell active. Collect results/recovery-grid; verdict pending.
+
+* 2026-11-04: E-261103-04 authorized conditional grid concluded UNDERPOWERED,
+  all registered cell outputs exactly rejected. CONCLUSION / STATUS 3n retain
+  scope, resources and checks. Next reassess intermediate maps/chain, no active run.
+
+* 2026-11-04: focused source review identifies the existing submap=True exact
+  encoder path for the two auxiliary maps, with a loader-default caveat and
+  required pinned controls. E-261103-04 CONCLUSION records the audit prerequisites.
