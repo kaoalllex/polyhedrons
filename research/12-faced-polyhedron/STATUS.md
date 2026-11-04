@@ -5,6 +5,7 @@ details: `results.md`; chronology: `experiment-log.md`; what to do next: `ROADMA
 same commit as any result that changes a row. This file owns the verdicts and numbers; other files link here.
 
 E-261103-03 (8,2) pilot completed 2026-11-04; its bounded (9,3) paired pilot is complete; the registered new-map tranche is complete (section 3i); wider census coverage remains unresolved.
+E-261103-04's replacement dart-preserving surgery gate is complete (section 3k).
 
 ## 0. State in one paragraph
 
@@ -296,9 +297,32 @@ Both manifests total 2.0227310419995774 wall seconds / 0.0005618697338887716 cor
 Their output hashes match. The audit is outside `verify_all.py`; no EXACT upgrade.
 
 Verdict OPEN with the representation gate failed. The experiment remains running;
-next prepare a dart-preserving tube-removal amendment and then calibrate geometric
-recovery. No geometric pilot or night is activated. Existence hypotheses and
+the subsequent dart-preserving gate is recorded in section 3k. No geometric pilot
+or night is activated. Existence hypotheses and
 scenario credences retain their prior statuses.
+
+## 3k. S5 dart-preserving surgery gate (2026-11-04)
+
+E-261103-04's surgery stage is complete (CONCLUSION). Pre-registration `5725a38`,
+generating implementation `cfb99e2`, strengthened saved checker `2ff5953`.
+**PROVED-1, supplied-input computation:** all 203 admissible frozen (9,3) maps and
+the Szilassi and two (8,3) controls have reversible alpha-preserving chains to
+checked simple sphere triangulations. Surface and patch checks, labelled/canonical
+inverse checks, the three negative controls and legacy Szilassi compatibility pass.
+The saved checker also binds every top map to its named input and checks full scope.
+The standalone computation is outside `verify_all.py`; no EXACT promotion.
+
+Actual `STAGE=surgery bash .../run.sh 0` completed normally on one core, with all
+controls passing before focus maps and no timeout or state cap. Its manifest
+records 11.100107874999594 wall seconds / 0.0030833632986109983 core-hours.
+All three experiment manifests total 13.1228389169991713 wall seconds /
+0.00364523303249976984 core-hours. Preparation and post-run checks are outside
+these totals. Compressed evidence, original manifest and replay transcript are
+in `results/surgery-audit/`; source/output hashes and lossless compression pass.
+
+Verdict OPEN, surgery gate passed. Next register the geometric recovery pilot.
+Geometric recovery power and focus realizability are unmeasured. No candidate,
+night or new existence claim. The experiment stays running without an active process.
 
 ## 4. What may and may not be claimed
 
