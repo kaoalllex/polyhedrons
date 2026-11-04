@@ -54,3 +54,10 @@ partial coverage and timeouts do not decide existence.
 E-261103-04 CONCLUSION / STATUS 3j diagnose a PROVED-1 limitation of the legacy
 triangle-to-links conversion on parallel-edge maps. Geometric recovery has not
 been attempted by this stage. The hypothesis retains its preceding status.
+
+## 2026-11-04 conditional ladder calibration
+
+E-261103-04's conditional failed-level grid concluded UNDERPOWERED (CONCLUSION /
+STATUS 3n). PROVED-1 supplied-input checks reject all saved cell outputs. The
+scope covers auxiliary intermediate maps from frozen parents. This hypothesis
+retains its preceding status and credence.

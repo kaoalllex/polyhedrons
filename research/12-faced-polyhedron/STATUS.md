@@ -7,8 +7,8 @@ same commit as any result that changes a row. This file owns the verdicts and nu
 E-261103-03 (8,2) pilot completed 2026-11-04; its bounded (9,3) paired pilot is complete; the registered new-map tranche is complete (section 3i); wider census coverage remains unresolved.
 E-261103-04's replacement surgery gate is complete (section 3k); its bounded
 geometric recovery pilot is concluded, UNDERPOWERED (section 3l).
-Its conditional failed-level grid is registered and startup-checked; the owner
-authorized launch and the run is active (section 3m).
+Its conditional failed-level grid is concluded UNDERPOWERED with all registered
+cells exactly rejected (section 3n). No active process.
 
 ## 0. State in one paragraph
 
@@ -386,11 +386,44 @@ and post-run checks are outside the manifests. The startup's pip provenance comm
 disabled its unwritable cache; it completed successfully and retained dependency
 versions. Worker stderr is empty.
 
-The owner subsequently authorized the full grid. The registered command is active
-from HEAD `281881d` under caffeinate/nice on AC power, one worker; all deterministic
-controls pass and the first cell started. Collect `results/recovery-grid` on completion;
-no grid verdict yet. Full eight-face recovery and focus geometry remain gated.
+The owner subsequently authorized the full grid from HEAD `281881d` under
+caffeinate/nice on AC power, one worker. Its completed outcomes are in section 3n.
 See PLAN and CONCLUSION for decisions after conditional success or UNDERPOWERED.
+
+## 3n. Conditional failed-level grid concluded (2026-11-04)
+
+E-261103-04's authorized grid finished normally, exit zero, UNDERPOWERED.
+Pre-registration `b851f8c`, implementation `3f3aeda`, generating HEAD `281881d`.
+All deterministic controls and labelled round trips pass. The four cells used
+frozen accepted parents and paired seeds, with exact results below.
+
+| Unit | Genus | RNG seed | Requested seconds | `nonsimple_faces` | `bad_pairs` | `EMBEDDED` |
+|---|---:|---:|---:|---|---|---|
+| Roest-Vigh | 1 | 1040201 | 180 | [1, 6] | [] | false |
+| Mizhaev | 2 | 1040302 | 180 | [0, 4] | [] | false |
+| Roest-Vigh | 1 | 1040201 | 600 | [1, 6] | [] | false |
+| Mizhaev | 2 | 1040302 | 600 | [0, 4] | [] | false |
+
+**PROVED-1, supplied-input computation.** Each output fails exact embedding
+checking through the initial in-process and saved-file paths. Topology matches,
+vertices are distinct and edges consistent. Each optimizer exhausted requested
+time with objective 2, a diagnostic only. Positive exact controls have simple
+faces and no bad pairs. All source/input/output hashes pass. Saved parent
+independent acceptance, surgery acceptance and the shared-code suite are reused.
+No fresh independent replay, integrated suite, CI, proof replay or human review.
+
+The grid used 1561.8850308330002 wall seconds / 0.4338569530091667 core-hours,
+fraction 0.8677139060183334 of its outer cap. All seven experiment manifests sum
+to 1686.0276773340029 seconds / 0.46834102148166745 core-hours. Preparation,
+unsuccessful pre-Python launches and post-run checks are outside those totals.
+All cells ran, with REQUESTED-TIME binding and no outer timeout.
+
+**UNDERPOWERED within this grid.** The conditional recovery prediction failed.
+Higher levels, different parents/seeds/chains and focus geometry were outside
+scope. Map realizability and the existence hypotheses retain their preceding
+statuses. Next reassess intermediate-map realizability or chain selection, as
+registered, before further geometry. CONCLUSION specifies the next preparation
+for a bounded exact audit. Full-control/focus gates stay closed. No active run.
 
 ## 4. What may and may not be claimed
 

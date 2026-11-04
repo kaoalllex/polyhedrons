@@ -355,3 +355,112 @@ the standing long-run rule; no active process, focus geometry or night. README
 records the ready launch command. Conditional successes still require exact saved
 checks and candidate-check before any result claim. Even a full grid with accepted
 cells leaves full eight-face recovery gated. No human review or FD/witness change.
+
+## Conditional failed-level grid concluded (2026-11-04)
+
+Pre-registration `b851f8c`, implementation `3f3aeda`, generating HEAD `281881d`.
+The owner explicitly authorized this grid after startup acceptance. The actual
+registered command ran from the repository root in the activated research
+environment on AC power, under caffeinate/nice, with one worker and one thread
+per numerical library. Evidence is retained in `results/recovery-grid/`.
+
+```bash
+STAGE=calibration caffeinate -dimsu nice -n 10 bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0
+```
+
+Two earlier launch attempts stopped before Python and before OUT creation. The
+sandbox rejected nice with `setpriority: Operation not permitted`, and a background
+launch did not survive the tool shell. The surviving foreground exec session ran
+the registered command with the required environment permission. These attempts
+produced no optimizer work or experiment manifest. Their launcher logs are local
+`/private/tmp/polyhedrons-E-261103-04-recovery-grid-launch*.log` files, outside the
+retained run evidence. The successful run has a clean generating working tree.
+
+### Controls, prediction and exact outcomes
+
+All three supplied-plane positive controls, three duplicate-plane negative
+controls and ten labelled round trips pass. Positive objectives have zero events,
+zero depth and value zero. Negative objectives receive controlled INVALID-INPUT
+singular-matrix rejection. Verdicts use exact reports. Positive exact reports have
+simple faces and no bad pairs, providing a nonfailing control for the same defect
+checks that reject the search outputs. The repeated objective value below is a
+search diagnostic and receives no structural interpretation.
+
+| Unit | Genus | RNG seed | Requested seconds | Optimization seconds | Restarts | `nonsimple_faces` | `bad_pairs` | Exact outcome |
+|---|---:|---:|---:|---:|---:|---|---|---|
+| Roest-Vigh | 1 | 1040201 | 180 | 180.00055116600197 | 63 | [1, 6] | [] | REJECT |
+| Mizhaev | 2 | 1040302 | 180 | 180.0005625829981 | 49 | [0, 4] | [] | REJECT |
+| Roest-Vigh | 1 | 1040201 | 600 | 600.0015438750015 | 191 | [1, 6] | [] | REJECT |
+| Mizhaev | 2 | 1040302 | 600 | 600.0020673750005 | 164 | [0, 4] | [] | REJECT |
+
+Each cell stopped at REQUESTED-TIME and then received exact rejection, with
+objective 2. The requested-time fractions are in recovery.json. Roest-Vigh reports
+V/E/F/chi = 16/24/8/0 and 21 adjacent pairs. Mizhaev reports 20/30/8/-2 and 25
+adjacent pairs. Each report has matching topology, distinct corner triples and
+vertices, and consistent edges. The nonsimple-face defects prevent embedding.
+The saved-file verifier transcripts retain full output and report zero PASS for
+every cell. There are no accepted recoveries requiring independent candidate
+review. The conditional H1 prediction failed in all registered cells.
+
+Each cell used its original accepted parent, with unchanged labels and the same
+paired seed across budgets. No rejected output or other cell seeded a search.
+Roest-Vigh genera two/three and Mizhaev genus three were outside this conditional
+grid, as were alternative parents, seeds, chains and focus maps.
+
+### Resources and verification
+
+The attempt exited normally with status zero and stop reason UNDERPOWERED.
+It used 1561.8850308330002 wall seconds / 0.4338569530091667 core-hours, fraction
+0.8677139060183334 of its outer cap. Per-cell requested time was the binding limit.
+The outer cap did not bind and all four planned cells ran. All seven experiment
+manifests sum to 1686.0276773340029 wall seconds / 0.46834102148166745 core-hours.
+Preparation, unsuccessful pre-Python launches and post-run checking are outside
+these manifest totals. No sleep telemetry was collected.
+
+Every declared current source/input hash and every saved output hash matches the
+finalized manifest. The four initial in-process exact checks and saved-file
+transcripts are reused. The registered startup, unchanged parent independent
+acceptance, surgery acceptance and shared-code quick-suite PASS are reused for
+their existing scope. No changed code or input calls for another solver, verifier,
+proof replay or integrated suite. Ledger and handover changes receive diff,
+evidence-link and graph metadata review.
+
+### Verdict and next decision
+
+**PROVED-1, supplied-input computation.** The four saved outputs are rejected for
+embedding by the registered exact checks. **UNDERPOWERED at the registered paired
+3/10-minute budgets from the two frozen parents.** The deterministic controls test
+implementation readiness but provide no search-power estimate for these
+intermediate maps. H-261101-07, H-261103-02 and the A/B/C credences retain their
+preceding statuses. Full eight-face recovery and focus geometry remain gated.
+
+Follow the registered no-success branch and reassess the two intermediate maps
+or chain selection before another geometric search. The next concrete preparation
+is to check whether the existing multi-adjacency exact encoding covers these
+incomplete-adjacency auxiliary maps, then register a bounded map-feasibility audit
+if it does. That audit would separate an intermediate-map obstruction from a
+failure to recover geometry from these parents. An UNSAT could only be interpreted
+with the exact formula, certificate and encoding scope retained. No audit or new
+search is activated by this conclusion. The broader experiment remains running,
+with this calibration stage complete and no active process.
+
+### Source review for the next audit
+
+Focused CodeGraph navigation and source review found the existing submap path in
+`code/omsat.py`. `Triangulation.__init__` accepts `submap=True`, preserves supplied
+links and checks segment pairing. `Predicates.E` returns false for absent edges,
+and the multi-adjacency ray predicate iterates over prescribed segments, including
+an empty list for an absent pair. `build` constrains all non-corner triples and
+adds segment-disjoint clauses independently of the map's genus. This identifies
+an existing implementation path for the proposed audit. Its soundness remains
+PROVED-1, with the extended argument in E-261103-02/SOUNDNESS.md.
+
+The E-261103-02 `test_encoder.from_links` helper constructs Triangulation with the
+default `submap=False`. A local audit must explicitly select `submap=True` after
+preserving the saved labelled links. Before interpreting target decisions, it
+must pin the known embedded Roest-Vigh sphere and Mizhaev genus-one parents under
+this same encoding, plus a rejected fixed-chirotope fixture with a retained
+certificate. These controls specifically exercise absent face pairs together with
+parallel edges. This session performs source review only. Formula construction,
+SAT solving, proof checking and any realizability stage need a committed audit
+amendment first. A SAT oriented matroid would still need a geometric realization.
