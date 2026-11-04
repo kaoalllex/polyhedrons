@@ -69,3 +69,12 @@ night require a dated, committed amendment after this gate passes.
   Mathematical claims stay at PROVED-1 until human review. No FD/witness row changes.
 
 ## Amendments
+
+* 2026-11-04, after the first audit on commit `040562a`. The audit stopped with
+  `ValueError: links do not uniquely identify parallel-edge pairing; use dart code`
+  while loading the Mizhaev control. Its supplied face cycles are not coherently
+  oriented. Reuse the existing `review.coherent` helper on the supplied controls
+  before `census.from_links`. Preserve the failed attempt and repeat the bounded
+  audit into `results/representation-audit-oriented` using the runner's `OUT`
+  override. This rerun addresses the failed control-loading step. No search is
+  activated. The declared input hashes include the helper's source file.

@@ -7,4 +7,5 @@ if [[ "${1:-0}" != 0 || "${SHARDS:-1}" != 1 ]]; then
   exit 2
 fi
 PYTHON="${PYTHON:-python3}"
-exec "$PYTHON" "$HERE/audit.py" --out "$HERE/results/representation-audit"
+OUT="${OUT:-$HERE/results/representation-audit}"
+exec "$PYTHON" "$HERE/audit.py" --out "$OUT"
