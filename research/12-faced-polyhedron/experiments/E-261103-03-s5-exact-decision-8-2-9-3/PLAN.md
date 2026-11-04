@@ -147,3 +147,75 @@ above gate. Target S5 (9,3); no S0, new census, fixed-face symmetry or model enu
 * Provenance: results/grid_9_3, immutable original pilot directories, census hash, map identities,
   identical clause hashes across cutoff cells, baseline summary hash, source commit/dirty state,
   dependencies, platform, exact wall/core durations and full/partial evidence. No push, PR or release.
+
+
+### 2026-11-04: activate bounded new-map coverage after E-261103-05
+
+The owner requested continuation from CONTINUE_PROMPT. E-261103-05's registered explore
+prerequisite has concluded (STATUS 3g). Continue on Codex/s5-coverage-tranche from 9f9f898,
+retaining the completed explore dependency and every previous artifact. T D F G R remain
+2 2 2 2 2. This amendment supersedes the proposal's activation status, not earlier evidence.
+
+* Target: S5 (9,3), plain uniform embedding formulas only. H1: cheap exact decisions extend
+  beyond the purposive pilot panel; rival: the new-map tranche mostly times out. Prediction:
+  at least 20 of the frozen 80 maps become UNSAT-VERIFIED or yield a clause-checked first SAT.
+  This tests affordability, not existence; no median extrapolation from completed calls.
+* Freeze tranche_queue.json before compute: first 80 admissible census maps in saved order
+  excluding every previously dispatched plain map. Store census/baseline/canonical hashes.
+  Preserve the seven unresolved attempted maps; no retries of that hard tail or new census.
+* Budgets: solver <=60 seconds, checker <=120 seconds, one numerical thread per worker,
+  1..8 simultaneous single-worker shards. Each shard has at most 180 seconds per assigned
+  map plus 300 seconds controls, 360 seconds first-SAT processing and 300 seconds setup/report.
+  At eight shards this is 22080 seconds = 6.133334 conservative core-hours (<6.2).
+  A persistent shared reservation ledger caps all attempts at 22319 seconds (<6.2 core-hours),
+  including restarts; a killed attempt retains its reservation conservatively. Exhausting it
+  stops unresolved work; a new budget requires a committed amendment. No automatic git writes.
+* Checkpoint: append/fsync one record per completed map; skip recorded TIMEOUT and verified
+  decisions across all shards when repartitioning. In-flight attempts use fresh directories;
+  never overwrite their CNF, partial proof or logs. A torn final JSONL line is ignored, then
+  repaired before appending; corrupt interior lines block resume. Changed source/queue/input
+  identities block resume. Per-shard locks prevent duplicate starts; shared dispatch/SAT lock
+  makes first-SAT stopping visible across shards. Interrupted attempts are unresolved.
+* Gates before each shard dispatches targets: the existing positive pinned known objects,
+  warm realizers, checked cross-map negative, inadmissibility/malformed pairing guards,
+  rebuilt saved (8,2) proof replays, nine-plane exact predicate/GP positive and free-C3
+  arrangement positive. Controls <=300 seconds through the existing pilot path; a failed
+  control, invalid model, ERROR or unchecked proof sets a shared stop. Unseeded realizer
+  outcomes describe construction power separately. No geometric (9,3) positive is available.
+* Same-path session pilot: one shard, the first two frozen maps (8,9), same 60/120-second
+  limits, same controls and coordinator as production; separate results/coverage_pilot.
+  Resume that pilot once to verify completed units are skipped. Target work plus controls
+  is <=660 seconds plus bounded reporting. An additional synthetic SAT/UNSAT/process test
+  exercises the first-SAT latch and corruption/error paths without a target solve.
+* Long-run gate: controls and checkpoint/first-SAT tests pass, target calls bind on intended
+  time/completion limits, no proof checker failure; the >=20 prediction remains uncertain.
+  A tiny pilot is not an estimate of population yield. First SAT or a gate failure blocks
+  a coverage launch pending its bounded model-level outcome and a written decision.
+* First SAT: save and clause-check the full assignment, atomically stop further dispatch
+  across shards (already running units may finish); process only the first model through
+  hinge, two-stage and final polynomial, each <=120 seconds. A saved SAT latch survives
+  restart; unfinished processing resumes under a global lock and within remaining budget.
+  Exact signs and embedding precede CANDIDATE; verify_candidate --target S5 and candidate-check
+  remain required. NONREALIZABLE-EXACT concerns one model, never the map. No model enumeration.
+* Counters: SAT, UNSAT-VERIFIED, TIMEOUT, ERROR, UNSAT-UNCHECKED, exact sign match, EMBEDDED.
+  No float diagnostic enters a verdict. Keep and hash all CNFs, full/partial DRAT, models,
+  raw transcripts, tool versions, source/input identities and per-attempt wall/core seconds.
+  Solver/checker durations and binding limits are separate. All waits/deadlines use monotonic
+  time; setup/build/proof handling are bounded by the shard cap. Append manifests on restart.
+* Interpretation: EXACT applies only to checked saved formulas. Geometric interpretation
+  remains PROVED-1 conditional on encoder/census/general-position arguments; no CERTIFIED
+  upgrade. Timeouts/unchecked proofs and numerical failures give no negative information.
+  SAT without realization stops collection and prioritizes the realizability bottleneck.
+  Otherwise report coverage and cost, retaining every unresolved/unattempted map explicitly.
+  Existence hypotheses and scenario credences do not move from a bounded partial exclusion.
+* Implementation plan (existing Python/shell patterns; no dependencies):
+  1. Add failing regressions for queue identity, checkpoint resume, independent checker cap,
+     shared first-SAT stop, interrupted attempts and bounded subprocess cleanup.
+  2. Extend pilot.solve with a distinct checker cap and SAT callback; add controls-only mode.
+     Implement experiment-local tranche.py and register its job in run_overnight.py.
+     Reuse command/stage, JSON checkpoint and manifest patterns; do not change old evidence.
+  3. Extend run.sh with numeric shards and an explicit coverage-pilot mode using activated
+     python3; reject invalid modes/shard counts. Keep old pilot/paired/grid modes intact.
+  4. Run focused regressions and the registered same-path pilot, record its conclusion and
+     gate verdict, run verify_all.py --quick, update handover and supply the exact laptop
+     launch/status/stop commands. Do not launch the tranche, push, open a PR or upload proofs.
