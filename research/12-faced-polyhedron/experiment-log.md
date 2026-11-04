@@ -851,3 +851,9 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   amendment committed (2eeb39f), and bounded audit concluded; see CONCLUSION / STATUS 3j.
   Legacy conversion cannot retain focus-map parallel edges (PROVED-1); dart-preserving
   surgery is the next stage. Both attempts retained; geometric recovery unactivated.
+
+* 2026-11-04: prepared E-261103-04's dated dart-preserving surgery amendment for
+  pre-registration on Codex/s5-coverage-tranche. PLAN defines reversible annulus surgery,
+  structural controls, simple sphere endpoints and bounded deterministic chain search.
+  Diff/source-contract review only, with existing graph metadata and evidence unchanged.
+  Next implement the surgery audit, then calibrate geometry under a separate amendment.

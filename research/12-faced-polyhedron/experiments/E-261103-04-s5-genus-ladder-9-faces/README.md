@@ -11,14 +11,14 @@ preregistered: true
 ---
 
 > Representation audit pre-registered, **explore** (counts towards the one-in-two exploration share of `STRATEGY.md`). Scores T D F G R: 1 2 2 1 2 |
-> current stage: a bounded single-core representation audit in `PLAN.md`; the census prerequisite is complete.
+> current stage: the dart-preserving surgery amendment in `PLAN.md`; implementation and its bounded audit are next.
 > The geometric pilot and night require a committed amendment. What is different from the parked DR1 runs: a new target with
 > genus 3 (below the S0 "ravine" at 3 -> 4), 9 faces (12 free parameters instead of 21), and all pairs adjacent.
 
 ## Goal
 
 The cheapest geometric contact with the focus target. For every admissible (9, 3) map: remove handles with `code/tubes.py`
-down to a 9-vertex sphere (a simplicial 3-polytope, always realizable), then climb M0 -> M1 -> M2 -> M3 with
+down to a 9-vertex sphere, check that it is a simple triangulation before invoking convex realizability, then climb M0 -> M1 -> M2 -> M3 with
 `genus_ladder.search` (the `archive_climb` floor, the engine of E-261102-04) and the exact verifier at every level;
 `verify_candidate.py --target S5` on every genus-3 float zero. The engine passes R1 (Szilassi) and R5 (a genus-3 map from
 its genus-2 parents, 5/10 at 6 min) and its per-seed outcome is decided in about 3 minutes, so one night covers hundreds of
@@ -61,6 +61,7 @@ they cannot do so. The audit records the exact scope on the frozen census and co
 See `CONCLUSION.md` and `STATUS.md` section 3j for the completed audit, resources,
 failed initial attempt and control-orientation correction. The legacy conversion
 loses parallel-edge identities (PROVED-1 implementation limitation). The experiment
-stays running. Prepare a dart-preserving surgery amendment before geometric work.
+stays running. The dated dart-preserving surgery amendment in `PLAN.md` specifies
+the next implementation and bounded combinatorial audit before geometric work.
 The saved audit directories are immutable attempts; the runner refuses to overwrite
 an existing output directory. A new audit requires a stated reason and a fresh OUT.
