@@ -868,3 +868,9 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   Codex/s5-coverage-tranche. PLAN fixes known controls, seeds, time limits, labelled
   export checks and exact per-level acceptance. Next implement and exercise the
   recovery dispatch. Surgery evidence reused; no geometric search or night launched.
+
+* 2026-11-04: E-261103-04 geometric recovery pilot concluded, UNDERPOWERED;
+  pre-registration 871d8cc, implementation 5643bc5, reflected alignment amendment
+  70347ad. Both attempts retained. CONCLUSION / STATUS 3l own controls, accepted
+  auxiliary levels, independent two-scale checks and resources. Focus gate closed;
+  conditional grid is a costed proposal only. No active run or owner launch.

@@ -5,7 +5,8 @@ details: `results.md`; chronology: `experiment-log.md`; what to do next: `ROADMA
 same commit as any result that changes a row. This file owns the verdicts and numbers; other files link here.
 
 E-261103-03 (8,2) pilot completed 2026-11-04; its bounded (9,3) paired pilot is complete; the registered new-map tranche is complete (section 3i); wider census coverage remains unresolved.
-E-261103-04's replacement dart-preserving surgery gate is complete (section 3k).
+E-261103-04's replacement surgery gate is complete (section 3k); its bounded
+geometric recovery pilot is concluded, UNDERPOWERED (section 3l).
 
 ## 0. State in one paragraph
 
@@ -320,10 +321,45 @@ All three experiment manifests total 13.1228389169991713 wall seconds /
 these totals. Compressed evidence, original manifest and replay transcript are
 in `results/surgery-audit/`; source/output hashes and lossless compression pass.
 
-Verdict OPEN, surgery gate passed. The geometric recovery pilot is registered in
-the dated PLAN amendment and awaits implementation and bounded startup checking.
-Geometric recovery power and focus realizability are unmeasured. No candidate,
-night or new existence claim. The experiment stays running without an active process.
+Verdict OPEN, surgery gate passed. The subsequent bounded geometric recovery
+pilot is recorded in section 3l. The experiment stays running.
+
+## 3l. S5 genus-ladder geometric recovery pilot (2026-11-04)
+
+E-261103-04's pilot is concluded. Pre-registration `871d8cc`, implementation
+`5643bc5`, reflected-reference correction/amendment `70347ad`. The first attempt
+stopped with REPRESENTATION-FAIL before geometry. Both immutable attempts and
+manifests are retained. The amended actual `STAGE=recovery .../run.sh 0` exited
+normally with all three supplied-plane positive and duplicate-plane negative
+controls, and all ten labelled round trips, passing.
+
+| Unit | Seed | Exactly accepted genera | First rejected genus | `nonsimple_faces` | `bad_pairs` | Unrun genera |
+|---|---:|---|---:|---|---|---|
+| Szilassi | 10401 | 0, 1 | none | none | none | none |
+| Roest-Vigh | 10402 | 0 | 1 | [1, 6] | [] | 2, 3 |
+| Mizhaev | 10403 | 0, 1 | 2 | [0, 4] | [] | 3 |
+
+**PROVED-1, supplied-input computation.** Five accepted auxiliary levels pass
+saved-file exact checks and the independent rational checker at 1e-9 and 1e-12.
+Checks include face intersections, topology and SPEC degeneracies. The recovered
+Szilassi top is S5 (7,1), with single adjacencies. The Mizhaev genus-one level has
+22 adjacent pairs and two doubled pairs. The standalone checker is outside
+`verify_all.py`; no EXACT promotion or external human review.
+
+**UNDERPOWERED at one seed per control, 45 seconds per visited level.** The two
+rejected levels used their full requested optimization budget. Full (8,3) recovery
+was not demonstrated, so focus geometry remains gated. This does not decide
+realizability of either intermediate map or any existence hypothesis. No focus
+candidate, night or scenario move. The experiment remains running.
+
+The corrected attempt used 105.64823350000006 wall seconds /
+0.029346731527777795 core-hours, fraction 0.17608038916666677 of its outer cap.
+Both recovery attempts sum to 109.27383250000094 seconds /
+0.030353842361111372 core-hours. All five experiment manifests sum to
+122.3966714170001 seconds / 0.03399907539361114 core-hours. Post-run independent
+checks and preparation are outside these totals. Source/output hashes pass;
+prior surgery acceptance is reused. CONCLUSION records timing detail, exact
+commands, full scope and the costed conditional grid proposal, which is unactivated.
 
 ## 4. What may and may not be claimed
 

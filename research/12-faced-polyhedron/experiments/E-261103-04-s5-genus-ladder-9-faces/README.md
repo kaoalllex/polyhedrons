@@ -11,7 +11,7 @@ preregistered: true
 ---
 
 > Representation audit pre-registered, **explore** (counts towards the one-in-two exploration share of `STRATEGY.md`). Scores T D F G R: 1 2 2 1 2 |
-> current stage: the bounded geometric recovery pilot is registered in PLAN.md and awaits implementation.
+> current stage: bounded geometric recovery pilot concluded, UNDERPOWERED. See CONCLUSION / STATUS 3l.
 > The night requires a separate committed amendment. What is different from the parked DR1 runs: a new target with
 > genus 3 (below the S0 "ravine" at 3 -> 4), 9 faces (12 free parameters instead of 21), and all pairs adjacent.
 
@@ -89,11 +89,22 @@ Saved chains and their original manifest are in `results/surgery-audit/`.
 hash applies to its decompressed bytes. Use `audit.py --check-saved PATH` to check
 either plain or compressed evidence. The next section records recovery registration.
 
-## Registered recovery pilot
+## Bounded recovery pilot concluded
 
-The dated geometric amendment in `PLAN.md` fixes the three controls, seeds, budgets,
-label-preserving links export, exact checks and stop rules. Next implement its
-experiment-local recovery dispatch and exercise the bounded entry point. The
-`STAGE=recovery` interface is planned and has not been implemented or exercised.
-The commands above reproduce the completed combinatorial stages only. Focus
-geometry and a night remain gated. No owner launch command is pending.
+The geometric amendment was registered in `871d8cc`, implemented in `5643bc5`, and
+corrected for reflected reference alignment in `70347ad`. Both attempts remain in
+`results/recovery-pilot*`. CONCLUSION / STATUS 3l own outcomes, scope and resources.
+The independent checker and report are in `results/recovery-review/`.
+
+With the research environment activated, the actual recovery entry point is
+
+```bash
+STAGE=recovery bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0
+```
+
+This command refuses to overwrite its existing attempt. It is recorded for
+provenance. A repeat requires a committed amendment, a stated reason and a fresh
+OUT. The completed pilot leaves the full eight-face recovery gate closed.
+Next decide whether to register the costed conditional level grid in CONCLUSION
+or reassess the intermediate maps/chain. Focus geometry and a night remain gated.
+No owner launch command is pending.

@@ -1,0 +1,65 @@
+{
+  "started_utc": "2026-11-04T10:52:01.362013+00:00",
+  "workers": 1,
+  "host": "macOS-26.7.2-arm64-arm-64bit-Mach-O",
+  "cpu_count": 14,
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "executable": "/Users/a.konyaev/.venvs/polyhedra/bin/python3",
+  "virtual_env": "/Users/a.konyaev/.venvs/polyhedra",
+  "cwd": "/Users/a.konyaev/src/my/polyhedrons",
+  "shard": 0,
+  "parameters": {
+    "stage": "recovery",
+    "wall_seconds": 600,
+    "level_seconds": 45,
+    "seeds": {
+      "szilassi": 10401,
+      "roest_vigh": 10402,
+      "mizhaev": 10403
+    },
+    "finalization_reserve_seconds": 3
+  },
+  "commit": "5643bc595723abdae91f7b5910416ee43e78f03a",
+  "branch": "Codex/s5-coverage-tranche",
+  "dirty": "",
+  "pip_freeze": "absl-py==2.5.1\ncma==4.5.0\nimmutabledict==4.3.1\nllvmlite==0.50.0\nmpmath==1.3.0\nnumba==0.68.1\nnumpy==2.5.4\nortools==9.15.6755\npandas==3.1.0\nprotobuf==6.33.6\npython-dateutil==3.0.0\npython-sat==1.9.dev17\nscipy==1.18.1\nsix==1.17.0\nsympy==1.14.0\ntyping_extensions==4.16.0\ntzdata==2026.6\nz3-solver==5.3.2.0",
+  "inputs": {
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/recovery.py": "f0b540a9b71925293b7c55b28f86944f464fb5f346ebc07acc765f3d0e3bb701",
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/audit.py": "cbd8b605cab0b3b536e65f47f75b92ea43bcde97bf52b5e37eee7b46a28a3c4e",
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/PLAN.md": "1c0da5cbc419b97c4e81d00fbbb2765b7b3cb56542a05d08b877f6d5574be3d8",
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh": "0bdf439169ac12417030453cb809d7950e31d3af04f659e0b8ce7a14d8bec7eb",
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/results/surgery-audit/audit.json.gz": "7abf382cf134792b897cdeb9854ddfb75e1444b35b2e0772951534b12f1c2fcc",
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/results/surgery-audit/manifest.json": "97aa0c006abacf4191d22c58dcc5c7783653acfce19cdd7f60bda92585b9dd5d",
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/results/surgery-audit/check-saved.txt": "48ce7f813ef289c47db433e603602e051c3fcc187e5c8fd844a272bcedf5e383",
+    "experiments/E-261103-01-s5-map-census/census.py": "4a588ecd65c0db398347f75b28b2115c64a924f796ae7d5fd4881d96c36c8003",
+    "experiments/E-261103-01-s5-map-census/results/maps_7_1.json": "7ac0dc9bf5e3b8d728a77244905f0d54ab80e11ab6c728a5d5aa1551a197429e",
+    "experiments/E-261101-25-chirotope-first/szilassi_control.json": "8e60a8b6a8deecd9d617ec6d2305e0e06deb5d1bb878a76f3bad1a5171c9b1d9",
+    "reviews/strategy-review-2026-11-03-flipwalk.py": "776929dd795c25811b46996f55151051b92c96586e70cf10f90b42a62d548c27",
+    "literature/mizhaev2026-planes.json": "5122c5aafe5ef8a28a12836c678022ad224303fe67f9bf3d1b89d60ff49d7e95",
+    "verification/verify_candidate.py": "1c5c71fac0e2a98fce5ab5a9ccb0a3b7bc7459ac04dc2883c68e300c1cf8d45f",
+    "code/genus_ladder.py": "7a3335b9ba685a488b50bd51c13301ce3a89fa19da54f8e2fcd0674436811b0a",
+    "code/ladder.py": "e8cdc8fb004b3700e44e3ad3fa097958db353ced78042836ff4f729e078dfafe",
+    "code/ladder_exact.py": "7f1705992881f0911ad066fbff3e72598fa7d2a982eed2e23ee718643f8b3701",
+    "code/gauss_degree.py": "08505ac57ccedacd7fab08a807baeb33b68579a31151f72aa1c9dbf5e98dd47a",
+    "code/control_rost_vigh.py": "8f836a8b83ded33ca12cb6d3f8eab0fdfcda176a03116848a074c0dba1433a88",
+    "code/tubes.py": "ef2eb4661c5154eb837cb3f715d5323d7ee955df774e7307e1bfeff5512c06ed"
+  },
+  "thread_limits": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "NUMBA_NUM_THREADS": "1"
+  },
+  "finished_utc": "2026-11-04T10:52:04.987314+00:00",
+  "exit_status": 1,
+  "wall_seconds": 3.625599000000875,
+  "core_hours": 0.0010071108333335765,
+  "budget_fraction": 0.006042665000001459,
+  "stop_reason": "REPRESENTATION-FAIL",
+  "outputs": {
+    "stdout.txt": "1cce6127e6b7e2454904c8c8bf5f57243c20886a530f9d1ee67a486508bb198f",
+    "stderr.txt": "81619ebd31ed7978dde3a969ae34aae4d8b4e6c451faf860c205cd90d5ae5ce3",
+    "recovery.json": "29dd058052339064fa9e70b20cee1c8d72ac47ce9d7eeb13a6cba6d6fa23fb20"
+  }
+}

@@ -1,0 +1,456 @@
+{
+  "evidence": "PROVED-1 supplied-input standalone rational computation, unreviewed",
+  "pilot_sha256": "57bf8ce5247aef6cb515f7265375a145d2b9cce554c9d522d013ff3a86e119cd",
+  "verifier_sha256": "010852c0f8ccac22a269ae106a1838a3638950039ec9714c19f7cdfca01bc28a",
+  "driver_sha256": "d3e28e9c22e6f83f2b935973448a556a3c1ecb5c85d0e8165e71bc377d9b71fb",
+  "rows": [
+    {
+      "name": "szilassi",
+      "genus": 0,
+      "file": "szilassi-g0.json",
+      "input_sha256": "1b81c73656cb8dcf28b727665e2020cc1b4ebb7095418c1e07e8e4b699129a0c",
+      "scales": [
+        {
+          "verdict": "ACCEPT",
+          "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+          "target": "auxiliary recovery, assigned topology",
+          "V_E_F_chi": [
+            10,
+            15,
+            7,
+            2
+          ],
+          "genus": 0,
+          "adjacent_pairs": 15,
+          "excess_edges": 0,
+          "multiplicity_histogram": {
+            "1": 15
+          },
+          "repeated_pairs": {},
+          "face_sizes": [
+            4,
+            3,
+            5,
+            4,
+            3,
+            5,
+            6
+          ],
+          "pair_sections_checked": 21,
+          "finite_arrangement_vertices": 35,
+          "normal_triples_checked": 35,
+          "plane_quadruples_checked": 35,
+          "min_abs_normal_determinant": "8852404171814344801173921/1000000000000000000000000000",
+          "min_abs_plane_determinant": "17529550862796193079249040522016553/1000000000000000000000000000000000000",
+          "min_abs_nonincident_plane_value": "24313319568457580907494261794792023/111117176029704849960465758000000000",
+          "min_squared_edge_length": "15076402511938167933452422638336928554093435629152699213761430260285268699105941783663604096122536503248842/7168736828741942435015598955972835249467967242415432881487669213474361709754390815582248691380898568310615",
+          "min_squared_vertex_distance": "15076402511938167933452422638336928554093435629152699213761430260285268699105941783663604096122536503248842/7168736828741942435015598955972835249467967242415432881487669213474361709754390815582248691380898568310615",
+          "integer_input": true,
+          "rationalization_scale": 1000000000,
+          "duplicate_plane_rejected": "triple at infinity (0, 1, 2)"
+        },
+        {
+          "verdict": "ACCEPT",
+          "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+          "target": "auxiliary recovery, assigned topology",
+          "V_E_F_chi": [
+            10,
+            15,
+            7,
+            2
+          ],
+          "genus": 0,
+          "adjacent_pairs": 15,
+          "excess_edges": 0,
+          "multiplicity_histogram": {
+            "1": 15
+          },
+          "repeated_pairs": {},
+          "face_sizes": [
+            4,
+            3,
+            5,
+            4,
+            3,
+            5,
+            6
+          ],
+          "pair_sections_checked": 21,
+          "finite_arrangement_vertices": 35,
+          "normal_triples_checked": 35,
+          "plane_quadruples_checked": 35,
+          "min_abs_normal_determinant": "8852403907558152049017751374336841/1000000000000000000000000000000000000",
+          "min_abs_plane_determinant": "17529551928034741283055345716647585894127960699/1000000000000000000000000000000000000000000000000",
+          "min_abs_nonincident_plane_value": "194506555824912245402158180228777267439569239437/888937408581868287049405705124928235000000000000",
+          "min_squared_edge_length": "4615225265144356650285997631225174228105744913386960789007799986215816604377713096794834643336450261780539079834934606117062900318773913392944/2194511281116110010398532461709845419703538063248823556373386979880747198320288923522019189299187200964439535603748460801561210027696210267721",
+          "min_squared_vertex_distance": "4615225265144356650285997631225174228105744913386960789007799986215816604377713096794834643336450261780539079834934606117062900318773913392944/2194511281116110010398532461709845419703538063248823556373386979880747198320288923522019189299187200964439535603748460801561210027696210267721",
+          "integer_input": true,
+          "rationalization_scale": 1000000000000,
+          "duplicate_plane_rejected": "triple at infinity (0, 1, 2)"
+        }
+      ]
+    },
+    {
+      "name": "szilassi",
+      "genus": 1,
+      "file": "szilassi-g1.json",
+      "input_sha256": "584752b8f10dd42e358859f52e582dd9e06f8dea3ced1830b5ce0293bbc30354",
+      "scales": [
+        {
+          "verdict": "ACCEPT",
+          "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+          "target": "auxiliary recovery, assigned topology",
+          "V_E_F_chi": [
+            14,
+            21,
+            7,
+            0
+          ],
+          "genus": 1,
+          "adjacent_pairs": 21,
+          "excess_edges": 0,
+          "multiplicity_histogram": {
+            "1": 21
+          },
+          "repeated_pairs": {},
+          "face_sizes": [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "pair_sections_checked": 21,
+          "finite_arrangement_vertices": 35,
+          "normal_triples_checked": 35,
+          "plane_quadruples_checked": 35,
+          "min_abs_normal_determinant": "10412989751267635094094573/500000000000000000000000000",
+          "min_abs_plane_determinant": "1487924989212709957760188037219363/25000000000000000000000000000000000",
+          "min_abs_nonincident_plane_value": "108703142226297925827682043837357/518845909015709806546299125000000",
+          "min_squared_edge_length": "2216190053301259575983721752860863662610869820194475220348548762604775847555602208275943138375574667983138/5934651003912527138088638172339188212174930182525121883291744626313479980752043837983862970022033879423025",
+          "min_squared_vertex_distance": "2216190053301259575983721752860863662610869820194475220348548762604775847555602208275943138375574667983138/5934651003912527138088638172339188212174930182525121883291744626313479980752043837983862970022033879423025",
+          "integer_input": true,
+          "rationalization_scale": 1000000000,
+          "duplicate_plane_rejected": "triple at infinity (0, 1, 2)"
+        },
+        {
+          "verdict": "ACCEPT",
+          "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+          "target": "auxiliary recovery, assigned topology",
+          "V_E_F_chi": [
+            14,
+            21,
+            7,
+            0
+          ],
+          "genus": 1,
+          "adjacent_pairs": 21,
+          "excess_edges": 0,
+          "multiplicity_histogram": {
+            "1": 21
+          },
+          "repeated_pairs": {},
+          "face_sizes": [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "pair_sections_checked": 21,
+          "finite_arrangement_vertices": 35,
+          "normal_triples_checked": 35,
+          "plane_quadruples_checked": 35,
+          "min_abs_normal_determinant": "5206494889086988411494010382494263/250000000000000000000000000000000000",
+          "min_abs_plane_determinant": "14879249751416865136343753847079063047249271159/250000000000000000000000000000000000000000000000",
+          "min_abs_nonincident_plane_value": "36524255457870680394157006098504837822110474161/174332225412208955146124667400158200000000000000",
+          "min_squared_edge_length": "216424812947478359181135936026752375549106339102844115538466871652570394831347744761292510685351624432785959970016216989962962570271473245125/579555758643338323156151761780711641286477797665015877460261809173950527207978631952839520845764888109120822412629412067616693351263023445796",
+          "min_squared_vertex_distance": "216424812947478359181135936026752375549106339102844115538466871652570394831347744761292510685351624432785959970016216989962962570271473245125/579555758643338323156151761780711641286477797665015877460261809173950527207978631952839520845764888109120822412629412067616693351263023445796",
+          "integer_input": true,
+          "rationalization_scale": 1000000000000,
+          "duplicate_plane_rejected": "triple at infinity (0, 1, 2)"
+        }
+      ]
+    },
+    {
+      "name": "roest_vigh",
+      "genus": 0,
+      "file": "roest_vigh-g0.json",
+      "input_sha256": "75607a1793514a6edc9572ccd02e404e37ed336658a80663c54695df8a83967f",
+      "scales": [
+        {
+          "verdict": "ACCEPT",
+          "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+          "target": "auxiliary recovery, assigned topology",
+          "V_E_F_chi": [
+            12,
+            18,
+            8,
+            2
+          ],
+          "genus": 0,
+          "adjacent_pairs": 18,
+          "excess_edges": 0,
+          "multiplicity_histogram": {
+            "1": 18
+          },
+          "repeated_pairs": {},
+          "face_sizes": [
+            3,
+            6,
+            6,
+            3,
+            5,
+            4,
+            4,
+            5
+          ],
+          "pair_sections_checked": 28,
+          "finite_arrangement_vertices": 56,
+          "normal_triples_checked": 56,
+          "plane_quadruples_checked": 70,
+          "min_abs_normal_determinant": "12502610588127790607117559/1000000000000000000000000000",
+          "min_abs_plane_determinant": "3329037727015689682636203944511193/1000000000000000000000000000000000000",
+          "min_abs_nonincident_plane_value": "1993563135352913173433647468791933/374203958845639621088427262000000000",
+          "min_squared_edge_length": "1719076920294275421803119142358958144737786250679693122068983912895785556276069155474480482982285840704879/208719554952982420009773316747679397493558571940892603297933449665813899913310901787083536440555298985310658",
+          "min_squared_vertex_distance": "1719076920294275421803119142358958144737786250679693122068983912895785556276069155474480482982285840704879/208719554952982420009773316747679397493558571940892603297933449665813899913310901787083536440555298985310658",
+          "integer_input": true,
+          "rationalization_scale": 1000000000,
+          "duplicate_plane_rejected": "triple at infinity (0, 1, 2)"
+        },
+        {
+          "verdict": "ACCEPT",
+          "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+          "target": "auxiliary recovery, assigned topology",
+          "V_E_F_chi": [
+            12,
+            18,
+            8,
+            2
+          ],
+          "genus": 0,
+          "adjacent_pairs": 18,
+          "excess_edges": 0,
+          "multiplicity_histogram": {
+            "1": 18
+          },
+          "repeated_pairs": {},
+          "face_sizes": [
+            3,
+            6,
+            6,
+            3,
+            5,
+            4,
+            4,
+            5
+          ],
+          "pair_sections_checked": 28,
+          "finite_arrangement_vertices": 56,
+          "normal_triples_checked": 56,
+          "plane_quadruples_checked": 70,
+          "min_abs_normal_determinant": "2500522141480691749718902122873559/200000000000000000000000000000000000",
+          "min_abs_plane_determinant": "665807553663075773373376057426159538069984049/200000000000000000000000000000000000000000000000",
+          "min_abs_nonincident_plane_value": "797425226091271620016137492964772283653882067/149681583681293800036316755304146586600000000000",
+          "min_squared_edge_length": "429769228074354621918150496617928456588094701709755195450847677176693616658007540394786006546883974579484324440375435427660838019102445552475/52179888584595590785740265324593957667701818155668116093352217580898519295535735011784382888744307637344489464526285916473450543290839490331682",
+          "min_squared_vertex_distance": "429769228074354621918150496617928456588094701709755195450847677176693616658007540394786006546883974579484324440375435427660838019102445552475/52179888584595590785740265324593957667701818155668116093352217580898519295535735011784382888744307637344489464526285916473450543290839490331682",
+          "integer_input": true,
+          "rationalization_scale": 1000000000000,
+          "duplicate_plane_rejected": "triple at infinity (0, 1, 2)"
+        }
+      ]
+    },
+    {
+      "name": "mizhaev",
+      "genus": 0,
+      "file": "mizhaev-g0.json",
+      "input_sha256": "a78907432f821c7a8414f3a7d6d9ce4551c961e3c14a5f2bcb416c574400198e",
+      "scales": [
+        {
+          "verdict": "ACCEPT",
+          "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+          "target": "auxiliary recovery, assigned topology",
+          "V_E_F_chi": [
+            12,
+            18,
+            8,
+            2
+          ],
+          "genus": 0,
+          "adjacent_pairs": 18,
+          "excess_edges": 0,
+          "multiplicity_histogram": {
+            "1": 18
+          },
+          "repeated_pairs": {},
+          "face_sizes": [
+            3,
+            5,
+            6,
+            6,
+            3,
+            3,
+            6,
+            4
+          ],
+          "pair_sections_checked": 28,
+          "finite_arrangement_vertices": 56,
+          "normal_triples_checked": 56,
+          "plane_quadruples_checked": 70,
+          "min_abs_normal_determinant": "57258430789654105744856843/1000000000000000000000000000",
+          "min_abs_plane_determinant": "33181571100652385126701628373945031/500000000000000000000000000000000000",
+          "min_abs_nonincident_plane_value": "69548005129586294370619783719850107/911591902716312064767419060000000000",
+          "min_squared_edge_length": "1030770906791385605412778499926461611663621354330228689397439800882074189518132873263496836203109082484049/2608267950299403590489590612934616380640267420177908170772087623209970353022975524941236056992546549523750",
+          "min_squared_vertex_distance": "1030770906791385605412778499926461611663621354330228689397439800882074189518132873263496836203109082484049/2608267950299403590489590612934616380640267420177908170772087623209970353022975524941236056992546549523750",
+          "integer_input": true,
+          "rationalization_scale": 1000000000,
+          "duplicate_plane_rejected": "triple at infinity (0, 1, 2)"
+        },
+        {
+          "verdict": "ACCEPT",
+          "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+          "target": "auxiliary recovery, assigned topology",
+          "V_E_F_chi": [
+            12,
+            18,
+            8,
+            2
+          ],
+          "genus": 0,
+          "adjacent_pairs": 18,
+          "excess_edges": 0,
+          "multiplicity_histogram": {
+            "1": 18
+          },
+          "repeated_pairs": {},
+          "face_sizes": [
+            3,
+            5,
+            6,
+            6,
+            3,
+            3,
+            6,
+            4
+          ],
+          "pair_sections_checked": 28,
+          "finite_arrangement_vertices": 56,
+          "normal_triples_checked": 56,
+          "plane_quadruples_checked": 70,
+          "min_abs_normal_determinant": "3578651878702575548014018506730891/62500000000000000000000000000000000",
+          "min_abs_plane_determinant": "16590785307689700348361113788773730702186269667/250000000000000000000000000000000000000000000000",
+          "min_abs_nonincident_plane_value": "34774002685876414889243872765874026907678007403/455795951206239421963508755316673563000000000000",
+          "min_squared_edge_length": "11338479903874943559003594589302861490960892775314482745356231138736581281249776904932738104855130706044096497399577178091162246035337658507827/28690947454600657500788143598742307507895518583260229579701059839611725413854715993079756020693199778608231864920366622853168865690712573683138",
+          "min_squared_vertex_distance": "11338479903874943559003594589302861490960892775314482745356231138736581281249776904932738104855130706044096497399577178091162246035337658507827/28690947454600657500788143598742307507895518583260229579701059839611725413854715993079756020693199778608231864920366622853168865690712573683138",
+          "integer_input": true,
+          "rationalization_scale": 1000000000000,
+          "duplicate_plane_rejected": "triple at infinity (0, 1, 2)"
+        }
+      ]
+    },
+    {
+      "name": "mizhaev",
+      "genus": 1,
+      "file": "mizhaev-g1.json",
+      "input_sha256": "c1446ff315c9369b9d8f541f30afb0481d1008f09d140137e9aa67c11a5d3f7a",
+      "scales": [
+        {
+          "verdict": "ACCEPT",
+          "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+          "target": "auxiliary recovery, assigned topology",
+          "V_E_F_chi": [
+            16,
+            24,
+            8,
+            0
+          ],
+          "genus": 1,
+          "adjacent_pairs": 22,
+          "excess_edges": 2,
+          "multiplicity_histogram": {
+            "1": 20,
+            "2": 2
+          },
+          "repeated_pairs": {
+            "1,2": 2,
+            "2,6": 2
+          },
+          "face_sizes": [
+            3,
+            7,
+            8,
+            6,
+            5,
+            5,
+            8,
+            6
+          ],
+          "pair_sections_checked": 28,
+          "finite_arrangement_vertices": 56,
+          "normal_triples_checked": 56,
+          "plane_quadruples_checked": 70,
+          "min_abs_normal_determinant": "303046832948439487403067/250000000000000000000000000",
+          "min_abs_plane_determinant": "658989975432025474878434835113/1250000000000000000000000000000000",
+          "min_abs_nonincident_plane_value": "658989975432025474878434835113/953889623097098580686857390000000",
+          "min_squared_edge_length": "169669318065664800195574344525201224594393726307711783029267492623726783989519721711582506850627638981/2698743006943572146691213876628085386348948107776866084595268599005749553061612147820695811439516733584",
+          "min_squared_vertex_distance": "169669318065664800195574344525201224594393726307711783029267492623726783989519721711582506850627638981/2698743006943572146691213876628085386348948107776866084595268599005749553061612147820695811439516733584",
+          "integer_input": true,
+          "rationalization_scale": 1000000000,
+          "duplicate_plane_rejected": "triple at infinity (0, 1, 2)"
+        },
+        {
+          "verdict": "ACCEPT",
+          "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+          "target": "auxiliary recovery, assigned topology",
+          "V_E_F_chi": [
+            16,
+            24,
+            8,
+            0
+          ],
+          "genus": 1,
+          "adjacent_pairs": 22,
+          "excess_edges": 2,
+          "multiplicity_histogram": {
+            "1": 20,
+            "2": 2
+          },
+          "repeated_pairs": {
+            "1,2": 2,
+            "2,6": 2
+          },
+          "face_sizes": [
+            3,
+            7,
+            8,
+            6,
+            5,
+            5,
+            8,
+            6
+          ],
+          "pair_sections_checked": 28,
+          "finite_arrangement_vertices": 56,
+          "normal_triples_checked": 56,
+          "plane_quadruples_checked": 70,
+          "min_abs_normal_determinant": "121218722374473832004060785405287/100000000000000000000000000000000000",
+          "min_abs_plane_determinant": "52719159328867447833169244718454122799796133/100000000000000000000000000000000000000000000000",
+          "min_abs_nonincident_plane_value": "5857684369874160870352138302050458088866237/8479018869670047996087246082415416500000000000",
+          "min_squared_edge_length": "16966933745164300029642497640713821556121505462567684277520735606270586426390506338103149873948126765095360558054942232995246984638702058141/269874298982340544551396538878625146763692683381796680000332173346236124071357252300725678632747037871563368938626412693791082919350846812025",
+          "min_squared_vertex_distance": "16966933745164300029642497640713821556121505462567684277520735606270586426390506338103149873948126765095360558054942232995246984638702058141/269874298982340544551396538878625146763692683381796680000332173346236124071357252300725678632747037871563368938626412693791082919350846812025",
+          "integer_input": true,
+          "rationalization_scale": 1000000000000,
+          "duplicate_plane_rejected": "triple at infinity (0, 1, 2)"
+        }
+      ]
+    }
+  ],
+  "reused_source": "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-05-s5-symmetric-solid-first/verify_independent.py",
+  "reused_source_sha256": "4699042ea18cc391ddcf5b9a5f2dded08fcf5e6837f32829386b809e38deeff2",
+  "verdict": "ACCEPT",
+  "wall_seconds": 0.18809479199990164
+}
