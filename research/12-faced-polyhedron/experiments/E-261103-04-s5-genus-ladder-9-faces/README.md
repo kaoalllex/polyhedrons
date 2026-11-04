@@ -65,3 +65,17 @@ stays running. The dated dart-preserving surgery amendment in `PLAN.md` specifie
 the next implementation and bounded combinatorial audit before geometric work.
 The saved audit directories are immutable attempts; the runner refuses to overwrite
 an existing output directory. A new audit requires a stated reason and a fresh OUT.
+
+## Bounded surgery stage
+
+The surgery amendment was pre-registered in `5725a38`. With the research environment
+activated, execute the new stage from the repository root with
+
+```bash
+STAGE=surgery bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0
+```
+
+The default output is `results/surgery-audit`. The registered controls precede focus
+maps. The manifest records the implementation commit and source/input hashes. Saved
+chains retain labelled dart data, inverse surgery records and canonical top-map checks.
+The original invocation without `STAGE` still selects the legacy representation audit.
