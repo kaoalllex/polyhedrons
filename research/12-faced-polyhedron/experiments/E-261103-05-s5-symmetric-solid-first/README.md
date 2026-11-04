@@ -1,18 +1,20 @@
 ---
 id: E-261103-05
-title: Symmetric solid-first for S5 - C3, D3 and C2 arrangements of 9 planes with the exact inner solver (the Roest-Vigh route)
+title: Symmetric solid-first for S5 - disk-aware R2/R3 explore pilot (the Roest-Vigh route)
 date: 2026-11-03
-status: running
+status: done
 direction: [DR7, DR18, DR19]
 origin: [I-261030-07, I-261101-08, I-261101-20, E-261101-16, L:roestvigh2026]
 tests: [H-261103-02, H-261101-07]
 produces: []
 preregistered: true
+verdict: BENCHMARK-PASS
+concluded: 2026-11-04
 ---
 
-> Registered bounded **explore pilot**; see PLAN.md. Scores T D F G R: 2 2 2 1 2 | budget: one session (pilot, controls R2 and R3), then one laptop night
-> only if R3 passes. Before any compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). The S5 form of
-> E-261101-16 (whose S0 form, a symmetric arrangement with an asymmetric solid, stays parked).
+> Completed registered R2/R3 **explore pilot**. See CONCLUSION.md and STATUS section 3g.
+> Both known-plane controls and random D2 recovery pass. No nine-plane run or night was activated;
+> any target pilot needs a new committed plan. Results/pilot is immutable. No process is active.
 
 ## Goal
 
@@ -39,7 +41,7 @@ to 1-3 runs per pair with E = 39 in total and every pair adjacent, and verify ev
 ## Next
 
 Stop rule: R2 and R3, then the night, or the first solid with 36 pairs on 9 planes (then `candidate-check`). Outcomes: an S5
-PASS is the focus result and the first C3- or D3-symmetric face-neighbourly polyhedron beyond Szilassi; R3 fails -> parked
+PASS at (9,3) is the focus result; geometric symmetry must be checked on the actual solid, not inferred from the plane arrangement, and novelty requires separate review; R3 fails -> parked
 with a power statement; the night ends at < 36 pairs everywhere -> the histogram of maximal adjacency per family goes to
 `CONCLUSION.md`, and the exact route (E-261103-03) is the only remaining one for the symmetric maps. Scenario move: a PASS
 sets the (9, 3) row to exists; a failed night moves nothing.

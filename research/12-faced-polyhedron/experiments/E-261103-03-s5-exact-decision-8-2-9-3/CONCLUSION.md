@@ -325,3 +325,9 @@ C3 determinant and mirror-gauge controls. Seven bounded runner regressions pass;
 has no link errors. Source/document diff checks and selected text-artifact English checks pass.
 Raw solver/checker transcript whitespace is preserved. No GitHub CI, full archive, external human
 review or external artifact publication was performed.
+
+### Dependency update after the explore pilot
+
+E-261103-05 has now concluded its registered R2/R3 explore prerequisite (STATUS 3g).
+The costed coverage proposal above can proceed to a committed activation and bounded same-path
+pilot; no E-261103-03 coverage computation was performed in that explore session.

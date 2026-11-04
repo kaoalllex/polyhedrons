@@ -5,6 +5,8 @@ adjacent pairs is maximal. An edge 1-cell = odd number of its 4 cells in S (XOR)
 plane (checked afterwards with solid_fast; violated solutions are cut off by a no-good and the model is
 re-solved, up to a limit) the result is an embedded polyhedron with n faces whose number of edges is
 max_adjacent = 30 + 6 g for n = 12 (generally 3(n-2) + 6g... for n = 7, 21 = Szilassi).
+With target_edges, the hard decision variant permits max_runs per pair and enforces connected
+disk faces, all pair adjacencies and a fixed total edge count.
 Usage (histogram): python3 -I solid_cpsat.py N N_ARRANGEMENTS SEED [TIME_PER_SOLVE]"""
 import sys, time, itertools
 import numpy as np
@@ -42,6 +44,7 @@ ALLOWED = allowed_octants()
 
 
 def connected_faces(model, selected, planes, links):
+    """Supply one unit per selected facet from a single selected root in each plane."""
     incoming = [[] for _ in selected]; outgoing = [[] for _ in selected]
     groups = {}
     for f, plane in enumerate(planes):

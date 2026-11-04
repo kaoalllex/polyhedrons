@@ -64,7 +64,7 @@ def arrangement(rows):
         pf = np.array([float(x) for x in p])
         floating = np.sign(np.asarray(h, float)[:, :3] @ pf + np.asarray(h, float)[:, 3])
         if any(int(floating[i]) != base[i] for i in range(n) if i not in t):
-            raise ValueError('float point signs disagree with exact arrangement')
+            raise ArithmeticError('float point signs disagree with exact arrangement')
         points[t] = p
         for octant in itertools.product((-1, 1), repeat=3):
             key = base[:]
@@ -137,6 +137,22 @@ def cyclic_equal(a, b):
     return any(a == row[k:] + row[:k] for row in (b, b[::-1]) for k in range(len(row)))
 
 
+def candidate_record(result):
+    return dict(planes=result['planes'], links=result['links'])
+
+
+def validate_result(result, inp):
+    status = result['solver']['status']
+    if status not in ('OPTIMAL', 'FEASIBLE', 'INFEASIBLE', 'UNKNOWN'):
+        raise RuntimeError('unexpected CP-SAT status: ' + status)
+    if status in ('OPTIMAL', 'FEASIBLE'):
+        g = result.get('geometry', {})
+        e = inp['edges']; n = len(inp['planes'])
+        if (not g.get('EMBEDDED') or e % 3 or
+                tuple(g.get('V_E_F_chi', ())) != (2 * e // 3, e, n, n - e // 3)):
+            raise ArithmeticError('hard model disagrees with exact geometry/topology')
+
+
 def worker(args):
     inp = json.loads(args.input.read_text()); h = integer_planes(inp['planes'])
     a = arrangement(h); tables = Tables(a)
@@ -152,7 +168,10 @@ def worker(args):
         if 'links' in inp:
             expected = {int(k): v for k, v in inp['links'].items()}
             result['expected_map_match'] = all(cyclic_equal(links[i], expected[i]) for i in range(len(h)))
+    validate_result(result, inp)
     dump(args.output, result)
+    if 'geometry' in result:
+        dump(args.output.with_suffix('.candidate.json'), candidate_record(result))
 
 
 def command(args, log, timeout):

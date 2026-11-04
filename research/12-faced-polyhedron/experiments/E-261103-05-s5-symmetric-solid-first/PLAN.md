@@ -63,3 +63,14 @@ no main integration, push or PR. ROADMAP scores T D F G R=2 2 2 1 2, T+D=4.
   by either outcome; no E-261103-03 tranche, push, release or PR is part of this pilot.
 
 ## Amendments
+
+### 2026-11-04: post-pilot export and failure-path hardening (no research rerun)
+
+The completed f9b9744 run retained raw worker records with both solid and links fields.
+verify_candidate chose its legacy solid parser and lost multiple-edge pairing. Export only
+planes/links to results/recheck; the original pilot remains unchanged. Separate exact rechecks
+are recorded there. No nine-plane solve or repeated CP pilot is authorized by this correction.
+After review, reject unexpected solver status or wrong exact geometry/topology immediately;
+raise ArithmeticError for float/exact inconsistency so the degeneracy filter cannot swallow it.
+All recorded outputs and regenerated draws pass the stricter validation. These guards were not
+active in the original run. Add regressions and independent auxiliary checking to verify_all.
