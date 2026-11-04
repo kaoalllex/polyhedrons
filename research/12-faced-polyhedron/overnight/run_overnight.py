@@ -1213,6 +1213,8 @@ def job_status(args, committer):
         print('no results yet')
         return
     for job in sorted(os.listdir(RES)):
+        if not os.path.isdir(os.path.join(RES, job)):
+            continue
         recs = load_results(job)
         import collections
         c = collections.Counter(r.get('status') for r in recs)
@@ -1226,9 +1228,18 @@ def job_status(args, committer):
             print('   refuted fraction %.6f, open cubes %d, SAT cubes %d' % (s['refuted_fraction'], len(s['open']), len(s['sat'])))
 
 
+def job_s5(args, committer):
+    sys.path.insert(0, os.path.join(HERE, '..', 'experiments', 'E-261103-03-s5-exact-decision-8-2-9-3'))
+    import tranche
+    tranche.run(args)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('job', choices=['gnormals', 'pdefect', 'immersion', 'normals', 'sym', 'cube', 'ils', 'ladder', 'sdefect', 'glad', 'arch', 'gate', 'n5', 'status'])
+    ap.add_argument('job', choices=['gnormals', 'pdefect', 'immersion', 'normals', 'sym', 'cube', 'ils', 'ladder', 'sdefect', 'glad', 'arch', 'gate', 'n5', 's5', 'status'])
+    ap.add_argument('--shard', type=int, default=0)
+    ap.add_argument('--shards', type=int, default=1)
+    ap.add_argument('--s5-pilot', action='store_true', help='s5: only the first two frozen new maps')
     ap.add_argument('--hours', type=float, default=8.0, help='wall-clock budget of this invocation')
     ap.add_argument('--workers', type=int, default=max(1, (os.cpu_count() or 2) - 1))
     ap.add_argument('--timeout', type=float, default=None, help='per-task solver timeout in seconds')
@@ -1276,9 +1287,9 @@ def main():
         RES = os.path.abspath(args.results_dir)
         os.environ['POLY_RESULTS_DIR'] = RES            # spawned pool workers re-import this module
     if args.timeout is None:
-        args.timeout = {'gnormals': 900, 'pdefect': 0, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'ladder': 0, 'sdefect': 0, 'glad': 0, 'arch': 0, 'gate': 0, 'n5': 600, 'status': 0}[args.job]
+        args.timeout = {'gnormals': 900, 'pdefect': 0, 'immersion': 3600, 'normals': 1800, 'sym': 4 * 3600, 'cube': 900, 'ils': 0, 'ladder': 0, 'sdefect': 0, 'glad': 0, 'arch': 0, 'gate': 0, 'n5': 600, 's5': 60, 'status': 0}[args.job]
     committer = Committer(args)
-    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'ladder': job_ladder, 'sdefect': job_sdefect, 'glad': job_glad, 'arch': job_arch, 'gate': job_gate, 'n5': job_n5, 'status': job_status}[args.job](
+    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'ladder': job_ladder, 'sdefect': job_sdefect, 'glad': job_glad, 'arch': job_arch, 'gate': job_gate, 'n5': job_n5, 's5': job_s5, 'status': job_status}[args.job](
         args, committer)
 
 
