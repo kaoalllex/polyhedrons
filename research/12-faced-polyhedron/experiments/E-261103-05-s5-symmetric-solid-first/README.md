@@ -2,15 +2,15 @@
 id: E-261103-05
 title: Symmetric solid-first for S5 - C3, D3 and C2 arrangements of 9 planes with the exact inner solver (the Roest-Vigh route)
 date: 2026-11-03
-status: planned
+status: running
 direction: [DR7, DR18, DR19]
 origin: [I-261030-07, I-261101-08, I-261101-20, E-261101-16, L:roestvigh2026]
 tests: [H-261103-02, H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned, **explore**. Scores T D F G R: 2 2 2 1 2 | budget: one session (pilot, controls R2 and R3), then one laptop night
+> Registered bounded **explore pilot**; see PLAN.md. Scores T D F G R: 2 2 2 1 2 | budget: one session (pilot, controls R2 and R3), then one laptop night
 > only if R3 passes. Before any compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). The S5 form of
 > E-261101-16 (whose S0 form, a symmetric arrangement with an asymmetric solid, stays parked).
 
@@ -33,7 +33,8 @@ to 1-3 runs per pair with E = 39 in total and every pair adjacent, and verify ev
   hemisphere, general position (perturb by 1e-6).
 * The decision version of the inner solver must encode the disk condition exactly (E-261101-16's note), so that INFEASIBLE
   is a verdict per arrangement; UNKNOWN is a timeout.
-* Negative control: 30 random 9-plane arrangements stay below 36 adjacent pairs.
+* Pilot negative: the tetrahedron arrangement cannot supply seven edge runs. Random nine-plane draws
+  are not known negatives and are not used as such; the bounded pilot is R2/R3 only.
 
 ## Next
 
