@@ -8,9 +8,13 @@ This repository has two parts:
 
 ## Research work
 
-- **Read first:** `STRATEGY.md`, `STATUS.md`, then `ROADMAP.md`, `PROTOCOL.md` and `SPEC.md`, all in
-  `research/12-faced-polyhedron/`.
-- **Hand-over notes:** `CONTINUE_PROMPT.md`, in the same folder.
+- Superpowers is off by default. Opt in only for a dedicated complex engineering task that benefits from a
+  specific skill. Use the selected skill without the general Superpowers workflow. Follow the research protocol
+  for mathematics, experiments, and handovers.
+  To opt in for one session: `claude --settings '{"enabledPlugins":{"superpowers@claude-plugins-official":true}}'`.
+- **Read first:** the relevant sections of `STRATEGY.md`, `STATUS.md`, then `ROADMAP.md`, `PROTOCOL.md`
+  and `SPEC.md` in `research/12-faced-polyhedron/`. Reuse material already in context.
+- **Session workflow and handover:** follow `PROTOCOL.md` §8 and keep one short block in `CONTINUE_PROMPT.md`.
 - **Skills** (`.claude/skills/`):
   - `experiment-start`: from a ROADMAP row to a pre-registered experiment;
   - `experiment-conclude`: results to `CONCLUSION.md` and the ledger, night reports included;

@@ -1,17 +1,13 @@
 # Prompt to continue this research in a new session
 
-The standing rules are in the root `CLAUDE.md`, which loads automatically. This file holds only the hand-over:
-what was in flight when the last session ended. The `session-handover` skill rewrites the block below. Paste the
-part under the line into a new Claude Code session on `kaoalllex/polyhedrons`.
+The standing rules are in the root `AGENTS.md` (Codex) and `CLAUDE.md` (Claude Code).
+The `session-handover` skill updates the handover block below.
 
 ---
 
 Continue the 12-face research in `research/12-faced-polyhedron/`.
 
-1. Read `STATUS.md` and `ROADMAP.md`.
-2. Read the hand-over below.
-3. Unless the owner names another task, work on the top `open` row of `ROADMAP.md`, using the `experiment-start`
-   skill.
+Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
 ## Hand-over (2026-11-04, exact coverage launch ready)
 
