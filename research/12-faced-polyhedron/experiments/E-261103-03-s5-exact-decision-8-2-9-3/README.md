@@ -15,7 +15,8 @@ preregistered: true
 > The paired C3/plain (9,3) pilot is complete; see CONCLUSION and STATUS section 3e.
 > The autonomous cutoff grid is also complete (CONCLUSION / STATUS 3f). Result directories are
 > immutable. The explore prerequisite is concluded. The new-map tranche is activated in PLAN.md;
-> its same-path pilot is concluded (CONCLUSION / STATUS 3h). No coverage process is active.
+> its same-path pilot is concluded (CONCLUSION / STATUS 3h). The owner-run tranche is now concluded (STATUS 3i); no coverage process is active.
+> Do not launch the completed queue again. Wider census work requires a new activation.
 
 ## Goal
 

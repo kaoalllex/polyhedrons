@@ -9,54 +9,22 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-04, exact coverage launch ready)
+## Hand-over (2026-11-04, owner-run coverage concluded)
 
-* Current branch: `Codex/s5-coverage-tranche`, local, not pushed, based on 9f9f898 with the
-  completed E-261103-05 dependency. Coverage pre-registration c707bc5, runner/pilot source
-  697e3e5. Local TODO.md remains ignored and intentionally uncommitted.
-* E-261103-03 remains running. Its new-map tranche is activated; see PLAN, tranche_queue.json,
-  CONCLUSION and STATUS 3h. The same-path pilot and no-op resume completed. No target decision
-  or candidate was added; timeouts do not exclude maps. S0 and existence hypotheses are unchanged.
-* Production imports the pilot checkpoint and its resource charge. It must not repeat either
-  pilot unit, the old hard tail, old grid, paired pilot, census or completed explore controls.
-  Saved artifacts retain original source hashes; post-pilot changes import the checkpoint/resource charge and make saved failure stops report
-  an error. Current-source CNF reconstruction and inheritance regressions pass.
-* The runner uses separate solver/checker caps, shared first-SAT stopping at actual solver
-  spawn, durable per-unit checkpoints, source/input guards, fresh attempt directories and a
-  conservative cumulative budget across restarts. Interrupted SAT stages retain files and
-  consume their allocation without retry. Nested process cleanup is regression-tested.
-* Next action belongs to the owner: launch the activated E-261103-03 tranche on the laptop,
-  on AC power with the lid open, from the repository root:
-
-  ```bash
-  source "$HOME/.venvs/polyhedra/bin/activate"
-  export PATH="$HOME/bin:$PATH"
-  caffeinate -dimsu bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 start 8
-  ```
-
-  Status and graceful stop:
-
-  ```bash
-  bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 status
-  bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 stop
-  ```
-
-  The existing launcher is now applicable and detaches each shard under caffeinate. Repeat
-  start to resume completed checkpoints; fewer workers are supported. Never remove a saved
-  failure stop or source/budget guard to force continuation. No automatic git writes.
-* In flight: nothing. No tranche, night, push, PR, release, e-mail or external upload launched.
-  Do not start a long run from an AI session. If the owner has run the tranche, collect numeric
-  results directories and all attempt manifests, then use experiment-conclude. First SAT
-  takes priority over further coverage; a geometric candidate requires candidate-check.
-* Large old timeout proofs and the new pilot's partial proofs remain local and untracked,
-  with recorded hashes; retain them. Small saved artifacts and manifests are versioned.
-  The sandbox denied nice priority for the short pilot; it ran at default priority. The DRAT
-  binary is hashed, but its source commit is unknown. Details are in CONCLUSION.
-* Verification: verify_all.py --quick ALL PASS (20 checks; full archive skipped); tranche
-  scheduling/evidence regressions and the existing pilot runner regressions pass. Research
-  graph has no link errors. Not checked: real concurrent multi-shard execution, target-SAT
-  realization, full archive, external human review, or GitHub CI. Mathematical scope remains
-  EXACT instance decisions and conditional PROVED-1 geometric interpretation.
-* Other owner actions: external/human encoder and symmetry-coverage review; integrate through
-  a PR with verify green when authorized. Do not return to the generic top-open fallback while
-  this activated exact-decision work is awaiting the owner's run/results.
+* Branch: Codex/s5-coverage-tranche. Owner's pre-existing runner fixes and diagnostic results
+  are preserved. Completed tranche evidence, launch fixes and verification policy are recorded
+  on this branch; no push or PR. See the latest commit.
+* E-261103-03 frozen new-map tranche is complete. See STATUS 3i, experiment CONCLUSION and
+  results/tranche_audit.json. No target SAT/candidate; existence remains open. The broader
+  census experiment stays running, but no run is active or authorized by this handover.
+* Do not relaunch the completed tranche or retry its timeouts. Retain all numeric attempts,
+  guards, manifests and proofs. CNFs and checked proofs use lossless gzip (packing_tranche.json);
+  large completed/partial proofs remain local and ignored (storage marked in packing index).
+  External publication of large certificates is pending; no push, PR or upload occurred.
+* Routine conclusions reuse hash-bound checker successes. Fresh saved-proof replay requires
+  REPLAY_DRAT=1 or a stated evidence/provenance problem; initial checking stays mandatory.
+* Next queue item: E-261103-04 exploration, through experiment-start and a committed plan.
+  External human encoder/coverage review remains an owner action. No laptop command is pending.
+* Verification: verify_all.py --quick ALL PASS (full archive skipped); 34 focused tests pass.
+  The explicit audit rechecked all new UNSAT proofs successfully; routine replay is now opt-in.
+  Human review, GitHub CI and OS sleep telemetry were not checked.

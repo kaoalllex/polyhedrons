@@ -179,14 +179,25 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 * Work on one stage at a time. Start each check or run once per set of relevant inputs and wait on its existing
   handle. For a finite command, use a wait suited to its expected duration and read the final status or a short
   log excerpt. Check sooner when a result can change the next action. Reuse a passing verification for the same
-  relevant files and environment, including at handover.
+  relevant files and environment, including across handover/session boundaries. Before a rerun, name
+  the relevant change, failed check, unresolved concern, missing baseline evidence or explicit audit request.
+  A new session, report, conclusion or handover is not itself a reason to rerun. Choose affected checks;
+  do not run a standalone suite and then a wrapper that repeats it for the same inputs. Run an integrated
+  quick check once only when code/evidence changes leave an integration concern. Wording-only edits to
+  docs, ledgers, prompts and skills need diff/link/metadata review, not research tests. Changed mathematical
+  claims, executable instructions or evidence references need the checks that substantiate them.
+* Routine conclusions validate certificate hashes and saved successful checker transcripts, without
+  replaying unchanged DRAT each session. Reuse requires recorded CNF, proof and checker provenance.
+  Replay once for missing evidence, changed formula/proof/checker, suspected corruption, or an explicit
+  audit request. Report reuse versus fresh replay; initial checking of new certificates is mandatory.
+  E-261103-03 evidence tests enable audit replay explicitly with `REPLAY_DRAT=1`.
 * For code navigation, query CodeGraph for the specific symbol or call path with a small file limit. Use
   targeted text searches for research documents and log excerpts.
 * Before handing over a launch, exercise the owner's actual entry point in a bounded startup check from the
   same working directory with the same shell, environment, and executable selection. Use a bounded budget or
   fixture without bypassing normal dispatch. Confirm that workers reach the intended job and stop cleanly.
   Record the command, outcome, and any substitutions or limits. If that path cannot be exercised, mark
-  startup unverified in the handover. The project's before and after verification still applies.
+  startup unverified in the handover. Reuse valid baseline/post-change checks under the policy above.
 * Keep one short handover block in `CONTINUE_PROMPT.md`: branch or commit, in-flight state, next action and
   exact command if needed, and verification scope. Link to the plan, ledger, and artifacts for details.
 * Ask the owner before launching large subagent tasks (usage limits). Agents: `.claude/agents/` (7 roles).

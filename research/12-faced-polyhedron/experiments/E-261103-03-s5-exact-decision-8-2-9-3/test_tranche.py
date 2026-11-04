@@ -103,6 +103,16 @@ class TrancheTests(unittest.TestCase):
                 self.assertEqual([r['index'] for r in t.pending(root, [dict(index=8), dict(index=9)], 0, 1)], [9])
                 self.assertEqual(t.charged_seconds(root), 142)
 
+    def test_resume_reads_multiple_saved_units_from_the_same_checkpoint(self):
+        t = self.module()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for index in (8, 9):
+                work = root / f'0/attempt_saved/map{index}'; work.mkdir(parents=True)
+                (work / f'map{index}_plain.cnf').write_text('p cnf 1 1\n1 0\n')
+                t.append_checkpoint(root / '0/results.jsonl', dict(map_index=index, status='TIMEOUT', unit=str(work)))
+            self.assertEqual([r['index'] for r in t.pending(root, [dict(index=i) for i in (8, 9, 11)], 0, 1)], [11])
+
     def test_executable_names_resolve_from_path_before_hashing(self):
         t = self.module()
         with tempfile.TemporaryDirectory() as tmp:
@@ -139,6 +149,57 @@ class TrancheTests(unittest.TestCase):
             r = subprocess.run(['bash', str(pilot.HERE / 'run.sh'), mode],
                                env=dict(os.environ, SHARDS=count), capture_output=True)
             self.assertEqual(r.returncode, 2)
+
+    def test_wrapper_dispatches_shards_and_pilot_on_system_bash(self):
+        import os
+        import subprocess
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp); executable = tmp / 'python3'; calls = tmp / 'calls.jsonl'
+            executable.write_text(f'#!{sys.executable}\n' +
+                'import json, os, sys\n'
+                'with open(os.environ["WRAPPER_CALLS"], "a") as f:\n'
+                '    f.write(json.dumps({"args": sys.argv[1:], "threads": '
+                '{key: os.environ.get(key) for key in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", '
+                '"VECLIB_MAXIMUM_THREADS", "NUMBA_NUM_THREADS")}}) + "\\n")\n')
+            executable.chmod(0o755)
+            for mode in [str(i) for i in range(8)] + ['coverage-pilot']:
+                with self.subTest(mode=mode):
+                    calls.unlink(missing_ok=True)
+                    env = dict(os.environ, PATH=str(tmp) + os.pathsep + os.environ['PATH'], PYTHON=str(executable),
+                               SHARDS='8', WRAPPER_CALLS=str(calls))
+                    r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh'), mode],
+                                       env=env, capture_output=True, text=True, timeout=5)
+                    self.assertEqual(r.returncode, 0, r.stderr)
+                    records = [json.loads(line) for line in calls.read_text().splitlines()]
+                    self.assertEqual([rec['args'][1] for rec in records], ['s5', 'status'])
+                    args = records[0]['args']
+                    self.assertEqual(args[args.index('--workers') + 1], '1')
+                    self.assertEqual(args[args.index('--shard') + 1], '0' if mode == 'coverage-pilot' else mode)
+                    self.assertEqual(args[args.index('--shards') + 1], '1' if mode == 'coverage-pilot' else '8')
+                    self.assertEqual('--s5-pilot' in args, mode == 'coverage-pilot')
+                    self.assertEqual(set(records[0]['threads'].values()), {'1'})
+
+    def test_detached_wrapper_uses_project_python_without_an_active_environment(self):
+        import os
+        import subprocess
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp); interpreter = home / '.venvs/polyhedra/bin/python'
+            interpreter.parent.mkdir(parents=True)
+            calls = home / 'calls.jsonl'
+            interpreter.write_text(f'#!{sys.executable}\n' +
+                'import json, os, sys\n'
+                'with open(os.environ["WRAPPER_CALLS"], "a") as f:\n'
+                '    f.write(json.dumps(sys.argv[1:]) + "\\n")\n')
+            interpreter.chmod(0o755)
+            wrong = home / 'bin/python3'; wrong.parent.mkdir()
+            wrong.write_text('#!/bin/sh\nexit 73\n'); wrong.chmod(0o755)
+            env = dict(os.environ, HOME=str(home), PATH=str(wrong.parent) + os.pathsep + os.environ['PATH'],
+                       SHARDS='8', WRAPPER_CALLS=str(calls))
+            env.pop('VIRTUAL_ENV', None); env.pop('PYTHON', None)
+            r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh'), '0'], env=env,
+                               capture_output=True, text=True, timeout=5)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            self.assertEqual([json.loads(line)[1] for line in calls.read_text().splitlines()], ['s5', 'status'])
 
     def test_nested_timeout_reaps_the_solver_process(self):
         import os
@@ -264,9 +325,12 @@ class TrancheEvidenceTests(unittest.TestCase):
                 self.assertEqual(pilot.sha(tmp / 'rebuilt.cnf'), rec['cnf_sha256'])
                 self.assertEqual(artifact_sha(work / (name + '.cnf')), rec['cnf_sha256'])
                 if rec['status'] == 'UNSAT-VERIFIED':
-                    proof = unpack(work / (name + '.drat'), tmp / 'proof.drat')
                     self.assertEqual(artifact_sha(work / (name + '.drat')), rec['proof_sha256'])
-                    self.assertTrue(pilot.check_proof(tmp / 'rebuilt.cnf', proof, tmp / 'check.log', 120))
+                    from test_pilot import replay_requested
+                    self.assertIn('s VERIFIED', (work / (name + '.checker.log')).read_text())
+                    if replay_requested():
+                        proof = unpack(work / (name + '.drat'), tmp / 'proof.drat')
+                        self.assertTrue(pilot.check_proof(tmp / 'rebuilt.cnf', proof, tmp / 'check.log', 120))
                 elif rec['status'] == 'SAT':
                     self.assertTrue(pilot.model_valid(c.clauses, json.loads((work / (name + '.model.json')).read_text())))
                 else:
