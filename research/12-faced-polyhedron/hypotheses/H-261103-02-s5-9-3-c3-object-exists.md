@@ -39,3 +39,9 @@ The experiment CONCLUSION now contains a conditional free-C3 coverage draft (PRO
 explicit coorientation, equivariant genericity, orbit/mirror gauge and subgroup arguments.
 Independent exact determinant controls check its arrangement and reflection identities. This
 single-author draft is an external-review input; the hypothesis status is not promoted on its basis.
+
+## 2026-11-04 explore calibration
+
+E-261103-05 passes its disk-aware solid-first R2/R3 controls (CONCLUSION / STATUS 3g).
+The exact auxiliary recovery is at (8,3), not maximal S5 (9,3), and supplies no focus existence
+or C3 conclusion. This is engine-power evidence; the hypothesis remains open.

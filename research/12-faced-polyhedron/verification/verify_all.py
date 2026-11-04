@@ -76,6 +76,9 @@ CHECKS = [
     ('OM-SAT: S5 (8,2)/(9,3) saved formulas, proofs and controls',
      lambda: run(['test_pilot.py', 'EvidenceTests'], os.path.join(ROOT, 'experiments', 'E-261103-03-s5-exact-decision-8-2-9-3'),
                  lambda out: '\nOK' in out)),
+    ('solid-first: multirun disk model, known controls, random D2 recovery, independent checker',
+     lambda: run(['test_pilot.py'], os.path.join(ROOT, 'experiments', 'E-261103-05-s5-symmetric-solid-first'),
+                 lambda out: '\nOK' in out and 'skipped=' not in out)),
     ('Lemma 5.1 on perturbed Szilassi planes (n = 7, 0 mismatches)',
      lambda: run(['test_szilassi.py'], HERE, lambda out: re.findall(r"'trials': \d+", out) and not re.search(
          r"'zero_viol_NOT_embedded': [1-9]|'pos_viol_but_embedded': [1-9]", out))),

@@ -35,3 +35,9 @@ nothing.
 E-261103-03 decides both plain (8,2) formulas UNSAT-VERIFIED (EXACT); the geometric
 interpretation is conditional PROVED-1, see its CONCLUSION and STATUS section 3d.
 The genus-2 case is excluded at that level; genus 3-5 remain open, so the umbrella status stays open.
+
+## 2026-11-04 explore calibration
+
+E-261103-05 passes its disk-aware solid-first R2/R3 controls (CONCLUSION / STATUS 3g).
+The exact auxiliary recovery is at (8,3), not maximal S5 (9,3), and supplies no focus existence
+conclusion. This is engine-power evidence; the hypothesis remains open.

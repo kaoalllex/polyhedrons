@@ -835,3 +835,5 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-04: E-261103-03 paired C3/plain focus pilot completed after a documented panel correction; pre-registrations bc0ae0e and 0db8d8e. See its CONCLUSION and STATUS 3e for checked instance decisions, controls, resources and conditional claim boundaries. No night, push or PR.
 
 * 2026-11-04: E-261103-03 autonomous cutoff grid (8f8132c) completed with additional checked plain decisions; CONCLUSION / STATUS 3f record resources, controls and unresolved coverage. Added a conditional C3 coverage draft and independent determinant/gauge controls; prepared a costed tranche proposal behind its explore prerequisite. No campaign or push.
+
+* 2026-11-04: E-261103-05 registered R2/R3 explore pilot (f9b9744) passes; see CONCLUSION / STATUS 3g. Saved model replays and independent rational checks reproduce an auxiliary known-map recovery; no S5 witness or nine-plane run. Post-run export/error-path fixes preserve original provenance; E-261103-03's explore prerequisite is concluded.
