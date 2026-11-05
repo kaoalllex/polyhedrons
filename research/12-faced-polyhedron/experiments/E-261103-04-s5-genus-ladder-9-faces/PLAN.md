@@ -734,3 +734,123 @@ minimal `audit.py`/`run.sh` changes and syntax. Execute the actual bounded entry
 point only after code review/release; verify the saved decisions, full/prefix
 flags, label/inverse witnesses and exported chain without rerunning unchanged
 controls, old grids or the integrated suite.
+
+### 2026-11-05. Bounded realization of saved intermediate OMs
+
+**Question and decision.** Can the existing hinge or two-stage realizer turn
+the saved SAT OMs into embedded auxiliary maps? This is a direct realization
+pilot, not ascent along the chain. T=1, D=2 within the running E-261103-04 row:
+success supplies geometric intermediate inputs for a separately registered
+continuation question; failure selects reassessment of the saved OM or realizer,
+not a larger recovery grid. The changed ingredient is the alternative Mizhaev
+route with OM-SAT intermediates, replacing the original obstructed g2 route.
+Commit this amendment before implementing or executing its new dispatch. Stay
+on the current owner-selected branch. No focus search or night is activated.
+
+**Frozen inputs.** Use exactly three original-labelled intermediate maps and
+their already accepted complete SAT assignments:
+
+| Unit | Evidence directory under `results/` | Model stem | Map source |
+|---|---|---|---|
+| Roest-Vigh g1 | `submap-feasibility-audit` | `roest_vigh-target` | Original frozen recovery g1 export |
+| Alternative Mizhaev g1 | `mizhaev-descendant-audit` | `mizhaev-g1-00-try1` | `descendants.json`, ascending chain export at genus 1 |
+| Alternative Mizhaev g2 | `mizhaev-first-step-audit` | `mizhaev-alt-00-try1` | `descendants.json`, ascending chain export at genus 2 |
+
+Pin these directories' manifests respectively to SHA-256
+`11c8599ce486b981d52810678035d843bbb5ba1502b0e5e0e8fb23f1a4f164af`,
+`cfa6cabad2397840456f949f13d545349d34c1553c3eea5403da546ed136dd1d`,
+`2aec3c82e688520992d6c94c594e384628b2339afc9ecc56232f855a7cef585c`.
+Pin `descendants.json` to
+`b3421714a16e086ec0eda0fc5ad87bc0e55bc2ea018cfd20aa58f7d8b836aaf1`.
+Validate recorded output hashes and accepted statuses before use. Reconstruct
+each unchanged plain `submap=True`, `ALL_OPTS` formula without solving it,
+require the exact saved DIMACS clause sequence and variable numbering, and
+extract all 126 rank-4 signs through that formula's `qvar` mapping. Never infer
+variable IDs from assignment order. Require complete nonzero chi, the saved
+model's satisfaction of the stored CNF, and label-preserving agreement of the
+map with the saved export. Do not re-enumerate patches or choose another SAT OM.
+
+Reuse the previous encoder, parent and surgery acceptance, with their recorded
+hashes and checker transcripts. Compare relevant source/input hashes and
+Python/dependency identities against the descendant manifest; only this
+experiment's PLAN, dispatcher and stage implementation may change. Record each
+exception explicitly. Existing manifests bind their historical PLAN, not this
+new appendix. A core/evidence mismatch stops for review; it does not silently
+refresh controls or authorize another solve. No SAT, DRAT or census replay.
+
+**Methods and deterministic queue.** Reuse `chirotope_first.realize` and
+`realize2`, preferably through the existing bounded `pilot.stage`/`worker`
+interface. Keep shared realizer code and its parameters unchanged. For each
+map in the table order, try hinge then two-stage, each warm then unseeded.
+Warm starts use that object's published top planes in the checked original
+face labels and alignment, including any recorded orientation transformation;
+they are starting values, not accepted intermediate geometry. Unseeded uses no
+planes. Retain the worker's fixed RNG seed 26110303 and restart convention
+(one restart, except two-stage warm uses two). Each unit gets ten wall seconds,
+including worker startup. Stop trying a map after its first independently
+accepted geometric output; continue with the other maps. No extra seed,
+different OM, margin sweep, final-polynomial search or automatic escalation.
+
+**Controls and power.** Before target units, run both methods, warm and unseeded,
+on both published eight-face top chirotopes with their matching labelled maps,
+under the same ten-second unit cap. Warm controls must pass exact signs and
+embedding; failure or timeout stops target work as UNDERPOWERED/CONTROL-FAIL.
+Unseeded failures are recorded as UNDERPOWERED for the respective construction
+arm, without cancelling a warm-start arm that passed. Even unseeded control
+success only calibrates these known OMs at this cap; it does not establish that
+an arbitrary saved SAT OM is realizable. As a deterministic negative control,
+flip one nonzero sign in a known control chi and require exact reconstruction
+acceptance to reject the unchanged control planes. Check the geometry gate
+also rejects the saved nonembedded Roest-Vigh g1 recovery output. No new
+optimization or certificate replay is needed for those rejection controls.
+
+The primary counters are exact wrong-sign count, embedding, and V_E_F_chi;
+floating loss and LP margin are diagnostics only and cannot decide a verdict.
+H1 predicts acceptance of at least one previously unrecovered intermediate;
+report separately whether both alternative Mizhaev intermediates pass. H0 is
+the observation of no accepted output in this finite queue, never a
+nonrealizability claim. This pilot can detect recovery in at most four fixed
+attempts per map; it cannot measure a rare-success rate or justify an overnight
+run by extrapolating from warm controls.
+
+**Acceptance.** Require exact equality of all signs, including infinity, after
+integer reconstruction, followed by exact embedding and the saved expected
+topology. Export each proposed geometry as a candidate JSON with explicit
+integer planes and original-labelled links, then follow `candidate-check` for
+the auxiliary map (no S5 claim). Require a structurally separate intersection
+check, reusing the existing `results/recovery-review/independent.py`, and
+check normalized plane rounding at both 1e-9 and 1e-12. Save the underlying
+unrounded numerical output or explicitly mark a test of integer planes as
+integer-rescaling robustness, not a second rounding of the optimizer output.
+The first candidate per map is checkpointed before verification. Apply the
+skill's stop/review rule if its stated target passes. A sign match without
+embedding is an error requiring review, not geometric success. A float zero,
+loss threshold, timeout or nonzero sign count is not a near-miss or obstruction.
+
+**Budget, provenance and dispatch.** One shard, one worker, 300-second outer
+cap with a shared 297-second monotonic work deadline and three seconds for
+termination/finalization. Eight positive-control attempts plus at most twelve
+target attempts consume at most 200 seconds; all input checks, rejection
+controls and candidate verification share the remaining work budget. Clip
+every subprocess to the remaining deadline and kill/reap its whole process
+group on timeout. Checkpoint after every unit; preserve completed evidence.
+If candidate verification runs out of time, retain it as UNVERIFIED and stop;
+do not call it a recovery. Record actual/requested times, binding limits,
+source/input/output hashes, environment, thread limits, integer scale and
+control-power status per arm. Source or input changes require a fresh attempt.
+Use a new `STAGE=om-realization` dispatch and fresh
+`results/intermediate-om-realization`; do not alter earlier output directories.
+Refuse an existing attempt rather than accidentally repeating optimization.
+
+**Outcome and release gate.** Accepted auxiliaries remain PROVED-1 standalone
+computations until the required integrated reproduction; no existence
+hypothesis or scenario credence changes. Recovering both Mizhaev intermediates
+still does not establish a coherent sphere-to-top continuation, full eight-face
+control recovery, or S5 (9,3). A separate committed continuation amendment would
+be required before those tests. Zero acceptance is scoped to these saved OMs,
+methods, starts and caps, with underpowered arms distinguished from calibrated
+ones. No outcome opens a night. Review implementation and syntax, then exercise
+the actual bounded entry point once in the activated research environment;
+record its exact command and verification outcome. Preparation alone supplies
+neither a working command nor startup acceptance. Reuse unchanged checks; run
+an integrated quick suite only if a concrete integration concern remains.
