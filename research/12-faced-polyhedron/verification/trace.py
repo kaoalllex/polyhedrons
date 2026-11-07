@@ -15,6 +15,7 @@ import sys
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 GRAPH = os.path.join(ROOT, 'map', 'graph.json')
+GRAPH_JS = os.path.join(ROOT, 'map', 'graph.js')   # same data as a script, so the map opens from file://
 ID_RE = re.compile(r'^([IHE])-(\d{6})-(\d{2,3})$')
 KINDS = {'I': ('idea', 'ideas/I-*.md', {'open', 'tried', 'parked'}),
          'H': ('hypothesis', 'hypotheses/H-*.md', {'open', 'supported', 'weakened', 'refuted', 'proved'}),
@@ -132,12 +133,14 @@ def main():
     summary = '%d nodes (%s), %d edges' % (len(graph['nodes']), ', '.join('%s %d' % kv for kv in sorted(counts.items())),
                                           len(graph['edges']))
     if '--check' in sys.argv:
-        stale = not os.path.exists(GRAPH) or open(GRAPH, encoding='utf-8').read() != text
+        stale = any(not os.path.exists(f) or open(f, encoding='utf-8').read() != t
+                    for f, t in ((GRAPH, text), (GRAPH_JS, 'window.GRAPH = ' + text)))
         print('graph %s; %s; %d error(s)' % ('OUT OF DATE (run verification/trace.py)' if stale else 'in sync', summary,
                                              len(errors)))
         sys.exit(1 if errors or stale else 0)
     os.makedirs(os.path.dirname(GRAPH), exist_ok=True)
     open(GRAPH, 'w', encoding='utf-8').write(text)
+    open(GRAPH_JS, 'w', encoding='utf-8').write('window.GRAPH = ' + text)
     print('wrote map/graph.json: %s; %d error(s)' % (summary, len(errors)))
     sys.exit(1 if errors else 0)
 
