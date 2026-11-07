@@ -43,7 +43,7 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
    Re-check the ROADMAP D score against the pilot; if T + D drops below 3, the run does not start. Otherwise the
    PLAN gets a dated amendment (another limit, a grid, a sharper question) or the run is dropped.
 5. **Run** -> when the outcome depends on a parameter (a cap, a budget, a step count), the long run is a small grid
-   over that parameter with fewer seeds per cell, not one setting with many seeds. On branch `experiment/E-YYMMDD-NN-slug`, on the laptop (`caffeinate -dimsu bash run.sh`) or on GitHub
+   over that parameter with fewer seeds per cell, not one setting with many seeds. On the week's `lab/` branch (section 7), on the laptop (`caffeinate -dimsu bash run.sh`) or on GitHub
    Actions (section 6). Every run writes a manifest (section 5).
 6. **Verify** -> every candidate through `verification/verify_candidate.py`; every UNSAT that is used as evidence
    keeps its formula (SMT2 / CNF hash) so it can be re-checked.
@@ -151,7 +151,10 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 ## 7. Git
 
 * `main` is the integrated state: site (`index.html`) + research; always passes `verify_all.py`.
-* One branch per experiment: `experiment/E-YYMMDD-NN-slug`; documentation / infrastructure work: `claude/<topic>`.
+* One working branch per week plan (owner, 2026-11-07): `lab/YYYY-MM-DD` (the week plan's date), created from `main`
+  by the first session of the week; every lab session of that week commits there, one item at a time. No branch per
+  experiment or per session. The branch is merged into `main` by a PR with `verify` green at the next lead review
+  (or earlier on the owner's request).
 * Night results are committed by the runner (`--git`); push them before starting a new session.
 * Tags freeze citable states (`state-YYYY-MM-DD`), e.g. before a write-up or an external review.
 
@@ -161,7 +164,7 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
   decision point and the T D F G R scores, and every `CONCLUSION.md` moves the credences by the line its `PLAN.md`
   pre-registered ("scenario move").
 * `STRATEGY.md` sets the focus target and may set another exploration share (2026-11-03: one in two).
-* One run in four is an **explore** run drawn from the mutation pool (a parked method with one stated change, a
+* One run in four (or the `STRATEGY.md` share) is an **explore** run drawn from the mutation pool (a parked method with one stated change, a
   below-gate row re-scored with a written reason, or a new idea file); it is logged as "explore" and its PLAN says
   what result would make it the new default.
 * A construction engine runs on the 12-face target only after it is scored on the benchmark ladder (E-261101-26);
@@ -170,10 +173,58 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
   committed, and it is concluded with the `experiment-conclude` skill. "Go and run this" without a PLAN is not a
   valid hand-over.
 
+## 8b. Roles and lightness (owner decision, 2026-11-07)
+
+* **Roles.** The *lead* is a strongest-model session at high effort, about once a week (skill `strategy-review`):
+  it analyses the week's results in depth, updates the plan and writes the **week plan**. *Lab* sessions (cheaper
+  models, medium effort) execute week-plan items; the owner launches nights and calls the lead when needed.
+* **Week plan** = the "Week plan" block at the top of the `ROADMAP.md` S5 queue: at most five items, each with its
+  question, budget, kill rule and **follow-up tree** (the conditional next steps allowed without the lead). A lab
+  session works only on week-plan items, in order.
+* **One item at a time.** Lab sessions run sequentially on the week branch (section 7), taking the first unfinished
+  item unless the owner names one in the prompt. Two sessions in one checkout at once only if the owner asks.
+* **Escalate, do not improvise.** If the next step is not in the item's follow-up tree, or an item fails its
+  control twice, stop that item: write one line under "For the lead" in `CONTINUE_PROMPT.md` and take the next
+  item. A lab session never designs a new audit chain on its own.
+* **Amendments.** A registered follow-up branch needs no new amendment; record its outcome in `CONCLUSION.md`. At
+  most two new amendments per experiment between lead reviews; a third need is an escalation.
+* **Batch cheap steps.** Steps with less than ~5 minutes of compute and no target claim run back to back in one
+  session and are concluded together (one CONCLUSION section, one ledger commit), not one commit cycle each.
+* **Text budgets.** PLAN <= 80 lines; amendment <= 15 lines; CONCLUSION section <= 25 lines; STATUS section <= 8
+  lines; log entry 1-3 lines; handover <= 12 lines. State each number once (CONCLUSION) and link to it. Cite the
+  `SPEC.md` scope and label once per section instead of repeating caveats in every paragraph. Rigour lives in
+  manifests, hashes and checkers, not in prose.
+
 ## 8. AI sessions and agents
 
-* Start from `CONTINUE_PROMPT.md`; read `STATUS.md` and `ROADMAP.md` before acting; the first task is the top
-  open `ROADMAP.md` item unless the owner says otherwise.
+* Start from `CONTINUE_PROMPT.md` and read the relevant ledger and protocol sections. Follow the owner's current
+  request, then any unfinished work in the handover, then the top open `ROADMAP.md` item. Use the project skill
+  for the current stage and reuse its instructions while they are in context. The committed experiment plan
+  governs that stage.
+* Work on one stage at a time. Start each check or run once per set of relevant inputs and wait on its existing
+  handle. For a finite command, use a wait suited to its expected duration and read the final status or a short
+  log excerpt. Check sooner when a result can change the next action. Reuse a passing verification for the same
+  relevant files and environment, including across handover/session boundaries. Before a rerun, name
+  the relevant change, failed check, unresolved concern, missing baseline evidence or explicit audit request.
+  A new session, report, conclusion or handover is not itself a reason to rerun. Choose affected checks;
+  do not run a standalone suite and then a wrapper that repeats it for the same inputs. Run an integrated
+  quick check once only when code/evidence changes leave an integration concern. Wording-only edits to
+  docs, ledgers, prompts and skills need diff/link/metadata review, not research tests. Changed mathematical
+  claims, executable instructions or evidence references need the checks that substantiate them.
+* Routine conclusions validate certificate hashes and saved successful checker transcripts, without
+  replaying unchanged DRAT each session. Reuse requires recorded CNF, proof and checker provenance.
+  Replay once for missing evidence, changed formula/proof/checker, suspected corruption, or an explicit
+  audit request. Report reuse versus fresh replay; initial checking of new certificates is mandatory.
+  E-261103-03 evidence tests enable audit replay explicitly with `REPLAY_DRAT=1`.
+* For code navigation, query CodeGraph for the specific symbol or call path with a small file limit. Use
+  targeted text searches for research documents and log excerpts.
+* Before handing over a launch, exercise the owner's actual entry point in a bounded startup check from the
+  same working directory with the same shell, environment, and executable selection. Use a bounded budget or
+  fixture without bypassing normal dispatch. Confirm that workers reach the intended job and stop cleanly.
+  Record the command, outcome, and any substitutions or limits. If that path cannot be exercised, mark
+  startup unverified in the handover. Reuse valid baseline/post-change checks under the policy above.
+* Keep one short handover block in `CONTINUE_PROMPT.md`: branch or commit, in-flight state, next action and
+  exact command if needed, and verification scope. Link to the plan, ledger, and artifacts for details.
 * Ask the owner before launching large subagent tasks (usage limits). Agents: `.claude/agents/` (7 roles).
 * Report to the owner in Russian; write repository files in English. Never weaken the requirements, never
   fabricate results, report failures with their output.

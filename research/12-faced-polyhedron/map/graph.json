@@ -938,7 +938,7 @@
    "id": "E-261103-03",
    "kind": "experiment",
    "title": "Exact decision per candidate map - OM-SAT for the 2 (8, 2) maps, then the symmetric and all admissible (9, 3) maps",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-03",
    "concluded": "",
    "path": "experiments/E-261103-03-s5-exact-decision-8-2-9-3/README.md",
@@ -947,13 +947,13 @@
     "DR8"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "true"
   },
   {
    "id": "E-261103-04",
    "kind": "experiment",
    "title": "Genus ladder on 9 faces - the admissible (9, 3) maps from their sphere down and up again (explore)",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-03",
    "concluded": "",
    "path": "experiments/E-261103-04-s5-genus-ladder-9-faces/README.md",
@@ -962,23 +962,23 @@
     "DR19"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "true"
   },
   {
    "id": "E-261103-05",
    "kind": "experiment",
-   "title": "Symmetric solid-first for S5 - C3, D3 and C2 arrangements of 9 planes with the exact inner solver (the Roest-Vigh route)",
-   "status": "planned",
+   "title": "Symmetric solid-first for S5 - disk-aware R2/R3 explore pilot (the Roest-Vigh route)",
+   "status": "done",
    "date": "2026-11-03",
-   "concluded": "",
+   "concluded": "2026-11-04",
    "path": "experiments/E-261103-05-s5-symmetric-solid-first/README.md",
    "direction": [
     "DR7",
     "DR18",
     "DR19"
    ],
-   "verdict": "",
-   "preregistered": "false"
+   "verdict": "BENCHMARK-PASS",
+   "preregistered": "true"
   },
   {
    "id": "E-261103-06",
@@ -1553,7 +1553,7 @@
    "id": "H-261103-03",
    "kind": "hypothesis",
    "title": "Both (8, 2) candidate maps are UNSAT at the oriented-matroid level - no 8-face genus-2 face-neighbourly polyhedron",
-   "status": "open",
+   "status": "supported",
    "date": "2026-11-03",
    "concluded": "",
    "path": "hypotheses/H-261103-03-s5-8-2-maps-om-unsat.md",
@@ -5935,7 +5935,7 @@
   "DR12": "Relaxed S1 target with a symmetric orbit ansatz (Roest-Vigh style), after calibration on their polyhedron",
   "DR13": "Chirotope chambers of the realization spaces (type-0 variants, archive)",
   "DR14": "Chain-consistent normals (Q1), projective ladder (P1), flips through degeneration (Q3), spine-seeded solids",
-  "DR15": "n = 8 genus-2 rung, i.e. (8, 2), as benchmark and as the smallest S5 case",
+  "DR15": "n = 8 genus-2 rung, S5 (8,2)",
   "DR16": "Gauss clauses as SAT speed-up; kappa-CSP prefilter; symmetric plane sets; screw orbits; tangent planes of smooth surfaces; Szilassi embryo",
   "DR17": "Configuration-space planning / rigidity (stress matrices) / homotopy continuation between levels",
   "DR18": "Arrangement first: exact chamber-SAT on structured arrangements (a symmetric arrangement with an asymmetric solid is the one loophole FD5 leaves; archived and near-miss arrangements with any solid)",

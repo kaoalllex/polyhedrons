@@ -43,7 +43,9 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 
 * Hard rules are unchanged (`CLAUDE.md`, `PROTOCOL.md`): pre-registration, exact verification, scoped claims,
   labels, no fabricated results.
-* **Strategy review** at least every 3-4 nights or after any result that moves a scenario by 0.1 or more:
+* **Weekly lead review** (owner, 2026-11-07): the lead (strongest model) reviews the week's work about once a
+  week and writes the week plan; lab sessions execute it with light documentation (`PROTOCOL.md` §8b). The review
+  is skipped while no new work exists, and is called early after any result that moves a scenario by 0.1 or more:
   `.claude/skills/strategy-review` in a separate session with the strongest model at high effort; it writes
   `reviews/strategy-review-YYYY-MM-DD.md` and a proposed `ROADMAP.md` order, and changes nothing else without the
   owner's approval.
@@ -53,3 +55,5 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 * 2026-11-03: created. Focus S5 (9, 3), stretch (10, 4); S0 parked; risky, jump-first stance; exploration one in
   two; follow-up rule; regular strategy reviews. First review under this strategy:
   `reviews/REVIEW_PROMPT_2026-11-03.md`.
+* 2026-11-07: owner's process change: weekly lead review with a week plan; lab sessions light and cheap; review
+  cadence by elapsed work, not calendar (`PROTOCOL.md` §8b).
