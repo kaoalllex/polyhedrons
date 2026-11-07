@@ -161,7 +161,7 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
   decision point and the T D F G R scores, and every `CONCLUSION.md` moves the credences by the line its `PLAN.md`
   pre-registered ("scenario move").
 * `STRATEGY.md` sets the focus target and may set another exploration share (2026-11-03: one in two).
-* One run in four is an **explore** run drawn from the mutation pool (a parked method with one stated change, a
+* One run in four (or the `STRATEGY.md` share) is an **explore** run drawn from the mutation pool (a parked method with one stated change, a
   below-gate row re-scored with a written reason, or a new idea file); it is logged as "explore" and its PLAN says
   what result would make it the new default.
 * A construction engine runs on the 12-face target only after it is scored on the benchmark ladder (E-261101-26);
@@ -169,6 +169,26 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 * A night run is part of an experiment: it is launched only from an experiment's `run.sh`, after its `PLAN.md` is
   committed, and it is concluded with the `experiment-conclude` skill. "Go and run this" without a PLAN is not a
   valid hand-over.
+
+## 8b. Roles and lightness (owner decision, 2026-11-07)
+
+* **Roles.** The *lead* is a strongest-model session at high effort, about once a week (skill `strategy-review`):
+  it analyses the week's results in depth, updates the plan and writes the **week plan**. *Lab* sessions (cheaper
+  models, medium effort) execute week-plan items; the owner launches nights and calls the lead when needed.
+* **Week plan** = the "Week plan" block at the top of the `ROADMAP.md` S5 queue: at most five items, each with its
+  question, budget, kill rule and **follow-up tree** (the conditional next steps allowed without the lead). A lab
+  session works only on week-plan items, in order.
+* **Escalate, do not improvise.** If the next step is not in the item's follow-up tree, or an item fails its
+  control twice, stop that item: write one line under "For the lead" in `CONTINUE_PROMPT.md` and take the next
+  item. A lab session never designs a new audit chain on its own.
+* **Amendments.** A registered follow-up branch needs no new amendment; record its outcome in `CONCLUSION.md`. At
+  most two new amendments per experiment between lead reviews; a third need is an escalation.
+* **Batch cheap steps.** Steps with less than ~5 minutes of compute and no target claim run back to back in one
+  session and are concluded together (one CONCLUSION section, one ledger commit), not one commit cycle each.
+* **Text budgets.** PLAN <= 80 lines; amendment <= 15 lines; CONCLUSION section <= 25 lines; STATUS section <= 8
+  lines; log entry 1-3 lines; handover <= 12 lines. State each number once (CONCLUSION) and link to it. Cite the
+  `SPEC.md` scope and label once per section instead of repeating caveats in every paragraph. Rigour lives in
+  manifests, hashes and checkers, not in prose.
 
 ## 8. AI sessions and agents
 

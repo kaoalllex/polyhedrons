@@ -1,6 +1,6 @@
 ---
 name: strategy-review
-description: Use when the owner asks for a strategy review, a re-ranking or re-scoring of the ideas, hypotheses, experiments and ROADMAP of the 12-face research, or when STRATEGY.md says a review is due (every 3-4 nights, or after a result that moves a scenario by 0.1 or more). Runs in its own session with the strongest model.
+description: Use when the owner asks for a strategy review, a re-ranking or re-scoring of the ideas, hypotheses, experiments and ROADMAP of the 12-face research, or when STRATEGY.md says a review is due (about weekly, as the lead review of the week's lab work, or after a result that moves a scenario by 0.1 or more). Runs in its own session with the strongest model.
 ---
 
 # Strategy review of the research
@@ -34,17 +34,20 @@ status and links (read the files themselves only for the candidates you rank).
    the focus target's genus without a ladder, 0 = a ladder step) and **cost to first kill** (sessions or core-h to
    the first result that could park it). Candidates that serve the parked target only are listed separately, not
    dropped.
-3. **Propose the queue**: the top 5-8 items in order, each with its hypothesis, the cheapest falsifying test, what
+3. **Propose the queue** and the **week plan** (`PROTOCOL.md` §8b): at most five items for the lab sessions, each
+   with its follow-up tree (allowed conditional next steps) and kill rule, plus answers to the "For the lead"
+   questions in `CONTINUE_PROMPT.md`. Then the top 5-8 items in order, each with its hypothesis, the cheapest falsifying test, what
    each outcome changes, the budget and the stop rule; mark which are "explore". Name the single first item.
 4. **Missing ideas**: at most 5 new ones, concrete enough for an idea file (statement, why, cheapest test). Prefer
    ideas from neighbouring fields; identify each as an untested proposal, distinct from supporting evidence.
-5. **Audit**: claims stronger than their evidence, underpowered verdicts, follow-up chains that should stop
+5. **Audit**: lab process cost (documentation versus compute, amendment chains without a gate decision),
+   claims stronger than their evidence, underpowered verdicts, follow-up chains that should stop
    (STRATEGY.md §2 follow-up rule), with file:line.
 6. **Scenario credences**: propose new values with one line of evidence each, or say why they stay.
 
 ## Output
 
-`reviews/strategy-review-YYYY-MM-DD.md`: a 10-line verdict; the answers above; the scored table; the proposed queue;
+`reviews/strategy-review-YYYY-MM-DD.md`: a 10-line verdict; the week plan, ready to paste into `ROADMAP.md`; the answers above; the scored table; the proposed queue;
 new ideas; audit findings; the 3 things to do first. Label factual claims with `SPEC.md` §5 evidence levels;
 identify untested hypotheses and recommendations separately. Commit the report on the current branch; do not push. Then tell the owner, in
 Russian, the verdict and the proposed first item; the owner decides, and a working session applies the approved

@@ -18,7 +18,10 @@ with `requirements.txt` installed.
    - the branch to open;
    - in-flight runs: where they run and how to collect them;
    - open owner actions (merge, publish a release, send an e-mail);
-   - the next ROADMAP item.
+   - the next week-plan item;
+   - "For the lead": open questions outside the week plan's follow-up trees (`PROTOCOL.md` §8b), one line each.
+
+   At most 12 lines.
 
    Standing rules live in the root `CLAUDE.md`; do not copy them into the prompt.
 4. **Ledger.** Check that `STATUS.md` "As of" and the ROADMAP State column match reality.
