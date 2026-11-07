@@ -1,0 +1,34 @@
+{
+  "started_utc": "2026-11-04T10:06:55.189929+00:00",
+  "workers": 1,
+  "host": "macOS-26.7.2-arm64-arm-64bit-Mach-O",
+  "cpu_count": 14,
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "parameters": {
+    "wall_seconds": 120
+  },
+  "commit": "2eeb39f6e83808d9593f14f4f9b5ebd0082f1582",
+  "branch": "Codex/s5-coverage-tranche",
+  "dirty": "?? research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/",
+  "pip_freeze": "absl-py==2.5.1\ncma==4.5.0\nimmutabledict==4.3.1\nllvmlite==0.50.0\nmpmath==1.3.0\nnumba==0.68.1\nnumpy==2.5.4\nortools==9.15.6755\npandas==3.1.0\nprotobuf==6.33.6\npython-dateutil==3.0.0\npython-sat==1.9.dev17\nscipy==1.18.1\nsix==1.17.0\nsympy==1.14.0\ntyping_extensions==4.16.0\ntzdata==2026.6\nz3-solver==5.3.2.0",
+  "inputs": {
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/audit.py": "415a6ba588ce36290e09bd25bcceb579869220c6974863dbe25050b4cfdc9cd5",
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/PLAN.md": "6483db9516544439e77be531bfd1b1fbad119b68b14efcff6bef715e6474200b",
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh": "1f161686956dd88ff9758156033a2c3a74a44f6eee9a82de3db0d368ebdfe3c6",
+    "experiments/E-261103-01-s5-map-census/census.py": "4a588ecd65c0db398347f75b28b2115c64a924f796ae7d5fd4881d96c36c8003",
+    "reviews/strategy-review-2026-11-03-flipwalk.py": "776929dd795c25811b46996f55151051b92c96586e70cf10f90b42a62d548c27",
+    "code/gauss_degree.py": "08505ac57ccedacd7fab08a807baeb33b68579a31151f72aa1c9dbf5e98dd47a",
+    "code/control_rost_vigh.py": "8f836a8b83ded33ca12cb6d3f8eab0fdfcda176a03116848a074c0dba1433a88",
+    "literature/mizhaev2026-planes.json": "5122c5aafe5ef8a28a12836c678022ad224303fe67f9bf3d1b89d60ff49d7e95",
+    "experiments/E-261103-01-s5-map-census/results/maps_7_1.json": "7ac0dc9bf5e3b8d728a77244905f0d54ab80e11ab6c728a5d5aa1551a197429e",
+    "experiments/E-261103-01-s5-map-census/results/maps_9_3.json": "0ce7ea60c70399ad4fccf11fd639faf2257591ffb4aa65079df8f4023d38e9a6"
+  },
+  "exit_status": 0,
+  "finished_utc": "2026-11-04T10:06:55.918482+00:00",
+  "wall_seconds": 0.7285505420004483,
+  "core_hours": 0.0002023751505556801,
+  "budget_fraction": 0.0060712545166704025,
+  "outputs": {
+    "audit.json": "782c62fd2acf91134a81134075c206153c7dd08773677a1559d505c04c1b9211"
+  }
+}

@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/overnight/../experiments/E-261103-03-s5-exact-decision-8-2-9-3/tranche.py", line 395, in <module>
+    unit(json.loads(ap.parse_args().unit.read_text()))
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/overnight/../experiments/E-261103-03-s5-exact-decision-8-2-9-3/tranche.py", line 213, in unit
+    r = pilot.solve(c, out, name, 60, checker_timeout=120, solver_gate=lambda: dispatch_gate(root),
+                    on_sat=lambda: latch_sat(root, dict(map_index=index, unit=str(out), name=name)))
+  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/pilot.py", line 87, in solve
+    rc = command([CADICAL, str(cnf), str(proof)], out / (name + '.solver.log'), timeout, gate=solver_gate)
+  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/pilot.py", line 51, in command
+    return p.wait(timeout=max(.001, timeout))
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 1279, in wait
+    return self._wait(timeout=timeout)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 2078, in _wait
+    time.sleep(delay)
+    ~~~~~~~~~~^^^^^^^
+  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/pilot.py", line 44, in interrupted
+    raise InterruptedError('command interrupted by SIGTERM')
+InterruptedError: command interrupted by SIGTERM

@@ -2,23 +2,27 @@
 id: E-261103-03
 title: Exact decision per candidate map - OM-SAT for the 2 (8, 2) maps, then the symmetric and all admissible (9, 3) maps
 date: 2026-11-03
-status: planned
+status: running
 direction: [DR19, DR8]
 origin: [E-261103-01, E-261103-02, I-261030-31, I-261029-45, I-261029-57, H-261101-07]
 tests: [H-261103-03, H-261103-02, H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned. Scores T D F G R: 2 2 2 2 2 | budget: hours for (8, 2); one laptop night (10 cores) for (9, 3). Before any
-> compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). Maps and the encoder are available
-> from E-261103-01 and E-261103-02; read the symmetry restriction below before planning. Third item of the queue (`reviews/strategy-review-2026-11-03.md` section 2.2 item 1 and 3.3).
+> Running, with the (8,2) stage completed. See [CONCLUSION.md](CONCLUSION.md) and
+> [STATUS.md](../../STATUS.md) for the exact decisions, controls and claim boundaries.
+> The paired C3/plain (9,3) pilot is complete; see CONCLUSION and STATUS section 3e.
+> The autonomous cutoff grid is also complete (CONCLUSION / STATUS 3f). Result directories are
+> immutable. The explore prerequisite is concluded. The new-map tranche is activated in PLAN.md;
+> its same-path pilot is concluded (CONCLUSION / STATUS 3h). The owner-run tranche is now concluded (STATUS 3i); no coverage process is active.
+> Do not launch the completed queue again. Wider census work requires a new activation.
 
 ## Goal
 
 Decide the focus and warm-up cases exactly, map by map. Order: (a) the 2 (8, 2) maps (9 elements, 126 bases), plain and
 with the C2 clauses; (b) the 8 admissible (9, 3) maps with a free order-3 automorphism (10 elements, 210 bases) with C3
-clauses, the 2 of them with |Aut+| = 6 also with D3 clauses; (c) the 24 maps with an involution, with C2 clauses; (d) all
+clauses; no D3 or fixed-face C2 uniform exclusions; (c) plain formulas for the maps with involutions; (d) all
 203 admissible (9, 3) maps without symmetry. Every SAT model goes to the two realizers (hinge and two-stage, at F planes)
 and, if unrealized, to the final-polynomial LP (120-s limit, certificate stored, independent checker in
 `verification/certificates/final_polynomial/`). Every UNSAT keeps CNF and DRAT (drat-trim). A realized model is a CANDIDATE
@@ -27,8 +31,8 @@ until `verify_candidate.py --target S5` passes and `candidate-check` is run.
 ## Starting point
 
 * The (8, 2) decision alone is a result either way: an object is the first genus-2 face-neighbourly polyhedron; two
-  UNSAT-VERIFIED instances are the first non-existence theorem for a face-neighbourly case (CERTIFIED after the soundness
-  write-up of the encoder, PROVED-1 until then).
+  UNSAT-VERIFIED instances give a conditional non-existence argument, subject to census coverage and encoder
+  soundness review. They do not alone establish novelty or CERTIFIED theorem status.
 * Positive control inside the run: the Roest-Vigh and Mizhaev instances (their maps, 8 planes) are SAT and their models
   realize (the realizer at 8 planes must recover an embedded object from a model; this is the k-face realizer control the
   S0 runs never had). Negative control: the 37 non-admissible (9, 3) maps are rejected before solving or are UNSAT.
@@ -61,3 +65,31 @@ these geometric families. Do not count them as excluded maps. Use the asymmetric
 pre-register a nonuniform extension separately; free C2 at (8,2) and free C3 at (9,3) have positive
 uniform controls. Details and exact formula artifacts: the encoder experiment's `SOUNDNESS.md` and
 `CONCLUSION.md`. No target instance has been solved by that experiment.
+
+
+## Activated coverage: laptop command
+
+The registered same-path pilot is complete; do not rerun the old pilot, paired or grid modes.
+Production reuses its recorded units, and the old unresolved tail stays outside this queue.
+On AC power with the lid open, from the repository root:
+
+```bash
+source "$HOME/.venvs/polyhedra/bin/activate"
+export PATH="$HOME/bin:$PATH"
+caffeinate -dimsu bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 start 8
+```
+
+The existing launcher detaches each shard under its own caffeinate and appends logs. Solver
+executables must be on PATH (CADICAL and DRAT_TRIM may override them). No automatic commits
+or pushes occur. Fewer than eight workers are supported; never request more than eight.
+
+```bash
+bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 status
+bash research/12-faced-polyhedron/overnight/launch.sh E-261103-03 stop
+```
+
+Repeat the start command after interruption to resume. Completed units are skipped across all
+shards and the pilot checkpoint. An abruptly killed attempt retains its conservative budget
+reservation and immutable files. A source/input change, exhausted cumulative budget or saved
+failure stop requires review; do not delete those guards to force a restart. A first target SAT
+stops coverage globally and is processed only once through the registered bounded stages.

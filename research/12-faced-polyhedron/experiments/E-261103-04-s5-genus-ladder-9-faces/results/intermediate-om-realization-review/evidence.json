@@ -1,0 +1,27 @@
+{
+  "scope": "post-run saved-output review; no optimization replay",
+  "candidate": "roest_vigh-g1.candidate.json",
+  "verdict": "AUXILIARY-PASS",
+  "evidence": "PROVED-1",
+  "original_attempt_status": "ERROR: shared worker required all pairs",
+  "corrected_dispatch_fresh_pilot": false,
+  "checks": {
+    "python_syntax": "PASS",
+    "shell_syntax": "PASS",
+    "research_graph": "PASS",
+    "negative_auxiliary_geometry": "REJECTED",
+    "integrated_suite": "NOT RUN; no shared-code change"
+  },
+  "review_files": {
+    "verify-candidate.txt": "79f65b4852e6358308ccfe30f6eb48be409723c1af6640a7196b875d360332ff",
+    "binding.json": "636bbef2de77ab83d06b7e4c5acace10cce4b10e9521164f82b6e0b5140df65f",
+    "adversarial-report.json": "ab1a497155388da98bde9c17b951caa4919175d412e4290c2e679e949a55c7f7",
+    "roest_vigh-g1.candidate.json": "7c644043de30402955a8b2c35669755e29731243751108d1ba53166072397862",
+    "adversarial-check.py": "f68714b84377ab979d9d6ce8dbbf16e22d3be4674fc1d26e0dedba197a26f11c"
+  },
+  "final_sources": {
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/audit.py": "253b027627e1f1a5bd7483c7732d94c31d3a515b4a5f484d03b3cfec6cec8006",
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh": "18414b590b40d9643d9ea4609ca070f636aa35e747fbf61805b928f19e218cf1",
+    "experiments/E-261103-04-s5-genus-ladder-9-faces/PLAN.md": "c7d96d557889d822020c91f740e5c3e4a2e01cdd0c479ce1a40cfa754e7d2120"
+  }
+}

@@ -17,8 +17,8 @@ focus target. Use `python3` from an activated environment with `requirements.txt
      (`status: planned`, `origin` = the ideas / hypotheses / experiments / sources it grew from, `tests` = the
      hypotheses it can move). New ideas or hypotheses get their own files first (`PROTOCOL.md` §4). Then add the
      ROADMAP row with its scores and ask the owner.
-2. **Branch.** Create `experiment/<ID>-<slug>` from an up-to-date `main`. If the owner is still working on another
-   branch, ask which base to use.
+2. **Branch.** Stay on the week's `lab/YYYY-MM-DD` branch (`PROTOCOL.md` §7); create it from `main` only if it does
+   not exist yet. Never create a branch per experiment.
 3. **Folder.** Copy the template files you need (`PLAN.md`, `run.sh`, `matrix.json`) from `experiments/_template/` into
    the experiment folder; keep its `README.md`.
 4. **Plan.** Fill in `PLAN.md` from the row and its ROADMAP section:

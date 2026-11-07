@@ -826,3 +826,92 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   controls pass (EXACT); extended soundness and fixed-face symmetry limitation PROVED-1. The first (8,2)
   CNF is built, not solved. Evidence: `experiments/E-261103-02-s5-omsat-multi-adjacency-encoder/CONCLUSION.md`.
   Next E-261103-03; no target run, long run, subagents, push or PR.
+
+* 2026-11-04: E-261103-03 (8,2) stage completed after pre-registration ac2ad98 and runner c48ab73.
+  Both plain formulas and free-C2 ansatzes UNSAT-VERIFIED; known-object reconstruction controls pass.
+  EXACT formula decisions; geometric interpretation conditional PROVED-1. See the experiment CONCLUSION;
+  (9,3) unrun, experiment remains running, no active process, push or PR.
+
+* 2026-11-04: E-261103-03 paired C3/plain focus pilot completed after a documented panel correction; pre-registrations bc0ae0e and 0db8d8e. See its CONCLUSION and STATUS 3e for checked instance decisions, controls, resources and conditional claim boundaries. No night, push or PR.
+
+* 2026-11-04: E-261103-03 autonomous cutoff grid (8f8132c) completed with additional checked plain decisions; CONCLUSION / STATUS 3f record resources, controls and unresolved coverage. Added a conditional C3 coverage draft and independent determinant/gauge controls; prepared a costed tranche proposal behind its explore prerequisite. No campaign or push.
+
+* 2026-11-04: E-261103-05 registered R2/R3 explore pilot (f9b9744) passes; see CONCLUSION / STATUS 3g. Saved model replays and independent rational checks reproduce an auxiliary known-map recovery; no S5 witness or nine-plane run. Post-run export/error-path fixes preserve original provenance; E-261103-03's explore prerequisite is concluded.
+
+* 2026-11-04: clarified continuation after the committed E-261103-05 result (4e77a88): E-261103-03 tranche activation has priority over the generic open-row fallback. Refreshed the owner's ignored local TODO; verify_all --quick ALL PASS (archive skipped), no new research run or night launch.
+
+* 2026-11-04: E-261103-03 coverage tranche pre-registered in c707bc5, bounded runner in 697e3e5; same-path pilot and resume completed. CONCLUSION / STATUS 3h record timeouts, controls, resources, unchanged mathematical coverage and launch readiness. Production inherits the pilot without reruns; no tranche, night, push or PR launched.
+
+* 2026-11-04: concluded the owner-run E-261103-03 new-map tranche; see its CONCLUSION,
+  results/tranche_audit.json and STATUS 3i. Queue complete, LOW-YIELD, no target SAT.
+  Added hash/transcript reuse to the conclusion harness; fresh DRAT replay is an explicit audit.
+  Recorded on Codex/s5-coverage-tranche with prior owner launch fixes preserved; no push/PR.
+
+* 2026-11-04: E-261103-04 representation gate pre-registered (040562a), control-loading
+  amendment committed (2eeb39f), and bounded audit concluded; see CONCLUSION / STATUS 3j.
+  Legacy conversion cannot retain focus-map parallel edges (PROVED-1); dart-preserving
+  surgery is the next stage. Both attempts retained; geometric recovery unactivated.
+
+* 2026-11-04: prepared E-261103-04's dated dart-preserving surgery amendment for
+  pre-registration on Codex/s5-coverage-tranche. PLAN defines reversible annulus surgery,
+  structural controls, simple sphere endpoints and bounded deterministic chain search.
+  Diff/source-contract review only, with existing graph metadata and evidence unchanged.
+  Next implement the surgery audit, then calibrate geometry under a separate amendment.
+
+* 2026-11-04: implemented and concluded E-261103-04's bounded dart-preserving surgery
+  audit (pre-registration 5725a38, implementation cfb99e2, saved checker 2ff5953).
+  Gate passed, PROVED-1 supplied-input computation; CONCLUSION / STATUS 3k own scope,
+  controls and resources. Compressed evidence and source-bound replay retained.
+  Next register geometric recovery calibration; experiment running, no active process.
+
+* 2026-11-04: registered E-261103-04's bounded geometric recovery amendment on
+  Codex/s5-coverage-tranche. PLAN fixes known controls, seeds, time limits, labelled
+  export checks and exact per-level acceptance. Next implement and exercise the
+  recovery dispatch. Surgery evidence reused; no geometric search or night launched.
+
+* 2026-11-04: E-261103-04 geometric recovery pilot concluded, UNDERPOWERED;
+  pre-registration 871d8cc, implementation 5643bc5, reflected alignment amendment
+  70347ad. Both attempts retained. CONCLUSION / STATUS 3l own controls, accepted
+  auxiliary levels, independent two-scale checks and resources. Focus gate closed;
+  conditional grid is a costed proposal only. No active run or owner launch.
+
+* 2026-11-04: E-261103-04 conditional failed-level grid registered in b851f8c,
+  implemented in 3f3aeda; actual startup returned STARTUP-PASS without optimization.
+  CONCLUSION / STATUS 3m record readiness and checks. Full grid awaits explicit
+  owner authorization; full-control/focus gates remain closed.
+
+* 2026-11-04: owner authorized E-261103-04 conditional grid. Actual registered
+  caffeinate/nice dispatch launched from 281881d on AC power; deterministic
+  controls pass, first cell active. Collect results/recovery-grid; verdict pending.
+
+* 2026-11-04: E-261103-04 authorized conditional grid concluded UNDERPOWERED,
+  all registered cell outputs exactly rejected. CONCLUSION / STATUS 3n retain
+  scope, resources and checks. Next reassess intermediate maps/chain, no active run.
+
+* 2026-11-04: focused source review identifies the existing submap=True exact
+  encoder path for the two auxiliary maps, with a loader-default caveat and
+  required pinned controls. E-261103-04 CONCLUSION records the audit prerequisites.
+
+* 2026-11-04: E-261103-04 bounded submap audit, plan 6b8d587, completed with
+  passing controls: Roest-Vigh g1 OM-SAT and Mizhaev g2 formula UNSAT-VERIFIED.
+  CONCLUSION / STATUS 3o record PROVED-1 scope and chain-reassessment gate; no night.
+
+* 2026-11-04: E-261103-04 alternative first-removal audit, plan 5a2efef,
+  completed: alternative OM-SAT class found, finite first-step queue exhausted.
+  CONCLUSION / STATUS 3p record PROVED-1 scope; next bounded g1-descendant question, no night.
+
+* 2026-11-04: E-261103-04 descendant audit, plan d90b404, returned CHAIN-PASS:
+  checked original-labelled route with OM-SAT intermediates and sphere endpoint.
+  CONCLUSION / STATUS 3q record PROVED-1 scope; next bounded geometric-control question, no night.
+
+* 2026-11-05: assessed unfinished E-261103-04 preparation; saved audit hashes,
+  SAT assignments and checker transcripts agree (CONCLUSION). Added a bounded
+  intermediate-OM realization PLAN appendix; implementation/startup remain pending, no new run or night.
+
+* 2026-11-05: executed the E-261103-04 saved-OM pilot registered in 7faeac4;
+  published-top controls pass and the first Roest-Vigh g1 output passes separate
+  auxiliary verification. CONCLUSION / STATUS 3r retain adapter ERROR, corrected
+  gate, adversarial check and unrun Mizhaev scope; no optimization replay or night.
+* 2026-11-07: E-261103-04 Mizhaev continuation (b1d2104): both alternative Mizhaev
+  intermediates realized from saved OMs in 7.9 s; experiment concluded, hinge ladder
+  parked (STATUS 3s).

@@ -18,11 +18,17 @@ with `requirements.txt` installed.
    - the branch to open;
    - in-flight runs: where they run and how to collect them;
    - open owner actions (merge, publish a release, send an e-mail);
-   - the next ROADMAP item.
+   - the next week-plan item;
+   - "For the lead": open questions outside the week plan's follow-up trees (`PROTOCOL.md` §8b), one line each.
+
+   At most 12 lines.
 
    Standing rules live in the root `CLAUDE.md`; do not copy them into the prompt.
 4. **Ledger.** Check that `STATUS.md` "As of" and the ROADMAP State column match reality.
-5. **Verify.** Run `python3 verification/verify_all.py --quick` and report its last line.
+5. **Verification evidence.** Reuse the latest applicable successful checks; report their commands,
+   outcomes and scope. Handover or wording-only edits do not trigger a test run. Run only affected checks
+   if relevant code/inputs/environment changed or an unresolved concern remains; state why. Do not repeat
+   a suite already covered by another check. See `PROTOCOL.md` section 8.
 6. **Tell the owner,** in Russian:
    - the exact commands left for them (push, merge, launch with `caffeinate -dimsu`);
    - what was not checked.
