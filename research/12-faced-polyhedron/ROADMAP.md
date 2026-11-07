@@ -62,6 +62,9 @@ Lab sessions take these in order (`PROTOCOL.md` §8b). Anything outside a follow
    (<= 2 core-h more) on that symmetry; engine failure on its own 8-plane controls -> stop, escalate.
 2. **E-261103-06 R1 pilot** (embedded first, planar later; explore, open row). Budget and kill as in its row.
    Follow-up tree: R1 pass -> R2' on an (8,3) control in the same session if < 1 core-h; R1 fail -> park.
+3. **Research map as a maze** (infrastructure, no compute; owner request): in `map/index.html` colour nodes by state
+   (alive / parked / failed / done), show the verdict line of an experiment's CONCLUSION on click, and keep the
+   page working from file://. Kill: more than one session.
 
 For the next lead review: the E-261103-03 hard tail (73 timeout and 111 unattempted (9,3) maps) needs a new exact
 method (symmetry breaking, cube-and-conquer, rank-3 filter, or hints from solid-first outputs) rather than longer caps.
