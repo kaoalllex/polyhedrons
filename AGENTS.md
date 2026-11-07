@@ -31,6 +31,8 @@ This repository has two parts:
 - **Read first:** the relevant sections of `STRATEGY.md`, `STATUS.md`, then `ROADMAP.md`, `PROTOCOL.md`
   and `SPEC.md` in `research/12-faced-polyhedron/`. Reuse material already in context.
 - **Session workflow and handover:** follow `PROTOCOL.md` §8 and keep one short block in `CONTINUE_PROMPT.md`.
+- **Roles:** a weekly lead review writes the week plan; lab sessions execute it, keep text within the budgets
+  and escalate instead of improvising (`PROTOCOL.md` §8b).
 - **Skills** (`.agents/skills/`; Claude copies in `.claude/skills/`):
   - `experiment-start`: from a ROADMAP row to a pre-registered experiment;
   - `experiment-conclude`: results to `CONCLUSION.md` and the ledger, night reports included;

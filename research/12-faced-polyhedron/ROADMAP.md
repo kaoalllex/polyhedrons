@@ -4,7 +4,7 @@
 abandoned. The S5 queue below was proposed by `reviews/strategy-review-2026-11-03.md` and approved by the owner on
 2026-11-03; the S0 queue follows it, parked as it stood.
 
-As of 2026-11-04. Principle: **theory and a cheap filter first -> a discriminating experiment -> an exact
+As of 2026-11-07. Principle: **theory and a cheap filter first -> a discriminating experiment -> an exact
 solver -> a lemma or a certificate**. We do not try to enumerate the search space; we pick small, motivated
 regions where one experiment can exclude a whole class or reveal a new constraint. How to run an item:
 `PROTOCOL.md`. Current state: `STATUS.md`.
@@ -49,6 +49,23 @@ parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-mis
   * Pilot the GitHub Actions runner on E-261101-16 or E-261101-18 (small matrix) before relying on it.
   * `lint_docs.py` also checks that every new `PLAN.md` has the counter-calibration and scenario-move lines (template
     changed 2026-11-01 after `reviews/strategy-review-2026-11-01.md`).
+
+## Week plan (interim, lead session 2026-11-07; replaced by the next lead review)
+
+Lab sessions take these in order (`PROTOCOL.md` §8b). Anything outside a follow-up tree goes to "For the lead".
+
+1. **Nine-plane solid-first target pilot** (new E-id from E-261103-05, explore). Question: does the disk-aware CP-SAT
+   solid-first engine find an embedded 9-face solid with all 36 pairs adjacent from uniform C3-orbit (and D2/random)
+   arrangements of 9 planes? Budget: 1 session prep, <= 2 core-h, minutes per seed. Kill: no 36-pair solid in budget
+   -> park this configuration, record the best pair count per seed as a diagnostic only. Follow-up tree: any embedded
+   output -> `verify_candidate.py --target S5` + `candidate-check`; >= 1 output with >= 33 pairs -> one seed grid
+   (<= 2 core-h more) on that symmetry; engine failure on its own 8-plane controls -> stop, escalate.
+2. **E-261103-06 R1 pilot** (embedded first, planar later; explore, open row). Budget and kill as in its row.
+   Follow-up tree: R1 pass -> R2' on an (8,3) control in the same session if < 1 core-h; R1 fail -> park.
+3. **Owner action, zero compute**: the E-261101-11 letters (Roest-Vigh, Mizhaev; `polyhedraproof`).
+
+For the next lead review: the E-261103-03 hard tail (73 timeout and 111 unattempted (9,3) maps) needs a new exact
+method (symmetry breaking, cube-and-conquer, rank-3 filter, or hints from solid-first outputs) rather than longer caps.
 
 ## Queue: focus target S5 (approved 2026-11-03)
 
