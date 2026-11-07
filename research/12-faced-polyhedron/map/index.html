@@ -76,6 +76,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"
   integrity="sha384-IWROdLKRsN1UuJywMlWl7/blXQ8GEooN2n7dzTxfEPd7ybYIKCUJ2Ol/1Gpf3YV4" crossorigin="anonymous"></script>
+<script src="graph.js"></script>
 <script>
 const BLOB = 'https://github.com/kaoalllex/polyhedrons/blob/main/research/12-faced-polyhedron/';
 document.getElementById('protocol').href = BLOB + 'PROTOCOL.md';
@@ -241,7 +242,7 @@ function theme() {
 }
 
 try { const t = localStorage.getItem('map-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
-fetch('graph.json').then(r => r.json()).then(g => {
+(window.GRAPH ? Promise.resolve(window.GRAPH) : fetch('graph.json').then(r => r.json())).then(g => {
   graph = g; build(); chips(); applyFilters();
   ['direction', 'search', 'orphans'].forEach(id => document.getElementById(id).addEventListener('input', applyFilters));
   const home = () => { cy.fit(undefined, 30); if (innerWidth > 720) cy.panBy({x: 160, y: 0}); };
