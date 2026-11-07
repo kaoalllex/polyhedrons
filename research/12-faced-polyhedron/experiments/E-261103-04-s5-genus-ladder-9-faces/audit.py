@@ -691,11 +691,11 @@ def feasibility(out, alternatives=False, descendants=False):
     return status
 
 
-def om_realization(out):
+def om_realization(out, continuation=False):
     out.mkdir(parents=True, exist_ok=False)
     started = time.monotonic()
     deadline = started + 297
-    manifest = dict(stage='om-realization', started_utc=datetime.now(timezone.utc).isoformat(),
+    manifest = dict(stage='om-continuation' if continuation else 'om-realization', started_utc=datetime.now(timezone.utc).isoformat(),
                     workers=1, wall_budget_seconds=300, finalization_reserve_seconds=3,
                     python=sys.version, executable=sys.executable, virtual_env=os.environ.get('VIRTUAL_ENV'),
                     host=platform.platform(), cpu_count=os.cpu_count(), cwd=os.getcwd(),
@@ -893,6 +893,10 @@ def om_realization(out):
                                           if row['method'] == method and not row['warm']) else 'UNDERPOWERED'
                                           for method in ('hinge', 'two_stage')})
         save()
+        if continuation:
+            # Roest-Vigh g1 was accepted in intermediate-om-realization-review; realize each Mizhaev map once.
+            prepared = [unit for unit in prepared if unit[0] == 'mizhaev']
+            result['scope'] = 'alternative Mizhaev g1/g2 saved OMs; first acceptance per map'
         for name, genus, level, chi in prepared:
             for method, warm in ((m, w) for m in ('hinge', 'two_stage') for w in (True, False)):
                 stem = f'{name}-g{genus}-{method}-{"warm" if warm else "unseeded"}'
@@ -925,7 +929,12 @@ def om_realization(out):
                     result['accepted'].append(path.name)
                     result['stop_reason'] = 'CANDIDATE-REVIEW'
                     save()
-                    return 0
+                    if not continuation:
+                        return 0
+                    break
+        if result['accepted']:
+            status = 0
+            return 0
         result['stop_reason'] = 'NO-RECOVERY-IN-QUEUE'
         status = 0
     except Exception as error:
@@ -1489,7 +1498,7 @@ if __name__ == '__main__':
     parser.add_argument('--alternatives', action='store_true')
     parser.add_argument('--descendants', action='store_true')
     parser.add_argument('--deadline', type=float)
-    parser.add_argument('--stage', choices=('representation', 'surgery', 'feasibility', 'alternatives', 'descendants', 'om-realization'), default='representation')
+    parser.add_argument('--stage', choices=('representation', 'surgery', 'feasibility', 'alternatives', 'descendants', 'om-realization', 'om-continuation'), default='representation')
     args = parser.parse_args()
     if args.feasibility_worker:
         if args.deadline is None:
@@ -1499,8 +1508,8 @@ if __name__ == '__main__':
         census = load_module('s5_census', CENSUS / 'census.py')
         count = check_saved_surgery(args.check_saved, census)
         print(f'PASS: {count} saved maps, source identities, surface/patch checks and reversible chains')
-    elif args.stage == 'om-realization':
-        sys.exit(om_realization(args.out.resolve()))
+    elif args.stage in ('om-realization', 'om-continuation'):
+        sys.exit(om_realization(args.out.resolve(), args.stage == 'om-continuation'))
     elif args.stage in ('feasibility', 'alternatives', 'descendants'):
         sys.exit(feasibility(args.out.resolve(), args.stage == 'alternatives', args.stage == 'descendants'))
     else:

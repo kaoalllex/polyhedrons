@@ -24,10 +24,11 @@ case "$STAGE" in
   alternatives) DEFAULT_OUT="$HERE/results/mizhaev-first-step-audit" ;;
   descendants) DEFAULT_OUT="$HERE/results/mizhaev-descendant-audit" ;;
   om-realization) DEFAULT_OUT="$HERE/results/intermediate-om-realization" ;;
+  om-continuation) DEFAULT_OUT="$HERE/results/mizhaev-om-realization" ;;
   *) echo "Unknown audit stage: $STAGE" >&2; exit 2 ;;
 esac
 OUT="${OUT:-$DEFAULT_OUT}"
-if [[ "$STAGE" == feasibility || "$STAGE" == alternatives || "$STAGE" == descendants || "$STAGE" == om-realization ]]; then
+if [[ "$STAGE" == feasibility || "$STAGE" == alternatives || "$STAGE" == descendants || "$STAGE" == om-realization || "$STAGE" == om-continuation ]]; then
   export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
   export VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1 PYTHONUNBUFFERED=1
   exec nice -n 10 "$PYTHON" "$HERE/audit.py" --stage "$STAGE" --out "$OUT"
