@@ -1,0 +1,187 @@
+{
+  "phase_a": {
+    "adjacent": 28,
+    "faces": 0,
+    "disks": 0,
+    "chi": -4,
+    "status": "OPTIMAL",
+    "cuts": 0,
+    "seconds": 1.63,
+    "edge_runs": 36,
+    "ended_by": "completed",
+    "valid": true
+  },
+  "bounded_cells": 35,
+  "model_sha256": "43ec2b04e1ed2badc6833183f213bc92779c127e71e0eb5fa9e3cc05dc80f48b",
+  "planes": [
+    [
+      3,
+      -4,
+      -2,
+      -5
+    ],
+    [
+      -3,
+      4,
+      -2,
+      -5
+    ],
+    [
+      3,
+      4,
+      2,
+      -5
+    ],
+    [
+      -3,
+      -4,
+      2,
+      -5
+    ],
+    [
+      -2,
+      5,
+      -5,
+      -3
+    ],
+    [
+      2,
+      -5,
+      -5,
+      -3
+    ],
+    [
+      -2,
+      -5,
+      5,
+      -3
+    ],
+    [
+      2,
+      5,
+      5,
+      -3
+    ]
+  ],
+  "links": {
+    "0": [
+      1,
+      5,
+      2,
+      7,
+      5,
+      6,
+      7,
+      3,
+      4
+    ],
+    "1": [
+      0,
+      5,
+      2,
+      6,
+      7,
+      4,
+      6,
+      3,
+      4
+    ],
+    "2": [
+      0,
+      7,
+      3,
+      6,
+      1,
+      5,
+      4,
+      7,
+      5
+    ],
+    "3": [
+      0,
+      7,
+      2,
+      6,
+      1,
+      4,
+      6,
+      5,
+      4
+    ],
+    "4": [
+      0,
+      3,
+      5,
+      2,
+      7,
+      1,
+      6,
+      3,
+      1
+    ],
+    "5": [
+      0,
+      2,
+      7,
+      0,
+      6,
+      3,
+      4,
+      2,
+      1
+    ],
+    "6": [
+      0,
+      7,
+      1,
+      2,
+      3,
+      1,
+      4,
+      3,
+      5
+    ],
+    "7": [
+      0,
+      5,
+      2,
+      4,
+      1,
+      6,
+      0,
+      3,
+      2
+    ]
+  },
+  "geometry": {
+    "corner_triples_distinct": true,
+    "all_pairs_adjacent": true,
+    "V_E_F_chi": [
+      24,
+      36,
+      8,
+      -4
+    ],
+    "points_distinct": true,
+    "simple_faces": 8,
+    "nonsimple_faces": [],
+    "edges_consistent": true,
+    "bad_pairs": [],
+    "EMBEDDED": true
+  },
+  "expected_map_match": true,
+  "pairs_diagnostic": {
+    "adjacent": 28,
+    "faces": 0,
+    "disks": 0,
+    "chi": -4,
+    "status": "OPTIMAL",
+    "cuts": 0,
+    "seconds": 0.4,
+    "valid": true
+  },
+  "unit": "roest_vigh_E36",
+  "wall_seconds": 2.977276624995284,
+  "returncode": 0,
+  "budget_seconds": 150
+}

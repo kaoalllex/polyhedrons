@@ -1013,16 +1013,16 @@ window.GRAPH = {
    "id": "E-261107-01",
    "kind": "experiment",
    "title": "Nine-plane solid-first target pilot - does the disk-aware CP-SAT engine find a 36-pair embedded solid at (9, 3)?",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-07",
-   "concluded": "",
+   "concluded": "2026-11-07",
    "path": "experiments/E-261107-01-s5-nine-plane-solid-first-pilot/README.md",
    "direction": [
     "DR7",
     "DR18",
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "LOW-YIELD",
    "preregistered": "true"
   },
   {

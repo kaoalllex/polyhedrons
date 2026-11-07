@@ -577,6 +577,13 @@ Experiment verdict: the hinge ladder fails both (8,3) controls and is parked; OM
 realization of intermediates works but is not an ascent and adds no (9,3) power.
 No hypothesis, credence or witness change. Details: E-261103-04 CONCLUSION.
 
+## 3t. E-261107-01 nine-plane solid-first pilot (2026-11-07)
+
+30 uniform 9-plane arrangements (c3 / d2p1 / random, 10 each), hard model 36 pairs, E = 39: all 30 INFEASIBLE,
+5.9-21 s each (cap 180 s), controls pass (E-261107-01 CONCLUSION). EXACT computation, geometric reading PROVED-1
+via the E-261103-05 encoding; no DRAT. Best Phase B pair count 32 (diagnostic only). Verdict LOW-YIELD@0.38
+core-h; configuration parked. No hypothesis, credence or witness change.
+
 ## 4. What may and may not be claimed
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for

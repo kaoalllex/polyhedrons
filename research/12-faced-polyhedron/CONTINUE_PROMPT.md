@@ -9,13 +9,11 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-07, lab: E-261107-01 pre-registered)
+## Hand-over (2026-11-07, lab: E-261107-01 concluded)
 
-* Branch `lab/2026-11-07`. E-261107-01 (week plan item 1, nine-plane solid-first pilot) is pre-registered
-  (`PLAN.md`, commit f77d897 plus the amendment commit after it); status running, no process active.
-* Startup check passed from `run.sh` (scratch output, cap 10 s): controls OK, runner defects fixed (PLAN Amendments).
-* NEXT, owner launch (<= 2 core-h, about 15 min on 10 cores, AC power):
-  `cd research/12-faced-polyhedron && caffeinate -dimsu bash experiments/E-261107-01-s5-nine-plane-solid-first-pilot/run.sh 0`
-  (venv `~/.venvs/polyhedra`; output in `results/0`). Then `experiment-conclude`. After it: week plan items 2, 3.
-* For the lead: (none yet).
-* Verification: startup check only; trace.py 0 errors. No verify_all run (no shared-code change).
+* Branch `lab/2026-11-07`. Week plan item 1 done: E-261107-01 all 30 nine-plane arrangements INFEASIBLE
+  (6-21 s each), LOW-YIELD@0.38 core-h, configuration parked (STATUS 3t). No active process.
+* NEXT: week plan item 2 (`ROADMAP.md`, E-261103-06 R1 pilot: embedded first), then item 3 (research map).
+* For the lead: engine is cheap at nine planes (about 13 s per exact decision), so coverage is limited by the
+  number/source of arrangements, not solve time; decide a broader sample or a smarter arrangement source.
+* Verification: no candidate; no shared-code change, no verify_all run; trace.py run after the ledger edit.

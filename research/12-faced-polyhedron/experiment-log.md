@@ -915,3 +915,5 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-07: E-261103-04 Mizhaev continuation (b1d2104): both alternative Mizhaev
   intermediates realized from saved OMs in 7.9 s; experiment concluded, hinge ladder
   parked (STATUS 3s).
+* 2026-11-07: E-261107-01 nine-plane solid-first pilot (9fbea2a): 30 arrangements all INFEASIBLE in
+  6-21 s, no 36-pair solid; LOW-YIELD@0.38 core-h, configuration parked (STATUS 3t).
