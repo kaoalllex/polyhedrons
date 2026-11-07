@@ -765,3 +765,30 @@ source-bound reuse after the adapter correction, and avoid repeating completed
 optimization. Do not hand over a fresh full-pilot command as startup-verified.
 Full eight-face recovery, focus geometry and night gates stay closed. No active
 process or owner launch is pending.
+
+## Mizhaev continuation and final verdict (2026-11-07)
+
+Amendment `b1d2104`, `STAGE=om-continuation`, one run, exit 0, 7.9 wall seconds.
+All eight published-top controls pass again (both methods, warm and unseeded), now
+through the corrected dispatcher. Both alternative Mizhaev intermediates are accepted
+at their first attempt (hinge, warm): g1 (16,24,8,0), 21 adjacent pairs, three doubled;
+g2 (20,30,8,-2), 25 adjacent pairs, five doubled. Each passes `verify_candidate.py`
+(embedded) and the separate rational checker on the original planes and integer
+rescalings at 1e-9 and 1e-12; `--all-pairs` correctly fails. **PROVED-1**, auxiliary
+objects, not S5. No adversarial agent was run for these two (same checker pair as 3r).
+Evidence: `results/mizhaev-om-realization/`.
+
+**Verdict of the experiment: concluded, control gate not passed by the ladder.**
+The registered gate was to rediscover the two (8,3) objects by descending to the
+sphere and ascending geometrically. The hinge ascent from the parent's planes fails on
+both controls (Roest-Vigh at g1, Mizhaev at g2; pilot and grid UNDERPOWERED). The
+Mizhaev failure is explained: the chosen g2 map has no uniform OM (UNSAT-VERIFIED).
+What works is OM first: on the alternative Mizhaev chain every level g0..g2 is OM-SAT
+and its saved model is realized in seconds; Roest-Vigh g1 likewise (g2 untested).
+This realizes levels independently; it is not an ascent, so it carries no new power for
+(9,3), where the bottleneck is solving the top formula (E-261103-03 timeouts), not
+realizing a model. Transferable facts: (1) a descent chain must be checked for OM
+feasibility before any geometry; (2) the hinge/two-stage realizer turns a saved
+8-element OM-SAT model into an embedded object in seconds. No existence hypothesis,
+scenario credence or FD/witness row changes; no night. The hinge ladder is parked with
+this failure mode.

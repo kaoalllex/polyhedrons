@@ -2,7 +2,7 @@
 id: E-261103-04
 title: Genus ladder on 9 faces - the admissible (9, 3) maps from their sphere down and up again (explore)
 date: 2026-11-03
-status: running
+status: done
 direction: [DR1, DR19]
 origin: [E-261103-01, E-261102-04, I-261030-10, H-261101-07]
 tests: [H-261101-07, H-261103-02]
@@ -11,8 +11,7 @@ preregistered: true
 ---
 
 > Representation audit pre-registered, **explore** (counts towards the one-in-two exploration share of `STRATEGY.md`). Scores T D F G R: 1 2 2 1 2 |
-> current stage: descendant audit concluded CHAIN-PASS, combinatorial/OM route only. See CONCLUSION / STATUS 3q.
-> Direct-OM realization pilot executed; a separately checked Roest-Vigh g1 auxiliary is retained.
+> **Concluded 2026-11-07**: the hinge ladder fails both (8,3) controls; OM-first realization of every tested intermediate works. Parked. See CONCLUSION (final verdict) / STATUS 3s.
 > See CONCLUSION / STATUS 3r for the adapter error, saved-output acceptance and unrun scope. No night is ready.
 > The completed geometric pilot remains UNDERPOWERED. See CONCLUSION / STATUS 3l-3m.
 > The night requires a separate committed amendment. What is different from the parked DR1 runs: a new target with
