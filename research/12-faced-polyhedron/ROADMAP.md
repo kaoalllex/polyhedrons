@@ -63,7 +63,7 @@ Lab sessions take these in order (`PROTOCOL.md` §8b). Anything outside a follow
    on that symmetry as an owner night (10 cores, <= 8 h, `overnight-run-script`); engine failure on its own 8-plane controls -> stop, escalate.
 2. **E-261103-06 R1 pilot - done 2026-11-07, blocked, parked** (embedded first, planar later; explore, open row). Budget and kill as in its row.
    Follow-up tree: R1 pass -> R2' on an (8,3) control in the same session if < 1 core-h; R1 fail -> park.
-3. **Research map as a maze** (infrastructure, no compute; owner request): in `map/index.html` colour nodes by state
+3. **Research map as a maze - done 2026-11-07, not checked in a browser** (infrastructure, no compute; owner request): in `map/index.html` colour nodes by state
    (alive / parked / failed / done) and show the verdict line of an experiment's CONCLUSION on click; on click,
    highlight recursively the ancestors (where the node came from) and the descendants (what it produced) in two
    colours, edges included; show witnesses (verified objects, the valuable results) as their own band and shape,

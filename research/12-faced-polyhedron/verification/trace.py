@@ -60,6 +60,23 @@ def ledger():
     return titles
 
 
+def conclusion_verdict(path):
+    """The first 'Verdict...' paragraph of the experiment's CONCLUSION.md (a bullet or a line), or ''."""
+    f = os.path.join(os.path.dirname(path), 'CONCLUSION.md')
+    if not os.path.exists(f):
+        return ''
+    para = []
+    for ln in open(f, encoding='utf-8').read().splitlines():
+        if para:
+            if not ln.strip() or re.match(r'\s*(\*|-|#|\|)', ln):
+                break
+            para.append(ln.strip())
+        elif re.match(r'\s*(\* )?\**Verdict\b', ln):
+            para.append(re.sub(r'^\s*\* ', '', ln).strip())
+    text = re.sub(r'\s+', ' ', ' '.join(para)).replace('**', '')
+    return text if len(text) <= 420 else text[:417].rstrip() + '...'
+
+
 def build():
     errors, nodes, edges = [], {}, []
     for letter, (kind, pattern, statuses) in KINDS.items():
@@ -94,6 +111,8 @@ def build():
             nodes[nid] = {'id': nid, 'kind': kind, 'title': h.get('title', ''), 'status': h.get('status', ''),
                           'date': h.get('date', ''), 'concluded': h.get('concluded', ''), 'path': rel, 'direction': h.get('direction', []),
                           'verdict': h.get('verdict', ''), 'preregistered': h.get('preregistered', ''), '_h': h}
+            if letter == 'E':
+                nodes[nid]['conclusion'] = conclusion_verdict(path)
     ext = ledger()
     used = set()
     for nid, n in nodes.items():
