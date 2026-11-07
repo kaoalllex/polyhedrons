@@ -9,26 +9,34 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-04, conditional grid concluded)
+## Hand-over (2026-11-05, saved-OM pilot stopped on accepted auxiliary)
 
-* Stay on `Codex/s5-coverage-tranche`. E-261103-04 remains running as a broader
-  experiment, with no active process. The authorized conditional grid completed
-  UNDERPOWERED (CONCLUSION / STATUS 3n). Preserve `results/recovery-grid` unchanged.
-  Plan `b851f8c`, executable implementation `3f3aeda`, generating HEAD `281881d`.
-* All registered cells were exactly rejected for nonsimple faces. Deterministic
-  controls and labelled round trips pass. H1 failed in this grid. No accepted
-  recovery, focus geometry, scenario move or full eight-face recovery.
-* Next follow the registered no-success decision and reassess intermediate maps
-  or chain selection before further geometry. Source review identified
-  `omsat.Triangulation(..., submap=True)` and existing absent-pair/multi-segment
-  predicates. The controls helper defaults to submap=False.
-  Next prepare a bounded map-feasibility amendment with explicit submap=True and
-  pinned accepted-parent/negative controls. See CONCLUSION's source-review section.
-  Commit before any new experiment. Do not repeat the pilot/grid or raise the cap by default.
-* Reuse the finalized grid's matching source/input/output hashes and initial exact
-  rejection transcripts, startup checks, independent accepted-parent evidence,
-  surgery acceptance and shared-code quick-suite PASS. Ledger/diff/graph metadata
-  reviewed. No fresh independent replay, integrated suite, CI, proof replay, sleep
-  telemetry or human review. No owner launch is pending.
-* E-261103-03's tranche stays complete (STATUS 3i). Human encoder/coverage review
-  and publication of large local certificates remain owner actions.
+* Stay on `Codex/s5-coverage-tranche`, registration HEAD `7faeac4`.
+  E-261103-04 remains running as a broader experiment; no active process or
+  owner launch. Previous audits and this session's dispatcher/evidence/ledger
+  changes remain uncommitted. Preserve every output directory.
+* STATUS 3o-3q own the OM audits and alternative Mizhaev combinatorial chain.
+  STATUS 3r / CONCLUSION own the direct-OM pilot: published-top controls pass;
+  the first Roest-Vigh g1 hinge/warm output passes embedded-only candidate
+  verification and a separate adversarial rational check at both integer
+  rescaling scales. Auxiliary (8,1), PROVED-1, not S5 or focus geometry.
+* `results/intermediate-om-realization/` is an immutable ERROR attempt: the
+  shared worker's default all-pairs requirement falsely rejected the auxiliary.
+  Saved-output acceptance is in `results/intermediate-om-realization-review/`.
+  The new dispatcher explicitly uses require_all_pairs=False; shared workers
+  are unchanged. No optimization/control was rerun after that correction, and
+  the corrected full path is not newly startup-verified. Candidate-check stopped
+  the pilot; both Mizhaev OMs and remaining attempts are deliberately UNRUN.
+* NEXT: prepare a bounded continuation for the unrun Mizhaev geometric question
+  with source-bound reuse of accepted evidence/controls after the local adapter
+  fix. Do not repeat the recovered Roest-Vigh OM or full pilot merely to obtain
+  a green manifest. A realizable intermediate is not a coherent full ascent.
+* Full eight-face recovery, focus and night gates remain closed. No night is
+  ready or owner command pending. Do not expand caps, old recovery grids or
+  unrun descendant decisions by default. Apply candidate-check to new outputs.
+* Focused syntax, evidence/hash/binding checks, separate rational verification
+  and auxiliary negative geometry check pass. Reuse the previous shared-code
+  quick-suite scope: no new integrated suite, CI, human review or sleep
+  telemetry. drat-trim source commit remains unknown. E-261103-03's tranche
+  stays complete; human encoder/coverage review and large-certificate
+  publication remain owner actions.

@@ -891,3 +891,24 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-04: focused source review identifies the existing submap=True exact
   encoder path for the two auxiliary maps, with a loader-default caveat and
   required pinned controls. E-261103-04 CONCLUSION records the audit prerequisites.
+
+* 2026-11-04: E-261103-04 bounded submap audit, plan 6b8d587, completed with
+  passing controls: Roest-Vigh g1 OM-SAT and Mizhaev g2 formula UNSAT-VERIFIED.
+  CONCLUSION / STATUS 3o record PROVED-1 scope and chain-reassessment gate; no night.
+
+* 2026-11-04: E-261103-04 alternative first-removal audit, plan 5a2efef,
+  completed: alternative OM-SAT class found, finite first-step queue exhausted.
+  CONCLUSION / STATUS 3p record PROVED-1 scope; next bounded g1-descendant question, no night.
+
+* 2026-11-04: E-261103-04 descendant audit, plan d90b404, returned CHAIN-PASS:
+  checked original-labelled route with OM-SAT intermediates and sphere endpoint.
+  CONCLUSION / STATUS 3q record PROVED-1 scope; next bounded geometric-control question, no night.
+
+* 2026-11-05: assessed unfinished E-261103-04 preparation; saved audit hashes,
+  SAT assignments and checker transcripts agree (CONCLUSION). Added a bounded
+  intermediate-OM realization PLAN appendix; implementation/startup remain pending, no new run or night.
+
+* 2026-11-05: executed the E-261103-04 saved-OM pilot registered in 7faeac4;
+  published-top controls pass and the first Roest-Vigh g1 output passes separate
+  auxiliary verification. CONCLUSION / STATUS 3r retain adapter ERROR, corrected
+  gate, adversarial check and unrun Mizhaev scope; no optimization replay or night.

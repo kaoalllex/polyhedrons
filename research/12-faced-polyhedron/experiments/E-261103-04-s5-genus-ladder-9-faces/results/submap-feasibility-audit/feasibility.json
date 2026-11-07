@@ -1,0 +1,140 @@
+{
+  "scope": "two labelled auxiliary maps; uniform rank-4 OM formula only",
+  "controls": [
+    {
+      "name": "roest_vigh-positive",
+      "status": "SAT",
+      "variables": 2656,
+      "clauses": 29875,
+      "pinned": true,
+      "cnf_sha256": "d726884c440698417d48b72d3409efb84998af3940324fac45a3cae3102664f8",
+      "solver_returncode": 10,
+      "solver_budget_seconds": 10,
+      "solver_seconds": 0.02185483400535304,
+      "budget_fraction": 0.002185483400535304,
+      "ended_by": "completed",
+      "clause_families": {
+        "GP": 20160,
+        "TRIPLE": 44,
+        "INCONS": 264,
+        "RFCONS": 60,
+        "REFLEX1": 24,
+        "POC": 56
+      },
+      "model_checked": true,
+      "proof_sha256": "349925f42636415301a291bf6984ba949470312d30474018b9c9b1d0defca64f",
+      "wall_seconds": 0.07561145799991209
+    },
+    {
+      "name": "mizhaev-positive",
+      "status": "SAT",
+      "variables": 3468,
+      "clauses": 32863,
+      "pinned": true,
+      "cnf_sha256": "3fb8b3bda6681722931e51a3601dc46e7936b3ea0316f2cf2bbbd8127f94a28b",
+      "solver_returncode": 10,
+      "solver_budget_seconds": 10,
+      "solver_seconds": 0.02045416700275382,
+      "budget_fraction": 0.002045416700275382,
+      "ended_by": "completed",
+      "clause_families": {
+        "GP": 20160,
+        "SEGMENT_DISJOINT": 8,
+        "TRIPLE": 40,
+        "INCONS": 240,
+        "RFCONS": 90,
+        "REFLEX1": 42,
+        "POC": 80
+      },
+      "model_checked": true,
+      "proof_sha256": "f080f399f47675f6c13ba5d63b1a04d27ad285249eed7b5c7940d279f9451d17",
+      "wall_seconds": 0.07765129199833609
+    },
+    {
+      "name": "roest_vigh-negative",
+      "status": "UNSAT-VERIFIED",
+      "variables": 3404,
+      "clauses": 32633,
+      "pinned": true,
+      "cnf_sha256": "aeea64cf924f4df27d5a50b1b7647d2eb8f06d9a93f0e1d1351b41f0292c7436",
+      "solver_returncode": 20,
+      "solver_budget_seconds": 10,
+      "solver_seconds": 0.02103395899757743,
+      "budget_fraction": 0.002103395899757743,
+      "ended_by": "completed",
+      "clause_families": {
+        "GP": 20160,
+        "SEGMENT_DISJOINT": 12,
+        "TRIPLE": 40,
+        "INCONS": 240,
+        "RFCONS": 90,
+        "REFLEX1": 42,
+        "POC": 80
+      },
+      "checker_returncode": 0,
+      "checker_budget_seconds": 10,
+      "checker_seconds": 0.077920666000864,
+      "checker_ended_by": "completed",
+      "independently_unit_refuted": true,
+      "proof_sha256": "95b8d6626ae616fdd7312ae92368e703c175d77d2f29afe000dd7ba53d1f91ee",
+      "wall_seconds": 0.20773258300323505
+    }
+  ],
+  "targets": [
+    {
+      "name": "roest_vigh-target",
+      "status": "SAT",
+      "variables": 3404,
+      "clauses": 32507,
+      "pinned": false,
+      "cnf_sha256": "2ba2bbf107b7bca469419fe7c7db190b8a91a7a9ded0b25a99a45c9fdf3abef6",
+      "solver_returncode": 10,
+      "solver_budget_seconds": 45,
+      "solver_seconds": 0.021493542000825983,
+      "budget_fraction": 0.00047763426668502183,
+      "ended_by": "completed",
+      "clause_families": {
+        "GP": 20160,
+        "SEGMENT_DISJOINT": 12,
+        "TRIPLE": 40,
+        "INCONS": 240,
+        "RFCONS": 90,
+        "REFLEX1": 42,
+        "POC": 80
+      },
+      "model_checked": true,
+      "proof_sha256": "954512799490bfe0807d093280b025548267757e237d27846d226823a226c462",
+      "wall_seconds": 0.07836983299785061
+    },
+    {
+      "name": "mizhaev-target",
+      "status": "UNSAT-VERIFIED",
+      "variables": 4191,
+      "clauses": 35403,
+      "pinned": false,
+      "cnf_sha256": "7954267f4341c57338f81d6c6497cfd2f89beef70345993bdf069e39248f18ab",
+      "solver_returncode": 20,
+      "solver_budget_seconds": 45,
+      "solver_seconds": 0.12704875000054017,
+      "budget_fraction": 0.0028233055555675593,
+      "ended_by": "completed",
+      "clause_families": {
+        "GP": 20160,
+        "SEGMENT_DISJOINT": 20,
+        "TRIPLE": 36,
+        "INCONS": 216,
+        "RFCONS": 120,
+        "REFLEX1": 60,
+        "POC": 104
+      },
+      "checker_returncode": 0,
+      "checker_budget_seconds": 15,
+      "checker_seconds": 0.07596787500369828,
+      "checker_ended_by": "completed",
+      "proof_sha256": "8c91412194d956a96c4ebc7a547df240c06f18bfba3a0ce60e83e9fb079f3d94",
+      "wall_seconds": 0.2428642079976271
+    }
+  ],
+  "controls_pass": true,
+  "stop_reason": "COMPLETED"
+}

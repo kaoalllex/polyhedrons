@@ -11,7 +11,9 @@ preregistered: true
 ---
 
 > Representation audit pre-registered, **explore** (counts towards the one-in-two exploration share of `STRATEGY.md`). Scores T D F G R: 1 2 2 1 2 |
-> current stage: conditional failed-level grid concluded UNDERPOWERED. See CONCLUSION / STATUS 3n.
+> current stage: descendant audit concluded CHAIN-PASS, combinatorial/OM route only. See CONCLUSION / STATUS 3q.
+> Direct-OM realization pilot executed; a separately checked Roest-Vigh g1 auxiliary is retained.
+> See CONCLUSION / STATUS 3r for the adapter error, saved-output acceptance and unrun scope. No night is ready.
 > The completed geometric pilot remains UNDERPOWERED. See CONCLUSION / STATUS 3l-3m.
 > The night requires a separate committed amendment. What is different from the parked DR1 runs: a new target with
 > genus 3 (below the S0 "ravine" at 3 -> 4), 9 faces (12 free parameters instead of 21), and all pairs adjacent.
@@ -134,3 +136,40 @@ All saved cell outputs fail exact embedding checks. The no-success decision is
 to reassess intermediate maps or chain selection before further geometry. Source review identifies the existing submap=True encoder path. Next prepare a
 bounded audit with explicit submap selection and accepted-parent/negative controls. The experiment remains running
 with no active process or pending launch. See PLAN for the follow-up gates.
+
+## Intermediate-map audit concluded (2026-11-04)
+
+The bounded submap audit completed with all controls passing. The frozen
+Roest-Vigh intermediate has a clause-checked SAT OM; the frozen Mizhaev
+intermediate's formula is UNSAT with a retained, checked certificate. See
+CONCLUSION / STATUS 3o for exact scope, hashes, resources and PROVED-1 caveats.
+Reassess the affected surgery chain before further ladder geometry. A bounded
+realization stage for the saved SAT OM requires separate registration. Full
+eight-face recovery, focus geometry and a night remain gated; no launch pending.
+
+## Alternative first-removal audit concluded (2026-11-04)
+
+The registered finite scope completed with an alternative OM-SAT class and
+checked UNSAT decisions for the other classes; the decision queue is exhausted.
+CONCLUSION / STATUS 3p retain resources, evidence and PROVED-1 scope. Next
+prepare a separately registered bounded genus-one descendant question for the
+SAT alternative. No geometry, full-control recovery or night is activated.
+
+## Descendant-chain audit concluded (2026-11-04)
+
+The bounded descendant audit found a checked original-labelled route from the
+published top through OM-SAT intermediates to a simple sphere. It stopped at
+the registered first-chain success; other classes remain unrun. See CONCLUSION /
+STATUS 3q for PROVED-1 scope and evidence. Next prepare a separately registered
+bounded geometric-control question. No geometry or night is activated.
+
+## Saved-OM realization pilot concluded (2026-11-05)
+
+PLAN appendix registered in `7faeac4`. The actual `STAGE=om-realization`
+dispatch ran once; the saved first intermediate output has separately checked
+auxiliary embedding after correcting interpretation of the shared worker's
+all-pairs default. CONCLUSION / STATUS 3r retain the failed attempt, accepted
+auxiliary, scope and resources. The local dispatcher now uses the explicit
+auxiliary geometry gate. No optimizer was rerun, and its corrected full path
+has not been exercised. The candidate-check stop leaves Mizhaev geometry
+unrun; this auxiliary does not open full-control, focus or night gates.

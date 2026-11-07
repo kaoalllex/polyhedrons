@@ -1,0 +1,150 @@
+c --- [ banner ] -------------------------------------------------------------
+c 
+c CaDiCaL SAT Solver
+c Copyright (c) 2016-2026
+c A. Biere, M. Fleury, N. Froleyks, K. Fazekas, F. Pollitt, T. Faller
+c JKU Linz, University of Freiburg, TU Wien
+c 
+c Version 3.0.1 c60730422e758ef1cebe7aeddf2dda31c996bf04
+c Apple clang version 21.0.0 (clang-2100.3.34.2) -Wall -Wextra -O3 -DNDEBUG -DNCLOSEFROM
+c Thu Oct 29 12:02:02 +03 2026 Darwin IOSM-FQNJVXCGPH 25.6.0 arm64
+c 
+c --- [ proof tracing ] ------------------------------------------------------
+c 
+c opening file to write '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/submap-feasibility-audit/mizhaev-target.drat'
+c writing binary proof trace to '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/submap-feasibility-audit/mizhaev-target.drat'
+c 
+c --- [ parsing input ] ------------------------------------------------------
+c 
+c reading DIMACS file from '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/submap-feasibility-audit/mizhaev-target.cnf'
+c opening file to read '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/submap-feasibility-audit/mizhaev-target.cnf'
+c found 'p cnf 4191 35403' header
+c parsed 35403 clauses in 0.01 seconds process time
+c 
+c --- [ options ] ------------------------------------------------------------
+c 
+c all options are set to their default value
+c 
+c --- [ solving ] ------------------------------------------------------------
+c 
+c time measured in process time since initialization
+c 
+c  seconds  reduction conflicts       size tier2      variables
+c         MB    restarts   redundant    glue  trail        remaining
+c          level     rate       size/glu tier1  irredundant
+c 
+c *  0.01  0  0 0   0  0    0    0 0.0 0 0 2 6  0% 34624 4008 96%
+c )  0.01  0  0 0   0  0    0    0 0.0 0 0 2 6  0% 34624 4008 96%
+c {  0.01  0  0 0   0  0    0    0 0.0 0 0 2 6  0% 34624 4008 96%
+c -  0.01  0 18 1   7  2  300  165 1.8 12 7 2 6 18% 34498 4008 96%
+c -  0.02  0 16 2  21  2  733  388 2.1 13 7 2 6 26% 34498 4008 96%
+c }  0.02  0 14 2  21  2 1002  588 2.1 12 6 2 6 23% 34498 4008 96%
+c [  0.02  0  0 2  21  0 1002  588 0.0 0 0 2 6  0% 34498 4008 96%
+c O  0.02  0 21 2  21 22 1003  589 1.1 10 9 2 6 10% 34498 4008 96%
+c -  0.04  0  8 3  21  1 1411  682 2.0 10 5 2 6 23% 34498 4008 96%
+c ]  0.04  0  8 3  21  1 1461  701 2.0 10 5 2 6 23% 34498 4008 96%
+c {  0.04  0 14 3  21  2 1461  701 2.1 12 6 2 6 23% 34498 4008 96%
+c i  0.05  0 11 3  21  2 1939  931 2.1 11 5 2 6 23% 34498 4007 96%
+c d  0.05  0 11 3  21  1 2061  864 2.1 11 5 2 6 23% 33134 3569 85%
+c c  0.06  0 11 3  21  1 2061  846 2.1 11 5 2 6 23% 33012 3565 85%
+c d  0.06  0 11 3  21  1 2061  845 2.1 11 5 2 6 23% 32930 3524 84%
+c 2  0.06  0 11 3  21  1 2061  845 2.1 11 5 2 6 23% 32912 3524 84%
+c t  0.07  0 11 3  21  1 2061  845 2.1 11 5 2 6 23% 32764 3524 84%
+c i  0.08  0 10 3  21  1 2272  946 2.1 11 5 2 6 16% 32764 3523 84%
+c -  0.08  0 10 4  21  1 2351  668 2.1 10 5 2 6 16% 32324 3523 84%
+c i  0.08  0 10 4  21  1 2396  684 2.1 10 5 2 6 16% 32324 3522 84%
+c 
+c  seconds  reduction conflicts       size  tier2      variables
+c         MB    restarts   redundant     glue  trail        remaining
+c          level     rate       size/glue tier1  irredundant
+c 
+c i  0.08  0 10 4  21  1 2443  699 2.1 10 5 2 6 16% 32324 3521 84%
+c i  0.08  0  9 4  21  1 2466  711 2.1 10 5 2 6 16% 32324 3520 84%
+c i  0.08  0  9 4  21  1 2481  715 2.1 10 5 2 6 16% 32324 3518 84%
+c i  0.08  0  9 4  21  1 2494  725 2.1 10 5 2 6 16% 32324 3507 84%
+c i  0.08  0  9 4  21  1 2500  725 2.1 10 5 2 6 16% 32324 3503 84%
+c i  0.08  0  9 4  21  1 2504  728 2.1 10 5 2 6 16% 32324 3496 83%
+c i  0.08  0  9 4  21  1 2505  728 2.1 10 5 2 6 16% 32324 3369 80%
+c }  0.08  0  9 4  21  1 2507  728 2.1 10 5 2 6 16% 32324 2150 51%
+c 0  0.08  0  9 4  21  1 2507  728 2.1 10 5 2 6 16% 32324 2150 51%
+c 
+c --- [ closing proof ] ------------------------------------------------------
+c 
+c DRAT proof file '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/submap-feasibility-audit/mizhaev-target.drat' closed
+c DRAT 9989 added clauses 48.09%
+c DRAT 10781 deleted clauses 51.91%
+c DRAT 223350 bytes (0.21 MB)
+c 
+c --- [ result ] -------------------------------------------------------------
+c 
+s UNSATISFIABLE
+c 
+c --- [ run-time profiling ] -------------------------------------------------
+c 
+c process time taken by individual solving procedures
+c (percentage relative to process time for solving)
+c 
+c         0.06   80.50% search
+c         0.04   56.66% unstable
+c         0.02   22.81% stable
+c         0.01   19.45% simplify
+c         0.01    7.71% parse
+c         0.01    7.09% sweep
+c         0.01    7.08% congruence
+c         0.00    1.01% lucky
+c         0.00    0.36% backbone
+c         0.00    0.15% probe
+c   =================================
+c         0.08   92.34% solve
+c 
+c last line shows process time for solving
+c (percentage relative to total process time)
+c 
+c --- [ statistics ] ---------------------------------------------------------
+c 
+c chronological:               449        17.91 %  of conflicts
+c conflicts:                  2507     33175.42    per second
+c backbone:                  11956       285.28 %  of vars
+c decisions:                  3243     42914.99    per second
+c fixed:                      1558        37.17 %  of all variables
+c learned:                    2240        89.35 %  per conflict
+c learned_lits:              35542       100.00 %  learned literals
+c minimized:                     0         0.00 %  learned literals
+c shrunken:                  10405        29.28 %  learned literals
+c minishrunken:               2952         8.31 %  learned literals
+c otfs:                        232         9.25 %  of conflict
+c propagations:             778419        10.30 M  per second
+c reduced:                     534        21.30 %  per conflict
+c rephased:                      1      2507.00    interval
+c restarts:                     21       119.38    interval
+c stabilizing:                   1        16.83 %  of conflicts
+c substituted:                 483        11.52 %  of all variables
+c subsumed:                    874         2.27 %  of all clauses
+c strengthened:                231         0.60 %  of all clauses
+c ticks:                   5095752         6.75    propagation
+c weakened:                    966         2.00    average size
+c congruence:                    1      2507.00    interval
+c 
+c seconds are measured in process time for solving
+c 
+c --- [ glue usage ] ---------------------------------------------------------
+c 
+c focused glue 2 used 1106 clauses 20.90% accumulated 59.67% tier1
+c focused glue 3 used 770 clauses 14.55% accumulated 74.23% tier2
+c 
+c stable glue 2 used 266 clauses 16.37% accumulated 61.14% tier1
+c stable glue 3 used 153 clauses 9.421% accumulated 70.56%
+c stable glue 4 used 189 clauses 11.63% accumulated 82.20%
+c stable glue 5 used 131 clauses 8.066% accumulated 90.27%
+c stable glue 6 used 76 clauses 4.679% accumulated 94.95% tier2
+c 
+c 
+c --- [ resources ] ----------------------------------------------------------
+c 
+c total process time since initialization:         0.08    seconds
+c total real time since initialization:            0.08    seconds
+c maximum resident set size of process:           21.80    MB
+c 
+c --- [ shutting down ] ------------------------------------------------------
+c 
+c exit 20

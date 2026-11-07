@@ -1,0 +1,152 @@
+{
+  "verdict": "ACCEPT",
+  "evidence": "PROVED-1; standalone exact rational checks, no human review or verify_all reproduction",
+  "candidate_sha256": "7c644043de30402955a8b2c35669755e29731243751108d1ba53166072397862",
+  "checker_sha256": "010852c0f8ccac22a269ae106a1838a3638950039ec9714c19f7cdfca01bc28a",
+  "input_sha256": "e2f27b85e273c47ce30494b07eccb846e0c40bf3be7eceb123c77b8e4abf8e2a",
+  "signs_compared": 126,
+  "sign_mismatches": 0,
+  "rounding": "Original integer candidate, plus normal-normalized integer rescaling at 1e9 and 1e12; Decimal precision80, round-half-even. Not a second rounding of raw optimizer output.",
+  "reports": {
+    "original": {
+      "verdict": "ACCEPT",
+      "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+      "target": "auxiliary recovery, assigned topology",
+      "V_E_F_chi": [
+        16,
+        24,
+        8,
+        0
+      ],
+      "genus": 1,
+      "adjacent_pairs": 21,
+      "excess_edges": 3,
+      "multiplicity_histogram": {
+        "1": 18,
+        "2": 3
+      },
+      "repeated_pairs": {
+        "1,4": 2,
+        "1,6": 2,
+        "3,6": 2
+      },
+      "face_sizes": [
+        3,
+        9,
+        6,
+        6,
+        8,
+        4,
+        7,
+        5
+      ],
+      "pair_sections_checked": 28,
+      "finite_arrangement_vertices": 56,
+      "normal_triples_checked": 56,
+      "plane_quadruples_checked": 70,
+      "integer_input": true,
+      "min_abs_normal_determinant": "16705763707004188191197424",
+      "min_abs_plane_determinant": "31350909394071674220101439764469882",
+      "min_abs_nonincident_plane_value": "5225151565678612370016906627411647/148265938713198917032083410",
+      "min_squared_edge_length": "732289731074967343298752999083397139428001892658514351779364175376918066120270361176671734484797389129/54065210373137837838089753655425801730035039748819774410621270473739667028602147246304661524271818560400",
+      "min_squared_vertex_distance": "944768682965894440475572536414542717351101742344856452090514151979324907566891023750370887901665107613/509443827235871814773780137055835971754742691078989265442504462966494334712070868440360384208517141690000"
+    },
+    "1000000000": {
+      "verdict": "ACCEPT",
+      "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+      "target": "auxiliary recovery, assigned topology",
+      "V_E_F_chi": [
+        16,
+        24,
+        8,
+        0
+      ],
+      "genus": 1,
+      "adjacent_pairs": 21,
+      "excess_edges": 3,
+      "multiplicity_histogram": {
+        "1": 18,
+        "2": 3
+      },
+      "repeated_pairs": {
+        "1,4": 2,
+        "1,6": 2,
+        "3,6": 2
+      },
+      "face_sizes": [
+        3,
+        9,
+        6,
+        6,
+        8,
+        4,
+        7,
+        5
+      ],
+      "pair_sections_checked": 28,
+      "finite_arrangement_vertices": 56,
+      "normal_triples_checked": 56,
+      "plane_quadruples_checked": 70,
+      "integer_input": true,
+      "min_abs_normal_determinant": "36994859421914481799062167",
+      "min_abs_plane_determinant": "31870392402688063146985662680876847",
+      "min_abs_nonincident_plane_value": "31870392402688063146985662680876847/903163717827505847748052741",
+      "min_squared_edge_length": "997697373228193180899250483072124849151595192529122791264655249938274990582462094210026122928223306799381/73660351551307200159767473388717829373690891227001955257126147013790477693989220573732420679025649315987844",
+      "min_squared_vertex_distance": "11103626442306954607845699223263094297468049169534667175029247820505167444329755240739391030457164548778/5987363983534216956190426001112853567893682056972465822737605449655966129244917132136002364414430660408025"
+    },
+    "1000000000000": {
+      "verdict": "ACCEPT",
+      "evidence": "PROVED-1; exact rational computation, pending verify_all reproduction",
+      "target": "auxiliary recovery, assigned topology",
+      "V_E_F_chi": [
+        16,
+        24,
+        8,
+        0
+      ],
+      "genus": 1,
+      "adjacent_pairs": 21,
+      "excess_edges": 3,
+      "multiplicity_histogram": {
+        "1": 18,
+        "2": 3
+      },
+      "repeated_pairs": {
+        "1,4": 2,
+        "1,6": 2,
+        "3,6": 2
+      },
+      "face_sizes": [
+        3,
+        9,
+        6,
+        6,
+        8,
+        4,
+        7,
+        5
+      ],
+      "pair_sections_checked": 28,
+      "finite_arrangement_vertices": 56,
+      "normal_triples_checked": 56,
+      "plane_quadruples_checked": 70,
+      "integer_input": true,
+      "min_abs_normal_determinant": "36994859592966781301348057448759798",
+      "min_abs_plane_determinant": "31870392550086344653266150441281246514087156272",
+      "min_abs_nonincident_plane_value": "3983799068760793081658268805160155814260894534/112895464864358977801250087037576241",
+      "min_squared_edge_length": "30447307855547224049923822821891400814661924062089506789701731209077349297705179100722399627404659827980440088994368707736912874887180063/2247935529671687091567043377627687929736362477720907080397031826355558303392458927039084302826302605145178783098725638373776410687803829512",
+      "min_squared_vertex_distance": "3513256841834155744538842083733254087113638995421123849260191927185431012089048216227012004932701925063067676099930018608274529429423524954/1894439394351889413567998523850194151443955276911283904956630290175107399699869469892272212566984225198705490130192855310096914427099365663025"
+    }
+  },
+  "ladder_exact_imported": false,
+  "provenance": {
+    "original_execution": "python3 - with the exact stdin source now saved as adversarial-check.py",
+    "working_directory": "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron",
+    "activated_environment": "/Users/a.konyaev/.venvs/polyhedra",
+    "exit_status": 0,
+    "replayed": false,
+    "persistence": "Retained original tool output serialized without rerunning verification.",
+    "reproduction_command": "source /Users/a.konyaev/.venvs/polyhedra/bin/activate && python3 experiments/E-261103-04-s5-genus-ladder-9-faces/results/intermediate-om-realization-review/adversarial-check.py",
+    "script_sha256": "f68714b84377ab979d9d6ce8dbbf16e22d3be4674fc1d26e0dedba197a26f11c"
+  }
+}

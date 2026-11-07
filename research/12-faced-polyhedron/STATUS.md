@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-04** (after night 7: E-261102-03 and E-261102-04, two engines scored on the ladder; E-261102-02 killed; strategy review of 2026-11-03 applied the same day: S5 queue in `ROADMAP.md`, candidate maps in section 3c, direction DR19; E-261103-01 census and E-261103-02 encoder controls completed later the same day). Definitions, counters and evidence labels: `SPEC.md`. Evidence
+As of **2026-11-05** (after night 7: E-261102-03 and E-261102-04, two engines scored on the ladder; E-261102-02 killed; strategy review of 2026-11-03 applied the same day: S5 queue in `ROADMAP.md`, candidate maps in section 3c, direction DR19; E-261103-01 census and E-261103-02 encoder controls completed later the same day). Definitions, counters and evidence labels: `SPEC.md`. Evidence
 details: `results.md`; chronology: `experiment-log.md`; what to do next: `ROADMAP.md`. Update this file in the
 same commit as any result that changes a row. This file owns the verdicts and numbers; other files link here.
 
@@ -8,7 +8,13 @@ E-261103-03 (8,2) pilot completed 2026-11-04; its bounded (9,3) paired pilot is 
 E-261103-04's replacement surgery gate is complete (section 3k); its bounded
 geometric recovery pilot is concluded, UNDERPOWERED (section 3l).
 Its conditional failed-level grid is concluded UNDERPOWERED with all registered
-cells exactly rejected (section 3n). No active process.
+cells exactly rejected (section 3n). The subsequent intermediate-map audit is
+complete: Roest-Vigh g1 OM-SAT, Mizhaev g2 formula UNSAT-VERIFIED (section 3o).
+The alternative Mizhaev first-removal audit is complete, with an OM-SAT
+alternative and no remaining first-step queue (section 3p). Its bounded
+descendant audit supplies a checked combinatorial/OM route to a sphere
+(section 3q), without geometric recovery of that chain. The direct OM realization
+pilot has a separately checked Roest-Vigh g1 auxiliary (section 3r). No active process.
 
 ## 0. State in one paragraph
 
@@ -424,6 +430,143 @@ scope. Map realizability and the existence hypotheses retain their preceding
 statuses. Next reassess intermediate-map realizability or chain selection, as
 registered, before further geometry. CONCLUSION specifies the next preparation
 for a bounded exact audit. Full-control/focus gates stay closed. No active run.
+
+## 3o. Intermediate-map feasibility audit (2026-11-04)
+
+E-261103-04 pre-registration `6b8d587`; source-hash-bound uncommitted
+implementation. The actual feasibility entry point completed on one worker
+with both pinned accepted-parent SAT controls, direct-predicate checks and the
+fixed-chi rejected Roest-Vigh control passing. Evidence review validates all
+manifest hashes and the three saved SAT models without rerunning the solver
+or certificates. Evidence: `results/submap-feasibility-audit/` under E-261103-04.
+
+| Frozen labelled auxiliary map | Variables | Clauses | Outcome |
+|---|---:|---:|---|
+| Roest-Vigh g1 | 3404 | 32507 | SAT, complete saved model clause-checked |
+| Mizhaev g2 | 4191 | 35403 | UNSAT-VERIFIED, retained DRAT initially checked |
+
+**PROVED-1, supplied-input standalone computation.** H1 (both SAT) failed; H0
+is supported. These are plain uniform rank-4 OM formulas on eight faces plus
+infinity, submap=True with ALL_OPTS and frozen labelled segment pairings. The
+checked CNF certificate excludes the exact Mizhaev g2 formula. Its geometric
+interpretation remains conditional on PROVED-1 soundness and uniform perturbation;
+the published (8,3) object, other chains and focus maps are not excluded.
+Roest-Vigh SAT is OM feasibility only. No geometry or EXACT promotion.
+
+The run completed in 2.0988068340011523 wall seconds /
+0.0005830018983336534 core-hours, fraction 0.011660037966673068 of its cap.
+All eight experiment manifests total 1688.126484168004 seconds /
+0.4689240233800011 core-hours. No timeout bound any unit. Preparation and
+post-run review are outside these totals. CONCLUSION owns certificate hashes
+and provenance limits, including the unknown drat-trim source commit.
+
+Reassess the affected chain before further ladder geometry. Existing realizers
+can process the Roest-Vigh OM under a separately registered bounded amendment.
+Full eight-face recovery and focus/night gates remain closed. No existence
+hypothesis, scenario credence, FD/witness row or active-run change.
+
+## 3p. Alternative Mizhaev first-removal audit (2026-11-04)
+
+E-261103-04 pre-registration `5a2efef`; source-hash-bound uncommitted
+implementation. The actual alternatives entry point completed; unchanged
+control/source/environment acceptance was validated and reused without reruns.
+Evidence is `results/mizhaev-first-step-audit/`; CONCLUSION records artifact hashes.
+
+**PROVED-1, supplied-input standalone computation.** Complete enumeration of the
+registered six-triangle, six-label annular first-removal scope emitted and tested
+362 connected candidates after pruning, with ten valid patches in three
+canonical genus-two classes. Patch multiplicities are four known UNSAT, four new
+SAT and two new UNSAT. Both OTHER classes were decided: the saved SAT model
+satisfies its CNF and the new UNSAT has a retained, initially checked DRAT proof.
+Evidence review validates hashes/model/transcript without rerunning computation.
+H1 (an alternative SAT class) holds. No first-step decision queue remains.
+
+SAT is OM feasibility only; no planes or full recovery. Geometric obstruction
+from either UNSAT remains conditional on PROVED-1 soundness/uniform perturbation.
+Completeness concerns only the stated removal scope, not all handle removals,
+all chains or the published object's geometric existence. No EXACT promotion.
+
+The run took 0.9590472920026514 wall seconds / 0.00026640202555629206 core-hours,
+fraction 0.005328040511125841 of its cap. Enumeration used 0.0443312089992105
+seconds of its separate cap. All nine experiment manifests total
+1689.0855314600067 seconds / 0.4691904254055574 core-hours; preparation/review
+are outside these totals. No timeout bound a unit.
+
+Prepare a bounded genus-one descendant question for the alternative SAT class,
+under a separate committed amendment, before geometry. The exhausted queue
+does not support a night; full-control/focus gates remain closed. Existence
+hypotheses, scenario credences and FD/witness rows are unchanged.
+
+## 3q. Alternative Mizhaev descendant-chain audit (2026-11-04)
+
+E-261103-04 pre-registration `d90b404`; source-hash-bound uncommitted
+implementation. Actual descendants entry point completed once with reused
+unchanged controls/environment. Evidence: `results/mizhaev-descendant-audit/`;
+CONCLUSION retains hashes and exact scope.
+
+**PROVED-1, supplied-input standalone computation.** Enumeration of the frozen
+alternative genus-two parent's registered annular removals completed: 255
+connected candidates after pruning, six valid patches, five canonical g1
+classes. The first class has a clause-checked SAT model (3435 variables,
+32631 clauses), then a checked simple-sphere extension. Four original-labelled
+snapshots at genera 3,2,1,0 and three inverse steps exactly reconstruct the
+published top. H1 holds; stop_reason=CHAIN-PASS. Enumeration is complete,
+decision prefix incomplete: four other classes were deliberately UNRUN.
+
+This is a combinatorial/OM route, not recovered geometry or a coherent geometric
+continuation of its models. The run took 0.6328098340018187 wall seconds /
+0.00017578050944494963 core-hours, fraction 0.0035156101888989925 of its cap.
+All ten manifests total 1689.7183412940085 seconds /
+0.46936620591500233 core-hours; preparation/review are outside the totals.
+Success stopped the run; no executed unit hit a timeout.
+
+Next prepare a separately registered bounded geometric-control question using
+the saved route and existing OM realizers. No geometry, full-eight-face, focus
+or night gate opens. Existence hypotheses, scenario credences and FD/witness
+rows are unchanged. No EXACT promotion or active process.
+
+## 3r. Saved-OM realization pilot (2026-11-05)
+
+E-261103-04 pre-registration `7faeac4`; actual `STAGE=om-realization`
+entry point executed once in the activated research environment. All three
+saved model/formula bindings pass: identical clauses/variable numbering,
+complete clause-checked assignments and 126 signs each. All eight published-top
+controls pass (both methods, warm and unseeded), within ten seconds per unit.
+Both construction arms are CONTROL-PASS on these controls only.
+
+The first target unit, Roest-Vigh g1 hinge/warm, realizes all 126 saved signs.
+The shared worker's default all-pairs requirement incorrectly rejects this
+auxiliary, despite simple faces, consistent edges and no bad pairs. The attempt
+therefore retains exit 1 / ERROR, not an invented successful manifest. Its
+saved output passes `verify_candidate.py` with the correct embedded-only target.
+A structurally separate rational checker accepts the original integer planes
+and normalized integer-rescalings at 1e-9 and 1e-12, with all signs preserved.
+An adversarial agent independently checked the auxiliary without importing
+ladder_exact; this is not human mathematical review.
+
+**PROVED-1, standalone auxiliary computation:** (V,E,F,chi)=(16,24,8,0),
+genus 1, 21 adjacent pairs, 18 single and three doubled pairs (1,4), (1,6),
+(3,6). Not S5 or the focus target. No degeneracies or unintended intersections
+were found by the separate rational check. Scales test already rounded integer
+planes, not the optimizer's unavailable unrounded output. Registered H1 holds
+for this auxiliary after saved-output review. The candidate-check stop leaves
+the other eleven possible target attempts UNRUN, including both Mizhaev OMs.
+
+The attempt used 6.637199958000565 wall seconds / 0.0018436666550001569
+core-hours, fraction 0.022123999860001884 of its cap. All eleven run manifests
+total 1696.355541252009 seconds / 0.4712098725700025 core-hours;
+preparation and post-run review are outside these totals. No timeout bound a
+unit. The sandbox rejected nice's priority adjustment; the command continued
+at inherited priority, with the registered thread limits and time caps.
+
+Evidence: `results/intermediate-om-realization/` (immutable failed attempt),
+`results/intermediate-om-realization-review/` (saved-output acceptance and
+adversarial check), under E-261103-04. The local dispatcher now explicitly
+checks intermediate geometry with require_all_pairs=False, without changing
+the shared worker or rerunning optimization. Its corrected path has not had a
+fresh full pilot. No new integrated suite, solver/proof replay or EXACT
+promotion. Full eight-face recovery, focus and night gates remain closed;
+no existence/scenario change or owner launch is pending.
 
 ## 4. What may and may not be claimed
 
