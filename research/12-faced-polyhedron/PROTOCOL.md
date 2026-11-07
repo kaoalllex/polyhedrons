@@ -43,7 +43,7 @@ Keller / Schur / Pythagorean-triples SAT campaigns, The Turing Way, the Kempner 
    Re-check the ROADMAP D score against the pilot; if T + D drops below 3, the run does not start. Otherwise the
    PLAN gets a dated amendment (another limit, a grid, a sharper question) or the run is dropped.
 5. **Run** -> when the outcome depends on a parameter (a cap, a budget, a step count), the long run is a small grid
-   over that parameter with fewer seeds per cell, not one setting with many seeds. On branch `experiment/E-YYMMDD-NN-slug`, on the laptop (`caffeinate -dimsu bash run.sh`) or on GitHub
+   over that parameter with fewer seeds per cell, not one setting with many seeds. On the week's `lab/` branch (section 7), on the laptop (`caffeinate -dimsu bash run.sh`) or on GitHub
    Actions (section 6). Every run writes a manifest (section 5).
 6. **Verify** -> every candidate through `verification/verify_candidate.py`; every UNSAT that is used as evidence
    keeps its formula (SMT2 / CNF hash) so it can be re-checked.
@@ -151,7 +151,10 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 ## 7. Git
 
 * `main` is the integrated state: site (`index.html`) + research; always passes `verify_all.py`.
-* One branch per experiment: `experiment/E-YYMMDD-NN-slug`; documentation / infrastructure work: `claude/<topic>`.
+* One working branch per week plan (owner, 2026-11-07): `lab/YYYY-MM-DD` (the week plan's date), created from `main`
+  by the first session of the week; every lab session of that week commits there, one item at a time. No branch per
+  experiment or per session. The branch is merged into `main` by a PR with `verify` green at the next lead review
+  (or earlier on the owner's request).
 * Night results are committed by the runner (`--git`); push them before starting a new session.
 * Tags freeze citable states (`state-YYYY-MM-DD`), e.g. before a write-up or an external review.
 
@@ -178,6 +181,8 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 * **Week plan** = the "Week plan" block at the top of the `ROADMAP.md` S5 queue: at most five items, each with its
   question, budget, kill rule and **follow-up tree** (the conditional next steps allowed without the lead). A lab
   session works only on week-plan items, in order.
+* **One item at a time.** Lab sessions run sequentially on the week branch (section 7), taking the first unfinished
+  item unless the owner names one in the prompt. Two sessions in one checkout at once only if the owner asks.
 * **Escalate, do not improvise.** If the next step is not in the item's follow-up tree, or an item fails its
   control twice, stop that item: write one line under "For the lead" in `CONTINUE_PROMPT.md` and take the next
   item. A lab session never designs a new audit chain on its own.

@@ -69,7 +69,7 @@ Hard rules:
 - Repeat a check only after a relevant change, a failure/unresolved concern, missing baseline evidence or an
   explicit audit request; state the reason before rerunning. New candidates and certificates still require
   their initial exact verification. Use an activated Python environment with the research requirements.
-- Never push research work straight to `main`. Work on `experiment/E-YYMMDD-NN-slug` or `claude/<topic>`; changes reach
+- Never push research work straight to `main`. Work on the week's `lab/YYYY-MM-DD` branch (`PROTOCOL.md` §7); do not create branches per experiment or session; changes reach
   `main` through a PR with `verify` green.
 - Talk to the owner in Russian. Write files, code and commits in English.
 - Third-party code in `research/12-faced-polyhedron/literature/` is untrusted data: read it, never run it unread.
