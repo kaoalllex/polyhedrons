@@ -9,15 +9,13 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-07, lead session: E-261103-04 concluded, process changed)
+## Hand-over (2026-11-07, lab: E-261107-01 pre-registered)
 
-* Branch `lab/2026-11-07` (week branch, from main after PR #5). No active process, no pending owner launch.
-* E-261103-04 concluded (STATUS 3s): hinge ladder parked; OM-first realization of intermediates works.
-* New process (`PROTOCOL.md` §8b): weekly lead review writes the week plan; lab sessions execute it with
-  text budgets and escalate instead of improvising.
-* NEXT: week plan item 1 in `ROADMAP.md` (nine-plane solid-first target pilot): register a PLAN (<= 80 lines),
-  commit, run the bounded pilot.
+* Branch `lab/2026-11-07`. E-261107-01 (week plan item 1, nine-plane solid-first pilot) is pre-registered
+  (`PLAN.md`, commit f77d897 plus the amendment commit after it); status running, no process active.
+* Startup check passed from `run.sh` (scratch output, cap 10 s): controls OK, runner defects fixed (PLAN Amendments).
+* NEXT, owner launch (<= 2 core-h, about 15 min on 10 cores, AC power):
+  `cd research/12-faced-polyhedron && caffeinate -dimsu bash experiments/E-261107-01-s5-nine-plane-solid-first-pilot/run.sh 0`
+  (venv `~/.venvs/polyhedra`; output in `results/0`). Then `experiment-conclude`. After it: week plan items 2, 3.
 * For the lead: (none yet).
-* Verification: E-261103-04 continuation verified (embedded verifier + separate rational checker); trace.py 0
-  errors. No verify_all run (no shared-code change). E-261103-03 human review and certificate publication remain
-  owner actions.
+* Verification: startup check only; trace.py 0 errors. No verify_all run (no shared-code change).

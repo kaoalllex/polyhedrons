@@ -60,8 +60,8 @@ def worker(args):
             res['expected_map_match'] = all(base.cyclic_equal(links[i], exp[i]) for i in range(len(h)))
         base.validate_result(dict(solver=info, geometry=res['geometry']), dict(planes=h, edges=u['edges']))
         base.dump(args.output.with_suffix('.candidate.json'), base.candidate_record(res))
-    elif u.get('diagnostic_cap'):  # no hard solution: best pair count, diagnostic only
-        _, d = best_solid(a, tables, time_limit=u['diagnostic_cap'], max_runs=3)
+    if u.get('diagnostic_cap') and (cells is None or 'links' in u):  # best pair count, diagnostic only
+        _, d = best_solid(a, tables, time_limit=u['diagnostic_cap'], max_runs=3, max_cuts=0)
         res['pairs_diagnostic'] = d
     base.dump(args.output, res)
 
@@ -101,7 +101,8 @@ def main(args):
         res = dict(zip(controls, pool.map(lambda kv: run_unit(out, *kv), controls.items())))
         summary['controls'] = {k: verdict(v) for k, v in res.items()}
         ok = (summary['controls']['neg_tetra_E7'] == 'INFEASIBLE' and summary['controls']['neg_nine_E33'] == 'INFEASIBLE'
-              and all(res[k].get('expected_map_match') for k in res if k.endswith('_E36')))
+              and all(res[k].get('expected_map_match') and res[k]['pairs_diagnostic']['adjacent'] == 28
+                  for k in res if k.endswith('_E36')))
         if not ok:
             summary['status'] = 'CONTROL-FAILED'
         else:

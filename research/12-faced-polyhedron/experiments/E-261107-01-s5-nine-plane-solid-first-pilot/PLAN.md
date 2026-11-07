@@ -60,3 +60,10 @@ target S5 (F = 9, g = 3), `STRATEGY.md`. A solid found here is an S5 candidate o
   conclusion; E-261103-05 row unchanged.
 
 ## Amendments
+
+### 2026-11-07 (before any pilot run): startup-check fixes, no design change
+Startup check (4 workers, 1 seed per family, cap 10 s, scratch output, `run.sh` entry point): both negatives
+INFEASIBLE, both 8-plane controls SOLID with the known map. Two runner defects fixed in `nine.py`: Phase B left the
+default `max_cuts=30` (up to 30 re-solves; one unit hit the hard timeout) and now uses `max_cuts=0`; Phase B now also
+runs on the 8-plane controls and the control gate requires 28 pairs, as the Controls bullet states. At cap 10 s the
+nine-plane units end UNKNOWN/INFEASIBLE with 29 pairs in Phase B (60 s); this is a startup check, not pilot data.
