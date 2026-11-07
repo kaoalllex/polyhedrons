@@ -1010,6 +1010,22 @@
    "preregistered": "false"
   },
   {
+   "id": "E-261107-01",
+   "kind": "experiment",
+   "title": "Nine-plane solid-first target pilot - does the disk-aware CP-SAT engine find a 36-pair embedded solid at (9, 3)?",
+   "status": "running",
+   "date": "2026-11-07",
+   "concluded": "",
+   "path": "experiments/E-261107-01-s5-nine-plane-solid-first-pilot/README.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "true"
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -4544,6 +4560,11 @@
   },
   {
    "from": "E-261103-04",
+   "to": "E-261107-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-04",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -4551,6 +4572,11 @@
    "from": "E-261103-04",
    "to": "H-261103-02",
    "kind": "tests"
+  },
+  {
+   "from": "E-261103-05",
+   "to": "E-261107-01",
+   "kind": "origin"
   },
   {
    "from": "E-261103-05",
@@ -4570,6 +4596,16 @@
   {
    "from": "E-261103-07",
    "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261107-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261107-01",
+   "to": "H-261103-02",
    "kind": "tests"
   },
   {
@@ -5135,6 +5171,11 @@
   {
    "from": "I-261101-08",
    "to": "E-261103-05",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-08",
+   "to": "E-261107-01",
    "kind": "origin"
   },
   {
