@@ -54,8 +54,8 @@ def build_mesh(N, R, r, j):
     cen = base + delta.mean(axis=1)
     best = np.full(len(tris), np.inf); region = np.zeros(len(tris), int)
     for k in range(7):
-        for a in (-1, 0, 1):
-            for b in (-1, 0, 1):
+        for a in (-2, -1, 0, 1, 2):
+            for b in (-2, -1, 0, 1, 2):
                 c = np.array([k / 7 + a, (j * k / 7) + b])
                 dist = np.linalg.norm((cen - c) @ M.T, axis=1)
                 better = dist < best

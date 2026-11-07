@@ -9,11 +9,14 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-07, lab: E-261107-01 concluded)
+## Hand-over (2026-11-07, lab: E-261107-01 and E-261103-06 concluded)
 
-* Branch `lab/2026-11-07`. Week plan item 1 done: E-261107-01 all 30 nine-plane arrangements INFEASIBLE
-  (6-21 s each), LOW-YIELD@0.38 core-h, configuration parked (STATUS 3t). No active process.
-* NEXT: week plan item 2 (`ROADMAP.md`, E-261103-06 R1 pilot: embedded first), then item 3 (research map).
-* For the lead: engine is cheap at nine planes (about 13 s per exact decision), so coverage is limited by the
-  number/source of arrangements, not solve time; decide a broader sample or a smarter arrangement source.
-* Verification: no candidate; no shared-code change, no verify_all run; trace.py run after the ledger edit.
+* Branch `lab/2026-11-07`. Week plan items 1 and 2 done: E-261107-01 (30 nine-plane arrangements INFEASIBLE,
+  STATUS 3t); E-261103-06 R1 (4 valid torus starts blocked by the barrier, UNDERPOWERED, parked, STATUS 3u).
+  No active process.
+* NEXT: week plan item 3 (research map as a maze, infrastructure, no compute; kill: more than one session).
+* For the lead: (1) nine-plane engine is cheap (about 13 s per exact decision): coverage is limited by the
+  arrangement source, not solve time. (2) embedded-first R1 blocks on local mesh folds at ring <= 1 after about
+  5 steps; decide whether to fund a repaired flattening (tangential regularisation, contact-sliding barrier,
+  finer mesh) before R2'. Open defect: start construction fails for j = 4.
+* Verification: no candidates; no shared-code change, no verify_all run; trace.py run after the ledger edit.

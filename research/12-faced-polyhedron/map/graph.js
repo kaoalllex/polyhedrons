@@ -984,15 +984,15 @@ window.GRAPH = {
    "id": "E-261103-06",
    "kind": "experiment",
    "title": "Embedded first, planar later - pilot on Szilassi from a torus, then an 8-face object from a smooth genus-3 surface",
-   "status": "running",
+   "status": "killed",
    "date": "2026-11-03",
-   "concluded": "",
+   "concluded": "2026-11-07",
    "path": "experiments/E-261103-06-embedded-first-pilot/README.md",
    "direction": [
     "DR17",
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "UNDERPOWERED",
    "preregistered": "true"
   },
   {

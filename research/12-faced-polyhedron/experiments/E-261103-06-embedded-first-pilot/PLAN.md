@@ -73,3 +73,10 @@ about 10 at near-parallel plane pairs. Registered change: vertex correction is T
 displacement cap is applied per vertex instead of by a global factor; barrier test and halving unchanged. With it
 the energy falls 164 -> 84 in 5 steps, then every halving down to 1/128 is rejected: the detector hits are triangle
 pairs sharing a vertex or one ring apart (local folds), not distant sheets. The 6 starts run as registered.
+
+### 2026-11-07 (first 6-start run, superseded): start construction, no design change
+The first run (`results/run1-superseded`, same code except a start-construction fix below) gave BLOCKED for the j = 2
+starts and BAD-START (empty or non-adjacent regions) for j = 3 and 4. The start control did its job. The cause was
+the images searched for the nearest lattice point (+-1); with +-2, j = 3 gives a valid K7 start (regions 136-141
+vertices, not equal), j = 4 still has an empty region (a start-construction defect, not investigated further).
+The registered grid is kept: j = 4 starts are recorded as BAD-START, so at most 4 of the 6 starts carry data.

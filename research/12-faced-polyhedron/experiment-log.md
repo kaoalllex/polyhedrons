@@ -917,3 +917,5 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   parked (STATUS 3s).
 * 2026-11-07: E-261107-01 nine-plane solid-first pilot (9fbea2a): 30 arrangements all INFEASIBLE in
   6-21 s, no 36-pair solid; LOW-YIELD@0.38 core-h, configuration parked (STATUS 3t).
+* 2026-11-07: E-261103-06 embedded-first R1 pilot: 4 valid torus starts all blocked by the barrier at
+  energy 84-118 after 3-6 steps; UNDERPOWERED, parked (STATUS 3u).

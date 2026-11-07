@@ -584,6 +584,13 @@ No hypothesis, credence or witness change. Details: E-261103-04 CONCLUSION.
 via the E-261103-05 encoding; no DRAT. Best Phase B pair count 32 (diagnostic only). Verdict LOW-YIELD@0.38
 core-h; configuration parked. No hypothesis, credence or witness change.
 
+## 3u. E-261103-06 embedded-first R1 pilot (2026-11-07)
+
+Szilassi map on a 28 x 28 torus mesh, damped block-coordinate flattening with a discrete intersection check: all 4
+valid starts BLOCKED after 3-6 steps at energy 84-118 (start 150-191); controls pass. Local folds at mesh ring <= 1
+are the rejected steps. EXACT, instance scope; UNDERPOWERED, not a refutation; idea parked, R2' not run
+(E-261103-06 CONCLUSION). No hypothesis, credence or witness change.
+
 ## 4. What may and may not be claimed
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for
