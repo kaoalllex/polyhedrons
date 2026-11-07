@@ -63,3 +63,13 @@ Pre-registration, 2026-11-07, branch `lab/2026-11-07`. Week plan item 2. Explore
    positive tail control uses them with +-3 integer noise on 100x scaled coefficients (seed 1); checked by hand
    before registering: solid-first gives 21 pairs, `verify_candidate --target S5` PASS. The negative control
    perturbs one plane of that set further.
+
+### 2026-11-07 (after the pilot, before the 6 starts): pilot result and one optimiser change
+Pilot (start R2 j2, scratch output): controls pass (energy 0 coplanar / 25 random / 92 round torus; detector flags the
+spindle torus and not the round one; tail PASS on perturbed Szilassi, INFEASIBLE with one plane moved). K7 holds on
+the mesh (143 vertices per region, all 21 pairs share a vertex). Step cost about 0.1 s, so the gate (< 2 s) passes.
+First version (plain pseudo-inverse correction, global step cap) was BLOCKED after 8 steps: corrections of norm
+about 10 at near-parallel plane pairs. Registered change: vertex correction is Tikhonov-damped (mu = 0.05) and the
+displacement cap is applied per vertex instead of by a global factor; barrier test and halving unchanged. With it
+the energy falls 164 -> 84 in 5 steps, then every halving down to 1/128 is rejected: the detector hits are triangle
+pairs sharing a vertex or one ring apart (local folds), not distant sheets. The 6 starts run as registered.
