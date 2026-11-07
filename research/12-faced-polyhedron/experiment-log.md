@@ -912,3 +912,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   published-top controls pass and the first Roest-Vigh g1 output passes separate
   auxiliary verification. CONCLUSION / STATUS 3r retain adapter ERROR, corrected
   gate, adversarial check and unrun Mizhaev scope; no optimization replay or night.
+* 2026-11-07: E-261103-04 Mizhaev continuation (b1d2104): both alternative Mizhaev
+  intermediates realized from saved OMs in 7.9 s; experiment concluded, hinge ladder
+  parked (STATUS 3s).

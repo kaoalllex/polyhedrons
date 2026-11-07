@@ -14,7 +14,7 @@ The alternative Mizhaev first-removal audit is complete, with an OM-SAT
 alternative and no remaining first-step queue (section 3p). Its bounded
 descendant audit supplies a checked combinatorial/OM route to a sphere
 (section 3q), without geometric recovery of that chain. The direct OM realization
-pilot has a separately checked Roest-Vigh g1 auxiliary (section 3r). No active process.
+pilot has a separately checked Roest-Vigh g1 auxiliary (section 3r). E-261103-04 is concluded (section 3s). No active process.
 
 ## 0. State in one paragraph
 
@@ -567,6 +567,15 @@ the shared worker or rerunning optimization. Its corrected path has not had a
 fresh full pilot. No new integrated suite, solver/proof replay or EXACT
 promotion. Full eight-face recovery, focus and night gates remain closed;
 no existence/scenario change or owner launch is pending.
+
+## 3s. E-261103-04 concluded (2026-11-07)
+
+Continuation `b1d2104`: controls pass; both alternative Mizhaev intermediates realized
+from their saved OM models at the first attempt, g1 (16,24,8,0) and g2 (20,30,8,-2),
+verifier (embedded) and separate rational checker PASS; **PROVED-1**, auxiliary, not S5.
+Experiment verdict: the hinge ladder fails both (8,3) controls and is parked; OM-first
+realization of intermediates works but is not an ascent and adds no (9,3) power.
+No hypothesis, credence or witness change. Details: E-261103-04 CONCLUSION.
 
 ## 4. What may and may not be claimed
 
