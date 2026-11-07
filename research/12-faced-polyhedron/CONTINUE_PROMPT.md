@@ -11,7 +11,7 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
 
 ## Hand-over (2026-11-07, lead session: E-261103-04 concluded, process changed)
 
-* Branch `Codex/s5-coverage-tranche`. No active process, no pending owner launch.
+* Branch `lab/2026-11-07` (week branch, from main after PR #5). No active process, no pending owner launch.
 * E-261103-04 concluded (STATUS 3s): hinge ladder parked; OM-first realization of intermediates works.
 * New process (`PROTOCOL.md` §8b): weekly lead review writes the week plan; lab sessions execute it with
   text budgets and escalate instead of improvising.
