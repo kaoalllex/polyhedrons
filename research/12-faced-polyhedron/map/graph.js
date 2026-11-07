@@ -984,7 +984,7 @@ window.GRAPH = {
    "id": "E-261103-06",
    "kind": "experiment",
    "title": "Embedded first, planar later - pilot on Szilassi from a torus, then an 8-face object from a smooth genus-3 surface",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-03",
    "concluded": "",
    "path": "experiments/E-261103-06-embedded-first-pilot/README.md",
@@ -993,7 +993,7 @@ window.GRAPH = {
     "DR19"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "true"
   },
   {
    "id": "E-261103-07",

@@ -2,12 +2,12 @@
 id: E-261103-06
 title: Embedded first, planar later - pilot on Szilassi from a torus, then an 8-face object from a smooth genus-3 surface
 date: 2026-11-03
-status: planned
+status: running
 direction: [DR17, DR19]
 origin: [I-261103-01, I-261103-05, E-261101-26]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned, **explore**. Scores T D F G R: 1 2 2 2 1 | budget: one session for the prototype and R1; a second session for the
