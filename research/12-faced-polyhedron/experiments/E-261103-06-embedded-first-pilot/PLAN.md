@@ -53,3 +53,13 @@ Pre-registration, 2026-11-07, branch `lab/2026-11-07`. Week plan item 2. Explore
 * **STATUS / ROADMAP**: STATUS section 3u and ROADMAP State done|killed with the verdict; scenario unchanged.
 
 ## Amendments
+
+### 2026-11-07 (before any pilot run): two design changes, no compute done
+1. Optimiser: block-coordinate descent on the planarity energy (refit the 7 planes; move every vertex by the
+   minimum-norm correction towards the planes of its regions), with the step scaled by the displacement cap and
+   halved on a detected intersection. No edge-length regulariser (it would hold the energy above zero). The energy
+   and the intersection test are as registered.
+2. The known Szilassi planes have a non-uniform normal triple, which the exact arrangement builder rejects. The
+   positive tail control uses them with +-3 integer noise on 100x scaled coefficients (seed 1); checked by hand
+   before registering: solid-first gives 21 pairs, `verify_candidate --target S5` PASS. The negative control
+   perturbs one plane of that set further.
