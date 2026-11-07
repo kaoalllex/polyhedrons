@@ -56,15 +56,19 @@ Lab sessions take these in order (`PROTOCOL.md` §8b). Anything outside a follow
 
 1. **Nine-plane solid-first target pilot** (new E-id from E-261103-05, explore). Question: does the disk-aware CP-SAT
    solid-first engine find an embedded 9-face solid with all 36 pairs adjacent from uniform C3-orbit (and D2/random)
-   arrangements of 9 planes? Budget: 1 session prep, <= 2 core-h, minutes per seed. Kill: no 36-pair solid in budget
+   arrangements of 9 planes? Budget: 1 session prep, pilot <= 2 core-h (about 15 minutes on 10 cores; the cap
+   tests for a signal before a night is spent, it is not a core limit), minutes per seed. Kill: no 36-pair solid in budget
    -> park this configuration, record the best pair count per seed as a diagnostic only. Follow-up tree: any embedded
    output -> `verify_candidate.py --target S5` + `candidate-check`; >= 1 output with >= 33 pairs -> one seed grid
-   (<= 2 core-h more) on that symmetry; engine failure on its own 8-plane controls -> stop, escalate.
+   on that symmetry as an owner night (10 cores, <= 8 h, `overnight-run-script`); engine failure on its own 8-plane controls -> stop, escalate.
 2. **E-261103-06 R1 pilot** (embedded first, planar later; explore, open row). Budget and kill as in its row.
    Follow-up tree: R1 pass -> R2' on an (8,3) control in the same session if < 1 core-h; R1 fail -> park.
 3. **Research map as a maze** (infrastructure, no compute; owner request): in `map/index.html` colour nodes by state
-   (alive / parked / failed / done), show the verdict line of an experiment's CONCLUSION on click, and keep the
-   page working from file://. Kill: more than one session.
+   (alive / parked / failed / done) and show the verdict line of an experiment's CONCLUSION on click; on click,
+   highlight recursively the ancestors (where the node came from) and the descendants (what it produced) in two
+   colours, edges included; show witnesses (verified objects, the valuable results) as their own band and shape,
+   apart from foundations (FD rows: established statements) and certificates; keep the page working from file://.
+   Kill: more than one session.
 
 For the next lead review: the E-261103-03 hard tail (73 timeout and 111 unattempted (9,3) maps) needs a new exact
 method (symmetry breaking, cube-and-conquer, rank-3 filter, or hints from solid-first outputs) rather than longer caps.
