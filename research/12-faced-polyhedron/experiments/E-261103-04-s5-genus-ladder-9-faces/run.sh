@@ -20,9 +20,18 @@ case "$STAGE" in
   calibration)
     DEFAULT_OUT="$HERE/results/recovery-grid"
     if [[ "$STARTUP_ONLY" == 1 ]]; then DEFAULT_OUT="$HERE/results/recovery-grid-startup"; fi ;;
+  feasibility) DEFAULT_OUT="$HERE/results/submap-feasibility-audit" ;;
+  alternatives) DEFAULT_OUT="$HERE/results/mizhaev-first-step-audit" ;;
+  descendants) DEFAULT_OUT="$HERE/results/mizhaev-descendant-audit" ;;
+  om-realization) DEFAULT_OUT="$HERE/results/intermediate-om-realization" ;;
   *) echo "Unknown audit stage: $STAGE" >&2; exit 2 ;;
 esac
 OUT="${OUT:-$DEFAULT_OUT}"
+if [[ "$STAGE" == feasibility || "$STAGE" == alternatives || "$STAGE" == descendants || "$STAGE" == om-realization ]]; then
+  export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+  export VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1 PYTHONUNBUFFERED=1
+  exec nice -n 10 "$PYTHON" "$HERE/audit.py" --stage "$STAGE" --out "$OUT"
+fi
 if [[ "$STAGE" == recovery || "$STAGE" == calibration ]]; then
   export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
   export VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1 PYTHONUNBUFFERED=1

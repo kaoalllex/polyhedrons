@@ -1,0 +1,155 @@
+c --- [ banner ] -------------------------------------------------------------
+c 
+c CaDiCaL SAT Solver
+c Copyright (c) 2016-2026
+c A. Biere, M. Fleury, N. Froleyks, K. Fazekas, F. Pollitt, T. Faller
+c JKU Linz, University of Freiburg, TU Wien
+c 
+c Version 3.0.1 c60730422e758ef1cebe7aeddf2dda31c996bf04
+c Apple clang version 21.0.0 (clang-2100.3.34.2) -Wall -Wextra -O3 -DNDEBUG -DNCLOSEFROM
+c Thu Oct 29 12:02:02 +03 2026 Darwin IOSM-FQNJVXCGPH 25.6.0 arm64
+c 
+c --- [ proof tracing ] ------------------------------------------------------
+c 
+c opening file to write '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/mizhaev-first-step-audit/mizhaev-alt-01-try1.drat'
+c writing binary proof trace to '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/mizhaev-first-step-audit/mizhaev-alt-01-try1.drat'
+c 
+c --- [ parsing input ] ------------------------------------------------------
+c 
+c reading DIMACS file from '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/mizhaev-first-step-audit/mizhaev-alt-01-try1.cnf'
+c opening file to read '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/mizhaev-first-step-audit/mizhaev-alt-01-try1.cnf'
+c found 'p cnf 4142 35233' header
+c parsed 35233 clauses in 0.01 seconds process time
+c 
+c --- [ options ] ------------------------------------------------------------
+c 
+c all options are set to their default value
+c 
+c --- [ solving ] ------------------------------------------------------------
+c 
+c time measured in process time since initialization
+c 
+c  seconds  reduction conflicts       size tier2      variables
+c         MB    restarts   redundant    glue  trail        remaining
+c          level     rate       size/glu tier1  irredundant
+c 
+c *  0.01  0  0 0   0  0    0    0 0.0 0 0 2 6  0% 34311 3923 95%
+c )  0.01  0  0 0   0  0    0    0 0.0 0 0 2 6  0% 34311 3923 95%
+c {  0.01  0  0 0   0  0    0    0 0.0 0 0 2 6  0% 34311 3923 95%
+c -  0.01  0 16 1  25  3  301  178 2.1 12 6 2 6 25% 34148 3923 95%
+c -  0.03  0 12 2  54  2  734  371 2.0 12 6 2 6 25% 34148 3923 95%
+c }  0.03  0 11 2  54  2 1001  562 2.1 12 6 2 6 25% 34148 3923 95%
+c [  0.03  0  0 2  54  0 1001  562 0.0 0 0 2 6  0% 34148 3923 95%
+c O  0.03  0 57 2  54 58 1002  563 1.3 16 12 2 6 43% 34148 3923 95%
+c -  0.05  0 35 3  54  1 1412  609 1.4 25 18 2 6 34% 34148 3923 95%
+c ]  0.06  0 33 3  54  1 1528  710 1.4 25 18 2 6 33% 34148 3923 95%
+c {  0.06  0 11 3  54  2 1528  710 2.1 12 6 2 6 25% 34148 3923 95%
+c d  0.07  0 10 3  96  2 2058 1069 2.1 12 6 2 6 25% 33184 3441 83%
+c p  0.07  0 10 3  96  2 2058 1072 2.1 12 6 2 6 25% 33184 3441 83%
+c c  0.08  0 10 3  96  2 2058 1072 2.1 12 6 2 6 25% 33042 3441 83%
+c d  0.08  0 10 3  96  2 2058 1070 2.1 12 6 2 6 25% 32940 3390 82%
+c 2  0.08  0 10 3  96  2 2058 1070 2.1 12 6 2 6 25% 32918 3390 82%
+c t  0.09  0 10 3  96  2 2058 1070 2.1 12 6 2 6 25% 32790 3390 82%
+c -  0.10  0  9 4  96  2 2351  816 2.2 12 5 2 6 19% 32790 3390 82%
+c i  0.11  0  9 4  96  2 2695  949 2.1 11 5 2 6 20% 32790 3389 82%
+c O  0.11  0  9 4 143  2 3004 1205 2.1 11 5 2 6 20% 32790 3389 82%
+c 
+c  seconds  reduction conflicts       size  tier2      variables
+c         MB    restarts   redundant     glue  trail        remaining
+c          level     rate       size/glue tier1  irredundant
+c 
+c i  0.12  0  8 4 145  2 3419 1417 2.1 11 5 2 6 19% 32790 3388 82%
+c i  0.13  0  8 4 145  2 3556 1493 2.1 11 5 2 6 19% 32790 3387 82%
+c -  0.13  0  8 5 145  2 3563  865 2.1 11 5 2 6 19% 31752 3387 82%
+c i  0.13  0  8 5 145  2 3595  877 2.1 10 5 2 6 19% 31752 3363 81%
+c i  0.13  0  8 5 145  2 3641  891 2.1 10 5 2 6 18% 31752 3355 81%
+c i  0.13  0  8 5 145  2 3658  898 2.1 10 5 2 6 19% 31752 3351 81%
+c i  0.13  0  8 5 145  2 3668  902 2.1 10 5 2 6 18% 31752 3328 80%
+c i  0.13  0  8 5 145  2 3684  912 2.1 10 5 2 6 19% 31752 3315 80%
+c i  0.13  0  8 5 145  2 3686  912 2.1 10 5 2 6 19% 31752 3312 80%
+c i  0.13  0  8 5 145  2 3698  919 2.1 10 5 2 6 18% 31752 3311 80%
+c i  0.13  0  8 5 145  2 3702  921 2.1 10 5 2 6 18% 31752 3310 80%
+c i  0.13  0  8 5 145  2 3704  922 2.1 10 5 2 6 18% 31752 3297 80%
+c }  0.13  0  8 5 145  2 3706  922 2.1 10 5 2 6 18% 31752 2476 60%
+c 0  0.13  0  8 5 145  2 3706  922 2.1 10 5 2 6 18% 31752 2476 60%
+c 
+c --- [ closing proof ] ------------------------------------------------------
+c 
+c DRAT proof file '/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/mizhaev-first-step-audit/mizhaev-alt-01-try1.drat' closed
+c DRAT 11337 added clauses 47.04%
+c DRAT 12762 deleted clauses 52.96%
+c DRAT 335683 bytes (0.32 MB)
+c 
+c --- [ result ] -------------------------------------------------------------
+c 
+s UNSATISFIABLE
+c 
+c --- [ run-time profiling ] -------------------------------------------------
+c 
+c process time taken by individual solving procedures
+c (percentage relative to process time for solving)
+c 
+c         0.11   87.28% search
+c         0.09   68.03% unstable
+c         0.02   18.10% stable
+c         0.02   12.69% simplify
+c         0.01    5.68% sweep
+c         0.01    4.59% parse
+c         0.01    4.24% congruence
+c         0.00    1.13% lucky
+c         0.00    0.18% backbone
+c         0.00    0.09% probe
+c   =================================
+c         0.13   95.28% solve
+c 
+c last line shows process time for solving
+c (percentage relative to total process time)
+c 
+c --- [ statistics ] ---------------------------------------------------------
+c 
+c chronological:               622        16.78 %  of conflicts
+c conflicts:                  3706     29194.90    per second
+c backbone:                  11435       276.07 %  of vars
+c decisions:                  5812     45785.41    per second
+c fixed:                      1133        27.35 %  of all variables
+c learned:                    3482        93.96 %  per conflict
+c learned_lits:              70844       100.00 %  learned literals
+c minimized:                     0         0.00 %  learned literals
+c shrunken:                  20408        28.81 %  learned literals
+c minishrunken:               7126        10.06 %  learned literals
+c otfs:                        153         4.13 %  of conflict
+c propagations:            1458010        11.49 M  per second
+c reduced:                    1068        28.82 %  per conflict
+c rephased:                      2      1853.00    interval
+c restarts:                    145        25.56    interval
+c stabilizing:                   1        13.98 %  of conflicts
+c substituted:                 533        12.87 %  of all variables
+c subsumed:                   1287         3.23 %  of all clauses
+c strengthened:                152         0.38 %  of all clauses
+c ticks:                  10021831         6.99    propagation
+c weakened:                   1066         2.00    average size
+c congruence:                    1      3706.00    interval
+c 
+c seconds are measured in process time for solving
+c 
+c --- [ glue usage ] ---------------------------------------------------------
+c 
+c focused glue 2 used 2057 clauses 20.19% accumulated 67.74% tier1
+c focused glue 3 used 1039 clauses 10.20% accumulated 77.94% tier2
+c 
+c stable glue 2 used 91 clauses 6.220% accumulated 30.07% tier1
+c stable glue 3 used 68 clauses 4.647% accumulated 34.72%
+c stable glue 4 used 131 clauses 8.954% accumulated 43.67%
+c stable glue 5 used 29 clauses 1.982% accumulated 45.65%
+c stable glue 6 used 43 clauses 2.939% accumulated 48.59% tier2
+c 
+c 
+c --- [ resources ] ----------------------------------------------------------
+c 
+c total process time since initialization:         0.13    seconds
+c total real time since initialization:            0.14    seconds
+c maximum resident set size of process:           21.83    MB
+c 
+c --- [ shutting down ] ------------------------------------------------------
+c 
+c exit 20
