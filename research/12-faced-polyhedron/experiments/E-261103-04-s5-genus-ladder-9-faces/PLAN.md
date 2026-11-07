@@ -854,3 +854,15 @@ the actual bounded entry point once in the activated research environment;
 record its exact command and verification outcome. Preparation alone supplies
 neither a working command nor startup acceptance. Reuse unchanged checks; run
 an integrated quick suite only if a concrete integration concern remains.
+
+### 2026-11-07. Mizhaev continuation of the saved-OM pilot
+
+The 2026-11-05 pilot stopped at its first accepted unit (Roest-Vigh g1, accepted in
+`results/intermediate-om-realization-review/`), leaving both alternative Mizhaev maps unrun,
+although the amendment checkpoints the first candidate per map. `STAGE=om-continuation`
+reruns the same entry point (same controls, caps, starts, verification) on the two Mizhaev
+units only and stops per map at its first accepted candidate. Output:
+`results/mizhaev-om-realization/`. Outcome use: both accepted closes the control part of
+this experiment (the OM-SAT route realizes every intermediate level); any non-acceptance is
+scoped to these OMs/methods/caps. Either way the experiment is then concluded; the hinge
+ascent is not continued and no night opens.
