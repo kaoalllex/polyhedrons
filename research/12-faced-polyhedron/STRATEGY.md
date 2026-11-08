@@ -10,8 +10,10 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   is only `verification/verify_candidate.py FILE --target S5` PASS, then `candidate-check`.
   * Why (9, 3): it is the first face count beyond the 2026 eight-face objects (Roest-Vigh, Mizhaev, both (8, 3)),
     the maximal case at a genus our engines already reach (genus 3 on 12 faces, 94 realizations), and symmetric
-    realizations are allowed (a C3 action with three orbits of three faces and one orbit of doubled pairs is the
-    natural first ansatz). If found and new, it is a result of the same kind as those two papers.
+    realizations are allowed. The first ansatz, a free C3 action, is used up: its uniform formulas are UNSAT on all 8
+    free-C3 maps (EXACT; geometric coverage conditional, PROVED-1; `STATUS.md` 3d-3i), so a (9, 3) object, if any, is
+    asymmetric or has a symmetry of order 2; most undecided maps have spread-out doubled pairs
+    (`reviews/strategy-review-2026-11-08.md` §3.1). If found and new, it is a result of the same kind as those two papers.
   * **Stretch: (10, 4)**, the first genus where every one of our engines has failed; it is where the "ravine"
     (below) must be crossed without a ladder. (8, 2) is a cheaper warm-up on the same methods, worth doing only
     if it costs less than a session or calibrates the (9, 3) method.
@@ -57,3 +59,5 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   `reviews/REVIEW_PROMPT_2026-11-03.md`.
 * 2026-11-07: owner's process change: weekly lead review with a week plan; lab sessions light and cheap; review
   cadence by elapsed work, not calendar (`PROTOCOL.md` §8b).
+* 2026-11-08 (owner's request, lead review M2): §1 no longer names the free C3 ansatz as the natural first ansatz;
+  all 8 uniform free-C3 formulas are UNSAT. Targets and stance unchanged.

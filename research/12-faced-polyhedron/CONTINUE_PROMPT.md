@@ -17,5 +17,5 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
 * NEXT: week item 1, the preparation of the E-261103-03 stratified long-cap pilot: one amendment (<= 15 lines), solver
   and checker caps as parameters, the F = 9 positive control from an E-261107-01 Phase B solid, the bounded startup
   check; then the owner launches on 8 workers. Map selection: `reviews/strategy-review-2026-11-08-runtime-patterns.py`.
-* Open for a later session: STATUS compaction (review M4, wording only).
+* STATUS sections 3d-3s compacted (review M4, wording only); STRATEGY §1 C3 wording updated at the owner's request.
 * Verification: no candidates, no run; `trace.py --check` run after the ledger edit.

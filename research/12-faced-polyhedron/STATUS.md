@@ -1,20 +1,13 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-08** (lead review 2026-11-08: week plan in `ROADMAP.md`, (9, 3) credences moved; earlier: after night 7: E-261102-03 and E-261102-04, two engines scored on the ladder; E-261102-02 killed; strategy review of 2026-11-03 applied the same day: S5 queue in `ROADMAP.md`, candidate maps in section 3c, direction DR19; E-261103-01 census and E-261103-02 encoder controls completed later the same day). Definitions, counters and evidence labels: `SPEC.md`. Evidence
-details: `results.md`; chronology: `experiment-log.md`; what to do next: `ROADMAP.md`. Update this file in the
-same commit as any result that changes a row. This file owns the verdicts and numbers; other files link here.
+As of **2026-11-08** (lead review 2026-11-08 applied: week plan in `ROADMAP.md`, (9, 3) credences moved; sections
+3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION). Definitions, counters and
+evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experiment-log.md`; what to do next:
+`ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
+numbers; other files link here.
 
-E-261103-03 (8,2) pilot completed 2026-11-04; its bounded (9,3) paired pilot is complete; the registered new-map tranche is complete (section 3i); wider census coverage remains unresolved.
-E-261103-04's replacement surgery gate is complete (section 3k); its bounded
-geometric recovery pilot is concluded, UNDERPOWERED (section 3l).
-Its conditional failed-level grid is concluded UNDERPOWERED with all registered
-cells exactly rejected (section 3n). The subsequent intermediate-map audit is
-complete: Roest-Vigh g1 OM-SAT, Mizhaev g2 formula UNSAT-VERIFIED (section 3o).
-The alternative Mizhaev first-removal audit is complete, with an OM-SAT
-alternative and no remaining first-step queue (section 3p). Its bounded
-descendant audit supplies a checked combinatorial/OM route to a sphere
-(section 3q), without geometric recovery of that chain. The direct OM realization
-pilot has a separately checked Roest-Vigh g1 auxiliary (section 3r). E-261103-04 is concluded (section 3s). No active process.
+No active process. E-261103-03 is the active S5 experiment (sections 3d-3i); E-261103-04, E-261103-05, E-261103-06
+and E-261107-01 are concluded (sections 3g, 3j-3u).
 
 ## 0. State in one paragraph
 
@@ -173,409 +166,40 @@ have a tripled pair (10 with a doubled pair on a shared face, 8 with it disjoint
 The (8,3) family is not censused here. The review's >=22,666 sampled classes and its checks of the
 Roest-Vigh and Mizhaev maps remain session checks only. Nothing geometric has run on any focus map.
 
-## 3d. S5 (8,2) exact decision pilot (2026-11-04)
-
-E-261103-03 `CONCLUSION.md`: both admissible maps' plain embedding formulas are
-**UNSAT-VERIFIED**, as are their uniform free-C2 ansatzes (**EXACT** formula decisions).
-CNF, DRAT, models and checker transcripts are retained in `results/pilot/`; the quick suite
-rebuilds formulas and checks saved evidence, replaying DRAT when the external tool is present.
-The eight known-object realizer controls pass exact signs, embedding and `--all-pairs` recheck.
-Recorded pilot: 35.579626 wall seconds, 0.009883229479 core-hours; the separate control-recheck
-manifest records its resources. Regression commands are outside these run totals.
-
-**PROVED-1 conditional interpretation:** S5 (8,2) is excluded by the two plain decisions plus
-the census coverage and encoder/general-position arguments; those arguments lack human review
-and external second-encoder validation. Do not call this a CERTIFIED non-existence theorem.
-This was the completed (8,2) stage; see section 3e for the subsequent focus pilot. E-261103-03 remains running, with no active process.
-
-## 3e. S5 (9,3) paired C3/plain pilot (2026-11-04)
-
-E-261103-03 CONCLUSION: 20 dispatched formulas on 12 maps; all eight uniform free-C3
-formulas and three plain formulas (maps 5,6,30) UNSAT-VERIFIED (**EXACT** instance decisions).
-The other plain calls: eight timeouts, one interrupted during the documented panel correction;
-no target SAT or geometric witness. Required controls pass, including the nine-plane predicate
-control and saved (8,2) proof replays. Two manifests total 622.250497958 wall seconds,
-0.172847360544 core-hours; preparation/packing/verification outside these measured run totals.
-
-Geometric interpretation remains **PROVED-1 conditional** on encoding/general-position arguments.
-No asymmetric exclusion follows from C3 decisions; geometric C3-family coverage additionally
-needs an equivariant argument. Plain coverage is incomplete. No CERTIFIED theorem or S0 result.
-The affordability prediction of at least one plain completion holds, six completions fails.
-No automatic night: next consider a separately registered small 60/300-second grid or an explore
-pilot from the completed strategy review. The experiment remains running; no process is active.
-
-## 3f. S5 (9,3) autonomous cutoff grid (2026-11-04)
-
-E-261103-03 CONCLUSION: the committed 60/300-second grid adds plain UNSAT-VERIFIED formulas
-for maps 40 and 48 (**EXACT** instances); maps 0 and 1 time out at both new cutoffs. Prior 60-second
-cells for 40/48 were reused. All controls pass. Grid manifest: 989.340322667 wall seconds,
-0.274816756296 core-hours. All five experiment manifests total 1647.726973708 wall seconds,
-0.457701937141 core-hours; preparation, packing and replay tests are outside those totals.
-
-Cumulative plain census coverage: 5 verified formulas (5,6,30,40,48), 7 attempted/unresolved maps,
-191 unattempted admissible maps. All 8 C3 formulas remain checked. No target SAT or witness;
-existence remains open. Geometric interpretations stay **PROVED-1 conditional**. The experiment
-CONCLUSION contains a new conditional free-C3 coverage draft, with independent determinant/gauge
-controls and AI review only; no independent human review or CERTIFIED upgrade.
-
-The grid's two-of-four affordability prediction passes. A costed tranche proposal is in CONCLUSION,
-with solver/checker time separated and the hard tail preserved. Its registered explore prerequisite
-(E-261103-05) was pending at that stage and is now concluded (section 3g); no coverage campaign is launched. The experiment remains running;
-there is no active process, night, push, PR or external upload.
-
-## 3g. S5 solid-first explore controls (2026-11-04)
-
-E-261103-05 registered R2/R3 pilot is done: **BENCHMARK-PASS**. The hard CP-SAT variant allows
-1-3 runs per pair and enforces connected disk faces. Both known (8,3) objects are recovered
-unseeded on their own planes. Random D2 seeds 0..3 report INFEASIBLE for saved fixed-plane models;
-seed 4 yields an auxiliary S1 (8,3) object. Stop is first recovery; seeds 5..15 and 60-second cells
-were not run. No nine-plane focus attempt or overnight run.
-
-**EXACT:** the auxiliary object has (V,E,F,chi)=(24,36,8,-4), 28 adjacent pairs, 20 single and
-8 double adjacencies, eight simple 9-gons; its map is isomorphic to Roest-Vigh's. Main --all-pairs
-and the standalone Fraction checker accept; S5 correctly rejects because F_max(3)=9. The quick
-suite rebuilds/re-solves saved CP models and rechecks geometry and independent verification.
-The written disk-encoding argument and AI reviews stay **PROVED-1**, without external human review.
-Pilot manifest: 18.156652583 wall seconds, 0.005043514606 core-hours; canonical recheck manifest:
-0.689066542 wall seconds, 0.000191407894 core-hours. Sum: 0.005234922500 core-hours. Development,
-independent review and regression replays are outside those measured run totals.
-
-R3 recovery calibrates an engine; it is neither a new combinatorial type nor a focus witness.
-Existence hypotheses remain open. The E-261103-03 explore prerequisite is now concluded; its
-costed tranche still requires a committed activation. The constructive engine earns a separate
-small target pilot, not an automatic night. No active process, push, PR or external upload.
-
-## 3h. S5 new-map coverage readiness (2026-11-04)
-
-E-261103-03's new-map tranche is pre-registered (c707bc5); its same-path pilot used source
-697e3e5. All required controls pass. Plain maps 8 and 9 both hit their 60-second solver cap;
-these are unresolved instances, not negative mathematical evidence. Resume dispatches neither
-again. Manifest: 141.988871541 wall seconds, 0.039441353206 core-hours. All six experiment
-manifests sum to 1789.715845249 wall seconds, 0.497143290347 core-hours; regression/replay and
-packing are outside those measured totals. No new target SAT, exclusion or candidate.
-
-Cumulative plain coverage: five UNSAT-VERIFIED formulas, nine attempted/unresolved maps,
-189 unattempted admissible maps. Existing C3 decisions are unchanged. EXACT formula scope
-and conditional PROVED-1 geometric interpretation remain unchanged; existence is open.
-The frozen 80-map queue inherits the two pilot records, leaving 78 pending units without
-repeating the old hard tail. The runner caps solver/checker separately, checkpoints/resumes,
-and shares a first-SAT stop; all attempts including the pilot count against a <6.2 core-hour
-ceiling. Controls and mechanical launch gates pass; tranche yield remains unmeasured.
-
-CONCLUSION records the bounded AI review and its regression-tested fixes. No theorem/witness
-row changes, human review, real eight-shard run, night, push, PR or external upload. The
-experiment remains running, with no active process; the next action is the owner's laptop
-command in its README. The complete tranche is not a session job.
-
-## 3i. S5 completed new-map tranche (2026-11-04)
-
-The frozen 80-map queue is exhausted, including the two inherited pilot timeouts:
-14 new UNSAT-VERIFIED plain formulas (19,20,29,31,43,52,58,59,60,66,67,75,83,90),
-66 TIMEOUT, no SAT or geometric candidate. The >=20-decision prediction failed.
-Cumulative plain coverage: 19 checked formulas, 73 attempted/unresolved maps and 111
-unattempted admissible maps. The eight prior C3 decisions are unchanged.
-
-The eight final shards completed between 05:24:00 and 05:35:36 UTC (696 seconds elapsed).
-Their summed wall time is 4885.465871168 seconds. All 18 numeric attempt manifests, including
-10 interrupted startup diagnostics, sum to 5261.281011751 seconds / 1.461466947709 core-hours.
-Including the inherited pilot, this tranche consumes 5403.269883292 seconds /
-1.500908300915 core-hours, below its registered ceiling. Older stages and post-run audits
-are outside this tranche total. No missing numeric attempt manifest was observed.
-
-All final-shard controls pass and all 1574 recorded output hashes match. Evidence:
-experiment results/tranche_audit.json and CONCLUSION. EXACT applies to checked formulas;
-geometric exclusion remains conditional PROVED-1. No CERTIFIED, existence or S0 claim.
-Verdict: LOW-YIELD at the registered budget for this frozen queue; no unchanged expansion
-or timeout retry is activated. E-261103-03 remains running because its broader census goal
-is incomplete; this tranche is finished and no further run is requested. Next queued
-exploration is E-261103-04, requiring its own committed plan and calibrated controls.
-
-## 3j. S5 genus-ladder representation gate (2026-11-04)
-
-E-261103-04's first registered stage is complete (CONCLUSION). Szilassi round-trips;
-all 203 admissible (9,3) maps and both known (8,3) controls fail the legacy
-`coherent_triangles` conversion. **PROVED-1, implementation scope:** the routine
-allows each directed label pair once, while these maps require more darts than
-F(F-1). This does not decide their geometric realizability or the power of a
-ladder preserving parallel-edge identities.
-
-The first attempt stopped on a Mizhaev control-loading ValueError. The committed
-amendment coherently orients its supplied face cycles using the existing helper;
-the second attempt completes with the positive and negative controls passing.
-Both manifests total 2.0227310419995774 wall seconds / 0.0005618697338887716 core-hours.
-Their output hashes match. The audit is outside `verify_all.py`; no EXACT upgrade.
-
-Verdict OPEN with the representation gate failed. The experiment remains running;
-the subsequent dart-preserving gate is recorded in section 3k. No geometric pilot
-or night is activated. Existence hypotheses and
-scenario credences retain their prior statuses.
-
-## 3k. S5 dart-preserving surgery gate (2026-11-04)
-
-E-261103-04's surgery stage is complete (CONCLUSION). Pre-registration `5725a38`,
-generating implementation `cfb99e2`, strengthened saved checker `2ff5953`.
-**PROVED-1, supplied-input computation:** all 203 admissible frozen (9,3) maps and
-the Szilassi and two (8,3) controls have reversible alpha-preserving chains to
-checked simple sphere triangulations. Surface and patch checks, labelled/canonical
-inverse checks, the three negative controls and legacy Szilassi compatibility pass.
-The saved checker also binds every top map to its named input and checks full scope.
-The standalone computation is outside `verify_all.py`; no EXACT promotion.
-
-Actual `STAGE=surgery bash .../run.sh 0` completed normally on one core, with all
-controls passing before focus maps and no timeout or state cap. Its manifest
-records 11.100107874999594 wall seconds / 0.0030833632986109983 core-hours.
-All three experiment manifests total 13.1228389169991713 wall seconds /
-0.00364523303249976984 core-hours. Preparation and post-run checks are outside
-these totals. Compressed evidence, original manifest and replay transcript are
-in `results/surgery-audit/`; source/output hashes and lossless compression pass.
-
-Verdict OPEN, surgery gate passed. The subsequent bounded geometric recovery
-pilot is recorded in section 3l. The experiment stays running.
-
-## 3l. S5 genus-ladder geometric recovery pilot (2026-11-04)
-
-E-261103-04's pilot is concluded. Pre-registration `871d8cc`, implementation
-`5643bc5`, reflected-reference correction/amendment `70347ad`. The first attempt
-stopped with REPRESENTATION-FAIL before geometry. Both immutable attempts and
-manifests are retained. The amended actual `STAGE=recovery .../run.sh 0` exited
-normally with all three supplied-plane positive and duplicate-plane negative
-controls, and all ten labelled round trips, passing.
-
-| Unit | Seed | Exactly accepted genera | First rejected genus | `nonsimple_faces` | `bad_pairs` | Unrun genera |
-|---|---:|---|---:|---|---|---|
-| Szilassi | 10401 | 0, 1 | none | none | none | none |
-| Roest-Vigh | 10402 | 0 | 1 | [1, 6] | [] | 2, 3 |
-| Mizhaev | 10403 | 0, 1 | 2 | [0, 4] | [] | 3 |
-
-**PROVED-1, supplied-input computation.** Five accepted auxiliary levels pass
-saved-file exact checks and the independent rational checker at 1e-9 and 1e-12.
-Checks include face intersections, topology and SPEC degeneracies. The recovered
-Szilassi top is S5 (7,1), with single adjacencies. The Mizhaev genus-one level has
-22 adjacent pairs and two doubled pairs. The standalone checker is outside
-`verify_all.py`; no EXACT promotion or external human review.
-
-**UNDERPOWERED at one seed per control, 45 seconds per visited level.** The two
-rejected levels used their full requested optimization budget. Full (8,3) recovery
-was not demonstrated, so focus geometry remains gated. This does not decide
-realizability of either intermediate map or any existence hypothesis. No focus
-candidate, night or scenario move. The experiment remains running.
-
-The corrected attempt used 105.64823350000006 wall seconds /
-0.029346731527777795 core-hours, fraction 0.17608038916666677 of its outer cap.
-Both recovery attempts sum to 109.27383250000094 seconds /
-0.030353842361111372 core-hours. All five experiment manifests sum to
-122.3966714170001 seconds / 0.03399907539361114 core-hours. Post-run independent
-checks and preparation are outside these totals. Source/output hashes pass;
-prior surgery acceptance is reused. CONCLUSION records timing detail, exact
-commands, full scope and the costed conditional grid proposal, which is unactivated.
-
-## 3m. Conditional failed-level grid readiness (2026-11-04)
-
-E-261103-04 amendment `b851f8c`, implementation `3f3aeda`. The actual
-`STARTUP_ONLY=1 STAGE=calibration .../run.sh 0` returned STARTUP-PASS, exit zero.
-All three deterministic positive/negative controls and ten labelled round trips
-pass. The four planned cells match the registered maps, paired seeds, budgets
-and saved accepted parents. Their maximum requested optimizer time is 1560 seconds;
-the full attempt has a 1800-second outer wall cap, one worker.
-
-**PROVED-1, implementation readiness only.** Original pilot output hashes, current
-source/input hashes, parent-link identities and saved two-scale independent
-acceptance pass. The independent checker and surgery acceptance are reused,
-not replayed. Invalid stage/startup combinations reject with exit two. Python and
-shell syntax and diff/graph metadata checks pass. No optimization or new recovery,
-candidate, scenario move, integrated suite, CI or human review.
-
-The startup used 1.7459750840025663 wall seconds / 0.00048499307888960174 core-hours,
-fraction 0.014549792366688052 of its 120-second cap. All six experiment manifests
-sum to 124.14264650100267 wall seconds / 0.03448406847250074 core-hours; preparation
-and post-run checks are outside the manifests. The startup's pip provenance command
-disabled its unwritable cache; it completed successfully and retained dependency
-versions. Worker stderr is empty.
-
-The owner subsequently authorized the full grid from HEAD `281881d` under
-caffeinate/nice on AC power, one worker. Its completed outcomes are in section 3n.
-See PLAN and CONCLUSION for decisions after conditional success or UNDERPOWERED.
-
-## 3n. Conditional failed-level grid concluded (2026-11-04)
-
-E-261103-04's authorized grid finished normally, exit zero, UNDERPOWERED.
-Pre-registration `b851f8c`, implementation `3f3aeda`, generating HEAD `281881d`.
-All deterministic controls and labelled round trips pass. The four cells used
-frozen accepted parents and paired seeds, with exact results below.
-
-| Unit | Genus | RNG seed | Requested seconds | `nonsimple_faces` | `bad_pairs` | `EMBEDDED` |
-|---|---:|---:|---:|---|---|---|
-| Roest-Vigh | 1 | 1040201 | 180 | [1, 6] | [] | false |
-| Mizhaev | 2 | 1040302 | 180 | [0, 4] | [] | false |
-| Roest-Vigh | 1 | 1040201 | 600 | [1, 6] | [] | false |
-| Mizhaev | 2 | 1040302 | 600 | [0, 4] | [] | false |
-
-**PROVED-1, supplied-input computation.** Each output fails exact embedding
-checking through the initial in-process and saved-file paths. Topology matches,
-vertices are distinct and edges consistent. Each optimizer exhausted requested
-time with objective 2, a diagnostic only. Positive exact controls have simple
-faces and no bad pairs. All source/input/output hashes pass. Saved parent
-independent acceptance, surgery acceptance and the shared-code suite are reused.
-No fresh independent replay, integrated suite, CI, proof replay or human review.
-
-The grid used 1561.8850308330002 wall seconds / 0.4338569530091667 core-hours,
-fraction 0.8677139060183334 of its outer cap. All seven experiment manifests sum
-to 1686.0276773340029 seconds / 0.46834102148166745 core-hours. Preparation,
-unsuccessful pre-Python launches and post-run checks are outside those totals.
-All cells ran, with REQUESTED-TIME binding and no outer timeout.
-
-**UNDERPOWERED within this grid.** The conditional recovery prediction failed.
-Higher levels, different parents/seeds/chains and focus geometry were outside
-scope. Map realizability and the existence hypotheses retain their preceding
-statuses. Next reassess intermediate-map realizability or chain selection, as
-registered, before further geometry. CONCLUSION specifies the next preparation
-for a bounded exact audit. Full-control/focus gates stay closed. No active run.
-
-## 3o. Intermediate-map feasibility audit (2026-11-04)
-
-E-261103-04 pre-registration `6b8d587`; source-hash-bound uncommitted
-implementation. The actual feasibility entry point completed on one worker
-with both pinned accepted-parent SAT controls, direct-predicate checks and the
-fixed-chi rejected Roest-Vigh control passing. Evidence review validates all
-manifest hashes and the three saved SAT models without rerunning the solver
-or certificates. Evidence: `results/submap-feasibility-audit/` under E-261103-04.
-
-| Frozen labelled auxiliary map | Variables | Clauses | Outcome |
-|---|---:|---:|---|
-| Roest-Vigh g1 | 3404 | 32507 | SAT, complete saved model clause-checked |
-| Mizhaev g2 | 4191 | 35403 | UNSAT-VERIFIED, retained DRAT initially checked |
-
-**PROVED-1, supplied-input standalone computation.** H1 (both SAT) failed; H0
-is supported. These are plain uniform rank-4 OM formulas on eight faces plus
-infinity, submap=True with ALL_OPTS and frozen labelled segment pairings. The
-checked CNF certificate excludes the exact Mizhaev g2 formula. Its geometric
-interpretation remains conditional on PROVED-1 soundness and uniform perturbation;
-the published (8,3) object, other chains and focus maps are not excluded.
-Roest-Vigh SAT is OM feasibility only. No geometry or EXACT promotion.
-
-The run completed in 2.0988068340011523 wall seconds /
-0.0005830018983336534 core-hours, fraction 0.011660037966673068 of its cap.
-All eight experiment manifests total 1688.126484168004 seconds /
-0.4689240233800011 core-hours. No timeout bound any unit. Preparation and
-post-run review are outside these totals. CONCLUSION owns certificate hashes
-and provenance limits, including the unknown drat-trim source commit.
-
-Reassess the affected chain before further ladder geometry. Existing realizers
-can process the Roest-Vigh OM under a separately registered bounded amendment.
-Full eight-face recovery and focus/night gates remain closed. No existence
-hypothesis, scenario credence, FD/witness row or active-run change.
-
-## 3p. Alternative Mizhaev first-removal audit (2026-11-04)
-
-E-261103-04 pre-registration `5a2efef`; source-hash-bound uncommitted
-implementation. The actual alternatives entry point completed; unchanged
-control/source/environment acceptance was validated and reused without reruns.
-Evidence is `results/mizhaev-first-step-audit/`; CONCLUSION records artifact hashes.
-
-**PROVED-1, supplied-input standalone computation.** Complete enumeration of the
-registered six-triangle, six-label annular first-removal scope emitted and tested
-362 connected candidates after pruning, with ten valid patches in three
-canonical genus-two classes. Patch multiplicities are four known UNSAT, four new
-SAT and two new UNSAT. Both OTHER classes were decided: the saved SAT model
-satisfies its CNF and the new UNSAT has a retained, initially checked DRAT proof.
-Evidence review validates hashes/model/transcript without rerunning computation.
-H1 (an alternative SAT class) holds. No first-step decision queue remains.
-
-SAT is OM feasibility only; no planes or full recovery. Geometric obstruction
-from either UNSAT remains conditional on PROVED-1 soundness/uniform perturbation.
-Completeness concerns only the stated removal scope, not all handle removals,
-all chains or the published object's geometric existence. No EXACT promotion.
-
-The run took 0.9590472920026514 wall seconds / 0.00026640202555629206 core-hours,
-fraction 0.005328040511125841 of its cap. Enumeration used 0.0443312089992105
-seconds of its separate cap. All nine experiment manifests total
-1689.0855314600067 seconds / 0.4691904254055574 core-hours; preparation/review
-are outside these totals. No timeout bound a unit.
-
-Prepare a bounded genus-one descendant question for the alternative SAT class,
-under a separate committed amendment, before geometry. The exhausted queue
-does not support a night; full-control/focus gates remain closed. Existence
-hypotheses, scenario credences and FD/witness rows are unchanged.
-
-## 3q. Alternative Mizhaev descendant-chain audit (2026-11-04)
-
-E-261103-04 pre-registration `d90b404`; source-hash-bound uncommitted
-implementation. Actual descendants entry point completed once with reused
-unchanged controls/environment. Evidence: `results/mizhaev-descendant-audit/`;
-CONCLUSION retains hashes and exact scope.
-
-**PROVED-1, supplied-input standalone computation.** Enumeration of the frozen
-alternative genus-two parent's registered annular removals completed: 255
-connected candidates after pruning, six valid patches, five canonical g1
-classes. The first class has a clause-checked SAT model (3435 variables,
-32631 clauses), then a checked simple-sphere extension. Four original-labelled
-snapshots at genera 3,2,1,0 and three inverse steps exactly reconstruct the
-published top. H1 holds; stop_reason=CHAIN-PASS. Enumeration is complete,
-decision prefix incomplete: four other classes were deliberately UNRUN.
-
-This is a combinatorial/OM route, not recovered geometry or a coherent geometric
-continuation of its models. The run took 0.6328098340018187 wall seconds /
-0.00017578050944494963 core-hours, fraction 0.0035156101888989925 of its cap.
-All ten manifests total 1689.7183412940085 seconds /
-0.46936620591500233 core-hours; preparation/review are outside the totals.
-Success stopped the run; no executed unit hit a timeout.
-
-Next prepare a separately registered bounded geometric-control question using
-the saved route and existing OM realizers. No geometry, full-eight-face, focus
-or night gate opens. Existence hypotheses, scenario credences and FD/witness
-rows are unchanged. No EXACT promotion or active process.
-
-## 3r. Saved-OM realization pilot (2026-11-05)
-
-E-261103-04 pre-registration `7faeac4`; actual `STAGE=om-realization`
-entry point executed once in the activated research environment. All three
-saved model/formula bindings pass: identical clauses/variable numbering,
-complete clause-checked assignments and 126 signs each. All eight published-top
-controls pass (both methods, warm and unseeded), within ten seconds per unit.
-Both construction arms are CONTROL-PASS on these controls only.
-
-The first target unit, Roest-Vigh g1 hinge/warm, realizes all 126 saved signs.
-The shared worker's default all-pairs requirement incorrectly rejects this
-auxiliary, despite simple faces, consistent edges and no bad pairs. The attempt
-therefore retains exit 1 / ERROR, not an invented successful manifest. Its
-saved output passes `verify_candidate.py` with the correct embedded-only target.
-A structurally separate rational checker accepts the original integer planes
-and normalized integer-rescalings at 1e-9 and 1e-12, with all signs preserved.
-An adversarial agent independently checked the auxiliary without importing
-ladder_exact; this is not human mathematical review.
-
-**PROVED-1, standalone auxiliary computation:** (V,E,F,chi)=(16,24,8,0),
-genus 1, 21 adjacent pairs, 18 single and three doubled pairs (1,4), (1,6),
-(3,6). Not S5 or the focus target. No degeneracies or unintended intersections
-were found by the separate rational check. Scales test already rounded integer
-planes, not the optimizer's unavailable unrounded output. Registered H1 holds
-for this auxiliary after saved-output review. The candidate-check stop leaves
-the other eleven possible target attempts UNRUN, including both Mizhaev OMs.
-
-The attempt used 6.637199958000565 wall seconds / 0.0018436666550001569
-core-hours, fraction 0.022123999860001884 of its cap. All eleven run manifests
-total 1696.355541252009 seconds / 0.4712098725700025 core-hours;
-preparation and post-run review are outside these totals. No timeout bound a
-unit. The sandbox rejected nice's priority adjustment; the command continued
-at inherited priority, with the registered thread limits and time caps.
-
-Evidence: `results/intermediate-om-realization/` (immutable failed attempt),
-`results/intermediate-om-realization-review/` (saved-output acceptance and
-adversarial check), under E-261103-04. The local dispatcher now explicitly
-checks intermediate geometry with require_all_pairs=False, without changing
-the shared worker or rerunning optimization. Its corrected path has not had a
-fresh full pilot. No new integrated suite, solver/proof replay or EXACT
-promotion. Full eight-face recovery, focus and night gates remain closed;
-no existence/scenario change or owner launch is pending.
-
-## 3s. E-261103-04 concluded (2026-11-07)
-
-Continuation `b1d2104`: controls pass; both alternative Mizhaev intermediates realized
-from their saved OM models at the first attempt, g1 (16,24,8,0) and g2 (20,30,8,-2),
-verifier (embedded) and separate rational checker PASS; **PROVED-1**, auxiliary, not S5.
-Experiment verdict: the hinge ladder fails both (8,3) controls and is parked; OM-first
-realization of intermediates works but is not an ascent and adds no (9,3) power.
-No hypothesis, credence or witness change. Details: E-261103-04 CONCLUSION.
+## 3d-3f, 3h-3i. E-261103-03 exact decisions at (8, 2) and (9, 3) (2026-11-04)
+
+* **(8, 2):** both plain formulas and both uniform free-C2 formulas UNSAT-VERIFIED (EXACT; 0.0099 core-h). The geometric
+  exclusion is PROVED-1 and conditional on census coverage, encoder soundness and general position; not CERTIFIED.
+* **(9, 3) free C3:** all 8 uniform free-C3 formulas UNSAT-VERIFIED (EXACT). A conditional coverage draft for the
+  geometric C3 family is in CONCLUSION (PROVED-1, AI review only).
+* **(9, 3) plain**, solver cap 60 s unless stated: UNSAT-VERIFIED for 19 maps (5, 6, 30 in the paired pilot; 40, 48 at
+  62.5 and 75.7 s in the 60/300-s grid; 19, 20, 29, 31, 43, 52, 58, 59, 60, 66, 67, 75, 83, 90 in the 80-map tranche).
+  73 maps unresolved (0 and 1 also at 300 s), 111 unattempted, 0 SAT. Checker time is separate (map 40: 62 s).
+* Solve time depends on the multiple-adjacency pattern (NUMERICAL): maps whose extra segments meet at one face solve in
+  22-76 s, spread-out doubled pairs time out (`reviews/strategy-review-2026-11-08.md` §3.1).
+* Tranche verdict LOW-YIELD@60 s for its frozen queue; no cap above 300 s has been tried (ROADMAP week item 1). All
+  manifests total about 2.0 core-h (tranche 1.50 incl. its pilot); itemised sums, hashes and `results/tranche_audit.json`
+  in CONCLUSION. Large proofs are local-only with hashes in git; external certificate publication is pending.
+
+## 3g. E-261103-05 solid-first explore controls (2026-11-04)
+
+BENCHMARK-PASS. The disk-aware CP-SAT inner solver (1-3 runs per pair, connected disk faces) recovers both (8, 3)
+objects unseeded on their own planes; random D2 seeds 0-3 are INFEASIBLE, seed 4 gives an auxiliary S1 (8, 3) object
+isomorphic to Roest-Vigh's map: (24, 36, 8, -4), 28 pairs, 20 single + 8 double, eight simple 9-gons (EXACT, re-solved
+by the quick suite; disk-encoding argument PROVED-1). 0.0052 core-h. Engine calibration, not a focus witness.
+
+## 3j-3s. E-261103-04 genus ladder on 9 faces (2026-11-04 to 2026-11-07, concluded)
+
+* The legacy triangle-to-links conversion fails on parallel-edge maps; the dart-preserving surgery gives reversible
+  chains to simple spheres for all 203 admissible (9, 3) maps, Szilassi and both (8, 3) controls (PROVED-1).
+* Geometric recovery: Szilassi recovered; Roest-Vigh rejected at genus 1 and Mizhaev at genus 2 (non-simple faces),
+  also in the 180/600-s grid: hinge ladder UNDERPOWERED, it fails both (8, 3) controls.
+* OM audits of the intermediates: Roest-Vigh g1 OM-SAT; Mizhaev g2 formula UNSAT-VERIFIED; an alternative Mizhaev
+  first removal is OM-SAT and its descendants give a checked combinatorial/OM chain to a sphere (CHAIN-PASS).
+* Saved-OM realization: Roest-Vigh g1 (16, 24, 8, 0) and Mizhaev g1 (16, 24, 8, 0), g2 (20, 30, 8, -2) realized,
+  verifier and separate rational checker PASS (PROVED-1, auxiliary, not S5).
+* Verdict: hinge ladder parked; OM-first realization of intermediates works (a tool for a future SAT model) but adds no
+  (9, 3) power. About 0.47 core-h in all manifests. Details: E-261103-04 CONCLUSION.
 
 ## 3t. E-261107-01 nine-plane solid-first pilot (2026-11-07)
 
