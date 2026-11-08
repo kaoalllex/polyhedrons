@@ -267,7 +267,8 @@ local defect); "correct Gauss degree implies realizability" (refuted by Q1); "co
 May not (scope, owner's question 2026-11-08): that the (8, 2) or (9, 3) negative covers non-cubic objects. S5 is cubic; at
 (8, 2) and (9, 3) the edge count has slack (E <= 30 for 28 pairs, E <= 39 for 36), so counting does not exclude objects with
 every pair adjacent and some vertices of degree >= 4 (e.g. (9, 3) with V = 23, E = 36, three 4-valent vertices); no
-formula covers them. At (12, 6) there is no slack (E = 66 pairs), so S0 is unaffected. The (8, 2) / (9, 3) note must say "cubic".
+formula covers them. At (12, 6) there is no slack (E = 66 pairs), so S0 is unaffected. The (8, 2) / (9, 3) note must say "cubic"
+unless the perturbation lemma I-261108-09 (untested) reduces these objects to the cubic case.
 
 ## 5. Results worth sharing (ranked, with prerequisites)
 

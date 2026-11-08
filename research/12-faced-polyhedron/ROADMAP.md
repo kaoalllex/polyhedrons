@@ -109,7 +109,9 @@ no night; item 2 is one owner launch of at most 2 h wall.
      formula scope); 1-19 of 203 -> record, no (10,4) run.
 
 Not in this week: the note package (lead review 2026-11-08d §5 item 8; owner 2026-11-08: a note is a goal and says
-that no independent review took place), after items 1, 3, 4 pass; E-261101-10 (S0 slot).
+that no independent review took place), after items 1, 3, 4 pass; its first step is the perturbation lemma
+[I-261108-09](ideas/I-261108-09-perturbation-lemma-non-cubic-vertices.md) (owner 2026-11-08: the non-cubic scope of
+`STATUS.md` §4; one session, seconds of CPU, no solver run); E-261101-10 (S0 slot).
 
 Previous week plan (lead review 2026-11-08, items 1-5) is done: literature check, (9,3) long-cap pilot, core study,
 arrangement sweep, and item 5a, which decided all 203 admissible (9,3) plain formulas UNSAT-VERIFIED (STATUS 3d); the
