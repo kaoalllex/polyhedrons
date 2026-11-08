@@ -261,3 +261,12 @@ Owner-approved week plan (`reviews/strategy-review-2026-11-08.md`); T D F G R re
   latch and evidence rules as the coverage run. Prediction: at least 10/13 UNSAT-VERIFIED. Counter-calibration:
   10 of 11 earlier 11-gon maps were UNSAT-VERIFIED; the claim covers these exact plain formulas only.
 * Units (b), map 74 and (c) need their own queue and caps; they are launched by the owner after (a).
+
+### 2026-11-08: evidence files and shard count (owner's decision, `reviews/strategy-review-2026-11-08b.md` §4, §8)
+
+* `pilot.solve` deletes the CNF and proof after the run-time check; records keep `cnf_sha256`, `proof_sha256`, the
+  checker transcript and the tool hashes. Resume (`tranche.pending`) needs the recorded hashes and a completed check
+  instead of the files. The evidence tests compare rebuilt CNFs with the recorded hashes; `REPLAY_DRAT=1` now
+  re-solves the rebuilt formula and checks the new proof. Status meanings are unchanged.
+* The CNF and proof files of earlier stages are removed from this branch's history (unpushed); their hashes and
+  checker transcripts stay. `run.sh` accepts 1-10 shards; launches use 8-10 shards.

@@ -109,8 +109,8 @@ class TrancheTests(unittest.TestCase):
             root = Path(tmp)
             for index in (8, 9):
                 work = root / f'0/attempt_saved/map{index}'; work.mkdir(parents=True)
-                (work / f'map{index}_plain.cnf').write_text('p cnf 1 1\n1 0\n')
-                t.append_checkpoint(root / '0/results.jsonl', dict(map_index=index, status='TIMEOUT', unit=str(work)))
+                t.append_checkpoint(root / '0/results.jsonl', dict(map_index=index, status='TIMEOUT', unit=str(work),
+                                                                   cnf_sha256='recorded'))
             self.assertEqual([r['index'] for r in t.pending(root, [dict(index=i) for i in (8, 9, 11)], 0, 1)], [11])
 
     def test_executable_names_resolve_from_path_before_hashing(self):
@@ -132,20 +132,22 @@ class TrancheTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 list(t.pending(root, [dict(index=8)], 0, 1))
 
-    def test_resume_accepts_losslessly_archived_cnf_without_rerunning(self):
-        import gzip
+    def test_resume_accepts_recorded_hashes_without_files(self):
         t = self.module()
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); work = root / '0/attempt_saved/map8'; work.mkdir(parents=True)
-            with gzip.open(work / 'map8_plain.cnf.gz', 'wb') as f:
-                f.write(b'p cnf 1 1\n1 0\n')
-            t.append_checkpoint(root / '0/results.jsonl', dict(map_index=8, status='TIMEOUT', unit=str(work)))
+            t.append_checkpoint(root / '0/results.jsonl', dict(map_index=8, status='UNSAT-VERIFIED', unit=str(work),
+                cnf_sha256='c', proof_sha256='p', checker_ended_by='completed'))
+            t.append_checkpoint(root / '0/results.jsonl', dict(map_index=9, status='TIMEOUT', unit=str(work)))
+            with self.assertRaises(ValueError):
+                list(t.pending(root, [dict(index=8)], 0, 1))
+            (root / '0/results.jsonl').write_text((root / '0/results.jsonl').read_text().splitlines()[0] + '\n')
             self.assertEqual(list(t.pending(root, [dict(index=8)], 0, 1)), [])
 
     def test_invalid_wrapper_modes_and_excess_workers_do_no_work(self):
         import os
         import subprocess
-        for mode, count in [('typo', '1'), ('0', '9'), ('8', '8')]:
+        for mode, count in [('typo', '1'), ('0', '11'), ('8', '8')]:
             r = subprocess.run(['bash', str(pilot.HERE / 'run.sh'), mode],
                                env=dict(os.environ, SHARDS=count), capture_output=True)
             self.assertEqual(r.returncode, 2)
@@ -285,7 +287,7 @@ class TrancheEvidenceTests(unittest.TestCase):
     def test_saved_same_path_pilot_evidence(self):
         import hashlib
         import tranche
-        from test_pilot import artifact_sha, unpack
+        from test_pilot import artifact_sha, dropped, fresh_check, replay_requested
         root = pilot.HERE / 'results/coverage_pilot'
         manifests = list(root.glob('[0-9]*/attempt_*/manifest.json'))
         if not manifests:
@@ -302,9 +304,7 @@ class TrancheEvidenceTests(unittest.TestCase):
             targets = {f'map{r["map_index"]}_plain': r for r in tranche.records(path.parent.parent / 'results.jsonl')}
             for name, digest in manifest['outputs_sha256'].items():
                 artifact = path.parent / name
-                rec = targets.get(artifact.stem.removesuffix('.drat'), {})
-                if (name.endswith('.drat') and rec.get('status') == 'TIMEOUT'
-                        and not artifact.exists() and not Path(str(artifact) + '.gz').exists()):
+                if dropped(artifact):
                     continue
                 self.assertEqual(artifact_sha(artifact), digest, name)
         recs = tranche.records(root / '0/results.jsonl')
@@ -323,14 +323,11 @@ class TrancheEvidenceTests(unittest.TestCase):
                 tmp = Path(tmp)
                 c.dimacs(tmp / 'rebuilt.cnf', comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
                 self.assertEqual(pilot.sha(tmp / 'rebuilt.cnf'), rec['cnf_sha256'])
-                self.assertEqual(artifact_sha(work / (name + '.cnf')), rec['cnf_sha256'])
                 if rec['status'] == 'UNSAT-VERIFIED':
-                    self.assertEqual(artifact_sha(work / (name + '.drat')), rec['proof_sha256'])
-                    from test_pilot import replay_requested
+                    self.assertIn('proof_sha256', rec)
                     self.assertIn('s VERIFIED', (work / (name + '.checker.log')).read_text())
                     if replay_requested():
-                        proof = unpack(work / (name + '.drat'), tmp / 'proof.drat')
-                        self.assertTrue(pilot.check_proof(tmp / 'rebuilt.cnf', proof, tmp / 'check.log', 120))
+                        self.assertTrue(fresh_check(tmp / 'rebuilt.cnf', tmp, 120))
                 elif rec['status'] == 'SAT':
                     self.assertTrue(pilot.model_valid(c.clauses, json.loads((work / (name + '.model.json')).read_text())))
                 else:

@@ -153,11 +153,12 @@ def pending(root, queue, shard, shards):
                 if 'unit' in rec:
                     work = path.parent.parent.joinpath(*Path(rec['unit']).parts[-3:])
                     name = f'map{rec["map_index"]}_plain'
-                    needed = ['.cnf'] + (['.drat'] if rec['status'] == 'UNSAT-VERIFIED' else [])
-                    for suffix in needed:
-                        artifact = work / (name + suffix)
-                        if not artifact.exists() and not Path(str(artifact) + '.gz').exists():
-                            raise ValueError(f'missing saved evidence: {artifact}')
+                    # CNF and proof files are not kept: the record must carry their hashes and a completed check.
+                    needed = ['cnf_sha256'] + (['proof_sha256'] if rec['status'] == 'UNSAT-VERIFIED' else [])
+                    if any(key not in rec for key in needed):
+                        raise ValueError(f'missing recorded evidence hashes: {work / name}')
+                    if rec['status'] == 'UNSAT-VERIFIED' and rec.get('checker_ended_by') != 'completed':
+                        raise ValueError(f'proof check not completed: {work / name}')
                     if rec['status'] == 'SAT' and not (work / (name + '.model.json')).exists():
                         raise ValueError('missing saved SAT model')
                 done.add(rec['map_index'])
@@ -389,7 +390,7 @@ def run(args):
             atomic(root / 'stop.json', dict(error=repr(exc), attempt=str(attempt)))
             raise
         finally:
-            # Hashes are streamed; large partial proofs are retained locally, never auto-committed.
+            # Hashes are streamed; CNF and proof files were deleted after their check (PROTOCOL.md §5).
             try:
                 manifest['outputs_sha256'] = {str(p.relative_to(attempt)): sha(p) for p in attempt.rglob('*')
                                                if p.is_file() and p != attempt / 'manifest.json'}

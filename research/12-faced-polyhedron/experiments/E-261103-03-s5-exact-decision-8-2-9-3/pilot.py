@@ -106,6 +106,9 @@ def solve(c, out, name, timeout, checker_timeout=None, on_sat=None, solver_gate=
                  checker_ended_by='completed' if ok else 'failed_or_timeout')
     if proof.exists():
         r['proof_sha256'] = sha(proof)
+    # The proof was checked above; records keep the hashes and transcripts, not the files (PROTOCOL.md §5).
+    for path in (cnf, proof):
+        path.unlink(missing_ok=True)
     return r
 
 

@@ -16,8 +16,8 @@ if [[ "${1:-pilot}" == coverage-pilot || "${1:-pilot}" =~ ^[0-9]+$ ]]; then
   else
     OUT="$HERE/results/$SHARD"
   fi
-  if [[ ! "$SHARDS" =~ ^[1-8]$ || "$SHARD" -ge "$SHARDS" ]]; then
-    echo 'Coverage requires SHARDS=1..8 and 0 <= SHARD < SHARDS.' >&2
+  if [[ ! "$SHARDS" =~ ^([1-9]|10)$ || "$SHARD" -ge "$SHARDS" ]]; then
+    echo 'Coverage requires SHARDS=1..10 and 0 <= SHARD < SHARDS.' >&2
     exit 2
   fi
   export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1

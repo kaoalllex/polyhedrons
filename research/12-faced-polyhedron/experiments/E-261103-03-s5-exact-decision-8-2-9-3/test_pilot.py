@@ -3,7 +3,6 @@ import json
 import os
 import gzip
 import hashlib
-import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -13,9 +12,22 @@ from omsat import CNF
 
 def replay_requested():
     requested = os.environ.get('REPLAY_DRAT') == '1'
-    if requested and not Path(pilot.DRAT).is_file():
-        raise RuntimeError('REPLAY_DRAT=1 requires drat-trim')
+    if requested and not (Path(pilot.DRAT).is_file() and Path(pilot.CADICAL).is_file()):
+        raise RuntimeError('REPLAY_DRAT=1 requires cadical and drat-trim')
     return requested
+
+
+def dropped(path):
+    """CNF and proof files are deleted after their check (PROTOCOL.md §5); their hashes stay in the records."""
+    return (path.name.endswith(('.cnf', '.drat', '.cnf.gz', '.drat.gz'))
+            and not path.exists() and not Path(str(path) + '.gz').exists())
+
+
+def fresh_check(cnf, tmp, cap):
+    """Audit replay without a kept proof: solve the rebuilt formula again and check the new proof."""
+    proof = Path(tmp) / 'fresh.drat'
+    rc = pilot.command([pilot.CADICAL, str(cnf), str(proof)], Path(tmp) / 'fresh.solver.log', cap)
+    return rc == 20 and pilot.check_proof(cnf, proof, Path(tmp) / 'fresh.checker.log', cap)
 
 
 def artifact_sha(path):
@@ -26,14 +38,6 @@ def artifact_sha(path):
         for chunk in iter(lambda: stream.read(1024 * 1024), b''):
             digest.update(chunk)
     return digest.hexdigest()
-
-
-def unpack(path, destination):
-    if path.exists():
-        return path
-    with gzip.open(str(path) + '.gz', 'rb') as src, destination.open('wb') as dst:
-        shutil.copyfileobj(src, dst)
-    return destination
 
 
 class PilotTests(unittest.TestCase):
@@ -60,7 +64,9 @@ class PilotTests(unittest.TestCase):
             c.clauses = [[1, 2], [-1, 2], [1, -2], [-1, -2]]
             r = pilot.solve(c, out, 'unsat', 5)
             self.assertEqual(r['status'], 'UNSAT-VERIFIED')
-            (out / 'broken.drat').write_text('')
+            self.assertIn('proof_sha256', r)
+            self.assertFalse((out / 'unsat.cnf').exists() or (out / 'unsat.drat').exists())
+            c.dimacs(out / 'unsat.cnf'); (out / 'broken.drat').write_text('')
             self.assertFalse(pilot.check_proof(out / 'unsat.cnf', out / 'broken.drat', out / 'broken.log', 5))
 
     def test_realizer_fallback_is_not_recovery(self):
@@ -155,9 +161,7 @@ class EvidenceTests(unittest.TestCase):
         self.assertLess(manifest['core_hours'], 1)
         for name, digest in manifest['outputs_sha256'].items():
             path = out / name
-            r = summary['targets'].get(name.removesuffix('.drat'), {})
-            if (name.endswith('.drat') and r.get('status') == 'TIMEOUT'
-                    and not path.exists() and not Path(str(path) + '.gz').exists()):
+            if dropped(path):
                 continue
             self.assertEqual(artifact_sha(path), digest, name)
         baseline = out.parent / 'paired_9_3_continued/summary.json'
@@ -175,13 +179,12 @@ class EvidenceTests(unittest.TestCase):
             with tempfile.TemporaryDirectory() as tmp:
                 rebuilt = Path(tmp) / 'rebuilt.cnf'
                 c.dimacs(rebuilt, comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
-                self.assertEqual(pilot.sha(rebuilt), artifact_sha(out / (name + '.cnf')))
+                self.assertEqual(pilot.sha(rebuilt), r['cnf_sha256'])
                 if r['status'] == 'UNSAT-VERIFIED':
                     decided.add(i)
                     self.assertLessEqual(r['checker_budget_seconds'], cap)
                     if replay_requested():
-                        proof = unpack(out / (name + '.drat'), Path(tmp) / 'proof.drat')
-                        self.assertTrue(pilot.check_proof(rebuilt, proof, Path(tmp) / 'log', cap))
+                        self.assertTrue(fresh_check(rebuilt, tmp, cap))
                     else:
                         self.assertIn('s VERIFIED', (out / (name + '.checker.log')).read_text())
                 elif r['status'] == 'SAT':
@@ -212,15 +215,13 @@ class EvidenceTests(unittest.TestCase):
             record = json.loads((folder / 'manifest.json').read_text())
             for name, digest in record['outputs_sha256'].items():
                 path = folder / name
-                target = summary['targets'].get(name.removesuffix('.drat'), {})
-                if (name.endswith('.drat') and target.get('status') in ('TIMEOUT', 'INTERRUPTED')
-                        and not path.exists() and not Path(str(path) + '.gz').exists()):
-                    # Partial proofs stay on the run host; they support no negative claim.
+                if dropped(path):
                     continue
                 self.assertEqual(artifact_sha(path), digest, name)
         from omsat_sym import closure
         for name, r in summary['targets'].items():
             folder = base / Path(r.get('artifact_dir', str(out))).name
+            digest = r.get('cnf_sha256') or json.loads((folder / 'manifest.json').read_text())['outputs_sha256'][name + '.cnf']
             i = r['map_index']; rec = pilot.census(9, 3)['maps'][i]
             t = pilot.from_links(rec['links'])
             if name.endswith('C3'):
@@ -231,11 +232,10 @@ class EvidenceTests(unittest.TestCase):
             with tempfile.TemporaryDirectory() as tmp:
                 rebuilt = Path(tmp) / 'rebuilt.cnf'
                 c.dimacs(rebuilt, comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
-                self.assertEqual(pilot.sha(rebuilt), artifact_sha(folder / (name + '.cnf')))
+                self.assertEqual(pilot.sha(rebuilt), digest)
                 if r['status'] == 'UNSAT-VERIFIED':
                     if replay_requested():
-                        proof = unpack(folder / (name + '.drat'), Path(tmp) / 'proof.drat')
-                        self.assertTrue(pilot.check_proof(rebuilt, proof, Path(tmp) / 'log', 60))
+                        self.assertTrue(fresh_check(rebuilt, tmp, 60))
                     else:
                         self.assertIn('s VERIFIED', (folder / (name + '.checker.log')).read_text())
                 elif r['status'] == 'SAT':
@@ -256,7 +256,8 @@ class EvidenceTests(unittest.TestCase):
         manifest = json.loads((out / 'manifest.json').read_text())
         self.assertEqual(manifest['status'], 'PILOT-COMPLETE')
         for name, digest in manifest['outputs_sha256'].items():
-            self.assertEqual(pilot.sha(out / name), digest, name)
+            if not dropped(out / name):
+                self.assertEqual(pilot.sha(out / name), digest, name)
         summary = json.loads((out / 'summary.json').read_text())
         self.assertEqual(summary['construction_power'], 'CONTROL-PASS')
         for name, result in summary['controls'].items():
@@ -282,7 +283,7 @@ class EvidenceTests(unittest.TestCase):
                 c.dimacs(rebuilt, comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
                 self.assertEqual(pilot.sha(rebuilt), result['cnf_sha256'])
                 if replay_requested():
-                    self.assertTrue(pilot.check_proof(out / (name + '.cnf'), out / (name + '.drat'), Path(tmp) / 'checker.log', 60))
+                    self.assertTrue(fresh_check(rebuilt, tmp, 60))
                 else:
                     self.assertIn('s VERIFIED', (out / (name + '.checker.log')).read_text())
 

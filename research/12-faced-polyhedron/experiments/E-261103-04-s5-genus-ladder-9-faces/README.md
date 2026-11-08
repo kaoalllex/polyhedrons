@@ -172,3 +172,7 @@ auxiliary, scope and resources. The local dispatcher now uses the explicit
 auxiliary geometry gate. No optimizer was rerun, and its corrected full path
 has not been exercised. The candidate-check stop leaves Mizhaev geometry
 unrun; this auxiliary does not open full-control, focus or night gates.
+
+Evidence files (2026-11-08): the CNF and proof files of `results/*-audit/` were removed from git (owner's decision,
+`reviews/strategy-review-2026-11-08b.md` §8); their SHA-256 values and checker transcripts stay in the records.
+`audit.py` re-checks saved files, so an audit replay now needs a fresh run of the audited formulas.
