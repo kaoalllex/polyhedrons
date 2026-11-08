@@ -1,7 +1,8 @@
-"""Positive control (c) of the item 1 launch: a convex 9-face simple polyhedron (genus 0), exact rational derivation.
+"""Positive control (c) of the item 1 launch: a convex F-face simple polyhedron (genus 0), exact rational derivation.
 
-Writes control_f9.json: integer planes [a, b, c, d] (inside is a x + b y + c z + d <= 0) and the cyclic face links
-(counter-clockwise seen from outside); negative_links is the map of another polyhedron.  Usage: python3 control_f9.py [--check]"""
+Writes control_fF.json (F = 9 unless --faces F): integer planes [a, b, c, d] (inside is a x + b y + c z + d <= 0) and the
+cyclic face links (counter-clockwise seen from outside); negative_links is the map of another polyhedron.
+Usage: python3 control_f9.py [--faces F] [--check]"""
 import itertools
 import json
 from fractions import Fraction as F
@@ -58,32 +59,34 @@ def polyhedron(rows):
     return links, len(pts)
 
 
-def build(seed=2611080300):
+def build(seed=2611080300, faces=9):
     rng = random.Random(seed)
     while True:
         rows = []
-        for _ in range(9):
+        for _ in range(faces):
             nrm = [rng.randint(-9, 9) for _ in range(3)]
             if any(nrm):
                 rows.append(nrm + [-ceil(sqrt(sum(v * v for v in nrm)))])
-        if len(rows) < 9:
+        if len(rows) < faces:
             continue
         try:
             links, nv = polyhedron(rows)
         except ValueError:
             continue
-        if nv == 14 and all(v for v in chirotope_from_planes(rows).values()):
+        if nv == 2 * faces - 4 and all(v for v in chirotope_from_planes(rows).values()):
             return rows, links
 
 
 if __name__ == '__main__':
-    rows, links = build()
-    other = build(2611080301)[1]  # a different labelled 9-face map for the negative control
+    f = int(sys.argv[sys.argv.index('--faces') + 1]) if '--faces' in sys.argv else 9
+    rows, links = build(faces=f)
+    other = build(2611080301, faces=f)[1]  # a different labelled F-face map for the negative control
     assert other != links
-    path = HERE / 'control_f9.json'
+    path = HERE / f'control_f{f}.json'
     data = dict(planes=rows, links={str(k): v for k, v in links.items()},
                 negative_links={str(k): v for k, v in other.items()},
-                note='convex simple 9-face polyhedron, V=14 E=21 F=9, chi=2; inside: a x + b y + c z + d <= 0')
+                note=f'convex simple {f}-face polyhedron, V={2 * f - 4} E={3 * f - 6} F={f}, chi=2; '
+                     'inside: a x + b y + c z + d <= 0')
     if '--check' in sys.argv:
         assert json.loads(path.read_text()) == data
     else:

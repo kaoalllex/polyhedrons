@@ -2,12 +2,12 @@
 id: E-261103-07
 title: Census and symmetric sub-list of the (10, 4) candidate maps - preparation of the stretch target
 date: 2026-11-03
-status: planned
+status: running
 direction: [DR19]
 origin: [E-261103-01, I-261101-07]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned. Scores T D F G R: 1 2 2 2 2 | budget: minutes to hours of CPU with the enumerator of E-261103-01; no geometry.
@@ -33,7 +33,7 @@ This item remains planned for the geometric compatibility analysis of its symmet
 
 ## Next
 
-Stop rule (revised 2026-11-08, `reviews/strategy-review-2026-11-08.md` L3): the census is complete (E-261103-01); what remains is a (10, 4) cost probe, 10 maps of mixed patterns at 300 s (<= 1 core-h), run only as the follow-up of ROADMAP week item 5a. Outcome: the
+Stop rule (revised 2026-11-08, `reviews/strategy-review-2026-11-08.md` L3): the census is complete (E-261103-01); what remains is a (10, 4) cost probe, 10 maps of mixed patterns (design and caps amended by the owner on 2026-11-08, see `PLAN.md`), run only as the follow-up of ROADMAP week item 5a. Outcome: the
 count and the symmetric sub-list set the (10, 4) row of the S5 table ("cannot tell" falls if the maps are few) and the plan
 for the stretch. Scenario move: none.
 

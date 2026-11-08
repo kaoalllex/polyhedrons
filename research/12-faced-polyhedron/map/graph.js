@@ -1066,7 +1066,7 @@ window.GRAPH = {
    "id": "E-261103-07",
    "kind": "experiment",
    "title": "Census and symmetric sub-list of the (10, 4) candidate maps - preparation of the stretch target",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-03",
    "concluded": "",
    "path": "experiments/E-261103-07-s5-10-4-census-symmetry/README.md",
@@ -1074,7 +1074,7 @@ window.GRAPH = {
     "DR19"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {

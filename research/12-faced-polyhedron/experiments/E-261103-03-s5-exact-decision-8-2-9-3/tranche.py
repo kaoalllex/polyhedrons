@@ -20,6 +20,7 @@ from pilot import HERE, ROOT, sha
 QUEUE = HERE / 'tranche_queue.json'
 BUDGET_SECONDS = 22319
 SOLVER_CAP, CHECKER_CAP = 60, 120  # registered defaults; --timeout / --s5-checker-timeout override
+CASE, CONTROL = (9, 3), 'control_f9.json'  # a custom queue may name another census case and control file
 
 
 def atomic(path, value):
@@ -76,12 +77,14 @@ def append_checkpoint(path, record):
 def load_queue(custom=False):
     data = json.loads(QUEUE.read_text())
     if custom:  # explicit map list (long-cap units): census identity and per-map canonical hashes only
-        maps = pilot.census(9, 3)['maps']
-        if sha(ROOT / 'experiments/E-261103-01-s5-map-census/results/maps_9_3.json') != data['census_sha256']:
+        global CASE, CONTROL
+        CASE = tuple(data.get('case', CASE)); CONTROL = data.get('control_file', CONTROL)
+        maps = pilot.census(*CASE)['maps']
+        if sha(ROOT / f'experiments/E-261103-01-s5-map-census/results/maps_{CASE[0]}_{CASE[1]}.json') != data['census_sha256']:
             raise ValueError('census identity changed')
         for entry in data['maps']:
             if entry.get('control'):
-                if sha(HERE / 'control_f9.json') != entry['control_sha256']:
+                if sha(HERE / CONTROL) != entry['control_sha256']:
                     raise ValueError('control identity changed')
                 continue
             rec = maps[entry['index']]
@@ -227,17 +230,18 @@ def sources():
 
 def unit(spec):
     root = Path(spec['root']); out = Path(spec['out']); index = spec['index']
-    if spec.get('control'):  # convex 9-face controls, planes pinned: positive SAT, negative (other map) UNSAT; never latch a first SAT
-        data = json.loads((HERE / 'control_f9.json').read_text())
+    case = tuple(spec.get('case', CASE)); faces = case[0]
+    if spec.get('control'):  # convex F-face controls, planes pinned: positive SAT, negative (other map) UNSAT; never latch a first SAT
+        data = json.loads((HERE / spec.get('control_file', CONTROL)).read_text())
         links = {int(k): v for k, v in data['negative_links' if spec['control'] == 'negative' else 'links'].items()}
         tris = sorted({tuple(sorted((x, a, b))) for x, link in links.items() for a, b in zip(link, link[1:] + link[:1])})
-        c = pilot.CNF(9); pilot.build(c, pilot.Triangulation(9, tris, links=links, submap=True), pilot.ALL_OPTS)
+        c = pilot.CNF(faces); pilot.build(c, pilot.Triangulation(faces, tris, links=links, submap=True), pilot.ALL_OPTS)
         c.clauses.extend([[c.qvar[q] if v > 0 else -c.qvar[q]] for q, v in pilot.chirotope_from_planes(data['planes']).items()])
         on_sat = None
     else:
-        rec = pilot.census(9, 3)['maps'][index]
+        rec = pilot.census(*case)['maps'][index]
         pilot.dump(out / 'map.json', rec)
-        c = pilot.CNF(9); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
+        c = pilot.CNF(faces); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
         on_sat = lambda: latch_sat(root, dict(map_index=index, unit=str(out), name=name))
     name = f'map{index}_plain'
     try:
@@ -278,8 +282,8 @@ def process_first_sat(root, remaining):
         if first['status'] != 'SAT-PENDING':
             return
         out = Path(first['unit']); name = first['name']; index = first['map_index']
-        rec = pilot.census(9, 3)['maps'][index]
-        c = pilot.CNF(9); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
+        rec = pilot.census(*CASE)['maps'][index]
+        c = pilot.CNF(CASE[0]); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
         model = json.loads((out / (name + '.model.json')).read_text())
         if not pilot.model_valid(c.clauses, model):
             raise ValueError('saved first SAT model invalid')
@@ -347,8 +351,10 @@ def run(args):
         if (root / 'first_sat.json').exists():
             if json.loads((root / 'first_sat.json').read_text())['status'] != 'SAT-PENDING':
                 print('first SAT already processed; coverage remains stopped', flush=True); return
-        unit_seconds = SOLVER_CAP + CHECKER_CAP + 60
-        allowance = len(todo) * (SOLVER_CAP + CHECKER_CAP) + 960
+        def caps(entry):  # a custom queue entry may carry its own caps
+            return entry.get('solver_cap', SOLVER_CAP), entry.get('checker_cap', CHECKER_CAP)
+        unit_seconds = max(sum(caps(e)) for e in todo) + 60 if todo else SOLVER_CAP + CHECKER_CAP + 60
+        allowance = sum(sum(caps(e)) for e in todo) + 960
         if custom:
             # Deadline-based: one invocation runs at most --hours, a shard at most its share of the budget over all
             # restarts; units that no longer fit wait for the next launch instead of stopping the cohort.
@@ -390,15 +396,18 @@ def run(args):
             if rc != 0 or not control.exists() or json.loads(control.read_text())['status'] != 'CONTROLS-PASS':
                 raise RuntimeError('required controls failed or exceeded 300 seconds')
             for entry in pending(root, queue, shard, shards):
-                if custom and deadline - time.monotonic() - 360 < unit_seconds:
+                solver_cap, checker_cap = caps(entry)
+                if custom and deadline - time.monotonic() - 360 < solver_cap + checker_cap + 60:
                     deadline_cut = True
                     print('deadline: next unit does not fit; remaining units stay pending', flush=True); break
                 index = entry['index']; work = attempt / f'map{index}'; work.mkdir()
-                spec = dict(entry, root=str(root), out=str(work), solver_cap=SOLVER_CAP, checker_cap=CHECKER_CAP)
+                spec = dict(entry, root=str(root), out=str(work), solver_cap=solver_cap, checker_cap=checker_cap)
+                if CASE != (9, 3) or CONTROL != 'control_f9.json':
+                    spec.update(case=list(CASE), control_file=CONTROL)
                 atomic(work / 'spec.json', spec)
                 append_checkpoint(out / 'progress.jsonl', dict(map_index=index, event='START', unit=str(work)))
-                print('map', index, f'start, solver {SOLVER_CAP}s checker {CHECKER_CAP}s', flush=True)
-                cap = min(unit_seconds, deadline - time.monotonic() - 360)
+                print('map', index, f'start, solver {solver_cap}s checker {checker_cap}s', flush=True)
+                cap = min(solver_cap + checker_cap + 60, deadline - time.monotonic() - 360)
                 if cap <= 0:
                     raise TimeoutError('first-SAT reserve reached')
                 rc = pilot.command([sys.executable, str(Path(__file__)), '--unit', str(work / 'spec.json')],

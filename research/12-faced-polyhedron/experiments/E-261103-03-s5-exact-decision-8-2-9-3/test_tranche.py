@@ -93,6 +93,18 @@ class TrancheTests(unittest.TestCase):
             self.assertEqual(Path(value('--results-dir')), tmp / 'r/9')
             self.assertIn('exit_status: 0', (tmp / 'r/9/manifest.txt').read_text())
 
+    def test_probe_queue_selects_case_control_and_per_map_caps(self):
+        t = self.module()
+        probe = pilot.ROOT / 'experiments/E-261103-07-s5-10-4-census-symmetry/queue_probe.json'
+        with patch.object(t, 'QUEUE', probe), patch.object(t, 'CASE', t.CASE), patch.object(t, 'CONTROL', t.CONTROL):
+            queue = t.load_queue(custom=True)
+            self.assertEqual((t.CASE, t.CONTROL), ((10, 4), 'control_f10.json'))
+        self.assertEqual((t.CASE, t.CONTROL), ((9, 3), 'control_f9.json'))
+        shard0 = queue[0::10]
+        self.assertEqual([e.get('control') for e in shard0], ['positive', 'negative', None])
+        maps = [e for e in queue if 'control' not in e]
+        self.assertEqual(sorted((e['solver_cap'], e['checker_cap']) for e in maps), [(300, 450)] * 6 + [(1800, 2700)] * 4)
+
     def test_shard_budget_share_survives_restarts(self):
         t = self.module()
         with tempfile.TemporaryDirectory() as tmp, patch.object(t, 'BUDGET_SECONDS', 300):
