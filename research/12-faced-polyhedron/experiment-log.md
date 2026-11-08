@@ -919,3 +919,5 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   6-21 s, no 36-pair solid; LOW-YIELD@0.38 core-h, configuration parked (STATUS 3t).
 * 2026-11-07: E-261103-06 embedded-first R1 pilot: 4 valid torus starts all blocked by the barrier at
   energy 84-118 after 3-6 steps; UNDERPOWERED, parked (STATUS 3u).
+* 2026-11-08: E-261103-03 unit (a): the 13 unattempted 11-gon (9,3) maps at 60/120 s: 9 UNSAT-VERIFIED,
+  4 TIMEOUT, 0 SAT, 0.23 core-h; prediction >= 10/13 missed; experiment stays active (STATUS 3d, CONCLUSION).

@@ -447,3 +447,22 @@ Each compressed stream was checked against its original before removing the redu
 Large partial proofs remain local and ignored; manifests and resource guards are retained.
 The stale launch.pids file was removed after acquiring every shard lock; lock files remain
 local and ignored. No solver or proof replay was repeated for packaging.
+
+## Unit (a) of the stratified long-cap pilot (2026-11-08, interim)
+
+Week plan item 1, unit (a), run first and alone by the owner's order (`PLAN.md` amendment of 2026-11-08). Queue
+`queue_item1a.json`: the 13 unattempted admissible (9,3) maps with an 11-gon face; solver 60 s, checker 120 s, one
+shard, the real entry point (`run_overnight.py s5 --s5-queue`). Wall 822 s, 0.23 core-h (manifest and `budget.json`);
+controls passed (saved-transcript mode). The launch tree was dirty; the recorded source hashes equal commit `abe8db1`.
+
+* Outcome (EXACT, formula scope): 9 UNSAT-VERIFIED (94, 100, 102, 111, 123, 171, 177, 184, 199), 4 TIMEOUT
+  (174, 176, 181, 200), 0 SAT. Solver 31.8-59.3 s (cadical process time 36.5-59.2 s for 94 and 199), checker 13.6-40.4 s.
+* Prediction (>= 10/13) missed by one. The week-plan rule "(a) < 7/13 -> drop item 3" is not met.
+* By pattern: (1,2,3) 2/2 (now 10/10 overall); (1,1,1,3) 7/11 (now 9/14; 74, 174, 176, 181, 200 open). The 60 s cap
+  lies inside the solve-time range of this class (map 199 at 59.3 s), so its TIMEOUTs say nothing; the five maps go
+  to the long-cap launch (review `reviews/strategy-review-2026-11-08b.md`).
+* Not claimed: anything about the four TIMEOUT maps, any geometric statement beyond the conditional PROVED-1 reading
+  of the encoder, and "every 11-gon map is UNSAT" (waits for the five maps and for control (c)).
+* Evidence: `results/item1a/` records, solver and checker logs, hashes. CNF and proof files are not kept (owner's
+  decision of 2026-11-08, option A of that review); the CNFs rebuild byte-identically from the encoder (checked for
+  94, 174, 200 under two hash seeds).

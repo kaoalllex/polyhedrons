@@ -1,7 +1,8 @@
 # Status ledger (single source of truth for "where are we")
 
 As of **2026-11-08** (lead review 2026-11-08 applied: week plan in `ROADMAP.md`, (9, 3) credences moved; sections
-3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION). Definitions, counters and
+3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a) recorded
+in 3d the same day). Definitions, counters and
 evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experiment-log.md`; what to do next:
 `ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
 numbers; other files link here.
@@ -172,11 +173,16 @@ Roest-Vigh and Mizhaev maps remain session checks only. Nothing geometric has ru
   exclusion is PROVED-1 and conditional on census coverage, encoder soundness and general position; not CERTIFIED.
 * **(9, 3) free C3:** all 8 uniform free-C3 formulas UNSAT-VERIFIED (EXACT). A conditional coverage draft for the
   geometric C3 family is in CONCLUSION (PROVED-1, AI review only).
-* **(9, 3) plain**, solver cap 60 s unless stated: UNSAT-VERIFIED for 19 maps (5, 6, 30 in the paired pilot; 40, 48 at
-  62.5 and 75.7 s in the 60/300-s grid; 19, 20, 29, 31, 43, 52, 58, 59, 60, 66, 67, 75, 83, 90 in the 80-map tranche).
-  73 maps unresolved (0 and 1 also at 300 s), 111 unattempted, 0 SAT. Checker time is separate (map 40: 62 s).
-* Solve time depends on the multiple-adjacency pattern (NUMERICAL): maps whose extra segments meet at one face solve in
-  22-76 s, spread-out doubled pairs time out (`reviews/strategy-review-2026-11-08.md` §3.1).
+* **(9, 3) plain**, solver cap 60 s unless stated: UNSAT-VERIFIED for 28 maps (5, 6, 30 in the paired pilot; 40, 48 at
+  62.5 and 75.7 s in the 60/300-s grid; 19, 20, 29, 31, 43, 52, 58, 59, 60, 66, 67, 75, 83, 90 in the 80-map tranche;
+  94, 100, 102, 111, 123, 171, 177, 184, 199 in unit (a), 2026-11-08). 77 maps unresolved (0 and 1 also at 300 s),
+  98 unattempted, 0 SAT. Checker time is separate (map 40: 62 s).
+* Solve time depends on the multiple-adjacency pattern (NUMERICAL): patterns (1,2,3) and (2,2,2) are 13 of 13
+  UNSAT-VERIFIED in 22-76 s; (1,1,1,3) is 9 of 14 (solves 32-59 s; 74, 174, 176, 181, 200 TIMEOUT at 60 s, a cap
+  inside the solve-time range); spread-out doubled pairs time out (`reviews/strategy-review-2026-11-08.md` §3.1, `-08b`).
+* **Unit (a)** of week item 1 (2026-11-08): the 13 unattempted 11-gon maps at 60/120 s, one shard, 822 s wall
+  (0.23 core-h), controls passed; 9 UNSAT-VERIFIED, 4 TIMEOUT. Prediction (>= 10/13) missed; item 3 kept (>= 7/13).
+  Scope: these plain formulas at these caps; the TIMEOUTs are no evidence either way.
 * Tranche verdict LOW-YIELD@60 s for its frozen queue; no cap above 300 s has been tried (ROADMAP week item 1). All
   manifests total about 2.0 core-h (tranche 1.50 incl. its pilot); itemised sums, hashes and `results/tranche_audit.json`
   in CONCLUSION. Large proofs are local-only with hashes in git; external certificate publication is pending.

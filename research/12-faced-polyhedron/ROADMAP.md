@@ -50,33 +50,36 @@ parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-mis
   * `lint_docs.py` also checks that every new `PLAN.md` has the counter-calibration and scenario-move lines (template
     changed 2026-11-01 after `reviews/strategy-review-2026-11-01.md`).
 
-## Week plan (lead review 2026-11-08, `reviews/strategy-review-2026-11-08.md`, approved by the owner; replaced by the next lead review)
+## Week plan (lead review 2026-11-08, `reviews/strategy-review-2026-11-08.md`, approved by the owner; item 1 and the laptop line amended by `reviews/strategy-review-2026-11-08b.md`; replaced by the next lead review)
 
 Lab sessions take these in order (PROTOCOL.md §8b). Anything outside a follow-up tree goes to "For the lead".
-Laptop: at most 10 cores in total; item 1 uses 8 workers, so items 2-3 may run beside it on at most 2 cores.
+Laptop: at most 10 cores in total, and every splittable run uses 8-10 shards (owner, 2026-11-08), day and lab
+test runs included; item 1's launch uses 10 shards, so nothing runs beside it (items 2-3 run before or after it).
 
 1. **E-261103-03 stratified long-cap pilot** (exploit). Question: do the slow (9,3) plain formulas finish
-   with longer caps, and does the pattern stratification hold? Prep (one lab session): one amendment of
-   at most 15 lines; the runner's solver/checker caps as parameters; units (a) the 13 unattempted maps with
-   patterns (1,1,1,3) and (1,2,3), solver 60 s / checker 120 s; (b) 12 unresolved maps, the lowest indices
-   of each class: 5 of pattern (1^6), 5 of (1^4,2), 2 of (1,1,2,2)/(2,3); solver 1800 s, checker at most
-   2700 s; time to solve recorded; plus map 74 at the (b) caps, outside the (b) counts below; (c) **positive
-   control at F = 9**: one E-261107-01 Phase B solid (exact check first), its own map through the `submap=True`
-   path with its planes pinned: SAT required.
-   **Order (owner, 2026-11-08): unit (a) runs first, on its own**, right after the amendment and the cap
-   parameters, launched by the lab session after the bounded startup check of PROTOCOL §8 (at most 0.3 core-h,
-   minutes of wall time). Its 13 maps are exactly the unattempted admissible (9,3) maps with an 11-gon face (all
-   three extra segments at one face; 10 of the 11 attempted ones are UNSAT-VERIFIED, map 74 timed out at 60 s).
-   Record (a)'s per-formula outcomes at once. "Every 11-gon map is UNSAT-VERIFIED" waits for map 74 and for
-   control (c). Then (b), map 74 and (c) in an owner launch (8 workers, 1-2 h wall, at most 15 core-h; the
-   bounded startup check first). Predictions: (a) at least 10/13 UNSAT-VERIFIED; (b) has no prediction, it measures.
-   Kill: control (c) fails -> stop, escalate (the 0-SAT record would be void). Follow-up tree:
-   * any SAT -> stop dispatch; check the model exactly, run the saved-OM realizer (E-261103-04 path),
-     `verify_candidate.py --target S5`, `candidate-check`; if it does not realize: one final-polynomial
-     attempt (at most 1 session);
-   * (b) >= 8/12 decided -> item 5a; 3-7/12 -> item 5a for the classes with >= 3/5 decided, item 5b for the
-     rest; <= 2/12 -> item 5b only;
-   * (a) < 7/13 -> drop item 3 (the pattern observation failed).
+   with longer caps, and does the pattern stratification hold?
+   * DONE 2026-11-08 (owner's order, out of sequence): unit (a), 13 unattempted 11-gon maps at 60/120 s:
+     9 UNSAT-VERIFIED (94, 100, 102, 111, 123, 171, 177, 184, 199), 4 TIMEOUT (174, 176, 181, 200), 0 SAT;
+     (1,2,3) 2/2, (1,1,1,3) 7/11. Prediction (>= 10/13) missed; item 3 is kept (>= 7/13).
+   * NEXT, one prep session, then one owner launch: queue `queue_item1b.json` with (b) 12 unresolved maps,
+     the lowest indices of each class: 5 of (1^6), 5 of (1^4,2), 2 of (1,1,2,2)/(2,3); plus, outside the (b)
+     counts, the 5 (1,1,1,3) timeouts 74, 174, 176, 181, 200; plus (c) the **positive control at F = 9**:
+     one E-261107-01 Phase B solid (exact check first), its own map through the `submap=True` path with its
+     planes pinned: SAT required. Solver 1800 s, checker at most 2700 s; time to solve recorded as cadical
+     process time (`solver.log`). 10 shards; worst case 17 x 4500 s = 21 core-h, 2.5 h wall; expected far
+     less. The bounded startup check of PROTOCOL §8 uses the same shard count. Evidence: option A of review
+     2026-11-08b §4 (proofs checked during the run, then deleted; hashes and transcripts kept).
+   * Predictions: the 5 (1,1,1,3) maps: at least 4/5 UNSAT-VERIFIED within 300 s solver time; (b) has none,
+     it measures.
+   * Kill: control (c) fails -> stop, escalate (the 0-SAT record would be void). Follow-up tree:
+     * any SAT -> stop dispatch; check the model exactly, run the saved-OM realizer (E-261103-04 path),
+       `verify_candidate.py --target S5`, `candidate-check`; if it does not realize: one final-polynomial
+       attempt (at most 1 session);
+     * (b) >= 8/12 decided -> item 5a; 3-7/12 -> item 5a for the classes with >= 3/5 decided, item 5b for the
+       rest; <= 2/12 -> item 5b only;
+     * all 5 (1,1,1,3) maps UNSAT-VERIFIED -> "every 11-gon (9,3) plain formula is UNSAT-VERIFIED" (EXACT,
+       formula scope; geometric reading conditional on the encoder argument and on control (c)); item 3 uses
+       all 24 maps. Any of them still TIMEOUT at 1800 s -> item 3 uses (1,2,3) and (2,2,2) only.
 2. **S5 literature check** (no compute, one session; literature-researcher subagent only with the owner's
    consent). Question: is any (8,2), (9,3), (10,4) maximal face-neighbourly polyhedron, or a non-existence
    result, published or claimed? Sources: Roest-Vigh 2026, Mizhaev 2026, Bokowski-H. 2025, the Szilassi
@@ -84,7 +87,7 @@ Laptop: at most 10 cores in total; item 1 uses 8 workers, so items 2-3 may run b
    E-261101-22 and the STATUS §6 sources line; a published (9,3) object or proof -> escalate (focus question).
 3. **Concentrated-multiplicity core study** (explore, new idea from this review §7.1). Question: does the
    fast UNSAT of maps whose extra segments meet at one face have a local cause on few faces? Test:
-   face-grouped minimal cores of the saved plain formulas of the 13 fast maps (patterns (1,2,3), (2,2,2),
+   face-grouped minimal cores of the plain formulas (rebuilt, hash-checked) of the 13 fast maps (patterns (1,2,3), (2,2,2),
    (1,1,1,3)), plus item 1(a)'s new ones; at most 1 session + 1 core-h. Kill: no core on <= 6 of the 9
    faces in >= 3 maps -> park. Follow-up tree: pass -> a PROVED-1 lemma draft (at most 1 session) and an
    exact count of the (10,4) maps it would exclude (minutes).
@@ -217,7 +220,7 @@ horizon by our tools; moved by the "scenario move" lines of the E-261103 PLANs):
 
 | Case | exists | does not exist | cannot tell | Evidence in one line |
 |---|---|---|---|---|
-| (9, 3) | 0.35 | 0.40 | 0.25 | the free-C3 ansatz is UNSAT on all 8 maps (EXACT formulas, conditional coverage PROVED-1); 19 of 203 plain maps UNSAT, 0 SAT, on a biased fast-pattern subset; 184 maps undecided, mostly slow patterns (STATUS 3c, 3i) |
+| (9, 3) | 0.35 | 0.40 | 0.25 | the free-C3 ansatz is UNSAT on all 8 maps (EXACT formulas, conditional coverage PROVED-1); 28 of 203 plain maps UNSAT, 0 SAT, on a biased fast-pattern subset; 175 maps undecided, mostly slow patterns (STATUS 3c, 3i) |
 | (8, 2) | 0 | 1 | 0 | E-261103-03: both plain formulas UNSAT-VERIFIED; conditional on PROVED-1 census coverage and encoder soundness, not human-reviewed theorem certainty |
 | (10, 4) | 0.30 | 0.30 | 0.40 | several hundred maps, almost no symmetry in the sample, no engine pass at genus 4 |
 
