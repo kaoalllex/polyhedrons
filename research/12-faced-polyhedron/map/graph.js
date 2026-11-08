@@ -3569,6 +3569,34 @@ window.GRAPH = {
    "preregistered": ""
   },
   {
+   "id": "I-261108-10",
+   "kind": "idea",
+   "title": "Defect-bounded boundary census - the non-cubic (8, 2) / (9, 3) maps as at most s edge contractions of cubic precursor maps",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-10-defect-bounded-boundary-census.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-11",
+   "kind": "idea",
+   "title": "Boolean union of two projectively matched face-neighbourly solids - a direct genus source for (10, 4) and, in stage 2, for the 12-face target",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-11-union-of-matched-face-neighbourly-solids.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -4780,6 +4808,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "E-261103-01",
+   "to": "I-261108-10",
+   "kind": "origin"
+  },
+  {
    "from": "E-261103-02",
    "to": "E-261103-03",
    "kind": "origin"
@@ -5705,6 +5738,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261108-09",
+   "to": "I-261108-10",
+   "kind": "origin"
+  },
+  {
    "from": "L:abs1996",
    "to": "E-261029-01",
    "kind": "origin"
@@ -5822,6 +5860,11 @@ window.GRAPH = {
   {
    "from": "L:mizhaev2026",
    "to": "I-261103-04",
+   "kind": "origin"
+  },
+  {
+   "from": "L:mizhaev2026",
+   "to": "I-261108-11",
    "kind": "origin"
   },
   {
@@ -5965,6 +6008,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "L:roestvigh2026",
+   "to": "I-261108-11",
+   "kind": "origin"
+  },
+  {
    "from": "L:schewe2010",
    "to": "E-261029-03",
    "kind": "origin"
@@ -6012,6 +6060,11 @@ window.GRAPH = {
   {
    "from": "L:szilassi1977",
    "to": "I-261101-15",
+   "kind": "origin"
+  },
+  {
+   "from": "L:szilassi1977",
+   "to": "I-261108-11",
    "kind": "origin"
   },
   {
@@ -6327,6 +6380,11 @@ window.GRAPH = {
   {
    "from": "owner",
    "to": "I-261108-09",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261108-11",
    "kind": "origin"
   }
  ],

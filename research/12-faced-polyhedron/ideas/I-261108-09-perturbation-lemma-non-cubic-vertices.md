@@ -32,12 +32,25 @@ quadruples).
 
 ## Cheapest test
 
-An exact finite check. For k = 4, a generic central arrangement of 4 planes is unique up to reorientation: take every
-union of its 14 cones whose boundary is a manifold 4-valent vertex with all four planes as faces, perturb with both
-signs, put the bounded cell in and out, and test manifoldness, face connectivity and the adjacency bookkeeping. Then
-k = 5, 6 (finitely many perturbation types) or an induction that moves one plane at a time. Seconds of CPU in one
-session, then a written argument for the global step (the rest stays embedded under a small perturbation; several
-resolved vertices on one plane); PROVED-1 at best.
+An exact finite check of the **universal** local statement: for every perturbation type of the k planes through p,
+some choice of the bounded cells gives a valid patch. Only the universal form makes the global step free: one small
+generic perturbation of all planes is then covered at every exceptional vertex, and the patch choices sit in disjoint
+small balls, so they impose no further conditions on the planes (review 08e Follow-up Q4 accepts this). An
+existential local result (some perturbation works) does not suffice, because one plane passes through several
+vertices. A valid patch must:
+
+* keep the boundary trace of the continued original surface on a small sphere around p;
+* keep every labelled face a disk sector attached along its prescribed boundary arc (face connectivity alone does not
+  exclude a hole);
+* have positive-length outgoing edges and no extra component.
+
+For k = 4, a generic central arrangement of 4 planes is unique up to reorientation: take every union of its 14 cones
+whose boundary is a manifold 4-valent vertex with all four planes as faces, perturb with both signs, put the bounded
+cell in and out, and test the three conditions and the adjacency bookkeeping. Then k = 5, 6 (finitely many
+perturbation types). Also cover the nongeneric central stars the lemma allows: k <= 6 incident planes need not have
+every triple of normals independent. Seconds of CPU in one session, then a written argument for the global step
+(compact separation away from the vertices); PROVED-1 at best. A failed universal type kills this sufficient lemma,
+not the weaker existential one; the fallback is I-261108-10.
 
 ## Source
 

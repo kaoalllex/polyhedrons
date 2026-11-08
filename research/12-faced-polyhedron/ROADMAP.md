@@ -52,40 +52,60 @@ parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-mis
   * `lint_docs.py` also checks that every new `PLAN.md` has the counter-calibration and scenario-move lines (template
     changed 2026-11-01 after `reviews/strategy-review-2026-11-01.md`).
 
-## Week plan (lead review 2026-11-08d, `reviews/strategy-review-2026-11-08d.md`, approved by the owner on 2026-11-08; replaced by the next lead review)
+## Week plan (lead review 2026-11-08d, `reviews/strategy-review-2026-11-08d.md`, amended in items 1, 2 and 5 by the second-lead review `reviews/strategy-review-2026-11-08e.md` and its follow-up; both approved by the owner on 2026-11-08; replaced by the next lead review)
 
 Lab sessions take these in order (PROTOCOL.md §8b). Anything outside a follow-up tree goes to "For the lead".
-Laptop: at most 10 cores in total; every splittable run uses 8-10 shards (owner, 2026-11-08). Items 1, 3 and 4 need
-no night; item 2 is one owner launch of at most 2 h wall.
+Laptop: at most 10 cores in total; every splittable run uses 8-10 shards (owner, 2026-11-08). Items 1, 3, 4 and 5 need
+no night; item 2 is one owner launch of at most 2 h wall. Aggregate core-hour caps override per-unit caps.
 
 1. **Multiplicity >= 3 positive control** (audit, exploit; [I-261108-04](ideas/I-261108-04-grooved-box-multiplicity-control.md)). Question: does the
    E-261103-02 encoder accept a real embedded polyhedron in which one face pair shares three (and four) collinear
    segments? Object: a box with two (three) V-grooves cut from one edge, groove walls tilted to general position,
    exact rational planes, checked by `ladder_exact` / `verify_solid`. Test: its own map through the `submap=True`
    path, planes pinned: SAT required; the same planes on a map with one segment pairing swapped: UNSAT-VERIFIED
-   required; also the unpinned formula if it has <= 13 elements (SAT required). At most 1 session, < 0.1 core-h.
+   required; also the unpinned formula if it has <= 13 elements (SAT required). The swapped map must itself be a valid
+   map on which the exact geometry rejects the pinned planes; a loader rejection is not a negative control. If the
+   quadrupled box does not fit the session, finish the tripled one and record the remaining coverage (review 08e §3).
+   At most 1 session, < 0.1 core-h.
    * Kill: none (a control). Follow-up tree:
      * all pass -> record the control (EXACT) in E-261103-02 and STATUS; items 2-4 proceed;
      * a pinned SAT fails -> stop all S5 compute; the 18 tripled-pair (9,3) UNSATs and the tripled (8,2) UNSAT are
        suspended; escalate (encoder bug hunt, at most 1 session, then the lead).
 2. **(10,4) speed-up benchmark** (exploit; I-261031-02, I-261108-05; follow-up of E-261103-07; what differs from the parked plain run:
-   solver, options and cubing). Question: is there a variant that makes the (10,4) plain formulas >= 10x cheaper?
-   * Phase A (calibration, known answers): six (9,3) maps already UNSAT-VERIFIED: map 7 and one more `1^6`, maps 87 and
-     130 `(1^4,2)`, one `(1,1,2,2)/(2,2,2)`, one `(1,1,1,3)`. Variants: CaDiCaL default (baseline, re-run under the
-     same 10-shard load), CaDiCaL `--unsat`, kissat (pinned build), cube-and-conquer (cubes on the segment-order
-     variables of the multiple pairs, or march_cu; each cube solved by CaDiCaL; core-seconds summed over cubes). Cap per
-     unit 2x the recorded baseline. Metric: core-seconds to UNSAT; times only, no evidence claim.
-   * Phase B (only for variants >= 3x faster on >= 3 of the 4 slow Phase A maps; at most 2 variants): the probe maps
-     146, 845, 78, 1104 at 1 core-h per map and variant. An UNSAT counts as evidence only with a checked proof (for
-     cube-and-conquer: one DRAT per cube plus a checked cube-cover formula; the PLAN fixes the format).
-   * Budget: 1 prep session; one owner launch, 10 shards, <= 2 h wall, <= 12 core-h worst case, expected about 6.
-   * Kill: no variant >= 3x on Phase A -> no Phase B; (10,4) plain route LOW-YIELD on the laptop; escalate.
-   * Follow-up tree, from the projection P_best = sum over patterns of count x (9,3) median x F_best x 1.71 / 3600:
-     * P_best <= 160 core-h -> (10,4) completion over two laptop nights (PLAN amendment: fast patterns first,
-       first-SAT stop, controls in every shard, the item 1 control included);
-     * 160 < P_best <= 1,000 -> Actions calibration wave ([I-261108-07](ideas/I-261108-07-actions-calibration-wave.md), owner approved a trial), then a campaign PLAN; owner decides;
-     * P_best > 1,000, or Phase B decides 0 of 4 maps -> escalate: the (10,4) exact route is beyond our compute
-       without a new idea;
+   solver and cubing; design of review 08e Follow-up Q1, except the variants). Question: is there a variant that makes
+   the (10,4) plain formulas >= 10x cheaper, measured on (10,4) maps rather than inferred from (9,3)?
+   * Variants: V1 = kissat (pinned build, DRAT output); V2 = cube-and-conquer (cubes on the segment-order variables of
+     the multiple pairs, or march_cu; each cube solved by CaDiCaL; one DRAT per cube plus a checked cube-cover formula;
+     core-seconds summed over cubes). If V2 cannot be built and checked within the prep session, V2 = CaDiCaL
+     `--unsat`; no other substitution. Freeze binary hashes and versions. Baseline: the recorded default-CaDiCaL runs,
+     as censored observations (no new baseline jobs).
+   * Phase A (correctness screen, no speed threshold, <= 1 core-h aggregate): the six known-answer (9,3) maps (map 7 and
+     one more `1^6`, maps 87 and 130 `(1^4,2)`, one `(1,1,2,2)/(2,2,2)`, one `(1,1,1,3)`) plus the SAT controls. A wrong
+     model or a rejected proof rejects the variant; a timed-out unit is unresolved, not a failure.
+   * Phase B (target): (10,4) maps 96 `(1^4,2)`, 85 `1^6`, 146 `(2,2,2)/(2,2,2)`, 845 `(1,2,3)` of
+     `experiments/E-261103-01-s5-map-census/results/maps_10_4.json` (SHA-256 frozen in the PLAN); 4 maps x 2 variants,
+     3600 s end-to-end per unit (solver <= 2400 s, the checker the rest). An unchecked UNSAT is censored.
+   * Projection (a scenario that allocates risk, not a bound): strata A = `(1^4,2)` (N = 520), B = `1^6` (N = 237),
+     C = all other patterns (N = 360, pooled as a working assumption). Per variant and stratum: n units, k checked
+     decisions, p = k / n, mu = mean end-to-end time of the decided units (0 if k = 0), tau = 3600 s;
+     B_h = N_h [p_h mu_h + (1 - p_h) tau] / 3600, R_h(lambda) = N_h (1 - p_h)(lambda - 1) tau / 3600,
+     P(lambda) = 1.25 sum_h [B_h + R_h(lambda)] for lambda in {4, 16}; a stratum without units gives P = infinity.
+     Report n, k, p, mu, every censored cap, and sum B separately.
+   * Winner: at least as many checked decisions as the other variant in each slow stratum, smaller P(4), and >= 2x
+     lower sum B; otherwise no winner. Holdout, winner only, from a 2 core-h reserve: maps 926, 852, 78, 1104 at 1800 s
+     each, proof included; all four must be checked. The holdout tests the projection's optimism and is not pooled
+     into it.
+   * Budget: 1 prep session; one owner launch, 8-10 shards, <= 2 h wall, <= 12 core-h (Phase A 1, Phase B 8,
+     holdout 2, overhead 1).
+   * Follow-up tree (nothing starts without the owner):
+     * a control fails -> reject that variant; no target decision -> park these variants, not the exact route; no
+       winner -> no campaign, the comparison is inconclusive;
+     * winner with P(4) <= 160 and P(16) <= 160 core-h and all four holdouts checked -> propose a capped two-night
+       attempt (PLAN amendment: fast patterns first, first-SAT stop, controls in every shard, the item 1 control
+       included), not a promised completion;
+     * otherwise P(4) <= 1,000 -> Actions calibration on known-answer maps ([I-261108-07](ideas/I-261108-07-actions-calibration-wave.md), owner approved a trial); a
+       campaign only after the measured runner cost and the owner's approval;
+     * P(4) > 1,000 -> park this route at this budget; escalate;
      * any SAT -> first-SAT stop; exact model check, realizers, `verify_candidate.py --target S5`, `candidate-check`.
 3. **Independent census of (8,2) and (9,3)** (audit; [I-261108-08](ideas/I-261108-08-independent-s5-census.md)). Question: does an independently written enumerator
    reproduce 2 classes at (8,2) and 240 classes / 203 admissible at (9,3), with the same canonical hashes? Method not
@@ -100,18 +120,28 @@ no night; item 2 is one owner launch of at most 2 h wall.
    `(2,2,2)/(2,2,2)`; plus the pinned Roest-Vigh, Mizhaev and item 1 controls. At most 2 sessions + 1 core-h, 8 shards (owner rule 2026-11-08).
    * Kill: a disagreement on any instance -> stop, the (9,3) claim is suspended, escalate. Follow-up tree: agreement
      on all -> the claim's encoder caveat reads "two encoders agree on six maps and all controls".
-5. **Face-contraction sieve** (explore; [I-261108-06](ideas/I-261108-06-face-contraction-sieve.md)). Question: is a (9,3) or (10,4) plain formula already UNSAT on
-   the clauses whose chirotope variables all contain one face X (the rank-3 contraction at X, a clause subset, so a
-   relaxation)? Power first: all 203 (9,3) maps x 9 faces (all known UNSAT), cap 20 s, 10 shards; then, only on pass,
-   the 1117 (10,4) maps x 10 faces. At most 1 session + 1 core-h for the (9,3) part.
-   * Kill: 0 of 203 (9,3) maps UNSAT at any single face -> park. Follow-up tree: >= 20 of 203 -> the (10,4) sieve
-     (<= 3 core-h); every (10,4) sieve UNSAT with a checked proof removes that map from the item 2 queue (EXACT,
-     formula scope); 1-19 of 203 -> record, no (10,4) run.
+5. **Union of two matched solids** (explore, jump; [I-261108-11](ideas/I-261108-11-union-of-matched-face-neighbourly-solids.md), stage 1; review 08e Follow-up Q5;
+   owner 2026-11-08). Question: does the Boolean union of two exact known solids, matched on k face planes by a
+   projective map, give a 10-face genus-4 boundary with many adjacent pairs? Sources: Szilassi + Szilassi, k = 4,
+   three intersection balls (3 free parameters); Szilassi + tetrahedron, k = 1, four balls (12 parameters). Control
+   first: the union of two identical Szilassi copies returns the Szilassi boundary exactly. Then 128 frozen samples per
+   source (plane correspondences x rational parameters), poles off both solids; the union boundary exactly from the
+   cells of the plane arrangement (reuse the solid-first `Arrangement` / `extract_map` code): genus, face components
+   and holes, simple faces, adjacent pairs. At most 1 session + 1 core-h, 8 shards.
+   * Kill: the control fails -> stop; no boundary with 10 simple faces and genus 4 in a source -> park that source at
+     this resolution (a sampled negative, not an exclusion). Follow-up tree: such boundaries with missing pairs -> one
+     separately registered continuous search for the better source; any boundary with all 45 pairs ->
+     `verify_candidate.py --target S5`, `candidate-check`. Stage 2 (the 12-face form) is not this week.
 
 Not in this week: the note package (lead review 2026-11-08d §5 item 8; owner 2026-11-08: a note is a goal and says
-that no independent review took place), after items 1, 3, 4 pass; its first step is the perturbation lemma
-[I-261108-09](ideas/I-261108-09-perturbation-lemma-non-cubic-vertices.md) (owner 2026-11-08: the non-cubic scope of
-`STATUS.md` §4; one session, seconds of CPU, no solver run); E-261101-10 (S0 slot).
+that no independent review took place), after items 1, 3, 4 pass. Its first step is the one-way soundness chain of
+review 08e Follow-up Q3: an S5 uniformization lemma with multiple segments; geometry to the admissible exported map;
+necessity of INCONS, RFCONS, REFLEX1 and POC for multiple boundary runs, with the Tseitin extension; the gauge units
+and the census-to-CNF manifest for all 205 formulas. The note says "cubic" unless the optional perturbation lemma
+[I-261108-09](ideas/I-261108-09-perturbation-lemma-non-cubic-vertices.md) (universal local test) closes the non-cubic scope of `STATUS.md` §4; [I-261108-10](ideas/I-261108-10-defect-bounded-boundary-census.md) is
+its fallback. Also not in this week: the face-contraction sieve ([I-261108-06](ideas/I-261108-06-face-contraction-sieve.md); moved out by review 08e: when it
+runs, a capped pilot of one session and <= 1 core-h with an aggregate stop, since the worst case of 203 x 9 x 20 s is
+10.15 core-h; auxiliary-variable closure inspected first; zero on a subset parks that version only); E-261101-10 (S0 slot).
 
 Previous week plan (lead review 2026-11-08, items 1-5) is done: literature check, (9,3) long-cap pilot, core study,
 arrangement sweep, and item 5a, which decided all 203 admissible (9,3) plain formulas UNSAT-VERIFIED (STATUS 3d); the
