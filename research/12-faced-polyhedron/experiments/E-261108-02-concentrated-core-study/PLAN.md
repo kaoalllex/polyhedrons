@@ -56,3 +56,18 @@ Pre-registration, 2026-11-08. Focus S5 (9,3); label ceiling EXACT per formula, P
 * **STATUS / ROADMAP for each outcome**: pass -> STATUS 3d line + item 3 DONE; park -> item 3 DONE-PARKED, one line.
 
 ## Amendments
+
+### Amendment 2026-11-08 (after the pilot, before the full run)
+
+* Pilot (maps 40 and 0, C0, C1; scratchpad, not recorded as results): the strict support of step 2 is blind: wide Tseitin
+  predicate definitions give every constraint a 9-face support, so every 8-face sub-formula is SAT and k_min is trivially
+  "global" (maps 40, 0). That measure is constant by construction, so it is dropped as the primary and kept as `--strict`.
+* Primary measure (replaces steps 2-3): all Tseitin definition clauses are always kept; a constraint clause is indexed by
+  the faces of the named predicates / chirotope signs it mentions (its constraint-instance face tuple); `sub(F)` = definitions
+  + constraints indexed inside F. Still a clause subset, hence sound. Meaning: UNSAT from constraints on F alone, with the
+  chirotope signs of other faces free.
+* Controls: C0, C1 as planned (index measure: C0 none; C1 k_min 3 and 20/15/6 UNSAT sets at 6/7/8 = supersets of {4,5,6}: pass).
+  Added C2: item 1's negative control (another map, control planes pinned, UNSAT) with cross-check: k_min 6 (unique set
+  {0,1,5,6,7,8}), assumption-core union 8 faces >= 6: consistent, so the measure moves between 3, 6 and none.
+* Levels 7 and 8 are recorded as descriptive (not in the verdict); one cap of 20 s everywhere. Cross-check runs on every
+  map with k_min <= 8 up to 3 maps. Budget unchanged (<= 1 core-h; pilot ~2 min per map).

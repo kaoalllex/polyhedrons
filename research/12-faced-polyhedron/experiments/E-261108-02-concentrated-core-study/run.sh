@@ -7,7 +7,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(cd "$HERE/../.." && pwd)"                 # research/12-faced-polyhedron
 SHARD="${1:-0}"
 SHARDS="${SHARDS:-1}"
-WORKERS="${WORKERS:-$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1)}"
+WORKERS="${WORKERS:-1}"
 OUT="$HERE/results/$SHARD"
 mkdir -p "$OUT"
 T0=$(python3 -c 'import time; print(time.monotonic_ns())')
@@ -36,9 +36,6 @@ finish() {
 trap finish EXIT
 
 # ---- the experiment: bounded, checkpointing into $OUT (EDIT) ----
-cd "$ROOT/code"
-echo "replace this line with the experiment command, e.g. python3 my_script.py --shard $SHARD --shards $SHARDS --out \"$OUT/result.json\" or python3 \"$ROOT/overnight/run_overnight.py\" JOB --results-dir \"$OUT\" ..."
-exit 1
-
-# ---- exact verification of anything found (EDIT) ----
-# python3 "$ROOT/verification/verify_candidate.py" "$OUT/result.json"
+PYTHON="${PYTHON:-$HOME/.venvs/polyhedra/bin/python}"
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
+"$PYTHON" "$HERE/cores.py" --shard "$SHARD" --shards "$SHARDS" --out "$OUT"
