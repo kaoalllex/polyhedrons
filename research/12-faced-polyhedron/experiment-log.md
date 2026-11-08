@@ -923,3 +923,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   4 TIMEOUT, 0 SAT, 0.23 core-h; prediction >= 10/13 missed; experiment stays active (STATUS 3d, CONCLUSION).
 * 2026-11-08: evidence policy changed (owner): proofs checked in the run, then deleted; 377 CNF/proof files removed
   from the unpushed lab/2026-11-07 history; older commit SHAs map via `reviews/strategy-review-2026-11-08b-commit-map.txt`.
+* 2026-11-08: E-261103-03 item 1 long-cap launch (solver 1800 s, 10 shards, 2.74 core-h): controls passed; 17 of 17 (9,3) plain maps
+  UNSAT-VERIFIED (12 of `1^6`/`(1^4,2)`/`(1,1,2,2)` + the five (1,1,1,3) maps), 0 SAT; all 24 11-gon maps now decided; experiment stays
+  active for item 5a (STATUS 3d, CONCLUSION).

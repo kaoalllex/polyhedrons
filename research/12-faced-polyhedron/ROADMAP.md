@@ -61,7 +61,9 @@ test runs included; item 1's launch uses 10 shards, so nothing runs beside it (i
    * DONE 2026-11-08 (owner's order, out of sequence): unit (a), 13 unattempted 11-gon maps at 60/120 s:
      9 UNSAT-VERIFIED (94, 100, 102, 111, 123, 171, 177, 184, 199), 4 TIMEOUT (174, 176, 181, 200), 0 SAT;
      (1,2,3) 2/2, (1,1,1,3) 7/11. Prediction (>= 10/13) missed; item 3 is kept (>= 7/13).
-   * NEXT, one prep session, then one owner launch: queue `queue_item1b.json` with (b) 12 unresolved maps,
+   * DONE 2026-11-08 (owner launch, 2.74 core-h, `CONCLUSION` last section): controls passed; (b) 12/12 and the five (1,1,1,3) maps
+     all UNSAT-VERIFIED (solver 69-914 s), 0 SAT. Follow-up tree: item 5a for all classes; item 3 uses all 24 11-gon maps.
+   * (Plan as launched:) one prep session, then one owner launch: queue `queue_item1b.json` with (b) 12 unresolved maps,
      the lowest indices of each class: 5 of (1^6), 5 of (1^4,2), 2 of (1,1,2,2)/(2,3); plus, outside the (b)
      counts, the 5 (1,1,1,3) timeouts 74, 174, 176, 181, 200; plus (c) the **positive control at F = 9**
      (amended 2026-11-08, owner: no E-261107-01 Phase B output is a solid, all have 0-1 disk faces): a convex

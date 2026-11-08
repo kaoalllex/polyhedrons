@@ -466,3 +466,41 @@ controls passed (saved-transcript mode). The launch tree was dirty; the recorded
 * Evidence: `results/item1a/` records, solver and checker logs, hashes. CNF and proof files are not kept (owner's
   decision of 2026-11-08, option A of that review); the CNFs rebuild byte-identically from the encoder (checked for
   94, 174, 200 under two hash seeds).
+
+## Item 1 long-cap launch: (b) + five (1,1,1,3) maps + controls (2026-11-08)
+
+Week plan item 1, `queue_item1b.json` (`PLAN.md` amendment 2026-11-08): controls `control-f9` and `control-f9-neg`, then 12 unresolved
+maps (`1^6`: 0-4; `(1^4,2)`: 36, 38, 39, 41, 42; `(1,1,2,2)` with pair multiplicities `(2,3)`: 10, 12) and the five (1,1,1,3)
+maps 74, 174, 176, 181, 200. Solver 1800 s, checker 2700 s, 10 shards, `results/item1b/`, launched by the owner with `item1.sh`
+(commit `6b53aaf` for shards 0-7 and 9, `6456956` for shard 8; the recorded source hashes (`identity.json`) are identical for all
+shards, so both ran the same code).
+
+* **Run**: 10 manifests, all SHARD-COMPLETE, no `stop.json`, no `first_sat.json`. Core-hours 2.74 (sum of the shard wall times;
+  longest shard 1727 s) against the 91000 s budget. Shard 8 first failed to start (the budget reservation of 19 units, 95100 s,
+  exceeded 91000 s while the other shards held theirs) and was started by a second `start` after other shards had finished; no unit
+  of it was lost. The launch tree held untracked files only.
+* **Controls (both required, both passed)**: `control-f9` (convex simple 9-face polyhedron, genus 0, planes pinned,
+  `submap=True`) SAT, model checked; `control-f9-neg` (same planes, the map of another polyhedron) UNSAT-VERIFIED. The control
+  checks the encoder-solver-checker path at n = 9 and the pinning; it is genus 0 and a submap formula, not the genus-3 plain formula.
+* **Outcome (EXACT, formula scope)**: all 17 maps UNSAT-VERIFIED, 0 TIMEOUT, 0 SAT. Every record carries `cnf_sha256` and
+  `proof_sha256`, every checker transcript says `s VERIFIED` (`checker_ended_by` completed). CNF and proof files are not kept
+  (PROTOCOL §5). Cadical process time (`solver.log`): `1^6` maps 0, 1, 2, 3, 4: 523, 788, 914, 669, 648 s; `(1^4,2)` 36, 38, 39,
+  41, 42: 127, 293, 317, 205, 286 s; `(1,1,2,2)/(2,3)` 10, 12: 136, 89 s; (1,1,1,3) 74, 174, 176, 181, 200: 179, 108, 215, 122, 69 s.
+  Checker 50-588 s.
+* **Prediction vs outcome**: the five (1,1,1,3) maps at least 4/5 within 300 s: yes, 5/5 (69-215 s). (b) had no prediction: 12/12 decided,
+  slowest 914 s, so the 1800 s cap held with margin (largest solver time 51 % of the cap).
+* **What may be claimed**: (1) every 11-gon (9,3) plain formula is UNSAT-VERIFIED: (1,2,3) 10/10 and (1,1,1,3) 14/14, 24 maps
+  (EXACT, formula scope; the geometric reading is conditional on the PROVED-1 encoder argument and census coverage, and rests on
+  control (c), which is a genus-0 submap control). (2) The plain formula of the 12 (b) maps is UNSAT-VERIFIED: `1^6` 5 of 21
+  unresolved, `(1^4,2)` 5 of 31, `(1,1,2,2)/(2,3)` 2 of 7 (all the lowest indices). Total (9,3) plain UNSAT-VERIFIED maps: 45;
+  unresolved 60, unattempted 98, 0 SAT.
+* **What may NOT be claimed**: a decision rate or a solve-time distribution for the remaining maps of these classes (the 12 are the lowest
+  indices, not a random sample); any statement about the 60 unresolved or 98 unattempted maps; a geometric exclusion of (9,3) or of S5;
+  the controls as a test of genus-3 behaviour.
+* **Verdict**: HIGH-YIELD@2.74 core-h for the long-cap approach on these 17 maps: the maps that timed out at 60 s were all solvable well inside
+  1800 s. H-261103-03 and H-261103-02 move toward "(9,3) is empty" only through the unresolved maps; no credence changes beyond the lead review's.
+* **Follow-up tree (ROADMAP item 1)**: no SAT, so no candidate and no `candidate-check`. (b) 12/12 >= 8/12 -> item 5a for all classes; all five
+  (1,1,1,3) maps UNSAT-VERIFIED -> item 3 uses all 24 11-gon maps. Item 5a is an owner night (60 core-h ceiling) and waits for the owner.
+* **Verification**: no code change after the launch; the unit tests (34 OK) and the 10-shard startup check ran before it. No `verify_all` run
+  (no shared code, certificate or candidate changed after the last recorded run). Evidence is checked by recorded hashes and checker
+  transcripts, not replayed.
