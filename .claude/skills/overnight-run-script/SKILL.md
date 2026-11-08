@@ -16,7 +16,8 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
   `PLAN.md` that says what is different this time.
 - The wrapper is `experiments/E-YYMMDD-NN-slug/run.sh` (from `experiments/_template/`). It writes the provenance
   manifest and calls `run_overnight.py <job> ... --results-dir "$OUT"`, so a night gets both the manifest and
-  resume. Do not build a third framework.
+  resume. Do not build a third framework, and do not write a new launcher: the owner's `start`/`status`/`stop`
+  is `overnight/launch.sh` (a prep session once wrote `item1.sh` beside it; fix `run.sh` or `launch.sh` instead).
 - `--git` commits go to the experiment branch, never to `main`.
 - SAT jobs check each proof during the run and then delete it and its CNF, keeping the hashes and the checker
   transcript (`PROTOCOL.md` §5, owner 2026-11-08). Record `cadical --version` and the drat-trim commit in the manifest.
