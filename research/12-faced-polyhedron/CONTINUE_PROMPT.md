@@ -24,4 +24,6 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
   format, projection formula in `PLAN.md`); items 1 and 2 may be prepared in either order, but a (10,4) UNSAT carries the
   item 1 caveat until item 1 passes.
 * Branch `lab/2026-11-08` (from `main` 49e2a5c after PR #6; pushed): the week plan's only branch. No active process.
-* For the lead: none.
+* For the lead: after week item 5 concludes, decide the next stages of I-261108-11 (owner 2026-11-08): if the
+  mechanism works, general genus-0 pieces (e.g. Szilassi + a cube on 3 planes), the (9, 4) sources, the rigid (9, 3)
+  cross-check and the 12-face filter on the 59 types; if it fails, record why and do not move to harder pieces.

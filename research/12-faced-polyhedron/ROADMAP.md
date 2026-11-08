@@ -131,7 +131,9 @@ no night; item 2 is one owner launch of at most 2 h wall. Aggregate core-hour ca
    * Kill: the control fails -> stop; no boundary with 10 simple faces and genus 4 in a source -> park that source at
      this resolution (a sampled negative, not an exclusion). Follow-up tree: such boundaries with missing pairs -> one
      separately registered continuous search for the better source; any boundary with all 45 pairs ->
-     `verify_candidate.py --target S5`, `candidate-check`. Stage 2 (the 12-face form) is not this week.
+     `verify_candidate.py --target S5`, `candidate-check`. Later stages (general genus-0 pieces, (9, 4), the rigid
+     (9, 3) cross-check, the 12-face filter) are not this week: the lab writes the item 5 verdict to "For the lead"
+     in `CONTINUE_PROMPT.md`, and the next lead review decides them.
 
 Not in this week: the note package (lead review 2026-11-08d §5 item 8; owner 2026-11-08: a note is a goal and says
 that no independent review took place), after items 1, 3, 4 pass. Its first step is the one-way soundness chain of
