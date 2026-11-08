@@ -103,7 +103,7 @@ test runs included; item 1's launch uses 10 shards, so nothing runs beside it (i
    (9,3) with that bound. Follow-up tree: a 36-pair solid -> `verify_candidate.py --target S5` +
    `candidate-check`. Phase A only (experiment E-261108-01, `PLAN.md` 2026-11-08): the Phase B "best >= 34 pairs" branch is
    dropped (it would double the budget); C2 = rotation about z (a mirror cannot be uniform); power bound 3/N for N decided units.
-5. **Conditional on item 1.** (5a) One owner night (owner 2026-11-08: "everything that fits", 8 h wall on 10 shards): every
+5. **Conditional on item 1.** Prep for (5a) DONE 2026-11-08 (`PLAN.md` amendment, `reviews/strategy-review-2026-11-08c.md` §2): 158 maps in `queue_item5a.json`, control (c) in every shard, deadline-based shard budget, startup check passed; owner launch `bash research/12-faced-polyhedron/overnight/launch.sh 03-03 start|status|stop`. (5b) is not triggered by item 1 ((b) 12/12); it applies only to 1-8 TIMEOUTs of 5a. (5a) One owner night (owner 2026-11-08: "everything that fits", 8 h wall on 10 shards): every
    unresolved and unattempted (9,3) map, fast patterns first (the order by pattern solve times of item 1), the queue cut by the
    8 h deadline, solver 1800 s, checker separate, ceiling 80 core-h, first-SAT stop, the
    control of 1(c) in every shard (`overnight-run-script`). (5b) Exact speed-up micro-benchmark: CaDiCaL

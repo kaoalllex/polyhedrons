@@ -416,7 +416,8 @@ def run(args):
                     raise RuntimeError(f'map {index}: {result["status"]}')
             process_first_sat(root, remaining)
             manifest['status'] = ('FIRST-SAT-STOP' if (root / 'first_sat.json').exists() else
-                                  'DEADLINE-STOP' if deadline_cut else 'SHARD-COMPLETE')
+                                  'DEADLINE-STOP' if deadline_cut else
+                                  'STOP-REQUESTED' if (root / 'stop.requested').exists() else 'SHARD-COMPLETE')
         except (KeyboardInterrupt, InterruptedError) as exc:
             manifest.update(status='INTERRUPTED', error=repr(exc))
             raise

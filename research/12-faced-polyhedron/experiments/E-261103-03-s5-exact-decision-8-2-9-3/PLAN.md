@@ -313,3 +313,9 @@ by `reviews/strategy-review-2026-11-08c.md` §2. T D F G R remain 2 2 2 2 2.
 * Counter-calibration: the 45 decided maps are UNSAT-VERIFIED with 0 SAT, the slow classes only at their lowest indices; the
   claim covers these exact plain formulas only. Scenario move: all UNSAT moves (9,3) "does not exist" up by about 0.1-0.2
   (conditional), a realized SAT moves "exists" to 1.
+* Startup check (2026-11-08, through `launch.sh` on 10 shards, test caps via `S5A_*`, test results deleted afterwards): caps
+  8/10 s: controls SAT and UNSAT-VERIFIED in all 10 shards, maps TIMEOUT; `stop` ends every shard after its unit
+  (`STOP-REQUESTED`, reservation settled to the wall time, no `stop.json`); `start` resumes, 178 records, no unit repeated.
+  Caps 60/300 s with a 21-minute deadline: every shard ends `DEADLINE-STOP`, no `stop.json`, the rest stays pending. A shard
+  whose time is below one unit dispatches nothing. Not a result: 6 maps were UNSAT-VERIFIED at 60 s in the check (98, 148,
+  173, 186, 187, 189); the night decides them again under the registered caps.
