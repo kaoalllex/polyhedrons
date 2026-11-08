@@ -58,3 +58,10 @@ Pre-registration (`PROTOCOL.md` §2), owner-approved design of 2026-11-08 (10 ma
   without a SAT.
 
 ## Amendments
+
+### 2026-11-08: pilot (startup check), not a result
+
+`run.sh 0` with `SHARDS=10`, results in a scratch directory (deleted afterwards), commit `bf1a756`: `pilot.py` controls
+CONTROLS-PASS; `control-f10-s0` SAT (7148 variables, 136,759 clauses), `control-f10-neg-s0` UNSAT-VERIFIED (checker completed);
+map 690 started with `case` (10, 4), `control_file` `control_f10.json`, caps 300/450 s and its 10-face census record, then the
+shard was killed by hand. `launch.sh 03-07 status` resolves the experiment. Gate met; the plan is unchanged.
