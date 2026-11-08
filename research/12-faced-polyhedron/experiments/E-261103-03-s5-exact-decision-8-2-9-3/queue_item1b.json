@@ -1,11 +1,16 @@
 {
-  "target": "S5 (9,3) item 1: control (c) first, (b) 12 unresolved maps, 5 (1,1,1,3) timeouts",
+  "target": "S5 (9,3) item 1: controls (c) first, (b) 12 unresolved maps, 5 (1,1,1,3) timeouts",
   "census_sha256": "0ce7ea60c70399ad4fccf11fd639faf2257591ffb4aa65079df8f4023d38e9a6",
   "maps": [
     {
       "index": "control-f9",
-      "control": true,
-      "control_sha256": "e504a4cac58d26ae5e06231990d9c5d9a721d22bbddbfdd8e3b4ef0cbfe7371b"
+      "control": "positive",
+      "control_sha256": "8706756070299493776d15487b5fd371e9107f3bfd1b5f43b3cfde3506ff372c"
+    },
+    {
+      "index": "control-f9-neg",
+      "control": "negative",
+      "control_sha256": "8706756070299493776d15487b5fd371e9107f3bfd1b5f43b3cfde3506ff372c"
     },
     {
       "index": 0,

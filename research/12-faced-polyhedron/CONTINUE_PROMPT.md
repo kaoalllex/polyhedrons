@@ -18,7 +18,7 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
   policy (owner): proofs checked in the run, then deleted; hashes and transcripts kept (`PROTOCOL.md` §5, `pilot.solve`,
   `tranche.pending`, evidence tests); every splittable run uses 8-10 shards, `run.sh` accepts up to 10.
 * NEXT: owner launches item 1 (prep done, startup checked on 10 shards with 8 s / 10 s caps, scratch dir: control SAT, 17 maps
-  TIMEOUT as expected, no stop file). Queue `queue_item1b.json` (control `control-f9` first, 17 maps), `PLAN.md` amendment
+  TIMEOUT as expected, no stop file). Queue `queue_item1b.json` (controls `control-f9` SAT and `control-f9-neg` UNSAT-VERIFIED first, 17 maps), `PLAN.md` amendment
   2026-11-08. Command per shard k=0..9 from the repo root, venv active, `CADICAL`/`DRAT_TRIM` set, under `caffeinate -dimsu`:
   `python research/12-faced-polyhedron/overnight/run_overnight.py s5 --workers 1 --shard k --shards 10 --results-dir
   research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/results/item1b/k --s5-queue

@@ -221,9 +221,9 @@ def sources():
 
 def unit(spec):
     root = Path(spec['root']); out = Path(spec['out']); index = spec['index']
-    if spec.get('control'):  # positive control: convex 9-face map, planes pinned, SAT required; never latches a first SAT
+    if spec.get('control'):  # convex 9-face controls, planes pinned: positive SAT, negative (other map) UNSAT; never latch a first SAT
         data = json.loads((HERE / 'control_f9.json').read_text())
-        links = {int(k): v for k, v in data['links'].items()}
+        links = {int(k): v for k, v in data['negative_links' if spec['control'] == 'negative' else 'links'].items()}
         tris = sorted({tuple(sorted((x, a, b))) for x, link in links.items() for a, b in zip(link, link[1:] + link[:1])})
         c = pilot.CNF(9); pilot.build(c, pilot.Triangulation(9, tris, links=links, submap=True), pilot.ALL_OPTS)
         c.clauses.extend([[c.qvar[q] if v > 0 else -c.qvar[q]] for q, v in pilot.chirotope_from_planes(data['planes']).items()])
@@ -239,7 +239,7 @@ def unit(spec):
                         on_sat=on_sat)
     except DispatchStopped:
         r = dict(status='SKIPPED-STOP')
-    r.update(task=name, map_index=index, scope='control: submap formula, planes pinned' if spec.get('control')
+    r.update(task=name, map_index=index, scope=f'{spec["control"]} control: submap formula, planes pinned' if spec.get('control')
              else 'plain uniform embedding formula',
              canonical_sha256=spec.get('canonical_sha256', spec.get('control_sha256')), unit=str(out),
              formula_sha256=hashlib.sha256(json.dumps([c.nv, c.clauses], separators=(',', ':')).encode()).hexdigest())
@@ -392,8 +392,9 @@ def run(args):
                 result = json.loads(result_path.read_text())
                 append_checkpoint(out / 'results.jsonl', result)
                 print('map', index, result['status'], flush=True)
-                if entry.get('control') and result['status'] != 'SAT':
-                    raise RuntimeError(f'positive control {index} did not return SAT: {result["status"]}')
+                expected = {'positive': 'SAT', 'negative': 'UNSAT-VERIFIED'}.get(entry.get('control'))
+                if expected and result['status'] != expected:
+                    raise RuntimeError(f'control {index} expected {expected}, got {result["status"]}')
                 if result['status'] not in ('SAT', 'UNSAT-VERIFIED', 'TIMEOUT', 'SKIPPED-STOP'):
                     raise RuntimeError(f'map {index}: {result["status"]}')
             process_first_sat(root, remaining)

@@ -66,7 +66,7 @@ test runs included; item 1's launch uses 10 shards, so nothing runs beside it (i
      counts, the 5 (1,1,1,3) timeouts 74, 174, 176, 181, 200; plus (c) the **positive control at F = 9**
      (amended 2026-11-08, owner: no E-261107-01 Phase B output is a solid, all have 0-1 disk faces): a convex
      simple 9-face polyhedron (genus 0, V = 14, `control_f9.py`), its own map through the `submap=True` path with
-     its planes pinned, first queue entry: SAT required, anything else stops all shards. It tests the encoder
+     its planes pinned, first queue entry: SAT required, plus a negative control (same planes, the map of another polyhedron): UNSAT-VERIFIED required; any other result stops all shards. It tests the encoder
      and solver path at n = 9, not genus 3 and not the plain formula Solver 1800 s, checker at most 2700 s; time to solve recorded as cadical
      process time (`solver.log`). 10 shards; worst case 17 x 4500 s = 21 core-h, 2.5 h wall; expected far
      less. The bounded startup check of PROTOCOL §8 uses the same shard count. Evidence: option A of review

@@ -1,7 +1,7 @@
 """Positive control (c) of the item 1 launch: a convex 9-face simple polyhedron (genus 0), exact rational derivation.
 
 Writes control_f9.json: integer planes [a, b, c, d] (inside is a x + b y + c z + d <= 0) and the cyclic face links
-(counter-clockwise seen from outside).  Usage: python3 control_f9.py [--check]"""
+(counter-clockwise seen from outside); negative_links is the map of another polyhedron.  Usage: python3 control_f9.py [--check]"""
 import itertools
 import json
 from fractions import Fraction as F
@@ -58,8 +58,8 @@ def polyhedron(rows):
     return links, len(pts)
 
 
-def build():
-    rng = random.Random(2611080300)
+def build(seed=2611080300):
+    rng = random.Random(seed)
     while True:
         rows = []
         for _ in range(9):
@@ -78,8 +78,11 @@ def build():
 
 if __name__ == '__main__':
     rows, links = build()
+    other = build(2611080301)[1]  # a different labelled 9-face map for the negative control
+    assert other != links
     path = HERE / 'control_f9.json'
     data = dict(planes=rows, links={str(k): v for k, v in links.items()},
+                negative_links={str(k): v for k, v in other.items()},
                 note='convex simple 9-face polyhedron, V=14 E=21 F=9, chi=2; inside: a x + b y + c z + d <= 0')
     if '--check' in sys.argv:
         assert json.loads(path.read_text()) == data

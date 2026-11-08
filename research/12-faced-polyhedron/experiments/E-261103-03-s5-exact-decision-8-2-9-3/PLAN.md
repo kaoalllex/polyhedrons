@@ -279,5 +279,6 @@ Owner-approved week plan (`reviews/strategy-review-2026-11-08.md`); T D F G R re
   chi = 2). `tranche.unit` builds `Triangulation(submap=True)` with `ALL_OPTS` and pins the chirotope of its planes.
   The control never latches a first SAT; a result other than SAT raises and writes `stop.json`. Scope: genus 0,
   submap formula; it checks that the encoder, solver and model-validity path accept a realizable 9-face map, nothing
-  about genus 3 or the plain formula. Both link orientations returned SAT (0.0 s) in the scratch trial.
+  about genus 3 or the plain formula. Both link orientations returned SAT (0.0 s) in the scratch trial. Negative control `control-f9-neg`: the same pinned
+  planes with `negative_links` (the map of a second polyhedron, `control_f9.py` seed 2611080301): UNSAT-VERIFIED required.
 * Code: `tranche.py` accepts 1..10 shards (was 1..8; `run.sh` already allowed 10); `pilot.py` imports `Triangulation`.
