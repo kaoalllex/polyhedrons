@@ -5,7 +5,8 @@
 #       form a queue on the same cores: shard s of the next experiment starts when shard s of the previous one ends.
 #       Refused if one of them is running, or if all launches together would use more than MAX_CORES (default 10).
 #       run.sh gets SHARDS=CORES and splits its units into that many shards, so any CORES covers every unit.
-#   bash overnight/launch.sh CODE [CODE ...] status   per shard: state, records, minutes since the last output
+#   bash overnight/launch.sh CODE [CODE ...] status   per shard: state, records, minutes since the last output; then the
+#       experiment's own progress (done / left / time left) if experiments/<ID>/progress.sh exists
 #   bash overnight/launch.sh CODE [CODE ...] stop     each shard stops after its current unit (nothing is recomputed)
 #   bash overnight/launch.sh CODE [CODE ...] kill     stops now; units in flight rerun from their start on the next start
 # CODE: the end of an experiment id (02-03, 261102-03, E-261102-03; it must match one folder) or a folder path.
@@ -124,6 +125,8 @@ status)
         "$(grep -v '^===' "$d/night.log" 2>/dev/null | tail -1 | cut -c1-90)"
     done
     echo "$(basename "$e"): $run shards running, $total records, $hung probably hung (silent >= $QUIET_MIN min)"
+    # Optional experiment-specific progress (units done / left, time left): experiments/<ID>/progress.sh prints it.
+    [ -f "$e/progress.sh" ] && { echo "--- progress"; bash "$e/progress.sh" || true; }
   done
   ;;
 stop)

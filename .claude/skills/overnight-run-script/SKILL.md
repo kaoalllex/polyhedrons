@@ -72,6 +72,8 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
   never a long command line with paths, caps and environment. Stop, crash and emergency interrupt must not lose
   recorded results; test `start` -> `status` -> `stop` -> `start` in a scratch directory before handing over. A
   background job ignores SIGINT: stop with the signal the runner handles (SIGTERM).
+- **Progress in `status`.** If `experiments/<ID>/progress.sh` exists, `launch.sh status` prints its output (units done / left,
+  what each shard runs now, time left). Write one for every long run, so the owner sees progress without reading logs.
 - **One command for the whole night** (`overnight/launch.sh CODE [CODE ...] start [CORES]`, CODE = the end of the experiment id, CORES default 10): starts CORES detached processes (`nohup ... &`, each
   under its own `caffeinate -dimsu` and `nice -n 10`), one core each (M4 Pro: 10 performance cores; 8-10 for every splittable run, by day too), with `status`, `stop` (after the current unit) and
   `kill` (now) modes. `run.sh` must split its units by `SHARDS` (the launcher sets `SHARDS=CORES`; it refuses a `run.sh` that
