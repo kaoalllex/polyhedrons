@@ -20,5 +20,4 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
   cost probe (<= 1 core-h, 10 shards).
 * For the lead: the whole (9,3) claim rests on one encoder; review 2026-11-08c §7 idea 1 (second encoder on five maps) is
   unscheduled.
-* Local disk: about 7 GB of old gitignored proofs in `experiments/E-261103-03-*/results/` may be deleted (owner's call).
 * Verification: no code change since the 5a prep (36 tests OK); 158 CNFs rebuilt to recorded hashes; no DRAT replay, no verify_all.
