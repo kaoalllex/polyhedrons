@@ -158,3 +158,28 @@ untouched and nothing since adds one. Credences (§9 of the morning review) stay
 2. Prep session: `queue_item1b.json` (12 + 5 maps), control (c), the evidence change if approved, `run.sh` up to
    10 shards, startup check on 10 shards; record unit (a) in STATUS and the ledger (`experiment-conclude`, light).
 3. Owner launch on 10 shards (<= 2.5 h wall worst case); then item 2 (literature) and item 3 while nothing else runs.
+
+## 8. Owner's decisions (2026-11-08) and the order of work
+
+Approved: evidence option A (§4.2); A1 (ii), rewrite the unpushed branch without the proof files; the cores rule
+(§3). Item 1 of §2 replaces the ROADMAP item 1. One prep session does the following, in this order:
+
+1. `experiment-conclude` (light) for unit (a): commit `results/item1a/` records (no `.cnf` / `.drat`), STATUS, ledger.
+2. Rules text: `CLAUDE.md:59` and `AGENTS.md:59` get the §4.2 wording; `PROTOCOL.md` §5 (proof storage) and §6
+   (cores) likewise; ROADMAP: the §2 laptop line and item 1.
+3. Code, option A: `pilot.solve` writes CNF and proof to a scratch directory and deletes them after the check (TIMEOUT
+   proofs at once); `tranche.pending` accepts recorded `cnf_sha256` (+ `proof_sha256` and a completed checker for
+   UNSAT-VERIFIED) instead of files; `test_pilot.py` EvidenceTests and `test_tranche.py:289-332` compare rebuilt CNFs
+   with the recorded hash and check the saved checker transcript instead of reading stored files; the same for
+   `E-261103-04/audit.py:164-166,209,317-319` (not in `verify_all`); `run.sh:19` accepts 1-10 shards; revert the
+   working-tree `.gitignore` edit. Run the affected tests, then `verify_all.py --quick` once.
+4. History rewrite, only after step 3 passes. Scope: the 377 `.cnf` / `.drat` (`.gz`) paths that appear in
+   `main..lab/2026-11-07` and not in the `main` tree (361 of E-261103-03, 16 of E-261103-04, about 320 MB at HEAD).
+   The 25 proof files already on `main` (E-261103-02, E-261029-04) stay: `main` is pushed. Commands: a clean
+   tree; `git branch backup/lab-2026-11-07` (deleted after the check below); build the path list as
+   `comm -23 <(proof paths in main..lab) <(proof paths in main)`; `git filter-repo --force --refs main..lab/2026-11-07
+   --invert-paths --paths-from-file LIST`. Check: `git ls-files` lists none of them; `git rev-list --objects
+   main..lab/2026-11-07` names none; the affected tests pass again; `main` is unchanged (same SHA). The rewrite
+   deletes these files from the working tree as well, as option A intends. Local gitignored proofs (about 7 GB) may be
+   deleted with them.
+5. Prep for the item 1 launch (§2), startup check on 10 shards, hand the launch command to the owner.
