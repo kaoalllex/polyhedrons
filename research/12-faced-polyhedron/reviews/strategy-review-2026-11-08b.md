@@ -183,3 +183,9 @@ Approved: evidence option A (§4.2); A1 (ii), rewrite the unpushed branch withou
    deletes these files from the working tree as well, as option A intends. Local gitignored proofs (about 7 GB) may be
    deleted with them.
 5. Prep for the item 1 launch (§2), startup check on 10 shards, hand the launch command to the owner.
+
+Done the same day: steps 1-4 (commits from "E-261103-03 unit (a): record ..." on). The rewrite removed the 377 paths and
+nothing else (`main` unchanged); it changed the SHA of 65 commits, so SHAs recorded earlier map through
+`reviews/strategy-review-2026-11-08b-commit-map.txt`. The affected tests passed on the rewritten tree (simulated
+before the rewrite: 34 OK; `REPLAY_DRAT=1` fresh replay of the (8,2) pilot evidence OK; `verify_all.py --quick` all
+pass except two checks that need a git checkout and were not affected).
