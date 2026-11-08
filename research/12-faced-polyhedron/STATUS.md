@@ -188,6 +188,9 @@ Roest-Vigh and Mizhaev maps remain session checks only. Nothing geometric has ru
   (69-215 s) and 12 maps of `1^6` (5, 523-914 s), `(1^4,2)` (5, 127-317 s) and `(1,1,2,2)/(2,3)` (2, 89-136 s; the lowest indices, not
   a sample). **Every 11-gon (9,3) plain formula (24 maps) is UNSAT-VERIFIED** (EXACT, formula scope; geometric reading PROVED-1, conditional).
   Not claimed: anything about the 60 unresolved and 98 unattempted maps, or genus-3 behaviour of the controls.
+* **Core study E-261108-02** (week item 3, 2026-11-08, 0.07 core-h wall): PARK. 0 of the 24 11-gon plain formulas have an UNSAT
+  sub-formula on <= 6 faces (clause subsets indexed by constraint face tuples, k = 3..6 exhaustive, 0 TIMEOUT; k = 7 also none;
+  k = 8 undecided, 94 TIMEOUTs); controls C0/C1/C2 pass, comparators equal. Scope: this grouping and cap 20 s (CONCLUSION).
 * Tranche verdict LOW-YIELD@60 s for its frozen queue; no cap above 300 s has been tried (ROADMAP week item 1). All
   manifests total about 2.0 core-h (tranche 1.50 incl. its pilot); itemised sums, hashes and `results/tranche_audit.json`
   in CONCLUSION. Large proofs are local-only with hashes in git; external certificate publication is pending.

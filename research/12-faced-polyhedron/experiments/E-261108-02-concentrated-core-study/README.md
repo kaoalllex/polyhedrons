@@ -2,7 +2,9 @@
 id: E-261108-02
 title: Concentrated-multiplicity core study - do the plain (9, 3) formulas of the 11-gon maps have UNSAT sub-formulas on few faces?
 date: 2026-11-08
-status: running
+status: done
+verdict: PARK
+concluded: 2026-11-08
 direction: [DR19]
 origin: [E-261103-03]
 tests: [H-261103-03, H-261101-07]
@@ -19,4 +21,4 @@ face-supported clauses of the plain formula are already UNSAT. See `PLAN.md`.
 
 ## Next
 
-Pilot, then the 10-shard run.
+None; see `CONCLUSION.md`. Week plan item 4 is next.

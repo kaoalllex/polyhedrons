@@ -1115,16 +1115,16 @@ window.GRAPH = {
    "id": "E-261108-02",
    "kind": "experiment",
    "title": "Concentrated-multiplicity core study - do the plain (9, 3) formulas of the 11-gon maps have UNSAT sub-formulas on few faces?",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-08",
-   "concluded": "",
+   "concluded": "2026-11-08",
    "path": "experiments/E-261108-02-concentrated-core-study/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "PARK",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: PARK (kill criterion met). 0 of the 24 admissible 11-gon (9,3) maps have an UNSAT face-support sub-formula on <= 6 faces (needed: >= 3). Scope (NUMERICAL/EXACT per sub-formula): clause subsets of the plain formula indexed by constraint face tuples (PLAN amendment), levels k = 3..6 exhaustive (C(9,k) sets per map), cap 20 s, 0 TIMEOUT at k <= 6; at k = 7 also 0 UNSAT, 0 TIMEOUT; at k = 8 0 UNSAT with 94 TI..."
   },
   {
    "id": "FD11",
