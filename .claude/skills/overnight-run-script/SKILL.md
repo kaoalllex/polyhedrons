@@ -67,6 +67,10 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
 - **Manifest survives restarts.** `run.sh` writes the manifest header only if it is absent and appends a
   `restarted_utc` line otherwise; the `finish` trap appends `finished_utc`, `exit_status`, `wall_seconds` and
   `core_hours` every time, so the core-hours of a restarted shard are the sum of its lines.
+- **The owner types only `start`, `status`, `stop`** (owner, 2026-11-08), through `overnight/launch.sh` or a launcher with the same three words;
+  never a long command line with paths, caps and environment. Stop, crash and emergency interrupt must not lose
+  recorded results; test `start` -> `status` -> `stop` -> `start` in a scratch directory before handing over. A
+  background job ignores SIGINT: stop with the signal the runner handles (SIGTERM).
 - **One command for the whole night** (`overnight/launch.sh CODE [CODE ...] start [CORES]`, CODE = the end of the experiment id, CORES default 10): starts CORES detached processes (`nohup ... &`, each
   under its own `caffeinate -dimsu` and `nice -n 10`), one core each (M4 Pro: 10 performance cores; 8-10 for every splittable run, by day too), with `status`, `stop` (after the current unit) and
   `kill` (now) modes. `run.sh` must split its units by `SHARDS` (the launcher sets `SHARDS=CORES`; it refuses a `run.sh` that

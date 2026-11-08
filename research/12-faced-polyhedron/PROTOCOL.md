@@ -136,8 +136,10 @@ and lab test runs included, owner 2026-11-08); `run.sh` splits its units
 by `SHARDS = CORES`, and a restart with another CORES re-splits the remaining units. At most 10 cores in total (more
 freezes the laptop; the launcher refuses past `MAX_CORES`): several experiments in one night are one queue on the
 same cores (`launch.sh 02-03 02-04 start`), never side by side. `stop` lets each shard finish its current unit;
-`kill` stops at once, and the units in flight rerun from their start. Use the `overnight-run-script` skill to write night
-scripts. Long runs belong to the owner's machine, not to a cloud AI session (its background processes die).
+`kill` stops at once, and the units in flight rerun from their start. Every command the owner types by hand is a simple `start`, `status` or
+`stop` (owner, 2026-11-08): one launcher, no flags, paths or environment to remember. `stop`, a crash and an emergency
+interrupt never lose recorded results: finished units stay in `results.jsonl`, logs are appended, and a restart resumes.
+Use the `overnight-run-script` skill to write night scripts. Long runs belong to the owner's machine, not to a cloud AI session (its background processes die).
 
 **GitHub Actions** (public repository, free standard runners): `.github/workflows/experiment.yml` runs
 `experiments/<ID>/run.sh <shard>` for every shard listed in `experiments/<ID>/matrix.json` (default one shard)
