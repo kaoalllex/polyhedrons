@@ -89,7 +89,7 @@ test runs included; item 1's launch uses 10 shards, so nothing runs beside it (i
    result, published or claimed? Sources: Roest-Vigh 2026, Mizhaev 2026, Bokowski-H. 2025, the Szilassi
    and Grünbaum-Szilassi papers, arXiv and MathOverflow searches. Kill: two sessions. Outcome goes to
    E-261101-22 and the STATUS §6 sources line; a published (9,3) object or proof -> escalate (focus question).
-3. **Concentrated-multiplicity core study** (explore, new idea from this review §7.1). Question: does the
+3. **Concentrated-multiplicity core study** ([E-261108-02](experiments/E-261108-02-concentrated-core-study/), running, PLAN committed 2026-11-08; explore, new idea from this review §7.1). Question: does the
    fast UNSAT of maps whose extra segments meet at one face have a local cause on few faces? Test:
    face-grouped minimal cores of the plain formulas (rebuilt, hash-checked) of the 13 fast maps (patterns (1,2,3), (2,2,2),
    (1,1,1,3)), plus item 1(a)'s new ones; at most 1 session + 1 core-h, 10 shards for the 24 maps. Kill: no core on <= 6 of the 9
