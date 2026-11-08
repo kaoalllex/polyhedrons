@@ -11,9 +11,13 @@ would have been DRAT-verified; none occurred. Not tested: cores that use clauses
   none, so the null on the maps is not a constant artefact of the measurer. Monotonicity held on all 33 units.
 * Strict transitive-support measure (the pre-amendment plan) was blind (every constraint has 9-face support); pilot only.
 * Comparators (2,2,2) x3, (1^6) x3: also none at k <= 7. No contrast between concentrated and spread maps, so no phenomenon.
-* Hash check: rebuilt formula hash equals the recorded `formula_sha256` for 27 of 30 maps; maps 40, 48, 5, 6 have no local
-  record (hash computed and stored in result.json, no external match).
+* Hash check: rebuilt formula hash equals the recorded `formula_sha256` for 28 of 30 maps: 26 against E-261103-03
+  `result.json` records (`recorded_hash_match` true), 40 and 48 against `results/grid_9_3/summary.json` of E-261103-03
+  (`targets/map40_plain_t300`, `map48_plain_t300`; `cores.py` looks only in `result.json` files, so the flag is false for
+  them). Maps 5 and 6 have no local record; their hash is computed and stored in `result.json`.
 * Cost: 0.072 core-h wall (10 shards, 258 s), 0.72 core-h of summed solver time. Per-solve logs deleted after
-  aggregation; `result.json` per unit keeps status, CNF and proof SHA-256 of every sub-formula.
+  aggregation; `result.json` per unit keeps status, CNF and proof SHA-256 of every sub-formula. The 15,177 SAT models of
+  sub-formulas (983 MB, not candidate models) were deleted on 2026-11-08 (owner); `results/` keeps the 33 `result.json`
+  and the shard manifests.
 * Follow-up (PROVED-1 lemma draft, (10,4) count) is not triggered. The fast UNSAT of concentrated maps is not explained by a
   core on <= 6 faces in this formulation; the unresolved 8-face TIMEOUTs leave "core on 7-8 faces" open.

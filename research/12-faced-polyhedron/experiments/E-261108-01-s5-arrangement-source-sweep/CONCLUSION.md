@@ -24,8 +24,8 @@ model (36 pairs, E = 39, <= 3 runs per pair). Not an S5 witness, not a 12-face r
   run (Phase B dropped in the plan), so nothing is known about near-misses. Draws needing re-rejection: 132 in total.
 * **Verdict for the direction**: LOW-YIELD@1.33 core-h, 300 arrangements. Kill rule fired: park arrangement-first
   for (9, 3) with the bound above. H-261103-02 and H-261101-07 unchanged; no credence moves.
-* **Observation (to the lead)**: with E-261107-01 this is 330 INFEASIBLE decisions in ~15 s each and zero near-feasible
-  signals; the 36-pair condition looks structurally far from these sources. Whether the hard model is *too* strict
+* **Observation (to the lead)**: with E-261107-01 this is 330 INFEASIBLE decisions in ~15 s each. No
+  near-feasibility diagnostic was run (Phase B dropped), so how far these sources are from a 36-pair solid is not known. Whether the hard model is *too* strict
   (e.g. the <= 3 runs per pair cap, or E = 39 fixed) was checked only by the positive controls at 8 planes.
 * **Next step**: none from this experiment (the Phase B follow-up branch was dropped). Week plan item 3 is next.
 * **Rows updated**: `STATUS.md` 3v, `ROADMAP.md` E-261108-01 `done`, `experiment-log.md` 2026-11-08, README `done`.
