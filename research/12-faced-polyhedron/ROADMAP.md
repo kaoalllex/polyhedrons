@@ -1,7 +1,8 @@
 # Roadmap: the experiment queue
 
-**Focus since 2026-11-03** (`STRATEGY.md`): the focus target is S5 at (9, 3), stretch (10, 4); S0 is parked, not
-abandoned. The S5 queue below was proposed by `reviews/strategy-review-2026-11-03.md` and approved by the owner on
+**Focus since 2026-11-08** (`STRATEGY.md`): the focus target is S5 at (10, 4), gated by a speed-up benchmark; the
+(8, 2) / (9, 3) negative result is a side track towards a note; S0 is parked, not abandoned. From 2026-11-03 to
+2026-11-08 the focus was (9, 3), now decided (STATUS 3d). The S5 queue below was proposed by `reviews/strategy-review-2026-11-03.md` and approved by the owner on
 2026-11-03; the S0 queue follows it, parked as it stood.
 
 As of 2026-11-07. Principle: **theory and a cheap filter first -> a discriminating experiment -> an exact
@@ -46,73 +47,73 @@ parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-mis
     instances to compare their CNF SHA-256 with the certificate records (proves HEAD still builds the certified
     formulas).
   * READMEs link to `STATUS.md` instead of repeating numbers.
-  * Pilot the GitHub Actions runner on E-261101-16 or E-261101-18 (small matrix) before relying on it.
+  * Pilot the GitHub Actions runner before relying on it. Owner approved an Actions trial on 2026-11-08: the
+    calibration wave on known (9,3) maps (I-261108-07, lead review 2026-11-08d queue item 6).
   * `lint_docs.py` also checks that every new `PLAN.md` has the counter-calibration and scenario-move lines (template
     changed 2026-11-01 after `reviews/strategy-review-2026-11-01.md`).
 
-## Week plan (lead review 2026-11-08, `reviews/strategy-review-2026-11-08.md`, approved by the owner; item 1 and the laptop line amended by `reviews/strategy-review-2026-11-08b.md`; replaced by the next lead review)
+## Week plan (lead review 2026-11-08d, `reviews/strategy-review-2026-11-08d.md`, approved by the owner on 2026-11-08; replaced by the next lead review)
 
 Lab sessions take these in order (PROTOCOL.md §8b). Anything outside a follow-up tree goes to "For the lead".
-Laptop: at most 10 cores in total, and every splittable run uses 8-10 shards (owner, 2026-11-08), day and lab
-test runs included; item 1's launch uses 10 shards, so nothing runs beside it (items 2-3 run before or after it).
+Laptop: at most 10 cores in total; every splittable run uses 8-10 shards (owner, 2026-11-08). Items 1, 3 and 4 need
+no night; item 2 is one owner launch of at most 2 h wall.
 
-1. **E-261103-03 stratified long-cap pilot** (exploit). Question: do the slow (9,3) plain formulas finish
-   with longer caps, and does the pattern stratification hold?
-   * DONE 2026-11-08 (owner's order, out of sequence): unit (a), 13 unattempted 11-gon maps at 60/120 s:
-     9 UNSAT-VERIFIED (94, 100, 102, 111, 123, 171, 177, 184, 199), 4 TIMEOUT (174, 176, 181, 200), 0 SAT;
-     (1,2,3) 2/2, (1,1,1,3) 7/11. Prediction (>= 10/13) missed; item 3 is kept (>= 7/13).
-   * DONE 2026-11-08 (owner launch, 2.74 core-h, `CONCLUSION` last section): controls passed; (b) 12/12 and the five (1,1,1,3) maps
-     all UNSAT-VERIFIED (solver 69-914 s), 0 SAT. Follow-up tree: item 5a for all classes; item 3 uses all 24 11-gon maps.
-   * (Plan as launched:) one prep session, then one owner launch: queue `queue_item1b.json` with (b) 12 unresolved maps,
-     the lowest indices of each class: 5 of (1^6), 5 of (1^4,2), 2 of (1,1,2,2)/(2,3); plus, outside the (b)
-     counts, the 5 (1,1,1,3) timeouts 74, 174, 176, 181, 200; plus (c) the **positive control at F = 9**
-     (amended 2026-11-08, owner: no E-261107-01 Phase B output is a solid, all have 0-1 disk faces): a convex
-     simple 9-face polyhedron (genus 0, V = 14, `control_f9.py`), its own map through the `submap=True` path with
-     its planes pinned, first queue entry: SAT required, plus a negative control (same planes, the map of another polyhedron): UNSAT-VERIFIED required; any other result stops all shards. It tests the encoder
-     and solver path at n = 9, not genus 3 and not the plain formula Solver 1800 s, checker at most 2700 s; time to solve recorded as cadical
-     process time (`solver.log`). 10 shards; worst case 17 x 4500 s = 21 core-h, 2.5 h wall; expected far
-     less. The bounded startup check of PROTOCOL §8 uses the same shard count. Evidence: option A of review
-     2026-11-08b §4 (proofs checked during the run, then deleted; hashes and transcripts kept).
-   * Predictions: the 5 (1,1,1,3) maps: at least 4/5 UNSAT-VERIFIED within 300 s solver time; (b) has none,
-     it measures.
-   * Kill: control (c) fails -> stop, escalate (the 0-SAT record would be void). Follow-up tree:
-     * any SAT -> stop dispatch; check the model exactly, run the saved-OM realizer (E-261103-04 path),
-       `verify_candidate.py --target S5`, `candidate-check`; if it does not realize: one final-polynomial
-       attempt (at most 1 session);
-     * (b) >= 8/12 decided -> item 5a; 3-7/12 -> item 5a for the classes with >= 3/5 decided, item 5b for the
-       rest; <= 2/12 -> item 5b only;
-     * all 5 (1,1,1,3) maps UNSAT-VERIFIED -> "every 11-gon (9,3) plain formula is UNSAT-VERIFIED" (EXACT,
-       formula scope; geometric reading conditional on the encoder argument and on control (c)); item 3 uses
-       all 24 maps. Any of them still TIMEOUT at 1800 s -> item 3 uses (1,2,3) and (2,2,2) only.
-2. **S5 literature check - DONE 2026-11-08: nothing in print for (8,2), (9,3), (10,4), no non-existence result (CLAIMED, web sources only; `STATUS.md` §6, `literature/primary-reads-2026-11-08.md`).** (no compute, one session; literature-researcher subagent only with the owner's
-   consent). Question: is any (8,2), (9,3), (10,4) maximal face-neighbourly polyhedron, or a non-existence
-   result, published or claimed? Sources: Roest-Vigh 2026, Mizhaev 2026, Bokowski-H. 2025, the Szilassi
-   and Grünbaum-Szilassi papers, arXiv and MathOverflow searches. Kill: two sessions. Outcome goes to
-   E-261101-22 and the STATUS §6 sources line; a published (9,3) object or proof -> escalate (focus question).
-3. **Concentrated-multiplicity core study** ([E-261108-02](experiments/E-261108-02-concentrated-core-study/), DONE 2026-11-08: PARK, 0/24 maps with a face-support core on <= 6 faces (CONCLUSION); explore, new idea from this review §7.1). Question: does the
-   fast UNSAT of maps whose extra segments meet at one face have a local cause on few faces? Test:
-   face-grouped minimal cores of the plain formulas (rebuilt, hash-checked) of the 13 fast maps (patterns (1,2,3), (2,2,2),
-   (1,1,1,3)), plus item 1(a)'s new ones; at most 1 session + 1 core-h, 10 shards for the 24 maps. Kill: no core on <= 6 of the 9
-   faces in >= 3 maps -> park. Follow-up tree: pass -> a PROVED-1 lemma draft (at most 1 session) and an
-   exact count of the (10,4) maps it would exclude (minutes).
-4. **Arrangement-source sweep for solid-first** (explore; I-261103-04 with the 36-pair trigger fixed, plus
-   C2 arrangements). The E-261107-01 engine unchanged; 300 arrangements: 100 Roest-Vigh planes + a random
-   ninth plane, 100 Mizhaev + ninth, 100 random arrangements with an involution; cap 60 s per unit; at most
-   2 core-h, 10 shards (owner rule 2026-11-08); after item 1 finishes or on <= 2 cores beside it. Power: 0/300 bounds the density of
-   36-pair solids from these sources below 1 % (95 %). Kill: no 36-pair solid -> park arrangement-first for
-   (9,3) with that bound. Follow-up tree: a 36-pair solid -> `verify_candidate.py --target S5` +
-   `candidate-check`. Phase A only (experiment E-261108-01, `PLAN.md` 2026-11-08): the Phase B "best >= 34 pairs" branch is
-   dropped (it would double the budget); C2 = rotation about z (a mirror cannot be uniform); power bound 3/N for N decided units.
-5. **DONE 2026-11-08 (5a).** Launched once, 10 shards, 18.51 core-h, 2.36 h wall: controls passed in every shard; 158/158 maps UNSAT-VERIFIED, 0 TIMEOUT, 0 SAT, so all 203 admissible (9,3) plain formulas are UNSAT-VERIFIED (STATUS 3d, CONCLUSION). (5b) not triggered. Follow-up branch "5a decides every map UNSAT" applies: focus compute stops; (10,4) pattern census and the E-261103-07 cost probe may run, then the lead review (review 2026-11-08c §4).
-   Record of the prep: Prep for (5a) DONE 2026-11-08 (`PLAN.md` amendment, `reviews/strategy-review-2026-11-08c.md` §2): 158 maps in `queue_item5a.json`, control (c) in every shard, deadline-based shard budget, startup check passed; owner launch `bash research/12-faced-polyhedron/overnight/launch.sh 03-03 start|status|stop`. (5b) is not triggered by item 1 ((b) 12/12); it applies only to 1-8 TIMEOUTs of 5a. (5a) One owner night (owner 2026-11-08: "everything that fits", 8 h wall on 10 shards): every
-   unresolved and unattempted (9,3) map, fast patterns first (the order by pattern solve times of item 1), the queue cut by the
-   8 h deadline, solver 1800 s, checker separate, ceiling 80 core-h, first-SAT stop, the
-   control of 1(c) in every shard (`overnight-run-script`). (5b) Exact speed-up micro-benchmark: CaDiCaL
-   default vs `--unsat`, kissat, and cube-and-conquer with cubes on the segment variables of the three
-   doubled pairs; calibration maps 30, 40, 48, 19 (known UNSAT, 30-76 s) + 2 slow (1^6) maps at 1800 s;
-   at most 1 session + 4 core-h. Kill: no variant >= 3x faster on the calibration maps and no slow map
-   decided -> escalate ("cannot tell" for the hard classes). Follow-up tree: 5a decides every map UNSAT ->
-   the (10,4) cost probe (10 maps of mixed patterns at 300 s, at most 1 core-h) and escalate for the note.
+1. **Multiplicity >= 3 positive control** (audit, exploit; [I-261108-04](ideas/I-261108-04-grooved-box-multiplicity-control.md)). Question: does the
+   E-261103-02 encoder accept a real embedded polyhedron in which one face pair shares three (and four) collinear
+   segments? Object: a box with two (three) V-grooves cut from one edge, groove walls tilted to general position,
+   exact rational planes, checked by `ladder_exact` / `verify_solid`. Test: its own map through the `submap=True`
+   path, planes pinned: SAT required; the same planes on a map with one segment pairing swapped: UNSAT-VERIFIED
+   required; also the unpinned formula if it has <= 13 elements (SAT required). At most 1 session, < 0.1 core-h.
+   * Kill: none (a control). Follow-up tree:
+     * all pass -> record the control (EXACT) in E-261103-02 and STATUS; items 2-4 proceed;
+     * a pinned SAT fails -> stop all S5 compute; the 18 tripled-pair (9,3) UNSATs and the tripled (8,2) UNSAT are
+       suspended; escalate (encoder bug hunt, at most 1 session, then the lead).
+2. **(10,4) speed-up benchmark** (exploit; I-261031-02, I-261108-05; follow-up of E-261103-07; what differs from the parked plain run:
+   solver, options and cubing). Question: is there a variant that makes the (10,4) plain formulas >= 10x cheaper?
+   * Phase A (calibration, known answers): six (9,3) maps already UNSAT-VERIFIED: map 7 and one more `1^6`, maps 87 and
+     130 `(1^4,2)`, one `(1,1,2,2)/(2,2,2)`, one `(1,1,1,3)`. Variants: CaDiCaL default (baseline, re-run under the
+     same 10-shard load), CaDiCaL `--unsat`, kissat (pinned build), cube-and-conquer (cubes on the segment-order
+     variables of the multiple pairs, or march_cu; each cube solved by CaDiCaL; core-seconds summed over cubes). Cap per
+     unit 2x the recorded baseline. Metric: core-seconds to UNSAT; times only, no evidence claim.
+   * Phase B (only for variants >= 3x faster on >= 3 of the 4 slow Phase A maps; at most 2 variants): the probe maps
+     146, 845, 78, 1104 at 1 core-h per map and variant. An UNSAT counts as evidence only with a checked proof (for
+     cube-and-conquer: one DRAT per cube plus a checked cube-cover formula; the PLAN fixes the format).
+   * Budget: 1 prep session; one owner launch, 10 shards, <= 2 h wall, <= 12 core-h worst case, expected about 6.
+   * Kill: no variant >= 3x on Phase A -> no Phase B; (10,4) plain route LOW-YIELD on the laptop; escalate.
+   * Follow-up tree, from the projection P_best = sum over patterns of count x (9,3) median x F_best x 1.71 / 3600:
+     * P_best <= 160 core-h -> (10,4) completion over two laptop nights (PLAN amendment: fast patterns first,
+       first-SAT stop, controls in every shard, the item 1 control included);
+     * 160 < P_best <= 1,000 -> Actions calibration wave ([I-261108-07](ideas/I-261108-07-actions-calibration-wave.md), owner approved a trial), then a campaign PLAN; owner decides;
+     * P_best > 1,000, or Phase B decides 0 of 4 maps -> escalate: the (10,4) exact route is beyond our compute
+       without a new idea;
+     * any SAT -> first-SAT stop; exact model check, realizers, `verify_candidate.py --target S5`, `candidate-check`.
+3. **Independent census of (8,2) and (9,3)** (audit; [I-261108-08](ideas/I-261108-08-independent-s5-census.md)). Question: does an independently written enumerator
+   reproduce 2 classes at (8,2) and 240 classes / 203 admissible at (9,3), with the same canonical hashes? Method not
+   shared with E-261103-01 (e.g. genus-g rotation systems of K_F plus the extra edges, by CP-SAT with canonical-form
+   deduplication, or lexicographic surface enumeration). At most 2 sessions, minutes of CPU.
+   * Kill: two sessions without a complete run -> record, escalate. Follow-up tree: agreement -> coverage evidence
+     becomes two-algorithm EXACT (arguments still PROVED-1); any missing map -> its plain formula on one day run,
+     10 shards; extra maps in the new enumerator -> bug hunt in one of the two, at most 1 session.
+4. **Second encoder on six (9,3) maps** (audit; I-261031-03, review 2026-11-08c §7 idea 1). An encoder written
+   from `theory/mathematical-model.md` Lemma 5.1 and the S5 definition, not from `pilot.build`; maps 40 (62 s), one
+   of each of `(1,2,3)/(2,3)` and `(1,1,2,2)/(2,3)` (tripled pairs), one `(1^4,2)`, one `(1,1,1,3)`, one
+   `(2,2,2)/(2,2,2)`; plus the pinned Roest-Vigh, Mizhaev and item 1 controls. At most 2 sessions + 1 core-h, 8 shards (owner rule 2026-11-08).
+   * Kill: a disagreement on any instance -> stop, the (9,3) claim is suspended, escalate. Follow-up tree: agreement
+     on all -> the claim's encoder caveat reads "two encoders agree on six maps and all controls".
+5. **Face-contraction sieve** (explore; [I-261108-06](ideas/I-261108-06-face-contraction-sieve.md)). Question: is a (9,3) or (10,4) plain formula already UNSAT on
+   the clauses whose chirotope variables all contain one face X (the rank-3 contraction at X, a clause subset, so a
+   relaxation)? Power first: all 203 (9,3) maps x 9 faces (all known UNSAT), cap 20 s, 10 shards; then, only on pass,
+   the 1117 (10,4) maps x 10 faces. At most 1 session + 1 core-h for the (9,3) part.
+   * Kill: 0 of 203 (9,3) maps UNSAT at any single face -> park. Follow-up tree: >= 20 of 203 -> the (10,4) sieve
+     (<= 3 core-h); every (10,4) sieve UNSAT with a checked proof removes that map from the item 2 queue (EXACT,
+     formula scope); 1-19 of 203 -> record, no (10,4) run.
+
+Not in this week: the note package (lead review 2026-11-08d §5 item 8; owner 2026-11-08: a note is a goal and says
+that no independent review took place), after items 1, 3, 4 pass; E-261101-10 (S0 slot).
+
+Previous week plan (lead review 2026-11-08, items 1-5) is done: literature check, (9,3) long-cap pilot, core study,
+arrangement sweep, and item 5a, which decided all 203 admissible (9,3) plain formulas UNSAT-VERIFIED (STATUS 3d); the
+E-261103-07 cost probe followed (STATUS 3w). Its text is in `reviews/strategy-review-2026-11-08.md` §2, `-08b`, `-08c` §2.
 
 ## Queue: focus target S5 (approved 2026-11-03)
 
@@ -223,16 +224,18 @@ S0 table (unchanged 2026-11-03: no S0 evidence since 2026-11-01):
 | B: all 59 types are OM-UNSAT (as in the vertex version) | 0.55 | a rank-3 UNSAT (E-261101-06); a decided type (E-261101-15); small recurring cores (E-261101-18) | any OM-SAT model |
 | C: some types are OM-SAT with only non-realizable models | 0.25 | an OM-SAT model that fails the realizability audit (I-261029-57) | per-type OM-UNSAT |
 
-S5 table (set 2026-11-03 by the strategy review, (9, 3) row moved 2026-11-08 by `reviews/strategy-review-2026-11-08.md` §9 and again by the E-261103-03 item 5a conclusion, all CONJECTURE; "cannot tell" = not decided within the strategy's
+S5 table (set 2026-11-03 by the strategy review, (9, 3) row moved 2026-11-08 by `reviews/strategy-review-2026-11-08.md` §9 and again by the E-261103-03 item 5a conclusion; all rows set 2026-11-08 by `reviews/strategy-review-2026-11-08d.md` §8, owner-approved; all CONJECTURE; "cannot tell" = not decided within the strategy's
 horizon by our tools; moved by the "scenario move" lines of the E-261103 PLANs):
 
 | Case | exists | does not exist | cannot tell | Evidence in one line |
 |---|---|---|---|---|
-| (9, 3) | 0 | 1 | 0 | E-261103-03 (2026-11-08): all 203 admissible plain formulas UNSAT-VERIFIED (EXACT); conditional on PROVED-1 census coverage and encoder soundness, single encoder, not human-reviewed (move by the README scenario rule, all maps decided) |
-| (8, 2) | 0 | 1 | 0 | E-261103-03: both plain formulas UNSAT-VERIFIED; conditional on PROVED-1 census coverage and encoder soundness, not human-reviewed theorem certainty |
-| (10, 4) | 0.30 | 0.30 | 0.40 | several hundred maps, almost no symmetry in the sample, no engine pass at genus 4 |
+| (9, 3) | 0.05 | 0.95 | 0 | E-261103-03: all 203 admissible plain formulas UNSAT-VERIFIED (EXACT); residual weight for an encoder or census error: no positive control with a pair of multiplicity >= 3 (18 maps have one), one enumerator, one encoder, no independent review (lead review 2026-11-08d §8) |
+| (8, 2) | 0.03 | 0.97 | 0 | E-261103-03: both plain formulas UNSAT-VERIFIED; one map has a tripled pair with no positive control; conditional on PROVED-1 census coverage and encoder soundness, not reviewed (lead review 2026-11-08d §8) |
+| (10, 4) | 0.15 | 0.40 | 0.45 | both smaller minimal-genus cases empty at the OM level (inductive, weak); E-261103-07: 10/10 TIMEOUT, growth F > 3.3 per map, 10-40 estimated, so the exact route may be out of reach (lead review 2026-11-08d §8) |
 
-Rules for S5: both (8, 2) and (9, 3) decided non-existent -> write the note, focus moves to (10, 4) with E-261103-07;
+Rules for S5: both (8, 2) and (9, 3) decided non-existent -> write the note, focus moves to (10, 4) with E-261103-07
+(fired 2026-11-08: owner approved lead review 2026-11-08d; the note is gated by week items 1, 3, 4 and says that no
+independent review took place);
 (9, 3) exists -> the stretch starts from the method that found it; E-261103-03 stalls on models that neither realize nor
 certify -> build the realizability stage (I-261029-57) before more SAT.
 

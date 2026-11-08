@@ -3,8 +3,9 @@
 This repository has two parts:
 - the public 3D viewer: `index.html`, published by GitHub Pages from `main`, so every commit on `main` is live;
 - the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
-  (`STRATEGY.md`, 2026-11-03): a maximal face-neighbourly polyhedron (SPEC S5) at (9, 3); the 12-face problem is
-  parked, not abandoned.
+  (`STRATEGY.md`, 2026-11-08): a maximal face-neighbourly polyhedron (SPEC S5) at (10, 4), gated by a speed-up
+  benchmark; (8, 2) and (9, 3) are decided (conditional negative), a side track towards a note; the 12-face problem
+  is parked, not abandoned.
 
 ## Implementation preferences
 

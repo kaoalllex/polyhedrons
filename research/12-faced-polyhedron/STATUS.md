@@ -1,19 +1,22 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-08** (lead review 2026-11-08 applied: week plan in `ROADMAP.md`, (9, 3) credences moved; sections
+As of **2026-11-08** (lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
+credences in `ROADMAP.md`; before it lead review 2026-11-08 applied: (9, 3) credences moved; sections
 3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
 and item 5a recorded in 3d the same day; E-261103-03 concluded; E-261103-07 cost probe recorded in 3w). Definitions, counters and
 evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experiment-log.md`; what to do next:
 `ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
 numbers; other files link here.
 
-No active process (item 5a and the E-261103-07 probe finished 2026-11-08). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; the lead review is due (`ROADMAP.md` item 5). E-261103-04, E-261103-05, E-261103-06
+No active process (item 5a and the E-261103-07 probe finished 2026-11-08). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-08d done, next: week item 1 (`ROADMAP.md`). E-261103-04, E-261103-05, E-261103-06
 and E-261107-01 are concluded (sections 3g, 3j-3u).
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-03 (`STRATEGY.md`): S5 at (9, 3)**, a maximal face-neighbourly polyhedron with 9 faces and genus
-3 (stretch (10, 4)). No geometric witness is known; the paired exact pilot is complete (section 3e); the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes
+**Focus since 2026-11-08 (`STRATEGY.md`): S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
+4, gated by a speed-up benchmark (E-261103-07: 10/10 TIMEOUT, section 3w); from 2026-11-03 to 2026-11-08 the focus was
+(9, 3), now decided at formula scope (below); its negative result is a side track towards a note marked as not
+independently reviewed. No geometric witness is known; the paired exact pilot is complete (section 3e); the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes
 at (9, 3), 203 admissible, 8 with a free C3, 2 at (8, 2), 1183 at (10, 4), 1117 admissible. The exact route
 (OM-SAT per map at 10 elements) has decided every admissible (9, 3) plain formula UNSAT-VERIFIED (EXACT, formula scope; geometric reading conditional PROVED-1, section 3d); its multi-adjacency encoder
 passes the bounded controls (E-261103-02, EXACT). Both plain (8,2) warm-up formulas are now
@@ -193,6 +196,8 @@ Roest-Vigh and Mizhaev maps remain session checks only. Nothing geometric has ru
   to their recorded hashes. **Every admissible (9, 3) plain formula, 203 of 203, is UNSAT-VERIFIED** (EXACT, formula scope). Geometric
   reading: no S5 polyhedron at (9, 3), symmetric or not (PROVED-1, conditional on census coverage, encoder soundness with the uniformity
   reduction, one encoder, no human review). Not claimed: a CERTIFIED or reviewed theorem, archived proofs, a second implementation.
+  Untested parts (lead review 2026-11-08d, A1-A2): no positive control has a pair of multiplicity >= 3 (18 of the 203 maps
+  and one (8, 2) map have one); the full census has one enumerator. Week items 1, 3, 4 address them.
 * **Core study E-261108-02** (week item 3, 2026-11-08, 0.07 core-h wall): PARK. 0 of the 24 11-gon plain formulas have an UNSAT
   sub-formula on <= 6 faces (clause subsets indexed by constraint face tuples, k = 3..6 exhaustive, 0 TIMEOUT; k = 7 also none;
   k = 8 undecided, 94 TIMEOUTs); controls C0/C1/C2 pass, comparators equal. Scope: this grouping and cap 20 s (CONCLUSION).

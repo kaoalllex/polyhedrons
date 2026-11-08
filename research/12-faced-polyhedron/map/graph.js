@@ -3483,6 +3483,78 @@ window.GRAPH = {
    "preregistered": ""
   },
   {
+   "id": "I-261108-04",
+   "kind": "idea",
+   "title": "Grooved-box positive control - an embedded polyhedron in which one face pair shares three or four collinear segments",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-04-grooved-box-multiplicity-control.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-05",
+   "kind": "idea",
+   "title": "Certified incremental SAT across the maps of one pattern - shared OM lemmas, selector literals, incremental proofs",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-05-certified-incremental-sat-per-pattern.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-06",
+   "kind": "idea",
+   "title": "Face-contraction sieve - is a plain S5 formula already UNSAT on the clauses of the rank-3 contraction at one face?",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-06-face-contraction-sieve.md",
+   "direction": [
+    "DR19",
+    "DR9"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-07",
+   "kind": "idea",
+   "title": "GitHub Actions calibration wave - decide known (9, 3) maps on runners to measure their speed and proof handling",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-07-actions-calibration-wave.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-08",
+   "kind": "idea",
+   "title": "Independent census of the (8, 2) and (9, 3) candidate maps - a second enumerator that shares no code with E-261103-01",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-08-independent-s5-census.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -4374,6 +4446,11 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
+   "from": "E-261101-06",
+   "to": "I-261108-06",
+   "kind": "origin"
+  },
+  {
    "from": "E-261101-07",
    "to": "E-261101-19",
    "kind": "origin"
@@ -4684,8 +4761,18 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
+   "from": "E-261103-01",
+   "to": "I-261108-08",
+   "kind": "origin"
+  },
+  {
    "from": "E-261103-02",
    "to": "E-261103-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-02",
+   "to": "I-261108-04",
    "kind": "origin"
   },
   {
@@ -4716,6 +4803,11 @@ window.GRAPH = {
   {
    "from": "E-261103-03",
    "to": "I-261108-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "I-261108-04",
    "kind": "origin"
   },
   {
@@ -4764,6 +4856,16 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
+   "from": "E-261103-07",
+   "to": "I-261108-05",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-07",
+   "to": "I-261108-07",
+   "kind": "origin"
+  },
+  {
    "from": "E-261107-01",
    "to": "E-261108-01",
    "kind": "origin"
@@ -4797,6 +4899,11 @@ window.GRAPH = {
    "from": "E-261108-02",
    "to": "H-261103-03",
    "kind": "tests"
+  },
+  {
+   "from": "E-261108-02",
+   "to": "I-261108-06",
+   "kind": "origin"
   },
   {
    "from": "FD2",
@@ -5441,6 +5548,11 @@ window.GRAPH = {
   {
    "from": "I-261101-12",
    "to": "E-261101-20",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-12",
+   "to": "I-261108-05",
    "kind": "origin"
   },
   {
@@ -6186,6 +6298,11 @@ window.GRAPH = {
   {
    "from": "owner",
    "to": "I-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261108-07",
    "kind": "origin"
   }
  ],
