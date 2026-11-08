@@ -1095,6 +1095,23 @@
    "conclusion": "Verdict for the direction: LOW-YIELD@0.38 core-h, 30 arrangements (this configuration). H-261103-02 and H-261101-07 unchanged; no credence moves."
   },
   {
+   "id": "E-261108-01",
+   "kind": "experiment",
+   "title": "Arrangement-source sweep for solid-first - 300 nine-plane arrangements from Roest-Vigh, Mizhaev and C2 sources",
+   "status": "running",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "experiments/E-261108-01-s5-arrangement-source-sweep/README.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": ""
+  },
+  {
    "id": "E-261108-02",
    "kind": "experiment",
    "title": "Concentrated-multiplicity core study - do the plain (9, 3) formulas of the 11-gon maps have UNSAT sub-formulas on few faces?",
@@ -4723,6 +4740,11 @@
   },
   {
    "from": "E-261103-05",
+   "to": "E-261108-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-05",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -4743,11 +4765,26 @@
   },
   {
    "from": "E-261107-01",
+   "to": "E-261108-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261107-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
   {
    "from": "E-261107-01",
+   "to": "H-261103-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261108-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261108-01",
    "to": "H-261103-02",
    "kind": "tests"
   },
@@ -5524,6 +5561,11 @@
   {
    "from": "I-261103-01",
    "to": "I-261103-05",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261103-04",
+   "to": "E-261108-01",
    "kind": "origin"
   },
   {
