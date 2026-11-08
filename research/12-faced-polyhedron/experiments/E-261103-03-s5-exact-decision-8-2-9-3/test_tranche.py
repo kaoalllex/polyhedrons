@@ -72,6 +72,49 @@ class TrancheTests(unittest.TestCase):
             t.finish_reservation(root, first, 30)
             self.assertEqual(t.charged_seconds(root), 50)
 
+    def test_item5a_wrapper_runs_the_item5a_queue_with_night_caps(self):
+        import os
+        import subprocess
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp); executable = tmp / 'python3'; calls = tmp / 'calls.jsonl'
+            executable.write_text(f'#!{sys.executable}\n' +
+                'import json, os, sys\n'
+                'with open(os.environ["WRAPPER_CALLS"], "a") as f:\n'
+                '    f.write(json.dumps(sys.argv[1:]) + "\\n")\n')
+            executable.chmod(0o755)
+            env = dict(os.environ, PYTHON=str(executable), SHARDS='10', WRAPPER_CALLS=str(calls), S5A_RESULTS=str(tmp / 'r'))
+            r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh'), '9'], env=env, capture_output=True, text=True, timeout=5)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            (args,) = [json.loads(line) for line in calls.read_text().splitlines()]
+            value = lambda flag: args[args.index(flag) + 1]
+            self.assertEqual([args[1], value('--shard'), value('--shards'), value('--timeout'), value('--s5-checker-timeout'),
+                              value('--s5-budget-seconds'), value('--hours')], ['s5', '9', '10', '1800', '2700', '288000', '8'])
+            self.assertEqual(Path(value('--s5-queue')).name, 'queue_item5a.json')
+            self.assertEqual(Path(value('--results-dir')), tmp / 'r/9')
+            self.assertIn('exit_status: 0', (tmp / 'r/9/manifest.txt').read_text())
+
+    def test_probe_queue_selects_case_control_and_per_map_caps(self):
+        t = self.module()
+        probe = pilot.ROOT / 'experiments/E-261103-07-s5-10-4-census-symmetry/queue_probe.json'
+        with patch.object(t, 'QUEUE', probe), patch.object(t, 'CASE', t.CASE), patch.object(t, 'CONTROL', t.CONTROL):
+            queue = t.load_queue(custom=True)
+            self.assertEqual((t.CASE, t.CONTROL), ((10, 4), 'control_f10.json'))
+        self.assertEqual((t.CASE, t.CONTROL), ((9, 3), 'control_f9.json'))
+        shard0 = queue[0::10]
+        self.assertEqual([e.get('control') for e in shard0], ['positive', 'negative', None])
+        maps = [e for e in queue if 'control' not in e]
+        self.assertEqual(sorted((e['solver_cap'], e['checker_cap']) for e in maps), [(300, 450)] * 6 + [(1800, 2700)] * 4)
+
+    def test_shard_budget_share_survives_restarts(self):
+        t = self.module()
+        with tempfile.TemporaryDirectory() as tmp, patch.object(t, 'BUDGET_SECONDS', 300):
+            root = Path(tmp)
+            a = t.reserve(root, 100, shard=0); t.reserve(root, 100, shard=1)
+            t.finish_reservation(root, a, 40)
+            b = t.reserve(root, 60, shard=0); t.finish_reservation(root, b, 60)
+            self.assertEqual((t.shard_charged(root, 0), t.shard_charged(root, 1)), (100, 100))
+            self.assertEqual(t.charged_seconds(root), 200)
+
     def test_source_identity_change_blocks_resume(self):
         t = self.module()
         with tempfile.TemporaryDirectory() as tmp:
@@ -109,8 +152,8 @@ class TrancheTests(unittest.TestCase):
             root = Path(tmp)
             for index in (8, 9):
                 work = root / f'0/attempt_saved/map{index}'; work.mkdir(parents=True)
-                (work / f'map{index}_plain.cnf').write_text('p cnf 1 1\n1 0\n')
-                t.append_checkpoint(root / '0/results.jsonl', dict(map_index=index, status='TIMEOUT', unit=str(work)))
+                t.append_checkpoint(root / '0/results.jsonl', dict(map_index=index, status='TIMEOUT', unit=str(work),
+                                                                   cnf_sha256='recorded'))
             self.assertEqual([r['index'] for r in t.pending(root, [dict(index=i) for i in (8, 9, 11)], 0, 1)], [11])
 
     def test_executable_names_resolve_from_path_before_hashing(self):
@@ -132,20 +175,22 @@ class TrancheTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 list(t.pending(root, [dict(index=8)], 0, 1))
 
-    def test_resume_accepts_losslessly_archived_cnf_without_rerunning(self):
-        import gzip
+    def test_resume_accepts_recorded_hashes_without_files(self):
         t = self.module()
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); work = root / '0/attempt_saved/map8'; work.mkdir(parents=True)
-            with gzip.open(work / 'map8_plain.cnf.gz', 'wb') as f:
-                f.write(b'p cnf 1 1\n1 0\n')
-            t.append_checkpoint(root / '0/results.jsonl', dict(map_index=8, status='TIMEOUT', unit=str(work)))
+            t.append_checkpoint(root / '0/results.jsonl', dict(map_index=8, status='UNSAT-VERIFIED', unit=str(work),
+                cnf_sha256='c', proof_sha256='p', checker_ended_by='completed'))
+            t.append_checkpoint(root / '0/results.jsonl', dict(map_index=9, status='TIMEOUT', unit=str(work)))
+            with self.assertRaises(ValueError):
+                list(t.pending(root, [dict(index=8)], 0, 1))
+            (root / '0/results.jsonl').write_text((root / '0/results.jsonl').read_text().splitlines()[0] + '\n')
             self.assertEqual(list(t.pending(root, [dict(index=8)], 0, 1)), [])
 
     def test_invalid_wrapper_modes_and_excess_workers_do_no_work(self):
         import os
         import subprocess
-        for mode, count in [('typo', '1'), ('0', '9'), ('8', '8')]:
+        for mode, count in [('typo', '1'), ('0', '11'), ('8', '8')]:
             r = subprocess.run(['bash', str(pilot.HERE / 'run.sh'), mode],
                                env=dict(os.environ, SHARDS=count), capture_output=True)
             self.assertEqual(r.returncode, 2)
@@ -167,7 +212,8 @@ class TrancheTests(unittest.TestCase):
                     calls.unlink(missing_ok=True)
                     env = dict(os.environ, PATH=str(tmp) + os.pathsep + os.environ['PATH'], PYTHON=str(executable),
                                SHARDS='8', WRAPPER_CALLS=str(calls))
-                    r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh'), mode],
+                    r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh')] +
+                                       (['coverage-pilot'] if mode == 'coverage-pilot' else ['coverage', mode]),
                                        env=env, capture_output=True, text=True, timeout=5)
                     self.assertEqual(r.returncode, 0, r.stderr)
                     records = [json.loads(line) for line in calls.read_text().splitlines()]
@@ -196,7 +242,7 @@ class TrancheTests(unittest.TestCase):
             env = dict(os.environ, HOME=str(home), PATH=str(wrong.parent) + os.pathsep + os.environ['PATH'],
                        SHARDS='8', WRAPPER_CALLS=str(calls))
             env.pop('VIRTUAL_ENV', None); env.pop('PYTHON', None)
-            r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh'), '0'], env=env,
+            r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh'), 'coverage', '0'], env=env,
                                capture_output=True, text=True, timeout=5)
             self.assertEqual(r.returncode, 0, r.stderr)
             self.assertEqual([json.loads(line)[1] for line in calls.read_text().splitlines()], ['s5', 'status'])
@@ -285,7 +331,7 @@ class TrancheEvidenceTests(unittest.TestCase):
     def test_saved_same_path_pilot_evidence(self):
         import hashlib
         import tranche
-        from test_pilot import artifact_sha, unpack
+        from test_pilot import artifact_sha, dropped, fresh_check, replay_requested
         root = pilot.HERE / 'results/coverage_pilot'
         manifests = list(root.glob('[0-9]*/attempt_*/manifest.json'))
         if not manifests:
@@ -302,9 +348,7 @@ class TrancheEvidenceTests(unittest.TestCase):
             targets = {f'map{r["map_index"]}_plain': r for r in tranche.records(path.parent.parent / 'results.jsonl')}
             for name, digest in manifest['outputs_sha256'].items():
                 artifact = path.parent / name
-                rec = targets.get(artifact.stem.removesuffix('.drat'), {})
-                if (name.endswith('.drat') and rec.get('status') == 'TIMEOUT'
-                        and not artifact.exists() and not Path(str(artifact) + '.gz').exists()):
+                if dropped(artifact):
                     continue
                 self.assertEqual(artifact_sha(artifact), digest, name)
         recs = tranche.records(root / '0/results.jsonl')
@@ -323,14 +367,11 @@ class TrancheEvidenceTests(unittest.TestCase):
                 tmp = Path(tmp)
                 c.dimacs(tmp / 'rebuilt.cnf', comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
                 self.assertEqual(pilot.sha(tmp / 'rebuilt.cnf'), rec['cnf_sha256'])
-                self.assertEqual(artifact_sha(work / (name + '.cnf')), rec['cnf_sha256'])
                 if rec['status'] == 'UNSAT-VERIFIED':
-                    self.assertEqual(artifact_sha(work / (name + '.drat')), rec['proof_sha256'])
-                    from test_pilot import replay_requested
+                    self.assertIn('proof_sha256', rec)
                     self.assertIn('s VERIFIED', (work / (name + '.checker.log')).read_text())
                     if replay_requested():
-                        proof = unpack(work / (name + '.drat'), tmp / 'proof.drat')
-                        self.assertTrue(pilot.check_proof(tmp / 'rebuilt.cnf', proof, tmp / 'check.log', 120))
+                        self.assertTrue(fresh_check(tmp / 'rebuilt.cnf', tmp, 120))
                 elif rec['status'] == 'SAT':
                     self.assertTrue(pilot.model_valid(c.clauses, json.loads((work / (name + '.model.json')).read_text())))
                 else:

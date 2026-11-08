@@ -11,6 +11,8 @@ with `requirements.txt` installed.
 1. **Uncommitted work.** Run `git status`.
    - Commit your own work on the session branch.
    - Never commit the owner's untracked notes (the root `TODO.md`).
+   - Update the owner's root `TODO.md` (local, untracked, in Russian) whenever the session changed the week plan,
+     the rules, the branch, the next step or the owner's own tasks; keep it short and current.
    - Never push to `main`. Push the session branch only when the owner says so.
 2. **Log.** Add a dated entry to `experiment-log.md`: what was done, the commits, the outcomes, with pointers to
    the files. Keep the log append-only.

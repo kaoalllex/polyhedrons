@@ -1,0 +1,42 @@
+{
+ "energy_coplanar": 0.0,
+ "energy_random": 25.097536182468893,
+ "energy_round_torus_start": 92.49980221492041,
+ "detector_spindle_torus_intersects": true,
+ "detector_round_torus_intersects": false,
+ "tail_szilassi_perturbed": {
+  "name": "ctrl_szilassi",
+  "scale_1000": "ERROR ValueError('nonuniform triple of normals')",
+  "scale_10000": {
+   "adjacent": 21,
+   "faces": 0,
+   "disks": 0,
+   "chi": 0,
+   "status": "OPTIMAL",
+   "cuts": 0,
+   "seconds": 0.14,
+   "edge_runs": 21,
+   "ended_by": "completed",
+   "valid": true
+  },
+  "scale": 10000,
+  "verify_stdout": "0 {\"all_pairs_adjacent\": true, \"V_E_F_chi\": [14, 21, 7, 0], \"points_distinct\": true, \"simple_faces\": 7, \"nonsimple_faces\": [], \"edges_consistent\": true, \"bad_pairs\": [], \"EMBEDDED\": true, \"single_adjacency\": true, \"target\": \"S5\", \"PASS\": true}\n1 record(s), target S5: 1 PASS, 0 fail",
+  "PASS": true
+ },
+ "tail_szilassi_one_plane_moved": {
+  "name": "ctrl_szilassi_bad",
+  "scale_1000": "ERROR ValueError('nonuniform triple of normals')",
+  "scale_10000": {
+   "status": "INFEASIBLE",
+   "seconds": 0.021744375000707805,
+   "ended_by": "completed"
+  },
+  "scale_1000000": {
+   "status": "INFEASIBLE",
+   "seconds": 0.021016458980739117,
+   "ended_by": "completed"
+  },
+  "PASS": false
+ },
+ "PASS": true
+}

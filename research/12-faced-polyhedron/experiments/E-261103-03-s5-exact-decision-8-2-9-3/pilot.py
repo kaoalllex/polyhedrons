@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT / 'code'))
 sys.path.insert(0, str(ROOT / 'experiments/E-261103-02-s5-omsat-multi-adjacency-encoder'))
 sys.path.insert(0, str(ROOT / 'experiments/E-261101-25-chirotope-first'))
 from test_encoder import controls, from_links, EncoderTests
-from omsat import CNF, build, chirotope_from_planes
+from omsat import CNF, Triangulation, build, chirotope_from_planes
 from omsat_validate import ALL_OPTS
 from omsat_sym import build_sym, closure
 from ladder_exact import verify
@@ -106,6 +106,9 @@ def solve(c, out, name, timeout, checker_timeout=None, on_sat=None, solver_gate=
                  checker_ended_by='completed' if ok else 'failed_or_timeout')
     if proof.exists():
         r['proof_sha256'] = sha(proof)
+    # The proof was checked above; records keep the hashes and transcripts, not the files (PROTOCOL.md §5).
+    for path in (cnf, proof):
+        path.unlink(missing_ok=True)
     return r
 
 

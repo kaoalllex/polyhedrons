@@ -2,16 +2,20 @@
 id: E-261103-06
 title: Embedded first, planar later - pilot on Szilassi from a torus, then an 8-face object from a smooth genus-3 surface
 date: 2026-11-03
-status: planned
+status: parked
 direction: [DR17, DR19]
 origin: [I-261103-01, I-261103-05, E-261101-26]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
+verdict: UNDERPOWERED
+concluded: 2026-11-07
 ---
 
 > Planned, **explore**. Scores T D F G R: 1 2 2 2 1 | budget: one session for the prototype and R1; a second session for the
 > (8, 3) rung only if R1 converges. Before any compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`).
+
+> Concluded: R1 pilot, all 4 valid starts blocked by the barrier at energy 84-118; UNDERPOWERED, parked (CONCLUSION).
 
 ## Goal
 

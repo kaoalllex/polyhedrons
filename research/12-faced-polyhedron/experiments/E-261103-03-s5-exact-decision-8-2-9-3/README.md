@@ -2,7 +2,9 @@
 id: E-261103-03
 title: Exact decision per candidate map - OM-SAT for the 2 (8, 2) maps, then the symmetric and all admissible (9, 3) maps
 date: 2026-11-03
-status: running
+status: done
+concluded: 2026-11-08
+verdict: DECIDED@about 23.5 core-h (item 5a 18.51) - (8,2) 2/2 and (9,3) 203/203 admissible plain formulas UNSAT-VERIFIED, 0 SAT; geometric reading conditional PROVED-1
 direction: [DR19, DR8]
 origin: [E-261103-01, E-261103-02, I-261030-31, I-261029-45, I-261029-57, H-261101-07]
 tests: [H-261103-03, H-261103-02, H-261101-07]
@@ -10,7 +12,12 @@ produces: []
 preregistered: true
 ---
 
-> Running, with the (8,2) stage completed. See [CONCLUSION.md](CONCLUSION.md) and
+> **Concluded 2026-11-08.** Item 5a decided the last 158 maps: every admissible (9,3) plain formula (203/203) and both
+> (8,2) plain formulas are UNSAT-VERIFIED (EXACT, formula scope), 0 SAT. The geometric reading (no S5 polyhedron at (8,2)
+> or (9,3)) is PROVED-1, conditional on census coverage and encoder soundness, one encoder, no human review; proofs were
+> checked and deleted, not archived. Do not relaunch any queue. Next: lead review (`ROADMAP.md` item 5).
+>
+> Earlier history: the (8,2) stage completed. See [CONCLUSION.md](CONCLUSION.md) and
 > [STATUS.md](../../STATUS.md) for the exact decisions, controls and claim boundaries.
 > The paired C3/plain (9,3) pilot is complete; see CONCLUSION and STATUS section 3e.
 > The autonomous cutoff grid is also complete (CONCLUSION / STATUS 3f). Result directories are

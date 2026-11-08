@@ -9,15 +9,16 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-07, lead session: E-261103-04 concluded, process changed)
+## Hand-over (2026-11-08, lead review 2026-11-08d approved and applied)
 
-* Branch `Codex/s5-coverage-tranche`. No active process, no pending owner launch.
-* E-261103-04 concluded (STATUS 3s): hinge ladder parked; OM-first realization of intermediates works.
-* New process (`PROTOCOL.md` §8b): weekly lead review writes the week plan; lab sessions execute it with
-  text budgets and escalate instead of improvising.
-* NEXT: week plan item 1 in `ROADMAP.md` (nine-plane solid-first target pilot): register a PLAN (<= 80 lines),
-  commit, run the bounded pilot.
-* For the lead: (none yet).
-* Verification: E-261103-04 continuation verified (embedded verifier + separate rational checker); trace.py 0
-  errors. No verify_all run (no shared-code change). E-261103-03 human review and certificate publication remain
-  owner actions.
+* Focus moved to S5 at (10, 4), gated by a speed-up benchmark (`STRATEGY.md` §1, owner 2026-11-08). The (8,2)/(9,3)
+  negative result (all admissible plain formulas UNSAT-VERIFIED, geometry PROVED-1 conditional) is a side track towards
+  a note that must say no independent review took place. GitHub Actions trial approved.
+* Week plan in `ROADMAP.md` (lead review 2026-11-08d): 1 grooved-box multiplicity control (I-261108-04), 2 (10,4)
+  speed-up benchmark (Phase A on six known (9,3) maps, Phase B on four probe maps; owner launch <= 2 h), 3 independent
+  census (I-261108-08), 4 second encoder on six maps, 5 face-contraction sieve (explore, I-261108-06).
+* NEXT: week item 1 in a lab session (no night). Item 2 needs `experiment-start` (new experiment, kissat pinned, cube
+  format, projection formula in `PLAN.md`); items 1 and 2 may be prepared in either order, but a (10,4) UNSAT carries the
+  item 1 caveat until item 1 passes.
+* No active process. E-261103-07 conclusion and probe evidence committed.
+* For the lead: none.

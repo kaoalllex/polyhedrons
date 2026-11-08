@@ -5,13 +5,16 @@
 #       form a queue on the same cores: shard s of the next experiment starts when shard s of the previous one ends.
 #       Refused if one of them is running, or if all launches together would use more than MAX_CORES (default 10).
 #       run.sh gets SHARDS=CORES and splits its units into that many shards, so any CORES covers every unit.
-#   bash overnight/launch.sh CODE [CODE ...] status   per shard: state, records, minutes since the last output
+#   bash overnight/launch.sh CODE [CODE ...] status   per shard: state, records, minutes since the last output; then the
+#       experiment's own progress (done / left / time left) if experiments/<ID>/progress.sh exists
 #   bash overnight/launch.sh CODE [CODE ...] stop     each shard stops after its current unit (nothing is recomputed)
 #   bash overnight/launch.sh CODE [CODE ...] kill     stops now; units in flight rerun from their start on the next start
 # CODE: the end of an experiment id (02-03, 261102-03, E-261102-03; it must match one folder) or a folder path.
 # stop and kill act on the whole queue a shard belongs to. A restart (start after stop or kill) resumes: runners skip
 # the units recorded in any shard's results.jsonl. QUIET_MIN (default 60): a running shard silent for longer is
 # flagged as hung. Any other command prints this usage and does nothing.
+# Shard directories are <experiment>/results/<shard>/, or <experiment>/<path>/<shard>/ if <experiment>/launch.results
+# holds that relative path (run.sh must use the same file).
 set -euo pipefail
 HERE=$(cd "$(dirname "$0")" && pwd)
 EXPS="$HERE/../experiments"
@@ -23,6 +26,7 @@ usage() { awk 'NR > 1 && /^#/ {sub(/^# ?/, ""); print; next} NR > 1 {exit}' "$0"
 tree() { echo "$1"; local c; for c in $(pgrep -P "$1" || true); do tree "$c"; done; }
 alive_pid() { [ -n "${1:-}" ] && kill -0 "$1" 2>/dev/null; }
 pids_of() { echo "$1/results/launch.pids"; }
+res() { if [ -f "$1/launch.results" ]; then echo "$1/$(cat "$1/launch.results")"; else echo "$1/results"; fi; }
 shard_pid() { [ -f "$(pids_of "$1")" ] && awk -v s="$2" '$1 == s {print $2}' "$(pids_of "$1")" || true; }
 running_count() {
   local n=0 s p
@@ -86,12 +90,12 @@ start)
     echo "refused: $busy processes already run and $N more exceed MAX_CORES=$MAX_CORES; stop one, start fewer, or put the experiments in one queue" >&2
     exit 1
   fi
-  for e in "${QUEUE[@]}"; do mkdir -p "$e/results"; : > "$(pids_of "$e")"; rm -f "$e/results/stop.requested"; done
+  for e in "${QUEUE[@]}"; do mkdir -p "$e/results" "$(res "$e")"; : > "$(pids_of "$e")"; rm -f "$(res "$e")/stop.requested"; done
   for s in $(seq 0 $((N - 1))); do
     chain=""
     for e in "${QUEUE[@]}"; do
-      mkdir -p "$e/results/$s"
-      chain="$chain echo \"=== \$(date '+%F %T') launch.sh start, shard $s\" >> '$e/results/$s/night.log'; bash '$e/run.sh' $s >> '$e/results/$s/night.log' 2>&1;"
+      r=$(res "$e"); mkdir -p "$r/$s"
+      chain="$chain echo \"=== \$(date '+%F %T') launch.sh start, shard $s\" >> '$r/$s/night.log'; bash '$e/run.sh' $s >> '$r/$s/night.log' 2>&1;"
     done
     SHARDS=$N nohup caffeinate -dimsu bash -c "$chain" > /dev/null 2>&1 &
     for e in "${QUEUE[@]}"; do echo "$s $!" >> "$(pids_of "$e")"; done
@@ -101,7 +105,7 @@ start)
 status)
   for e in "${QUEUE[@]}"; do
     now=$(date +%s); total=0; hung=0; run=0
-    for d in "$e"/results/[0-9]*; do
+    for d in "$(res "$e")"/[0-9]*; do
       [ -d "$d" ] || continue
       s=$(basename "$d")
       n=$( (cat "$d/results.jsonl" 2>/dev/null || true) | wc -l | tr -d ' ')
@@ -115,7 +119,7 @@ status)
         state=queued; run=$((run + 1))   # waiting for the previous experiment's shard
       elif alive_pid "$(shard_pid "$e" "$s")"; then
         state=running; run=$((run + 1))
-        [ -f "$e/results/stop.requested" ] && state="running, stops after this unit"
+        [ -f "$(res "$e")/stop.requested" ] && state="running, stops after this unit"
         if [ "$quiet" -ge "$QUIET_MIN" ]; then state="RUNNING, SILENT ${quiet} MIN - PROBABLY HUNG"; hung=$((hung + 1)); fi
       else
         state="ended rc=$( (grep '^exit_status' "$d/manifest.txt" 2>/dev/null || true) | tail -1 | awk '{print $2}')"
@@ -124,18 +128,20 @@ status)
         "$(grep -v '^===' "$d/night.log" 2>/dev/null | tail -1 | cut -c1-90)"
     done
     echo "$(basename "$e"): $run shards running, $total records, $hung probably hung (silent >= $QUIET_MIN min)"
+    # Optional experiment-specific progress (units done / left, time left): experiments/<ID>/progress.sh prints it.
+    [ -f "$e/progress.sh" ] && { echo "--- progress"; bash "$e/progress.sh" || true; }
   done
   ;;
 stop)
   for e in "${QUEUE[@]}"; do
     if [ "$(running_count "$e")" -eq 0 ]; then echo "$(basename "$e"): nothing running"; continue; fi
-    touch "$e/results/stop.requested"
+    touch "$(res "$e")/stop.requested"
     while read -r s p; do
       alive_pid "$p" || continue
       files=()
       for f in "$EXPS"/*/results/launch.pids; do   # every experiment of this shard's queue
         if awk -v p="$p" '$2 == p {found = 1} END {exit !found}' "$f"; then
-          files+=("$(dirname "$f")/$s/results.jsonl"); touch "$(dirname "$f")/stop.requested"
+          x=$(dirname "$(dirname "$f")"); files+=("$(res "$x")/$s/results.jsonl"); touch "$(res "$x")/stop.requested"
         fi
       done
       nohup bash "$0" __watch "$p" "${files[@]}" > /dev/null 2>&1 &

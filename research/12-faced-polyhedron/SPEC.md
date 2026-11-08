@@ -102,6 +102,8 @@ claims need a human mathematical review outside this chain of agents.
 
 ## Change log
 
+* 2026-11-08 (correction, strategy review M1): the 2026-11-03 evening entry's count is wrong; the exact census has
+  18 admissible (9, 3) maps with a tripled pair, not 10. Definitions unchanged.
 * 2026-11-03 (evening, strategy review applied): §2 S5 says explicitly that adjacencies of multiplicity two or more
   are allowed (one of the two (8, 2) candidate maps and 10 admissible (9, 3) maps have a tripled pair; `--target S5`
   already accepted them). No target weakened.

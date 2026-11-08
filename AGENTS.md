@@ -3,8 +3,9 @@
 This repository has two parts:
 - the public 3D viewer: `index.html`, published by GitHub Pages from `main`, so every commit on `main` is live;
 - the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
-  (`STRATEGY.md`, 2026-11-03): a maximal face-neighbourly polyhedron (SPEC S5) at (9, 3); the 12-face problem is
-  parked, not abandoned.
+  (`STRATEGY.md`, 2026-11-08): a maximal face-neighbourly polyhedron (SPEC S5) at (10, 4), gated by a speed-up
+  benchmark; (8, 2) and (9, 3) are decided (conditional negative), a side track towards a note; the 12-face problem
+  is parked, not abandoned.
 
 ## Implementation preferences
 
@@ -56,7 +57,11 @@ Hard rules:
   and what was not run.
 - Long runs go to the owner's laptop (under `caffeinate -dimsu`, on AC power) or to GitHub Actions. Never start
   a multi-hour run from a session.
-- Ask the owner before large subagent tasks and before long runs. SAT runs keep their proofs and CNFs.
+- Ask the owner before large subagent tasks and before long runs. SAT runs record the SHA-256 of every CNF and
+  proof and keep the checker transcript; proofs are checked during the run and then deleted, CNFs are rebuilt
+  from the committed encoder and hash-checked; SAT models are kept. Proofs are archived (Zenodo or a release,
+  not git) only for a claim that goes into a note (owner, 2026-11-08).
+- Every run whose units can be split uses 8-10 shards, day runs and lab test runs included (owner, 2026-11-08).
 - Run checks only when their result can change a decision. Reuse a recorded successful check when its
   relevant code, inputs, dependencies and environment are unchanged, including across handover/session
   boundaries. Do not rerun merely to refresh a report or final response.

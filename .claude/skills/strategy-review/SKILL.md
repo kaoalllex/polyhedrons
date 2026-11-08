@@ -52,3 +52,5 @@ new ideas; audit findings; the 3 things to do first. Label factual claims with `
 identify untested hypotheses and recommendations separately. Commit the report on the current branch; do not push. Then tell the owner, in
 Russian, the verdict and the proposed first item; the owner decides, and a working session applies the approved
 changes to `ROADMAP.md`, `STATUS.md` and the idea files.
+Once the owner approves, the same session or the working session also updates the owner's root `TODO.md`
+(local, untracked, in Russian: week plan, rules, next step); never commit it.

@@ -16,10 +16,11 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
   `PLAN.md` that says what is different this time.
 - The wrapper is `experiments/E-YYMMDD-NN-slug/run.sh` (from `experiments/_template/`). It writes the provenance
   manifest and calls `run_overnight.py <job> ... --results-dir "$OUT"`, so a night gets both the manifest and
-  resume. Do not build a third framework.
+  resume. Do not build a third framework, and do not write a new launcher: the owner's `start`/`status`/`stop`
+  is `overnight/launch.sh` (a prep session once wrote `item1.sh` beside it; fix `run.sh` or `launch.sh` instead).
 - `--git` commits go to the experiment branch, never to `main`.
-- SAT jobs keep proofs and CNFs (the default since 2026-11-01). Record `cadical --version` and the drat-trim
-  commit in the manifest.
+- SAT jobs check each proof during the run and then delete it and its CNF, keeping the hashes and the checker
+  transcript (`PROTOCOL.md` §5, owner 2026-11-08). Record `cadical --version` and the drat-trim commit in the manifest.
 
 ## Shell wrapper checklist
 
@@ -67,8 +68,14 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
 - **Manifest survives restarts.** `run.sh` writes the manifest header only if it is absent and appends a
   `restarted_utc` line otherwise; the `finish` trap appends `finished_utc`, `exit_status`, `wall_seconds` and
   `core_hours` every time, so the core-hours of a restarted shard are the sum of its lines.
+- **The owner types only `start`, `status`, `stop`** (owner, 2026-11-08), through `overnight/launch.sh` or a launcher with the same three words;
+  never a long command line with paths, caps and environment. Stop, crash and emergency interrupt must not lose
+  recorded results; test `start` -> `status` -> `stop` -> `start` in a scratch directory before handing over. A
+  background job ignores SIGINT: stop with the signal the runner handles (SIGTERM).
+- **Progress in `status`.** If `experiments/<ID>/progress.sh` exists, `launch.sh status` prints its output (units done / left,
+  what each shard runs now, time left). Write one for every long run, so the owner sees progress without reading logs.
 - **One command for the whole night** (`overnight/launch.sh CODE [CODE ...] start [CORES]`, CODE = the end of the experiment id, CORES default 10): starts CORES detached processes (`nohup ... &`, each
-  under its own `caffeinate -dimsu` and `nice -n 10`), one core each (M4 Pro: 10 performance cores; fewer by day), with `status`, `stop` (after the current unit) and
+  under its own `caffeinate -dimsu` and `nice -n 10`), one core each (M4 Pro: 10 performance cores; 8-10 for every splittable run, by day too), with `status`, `stop` (after the current unit) and
   `kill` (now) modes. `run.sh` must split its units by `SHARDS` (the launcher sets `SHARDS=CORES`; it refuses a `run.sh` that
   does not read it), and the runner must skip units recorded in any shard's `results.jsonl`, so stop + start with
   another CORES re-splits the remaining units without repeating any. Never hard-code the shard count in `run.sh`. Detached means Ctrl+C or closing the terminal does not kill them; only `stop` does. At most 10 cores for all launches together (night 7: 10 + 4 froze the laptop; the launcher refuses past `MAX_CORES=10`); several experiments in one night form a queue on the same cores, `launch.sh 02-03 02-04 start` (shard s of the second starts when shard s of the first ends), so give the night plan the sum of their wall times per shard. `stop` waits for each shard's current unit (it watches `results.jsonl` for the next record), `kill` stops at once and the units in flight rerun from their start (night 7: 8.9 core-h of 120-min units recomputed).
@@ -77,8 +84,8 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
   record) before the first full run.
 - **Flush, do not buffer.** A pilot piped through `grep | tail` shows nothing until the end; log with `flush=True`
   and read the raw log, or use `grep --line-buffered` without `tail`.
-- **Keep only what certifies.** CNF and proof files are kept for UNSATs (with SHA-256 in the record); SAT and
-  timeout CNFs are deleted after the hash is recorded, or a 59-type sweep fills the disk.
+- **Keep only hashes.** CNF and proof files are deleted once the proof is checked and the SHA-256 values and the
+  checker transcript are recorded; timeout proofs at once. SAT models are kept.
 - **Forked SAT children.** When a SAT call runs in a forked child with `p.join(timeout)`, the timeout is monotonic
   and the child is terminated on expiry; solver binaries (`cadical -t`) use wall time, which is fine while
   `caffeinate` holds the machine awake.

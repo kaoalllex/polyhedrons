@@ -915,3 +915,18 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-07: E-261103-04 Mizhaev continuation (b1d2104): both alternative Mizhaev
   intermediates realized from saved OMs in 7.9 s; experiment concluded, hinge ladder
   parked (STATUS 3s).
+* 2026-11-07: E-261107-01 nine-plane solid-first pilot (9fbea2a): 30 arrangements all INFEASIBLE in
+  6-21 s, no 36-pair solid; LOW-YIELD@0.38 core-h, configuration parked (STATUS 3t).
+* 2026-11-07: E-261103-06 embedded-first R1 pilot: 4 valid torus starts all blocked by the barrier at
+  energy 84-118 after 3-6 steps; UNDERPOWERED, parked (STATUS 3u).
+* 2026-11-08: E-261103-03 unit (a): the 13 unattempted 11-gon (9,3) maps at 60/120 s: 9 UNSAT-VERIFIED,
+  4 TIMEOUT, 0 SAT, 0.23 core-h; prediction >= 10/13 missed; experiment stays active (STATUS 3d, CONCLUSION).
+* 2026-11-08: evidence policy changed (owner): proofs checked in the run, then deleted; 377 CNF/proof files removed
+  from the unpushed lab/2026-11-07 history; older commit SHAs map via `reviews/strategy-review-2026-11-08b-commit-map.txt`.
+* 2026-11-08: E-261103-03 item 1 long-cap launch (solver 1800 s, 10 shards, 2.74 core-h): controls passed; 17 of 17 (9,3) plain maps
+  UNSAT-VERIFIED (12 of `1^6`/`(1^4,2)`/`(1,1,2,2)` + the five (1,1,1,3) maps), 0 SAT; all 24 11-gon maps now decided; experiment stays
+  active for item 5a (STATUS 3d, CONCLUSION).
+* 2026-11-08: E-261108-01 arrangement-source sweep (item 4, 10 shards, 1.33 core-h): 300/300 INFEASIBLE, 0 SOLID, 40/40 controls pass; LOW-YIELD, arrangement-first parked for (9,3) (CONCLUSION, STATUS 3v).
+* 2026-11-08: E-261103-03 item 5a (10 shards, 18.51 core-h, 2.36 h wall): controls passed in every shard; 158 of 158 (9,3) plain maps
+  UNSAT-VERIFIED, 0 SAT, 0 TIMEOUT; all 203 admissible (9,3) plain formulas now UNSAT-VERIFIED; experiment concluded (STATUS 3d, CONCLUSION).
+* 2026-11-08: E-261103-07 (10,4) cost probe (10 shards, 2.53 core-h): 20/20 controls pass; 10 of 10 plain maps TIMEOUT (6 at 300 s, 4 at 1800 s), 0 SAT; rule gives "needs a speed-up first" (CONCLUSION, STATUS 3w).

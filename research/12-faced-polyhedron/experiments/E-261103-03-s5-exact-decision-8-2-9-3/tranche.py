@@ -19,6 +19,8 @@ from pilot import HERE, ROOT, sha
 
 QUEUE = HERE / 'tranche_queue.json'
 BUDGET_SECONDS = 22319
+SOLVER_CAP, CHECKER_CAP = 60, 120  # registered defaults; --timeout / --s5-checker-timeout override
+CASE, CONTROL = (9, 3), 'control_f9.json'  # a custom queue may name another census case and control file
 
 
 def atomic(path, value):
@@ -72,8 +74,24 @@ def append_checkpoint(path, record):
         f.write(json.dumps(record) + '\n'); f.flush(); os.fsync(f.fileno())
 
 
-def load_queue():
+def load_queue(custom=False):
     data = json.loads(QUEUE.read_text())
+    if custom:  # explicit map list (long-cap units): census identity and per-map canonical hashes only
+        global CASE, CONTROL
+        CASE = tuple(data.get('case', CASE)); CONTROL = data.get('control_file', CONTROL)
+        maps = pilot.census(*CASE)['maps']
+        if sha(ROOT / f'experiments/E-261103-01-s5-map-census/results/maps_{CASE[0]}_{CASE[1]}.json') != data['census_sha256']:
+            raise ValueError('census identity changed')
+        for entry in data['maps']:
+            if entry.get('control'):
+                if sha(HERE / CONTROL) != entry['control_sha256']:
+                    raise ValueError('control identity changed')
+                continue
+            rec = maps[entry['index']]
+            digest = hashlib.sha256(json.dumps(rec['code'], separators=(',', ':')).encode()).hexdigest()
+            if not rec['admissible'] or digest != entry['canonical_sha256']:
+                raise ValueError('custom queue map not admissible or identity changed')
+        return data['maps']
     census_path = ROOT / 'experiments/E-261103-01-s5-map-census/results/maps_9_3.json'
     if sha(census_path) != data['census_sha256']:
         raise ValueError('census identity changed')
@@ -142,11 +160,12 @@ def pending(root, queue, shard, shards):
                 if 'unit' in rec:
                     work = path.parent.parent.joinpath(*Path(rec['unit']).parts[-3:])
                     name = f'map{rec["map_index"]}_plain'
-                    needed = ['.cnf'] + (['.drat'] if rec['status'] == 'UNSAT-VERIFIED' else [])
-                    for suffix in needed:
-                        artifact = work / (name + suffix)
-                        if not artifact.exists() and not Path(str(artifact) + '.gz').exists():
-                            raise ValueError(f'missing saved evidence: {artifact}')
+                    # CNF and proof files are not kept: the record must carry their hashes and a completed check.
+                    needed = ['cnf_sha256'] + (['proof_sha256'] if rec['status'] == 'UNSAT-VERIFIED' else [])
+                    if any(key not in rec for key in needed):
+                        raise ValueError(f'missing recorded evidence hashes: {work / name}')
+                    if rec['status'] == 'UNSAT-VERIFIED' and rec.get('checker_ended_by') != 'completed':
+                        raise ValueError(f'proof check not completed: {work / name}')
                     if rec['status'] == 'SAT' and not (work / (name + '.model.json')).exists():
                         raise ValueError('missing saved SAT model')
                 done.add(rec['map_index'])
@@ -168,14 +187,20 @@ def pilot_manifests(root):
     return sorted((root / 'coverage_pilot').glob('[0-9]*/attempt_*/manifest.json')) if root == HERE / 'results' else []
 
 
-def reserve(root, seconds):
+def reserve(root, seconds, shard=None):
     with locked(root / 'budget.lock'):
         if charged_seconds(root) + seconds > BUDGET_SECONDS:
             raise RuntimeError('registered cumulative core budget exhausted; unresolved work remains')
         path = root / 'budget.json'
         data = json.loads(path.read_text()) if path.exists() else {}
-        key = uuid.uuid4().hex; data[key] = seconds; atomic(path, data)
+        key = ('' if shard is None else f'{shard}:') + uuid.uuid4().hex; data[key] = seconds; atomic(path, data)
         return key
+
+
+def shard_charged(root, shard):
+    path = root / 'budget.json'
+    data = json.loads(path.read_text()) if path.exists() else {}
+    return sum(v for k, v in data.items() if k.startswith(f'{shard}:'))
 
 
 def finish_reservation(root, key, seconds):
@@ -205,17 +230,28 @@ def sources():
 
 def unit(spec):
     root = Path(spec['root']); out = Path(spec['out']); index = spec['index']
-    rec = pilot.census(9, 3)['maps'][index]
-    pilot.dump(out / 'map.json', rec)
-    c = pilot.CNF(9); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
+    case = tuple(spec.get('case', CASE)); faces = case[0]
+    if spec.get('control'):  # convex F-face controls, planes pinned: positive SAT, negative (other map) UNSAT; never latch a first SAT
+        data = json.loads((HERE / spec.get('control_file', CONTROL)).read_text())
+        links = {int(k): v for k, v in data['negative_links' if spec['control'] == 'negative' else 'links'].items()}
+        tris = sorted({tuple(sorted((x, a, b))) for x, link in links.items() for a, b in zip(link, link[1:] + link[:1])})
+        c = pilot.CNF(faces); pilot.build(c, pilot.Triangulation(faces, tris, links=links, submap=True), pilot.ALL_OPTS)
+        c.clauses.extend([[c.qvar[q] if v > 0 else -c.qvar[q]] for q, v in pilot.chirotope_from_planes(data['planes']).items()])
+        on_sat = None
+    else:
+        rec = pilot.census(*case)['maps'][index]
+        pilot.dump(out / 'map.json', rec)
+        c = pilot.CNF(faces); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
+        on_sat = lambda: latch_sat(root, dict(map_index=index, unit=str(out), name=name))
     name = f'map{index}_plain'
     try:
-        r = pilot.solve(c, out, name, 60, checker_timeout=120, solver_gate=lambda: dispatch_gate(root),
-                        on_sat=lambda: latch_sat(root, dict(map_index=index, unit=str(out), name=name)))
+        r = pilot.solve(c, out, name, spec['solver_cap'], checker_timeout=spec['checker_cap'], solver_gate=lambda: dispatch_gate(root),
+                        on_sat=on_sat)
     except DispatchStopped:
         r = dict(status='SKIPPED-STOP')
-    r.update(task=name, map_index=index, scope='plain uniform embedding formula',
-             canonical_sha256=spec['canonical_sha256'], unit=str(out),
+    r.update(task=name, map_index=index, scope=f'{spec["control"]} control: submap formula, planes pinned' if spec.get('control')
+             else 'plain uniform embedding formula',
+             canonical_sha256=spec.get('canonical_sha256', spec.get('control_sha256')), unit=str(out),
              formula_sha256=hashlib.sha256(json.dumps([c.nv, c.clauses], separators=(',', ':')).encode()).hexdigest())
     atomic(out / 'result.json', r)
 
@@ -246,8 +282,8 @@ def process_first_sat(root, remaining):
         if first['status'] != 'SAT-PENDING':
             return
         out = Path(first['unit']); name = first['name']; index = first['map_index']
-        rec = pilot.census(9, 3)['maps'][index]
-        c = pilot.CNF(9); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
+        rec = pilot.census(*CASE)['maps'][index]
+        c = pilot.CNF(CASE[0]); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
         model = json.loads((out / (name + '.model.json')).read_text())
         if not pilot.model_valid(c.clauses, model):
             raise ValueError('saved first SAT model invalid')
@@ -271,8 +307,8 @@ def process_first_sat(root, remaining):
 def run(args):
     start = time.monotonic()
     shard = args.shard; shards = args.shards
-    if args.workers != 1 or not 1 <= shards <= 8 or not 0 <= shard < shards:
-        raise ValueError('requires one worker per shard, 1..8 shards and valid shard index')
+    if args.workers != 1 or not 1 <= shards <= 10 or not 0 <= shard < shards:
+        raise ValueError('requires one worker per shard, 1..10 shards and valid shard index')
     out = Path(args.results_dir).resolve(); root = out.parent
     if out.name != str(shard):
         raise ValueError('results-dir must end in the numeric shard index')
@@ -281,8 +317,16 @@ def run(args):
         pilot.CADICAL = executable(os.environ.get('CADICAL', 'cadical'))
         pilot.DRAT = executable(os.environ.get('DRAT_TRIM', 'drat-trim'))
         os.environ['CADICAL'] = pilot.CADICAL; os.environ['DRAT_TRIM'] = pilot.DRAT
-        queue = load_queue()[:2] if args.s5_pilot else load_queue()
+        global QUEUE, BUDGET_SECONDS, SOLVER_CAP, CHECKER_CAP
+        custom = getattr(args, 's5_queue', None) is not None
+        if custom:
+            QUEUE = Path(args.s5_queue).resolve(); BUDGET_SECONDS = args.s5_budget_seconds
+            SOLVER_CAP = args.timeout; CHECKER_CAP = args.s5_checker_timeout
+            if not BUDGET_SECONDS or root == HERE / 'results':
+                raise ValueError('custom queue needs --s5-budget-seconds and a results dir outside results/')
+        queue = load_queue(custom)[:2] if args.s5_pilot else load_queue(custom)
         identity = dict(sources=sources(), queue_sha256=sha(QUEUE), pilot=args.s5_pilot,
+                        caps=[SOLVER_CAP, CHECKER_CAP], budget_seconds=BUDGET_SECONDS,
                         cadical_sha256=sha(Path(pilot.CADICAL)), drat_sha256=sha(Path(pilot.DRAT)))
         if root == HERE / 'results':
             inherited = pilot_manifests(root)
@@ -307,8 +351,18 @@ def run(args):
         if (root / 'first_sat.json').exists():
             if json.loads((root / 'first_sat.json').read_text())['status'] != 'SAT-PENDING':
                 print('first SAT already processed; coverage remains stopped', flush=True); return
-        allowance = len(todo) * 180 + 960
-        key = reserve(root, allowance)
+        def caps(entry):  # a custom queue entry may carry its own caps
+            return entry.get('solver_cap', SOLVER_CAP), entry.get('checker_cap', CHECKER_CAP)
+        unit_seconds = max(sum(caps(e)) for e in todo) + 60 if todo else SOLVER_CAP + CHECKER_CAP + 60
+        allowance = sum(sum(caps(e)) for e in todo) + 960
+        if custom:
+            # Deadline-based: one invocation runs at most --hours, a shard at most its share of the budget over all
+            # restarts; units that no longer fit wait for the next launch instead of stopping the cohort.
+            allowance = min(allowance, args.hours * 3600, BUDGET_SECONDS / shards - shard_charged(root, shard))
+            if allowance < unit_seconds + 360 + 330:
+                print('shard time or budget share below one unit; nothing dispatched', flush=True); return
+        key = reserve(root, allowance, shard if custom else None)
+        deadline_cut = False
         deadline = start + allowance
         attempt = out / ('attempt_' + uuid.uuid4().hex)
         attempt.mkdir()
@@ -342,12 +396,18 @@ def run(args):
             if rc != 0 or not control.exists() or json.loads(control.read_text())['status'] != 'CONTROLS-PASS':
                 raise RuntimeError('required controls failed or exceeded 300 seconds')
             for entry in pending(root, queue, shard, shards):
+                solver_cap, checker_cap = caps(entry)
+                if custom and deadline - time.monotonic() - 360 < solver_cap + checker_cap + 60:
+                    deadline_cut = True
+                    print('deadline: next unit does not fit; remaining units stay pending', flush=True); break
                 index = entry['index']; work = attempt / f'map{index}'; work.mkdir()
-                spec = dict(entry, root=str(root), out=str(work))
+                spec = dict(entry, root=str(root), out=str(work), solver_cap=solver_cap, checker_cap=checker_cap)
+                if CASE != (9, 3) or CONTROL != 'control_f9.json':
+                    spec.update(case=list(CASE), control_file=CONTROL)
                 atomic(work / 'spec.json', spec)
                 append_checkpoint(out / 'progress.jsonl', dict(map_index=index, event='START', unit=str(work)))
-                print('map', index, 'start, solver 60s checker 120s', flush=True)
-                cap = min(240, deadline - time.monotonic() - 360)
+                print('map', index, f'start, solver {solver_cap}s checker {checker_cap}s', flush=True)
+                cap = min(solver_cap + checker_cap + 60, deadline - time.monotonic() - 360)
                 if cap <= 0:
                     raise TimeoutError('first-SAT reserve reached')
                 rc = pilot.command([sys.executable, str(Path(__file__)), '--unit', str(work / 'spec.json')],
@@ -358,10 +418,15 @@ def run(args):
                 result = json.loads(result_path.read_text())
                 append_checkpoint(out / 'results.jsonl', result)
                 print('map', index, result['status'], flush=True)
+                expected = {'positive': 'SAT', 'negative': 'UNSAT-VERIFIED'}.get(entry.get('control'))
+                if expected and result['status'] != expected:
+                    raise RuntimeError(f'control {index} expected {expected}, got {result["status"]}')
                 if result['status'] not in ('SAT', 'UNSAT-VERIFIED', 'TIMEOUT', 'SKIPPED-STOP'):
                     raise RuntimeError(f'map {index}: {result["status"]}')
             process_first_sat(root, remaining)
-            manifest['status'] = 'FIRST-SAT-STOP' if (root / 'first_sat.json').exists() else 'SHARD-COMPLETE'
+            manifest['status'] = ('FIRST-SAT-STOP' if (root / 'first_sat.json').exists() else
+                                  'DEADLINE-STOP' if deadline_cut else
+                                  'STOP-REQUESTED' if (root / 'stop.requested').exists() else 'SHARD-COMPLETE')
         except (KeyboardInterrupt, InterruptedError) as exc:
             manifest.update(status='INTERRUPTED', error=repr(exc))
             raise
@@ -370,7 +435,7 @@ def run(args):
             atomic(root / 'stop.json', dict(error=repr(exc), attempt=str(attempt)))
             raise
         finally:
-            # Hashes are streamed; large partial proofs are retained locally, never auto-committed.
+            # Hashes are streamed; CNF and proof files were deleted after their check (PROTOCOL.md §5).
             try:
                 manifest['outputs_sha256'] = {str(p.relative_to(attempt)): sha(p) for p in attempt.rglob('*')
                                                if p.is_file() and p != attempt / 'manifest.json'}

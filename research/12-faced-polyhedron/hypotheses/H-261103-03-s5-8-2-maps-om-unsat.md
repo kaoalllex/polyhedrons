@@ -40,3 +40,7 @@ E-261103-03 completed its registered bounded coverage tranche (STATUS 3i / CONCL
 EXACT decisions concern saved formulas only; geometric interpretation remains conditional
 PROVED-1. No target SAT or geometric candidate. This hypothesis retains its preceding status;
 partial coverage and timeouts do not decide existence.
+
+## 2026-11-08 item 5a
+
+E-261103-03 concluded with item 5a, a (9,3) run; the (8,2) evidence is unchanged and this hypothesis is not moved.

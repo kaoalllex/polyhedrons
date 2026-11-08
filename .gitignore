@@ -2,8 +2,11 @@
 .codegraph/
 __pycache__/
 *.pyc
+# CNF and proof files are checked in the run and never committed (PROTOCOL.md §5)
 *.cnf
 *.drat
+*.cnf.gz
+*.drat.gz
 research/12-faced-polyhedron/overnight/work/
-research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/results/*.lock
-research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/results/[0-7]/attempt_*/map*/*.drat.gz
+research/12-faced-polyhedron/experiments/*/results/**/*.lock
+research/12-faced-polyhedron/experiments/*/results/**/launch.pids

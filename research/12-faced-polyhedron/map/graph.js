@@ -46,7 +46,8 @@ window.GRAPH = {
    "path": "experiments/E-261029-01-enumerate-59-types/README.md",
    "direction": [],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-02",
@@ -60,7 +61,8 @@ window.GRAPH = {
     "DR5"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-03",
@@ -74,7 +76,8 @@ window.GRAPH = {
     "DR8"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-04",
@@ -88,7 +91,8 @@ window.GRAPH = {
     "DR8"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-05",
@@ -100,7 +104,8 @@ window.GRAPH = {
    "path": "experiments/E-261029-05-geometry-first-sat/README.md",
    "direction": [],
    "verdict": "LOW-YIELD@1 session",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-06",
@@ -114,7 +119,8 @@ window.GRAPH = {
     "DR5"
    ],
    "verdict": "LOW-YIELD@40 min",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-07",
@@ -128,7 +134,8 @@ window.GRAPH = {
     "DR2"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-08",
@@ -143,7 +150,8 @@ window.GRAPH = {
     "DR5"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-09",
@@ -157,7 +165,8 @@ window.GRAPH = {
     "DR16"
    ],
    "verdict": "LOW-YIELD@1 instance",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-10",
@@ -172,7 +181,8 @@ window.GRAPH = {
     "DR16"
    ],
    "verdict": "LOW-YIELD@minutes each",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-11",
@@ -186,7 +196,8 @@ window.GRAPH = {
     "DR11"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-12",
@@ -201,7 +212,8 @@ window.GRAPH = {
     "DR11"
    ],
    "verdict": "OPEN: 8/8 timeouts",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-13",
@@ -215,7 +227,8 @@ window.GRAPH = {
     "DR8"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-14",
@@ -229,7 +242,8 @@ window.GRAPH = {
     "DR4"
    ],
    "verdict": "LOW-YIELD@1 session",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-15",
@@ -243,7 +257,8 @@ window.GRAPH = {
     "DR11"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-16",
@@ -257,7 +272,8 @@ window.GRAPH = {
     "DR4"
    ],
    "verdict": "LOW-YIELD@night 2",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-17",
@@ -271,7 +287,8 @@ window.GRAPH = {
     "DR5"
    ],
    "verdict": "LOW-YIELD@minutes",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-18",
@@ -286,7 +303,8 @@ window.GRAPH = {
     "DR11"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-19",
@@ -301,7 +319,8 @@ window.GRAPH = {
     "DR15"
    ],
    "verdict": "LOW-YIELD@sessions 2-5",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261029-20",
@@ -315,7 +334,8 @@ window.GRAPH = {
     "DR7"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261030-01",
@@ -329,7 +349,8 @@ window.GRAPH = {
     "DR12"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261030-02",
@@ -343,7 +364,8 @@ window.GRAPH = {
     "DR7"
    ],
    "verdict": "OPEN-LOW: dead-end maps",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261030-03",
@@ -357,7 +379,8 @@ window.GRAPH = {
     "DR1"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261030-04",
@@ -371,7 +394,8 @@ window.GRAPH = {
     "DR1"
    ],
    "verdict": "LOW-YIELD@1 session",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261030-05",
@@ -385,7 +409,8 @@ window.GRAPH = {
     "DR1"
    ],
    "verdict": "LOW-YIELD@night 3",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261030-06",
@@ -399,7 +424,8 @@ window.GRAPH = {
     "DR3"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261030-07",
@@ -413,7 +439,8 @@ window.GRAPH = {
     "DR2"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261030-08",
@@ -427,7 +454,8 @@ window.GRAPH = {
     "DR2"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261030-09",
@@ -441,7 +469,8 @@ window.GRAPH = {
     "DR14"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261030-10",
@@ -455,7 +484,8 @@ window.GRAPH = {
     "DR1"
    ],
    "verdict": "LOW-YIELD@nights 4-5",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261030-11",
@@ -469,7 +499,8 @@ window.GRAPH = {
     "DR2"
    ],
    "verdict": "LOW-YIELD@150 core-h",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-01",
@@ -483,7 +514,8 @@ window.GRAPH = {
     "DR8"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-02",
@@ -497,7 +529,8 @@ window.GRAPH = {
     "DR1"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-03",
@@ -511,7 +544,8 @@ window.GRAPH = {
     "DR1"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-04",
@@ -525,7 +559,8 @@ window.GRAPH = {
     "DR2"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-05",
@@ -539,7 +574,8 @@ window.GRAPH = {
     "DR10"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-06",
@@ -553,7 +589,8 @@ window.GRAPH = {
     "DR9"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-07",
@@ -567,7 +604,8 @@ window.GRAPH = {
     "DR3"
    ],
    "verdict": "ARTEFACT (measuring function floors at 0; see CONCLUSION.md)",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": "Verdict for the direction: DR3 keeps FOUNDATION as a filter; the DR2 drift evidence is void (re-worded in `STATUS.md`). No new theory note beyond this file and `reviews/strategy-review-2026-11-01.md` 5.1."
   },
   {
    "id": "E-261101-08",
@@ -581,7 +619,8 @@ window.GRAPH = {
     "DR12"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-09",
@@ -595,7 +634,8 @@ window.GRAPH = {
     "DR8"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-10",
@@ -609,7 +649,8 @@ window.GRAPH = {
     "DR11"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-11",
@@ -621,7 +662,8 @@ window.GRAPH = {
    "path": "experiments/E-261101-11-external-human-review/README.md",
    "direction": [],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-12",
@@ -636,7 +678,8 @@ window.GRAPH = {
     "DR15"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-13",
@@ -650,7 +693,8 @@ window.GRAPH = {
     "DR3"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-14",
@@ -664,7 +708,8 @@ window.GRAPH = {
     "DR13"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-15",
@@ -678,7 +723,8 @@ window.GRAPH = {
     "DR8"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-16",
@@ -693,7 +739,8 @@ window.GRAPH = {
     "DR18"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-17",
@@ -708,7 +755,8 @@ window.GRAPH = {
     "DR17"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-18",
@@ -723,7 +771,8 @@ window.GRAPH = {
     "DR11"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-19",
@@ -738,7 +787,8 @@ window.GRAPH = {
     "DR3"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-20",
@@ -752,7 +802,8 @@ window.GRAPH = {
     "DR8"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-21",
@@ -767,7 +818,8 @@ window.GRAPH = {
     "DR3"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-22",
@@ -779,7 +831,8 @@ window.GRAPH = {
    "path": "experiments/E-261101-22-equivelar-literature/README.md",
    "direction": [],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-23",
@@ -794,7 +847,8 @@ window.GRAPH = {
     "DR11"
    ],
    "verdict": "UNDERPOWERED@59.75 core-h (night 6; LP hang, 27 of 59 types reached; see CONCLUSION.md)",
-   "preregistered": "true"
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: UNDERPOWERED@59.75 core-h (11.9 productive; 27 of 59 types at k = 8, 26 at k = 9 and 10; one greedy face set per (type, k); no realizer positive control at k-face level). Not LOW-YIELD."
   },
   {
    "id": "E-261101-24",
@@ -810,7 +864,8 @@ window.GRAPH = {
     "DR17"
    ],
    "verdict": "",
-   "preregistered": "false"
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "E-261101-25",
@@ -826,7 +881,8 @@ window.GRAPH = {
     "DR17"
    ],
    "verdict": "UNDERPOWERED@44.1 core-h (night 6; LP hang and --rounds 12; see CONCLUSION.md)",
-   "preregistered": "true"
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: UNDERPOWERED@44.1 core-h (under 2 productive; 27 of 59 scheduled seeds, k = 7 only, `--rounds 12`, a hang in the final-polynomial LP). Not LOW-YIELD. The PLAN's \"What each outcome changes\" for P2 false says invest in the realizer rather than cuts; with 4 of 23 LPs lost and the round budget binding, that reading is premature."
   },
   {
    "id": "E-261101-26",
@@ -842,7 +898,8 @@ window.GRAPH = {
     "DR17"
    ],
    "verdict": "\"first scope (chirotope-first, --alt 20): frontier at R4 / R5, 0/30 at 40 min (LOW-YIELD@6.6 core-h for full genus-3 maps); R1 20/20; R6k k = 7, 8, 9: 5/10, 1/10, 1/10\"",
-   "preregistered": "true"
+   "preregistered": "true",
+   "conclusion": "Verdict: first scope (one engine): chirotope-first with `--alt 20` scored. FRONTIER at R4 / R5: 0/24 at 40 min (LOW-YIELD@5.3 core-h for full genus-3 maps, 8 seeds per task, alternation cap binding); R1 16/16; R6k 4/8, 1/8, 1/8 (k = 7, 8, 9). Not REFUTED (no proof); not UNDERPOWERED (the positive controls passed in the same configuration)."
   },
   {
    "id": "E-261102-01",
@@ -857,7 +914,8 @@ window.GRAPH = {
     "DR11"
    ],
    "verdict": "LOW-YIELD@4.2 core-h (exclusion, greedy face set, k <= 9); UNDERPOWERED (realization, no positive control)",
-   "preregistered": "true"
+   "preregistered": "true",
+   "conclusion": "Verdict: for exclusion by k-face sub-instances on the greedy face set, LOW-YIELD@4.2 core-h (k <= 9, 5 / 10 min per unit, one face set per (type, k), with night 6: 59 types at k = 8, 59 at k = 9 of which 25 timeouts and 1 undecided); not REFUTED (no proof). For the realization of k-face models, UNDERPOWERED (no realizer positive control)."
   },
   {
    "id": "E-261102-02",
@@ -873,7 +931,8 @@ window.GRAPH = {
     "DR17"
    ],
    "verdict": "\"killed before any run by the pre-registered rule of E-261102-03 (full map a wall at <= 120 min; k = 7 expected, not informative)\"",
-   "preregistered": "true"
+   "preregistered": "true",
+   "conclusion": ""
   },
   {
    "id": "E-261102-03",
@@ -888,7 +947,8 @@ window.GRAPH = {
     "DR17"
    ],
    "verdict": "\"full-map frontier unchanged: R4 / R5 0/12 at 120 min with the cap lifted (LOW-YIELD@35.9 core-h, 4 seeds per task); R6k k = 8, 9: 4/4, 4/4; E-261102-02 killed\"",
-   "preregistered": "true"
+   "preregistered": "true",
+   "conclusion": "Verdict: chirotope-first, no alternation cap: FRONTIER at R4 / R5 unchanged, LOW-YIELD@35.9 core-h (27.0 productive) for full genus-3 maps, 0/12 at 120 min, 4 seeds per task; R6k k = 8, 9: 4/4, 4/4 at 120 min (2/4, 3/4 at 40 min). Not REFUTED (no proof); not UNDERPOWERED (the positive controls passed in the same configuration)."
   },
   {
    "id": "E-261102-04",
@@ -903,7 +963,8 @@ window.GRAPH = {
     "DR6"
    ],
    "verdict": "\"frontier at R4: 0/14 at 40 / 120 min (LOW-YIELD@17.8 core-h for full genus-3 maps from random planes); R5 5/10 at 6 min, 3/5 at 40 min; R1 20/20\"",
-   "preregistered": "true"
+   "preregistered": "true",
+   "conclusion": "Verdict: genus-ladder search scored: FRONTIER at R4 (0/14 at 40 / 120 min, LOW-YIELD@17.8 core-h for full genus-3 maps from random planes); R5 5/10 at 6 min, 3/5 at 40 min; R1 20/20. Not UNDERPOWERED (R1 and R5 passed in the same configuration); not REFUTED (no proof)."
   },
   {
    "id": "E-261103-01",
@@ -917,7 +978,8 @@ window.GRAPH = {
     "DR19"
    ],
    "verdict": "PROMISING",
-   "preregistered": "true"
+   "preregistered": "true",
+   "conclusion": ""
   },
   {
    "id": "E-261103-02",
@@ -932,22 +994,24 @@ window.GRAPH = {
     "DR8"
    ],
    "verdict": "FOUNDATION",
-   "preregistered": "true"
+   "preregistered": "true",
+   "conclusion": "Verdict: FOUNDATION for the S5 encoder, PROMISING for DR19; scenario credences unchanged. No tested hypothesis changes (`tests: []`). Next: E-261103-03, pre-register bounded (8,2) decisions first, with proofs retained; free-C3 controls are ready, fixed-face C2/D3 must not be counted as geometric decisions. No target run is authorized by this conclusion."
   },
   {
    "id": "E-261103-03",
    "kind": "experiment",
    "title": "Exact decision per candidate map - OM-SAT for the 2 (8, 2) maps, then the symmetric and all admissible (9, 3) maps",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-03",
-   "concluded": "",
+   "concluded": "2026-11-08",
    "path": "experiments/E-261103-03-s5-exact-decision-8-2-9-3/README.md",
    "direction": [
     "DR19",
     "DR8"
    ],
-   "verdict": "",
-   "preregistered": "true"
+   "verdict": "DECIDED@about 23.5 core-h (item 5a 18.51) - (8,2) 2/2 and (9,3) 203/203 admissible plain formulas UNSAT-VERIFIED, 0 SAT; geometric reading conditional PROVED-1",
+   "preregistered": "true",
+   "conclusion": "Verdict: FOUNDATION for the small-case exact pipeline and a conditional negative (8,2) result. E-261103-03 remains running because its (9,3) stages are unfinished; there is no active process. No longer run is needed for (8,2). Next: commit a new PLAN amendment for the eight free-C3 (9,3) formulas, with plain fallback coverage and the registered affordability gate, before target compute. The scenario change trigger..."
   },
   {
    "id": "E-261103-04",
@@ -962,7 +1026,8 @@ window.GRAPH = {
     "DR19"
    ],
    "verdict": "",
-   "preregistered": "true"
+   "preregistered": "true",
+   "conclusion": "Verdict of the experiment: concluded, control gate not passed by the ladder. The registered gate was to rediscover the two (8,3) objects by descending to the sphere and ascending geometrically. The hinge ascent from the parent's planes fails on both controls (Roest-Vigh at g1, Mizhaev at g2; pilot and grid UNDERPOWERED). The Mizhaev failure is explained: the chosen g2 map has no uniform OM (UNSAT-VERIFIED). What w..."
   },
   {
    "id": "E-261103-05",
@@ -978,36 +1043,88 @@ window.GRAPH = {
     "DR19"
    ],
    "verdict": "BENCHMARK-PASS",
-   "preregistered": "true"
+   "preregistered": "true",
+   "conclusion": ""
   },
   {
    "id": "E-261103-06",
    "kind": "experiment",
    "title": "Embedded first, planar later - pilot on Szilassi from a torus, then an 8-face object from a smooth genus-3 surface",
-   "status": "planned",
+   "status": "parked",
    "date": "2026-11-03",
-   "concluded": "",
+   "concluded": "2026-11-07",
    "path": "experiments/E-261103-06-embedded-first-pilot/README.md",
    "direction": [
     "DR17",
     "DR19"
    ],
-   "verdict": "",
-   "preregistered": "false"
+   "verdict": "UNDERPOWERED",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: R1 not achieved; UNDERPOWERED rather than refuted (no positive case where the method converges). H-261101-07 and scenario credences unchanged. Per the row, the idea is parked with this failure mode; R2' (8, 3) was not run (follow-up tree: R1 fail -> park)."
   },
   {
    "id": "E-261103-07",
    "kind": "experiment",
    "title": "Census and symmetric sub-list of the (10, 4) candidate maps - preparation of the stretch target",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-03",
-   "concluded": "",
+   "concluded": "2026-11-08",
    "path": "experiments/E-261103-07-s5-10-4-census-symmetry/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
-   "preregistered": "false"
+   "verdict": "NEEDS-SPEED-UP@2.53 core-h (10 maps, caps 300/1800 s, 0 decided)",
+   "preregistered": "true",
+   "conclusion": "Verdict rule (pre-registered): >= 3 of 6 fast maps TIMEOUT (here 6) and all 4 slow maps TIMEOUT -> \"needs a speed-up first\" (an item 5b-type benchmark before any full (10, 4) run). The projection P is not computed (F undetermined)."
+  },
+  {
+   "id": "E-261107-01",
+   "kind": "experiment",
+   "title": "Nine-plane solid-first target pilot - does the disk-aware CP-SAT engine find a 36-pair embedded solid at (9, 3)?",
+   "status": "done",
+   "date": "2026-11-07",
+   "concluded": "2026-11-07",
+   "path": "experiments/E-261107-01-s5-nine-plane-solid-first-pilot/README.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR19"
+   ],
+   "verdict": "LOW-YIELD",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: LOW-YIELD@0.38 core-h, 30 arrangements (this configuration). H-261103-02 and H-261101-07 unchanged; no credence moves."
+  },
+  {
+   "id": "E-261108-01",
+   "kind": "experiment",
+   "title": "Arrangement-source sweep for solid-first - 300 nine-plane arrangements from Roest-Vigh, Mizhaev and C2 sources",
+   "status": "done",
+   "date": "2026-11-08",
+   "concluded": "2026-11-08",
+   "path": "experiments/E-261108-01-s5-arrangement-source-sweep/README.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR19"
+   ],
+   "verdict": "LOW-YIELD",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: LOW-YIELD@1.33 core-h, 300 arrangements. Kill rule fired: park arrangement-first for (9, 3) with the bound above. H-261103-02 and H-261101-07 unchanged; no credence moves."
+  },
+  {
+   "id": "E-261108-02",
+   "kind": "experiment",
+   "title": "Concentrated-multiplicity core study - do the plain (9, 3) formulas of the 11-gon maps have UNSAT sub-formulas on few faces?",
+   "status": "done",
+   "date": "2026-11-08",
+   "concluded": "2026-11-08",
+   "path": "experiments/E-261108-02-concentrated-core-study/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "PARK",
+   "preregistered": "true",
+   "conclusion": "Verdict: PARK (kill criterion met). 0 of the 24 admissible 11-gon (9,3) maps have an UNSAT face-support sub-formula on <= 6 faces (needed: >= 3). Scope (NUMERICAL/EXACT per sub-formula): clause subsets of the plain formula indexed by constraint face tuples (PLAN amendment), levels k = 3..6 exhaustive (C(9,k) sets per map), cap 20 s, 0 TIMEOUT at k <= 6; at k = 7 also 0 UNSAT, 0 TIMEOUT; at k = 8 0 UNSAT with 94 TI..."
   },
   {
    "id": "FD11",
@@ -1541,7 +1658,7 @@ window.GRAPH = {
    "id": "H-261103-02",
    "kind": "hypothesis",
    "title": "A (9, 3) polyhedron exists with a 3-fold rotational symmetry, on one of the 8 admissible maps with a free C3",
-   "status": "open",
+   "status": "weakened",
    "date": "2026-11-03",
    "concluded": "",
    "path": "hypotheses/H-261103-02-s5-9-3-c3-object-exists.md",
@@ -3322,6 +3439,122 @@ window.GRAPH = {
    "preregistered": ""
   },
   {
+   "id": "I-261108-01",
+   "kind": "idea",
+   "title": "Concentrated-multiplicity obstruction - a local cause for the fast UNSAT of (9, 3) maps whose extra segments meet at one face",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-01-concentrated-multiplicity-obstruction.md",
+   "direction": [
+    "DR19",
+    "DR10"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-02",
+   "kind": "idea",
+   "title": "Certified symmetry breaking - lex-leader clauses with VeriPB proofs for the (9, 3) maps with a map automorphism",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-02-certified-symmetry-breaking-veripb.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-03",
+   "kind": "idea",
+   "title": "Cosmic-expansion analogy - planes spiralling out from a central hole-axis, secondary hole-axes around it",
+   "status": "parked",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-03-cosmic-expansion-axis-spiral-planes.md",
+   "direction": [
+    "DR16"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-04",
+   "kind": "idea",
+   "title": "Grooved-box positive control - an embedded polyhedron in which one face pair shares three or four collinear segments",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-04-grooved-box-multiplicity-control.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-05",
+   "kind": "idea",
+   "title": "Certified incremental SAT across the maps of one pattern - shared OM lemmas, selector literals, incremental proofs",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-05-certified-incremental-sat-per-pattern.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-06",
+   "kind": "idea",
+   "title": "Face-contraction sieve - is a plain S5 formula already UNSAT on the clauses of the rank-3 contraction at one face?",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-06-face-contraction-sieve.md",
+   "direction": [
+    "DR19",
+    "DR9"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-07",
+   "kind": "idea",
+   "title": "GitHub Actions calibration wave - decide known (9, 3) maps on runners to measure their speed and proof handling",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-07-actions-calibration-wave.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-08",
+   "kind": "idea",
+   "title": "Independent census of the (8, 2) and (9, 3) candidate maps - a second enumerator that shares no code with E-261103-01",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-08-independent-s5-census.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -4213,6 +4446,11 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
+   "from": "E-261101-06",
+   "to": "I-261108-06",
+   "kind": "origin"
+  },
+  {
    "from": "E-261101-07",
    "to": "E-261101-19",
    "kind": "origin"
@@ -4523,8 +4761,23 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
+   "from": "E-261103-01",
+   "to": "I-261108-08",
+   "kind": "origin"
+  },
+  {
    "from": "E-261103-02",
    "to": "E-261103-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-02",
+   "to": "I-261108-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "E-261108-02",
    "kind": "origin"
   },
   {
@@ -4543,6 +4796,26 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
+   "from": "E-261103-03",
+   "to": "I-261108-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "I-261108-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "I-261108-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-04",
+   "to": "E-261107-01",
+   "kind": "origin"
+  },
+  {
    "from": "E-261103-04",
    "to": "H-261101-07",
    "kind": "tests"
@@ -4551,6 +4824,16 @@ window.GRAPH = {
    "from": "E-261103-04",
    "to": "H-261103-02",
    "kind": "tests"
+  },
+  {
+   "from": "E-261103-05",
+   "to": "E-261107-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-05",
+   "to": "E-261108-01",
+   "kind": "origin"
   },
   {
    "from": "E-261103-05",
@@ -4573,6 +4856,56 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
+   "from": "E-261103-07",
+   "to": "I-261108-05",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-07",
+   "to": "I-261108-07",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261107-01",
+   "to": "E-261108-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261107-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261107-01",
+   "to": "H-261103-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261108-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261108-01",
+   "to": "H-261103-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261108-02",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261108-02",
+   "to": "H-261103-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261108-02",
+   "to": "I-261108-06",
+   "kind": "origin"
+  },
+  {
    "from": "FD2",
    "to": "I-261101-18",
    "kind": "origin"
@@ -4590,6 +4923,11 @@ window.GRAPH = {
   {
    "from": "FD5",
    "to": "I-261101-08",
+   "kind": "origin"
+  },
+  {
+   "from": "FD6",
+   "to": "I-261108-03",
    "kind": "origin"
   },
   {
@@ -4650,6 +4988,11 @@ window.GRAPH = {
   {
    "from": "H-261101-02",
    "to": "H-261101-15",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261101-02",
+   "to": "I-261108-01",
    "kind": "origin"
   },
   {
@@ -4720,6 +5063,11 @@ window.GRAPH = {
   {
    "from": "I-261029-04",
    "to": "E-261029-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-04",
+   "to": "I-261108-03",
    "kind": "origin"
   },
   {
@@ -4830,6 +5178,11 @@ window.GRAPH = {
   {
    "from": "I-261029-42",
    "to": "E-261029-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-43",
+   "to": "I-261108-02",
    "kind": "origin"
   },
   {
@@ -5139,6 +5492,11 @@ window.GRAPH = {
   },
   {
    "from": "I-261101-08",
+   "to": "E-261107-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-08",
    "to": "H-261101-08",
    "kind": "origin"
   },
@@ -5190,6 +5548,11 @@ window.GRAPH = {
   {
    "from": "I-261101-12",
    "to": "E-261101-20",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-12",
+   "to": "I-261108-05",
    "kind": "origin"
   },
   {
@@ -5310,6 +5673,11 @@ window.GRAPH = {
   {
    "from": "I-261103-01",
    "to": "I-261103-05",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261103-04",
+   "to": "E-261108-01",
    "kind": "origin"
   },
   {
@@ -5925,6 +6293,16 @@ window.GRAPH = {
   {
    "from": "owner",
    "to": "I-261103-01",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261108-07",
    "kind": "origin"
   }
  ],

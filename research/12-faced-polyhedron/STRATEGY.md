@@ -5,18 +5,24 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 
 ## 1. Targets
 
-* **Focus target: S5 at (9, 3)**, a maximal face-neighbourly polyhedron with 9 faces and genus 3: embedded, cubic,
-  every two faces adjacent, exactly three adjacencies beyond the 36 pairs (V, E, F, chi = 26, 39, 9, -4). Success
-  is only `verification/verify_candidate.py FILE --target S5` PASS, then `candidate-check`.
-  * Why (9, 3): it is the first face count beyond the 2026 eight-face objects (Roest-Vigh, Mizhaev, both (8, 3)),
-    the maximal case at a genus our engines already reach (genus 3 on 12 faces, 94 realizations), and symmetric
-    realizations are allowed (a C3 action with three orbits of three faces and one orbit of doubled pairs is the
-    natural first ansatz). If found and new, it is a result of the same kind as those two papers.
-  * **Stretch: (10, 4)**, the first genus where every one of our engines has failed; it is where the "ravine"
-    (below) must be crossed without a ladder. (8, 2) is a cheaper warm-up on the same methods, worth doing only
-    if it costs less than a session or calibrates the (9, 3) method.
-  * First step before any compute: the literature check (is any (8, 2), (9, 3) or (10, 4) polyhedron published?
-    E-261101-22, E-261101-12).
+* **Focus target: S5 at (10, 4)** (owner, 2026-11-08, lead review `reviews/strategy-review-2026-11-08d.md`), a maximal
+  face-neighbourly polyhedron with 10 faces and genus 4: embedded, cubic, every two faces adjacent, exactly three
+  adjacencies beyond the 45 pairs (V, E, F, chi = 32, 48, 10, -6). Success is only
+  `verification/verify_candidate.py FILE --target S5` PASS with these counts, then `candidate-check`.
+  * Why (10, 4): the two smaller minimal-genus cases are decided. All admissible (8, 2) and (9, 3) plain formulas are
+    UNSAT-VERIFIED (EXACT, formula scope); the geometric reading "no S5 polyhedron at (8, 2) or (9, 3)" is PROVED-1,
+    conditional on census coverage and encoder soundness (`STATUS.md` 3d). (10, 4) is the next case and the first
+    genus where every heuristic engine of ours failed; nothing is in print for it (CLAIMED, web check of 2026-11-08).
+  * **Gate.** The exact plain route at default settings is out of laptop reach (E-261103-07: 10/10 TIMEOUT; untested
+    estimate 1,200-4,900 core-h). A speed-up benchmark decides the compute route: two laptop nights, a campaign on
+    GitHub Actions, or none. If no route exists, the owner chooses between an Actions campaign, a return to S0 and
+    consolidation only.
+  * Symmetric realizations are allowed; uniform symmetric formulas apply only to face-free rotations.
+* **Side track: the (8, 2) / (9, 3) negative result.** Consolidate it at low compute (a positive control with pairs of
+  multiplicity >= 3, an independent census, a second encoder), then regenerate and archive the proofs and write a note.
+  The note says plainly that no independent (human) review took place (owner, 2026-11-08).
+* **Compute.** GitHub Actions may be tried as a compute source (owner, 2026-11-08); first a calibration wave on maps
+  with known answers.
 * **Defining problem: S0 (Szilassi-12, (12, 6)), parked 2026-11-03, not abandoned.** Every S0 result stays as it is
   (FD rows, certificates, witnesses, the engine-score table, the 59-type data, all experiment folders). Work on S0
   resumes when the owner says so or when a focus result transfers (a method that passes R4, a structural fact
@@ -57,3 +63,8 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   `reviews/REVIEW_PROMPT_2026-11-03.md`.
 * 2026-11-07: owner's process change: weekly lead review with a week plan; lab sessions light and cheap; review
   cadence by elapsed work, not calendar (`PROTOCOL.md` §8b).
+* 2026-11-08 (owner's request, lead review M2): §1 no longer names the free C3 ansatz as the natural first ansatz;
+  all 8 uniform free-C3 formulas are UNSAT. Targets and stance unchanged.
+* 2026-11-08 (owner's decision on lead review 2026-11-08d): focus moves to S5 at (10, 4), gated by a speed-up
+  benchmark; the (8, 2) / (9, 3) negative result becomes a side track towards a note marked as not independently
+  reviewed; GitHub Actions approved for a trial. Stance and S0 parking unchanged.

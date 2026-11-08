@@ -246,3 +246,76 @@ The pilot's original source hashes and files remain unchanged; current-CNF recon
 checks equivalence. Post-pilot runner changes are checkpoint/resource inheritance and fail-closed reporting of a
 saved failure stop, plus support for the existing lossless gzip artifact format. These changes
 require no new target solve. Changed live source still blocks resuming an old run.
+
+
+### 2026-11-08: stratified long-cap pilot, runner parameters and unit (a) (week plan item 1)
+
+Owner-approved week plan (`reviews/strategy-review-2026-11-08.md`); T D F G R remain 2 2 2 2 2. Unit (a) first, alone.
+
+* Runner change: `run_overnight.py s5` takes `--s5-queue FILE` (explicit map list, census hash and per-map canonical
+  hashes checked, results dir outside `results/`), `--timeout` as solver cap, `--s5-checker-timeout`, and
+  `--s5-budget-seconds`; the shard allowance is `len(todo) * (solver + checker) + 960`. Defaults reproduce the
+  registered 60/120 behaviour. Caps and budget enter the identity hash.
+* Unit (a): `queue_item1a.json`, the 13 unattempted 11-gon maps 94, 100, 102, 111, 123, 171, 174, 176, 177, 181,
+  184, 199, 200; solver 60 s, checker 120 s, one shard, budget 3300 s (13 * 180 + 960). Same controls, first-SAT
+  latch and evidence rules as the coverage run. Prediction: at least 10/13 UNSAT-VERIFIED. Counter-calibration:
+  10 of 11 earlier 11-gon maps were UNSAT-VERIFIED; the claim covers these exact plain formulas only.
+* Units (b), map 74 and (c) need their own queue and caps; they are launched by the owner after (a).
+
+### 2026-11-08: evidence files and shard count (owner's decision, `reviews/strategy-review-2026-11-08b.md` §4, §8)
+
+* `pilot.solve` deletes the CNF and proof after the run-time check; records keep `cnf_sha256`, `proof_sha256`, the
+  checker transcript and the tool hashes. Resume (`tranche.pending`) needs the recorded hashes and a completed check
+  instead of the files. The evidence tests compare rebuilt CNFs with the recorded hashes; `REPLAY_DRAT=1` now
+  re-solves the rebuilt formula and checks the new proof. Status meanings are unchanged.
+* The CNF and proof files of earlier stages are removed from this branch's history (unpushed); their hashes and
+  checker transcripts stay. `run.sh` accepts 1-10 shards; launches use 8-10 shards.
+
+## Amendment 2026-11-08: item 1 launch (b) + control (c)
+
+* Queue `queue_item1b.json`: control `control-f9` first, then maps 0-4, 36, 38, 39, 41, 42 (`1^6`, `(1^4,2)`), 10, 12
+  (`(1,1,2,2)` with pair multiplicities `(2,3)`), and 74, 174, 176, 181, 200. Solver 1800 s, checker 2700 s, 10 shards.
+* Control (c): `control_f9.py` derives a convex simple 9-face polyhedron exactly (rational vertices; V = 14, E = 21,
+  chi = 2). `tranche.unit` builds `Triangulation(submap=True)` with `ALL_OPTS` and pins the chirotope of its planes.
+  The control never latches a first SAT; a result other than SAT raises and writes `stop.json`. Scope: genus 0,
+  submap formula; it checks that the encoder, solver and model-validity path accept a realizable 9-face map, nothing
+  about genus 3 or the plain formula. Both link orientations returned SAT (0.0 s) in the scratch trial. Negative control `control-f9-neg`: the same pinned
+  planes with `negative_links` (the map of a second polyhedron, `control_f9.py` seed 2611080301): UNSAT-VERIFIED required.
+* Code: `tranche.py` accepts 1..10 shards (was 1..8; `run.sh` already allowed 10); `pilot.py` imports `Triangulation`.
+
+## Amendment 2026-11-08: item 5a, the (9,3) completion night
+
+Week plan item 5a, triggered by item 1 ((b) 12/12 decided, all five (1,1,1,3) maps UNSAT-VERIFIED); scope and order as amended
+by `reviews/strategy-review-2026-11-08c.md` §2. T D F G R remain 2 2 2 2 2.
+
+* Queue `queue_item5a.json`: every admissible (9,3) map whose plain formula is not UNSAT-VERIFIED, 158 maps (60 TIMEOUT at
+  60 s, 98 unattempted; checked against every plain record in `results/` on 2026-11-08: 45 UNSAT-VERIFIED, 0 SAT). Order:
+  pattern `(1,1,2,2)/(2,3)` 5, `(1,1,2,2)/(2,2,2)` 36, `(1^4,2)` 89, `1^6` 28, lowest index first within a pattern. Ahead
+  of them 10 positive (`control-f9-sK`) and 10 negative (`control-f9-neg-sK`) copies of control (c), so with 10 shards
+  every shard runs both before its first map (SAT and UNSAT-VERIFIED required; anything else writes `stop.json`).
+* Caps and budget: solver 1800 s, checker 2700 s, budget 288,000 s (80 core-h = 10 shards x 8 h), one invocation at most
+  `--hours 8`. Runner change (custom queues only): a shard reserves `min(len(todo) * (solver + checker) + 960, hours,
+  budget / shards - what this shard already used)`, so 10 shards fit the budget and a restart gets only the rest of its
+  share; a unit is started only if it fits before the deadline minus the 360 s first-SAT reserve, otherwise the shard ends
+  `DEADLINE-STOP` without `stop.json` and its remaining units stay pending. Before, the up-front reservation of
+  `len(todo) * 4500` s could not fit (item 1 shard 8). The frozen coverage queue keeps its old rule.
+* Launch: `bash research/12-faced-polyhedron/overnight/launch.sh 03-03 start|status|stop` (10 shards, results in
+  `results/item5a/`, named by `launch.results`; `run.sh SHARD` is item 5a, the concluded coverage shards moved to
+  `run.sh coverage SHARD`). Evidence option A (PROTOCOL §5). Cadical process time is in each unit's `solver.log`.
+* Predictions: controls pass in every shard; >= 150/158 decided within the night; 0 SAT; per-pattern solver times within 2x
+  of item 1's (`(1^4,2)` 127-317 s, `1^6` 523-914 s). Estimate 23-35 core-h, 2.5-4 h wall (untested; the item 1 maps were the
+  lowest indices, not a sample).
+* Outcomes: any SAT -> first-SAT stop and the follow-up of ROADMAP item 1; all 158 UNSAT-VERIFIED -> "every admissible
+  (9,3) plain formula is UNSAT-VERIFIED" (EXACT, formula scope; geometric reading PROVED-1, conditional on census coverage
+  and encoder soundness; controls are genus-0 submap controls), focus compute stops and the lead review is called; 1-8
+  TIMEOUT -> item 5b on those maps; > 8 TIMEOUT or a deadline cut -> per-pattern times recorded, escalate. A TIMEOUT is
+  no evidence either way.
+* Counter-calibration: the 45 decided maps are UNSAT-VERIFIED with 0 SAT, the slow classes only at their lowest indices; the
+  claim covers these exact plain formulas only. Scenario move: all UNSAT moves (9,3) "does not exist" up by about 0.1-0.2
+  (conditional), a realized SAT moves "exists" to 1.
+* Startup check (2026-11-08, through `launch.sh` on 10 shards, test caps via `S5A_*`, test results deleted afterwards): caps
+  8/10 s: controls SAT and UNSAT-VERIFIED in all 10 shards, maps TIMEOUT; `stop` ends every shard after its unit
+  (`STOP-REQUESTED`, reservation settled to the wall time, no `stop.json`); `start` resumes, 178 records, no unit repeated.
+  Caps 60/300 s with a 21-minute deadline: every shard ends `DEADLINE-STOP`, no `stop.json`, the rest stays pending. A shard
+  whose time is below one unit dispatches nothing. Not a result: 6 maps were UNSAT-VERIFIED at 60 s in the check (98, 148,
+  173, 186, 187, 189); the night decides them again under the registered caps.

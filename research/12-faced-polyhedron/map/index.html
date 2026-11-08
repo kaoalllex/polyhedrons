@@ -54,7 +54,10 @@
   <h1>Research map</h1>
   <div class="muted">Szilassi-12: from ideas to results. Rows (top to bottom): sources, ideas, hypotheses,
     experiments, results. Arrows point from origin to what grew out of it. Click a node; the button
-    <b>Trace</b> shows everything it came from and everything that came out of it.</div>
+    <b>Trace</b> shows everything it came from (<span style="color:#4cc9f0">blue</span>) and everything that
+    came out of it (<span style="color:#ff9f1c">orange</span>). Stars: witnesses (verified objects).</div>
+  <div class="section">State</div>
+  <div class="row" id="legend"></div>
   <div class="section">Kinds</div>
   <div id="kinds" class="row"></div>
   <div class="section">Status</div>
@@ -85,9 +88,13 @@ const KINDS = {
   idea: {label: 'ideas', color: '#7cc4ff', band: 1}, hypothesis: {label: 'hypotheses', color: '#ff9f6b', band: 2},
   direction: {label: 'directions', color: '#8e9aaf', band: 2},
   experiment: {label: 'experiments', color: '#5fd3a1', band: 3},
-  foundation: {label: 'foundations', color: '#ffd166', band: 4}, witness: {label: 'witnesses', color: '#ff7aa8', band: 4},
+  foundation: {label: 'foundations', color: '#ffd166', band: 4}, witness: {label: 'witnesses', color: '#ff7aa8', band: 5},
   certificate: {label: 'certificates', color: '#f4a261', band: 4},
 };
+// Node colour by state: alive (still a live line), parked, failed (killed / refuted / weakened), done (finished).
+const STATE = {open: 'alive', planned: 'alive', running: 'alive', supported: 'alive', parked: 'parked',
+  killed: 'failed', refuted: 'failed', weakened: 'failed', done: 'done', tried: 'done', proved: 'done'};
+const STATE_COLOR = {alive: '#4cc9f0', parked: '#f4a261', failed: '#e5484d', done: '#5fd3a1'};
 const STATUS_STYLE = {
   open: 'solid', planned: 'dashed', running: 'solid', done: 'solid', tried: 'solid', parked: 'dotted',
   supported: 'solid', weakened: 'dashed', refuted: 'dotted', proved: 'double', killed: 'dotted',
@@ -117,18 +124,20 @@ function layout(nodes) {
 function build() {
   const pos = layout(graph.nodes);
   const els = graph.nodes.map(n => ({group: 'nodes', data: {...n, label: n.id.length > 14 ? n.id.slice(0, 14) : n.id,
-    color: KINDS[n.kind].color, border: STATUS_STYLE[n.status] || 'solid'}, position: pos[n.id]}));
+    color: KINDS[n.kind].color, stateColor: STATE_COLOR[STATE[n.status]] || KINDS[n.kind].color, border: STATUS_STYLE[n.status] || 'solid'}, position: pos[n.id]}));
   graph.edges.forEach((e, i) => els.push({group: 'edges', data: {id: 'e' + i, source: e.from, target: e.to, kind: e.kind}}));
   cy = cytoscape({
     container: document.getElementById('cy'), elements: els, layout: {name: 'preset'}, wheelSensitivity: 0.25,
     minZoom: 0.05, maxZoom: 3,
     style: [
-      {selector: 'node', style: {'background-color': 'data(color)', width: 18, height: 18, 'border-width': 2,
+      {selector: 'node', style: {'background-color': 'data(stateColor)', width: 18, height: 18, 'border-width': 2,
         'border-color': '#0008', 'border-style': 'data(border)', label: 'data(label)', 'font-size': 7,
         'text-valign': 'bottom', 'text-margin-y': 2, color: getComputedStyle(document.body).color}},
       {selector: 'node[kind = "experiment"]', style: {shape: 'round-rectangle', width: 22}},
       {selector: 'node[kind = "hypothesis"]', style: {shape: 'diamond', width: 20, height: 20}},
-      {selector: 'node[kind = "foundation"], node[kind = "witness"], node[kind = "certificate"]', style: {shape: 'star', width: 22, height: 22}},
+      {selector: 'node[kind = "foundation"]', style: {shape: 'pentagon', width: 22, height: 22}},
+      {selector: 'node[kind = "certificate"]', style: {shape: 'hexagon', width: 22, height: 22}},
+      {selector: 'node[kind = "witness"]', style: {shape: 'star', width: 40, height: 40, 'border-width': 3, 'border-color': '#fff', 'font-size': 9}},
       {selector: 'node[status = "planned"]', style: {'background-opacity': 0.45}},
       {selector: 'edge', style: {width: 1, 'line-color': '#5b6b7d', 'target-arrow-color': '#5b6b7d',
         'target-arrow-shape': 'triangle', 'arrow-scale': 0.6, 'curve-style': 'bezier', opacity: 0.45}},
@@ -136,8 +145,13 @@ function build() {
       {selector: 'edge[kind = "produces"]', style: {'line-color': '#ffd166', 'target-arrow-color': '#ffd166'}},
       {selector: '.faded', style: {opacity: 0.08}},
       {selector: '.hl', style: {opacity: 1}},
-      {selector: 'edge.hl', style: {width: 2}},
-      {selector: 'node.hl', style: {'border-color': '#fff', 'border-width': 3}},
+      {selector: '.anc', style: {opacity: 1}},
+      {selector: '.desc', style: {opacity: 1}},
+      {selector: 'edge.anc', style: {width: 2.5, 'line-color': '#4cc9f0', 'target-arrow-color': '#4cc9f0'}},
+      {selector: 'edge.desc', style: {width: 2.5, 'line-color': '#ff9f1c', 'target-arrow-color': '#ff9f1c'}},
+      {selector: 'node.anc', style: {'border-color': '#4cc9f0', 'border-width': 4}},
+      {selector: 'node.desc', style: {'border-color': '#ff9f1c', 'border-width': 4}},
+      {selector: 'node.hl', style: {'border-color': '#fff', 'border-width': 4}},
       {selector: '.hidden', style: {display: 'none'}},
     ],
   });
@@ -168,6 +182,7 @@ function show(node) {
     <div style="margin:6px 0">${esc(d.title)}</div>
     ${d.date ? `<div class="muted">date ${esc(d.date)}</div>` : ''}
     ${d.verdict ? `<div class="muted">verdict ${esc(d.verdict)}</div>` : ''}
+    ${d.conclusion ? `<div style="margin:6px 0;padding:6px 8px;border-left:3px solid ${d.stateColor}">${esc(d.conclusion)}</div>` : ''}
     ${(d.direction || []).length ? `<div class="muted">direction ${esc(d.direction.join(', '))}</div>` : ''}
     ${d.preregistered === 'false' ? '<div class="muted">reconstructed after the fact (not pre-registered)</div>' : ''}
     ${d.path ? `<div style="margin-top:6px"><a href="${link(d)}" target="_blank" rel="noopener">Open ${esc(d.path)}</a></div>` : ''}
@@ -182,13 +197,14 @@ function show(node) {
 }
 
 function trace(node) {
-  const keep = node.union(node.predecessors()).union(node.successors());
-  cy.elements().addClass('faded').removeClass('hl');
-  keep.removeClass('faded').addClass('hl');
+  const anc = node.predecessors(), desc = node.successors(), keep = node.union(anc).union(desc);
+  cy.elements().removeClass('hl anc desc').addClass('faded');
+  keep.removeClass('faded');
+  anc.addClass('anc'); desc.addClass('desc'); node.addClass('hl');
   cy.animate({fit: {eles: keep.filter(':visible'), padding: 60}, duration: 400});
 }
 
-function clearTrace() { cy.elements().removeClass('faded hl'); }
+function clearTrace() { cy.elements().removeClass('faded hl anc desc'); }
 
 function applyFilters() {
   const dir = document.getElementById('direction').value;
@@ -211,6 +227,9 @@ function applyFilters() {
 function chips() {
   const counts = {}, st = {};
   graph.nodes.forEach(n => { counts[n.kind] = (counts[n.kind] || 0) + 1; if (n.status) st[n.status] = (st[n.status] || 0) + 1; });
+  document.getElementById('legend').innerHTML = Object.entries(STATE_COLOR).map(([k, c]) =>
+    `<span class="chip"><span class="dot" style="background:${c}"></span>${k}</span>`).join('') +
+    '<span class="muted">sources, foundations, witnesses: kind colour</span>';
   const kinds = document.getElementById('kinds');
   for (const [k, v] of Object.entries(KINDS)) {
     if (!counts[k]) continue;
