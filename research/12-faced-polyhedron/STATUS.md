@@ -264,6 +264,11 @@ May not: "the 12-face polyhedron does not exist"; "we are close to genus 6" (18 
 local defect); "correct Gauss degree implies realizability" (refuted by Q1); "covering is proved" (sampled);
 "no type is realizable"; "no symmetric immersion" for mirrors or point reflections until I-261101-16 is reviewed (the certificates cover rotations); anything about the hemisphere wall from the nights-4/5 drift (E-261101-07); any statement from a timeout; any UNSAT beyond its exact formula; that census completeness has an independent human review (the coverage argument is PROVED-1); an unconditional, CERTIFIED or human-reviewed (9, 3) non-existence theorem (single encoder, coverage and soundness PROVED-1, proofs not archived; section 3d), or an unconditional/human-reviewed (8, 2) non-existence theorem (section 3d).
 
+May not (scope, owner's question 2026-11-08): that the (8, 2) or (9, 3) negative covers non-cubic objects. S5 is cubic; at
+(8, 2) and (9, 3) the edge count has slack (E <= 30 for 28 pairs, E <= 39 for 36), so counting does not exclude objects with
+every pair adjacent and some vertices of degree >= 4 (e.g. (9, 3) with V = 23, E = 36, three 4-valent vertices); no
+formula covers them. At (12, 6) there is no slack (E = 66 pairs), so S0 is unaffected. The (8, 2) / (9, 3) note must say "cubic".
+
 ## 5. Results worth sharing (ranked, with prerequisites)
 
 1. **No symmetric polyhedral immersion** (FD6; stronger than Moki & Julio's embedding statement, for rotations by
