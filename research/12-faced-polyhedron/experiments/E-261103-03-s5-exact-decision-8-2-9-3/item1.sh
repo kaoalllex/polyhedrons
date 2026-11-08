@@ -22,7 +22,7 @@ case "${1:-}" in
   status)
     echo "processes: $(pgrep -f "run_overnight.py s5 .*--results-dir $R/" | wc -l) python, $(pgrep -x cadical | wc -l) cadical, $(pgrep -x drat-trim | wc -l) drat-trim"
     for f in stop.json first_sat.json; do [ -e "$R/$f" ] && { echo "!! $f:"; cat "$R/$f"; echo; }; done
-    bash "$HERE/progress.sh"
+    RESULTS="$R" QUEUE="$HERE/queue_item1b.json" bash "$HERE/progress.sh"
     ;;
   stop)
     pkill -TERM -f "run_overnight.py s5 .*--results-dir $R/" || echo 'nothing running'

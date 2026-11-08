@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
-# Progress of the item 1 launch (done / left / time left per shard); called by item1.sh status and overnight/launch.sh status.
+# Progress of the current launch (done / left / time left per shard); called by overnight/launch.sh status (item 5a)
+# and item1.sh status (RESULTS, QUEUE set).
 HERE="$(cd "$(dirname "$0")" && pwd)"
-R="${RESULTS:-$HERE/results/item1b}"
+R="${RESULTS:-$HERE/$(cat "$HERE/launch.results")}"
+Q="${QUEUE:-$HERE/queue_item5a.json}"
 SOLVER="${SOLVER_CAP:-1800}" CHECKER="${CHECKER_CAP:-2700}"
 PYTHON="${PYTHON:-$HOME/.venvs/polyhedra/bin/python}"
 ALIVE="$(for k in 0 1 2 3 4 5 6 7 8 9; do pgrep -f "run_overnight.py s5 .*--results-dir $R/$k " >/dev/null && echo -n "$k,"; done)" \
-  "$PYTHON" - "$R" "$HERE/queue_item1b.json" "$SOLVER" "$CHECKER" <<'PY'
+  "$PYTHON" - "$R" "$Q" "$SOLVER" "$CHECKER" <<'PY'
 import json, os, sys, time
 from collections import Counter
 from pathlib import Path
@@ -16,9 +18,10 @@ for p in R.glob('[0-9]*/results.jsonl'):
         r = json.loads(line); done[r['map_index']] = r
 unit = solver + checker
 alive = {int(x) for x in os.environ['ALIVE'].split(',') if x}
+shards = json.loads((R / 'cohort.json').read_text()) if (R / 'cohort.json').exists() else 10
 now = time.time(); rows = []; left_worst = left_cap = 0.0
-for k in range(10):
-    mine = [e['index'] for e in queue[k::10]]
+for k in range(shards):
+    mine = [e['index'] for e in queue[k::shards]]
     todo = [i for i in mine if i not in done]
     cur = None
     prog = R / str(k) / 'progress.jsonl'

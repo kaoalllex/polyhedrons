@@ -72,6 +72,37 @@ class TrancheTests(unittest.TestCase):
             t.finish_reservation(root, first, 30)
             self.assertEqual(t.charged_seconds(root), 50)
 
+    def test_item5a_wrapper_runs_the_item5a_queue_with_night_caps(self):
+        import os
+        import subprocess
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp); executable = tmp / 'python3'; calls = tmp / 'calls.jsonl'
+            executable.write_text(f'#!{sys.executable}\n' +
+                'import json, os, sys\n'
+                'with open(os.environ["WRAPPER_CALLS"], "a") as f:\n'
+                '    f.write(json.dumps(sys.argv[1:]) + "\\n")\n')
+            executable.chmod(0o755)
+            env = dict(os.environ, PYTHON=str(executable), SHARDS='10', WRAPPER_CALLS=str(calls), S5A_RESULTS=str(tmp / 'r'))
+            r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh'), '9'], env=env, capture_output=True, text=True, timeout=5)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            (args,) = [json.loads(line) for line in calls.read_text().splitlines()]
+            value = lambda flag: args[args.index(flag) + 1]
+            self.assertEqual([args[1], value('--shard'), value('--shards'), value('--timeout'), value('--s5-checker-timeout'),
+                              value('--s5-budget-seconds'), value('--hours')], ['s5', '9', '10', '1800', '2700', '288000', '8'])
+            self.assertEqual(Path(value('--s5-queue')).name, 'queue_item5a.json')
+            self.assertEqual(Path(value('--results-dir')), tmp / 'r/9')
+            self.assertIn('exit_status: 0', (tmp / 'r/9/manifest.txt').read_text())
+
+    def test_shard_budget_share_survives_restarts(self):
+        t = self.module()
+        with tempfile.TemporaryDirectory() as tmp, patch.object(t, 'BUDGET_SECONDS', 300):
+            root = Path(tmp)
+            a = t.reserve(root, 100, shard=0); t.reserve(root, 100, shard=1)
+            t.finish_reservation(root, a, 40)
+            b = t.reserve(root, 60, shard=0); t.finish_reservation(root, b, 60)
+            self.assertEqual((t.shard_charged(root, 0), t.shard_charged(root, 1)), (100, 100))
+            self.assertEqual(t.charged_seconds(root), 200)
+
     def test_source_identity_change_blocks_resume(self):
         t = self.module()
         with tempfile.TemporaryDirectory() as tmp:
@@ -169,7 +200,8 @@ class TrancheTests(unittest.TestCase):
                     calls.unlink(missing_ok=True)
                     env = dict(os.environ, PATH=str(tmp) + os.pathsep + os.environ['PATH'], PYTHON=str(executable),
                                SHARDS='8', WRAPPER_CALLS=str(calls))
-                    r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh'), mode],
+                    r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh')] +
+                                       (['coverage-pilot'] if mode == 'coverage-pilot' else ['coverage', mode]),
                                        env=env, capture_output=True, text=True, timeout=5)
                     self.assertEqual(r.returncode, 0, r.stderr)
                     records = [json.loads(line) for line in calls.read_text().splitlines()]
@@ -198,7 +230,7 @@ class TrancheTests(unittest.TestCase):
             env = dict(os.environ, HOME=str(home), PATH=str(wrong.parent) + os.pathsep + os.environ['PATH'],
                        SHARDS='8', WRAPPER_CALLS=str(calls))
             env.pop('VIRTUAL_ENV', None); env.pop('PYTHON', None)
-            r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh'), '0'], env=env,
+            r = subprocess.run(['/bin/bash', str(pilot.HERE / 'run.sh'), 'coverage', '0'], env=env,
                                capture_output=True, text=True, timeout=5)
             self.assertEqual(r.returncode, 0, r.stderr)
             self.assertEqual([json.loads(line)[1] for line in calls.read_text().splitlines()], ['s5', 'status'])

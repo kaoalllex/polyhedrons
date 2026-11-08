@@ -282,3 +282,34 @@ Owner-approved week plan (`reviews/strategy-review-2026-11-08.md`); T D F G R re
   about genus 3 or the plain formula. Both link orientations returned SAT (0.0 s) in the scratch trial. Negative control `control-f9-neg`: the same pinned
   planes with `negative_links` (the map of a second polyhedron, `control_f9.py` seed 2611080301): UNSAT-VERIFIED required.
 * Code: `tranche.py` accepts 1..10 shards (was 1..8; `run.sh` already allowed 10); `pilot.py` imports `Triangulation`.
+
+## Amendment 2026-11-08: item 5a, the (9,3) completion night
+
+Week plan item 5a, triggered by item 1 ((b) 12/12 decided, all five (1,1,1,3) maps UNSAT-VERIFIED); scope and order as amended
+by `reviews/strategy-review-2026-11-08c.md` §2. T D F G R remain 2 2 2 2 2.
+
+* Queue `queue_item5a.json`: every admissible (9,3) map whose plain formula is not UNSAT-VERIFIED, 158 maps (60 TIMEOUT at
+  60 s, 98 unattempted; checked against every plain record in `results/` on 2026-11-08: 45 UNSAT-VERIFIED, 0 SAT). Order:
+  pattern `(1,1,2,2)/(2,3)` 5, `(1,1,2,2)/(2,2,2)` 36, `(1^4,2)` 89, `1^6` 28, lowest index first within a pattern. Ahead
+  of them 10 positive (`control-f9-sK`) and 10 negative (`control-f9-neg-sK`) copies of control (c), so with 10 shards
+  every shard runs both before its first map (SAT and UNSAT-VERIFIED required; anything else writes `stop.json`).
+* Caps and budget: solver 1800 s, checker 2700 s, budget 288,000 s (80 core-h = 10 shards x 8 h), one invocation at most
+  `--hours 8`. Runner change (custom queues only): a shard reserves `min(len(todo) * (solver + checker) + 960, hours,
+  budget / shards - what this shard already used)`, so 10 shards fit the budget and a restart gets only the rest of its
+  share; a unit is started only if it fits before the deadline minus the 360 s first-SAT reserve, otherwise the shard ends
+  `DEADLINE-STOP` without `stop.json` and its remaining units stay pending. Before, the up-front reservation of
+  `len(todo) * 4500` s could not fit (item 1 shard 8). The frozen coverage queue keeps its old rule.
+* Launch: `bash research/12-faced-polyhedron/overnight/launch.sh 03-03 start|status|stop` (10 shards, results in
+  `results/item5a/`, named by `launch.results`; `run.sh SHARD` is item 5a, the concluded coverage shards moved to
+  `run.sh coverage SHARD`). Evidence option A (PROTOCOL §5). Cadical process time is in each unit's `solver.log`.
+* Predictions: controls pass in every shard; >= 150/158 decided within the night; 0 SAT; per-pattern solver times within 2x
+  of item 1's (`(1^4,2)` 127-317 s, `1^6` 523-914 s). Estimate 23-35 core-h, 2.5-4 h wall (untested; the item 1 maps were the
+  lowest indices, not a sample).
+* Outcomes: any SAT -> first-SAT stop and the follow-up of ROADMAP item 1; all 158 UNSAT-VERIFIED -> "every admissible
+  (9,3) plain formula is UNSAT-VERIFIED" (EXACT, formula scope; geometric reading PROVED-1, conditional on census coverage
+  and encoder soundness; controls are genus-0 submap controls), focus compute stops and the lead review is called; 1-8
+  TIMEOUT -> item 5b on those maps; > 8 TIMEOUT or a deadline cut -> per-pattern times recorded, escalate. A TIMEOUT is
+  no evidence either way.
+* Counter-calibration: the 45 decided maps are UNSAT-VERIFIED with 0 SAT, the slow classes only at their lowest indices; the
+  claim covers these exact plain formulas only. Scenario move: all UNSAT moves (9,3) "does not exist" up by about 0.1-0.2
+  (conditional), a realized SAT moves "exists" to 1.

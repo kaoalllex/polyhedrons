@@ -184,14 +184,20 @@ def pilot_manifests(root):
     return sorted((root / 'coverage_pilot').glob('[0-9]*/attempt_*/manifest.json')) if root == HERE / 'results' else []
 
 
-def reserve(root, seconds):
+def reserve(root, seconds, shard=None):
     with locked(root / 'budget.lock'):
         if charged_seconds(root) + seconds > BUDGET_SECONDS:
             raise RuntimeError('registered cumulative core budget exhausted; unresolved work remains')
         path = root / 'budget.json'
         data = json.loads(path.read_text()) if path.exists() else {}
-        key = uuid.uuid4().hex; data[key] = seconds; atomic(path, data)
+        key = ('' if shard is None else f'{shard}:') + uuid.uuid4().hex; data[key] = seconds; atomic(path, data)
         return key
+
+
+def shard_charged(root, shard):
+    path = root / 'budget.json'
+    data = json.loads(path.read_text()) if path.exists() else {}
+    return sum(v for k, v in data.items() if k.startswith(f'{shard}:'))
 
 
 def finish_reservation(root, key, seconds):
@@ -341,8 +347,16 @@ def run(args):
         if (root / 'first_sat.json').exists():
             if json.loads((root / 'first_sat.json').read_text())['status'] != 'SAT-PENDING':
                 print('first SAT already processed; coverage remains stopped', flush=True); return
+        unit_seconds = SOLVER_CAP + CHECKER_CAP + 60
         allowance = len(todo) * (SOLVER_CAP + CHECKER_CAP) + 960
-        key = reserve(root, allowance)
+        if custom:
+            # Deadline-based: one invocation runs at most --hours, a shard at most its share of the budget over all
+            # restarts; units that no longer fit wait for the next launch instead of stopping the cohort.
+            allowance = min(allowance, args.hours * 3600, BUDGET_SECONDS / shards - shard_charged(root, shard))
+            if allowance < unit_seconds + 360 + 330:
+                print('shard time or budget share below one unit; nothing dispatched', flush=True); return
+        key = reserve(root, allowance, shard if custom else None)
+        deadline_cut = False
         deadline = start + allowance
         attempt = out / ('attempt_' + uuid.uuid4().hex)
         attempt.mkdir()
@@ -376,12 +390,15 @@ def run(args):
             if rc != 0 or not control.exists() or json.loads(control.read_text())['status'] != 'CONTROLS-PASS':
                 raise RuntimeError('required controls failed or exceeded 300 seconds')
             for entry in pending(root, queue, shard, shards):
+                if custom and deadline - time.monotonic() - 360 < unit_seconds:
+                    deadline_cut = True
+                    print('deadline: next unit does not fit; remaining units stay pending', flush=True); break
                 index = entry['index']; work = attempt / f'map{index}'; work.mkdir()
                 spec = dict(entry, root=str(root), out=str(work), solver_cap=SOLVER_CAP, checker_cap=CHECKER_CAP)
                 atomic(work / 'spec.json', spec)
                 append_checkpoint(out / 'progress.jsonl', dict(map_index=index, event='START', unit=str(work)))
                 print('map', index, f'start, solver {SOLVER_CAP}s checker {CHECKER_CAP}s', flush=True)
-                cap = min(SOLVER_CAP + CHECKER_CAP + 60, deadline - time.monotonic() - 360)
+                cap = min(unit_seconds, deadline - time.monotonic() - 360)
                 if cap <= 0:
                     raise TimeoutError('first-SAT reserve reached')
                 rc = pilot.command([sys.executable, str(Path(__file__)), '--unit', str(work / 'spec.json')],
@@ -398,7 +415,8 @@ def run(args):
                 if result['status'] not in ('SAT', 'UNSAT-VERIFIED', 'TIMEOUT', 'SKIPPED-STOP'):
                     raise RuntimeError(f'map {index}: {result["status"]}')
             process_first_sat(root, remaining)
-            manifest['status'] = 'FIRST-SAT-STOP' if (root / 'first_sat.json').exists() else 'SHARD-COMPLETE'
+            manifest['status'] = ('FIRST-SAT-STOP' if (root / 'first_sat.json').exists() else
+                                  'DEADLINE-STOP' if deadline_cut else 'SHARD-COMPLETE')
         except (KeyboardInterrupt, InterruptedError) as exc:
             manifest.update(status='INTERRUPTED', error=repr(exc))
             raise
