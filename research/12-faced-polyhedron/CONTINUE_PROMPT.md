@@ -20,5 +20,5 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
 * NEXT: week item 1 in a lab session (no night). Item 2 needs `experiment-start` (new experiment, kissat pinned, cube
   format, projection formula in `PLAN.md`); items 1 and 2 may be prepared in either order, but a (10,4) UNSAT carries the
   item 1 caveat until item 1 passes.
-* No active process. E-261103-07 conclusion and probe evidence committed.
+* Branch `lab/2026-11-08` (from `main` 49e2a5c after PR #6; pushed): the week plan's only branch. No active process.
 * For the lead: none.
