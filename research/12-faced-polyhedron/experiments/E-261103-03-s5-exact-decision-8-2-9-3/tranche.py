@@ -80,6 +80,10 @@ def load_queue(custom=False):
         if sha(ROOT / 'experiments/E-261103-01-s5-map-census/results/maps_9_3.json') != data['census_sha256']:
             raise ValueError('census identity changed')
         for entry in data['maps']:
+            if entry.get('control'):
+                if sha(HERE / 'control_f9.json') != entry['control_sha256']:
+                    raise ValueError('control identity changed')
+                continue
             rec = maps[entry['index']]
             digest = hashlib.sha256(json.dumps(rec['code'], separators=(',', ':')).encode()).hexdigest()
             if not rec['admissible'] or digest != entry['canonical_sha256']:
@@ -217,17 +221,27 @@ def sources():
 
 def unit(spec):
     root = Path(spec['root']); out = Path(spec['out']); index = spec['index']
-    rec = pilot.census(9, 3)['maps'][index]
-    pilot.dump(out / 'map.json', rec)
-    c = pilot.CNF(9); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
+    if spec.get('control'):  # positive control: convex 9-face map, planes pinned, SAT required; never latches a first SAT
+        data = json.loads((HERE / 'control_f9.json').read_text())
+        links = {int(k): v for k, v in data['links'].items()}
+        tris = sorted({tuple(sorted((x, a, b))) for x, link in links.items() for a, b in zip(link, link[1:] + link[:1])})
+        c = pilot.CNF(9); pilot.build(c, pilot.Triangulation(9, tris, links=links, submap=True), pilot.ALL_OPTS)
+        c.clauses.extend([[c.qvar[q] if v > 0 else -c.qvar[q]] for q, v in pilot.chirotope_from_planes(data['planes']).items()])
+        on_sat = None
+    else:
+        rec = pilot.census(9, 3)['maps'][index]
+        pilot.dump(out / 'map.json', rec)
+        c = pilot.CNF(9); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
+        on_sat = lambda: latch_sat(root, dict(map_index=index, unit=str(out), name=name))
     name = f'map{index}_plain'
     try:
         r = pilot.solve(c, out, name, spec['solver_cap'], checker_timeout=spec['checker_cap'], solver_gate=lambda: dispatch_gate(root),
-                        on_sat=lambda: latch_sat(root, dict(map_index=index, unit=str(out), name=name)))
+                        on_sat=on_sat)
     except DispatchStopped:
         r = dict(status='SKIPPED-STOP')
-    r.update(task=name, map_index=index, scope='plain uniform embedding formula',
-             canonical_sha256=spec['canonical_sha256'], unit=str(out),
+    r.update(task=name, map_index=index, scope='control: submap formula, planes pinned' if spec.get('control')
+             else 'plain uniform embedding formula',
+             canonical_sha256=spec.get('canonical_sha256', spec.get('control_sha256')), unit=str(out),
              formula_sha256=hashlib.sha256(json.dumps([c.nv, c.clauses], separators=(',', ':')).encode()).hexdigest())
     atomic(out / 'result.json', r)
 
@@ -283,8 +297,8 @@ def process_first_sat(root, remaining):
 def run(args):
     start = time.monotonic()
     shard = args.shard; shards = args.shards
-    if args.workers != 1 or not 1 <= shards <= 8 or not 0 <= shard < shards:
-        raise ValueError('requires one worker per shard, 1..8 shards and valid shard index')
+    if args.workers != 1 or not 1 <= shards <= 10 or not 0 <= shard < shards:
+        raise ValueError('requires one worker per shard, 1..10 shards and valid shard index')
     out = Path(args.results_dir).resolve(); root = out.parent
     if out.name != str(shard):
         raise ValueError('results-dir must end in the numeric shard index')
@@ -378,6 +392,8 @@ def run(args):
                 result = json.loads(result_path.read_text())
                 append_checkpoint(out / 'results.jsonl', result)
                 print('map', index, result['status'], flush=True)
+                if entry.get('control') and result['status'] != 'SAT':
+                    raise RuntimeError(f'positive control {index} did not return SAT: {result["status"]}')
                 if result['status'] not in ('SAT', 'UNSAT-VERIFIED', 'TIMEOUT', 'SKIPPED-STOP'):
                     raise RuntimeError(f'map {index}: {result["status"]}')
             process_first_sat(root, remaining)

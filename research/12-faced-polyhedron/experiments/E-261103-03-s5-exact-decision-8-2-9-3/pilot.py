@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT / 'code'))
 sys.path.insert(0, str(ROOT / 'experiments/E-261103-02-s5-omsat-multi-adjacency-encoder'))
 sys.path.insert(0, str(ROOT / 'experiments/E-261101-25-chirotope-first'))
 from test_encoder import controls, from_links, EncoderTests
-from omsat import CNF, build, chirotope_from_planes
+from omsat import CNF, Triangulation, build, chirotope_from_planes
 from omsat_validate import ALL_OPTS
 from omsat_sym import build_sym, closure
 from ladder_exact import verify

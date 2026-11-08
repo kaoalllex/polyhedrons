@@ -270,3 +270,14 @@ Owner-approved week plan (`reviews/strategy-review-2026-11-08.md`); T D F G R re
   re-solves the rebuilt formula and checks the new proof. Status meanings are unchanged.
 * The CNF and proof files of earlier stages are removed from this branch's history (unpushed); their hashes and
   checker transcripts stay. `run.sh` accepts 1-10 shards; launches use 8-10 shards.
+
+## Amendment 2026-11-08: item 1 launch (b) + control (c)
+
+* Queue `queue_item1b.json`: control `control-f9` first, then maps 0-4, 36, 38, 39, 41, 42 (`1^6`, `(1^4,2)`), 10, 12
+  (`(1,1,2,2)` with pair multiplicities `(2,3)`), and 74, 174, 176, 181, 200. Solver 1800 s, checker 2700 s, 10 shards.
+* Control (c): `control_f9.py` derives a convex simple 9-face polyhedron exactly (rational vertices; V = 14, E = 21,
+  chi = 2). `tranche.unit` builds `Triangulation(submap=True)` with `ALL_OPTS` and pins the chirotope of its planes.
+  The control never latches a first SAT; a result other than SAT raises and writes `stop.json`. Scope: genus 0,
+  submap formula; it checks that the encoder, solver and model-validity path accept a realizable 9-face map, nothing
+  about genus 3 or the plain formula. Both link orientations returned SAT (0.0 s) in the scratch trial.
+* Code: `tranche.py` accepts 1..10 shards (was 1..8; `run.sh` already allowed 10); `pilot.py` imports `Triangulation`.
