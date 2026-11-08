@@ -926,3 +926,4 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-08: E-261103-03 item 1 long-cap launch (solver 1800 s, 10 shards, 2.74 core-h): controls passed; 17 of 17 (9,3) plain maps
   UNSAT-VERIFIED (12 of `1^6`/`(1^4,2)`/`(1,1,2,2)` + the five (1,1,1,3) maps), 0 SAT; all 24 11-gon maps now decided; experiment stays
   active for item 5a (STATUS 3d, CONCLUSION).
+* 2026-11-08: E-261108-01 arrangement-source sweep (item 4, 10 shards, 1.33 core-h): 300/300 INFEASIBLE, 0 SOLID, 40/40 controls pass; LOW-YIELD, arrangement-first parked for (9,3) (CONCLUSION, STATUS 3v).\n

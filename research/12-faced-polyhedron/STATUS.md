@@ -226,6 +226,14 @@ valid starts BLOCKED after 3-6 steps at energy 84-118 (start 150-191); controls 
 are the rejected steps. EXACT, instance scope; UNDERPOWERED, not a refutation; idea parked, R2' not run
 (E-261103-06 CONCLUSION). No hypothesis, credence or witness change.
 
+## 3v. E-261108-01 arrangement-source sweep (2026-11-08)
+
+300 exact 9-plane arrangements (100 Roest-Vigh + random ninth plane, 100 Mizhaev + ninth, 100 random C2-invariant),
+hard model 36 pairs, E = 39, cap 60 s, 10 shards: all 300 INFEASIBLE (6-28 s each), 0 SOLID; 40/40 controls pass
+(E-261108-01 CONCLUSION). EXACT computation, geometric reading PROVED-1 via the E-261103-05 encoding; no DRAT. Density
+bound < 1 % pooled under an i.i.d. assumption. Verdict LOW-YIELD@1.33 core-h; arrangement-first for (9, 3) parked.
+No hypothesis, credence or witness change.
+
 ## 4. What may and may not be claimed
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for
