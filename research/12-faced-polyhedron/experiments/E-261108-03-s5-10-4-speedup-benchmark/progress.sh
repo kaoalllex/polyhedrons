@@ -7,7 +7,7 @@ PYTHON="${PYTHON:-$HOME/.venvs/polyhedra/bin/python}"
 import json, sys
 from pathlib import Path
 R, here = Path(sys.argv[1]), Path(sys.argv[2])
-for name in ('kissat-A', 'unsat-A', 'kissat-B', 'unsat-B'):
+for name in ('kissat-A', 'unsat-A', 'kissat-B', 'unsat-B', 'default-B'):
     queue = json.loads((here / f'queue_{name}.json').read_text())['maps']
     recs = [json.loads(l) for p in sorted((R / name).glob('[0-9]*/results.jsonl')) for l in p.read_text().splitlines()]
     started = [json.loads(l) for p in sorted((R / name).glob('[0-9]*/progress.jsonl')) for l in p.read_text().splitlines()]

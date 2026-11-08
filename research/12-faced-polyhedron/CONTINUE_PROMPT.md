@@ -21,8 +21,8 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
   4 second encoder on six maps, 5 union of two matched solids (explore, I-261108-11 stage 1). The contraction sieve
   moved out of the week; the note package starts with the soundness chain of review 08e Follow-up Q3.
 * Week item 2 cut down by the owner (2026-11-08 21:30): E-261108-03 pre-registered (kissat rel-4.0.4, CaDiCaL
-  `--unsat`; holdout and cube-and-conquer are later launches), smoke test green, waiting for the owner launch
-  `launch.sh 08-03 start`; then `experiment-conclude` (write `projection.py --selftest` there, as `PLAN.md` says).
+  `--unsat`; holdout and cube-and-conquer are later launches), amended at 22:20 (owner: no DRAT, `UNSAT-SOLVER`, long
+  caps, default baseline), smoke test green, waiting for the owner launch `launch.sh 08-03 start`; then `experiment-conclude` (write `projection.py --selftest` there, as `PLAN.md` says).
 * NEXT: week item 1 in a lab session (no night). Item 2 needs `experiment-start` (new experiment, kissat pinned, cube
   format, projection formula in `PLAN.md`); items 1 and 2 may be prepared in either order, but a (10,4) UNSAT carries the
   item 1 caveat until item 1 passes.

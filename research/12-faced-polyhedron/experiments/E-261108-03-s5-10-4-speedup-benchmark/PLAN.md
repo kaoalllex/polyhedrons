@@ -78,3 +78,14 @@ Pre-registration (`PROTOCOL.md` §2) of `ROADMAP.md` week item 2, cut down by th
   `--controls-only`, the f9/f10 positive (SAT, model checked) and negative (UNSAT-VERIFIED) controls and one (9,3) map
   (kissat 165, `--unsat` 184, UNSAT-VERIFIED); drat-trim accepts kissat's binary DRAT, so no `--no-binary`. Launcher (0.40
   core-h, Phase A, start/status/stop/start/stop): stop after the unit, restart skipped recorded units. No plan change.
+* 2026-11-08 22:00-22:20, amendment 2 (owner, before any launch): 10 cores for up to 10 h, and no DRAT in this run.
+  Why: drat-trim needs ~3.3x the proof size in RAM (map 165: 160 MB proof, 521 MB) and (10,4) proofs grow ~5.8 GB/h, so
+  checked solver runs beyond ~1-1.5 h do not fit 48 GB. `NO_PROOF=1`: an UNSAT is `UNSAT-SOLVER` (SPEC §4), never a
+  negative result; Phase A compares answers with the known UNSAT-VERIFIED records (a SAT there, or a failed control,
+  rejects the variant). Solver caps: A 1800 s, B 14400 s. Added V0 = default CaDiCaL on 96 and 85 (shards 8-9), a
+  deviation from "no new baseline jobs". Shards: kissat-A 4-9, unsat-A 0-3 and 8-9, kissat-B 0-3, unsat-B 4-7, default-B
+  8-9. Metric = solver seconds; the registered P(lambda) uses tau = 3600 with every unit censored at 3600 s, a second
+  report uses the measured times; "checked decisions" in the winner rule reads "UNSAT-SOLVER or SAT decisions"; a
+  campaign with proofs adds the checker (0.6-0.9x). Worst case 12 x 1860 + 10 x 14460 s + controls ~= 47 core-h, wall
+  <= 5.1 h. Smoke (0.03 core-h): all five roots pass their controls without proofs, map 29 UNSAT-SOLVER for both variants,
+  no proof or CNF file left, a restart skips recorded units.

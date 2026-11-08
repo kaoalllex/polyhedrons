@@ -156,7 +156,7 @@ def pending(root, queue, shard, shards):
         checkpoints += list((root / 'coverage_pilot').glob('[0-9]*/results.jsonl'))
     for path in checkpoints:
         for rec in records(path):
-            if rec['status'] in ('SAT', 'UNSAT-VERIFIED', 'TIMEOUT'):
+            if rec['status'] in ('SAT', 'UNSAT-VERIFIED', 'UNSAT-SOLVER', 'TIMEOUT'):
                 if 'unit' in rec:
                     work = path.parent.parent.joinpath(*Path(rec['unit']).parts[-3:])
                     name = f'map{rec["map_index"]}_plain'
@@ -330,6 +330,8 @@ def run(args):
                         cadical_sha256=sha(Path(pilot.CADICAL)), drat_sha256=sha(Path(pilot.DRAT)))
         if pilot.SOLVER_OPTS:
             identity['solver_opts'] = pilot.SOLVER_OPTS
+        if pilot.NO_PROOF:
+            identity['no_proof'] = True
         if root == HERE / 'results':
             inherited = pilot_manifests(root)
             if not inherited or any(json.loads(p.read_text())['status'] != 'SHARD-COMPLETE' for p in inherited):
@@ -420,10 +422,10 @@ def run(args):
                 result = json.loads(result_path.read_text())
                 append_checkpoint(out / 'results.jsonl', result)
                 print('map', index, result['status'], flush=True)
-                expected = {'positive': 'SAT', 'negative': 'UNSAT-VERIFIED'}.get(entry.get('control'))
+                expected = {'positive': 'SAT', 'negative': pilot.UNSAT_OK}.get(entry.get('control'))
                 if expected and result['status'] != expected:
                     raise RuntimeError(f'control {index} expected {expected}, got {result["status"]}')
-                if result['status'] not in ('SAT', 'UNSAT-VERIFIED', 'TIMEOUT', 'SKIPPED-STOP'):
+                if result['status'] not in ('SAT', pilot.UNSAT_OK, 'TIMEOUT', 'SKIPPED-STOP'):
                     raise RuntimeError(f'map {index}: {result["status"]}')
             process_first_sat(root, remaining)
             manifest['status'] = ('FIRST-SAT-STOP' if (root / 'first_sat.json').exists() else
