@@ -14,10 +14,13 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
 * Branch `lab/2026-11-07`. Lead review `reviews/strategy-review-2026-11-08.md`, approved by the owner; its week plan
   is in `ROADMAP.md`, its wording fixes are applied (M1, M2, L1-L3; M5 left as is: E-261103-03 is active again).
   No active process.
-* NEXT: week item 1 of the E-261103-03 stratified long-cap pilot: one amendment (<= 15 lines), solver and checker caps
-  as parameters; then **unit (a) first, on its own** (owner, 2026-11-08): the 13 unattempted 11-gon maps
-  94, 100, 102, 111, 123, 171, 174, 176, 177, 181, 184, 199, 200 at 60 s / 120 s, launched from the session after the
-  bounded startup check. Then the F = 9 positive control from an E-261107-01 Phase B solid, and the owner launches
-  (b) + map 74 + (c) on 8 workers. Map selection: `reviews/strategy-review-2026-11-08-runtime-patterns.py`.
+* DONE (2026-11-08): runner parameters (`--s5-queue`, `--timeout`, `--s5-checker-timeout`, `--s5-budget-seconds`) and
+  PLAN.md amendment; `test_tranche.py` 22 OK. Unit (a) ran via the real entry point (`results/item1a/`, 822 s wall, one core,
+  controls passed): 9/13 UNSAT-VERIFIED (94, 100, 102, 111, 123, 171, 177, 184, 199), 4 TIMEOUT at 60 s (174, 176, 181, 200),
+  no SAT. Prediction (>= 10/13) missed; (a) >= 7/13, so item 3 is not dropped. Scope: these plain formulas at 60/120 s.
+  Not yet written to STATUS/ledger (use `experiment-conclude`).
+* NEXT: F = 9 positive control (c) from an E-261107-01 Phase B solid; then the owner launches (b) + map 74 + (c) on 8
+  workers (needs its own queue file; the 4 new timeouts may join (b) by owner decision). Map selection:
+  `reviews/strategy-review-2026-11-08-runtime-patterns.py`.
 * STATUS sections 3d-3s compacted (review M4, wording only); STRATEGY §1 C3 wording updated at the owner's request.
 * Verification: no candidates, no run; `trace.py --check` run after the ledger edit.

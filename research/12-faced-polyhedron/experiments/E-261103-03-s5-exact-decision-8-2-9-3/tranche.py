@@ -19,6 +19,7 @@ from pilot import HERE, ROOT, sha
 
 QUEUE = HERE / 'tranche_queue.json'
 BUDGET_SECONDS = 22319
+SOLVER_CAP, CHECKER_CAP = 60, 120  # registered defaults; --timeout / --s5-checker-timeout override
 
 
 def atomic(path, value):
@@ -72,8 +73,18 @@ def append_checkpoint(path, record):
         f.write(json.dumps(record) + '\n'); f.flush(); os.fsync(f.fileno())
 
 
-def load_queue():
+def load_queue(custom=False):
     data = json.loads(QUEUE.read_text())
+    if custom:  # explicit map list (long-cap units): census identity and per-map canonical hashes only
+        maps = pilot.census(9, 3)['maps']
+        if sha(ROOT / 'experiments/E-261103-01-s5-map-census/results/maps_9_3.json') != data['census_sha256']:
+            raise ValueError('census identity changed')
+        for entry in data['maps']:
+            rec = maps[entry['index']]
+            digest = hashlib.sha256(json.dumps(rec['code'], separators=(',', ':')).encode()).hexdigest()
+            if not rec['admissible'] or digest != entry['canonical_sha256']:
+                raise ValueError('custom queue map not admissible or identity changed')
+        return data['maps']
     census_path = ROOT / 'experiments/E-261103-01-s5-map-census/results/maps_9_3.json'
     if sha(census_path) != data['census_sha256']:
         raise ValueError('census identity changed')
@@ -210,7 +221,7 @@ def unit(spec):
     c = pilot.CNF(9); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
     name = f'map{index}_plain'
     try:
-        r = pilot.solve(c, out, name, 60, checker_timeout=120, solver_gate=lambda: dispatch_gate(root),
+        r = pilot.solve(c, out, name, spec['solver_cap'], checker_timeout=spec['checker_cap'], solver_gate=lambda: dispatch_gate(root),
                         on_sat=lambda: latch_sat(root, dict(map_index=index, unit=str(out), name=name)))
     except DispatchStopped:
         r = dict(status='SKIPPED-STOP')
@@ -281,8 +292,16 @@ def run(args):
         pilot.CADICAL = executable(os.environ.get('CADICAL', 'cadical'))
         pilot.DRAT = executable(os.environ.get('DRAT_TRIM', 'drat-trim'))
         os.environ['CADICAL'] = pilot.CADICAL; os.environ['DRAT_TRIM'] = pilot.DRAT
-        queue = load_queue()[:2] if args.s5_pilot else load_queue()
+        global QUEUE, BUDGET_SECONDS, SOLVER_CAP, CHECKER_CAP
+        custom = getattr(args, 's5_queue', None) is not None
+        if custom:
+            QUEUE = Path(args.s5_queue).resolve(); BUDGET_SECONDS = args.s5_budget_seconds
+            SOLVER_CAP = args.timeout; CHECKER_CAP = args.s5_checker_timeout
+            if not BUDGET_SECONDS or root == HERE / 'results':
+                raise ValueError('custom queue needs --s5-budget-seconds and a results dir outside results/')
+        queue = load_queue(custom)[:2] if args.s5_pilot else load_queue(custom)
         identity = dict(sources=sources(), queue_sha256=sha(QUEUE), pilot=args.s5_pilot,
+                        caps=[SOLVER_CAP, CHECKER_CAP], budget_seconds=BUDGET_SECONDS,
                         cadical_sha256=sha(Path(pilot.CADICAL)), drat_sha256=sha(Path(pilot.DRAT)))
         if root == HERE / 'results':
             inherited = pilot_manifests(root)
@@ -307,7 +326,7 @@ def run(args):
         if (root / 'first_sat.json').exists():
             if json.loads((root / 'first_sat.json').read_text())['status'] != 'SAT-PENDING':
                 print('first SAT already processed; coverage remains stopped', flush=True); return
-        allowance = len(todo) * 180 + 960
+        allowance = len(todo) * (SOLVER_CAP + CHECKER_CAP) + 960
         key = reserve(root, allowance)
         deadline = start + allowance
         attempt = out / ('attempt_' + uuid.uuid4().hex)
@@ -343,11 +362,11 @@ def run(args):
                 raise RuntimeError('required controls failed or exceeded 300 seconds')
             for entry in pending(root, queue, shard, shards):
                 index = entry['index']; work = attempt / f'map{index}'; work.mkdir()
-                spec = dict(entry, root=str(root), out=str(work))
+                spec = dict(entry, root=str(root), out=str(work), solver_cap=SOLVER_CAP, checker_cap=CHECKER_CAP)
                 atomic(work / 'spec.json', spec)
                 append_checkpoint(out / 'progress.jsonl', dict(map_index=index, event='START', unit=str(work)))
-                print('map', index, 'start, solver 60s checker 120s', flush=True)
-                cap = min(240, deadline - time.monotonic() - 360)
+                print('map', index, f'start, solver {SOLVER_CAP}s checker {CHECKER_CAP}s', flush=True)
+                cap = min(SOLVER_CAP + CHECKER_CAP + 60, deadline - time.monotonic() - 360)
                 if cap <= 0:
                     raise TimeoutError('first-SAT reserve reached')
                 rc = pilot.command([sys.executable, str(Path(__file__)), '--unit', str(work / 'spec.json')],

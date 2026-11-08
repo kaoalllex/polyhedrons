@@ -246,3 +246,18 @@ The pilot's original source hashes and files remain unchanged; current-CNF recon
 checks equivalence. Post-pilot runner changes are checkpoint/resource inheritance and fail-closed reporting of a
 saved failure stop, plus support for the existing lossless gzip artifact format. These changes
 require no new target solve. Changed live source still blocks resuming an old run.
+
+
+### 2026-11-08: stratified long-cap pilot, runner parameters and unit (a) (week plan item 1)
+
+Owner-approved week plan (`reviews/strategy-review-2026-11-08.md`); T D F G R remain 2 2 2 2 2. Unit (a) first, alone.
+
+* Runner change: `run_overnight.py s5` takes `--s5-queue FILE` (explicit map list, census hash and per-map canonical
+  hashes checked, results dir outside `results/`), `--timeout` as solver cap, `--s5-checker-timeout`, and
+  `--s5-budget-seconds`; the shard allowance is `len(todo) * (solver + checker) + 960`. Defaults reproduce the
+  registered 60/120 behaviour. Caps and budget enter the identity hash.
+* Unit (a): `queue_item1a.json`, the 13 unattempted 11-gon maps 94, 100, 102, 111, 123, 171, 174, 176, 177, 181,
+  184, 199, 200; solver 60 s, checker 120 s, one shard, budget 3300 s (13 * 180 + 960). Same controls, first-SAT
+  latch and evidence rules as the coverage run. Prediction: at least 10/13 UNSAT-VERIFIED. Counter-calibration:
+  10 of 11 earlier 11-gon maps were UNSAT-VERIFIED; the claim covers these exact plain formulas only.
+* Units (b), map 74 and (c) need their own queue and caps; they are launched by the owner after (a).
