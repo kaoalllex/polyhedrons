@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-05** (after night 7: E-261102-03 and E-261102-04, two engines scored on the ladder; E-261102-02 killed; strategy review of 2026-11-03 applied the same day: S5 queue in `ROADMAP.md`, candidate maps in section 3c, direction DR19; E-261103-01 census and E-261103-02 encoder controls completed later the same day). Definitions, counters and evidence labels: `SPEC.md`. Evidence
+As of **2026-11-08** (lead review 2026-11-08: week plan in `ROADMAP.md`, (9, 3) credences moved; earlier: after night 7: E-261102-03 and E-261102-04, two engines scored on the ladder; E-261102-02 killed; strategy review of 2026-11-03 applied the same day: S5 queue in `ROADMAP.md`, candidate maps in section 3c, direction DR19; E-261103-01 census and E-261103-02 encoder controls completed later the same day). Definitions, counters and evidence labels: `SPEC.md`. Evidence
 details: `results.md`; chronology: `experiment-log.md`; what to do next: `ROADMAP.md`. Update this file in the
 same commit as any result that changes a row. This file owns the verdicts and numbers; other files link here.
 
@@ -167,8 +167,8 @@ pairings, including on inadmissible maps; `links` alone need not determine them.
 The (8,2) and (9,3) code sets equal the previous sampled sets, including inadmissible maps. A separate
 C3 triangle-orbit exact cover with equivariant edge gluing gives exactly the same eight admissible
 free-C3 maps. The two C2 maps at (8,2) and the C3/C2 lists at (9,3) are ready for E-261103-03;
-E-261103-02 has validated its encoder (read its fixed-face C2/D3 uniformity restriction). The (9,3) face sizes remain in {8,9,10,11}; ten admissible maps
-have a tripled pair. Chirality at (8,2) and (9,3) follows at the census' coverage level (PROVED-1).
+E-261103-02 has validated its encoder (read its fixed-face C2/D3 uniformity restriction). The (9,3) face sizes remain in {8,9,10,11}; 18 admissible maps
+have a tripled pair (10 with a doubled pair on a shared face, 8 with it disjoint; EXACT recount, `reviews/strategy-review-2026-11-08.md` M1). Chirality at (8,2) and (9,3) follows at the census' coverage level (PROVED-1).
 
 The (8,3) family is not censused here. The review's >=22,666 sampled classes and its checks of the
 Roest-Vigh and Mizhaev maps remain session checks only. Nothing geometric has run on any focus map.

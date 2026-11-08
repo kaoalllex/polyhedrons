@@ -2,7 +2,7 @@
 id: H-261103-02
 title: A (9, 3) polyhedron exists with a 3-fold rotational symmetry, on one of the 8 admissible maps with a free C3
 date: 2026-11-03
-status: open
+status: weakened
 origin: [owner, H-261101-07, I-261030-07, L:roestvigh2026, L:mizhaev2026]
 ---
 
@@ -65,3 +65,9 @@ E-261103-04's conditional failed-level grid concluded UNDERPOWERED (CONCLUSION /
 STATUS 3n). PROVED-1 supplied-input checks reject all saved cell outputs. The
 scope covers auxiliary intermediate maps from frozen parents. This hypothesis
 retains its preceding status and credence.
+
+## 2026-11-08 lead review
+
+Status weakened (conditional): all 8 uniform free-C3 formulas are UNSAT-VERIFIED (EXACT instances); the geometric
+family exclusion rests on the PROVED-1 coverage draft in E-261103-03 CONCLUSION, not reviewed. No further C3-only work
+is queued (`reviews/strategy-review-2026-11-08.md` §5.1, M2).

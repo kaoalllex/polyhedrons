@@ -1050,7 +1050,7 @@
    "id": "E-261103-06",
    "kind": "experiment",
    "title": "Embedded first, planar later - pilot on Szilassi from a torus, then an 8-face object from a smooth genus-3 surface",
-   "status": "killed",
+   "status": "parked",
    "date": "2026-11-03",
    "concluded": "2026-11-07",
    "path": "experiments/E-261103-06-embedded-first-pilot/README.md",
@@ -1626,7 +1626,7 @@
    "id": "H-261103-02",
    "kind": "hypothesis",
    "title": "A (9, 3) polyhedron exists with a 3-fold rotational symmetry, on one of the 8 admissible maps with a free C3",
-   "status": "open",
+   "status": "weakened",
    "date": "2026-11-03",
    "concluded": "",
    "path": "hypotheses/H-261103-02-s5-9-3-c3-object-exists.md",
@@ -3407,6 +3407,36 @@
    "preregistered": ""
   },
   {
+   "id": "I-261108-01",
+   "kind": "idea",
+   "title": "Concentrated-multiplicity obstruction - a local cause for the fast UNSAT of (9, 3) maps whose extra segments meet at one face",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-01-concentrated-multiplicity-obstruction.md",
+   "direction": [
+    "DR19",
+    "DR10"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-02",
+   "kind": "idea",
+   "title": "Certified symmetry breaking - lex-leader clauses with VeriPB proofs for the (9, 3) maps with a map automorphism",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-02-certified-symmetry-breaking-veripb.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -4628,6 +4658,16 @@
    "kind": "tests"
   },
   {
+   "from": "E-261103-03",
+   "to": "I-261108-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "I-261108-02",
+   "kind": "origin"
+  },
+  {
    "from": "E-261103-04",
    "to": "E-261107-01",
    "kind": "origin"
@@ -4755,6 +4795,11 @@
   {
    "from": "H-261101-02",
    "to": "H-261101-15",
+   "kind": "origin"
+  },
+  {
+   "from": "H-261101-02",
+   "to": "I-261108-01",
    "kind": "origin"
   },
   {
@@ -4935,6 +4980,11 @@
   {
    "from": "I-261029-42",
    "to": "E-261029-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-43",
+   "to": "I-261108-02",
    "kind": "origin"
   },
   {

@@ -22,8 +22,8 @@ faces it exists and is cheap. The arrangement is already structured (D2 or C4 sy
 
 ## Cheapest test
 
-1,000 random ninth planes on each of the two arrangements, 60 s of CP-SAT each, maximal adjacency recorded: anything above
-36 pairs (all adjacent on 9 planes) goes to `candidate-check`; a histogram stuck at <= 28 + (a few) parks the idea with the
+1,000 random ninth planes on each of the two arrangements, 60 s of CP-SAT each, maximal adjacency recorded: exactly 36
+pairs with E = 39 and genus 3 (all adjacent on 9 planes; more than 36 is impossible) goes to `verify_candidate.py --target S5` and `candidate-check`; a histogram stuck at <= 28 + (a few) parks the idea with the
 numbers.
 
 ## Source

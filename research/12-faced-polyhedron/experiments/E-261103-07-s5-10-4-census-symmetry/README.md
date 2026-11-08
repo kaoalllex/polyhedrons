@@ -33,6 +33,6 @@ This item remains planned for the geometric compatibility analysis of its symmet
 
 ## Next
 
-Stop rule: the census, or a written reason why it does not finish (then the sampled set, labelled as such). Outcome: the
+Stop rule (revised 2026-11-08, `reviews/strategy-review-2026-11-08.md` L3): the census is complete (E-261103-01); what remains is a (10, 4) cost probe, 10 maps of mixed patterns at 300 s (<= 1 core-h), run only as the follow-up of ROADMAP week item 5a. Outcome: the
 count and the symmetric sub-list set the (10, 4) row of the S5 table ("cannot tell" falls if the maps are few) and the plan
 for the stretch. Scenario move: none.

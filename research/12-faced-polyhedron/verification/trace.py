@@ -19,7 +19,7 @@ GRAPH_JS = os.path.join(ROOT, 'map', 'graph.js')   # same data as a script, so t
 ID_RE = re.compile(r'^([IHE])-(\d{6})-(\d{2,3})$')
 KINDS = {'I': ('idea', 'ideas/I-*.md', {'open', 'tried', 'parked'}),
          'H': ('hypothesis', 'hypotheses/H-*.md', {'open', 'supported', 'weakened', 'refuted', 'proved'}),
-         'E': ('experiment', 'experiments/E-*/README.md', {'planned', 'running', 'done', 'killed'})}
+         'E': ('experiment', 'experiments/E-*/README.md', {'planned', 'running', 'done', 'killed', 'parked'})}
 LINKS = ('origin', 'tests', 'produces')
 
 
