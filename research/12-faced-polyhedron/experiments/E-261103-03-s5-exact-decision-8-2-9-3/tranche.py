@@ -314,9 +314,9 @@ def run(args):
         raise ValueError('results-dir must end in the numeric shard index')
     out.mkdir(parents=True, exist_ok=True)
     with locked(root / f'shard{shard}.lock', blocking=False):
-        pilot.CADICAL = executable(os.environ.get('CADICAL', 'cadical'))
+        pilot.CADICAL = executable(os.environ.get('SAT_SOLVER') or os.environ.get('CADICAL', 'cadical'))
         pilot.DRAT = executable(os.environ.get('DRAT_TRIM', 'drat-trim'))
-        os.environ['CADICAL'] = pilot.CADICAL; os.environ['DRAT_TRIM'] = pilot.DRAT
+        os.environ['CADICAL'] = os.environ['SAT_SOLVER'] = pilot.CADICAL; os.environ['DRAT_TRIM'] = pilot.DRAT
         global QUEUE, BUDGET_SECONDS, SOLVER_CAP, CHECKER_CAP
         custom = getattr(args, 's5_queue', None) is not None
         if custom:
@@ -328,6 +328,8 @@ def run(args):
         identity = dict(sources=sources(), queue_sha256=sha(QUEUE), pilot=args.s5_pilot,
                         caps=[SOLVER_CAP, CHECKER_CAP], budget_seconds=BUDGET_SECONDS,
                         cadical_sha256=sha(Path(pilot.CADICAL)), drat_sha256=sha(Path(pilot.DRAT)))
+        if pilot.SOLVER_OPTS:
+            identity['solver_opts'] = pilot.SOLVER_OPTS
         if root == HERE / 'results':
             inherited = pilot_manifests(root)
             if not inherited or any(json.loads(p.read_text())['status'] != 'SHARD-COMPLETE' for p in inherited):

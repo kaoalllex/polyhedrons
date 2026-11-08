@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import platform
+import shlex
 import signal
 import subprocess
 import sys
@@ -23,7 +24,9 @@ from omsat_validate import ALL_OPTS
 from omsat_sym import build_sym, closure
 from ladder_exact import verify
 
-CADICAL = os.environ.get('CADICAL', str(Path.home() / 'bin/cadical'))
+# SAT_SOLVER / SOLVER_OPTS select another DRAT-producing solver (E-261108-03); the default stays plain CaDiCaL.
+CADICAL = os.environ.get('SAT_SOLVER') or os.environ.get('CADICAL', str(Path.home() / 'bin/cadical'))
+SOLVER_OPTS = shlex.split(os.environ.get('SOLVER_OPTS', ''))
 DRAT = os.environ.get('DRAT_TRIM', str(Path.home() / 'bin/drat-trim'))
 
 
@@ -84,7 +87,7 @@ def solve(c, out, name, timeout, checker_timeout=None, on_sat=None, solver_gate=
     cnf = out / (name + '.cnf'); proof = out / (name + '.drat')
     c.dimacs(cnf, comments=[name, 'S5 pilot; interpret symmetry and model scope separately'])
     started = time.monotonic()
-    rc = command([CADICAL, str(cnf), str(proof)], out / (name + '.solver.log'), timeout, gate=solver_gate)
+    rc = command([CADICAL, *SOLVER_OPTS, str(cnf), str(proof)], out / (name + '.solver.log'), timeout, gate=solver_gate)
     elapsed = time.monotonic() - started
     r = dict(status='TIMEOUT' if rc is None else 'ERROR', seconds=elapsed, budget_seconds=timeout,
              budget_fraction=elapsed / timeout, ended_by='solver_timeout' if rc is None else 'completed',

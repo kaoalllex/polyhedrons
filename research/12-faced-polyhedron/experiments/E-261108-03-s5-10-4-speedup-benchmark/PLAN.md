@@ -73,3 +73,8 @@ Pre-registration (`PROTOCOL.md` §2) of `ROADMAP.md` week item 2, cut down by th
 `bash research/12-faced-polyhedron/overnight/launch.sh 08-03 start` (then `status`, `stop`), on AC power.
 
 ## Amendments
+* 2026-11-08 21:40-21:55, smoke and launcher check after the pre-registration (8f0e508); outputs deleted, not results.
+  Runner: `SAT_SOLVER` / `SOLVER_OPTS` added (37 runner tests OK, default unchanged). Smoke (0.07 core-h): both variants pass
+  `--controls-only`, the f9/f10 positive (SAT, model checked) and negative (UNSAT-VERIFIED) controls and one (9,3) map
+  (kissat 165, `--unsat` 184, UNSAT-VERIFIED); drat-trim accepts kissat's binary DRAT, so no `--no-binary`. Launcher (0.40
+  core-h, Phase A, start/status/stop/start/stop): stop after the unit, restart skipped recorded units. No plan change.
