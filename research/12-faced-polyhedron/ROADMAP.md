@@ -92,18 +92,19 @@ test runs included; item 1's launch uses 10 shards, so nothing runs beside it (i
 3. **Concentrated-multiplicity core study** (explore, new idea from this review §7.1). Question: does the
    fast UNSAT of maps whose extra segments meet at one face have a local cause on few faces? Test:
    face-grouped minimal cores of the plain formulas (rebuilt, hash-checked) of the 13 fast maps (patterns (1,2,3), (2,2,2),
-   (1,1,1,3)), plus item 1(a)'s new ones; at most 1 session + 1 core-h. Kill: no core on <= 6 of the 9
+   (1,1,1,3)), plus item 1(a)'s new ones; at most 1 session + 1 core-h, 10 shards for the 24 maps. Kill: no core on <= 6 of the 9
    faces in >= 3 maps -> park. Follow-up tree: pass -> a PROVED-1 lemma draft (at most 1 session) and an
    exact count of the (10,4) maps it would exclude (minutes).
 4. **Arrangement-source sweep for solid-first** (explore; I-261103-04 with the 36-pair trigger fixed, plus
    C2 arrangements). The E-261107-01 engine unchanged; 300 arrangements: 100 Roest-Vigh planes + a random
    ninth plane, 100 Mizhaev + ninth, 100 random arrangements with an involution; cap 60 s per unit; at most
-   2 core-h, one shard; after item 1 finishes or on <= 2 cores beside it. Power: 0/300 bounds the density of
+   2 core-h, 10 shards (owner rule 2026-11-08); after item 1 finishes or on <= 2 cores beside it. Power: 0/300 bounds the density of
    36-pair solids from these sources below 1 % (95 %). Kill: no 36-pair solid -> park arrangement-first for
    (9,3) with that bound. Follow-up tree: a 36-pair solid -> `verify_candidate.py --target S5` +
    `candidate-check`; best Phase B >= 34 pairs -> 1000 more arrangements from the same source (<= 5 core-h).
-5. **Conditional on item 1.** (5a) One owner night: every remaining unresolved (9,3) map of the selected
-   classes, fast patterns first, solver 1800 s, checker separate, ceiling 60 core-h, first-SAT stop, the
+5. **Conditional on item 1.** (5a) One owner night (owner 2026-11-08: "everything that fits", 8 h wall on 10 shards): every
+   unresolved and unattempted (9,3) map, fast patterns first (the order by pattern solve times of item 1), the queue cut by the
+   8 h deadline, solver 1800 s, checker separate, ceiling 80 core-h, first-SAT stop, the
    control of 1(c) in every shard (`overnight-run-script`). (5b) Exact speed-up micro-benchmark: CaDiCaL
    default vs `--unsat`, kissat, and cube-and-conquer with cubes on the segment variables of the three
    doubled pairs; calibration maps 30, 40, 48, 19 (known UNSAT, 30-76 s) + 2 slow (1^6) maps at 1800 s;
