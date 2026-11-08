@@ -1127,6 +1127,21 @@ window.GRAPH = {
    "conclusion": "Verdict: PARK (kill criterion met). 0 of the 24 admissible 11-gon (9,3) maps have an UNSAT face-support sub-formula on <= 6 faces (needed: >= 3). Scope (NUMERICAL/EXACT per sub-formula): clause subsets of the plain formula indexed by constraint face tuples (PLAN amendment), levels k = 3..6 exhaustive (C(9,k) sets per map), cap 20 s, 0 TIMEOUT at k <= 6; at k = 7 also 0 UNSAT, 0 TIMEOUT; at k = 8 0 UNSAT with 94 TI..."
   },
   {
+   "id": "E-261108-03",
+   "kind": "experiment",
+   "title": "(10,4) speed-up benchmark - kissat and CaDiCaL --unsat against the recorded default-CaDiCaL runs",
+   "status": "running",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "experiments/E-261108-03-s5-10-4-speedup-benchmark/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -4829,6 +4844,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261103-03",
+   "to": "E-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -4904,6 +4924,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261103-07",
+   "to": "E-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-07",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -4956,6 +4981,11 @@ window.GRAPH = {
    "from": "E-261108-02",
    "to": "I-261108-06",
    "kind": "origin"
+  },
+  {
+   "from": "E-261108-03",
+   "to": "H-261101-07",
+   "kind": "tests"
   },
   {
    "from": "FD2",
@@ -5449,6 +5479,11 @@ window.GRAPH = {
   },
   {
    "from": "I-261031-02",
+   "to": "E-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-02",
    "to": "I-261101-12",
    "kind": "origin"
   },
@@ -5735,6 +5770,11 @@ window.GRAPH = {
   {
    "from": "I-261103-05",
    "to": "E-261103-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261108-05",
+   "to": "E-261108-03",
    "kind": "origin"
   },
   {
