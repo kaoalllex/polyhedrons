@@ -39,6 +39,24 @@ every pair is accounted for exactly once if each copy keeps its own adjacencies 
 pairs without doubling. A cheap combinatorial filter comes first: does any of the 59 K12 types decompose as two
 7-vertex torus pieces sharing two vertices and joined by five tubes?
 
+**The pieces need not be known, or face-neighbourly** (owner's question, 2026-11-08). The union boundary consists of
+patches of each solid's boundary outside the other; two faces of the same piece meet in the union only along an edge
+that piece already had, and only faces of different pieces meet on the seams (elementary, general position). So the
+real condition is weaker: in each piece the faces that are not on a matched plane must be pairwise adjacent; faces on
+matched planes may gain adjacencies through the other piece. The clique is bounded by Heawood for the piece's genus
+(4 on the sphere, 7 on the torus, 8 at genus 2, 9 at genus 3), and a piece may carry extra faces beyond its clique if
+they lie on matched planes (k <= 5 in total). This opens three families:
+
+* genus-0 pieces: any polyhedral sphere with 3 pairwise adjacent faces (every vertex has them) or 4; e.g. Szilassi +
+  a combinatorial cube matched on 3 planes, the cube's free corner giving its 3 exclusive faces (10 faces, four
+  balls for genus 4, 6 projective parameters plus the cube's own shape); the tetrahedron source is the simplest case;
+* modified known objects: Szilassi with a truncated corner (8 faces, genus 1, the 7-clique kept), the new face used
+  as a matched plane;
+* bootstrapping: every union that passes becomes a piece for the next union. Szilassi + Szilassi with k = 5 and three
+  balls gives (9, 4), and Szilassi + tetrahedron with k = 2 and four balls gives (9, 4) with 9 parameters: candidates
+  for the first face-neighbourly polyhedron with 9 faces (none in print, CLAIMED). The rigid k = 5 list is the same
+  enumeration as the (9, 3) cross-check.
+
 ## Why it might help
 
 It is a direct genus source with few parameters, not a handle ladder and not a free cell selection; it reaches the
