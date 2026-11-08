@@ -1066,16 +1066,16 @@ window.GRAPH = {
    "id": "E-261103-07",
    "kind": "experiment",
    "title": "Census and symmetric sub-list of the (10, 4) candidate maps - preparation of the stretch target",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-03",
-   "concluded": "",
+   "concluded": "2026-11-08",
    "path": "experiments/E-261103-07-s5-10-4-census-symmetry/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "NEEDS-SPEED-UP@2.53 core-h (10 maps, caps 300/1800 s, 0 decided)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict rule (pre-registered): >= 3 of 6 fast maps TIMEOUT (here 6) and all 4 slow maps TIMEOUT -> \"needs a speed-up first\" (an item 5b-type benchmark before any full (10, 4) run). The projection P is not computed (F undetermined)."
   },
   {
    "id": "E-261107-01",

@@ -929,3 +929,4 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-08: E-261108-01 arrangement-source sweep (item 4, 10 shards, 1.33 core-h): 300/300 INFEASIBLE, 0 SOLID, 40/40 controls pass; LOW-YIELD, arrangement-first parked for (9,3) (CONCLUSION, STATUS 3v).
 * 2026-11-08: E-261103-03 item 5a (10 shards, 18.51 core-h, 2.36 h wall): controls passed in every shard; 158 of 158 (9,3) plain maps
   UNSAT-VERIFIED, 0 SAT, 0 TIMEOUT; all 203 admissible (9,3) plain formulas now UNSAT-VERIFIED; experiment concluded (STATUS 3d, CONCLUSION).
+* 2026-11-08: E-261103-07 (10,4) cost probe (10 shards, 2.53 core-h): 20/20 controls pass; 10 of 10 plain maps TIMEOUT (6 at 300 s, 4 at 1800 s), 0 SAT; rule gives "needs a speed-up first" (CONCLUSION, STATUS 3w).

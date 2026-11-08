@@ -2,11 +2,13 @@
 id: E-261103-07
 title: Census and symmetric sub-list of the (10, 4) candidate maps - preparation of the stretch target
 date: 2026-11-03
-status: running
+status: done
 direction: [DR19]
 origin: [E-261103-01, I-261101-07]
 tests: [H-261101-07]
 produces: []
+concluded: 2026-11-08
+verdict: NEEDS-SPEED-UP@2.53 core-h (10 maps, caps 300/1800 s, 0 decided)
 preregistered: true
 ---
 
@@ -58,3 +60,7 @@ The (9,3) times are from E-261103-03 items 1(b) and 5a (`solver.log`), NUMERICAL
 1117 maps (68 %); at (9,3) they were 128 of 203 (63 %). Cost model (untested): (9,3) medians times (10,4) counts give
 about 73 core-h of solver time, about 125 core-h with the checker, before the unknown growth factor from 10 to 11 elements
 that the cost probe measures.
+
+## Results (2026-11-08)
+
+Cost probe: controls 20/20 pass; 10 of 10 (10, 4) plain maps TIMEOUT (6 at 300 s, 4 at 1800 s), 0 SAT. Pre-registered rule gives "needs a speed-up first". Details: `CONCLUSION.md`, STATUS 3w.

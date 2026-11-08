@@ -2,12 +2,12 @@
 
 As of **2026-11-08** (lead review 2026-11-08 applied: week plan in `ROADMAP.md`, (9, 3) credences moved; sections
 3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
-and item 5a recorded in 3d the same day; E-261103-03 concluded). Definitions, counters and
+and item 5a recorded in 3d the same day; E-261103-03 concluded; E-261103-07 cost probe recorded in 3w). Definitions, counters and
 evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experiment-log.md`; what to do next:
 `ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
 numbers; other files link here.
 
-No active process (item 5a finished 2026-11-08). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; the lead review is due (`ROADMAP.md` item 5). E-261103-04, E-261103-05, E-261103-06
+No active process (item 5a and the E-261103-07 probe finished 2026-11-08). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; the lead review is due (`ROADMAP.md` item 5). E-261103-04, E-261103-05, E-261103-06
 and E-261107-01 are concluded (sections 3g, 3j-3u).
 
 ## 0. State in one paragraph
@@ -241,6 +241,14 @@ hard model 36 pairs, E = 39, cap 60 s, 10 shards: all 300 INFEASIBLE (6-28 s eac
 (E-261108-01 CONCLUSION). EXACT computation, geometric reading PROVED-1 via the E-261103-05 encoding; no DRAT. Density
 bound < 1 % pooled under an i.i.d. assumption. Verdict LOW-YIELD@1.33 core-h; arrangement-first for (9, 3) parked.
 No hypothesis, credence or witness change.
+
+## 3w. E-261103-07 (10, 4) cost probe (2026-11-08)
+
+10 (10, 4) admissible maps (one per fast pattern, two per slow pattern), E-261103-03 plain S5 formula, 10 shards, 2.53 core-h
+(sum of shard wall times): 20/20 controls pass; 0 SAT, 0 UNSAT, **10/10 TIMEOUT** (fast 300 s, slow 1800 s). NUMERICAL, instance
+scope; a timeout is not a result for any map. Pre-registered rule: "needs a speed-up first" before any full (10, 4) run; F is only
+bounded below (> 3.3 over all maps, > 11 for `(2,2,2)/(2,2,2)`). No hypothesis, credence or witness change
+(E-261103-07 CONCLUSION).
 
 ## 4. What may and may not be claimed
 
