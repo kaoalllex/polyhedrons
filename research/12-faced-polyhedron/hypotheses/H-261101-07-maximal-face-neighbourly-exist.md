@@ -61,3 +61,9 @@ E-261103-04's conditional failed-level grid concluded UNDERPOWERED (CONCLUSION /
 STATUS 3n). PROVED-1 supplied-input checks reject all saved cell outputs. The
 scope covers auxiliary intermediate maps from frozen parents. This hypothesis
 retains its preceding status and credence.
+
+## 2026-11-08 item 5a
+
+E-261103-03 item 5a: all 203 admissible (9,3) plain formulas UNSAT-VERIFIED (EXACT, formula scope); the geometric
+reading excludes genus 3 at 9 faces, conditional PROVED-1 (census coverage, encoder soundness, one encoder, no human
+review; STATUS 3d). Genus 2 and 3 are excluded at that level; genus 4-5 are untested, so the status stays open.

@@ -1,13 +1,13 @@
 # Status ledger (single source of truth for "where are we")
 
 As of **2026-11-08** (lead review 2026-11-08 applied: week plan in `ROADMAP.md`, (9, 3) credences moved; sections
-3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a) and the long-cap launch
-recorded in 3d the same day). Definitions, counters and
+3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
+and item 5a recorded in 3d the same day; E-261103-03 concluded). Definitions, counters and
 evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experiment-log.md`; what to do next:
 `ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
 numbers; other files link here.
 
-No active process (the item 1 launch finished 2026-11-08). E-261103-03 is the active S5 experiment (sections 3d-3i); E-261103-04, E-261103-05, E-261103-06
+No active process (item 5a finished 2026-11-08). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; the lead review is due (`ROADMAP.md` item 5). E-261103-04, E-261103-05, E-261103-06
 and E-261107-01 are concluded (sections 3g, 3j-3u).
 
 ## 0. State in one paragraph
@@ -15,7 +15,7 @@ and E-261107-01 are concluded (sections 3g, 3j-3u).
 **Focus since 2026-11-03 (`STRATEGY.md`): S5 at (9, 3)**, a maximal face-neighbourly polyhedron with 9 faces and genus
 3 (stretch (10, 4)). No geometric witness is known; the paired exact pilot is complete (section 3e); the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes
 at (9, 3), 203 admissible, 8 with a free C3, 2 at (8, 2), 1183 at (10, 4), 1117 admissible. The exact route
-(OM-SAT per map at 10 elements) has partial coverage and remains in the queue (`ROADMAP.md`); its multi-adjacency encoder
+(OM-SAT per map at 10 elements) has decided every admissible (9, 3) plain formula UNSAT-VERIFIED (EXACT, formula scope; geometric reading conditional PROVED-1, section 3d); its multi-adjacency encoder
 passes the bounded controls (E-261103-02, EXACT). Both plain (8,2) warm-up formulas are now
 UNSAT-VERIFIED (E-261103-03, section 3d; geometric interpretation conditional PROVED-1). Uniform fixed-face C2/D3 formulas cannot decide those
 geometric symmetry families (PROVED-1 scope warning in the experiment). **S0 (Szilassi-12) is parked, not abandoned**: the paragraph below and
@@ -176,7 +176,7 @@ Roest-Vigh and Mizhaev maps remain session checks only. Nothing geometric has ru
 * **(9, 3) plain**, solver cap 60 s unless stated: UNSAT-VERIFIED for 28 maps (5, 6, 30 in the paired pilot; 40, 48 at
   62.5 and 75.7 s in the 60/300-s grid; 19, 20, 29, 31, 43, 52, 58, 59, 60, 66, 67, 75, 83, 90 in the 80-map tranche;
   94, 100, 102, 111, 123, 171, 177, 184, 199 in unit (a); 0-4, 10, 12, 36, 38, 39, 41, 42, 74, 174, 176, 181, 200 in the
-  long-cap launch at 1800 s, all 2026-11-08): 45 in total. 60 maps unresolved, 98 unattempted, 0 SAT. Checker time is separate (map 40: 62 s).
+  long-cap launch at 1800 s, all 2026-11-08): 45 in total before item 5a; item 5a decided the other 158 (below), so 203 of 203, 0 SAT. Checker time is separate (map 40: 62 s).
 * Solve time depends on the multiple-adjacency pattern (NUMERICAL): patterns (1,2,3) and (2,2,2) are 13 of 13
   UNSAT-VERIFIED in 22-76 s; (1,1,1,3) is 14 of 14 (solves 32-215 s; the five that timed out at 60 s, a cap
   inside the solve-time range, finished at 69-215 s); spread-out doubled pairs time out (`reviews/strategy-review-2026-11-08.md` §3.1, `-08b`).
@@ -188,6 +188,11 @@ Roest-Vigh and Mizhaev maps remain session checks only. Nothing geometric has ru
   (69-215 s) and 12 maps of `1^6` (5, 523-914 s), `(1^4,2)` (5, 127-317 s) and `(1,1,2,2)/(2,3)` (2, 89-136 s; the lowest indices, not
   a sample). **Every 11-gon (9,3) plain formula (24 maps) is UNSAT-VERIFIED** (EXACT, formula scope; geometric reading PROVED-1, conditional).
   Not claimed: anything about the 60 unresolved and 98 unattempted maps, or genus-3 behaviour of the controls.
+* **Item 5a** (2026-11-08, `CONCLUSION` last section): 10 shards, 18.51 core-h, longest shard 2.36 h, solver 1800 s. Controls passed in
+  every shard. All 158 remaining maps UNSAT-VERIFIED (cadical 31-1239 s, slowest 69 % of the cap), 0 TIMEOUT, 0 SAT; all 158 CNFs rebuild
+  to their recorded hashes. **Every admissible (9, 3) plain formula, 203 of 203, is UNSAT-VERIFIED** (EXACT, formula scope). Geometric
+  reading: no S5 polyhedron at (9, 3), symmetric or not (PROVED-1, conditional on census coverage, encoder soundness with the uniformity
+  reduction, one encoder, no human review). Not claimed: a CERTIFIED or reviewed theorem, archived proofs, a second implementation.
 * **Core study E-261108-02** (week item 3, 2026-11-08, 0.07 core-h wall): PARK. 0 of the 24 11-gon plain formulas have an UNSAT
   sub-formula on <= 6 faces (clause subsets indexed by constraint face tuples, k = 3..6 exhaustive, 0 TIMEOUT; k = 7 also none;
   k = 8 undecided, 94 TIMEOUTs); controls C0/C1/C2 pass, comparators equal. Scope: this grouping and cap 20 s (CONCLUSION).
@@ -244,7 +249,7 @@ four types, one on a map combinatorially completable to a target map".
 
 May not: "the 12-face polyhedron does not exist"; "we are close to genus 6" (18 missing adjacencies are not a
 local defect); "correct Gauss degree implies realizability" (refuted by Q1); "covering is proved" (sampled);
-"no type is realizable"; "no symmetric immersion" for mirrors or point reflections until I-261101-16 is reviewed (the certificates cover rotations); anything about the hemisphere wall from the nights-4/5 drift (E-261101-07); any statement from a timeout; any UNSAT beyond its exact formula; that census completeness has an independent human review (the coverage argument is PROVED-1); a general (9, 3) non-existence claim (only partial plain coverage, section 3e), or an unconditional/human-reviewed (8, 2) non-existence theorem (section 3d).
+"no type is realizable"; "no symmetric immersion" for mirrors or point reflections until I-261101-16 is reviewed (the certificates cover rotations); anything about the hemisphere wall from the nights-4/5 drift (E-261101-07); any statement from a timeout; any UNSAT beyond its exact formula; that census completeness has an independent human review (the coverage argument is PROVED-1); an unconditional, CERTIFIED or human-reviewed (9, 3) non-existence theorem (single encoder, coverage and soundness PROVED-1, proofs not archived; section 3d), or an unconditional/human-reviewed (8, 2) non-existence theorem (section 3d).
 
 ## 5. Results worth sharing (ranked, with prerequisites)
 

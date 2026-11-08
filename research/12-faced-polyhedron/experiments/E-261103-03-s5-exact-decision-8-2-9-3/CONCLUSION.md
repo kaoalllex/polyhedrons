@@ -504,3 +504,56 @@ shards, so both ran the same code).
 * **Verification**: no code change after the launch; the unit tests (34 OK) and the 10-shard startup check ran before it. No `verify_all` run
   (no shared code, certificate or candidate changed after the last recorded run). Evidence is checked by recorded hashes and checker
   transcripts, not replayed.
+
+## Item 5a: the (9,3) completion night (2026-11-08)
+
+Week plan item 5a (`PLAN.md` amendment 2026-11-08, item 5a; `reviews/strategy-review-2026-11-08c.md` §2). Queue
+`queue_item5a.json` (sha256 `cf15bcb5...`): 10 positive and 10 negative copies of control (c), then the 158 admissible (9,3)
+maps whose plain formula was not UNSAT-VERIFIED. Solver 1800 s, checker 2700 s, 10 shards, `results/item5a/`. One `launch.sh
+start` at 2026-11-08 12:00:43 UTC from commit `7dccf1d` (tree dirty only by the untracked results directory and `launch.pids`);
+the recorded source hashes, CaDiCaL and drat-trim hashes are in each attempt's `manifest.json`.
+
+* **Run**: 10 manifests, all `SHARD-COMPLETE`, exit status 0, no `stop.json`, no `first_sat.json`, no restart. Core-hours
+  18.51 (sum of the shard wall times in `budget.json`, 66,637 s; the manifests record status, not time); longest shard
+  8,488 s (2.36 h) against the 8 h deadline and the 80 core-h ceiling. Wall minus solver + checker time is 16-17 s per
+  shard: no sleep gap.
+* **Controls (all required, all passed)**: `control-f9-sK` SAT with the model checked and `control-f9-neg-sK`
+  UNSAT-VERIFIED in each of the 10 shards before its first map. They are genus-0 submap controls with pinned planes; they
+  test the encoder-solver-checker path at n = 9, not genus-3 behaviour.
+* **Outcome (EXACT, formula scope)**: 158 of 158 plain formulas UNSAT-VERIFIED, 0 TIMEOUT, 0 SAT. Every record carries
+  `cnf_sha256` and `proof_sha256`, equal to its unit's `result.json`; every checker transcript ends `s VERIFIED`
+  (`checker_ended_by` completed). CNF and proof files are not kept (PROTOCOL §5). Conclusion check (this session, no
+  replay): all 158 CNFs rebuilt from the committed encoder match their recorded hashes under `PYTHONHASHSEED` 0 and 12345;
+  the canonical map hashes match the queue.
+* **Times** (cadical process time from `solver.log`; NUMERICAL): `(1,1,2,2)/(2,3)` 5 maps 70-129 s (median 89);
+  `(1,1,2,2)/(2,2,2)` 36 maps 31-288 s (93); `(1^4,2)` 89 maps 77-841 s (213); `1^6` 28 maps 81-1239 s (351). Slowest map 7
+  (`1^6`, 1239 s, 69 % of the cap). Checker 914 s at most. Solver total 38,813 s, checker 27,611 s.
+* **Coverage**: the 158 maps are disjoint from the 45 earlier UNSAT-VERIFIED maps (40 in per-unit records under `results/`,
+  maps 5, 6, 30 in `results/paired_9_3_continued/summary.json`, 40 and 48 in `results/grid_9_3/summary.json`), and the
+  union equals the 203 admissible maps of the census `maps_9_3.json` (checked this session against `pilot.census(9, 3)`).
+* **Prediction vs outcome**: controls pass in every shard: yes. >= 150/158 decided: 158/158. 0 SAT: yes. Per-pattern solver
+  times within 2x of item 1's: held for `1^6` (maximum 1239 s against 2 x 914 s), missed at the top for `(1^4,2)` (map 87 at
+  841 s and map 130 at 635 s exceed 2 x 317 s); medians are below item 1's. Estimate 23-35 core-h, 2.5-4 h wall: actual 18.51
+  core-h, 2.36 h.
+* **What may be claimed**: (1) **every admissible (9,3) plain formula, 203 of 203, is UNSAT-VERIFIED** (EXACT, formula
+  scope). (2) Geometric reading: no maximal face-neighbourly polyhedron with 9 faces and genus 3 exists (PROVED-1,
+  conditional on census coverage (E-261103-01, PROVED-1), encoder soundness including the uniformity reduction by
+  perturbation (E-261103-02 `SOUNDNESS.md`, PROVED-1) and these exact formulas; single encoder, AI-written arguments, no
+  independent human review). Because perturbation is allowed in S5, this reading also covers symmetric realizations, so the
+  free-C3 form of H-261103-02 is excluded at the same conditional level.
+* **What may NOT be claimed**: a CERTIFIED or human-reviewed non-existence theorem for (9,3); novelty beyond the literature
+  check of item 2 (CLAIMED, web only); archived proofs (they were checked and deleted; a note needs regenerated, archived
+  proofs, owner rule 2026-11-08); a second implementation (none ran); anything about (10,4) or about S0; the controls as a
+  genus-3 test.
+* **Verdict**: DECIDED@18.51 core-h (item 5a); the experiment's stop rule is met: (8,2) 2/2 and (9,3) 203/203 plain formulas
+  UNSAT-VERIFIED, all 8 uniform free-C3 formulas UNSAT-VERIFIED. Experiment total about 23.5 core-h (about 2.0 recorded
+  before 2026-11-08, 0.23 unit (a), 2.74 item 1, 18.51 item 5a).
+* **Hypotheses**: H-261101-07 stays open (genus 2 and 3 excluded conditionally, genus 4-5 untested); H-261103-02 stays
+  weakened with the conditional exclusion recorded (refuted only after review); H-261103-03 is not moved by this run.
+* **Next step (ROADMAP item 5 follow-up tree)**: focus compute stops. Before the lead review, at most: the (10,4) pattern
+  census (minutes, review 2026-11-08c §7 idea 2) and the E-261103-07 cost probe (<= 1 core-h, mixed patterns). Then the lead
+  review on the question of review 2026-11-08c §4 (note / (10,4) exact route / S0 transfer). The independent second encoder
+  on five maps (review 2026-11-08c §7 idea 1) is the cheapest way to remove the single-encoder risk before any note.
+* **Verification**: no code change since the item 5a prep; its unit tests (36 OK) and startup check stand. No `verify_all` run
+  (no shared code, certificate or candidate changed). No SAT, so no `candidate-check`. Evidence accepted from recorded hashes
+  and saved checker transcripts (cached acceptance), plus the CNF rebuild above; no DRAT replay.

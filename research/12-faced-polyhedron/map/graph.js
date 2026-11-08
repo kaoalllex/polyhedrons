@@ -1001,15 +1001,15 @@ window.GRAPH = {
    "id": "E-261103-03",
    "kind": "experiment",
    "title": "Exact decision per candidate map - OM-SAT for the 2 (8, 2) maps, then the symmetric and all admissible (9, 3) maps",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-03",
-   "concluded": "",
+   "concluded": "2026-11-08",
    "path": "experiments/E-261103-03-s5-exact-decision-8-2-9-3/README.md",
    "direction": [
     "DR19",
     "DR8"
    ],
-   "verdict": "",
+   "verdict": "DECIDED@about 23.5 core-h (item 5a 18.51) - (8,2) 2/2 and (9,3) 203/203 admissible plain formulas UNSAT-VERIFIED, 0 SAT; geometric reading conditional PROVED-1",
    "preregistered": "true",
    "conclusion": "Verdict: FOUNDATION for the small-case exact pipeline and a conditional negative (8,2) result. E-261103-03 remains running because its (9,3) stages are unfinished; there is no active process. No longer run is needed for (8,2). Next: commit a new PLAN amendment for the eight free-C3 (9,3) formulas, with plain fallback coverage and the registered affordability gate, before target compute. The scenario change trigger..."
   },

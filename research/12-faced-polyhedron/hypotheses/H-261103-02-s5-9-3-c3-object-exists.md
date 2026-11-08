@@ -71,3 +71,9 @@ retains its preceding status and credence.
 Status weakened (conditional): all 8 uniform free-C3 formulas are UNSAT-VERIFIED (EXACT instances); the geometric
 family exclusion rests on the PROVED-1 coverage draft in E-261103-03 CONCLUSION, not reviewed. No further C3-only work
 is queued (`reviews/strategy-review-2026-11-08.md` §5.1, M2).
+
+## 2026-11-08 item 5a
+
+E-261103-03 item 5a: all 203 admissible (9,3) plain formulas UNSAT-VERIFIED (EXACT). The plain formula is uniform and
+S5 allows perturbation, so the conditional PROVED-1 reading excludes every (9,3) object, the free-C3 form included
+(STATUS 3d). Status stays weakened: refuted only after a review of census coverage and encoder soundness.
