@@ -253,6 +253,8 @@ Primary sources read 2026-11-01 (`literature/primary-reads-2026-11-01.md`): Boko
 the 59 duals numerically and their OM-level "empty set" result is the vertex version; Roest-Vigh 2026 call the 12-face
 case open. Both known 8-face face-neighbourly polyhedra have exactly 4 convex vertices (I-261101-20).
 
+Literature check for S5 (ROADMAP item 2, web search only, 2026-11-08; no compute): arXiv, journal and web searches for (8, 2), (9, 3), (10, 4) found no published or claimed polyhedron and no non-existence result; the only face-neighbourly objects in print remain the tetrahedron, Szilassi and the two (8, 3) objects (Mizhaev, Roest-Vigh). CLAIMED, scope: absence in the sources searched (`literature/review-2026-11-03.md`, `literature/README.md`); MathOverflow not reached by the search tool; the four originals (Altshuler-Brehm 1986 and 1992, ABS 1994, Bokowski-Schewe 2002) were attempted on 2026-11-08 (`literature/primary-reads-2026-11-08.md`): no full text obtainable, none decides or constrains (8, 2), (9, 3), (10, 4); the 1986 genus-2 theorem is a vertex statement for maps without multiple edges.
+
 For the focus target the picture differs (2026-11-03): the combinatorics is small (section 3c) and the exact route is
 affordable map by map, so progress is measured by maps decided (UNSAT-VERIFIED, realized, or certified non-realizable), not
 by search hours; the heuristic engines are explore runs behind pilots (`ROADMAP.md`, S5 queue).

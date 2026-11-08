@@ -82,7 +82,7 @@ test runs included; item 1's launch uses 10 shards, so nothing runs beside it (i
      * all 5 (1,1,1,3) maps UNSAT-VERIFIED -> "every 11-gon (9,3) plain formula is UNSAT-VERIFIED" (EXACT,
        formula scope; geometric reading conditional on the encoder argument and on control (c)); item 3 uses
        all 24 maps. Any of them still TIMEOUT at 1800 s -> item 3 uses (1,2,3) and (2,2,2) only.
-2. **S5 literature check** (no compute, one session; literature-researcher subagent only with the owner's
+2. **S5 literature check - DONE 2026-11-08: nothing in print for (8,2), (9,3), (10,4), no non-existence result (CLAIMED, web sources only; `STATUS.md` §6, `literature/primary-reads-2026-11-08.md`).** (no compute, one session; literature-researcher subagent only with the owner's
    consent). Question: is any (8,2), (9,3), (10,4) maximal face-neighbourly polyhedron, or a non-existence
    result, published or claimed? Sources: Roest-Vigh 2026, Mizhaev 2026, Bokowski-H. 2025, the Szilassi
    and Grünbaum-Szilassi papers, arXiv and MathOverflow searches. Kill: two sessions. Outcome goes to
