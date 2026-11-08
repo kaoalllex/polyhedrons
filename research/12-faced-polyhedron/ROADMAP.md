@@ -60,10 +60,16 @@ Laptop: at most 10 cores in total; item 1 uses 8 workers, so items 2-3 may run b
    at most 15 lines; the runner's solver/checker caps as parameters; units (a) the 13 unattempted maps with
    patterns (1,1,1,3) and (1,2,3), solver 60 s / checker 120 s; (b) 12 unresolved maps, the lowest indices
    of each class: 5 of pattern (1^6), 5 of (1^4,2), 2 of (1,1,2,2)/(2,3); solver 1800 s, checker at most
-   2700 s; time to solve recorded; (c) **positive control at F = 9**: one E-261107-01 Phase B solid
-   (exact check first), its own map through the `submap=True` path with its planes pinned: SAT required.
-   Then an owner launch (8 workers, 1-2 h wall, at most 15 core-h; the bounded startup check of PROTOCOL §8
-   first). Predictions: (a) at least 10/13 UNSAT-VERIFIED; (b) has no prediction, it measures.
+   2700 s; time to solve recorded; plus map 74 at the (b) caps, outside the (b) counts below; (c) **positive
+   control at F = 9**: one E-261107-01 Phase B solid (exact check first), its own map through the `submap=True`
+   path with its planes pinned: SAT required.
+   **Order (owner, 2026-11-08): unit (a) runs first, on its own**, right after the amendment and the cap
+   parameters, launched by the lab session after the bounded startup check of PROTOCOL §8 (at most 0.3 core-h,
+   minutes of wall time). Its 13 maps are exactly the unattempted admissible (9,3) maps with an 11-gon face (all
+   three extra segments at one face; 10 of the 11 attempted ones are UNSAT-VERIFIED, map 74 timed out at 60 s).
+   Record (a)'s per-formula outcomes at once. "Every 11-gon map is UNSAT-VERIFIED" waits for map 74 and for
+   control (c). Then (b), map 74 and (c) in an owner launch (8 workers, 1-2 h wall, at most 15 core-h; the
+   bounded startup check first). Predictions: (a) at least 10/13 UNSAT-VERIFIED; (b) has no prediction, it measures.
    Kill: control (c) fails -> stop, escalate (the 0-SAT record would be void). Follow-up tree:
    * any SAT -> stop dispatch; check the model exactly, run the saved-OM realizer (E-261103-04 path),
      `verify_candidate.py --target S5`, `candidate-check`; if it does not realize: one final-polynomial
