@@ -122,14 +122,17 @@ what would move it. Experiment: goal, origin in prose, method, results (files in
 `experiments/_template/run.sh` writes it automatically: commit SHA, dirty flag, branch, shard / seed, host and
 OS, CPU count, Python version, `pip freeze`, start and end time (UTC), exit status, wall-clock seconds, and
 core-hours (seconds x workers). The experiment adds its own parameters and the SHA-256 of every input and
-output file it claims anything about. Large proof files (DRAT / LRAT) go to a GitHub release or Zenodo; git
-keeps the URL, size and SHA-256.
+output file it claims anything about. Proofs (DRAT / LRAT) are checked during the run and then deleted; the record
+keeps the CNF and proof SHA-256 and the checker transcript, and CNFs are rebuilt from the committed encoder when
+needed (hash-checked). Proof and CNF files never go into git. A claim that goes into a note gets one replay run
+whose proofs go to a GitHub release or Zenodo; git keeps the URL, size and SHA-256 (owner, 2026-11-08).
 
 ## 6. Compute
 
 **Laptop** (owner's MacBook, 11 workers): always under `caffeinate -dimsu` (night 4 lost 8 h to sleep); jobs
 checkpoint and resume (`overnight/run_overnight.py` does). Launch with `overnight/launch.sh CODE [CODE ...] start
-[CORES]` (CODE: the end of an experiment id, e.g. `02-03`; CORES default 10, fewer by day); `run.sh` splits its units
+[CORES]` (CODE: the end of an experiment id, e.g. `02-03`; CORES 8-10 for every run whose units can be split, day runs
+and lab test runs included, owner 2026-11-08); `run.sh` splits its units
 by `SHARDS = CORES`, and a restart with another CORES re-splits the remaining units. At most 10 cores in total (more
 freezes the laptop; the launcher refuses past `MAX_CORES`): several experiments in one night are one queue on the
 same cores (`launch.sh 02-03 02-04 start`), never side by side. `stop` lets each shard finish its current unit;

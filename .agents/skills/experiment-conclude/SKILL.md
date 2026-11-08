@@ -19,7 +19,7 @@ Use `python3` from an activated environment with `requirements.txt` installed.
    before interpreting it (`reviews/strategy-review-2026-11-01.md` 5.1). A negative statement names its scope
    (`SPEC.md` section 4) and what was not run.
 3. **Verify.** Run every candidate through the `candidate-check` skill. Every UNSAT used as evidence keeps its
-   formula (CNF / SMT2 file or its SHA-256) and, for SAT, its proof.
+   formula's SHA-256 and its proof's SHA-256 with the checker transcript (files deleted, `PROTOCOL.md` §5).
    - Routine conclusions reuse a saved successful proof check when CNF, proof and checker provenance
      are bound by recorded hashes and the success transcript is intact. Validate hashes and transcripts;
      do not replay DRAT merely because a new session starts or drat-trim is installed. Replay once for
