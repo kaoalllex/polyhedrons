@@ -1142,6 +1142,21 @@
    "conclusion": "Verdict for the direction: (10,4) plain exact route with kissat: OPEN@8.59 core-h, 4 maps, 3 solvers (a decision is within reach; the 10x speed-up goal is not met; P(4) = 475 is between the 160 and 1,000 thresholds). No hypothesis changes: H-261101-07 stays open (no SAT)."
   },
   {
+   "id": "E-261109-01",
+   "kind": "experiment",
+   "title": "Grooved-box multiplicity control - does the S5 encoder accept a real embedded polyhedron with a face pair sharing 3 and 4 segments",
+   "status": "running",
+   "date": "2026-11-09",
+   "concluded": "",
+   "path": "experiments/E-261109-01-grooved-box-multiplicity-control/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -4834,6 +4849,11 @@
   },
   {
    "from": "E-261103-02",
+   "to": "E-261109-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-02",
    "to": "I-261108-04",
    "kind": "origin"
   },
@@ -4845,6 +4865,11 @@
   {
    "from": "E-261103-03",
    "to": "E-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "E-261109-01",
    "kind": "origin"
   },
   {
@@ -4984,6 +5009,11 @@
   },
   {
    "from": "E-261108-03",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261109-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5770,6 +5800,11 @@
   {
    "from": "I-261103-05",
    "to": "E-261103-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261108-04",
+   "to": "E-261109-01",
    "kind": "origin"
   },
   {
