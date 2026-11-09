@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-09** (E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
+As of **2026-11-09** (E-261109-02 independent census agrees, 3z; E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
 credences in `ROADMAP.md`; before it lead review 2026-11-08 applied: (9, 3) credences moved; sections
 3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
 and item 5a recorded in 3d the same day; E-261103-03 concluded; E-261103-07 cost probe recorded in 3w). Definitions, counters and
@@ -270,6 +270,13 @@ Box with k = 2, 3 pyramidal notches across one edge, exact planes, EMBEDDED by `
 3 / 4 segments). E-261103-02 encoder, `submap=True`: pinned own map SAT (k = 2, 3), same planes with a swapped segment pairing
 (valid map, not embedded) UNSAT-VERIFIED, unpinned k = 2 SAT. EXACT, instance scope (other multiple-segment positions, m >= 5,
 unpinned k = 3 not run); lifts the item 1 caveat on the (9,3) and (10,4) UNSATs (E-261109-01 CONCLUSION).
+
+## 3z. E-261109-02 independent census of (8,2) and (9,3) (2026-11-09)
+
+A second enumerator (triangle-by-triangle growth, own canonical form, C search) reproduces E-261103-01 exactly: (7,1) 1,
+(8,2) 2, (9,3) 240 classes with 203 admissible, same canonical sets, |Aut+| and reflexibility; 120 s for (9,3). EXACT as a
+computation; coverage arguments still PROVED-1 (AI-written, no human review); the census is now two-algorithm for the class
+lists. (10,4) not run (E-261109-02 README).
 
 ## 4. What may and may not be claimed
 

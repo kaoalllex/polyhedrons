@@ -1157,6 +1157,21 @@
    "conclusion": "Verdict for the direction: FOUNDATION (control passed)."
   },
   {
+   "id": "E-261109-02",
+   "kind": "experiment",
+   "title": "Independent census of the (8, 2) and (9, 3) candidate maps (week item 3, I-261108-08)",
+   "status": "done",
+   "date": "2026-11-09",
+   "concluded": "2026-11-09",
+   "path": "experiments/E-261109-02-independent-census/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "PROMISING",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -3516,7 +3531,7 @@
    "id": "I-261108-04",
    "kind": "idea",
    "title": "Grooved-box positive control - an embedded polyhedron in which one face pair shares three or four collinear segments",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-08",
    "concluded": "",
    "path": "ideas/I-261108-04-grooved-box-multiplicity-control.md",
@@ -3574,7 +3589,7 @@
    "id": "I-261108-08",
    "kind": "idea",
    "title": "Independent census of the (8, 2) and (9, 3) candidate maps - a second enumerator that shares no code with E-261103-01",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-08",
    "concluded": "",
    "path": "ideas/I-261108-08-independent-s5-census.md",
@@ -4824,6 +4839,11 @@
   },
   {
    "from": "E-261103-01",
+   "to": "E-261109-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5014,6 +5034,11 @@
   },
   {
    "from": "E-261109-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261109-02",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5810,6 +5835,11 @@
   {
    "from": "I-261108-05",
    "to": "E-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261108-08",
+   "to": "E-261109-02",
    "kind": "origin"
   },
   {
