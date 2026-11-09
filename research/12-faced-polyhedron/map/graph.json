@@ -1219,6 +1219,21 @@
    "conclusion": "Verdict: PARK I-261108-06 (kill rule met, LOW-YIELD@0.052 core-h). 0 of the 203 admissible (9, 3) plain formulas is UNSAT on the rank-3 contraction at any one face (needed: >= 27 for a pass, < 20 parks). Scope: one-face contraction sub-formulas (`PLAN.md` method), cap 20 s, these 203 maps; 2030 map sub-formulas, all SAT, 0 TIMEOUT, slowest 0.11 s."
   },
   {
+   "id": "E-261109-06",
+   "kind": "experiment",
+   "title": "(10,4) first-witness sweep, stratum C - 358 maps of the six fastest patterns, kissat, no DRAT",
+   "status": "running",
+   "date": "2026-11-09",
+   "concluded": "",
+   "path": "experiments/E-261109-06-s5-10-4-stratum-c-sweep/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -4891,6 +4906,11 @@
   },
   {
    "from": "E-261103-01",
+   "to": "E-261109-06",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -4952,6 +4972,11 @@
   {
    "from": "E-261103-03",
    "to": "E-261109-05",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "E-261109-06",
    "kind": "origin"
   },
   {
@@ -5036,6 +5061,11 @@
   },
   {
    "from": "E-261103-07",
+   "to": "E-261109-06",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-07",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5101,6 +5131,11 @@
   },
   {
    "from": "E-261108-03",
+   "to": "E-261109-06",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261108-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5132,6 +5167,11 @@
   {
    "from": "E-261109-05",
    "to": "H-261101-11",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261109-06",
+   "to": "H-261101-07",
    "kind": "tests"
   },
   {
