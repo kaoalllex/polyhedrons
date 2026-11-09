@@ -1130,16 +1130,16 @@ window.GRAPH = {
    "id": "E-261108-03",
    "kind": "experiment",
    "title": "(10,4) speed-up benchmark - kissat and CaDiCaL --unsat against the recorded default-CaDiCaL runs",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-08",
-   "concluded": "",
+   "concluded": "2026-11-09",
    "path": "experiments/E-261108-03-s5-10-4-speedup-benchmark/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "OPEN@8.59 core-h (kissat winner, P(4) = 475 core-h without DRAT, no 10x; (10,4) maps 96/85/146/845 UNSAT-SOLVER)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction: (10,4) plain exact route with kissat: OPEN@8.59 core-h, 4 maps, 3 solvers (a decision is within reach; the 10x speed-up goal is not met; P(4) = 475 is between the 160 and 1,000 thresholds). No hypothesis changes: H-261101-07 stays open (no SAT)."
   },
   {
    "id": "FD11",

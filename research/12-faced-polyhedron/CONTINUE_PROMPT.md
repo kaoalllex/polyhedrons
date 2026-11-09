@@ -20,12 +20,10 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
   incl. both slow strata, censored projection, holdout; owner launch <= 2 h), 3 independent census (I-261108-08),
   4 second encoder on six maps, 5 union of two matched solids (explore, I-261108-11 stage 1). The contraction sieve
   moved out of the week; the note package starts with the soundness chain of review 08e Follow-up Q3.
-* Week item 2 cut down by the owner (2026-11-08 21:30): E-261108-03 pre-registered (kissat rel-4.0.4, CaDiCaL
-  `--unsat`; holdout and cube-and-conquer are later launches), amended at 22:20 (owner: no DRAT, `UNSAT-SOLVER`, long
-  caps, default baseline), smoke test green, waiting for the owner launch `launch.sh 08-03 start`; then `experiment-conclude` (write `projection.py --selftest` there, as `PLAN.md` says).
-* NEXT: week item 1 in a lab session (no night). Item 2 needs `experiment-start` (new experiment, kissat pinned, cube
-  format, projection formula in `PLAN.md`); items 1 and 2 may be prepared in either order, but a (10,4) UNSAT carries the
-  item 1 caveat until item 1 passes.
+* Week item 2 = E-261108-03, launched and concluded 2026-11-09 (CONCLUSION, STATUS 3x): kissat wins, decides (10,4) maps 96, 85,
+  146, 845 as UNSAT-SOLVER in 189-2749 s, best ratio 2.35x (no 10x), P(4) = P(16) = 475 core-h without DRAT; follow-up tree:
+  Actions calibration (I-261108-07), no holdout; cube-and-conquer still open. The lead review decides.
+* NEXT: week item 1 in a lab session (no night); a (10,4) UNSAT carries the item 1 caveat until item 1 passes.
 * Branch `lab/2026-11-08` (from `main` 49e2a5c after PR #6; pushed): the week plan's only branch. No active process.
 * For the lead: after week item 5 concludes, decide the next stages of I-261108-11 (owner 2026-11-08): if the
   mechanism works, general genus-0 pieces (e.g. Szilassi + a cube on 3 planes), the (9, 4) sources, the rigid (9, 3)

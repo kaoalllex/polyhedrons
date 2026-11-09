@@ -1,0 +1,46 @@
+=== 2026-11-08 22:21:09 launch.sh start, shard 0
+=== 2026-11-08 22:21:09 kissat-A shard 0
+controls start 0
+map control-f9-s0 start, solver 60s checker 120s
+map control-f9-s0 SAT
+map control-f9-neg-s0 start, solver 60s checker 120s
+map control-f9-neg-s0 UNSAT-SOLVER
+map control-f9-x-s0 start, solver 60s checker 120s
+map control-f9-x-s0 SAT
+SHARD-COMPLETE wall_seconds 8.457
+=== 2026-11-08 22:21:17 unsat-A shard 0
+controls start 0
+map control-f9-s0 start, solver 60s checker 120s
+map control-f9-s0 SAT
+map control-f9-neg-s0 start, solver 60s checker 120s
+map control-f9-neg-s0 UNSAT-SOLVER
+map 7 start, solver 1800s checker 60s
+map 7 TIMEOUT
+SHARD-COMPLETE wall_seconds 1807.899
+=== 2026-11-08 22:51:25 kissat-B shard 0
+controls start 0
+map control-f10-s0 start, solver 60s checker 120s
+map control-f10-s0 SAT
+map control-f10-neg-s0 start, solver 60s checker 120s
+map control-f10-neg-s0 UNSAT-SOLVER
+map 96 start, solver 14400s checker 60s
+map 96 UNSAT-SOLVER
+SHARD-COMPLETE wall_seconds 1082.726
+=== 2026-11-08 23:09:28 unsat-B shard 0
+controls start 0
+map control-f10-s0 start, solver 60s checker 120s
+map control-f10-s0 SAT
+map control-f10-neg-s0 start, solver 60s checker 120s
+map control-f10-neg-s0 UNSAT-SOLVER
+map control-f10-x-s0 start, solver 60s checker 120s
+map control-f10-x-s0 SAT
+SHARD-COMPLETE wall_seconds 8.976
+=== 2026-11-08 23:09:37 default-B shard 0
+controls start 0
+map control-f10-s0 start, solver 60s checker 120s
+map control-f10-s0 SAT
+map control-f10-neg-s0 start, solver 60s checker 120s
+map control-f10-neg-s0 UNSAT-SOLVER
+map control-f10-x-s0 start, solver 60s checker 120s
+map control-f10-x-s0 SAT
+SHARD-COMPLETE wall_seconds 8.979

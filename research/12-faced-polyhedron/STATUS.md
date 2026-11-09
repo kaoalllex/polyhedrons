@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-08** (lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
+As of **2026-11-09** (E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
 credences in `ROADMAP.md`; before it lead review 2026-11-08 applied: (9, 3) credences moved; sections
 3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
 and item 5a recorded in 3d the same day; E-261103-03 concluded; E-261103-07 cost probe recorded in 3w). Definitions, counters and
@@ -8,7 +8,7 @@ evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experim
 `ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
 numbers; other files link here.
 
-No active process (item 5a and the E-261103-07 probe finished 2026-11-08). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-08d done, next: week item 1 (`ROADMAP.md`). E-261103-04, E-261103-05, E-261103-06
+No active process (item 5a, the E-261103-07 probe and the E-261108-03 benchmark finished). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-08d done, next: week item 1 (`ROADMAP.md`). E-261103-04, E-261103-05, E-261103-06
 and E-261107-01 are concluded (sections 3g, 3j-3u).
 
 ## 0. State in one paragraph
@@ -254,6 +254,15 @@ No hypothesis, credence or witness change.
 scope; a timeout is not a result for any map. Pre-registered rule: "needs a speed-up first" before any full (10, 4) run; F is only
 bounded below (> 3.3 over all maps, > 11 for `(2,2,2)/(2,2,2)`). No hypothesis, credence or witness change
 (E-261103-07 CONCLUSION).
+
+## 3x. E-261108-03 (10, 4) speed-up benchmark (2026-11-08/09)
+
+10 shards, 8.59 core-h (sum of shard wall times), 2.38 h wall, no DRAT (UNSAT-SOLVER), controls pass in every shard. (10, 4) maps
+96, 85, 146, 845 (solver s): kissat 1073, 2749, 693, 188; CaDiCaL `--unsat` 3119, 8420, 1415, 367; default CaDiCaL 1970, 6454 (96, 85 only);
+0 SAT, three solvers agree. Best measured speed-up 2.35x (kissat on 85), `--unsat` slower than default; the 10x goal is not met.
+Winner kissat (sum B 380 against 777 core-h): P(4) = P(16) = 475 core-h without DRAT (n = 1-2 per stratum, a scenario, not a bound).
+NUMERICAL, instance scope; UNSAT-SOLVER is not a negative result and (10, 4) UNSATs carry the item 1 caveat. Next by the follow-up tree: Actions
+calibration (I-261108-07); no holdout (P(4) > 160). No hypothesis, credence or witness change (E-261108-03 CONCLUSION).
 
 ## 4. What may and may not be claimed
 
