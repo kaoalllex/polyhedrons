@@ -19,3 +19,5 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
   finding in the PLAN; no job if not allowed); 3 cube-and-conquer pilot on maps 96, 85 (explore).
 * NEXT: week item 1 prep (PLAN, frozen queue, smoke test) so the owner can launch the night; then item 2 prep.
 * Branch `lab/2026-11-09` (from `main` after the merge of `lab/2026-11-08`): the week plan's only branch. No active process.
+* For the lead: the owner's "obstruction radar" (I-261108-06 power test on the 203 (9,3) maps, then N2 ordering),
+  `reviews/strategy-review-2026-11-09-owner-ideas.md` §2; not a week item.
