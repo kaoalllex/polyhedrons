@@ -17,7 +17,9 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
 * Week plan in `ROADMAP.md` (lead review 2026-11-09, owner-approved): 1 stratum C first-witness night (360 maps,
   kissat, no DRAT, <= 80 core-h, owner launch); 2 Actions calibration (read GitHub's Actions terms first, record the
   finding in the PLAN; no job if not allowed); 3 cube-and-conquer pilot on maps 96, 85 (explore).
-* NEXT: week item 1 prep (PLAN, frozen queue, smoke test) so the owner can launch the night; then item 2 prep.
+* NEXT: week item 1 is pre-registered as E-261109-06 (`dc4666b`: PLAN, frozen `queue.json` of 358 maps, smoke test
+  passed); the owner launches the night (`launch.sh 09-06 start`), the next lab session concludes it
+  (`summary.py`, `experiment-conclude`). Meanwhile: week item 2 prep (Actions terms first).
 * Branch `lab/2026-11-09` (from `main` after the merge of `lab/2026-11-08`): the week plan's only branch. No active process.
 * Done on the owner's request (not a week item): E-261109-05, the owner's "obstruction radar" (I-261108-06 power test):
   0 of 203 (9,3) maps killed, sieve parked (STATUS 3ac). Week plan unchanged; NEXT is still item 1 prep.
