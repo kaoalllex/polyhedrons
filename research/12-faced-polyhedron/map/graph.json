@@ -1203,6 +1203,22 @@
    "conclusion": "Verdict for the direction (DR19): LOW-YIELD@0.03 core-h, 128 samples per source; both sources parked at this resolution (kill rule of the row)."
   },
   {
+   "id": "E-261109-05",
+   "kind": "experiment",
+   "title": "Face-contraction sieve - power test on the 203 known-UNSAT (9, 3) maps (owner's obstruction radar)",
+   "status": "running",
+   "date": "2026-11-09",
+   "concluded": "",
+   "path": "experiments/E-261109-05-face-contraction-sieve/README.md",
+   "direction": [
+    "DR19",
+    "DR9"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -4935,6 +4951,11 @@
   },
   {
    "from": "E-261103-03",
+   "to": "E-261109-05",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5060,6 +5081,11 @@
   },
   {
    "from": "E-261108-02",
+   "to": "E-261109-05",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261108-02",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5096,6 +5122,16 @@
   {
    "from": "E-261109-04",
    "to": "H-261103-02",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261109-05",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261109-05",
+   "to": "H-261101-11",
    "kind": "tests"
   },
   {
@@ -5896,6 +5932,11 @@
   {
    "from": "I-261108-05",
    "to": "E-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261108-06",
+   "to": "E-261109-05",
    "kind": "origin"
   },
   {
