@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-08** (lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
+As of **2026-11-09** (E-261109-04 union of matched solids, 0 of 256 samples, 3ab; E-261109-03 second encoder agrees on six (9,3) maps, 3aa; E-261109-02 independent census agrees, 3z; E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
 credences in `ROADMAP.md`; before it lead review 2026-11-08 applied: (9, 3) credences moved; sections
 3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
 and item 5a recorded in 3d the same day; E-261103-03 concluded; E-261103-07 cost probe recorded in 3w). Definitions, counters and
@@ -8,7 +8,7 @@ evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experim
 `ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
 numbers; other files link here.
 
-No active process (item 5a and the E-261103-07 probe finished 2026-11-08). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-08d done, next: week item 1 (`ROADMAP.md`). E-261103-04, E-261103-05, E-261103-06
+No active process (item 5a, the E-261103-07 probe and the E-261108-03 benchmark finished). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-09 done, next: week item 1 of its week plan (`ROADMAP.md`). E-261103-04, E-261103-05, E-261103-06
 and E-261107-01 are concluded (sections 3g, 3j-3u).
 
 ## 0. State in one paragraph
@@ -255,6 +255,45 @@ scope; a timeout is not a result for any map. Pre-registered rule: "needs a spee
 bounded below (> 3.3 over all maps, > 11 for `(2,2,2)/(2,2,2)`). No hypothesis, credence or witness change
 (E-261103-07 CONCLUSION).
 
+## 3x. E-261108-03 (10, 4) speed-up benchmark (2026-11-08/09)
+
+10 shards, 8.59 core-h (sum of shard wall times), 2.38 h wall, no DRAT (UNSAT-SOLVER), controls pass in every shard. (10, 4) maps
+96, 85, 146, 845 (solver s): kissat 1073, 2749, 693, 188; CaDiCaL `--unsat` 3119, 8420, 1415, 367; default CaDiCaL 1970, 6454 (96, 85 only);
+0 SAT, three solvers agree. Best measured speed-up 2.35x (kissat on 85), `--unsat` slower than default; the 10x goal is not met.
+Winner kissat (sum B 380 against 777 core-h): P(4) = P(16) = 475 core-h without DRAT (n = 1-2 per stratum, a scenario, not a bound).
+NUMERICAL, instance scope; UNSAT-SOLVER is not a negative result and (10, 4) UNSATs carry the item 1 caveat. Next by the follow-up tree: Actions
+calibration (I-261108-07); no holdout (P(4) > 160). No hypothesis, credence or witness change (E-261108-03 CONCLUSION).
+
+## 3y. E-261109-01 grooved-box multiplicity control (2026-11-09)
+
+Box with k = 2, 3 pyramidal notches across one edge, exact planes, EMBEDDED by `ladder_exact` (F 12 / 15, top/front pair shares
+3 / 4 segments). E-261103-02 encoder, `submap=True`: pinned own map SAT (k = 2, 3), same planes with a swapped segment pairing
+(valid map, not embedded) UNSAT-VERIFIED, unpinned k = 2 SAT. EXACT, instance scope (other multiple-segment positions, m >= 5,
+unpinned k = 3 not run); lifts the item 1 caveat on the (9,3) and (10,4) UNSATs (E-261109-01 CONCLUSION).
+
+## 3z. E-261109-02 independent census of (8,2) and (9,3) (2026-11-09)
+
+A second enumerator (triangle-by-triangle growth, own canonical form, C search) reproduces E-261103-01 exactly: (7,1) 1,
+(8,2) 2, (9,3) 240 classes with 203 admissible, same canonical sets, |Aut+| and reflexibility; 120 s for (9,3). EXACT as a
+computation; coverage arguments still PROVED-1 (AI-written, no human review); the census is now two-algorithm for the class
+lists. (10,4) not run (E-261109-02 README).
+
+## 3aa. E-261109-03 second encoder on six (9,3) maps (2026-11-09)
+
+An encoder written independently of `omsat.py` / `pilot.build` (`enc2.py`: Lemma 5.1, line-interval crossing parity, no
+INCONS/RFCONS/REFLEX1/POC) matches exact geometry on 8 objects (0 mismatches, ~1,300 perturbed instances, both classes
+present) and decides (9,3) maps 40, 43, 10, 30, 48, 5 UNSAT-VERIFIED in 20-81 s, as the first encoder does; all pinned
+controls and unpinned Szilassi / Roest-Vigh SAT behave as expected. EXACT as a computation; the encoder's soundness is
+PROVED-1 (AI-written). The (9,3) caveat now reads "two encoders agree on six maps and all controls"; the other 197 maps
+are covered by the first encoder only.
+
+## 3ab. E-261109-04 union of two matched solids (2026-11-09)
+
+Boolean union of Szilassi with a projectively matched Szilassi (k = 4) or a tetrahedron (k = 1), exact boundary from the plane
+arrangement; controls pass (identical copies return Szilassi, a distant copy fails). 128 valid samples per source: 0 boundaries
+with 10 simple faces, genus 4 and a connected solid (best clean-faced A sample: genus 2, 35 of 45 pairs; B: genus 1 only).
+Sampled negative at this resolution (EXACT computation, float arrangement); both sources parked, nothing excluded.
+
 ## 4. What may and may not be claimed
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for
@@ -263,6 +302,12 @@ four types, one on a map combinatorially completable to a target map".
 May not: "the 12-face polyhedron does not exist"; "we are close to genus 6" (18 missing adjacencies are not a
 local defect); "correct Gauss degree implies realizability" (refuted by Q1); "covering is proved" (sampled);
 "no type is realizable"; "no symmetric immersion" for mirrors or point reflections until I-261101-16 is reviewed (the certificates cover rotations); anything about the hemisphere wall from the nights-4/5 drift (E-261101-07); any statement from a timeout; any UNSAT beyond its exact formula; that census completeness has an independent human review (the coverage argument is PROVED-1); an unconditional, CERTIFIED or human-reviewed (9, 3) non-existence theorem (single encoder, coverage and soundness PROVED-1, proofs not archived; section 3d), or an unconditional/human-reviewed (8, 2) non-existence theorem (section 3d).
+
+May not (scope, owner's question 2026-11-08): that the (8, 2) or (9, 3) negative covers non-cubic objects. S5 is cubic; at
+(8, 2) and (9, 3) the edge count has slack (E <= 30 for 28 pairs, E <= 39 for 36), so counting does not exclude objects with
+every pair adjacent and some vertices of degree >= 4 (e.g. (9, 3) with V = 23, E = 36, three 4-valent vertices); no
+formula covers them. At (12, 6) there is no slack (E = 66 pairs), so S0 is unaffected. The (8, 2) / (9, 3) note must say "cubic"
+unless the perturbation lemma I-261108-09 (untested) reduces these objects to the cubic case.
 
 ## 5. Results worth sharing (ranked, with prerequisites)
 

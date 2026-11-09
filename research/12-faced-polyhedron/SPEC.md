@@ -70,7 +70,8 @@ that vanish only in a degenerate limit (`ladder.degeneracy`) are not progress.
 
 Solver outcomes: **SAT** (a model; re-check exactly before use), **UNSAT** (scoped to exactly that formula:
 those normals, gauge, bounds and margins; never generalise beyond it), **UNKNOWN / timeout** (no information,
-never a negative result), **ERROR** (the run failed; no information), **NO_ADMISSIBLE_NORMALS** (the annealer
+never a negative result), **UNSAT-SOLVER** (the solver's UNSAT without a checked proof: may skip or rank a
+map in a search, never a negative result until a replay gives UNSAT-VERIFIED), **ERROR** (the run failed; no information), **NO_ADMISSIBLE_NORMALS** (the annealer
 found no normals in the class within its budget - a search failure, not a proof). A SAT model or a search output
 is a **CANDIDATE** until `verify_candidate.py` passes; none of these outcomes is an evidence label (§5).
 
@@ -110,6 +111,7 @@ claims need a human mathematical review outside this chain of agents.
 * 2026-11-03: §2 adds S5 (maximal face-neighbourly polyhedra) and its check `--target S5`; the owner made S5 at
   (9, 3) the focus target (`STRATEGY.md`); S0 stays the defining problem of the project, parked, not weakened.
 
+* 2026-11-08: §4 adds UNSAT-SOLVER (owner: search runs may skip DRAT; negative claims still need a checked proof).
 * 2026-11-01: §4 adds ERROR / CANDIDATE, the scope of a negative result and the certificate chain.
 * 2026-11-01: §1 success check is `verify_candidate.py --target S0` (the earlier `--all-pairs` wording
   accepted doubled adjacencies; found by the fresh-eyes process audit of 2026-11-01, finding F01).

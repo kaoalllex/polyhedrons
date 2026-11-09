@@ -2,7 +2,7 @@
 id: I-261108-08
 title: Independent census of the (8, 2) and (9, 3) candidate maps - a second enumerator that shares no code with E-261103-01
 date: 2026-11-08
-status: open
+status: tried
 direction: [DR19]
 origin: [E-261103-01]
 ---
@@ -25,3 +25,7 @@ has one for the full list (its independent algorithm covered only the free-C3 su
 ## Source
 
 Lead review 2026-11-08d, §6 idea N5 and audit A2; week item 3.
+
+## Outcome
+
+Tried in E-261109-02 (2026-11-09): agreement at (7,1), (8,2), (9,3); (10,4) not run.

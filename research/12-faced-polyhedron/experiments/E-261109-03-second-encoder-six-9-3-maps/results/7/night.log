@@ -1,0 +1,13 @@
+=== 2026-11-09 21:27:29 launch.sh start, shard 7
+roest_vigh {'exact=True enc2=True': 6, 'exact=False enc2=False': 7}
+mizhaev {'exact=True enc2=True': 5, 'exact=False enc2=False': 8}
+grooved2 {'exact=True enc2=True': 10, 'exact=False enc2=False': 3}
+grooved2_swapped {'exact=False enc2=False': 13}
+grooved3 {'exact=True enc2=True': 10, 'exact=False enc2=False': 3}
+grooved3_swapped {'exact=False enc2=False': 13}
+szilassi {'nonuniform': 2, 'exact=False enc2=False': 7, 'exact=True enc2=True': 4}
+rv_planes_mizhaev_map {'exact=False enc2=False': 13}
+mizhaev_planes_rv_map {'exact=False enc2=False': 13}
+MISMATCHES 0 []
+
+{"name": "unpinned_szilassi", "variables": 4477, "clauses": 17487, "cnf_sha256": "2ab81a339f0f69e66dff17ca9600a52c2fe0daa24c6a796f15f50bc4aa2142ea", "solver_seconds": 0.1, "solver_cap": 600, "status": "SAT", "expected": "SAT"}

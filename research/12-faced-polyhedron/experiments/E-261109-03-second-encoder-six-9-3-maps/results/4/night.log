@@ -1,0 +1,14 @@
+=== 2026-11-09 21:27:29 launch.sh start, shard 4
+roest_vigh {'exact=True enc2=True': 5, 'exact=False enc2=False': 8}
+mizhaev {'exact=True enc2=True': 4, 'exact=False enc2=False': 9}
+grooved2 {'exact=True enc2=True': 12, 'exact=False enc2=False': 1}
+grooved2_swapped {'exact=False enc2=False': 13}
+grooved3 {'exact=True enc2=True': 12, 'exact=False enc2=False': 1}
+grooved3_swapped {'exact=False enc2=False': 13}
+szilassi {'nonuniform': 1, 'exact=True enc2=True': 5, 'exact=False enc2=False': 7}
+rv_planes_mizhaev_map {'exact=False enc2=False': 13}
+mizhaev_planes_rv_map {'exact=False enc2=False': 13}
+MISMATCHES 0 []
+
+{"name": "pinned_neg_grooved2_swapped", "variables": 95807, "clauses": 427750, "cnf_sha256": "f79e6859502abd4404ea4502da2a1fc5bc38d3f3928fc60c43734c695874d48c", "solver_seconds": 0.1, "solver_cap": 300, "status": "UNSAT-VERIFIED", "checker_seconds": 0.2, "proof_sha256": "fb9945f6bb84760440f9b1aa9ca075d73c79112586a36614bb3f467ccb41949d", "expected": "UNSAT-VERIFIED"}
+{"name": "map30", "variables": 20481, "clauses": 83991, "cnf_sha256": "595c998af374f64534762043aa6169e8ee1e50b0d28fc8db2f2a9eb12ffe6745", "solver_seconds": 77.1, "solver_cap": 1800, "status": "UNSAT-VERIFIED", "checker_seconds": 38.8, "proof_sha256": "1fe65fc97d72d7c12c0b9b92e1fb207b69e985501dc3e10616672229d39d2349", "expected": "UNSAT-VERIFIED"}

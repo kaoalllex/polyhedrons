@@ -1127,6 +1127,82 @@
    "conclusion": "Verdict: PARK (kill criterion met). 0 of the 24 admissible 11-gon (9,3) maps have an UNSAT face-support sub-formula on <= 6 faces (needed: >= 3). Scope (NUMERICAL/EXACT per sub-formula): clause subsets of the plain formula indexed by constraint face tuples (PLAN amendment), levels k = 3..6 exhaustive (C(9,k) sets per map), cap 20 s, 0 TIMEOUT at k <= 6; at k = 7 also 0 UNSAT, 0 TIMEOUT; at k = 8 0 UNSAT with 94 TI..."
   },
   {
+   "id": "E-261108-03",
+   "kind": "experiment",
+   "title": "(10,4) speed-up benchmark - kissat and CaDiCaL --unsat against the recorded default-CaDiCaL runs",
+   "status": "done",
+   "date": "2026-11-08",
+   "concluded": "2026-11-09",
+   "path": "experiments/E-261108-03-s5-10-4-speedup-benchmark/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "OPEN@8.59 core-h (kissat winner, P(4) = 475 core-h without DRAT, no 10x; (10,4) maps 96/85/146/845 UNSAT-SOLVER)",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: (10,4) plain exact route with kissat: OPEN@8.59 core-h, 4 maps, 3 solvers (a decision is within reach; the 10x speed-up goal is not met; P(4) = 475 is between the 160 and 1,000 thresholds). No hypothesis changes: H-261101-07 stays open (no SAT)."
+  },
+  {
+   "id": "E-261109-01",
+   "kind": "experiment",
+   "title": "Grooved-box multiplicity control - does the S5 encoder accept a real embedded polyhedron with a face pair sharing 3 and 4 segments",
+   "status": "done",
+   "date": "2026-11-09",
+   "concluded": "2026-11-09",
+   "path": "experiments/E-261109-01-grooved-box-multiplicity-control/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "FOUNDATION (m = 3 and m = 4 pinned positives SAT, swapped-pairing negatives UNSAT-VERIFIED; unpinned k = 2 SAT)",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: FOUNDATION (control passed)."
+  },
+  {
+   "id": "E-261109-02",
+   "kind": "experiment",
+   "title": "Independent census of the (8, 2) and (9, 3) candidate maps (week item 3, I-261108-08)",
+   "status": "done",
+   "date": "2026-11-09",
+   "concluded": "2026-11-09",
+   "path": "experiments/E-261109-02-independent-census/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "PROMISING",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261109-03",
+   "kind": "experiment",
+   "title": "Second, independently written S5 encoder on six (9, 3) maps and the pinned controls (week item 4, I-261031-03)",
+   "status": "done",
+   "date": "2026-11-09",
+   "concluded": "2026-11-09",
+   "path": "experiments/E-261109-03-second-encoder-six-9-3-maps/README.md",
+   "direction": [
+    "DR8",
+    "DR19"
+   ],
+   "verdict": "FOUNDATION",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: FOUNDATION (audit passed; H-261101-07 credence unchanged)."
+  },
+  {
+   "id": "E-261109-04",
+   "kind": "experiment",
+   "title": "Boolean union of two projectively matched exact solids as a (10, 4) source - Szilassi + Szilassi (k = 4) and Szilassi + tetrahedron (k = 1) (week item 5, I-261108-11 stage 1)",
+   "status": "done",
+   "date": "2026-11-09",
+   "concluded": "2026-11-09",
+   "path": "experiments/E-261109-04-union-of-matched-solids/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "LOW-YIELD@0.03-core-h",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction (DR19): LOW-YIELD@0.03 core-h, 128 samples per source; both sources parked at this resolution (kill rule of the row)."
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -3486,7 +3562,7 @@
    "id": "I-261108-04",
    "kind": "idea",
    "title": "Grooved-box positive control - an embedded polyhedron in which one face pair shares three or four collinear segments",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-08",
    "concluded": "",
    "path": "ideas/I-261108-04-grooved-box-multiplicity-control.md",
@@ -3544,10 +3620,52 @@
    "id": "I-261108-08",
    "kind": "idea",
    "title": "Independent census of the (8, 2) and (9, 3) candidate maps - a second enumerator that shares no code with E-261103-01",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-08",
    "concluded": "",
    "path": "ideas/I-261108-08-independent-s5-census.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-09",
+   "kind": "idea",
+   "title": "Perturbation lemma - vertices of degree >= 4 resolve into cubic vertices, so the cubic (8, 2) / (9, 3) negative would cover non-cubic objects",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-09-perturbation-lemma-non-cubic-vertices.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-10",
+   "kind": "idea",
+   "title": "Defect-bounded boundary census - the non-cubic (8, 2) / (9, 3) maps as at most s edge contractions of cubic precursor maps",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-10-defect-bounded-boundary-census.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261108-11",
+   "kind": "idea",
+   "title": "Boolean union of two projectively matched face-neighbourly solids - a direct genus source for (10, 4) and, in stage 2, for the 12-face target",
+   "status": "open",
+   "date": "2026-11-08",
+   "concluded": "",
+   "path": "ideas/I-261108-11-union-of-matched-face-neighbourly-solids.md",
    "direction": [
     "DR19"
    ],
@@ -4752,6 +4870,11 @@
   },
   {
    "from": "E-261103-01",
+   "to": "E-261109-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -4766,8 +4889,23 @@
    "kind": "origin"
   },
   {
+   "from": "E-261103-01",
+   "to": "I-261108-10",
+   "kind": "origin"
+  },
+  {
    "from": "E-261103-02",
    "to": "E-261103-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-02",
+   "to": "E-261109-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-02",
+   "to": "E-261109-03",
    "kind": "origin"
   },
   {
@@ -4778,6 +4916,21 @@
   {
    "from": "E-261103-03",
    "to": "E-261108-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "E-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "E-261109-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "E-261109-03",
    "kind": "origin"
   },
   {
@@ -4808,6 +4961,11 @@
   {
    "from": "E-261103-03",
    "to": "I-261108-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "I-261108-09",
    "kind": "origin"
   },
   {
@@ -4852,6 +5010,11 @@
   },
   {
    "from": "E-261103-07",
+   "to": "E-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-07",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -4868,6 +5031,11 @@
   {
    "from": "E-261107-01",
    "to": "E-261108-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261107-01",
+   "to": "E-261109-04",
    "kind": "origin"
   },
   {
@@ -4904,6 +5072,31 @@
    "from": "E-261108-02",
    "to": "I-261108-06",
    "kind": "origin"
+  },
+  {
+   "from": "E-261108-03",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261109-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261109-02",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261109-03",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261109-04",
+   "to": "H-261103-02",
+   "kind": "tests"
   },
   {
    "from": "FD2",
@@ -5397,12 +5590,22 @@
   },
   {
    "from": "I-261031-02",
+   "to": "E-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-02",
    "to": "I-261101-12",
    "kind": "origin"
   },
   {
    "from": "I-261031-03",
    "to": "E-261101-09",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-03",
+   "to": "E-261109-03",
    "kind": "origin"
   },
   {
@@ -5686,6 +5889,31 @@
    "kind": "origin"
   },
   {
+   "from": "I-261108-04",
+   "to": "E-261109-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261108-05",
+   "to": "E-261108-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261108-08",
+   "to": "E-261109-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261108-09",
+   "to": "I-261108-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261108-11",
+   "to": "E-261109-04",
+   "kind": "origin"
+  },
+  {
    "from": "L:abs1996",
    "to": "E-261029-01",
    "kind": "origin"
@@ -5803,6 +6031,11 @@
   {
    "from": "L:mizhaev2026",
    "to": "I-261103-04",
+   "kind": "origin"
+  },
+  {
+   "from": "L:mizhaev2026",
+   "to": "I-261108-11",
    "kind": "origin"
   },
   {
@@ -5946,6 +6179,11 @@
    "kind": "origin"
   },
   {
+   "from": "L:roestvigh2026",
+   "to": "I-261108-11",
+   "kind": "origin"
+  },
+  {
    "from": "L:schewe2010",
    "to": "E-261029-03",
    "kind": "origin"
@@ -5993,6 +6231,11 @@
   {
    "from": "L:szilassi1977",
    "to": "I-261101-15",
+   "kind": "origin"
+  },
+  {
+   "from": "L:szilassi1977",
+   "to": "I-261108-11",
    "kind": "origin"
   },
   {
@@ -6303,6 +6546,16 @@
   {
    "from": "owner",
    "to": "I-261108-07",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261108-09",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261108-11",
    "kind": "origin"
   }
  ],

@@ -1,0 +1,35 @@
+usage: drat-trim [INPUT] [<PROOF>] [<option> ...]
+
+where <option> is one of the following
+
+  -h          print this command line option summary
+  -c CORE     prints the unsatisfiable core to the file CORE (DIMACS format)
+  -a ACTIVE   prints the active clauses to the file ACTIVE (DIMACS format)
+  -l LEMMAS   prints the core lemmas to the file LEMMAS (DRAT format)
+  -L LEMMAS   prints the core lemmas to the file LEMMAS (LRAT format)
+  -r TRACE    resolution graph in the TRACE file (TRACECHECK format)
+
+  -t <lim>    time limit in seconds (default 40000)
+  -u          default unit propatation (i.e., no core-first)
+  -f          forward mode for UNSAT
+  -v          more verbose output
+  -b          show progress bar
+  -O          optimize proof till fixpoint by repeating verification
+  -C          compress core lemmas (emit binary proof)
+  -D          delete proof file after parsing
+  -I          force ASCII proof parse mode
+  -i          force binary proof parse mode
+  -w          suppress warning messages
+  -W          exit after first warning
+  -p          run in plain mode (i.e., ignore deletion information)
+
+  -R          turn off reduce mode
+
+  -S          run in SAT check mode (forward checking)
+
+  -U          only allow RUP additions
+and input and proof are specified as follows
+
+  INPUT       input file in DIMACS format
+  PROOF       proof file in DRAT format (stdin if no argument)
+
