@@ -1206,17 +1206,17 @@ window.GRAPH = {
    "id": "E-261109-05",
    "kind": "experiment",
    "title": "Face-contraction sieve - power test on the 203 known-UNSAT (9, 3) maps (owner's obstruction radar)",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-09",
-   "concluded": "",
+   "concluded": "2026-11-09",
    "path": "experiments/E-261109-05-face-contraction-sieve/README.md",
    "direction": [
     "DR19",
     "DR9"
    ],
-   "verdict": "",
+   "verdict": "LOW-YIELD@0.052-core-h",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: PARK I-261108-06 (kill rule met, LOW-YIELD@0.052 core-h). 0 of the 203 admissible (9, 3) plain formulas is UNSAT on the rank-3 contraction at any one face (needed: >= 27 for a pass, < 20 parks). Scope: one-face contraction sub-formulas (`PLAN.md` method), cap 20 s, these 203 maps; 2030 map sub-formulas, all SAT, 0 TIMEOUT, slowest 0.11 s."
   },
   {
    "id": "FD11",
@@ -3607,7 +3607,7 @@ window.GRAPH = {
    "id": "I-261108-06",
    "kind": "idea",
    "title": "Face-contraction sieve - is a plain S5 formula already UNSAT on the clauses of the rank-3 contraction at one face?",
-   "status": "open",
+   "status": "parked",
    "date": "2026-11-08",
    "concluded": "",
    "path": "ideas/I-261108-06-face-contraction-sieve.md",

@@ -2,7 +2,9 @@
 id: E-261109-05
 title: Face-contraction sieve - power test on the 203 known-UNSAT (9, 3) maps (owner's obstruction radar)
 date: 2026-11-09
-status: running
+status: done
+concluded: 2026-11-09
+verdict: LOW-YIELD@0.052-core-h
 direction: [DR19, DR9]
 origin: [I-261108-06, E-261108-02, E-261103-03]
 tests: [H-261101-07, H-261101-11]
@@ -18,6 +20,10 @@ preregistered: true
 Measure how many of the 203 admissible (9, 3) plain formulas are already UNSAT on the rank-3 contraction at one face,
 to decide whether the (10, 4) strata A and B are sieved before their nights.
 
+## Results
+
+0 of 203 maps killed; every one-face contraction SAT; controls pass. See `CONCLUSION.md`.
+
 ## Next
 
-See `PLAN.md` outcomes.
+None; I-261108-06 parked.

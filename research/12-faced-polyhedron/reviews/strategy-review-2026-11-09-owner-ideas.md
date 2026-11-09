@@ -58,3 +58,8 @@ For the owner's question; this repeats the ledger (STATUS 2, DR1, DR3) and adds 
 * Genus 4 was never reached (DR1). The Gauss gate explains it for type 0: all 21 arms (7 realizations x 3 arms) have
   k_tau = 0, while each handle must lower the Gauss degree by one (FD7, DR3). This is the origin of "jump, do not
   climb" (`STRATEGY.md` §2) and of the exact per-map route.
+
+## 4. Result (added 2026-11-09)
+
+The owner asked for the power test at once: E-261109-05, 0 of 203 maps killed, controls pass; the proposal of §2 is
+closed and I-261108-06 is parked (STATUS 3ac).

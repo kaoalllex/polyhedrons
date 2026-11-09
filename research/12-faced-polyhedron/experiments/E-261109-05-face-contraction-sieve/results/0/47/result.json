@@ -1,0 +1,101 @@
+{
+  "unit": "47",
+  "formula_sha256": "9c1721690b85f811548dd20c77c42a10de4e898d974e536ca11bccbe620345d5",
+  "recorded_hash_match": true,
+  "pattern": [
+    1,
+    1,
+    1,
+    1,
+    2
+  ],
+  "admissible": true,
+  "variables": 7838,
+  "clauses": 78654,
+  "by_element": {
+    "0": {
+      "status": "SAT",
+      "seconds": 0.024,
+      "clauses": 37620,
+      "nondef_clauses": 10157,
+      "cnf_sha256": "d040de323db82b7fa0a80e94ee69e586a6b8045c970deb7e88c3d4eb1863fa43",
+      "proof_sha256": "7a3126a1bfca70d13472bd95a3d7f8da75f99b5e693cc44191f6a65165ce4f5b"
+    },
+    "1": {
+      "status": "SAT",
+      "seconds": 0.092,
+      "clauses": 37620,
+      "nondef_clauses": 10157,
+      "cnf_sha256": "4e1132b1bbd688765c2776452ba1b5273ecaaaf5d9ffea6bc530b0fba237b7e5",
+      "proof_sha256": "5015d02e79aed6b4bae5e45566c8c2782259e6c2708471165e8266f34b5dfa4a"
+    },
+    "2": {
+      "status": "SAT",
+      "seconds": 0.024,
+      "clauses": 37626,
+      "nondef_clauses": 10163,
+      "cnf_sha256": "023eaa09d01e5c8ebb49b8fda0984c8606c6d5707159b7b3c1397c4e7734f11f",
+      "proof_sha256": "0325ea49ca681e1cd0a8f24417d564ec5df835988aa9d545d700aca7de6de4d2"
+    },
+    "3": {
+      "status": "SAT",
+      "seconds": 0.042,
+      "clauses": 37620,
+      "nondef_clauses": 10157,
+      "cnf_sha256": "d1e80cafc4141d5869dfefd7da7e379ebfa2e5d6c6e1fe4d1c61a1633258a236",
+      "proof_sha256": "4fb25631ae21872e0743d09f403772207d6bc5372e23797d3a9ab0b5af7e1662"
+    },
+    "4": {
+      "status": "SAT",
+      "seconds": 0.042,
+      "clauses": 37614,
+      "nondef_clauses": 10151,
+      "cnf_sha256": "7c5f5622806fc9c36b097b4d1788e56ce792ae9546b165b079540fef09a36e3a",
+      "proof_sha256": "4e50a4c94dbe15102ccec45d7dad89bfad5deae35d6afaeb2313c3de7b7fba96"
+    },
+    "5": {
+      "status": "SAT",
+      "seconds": 0.027,
+      "clauses": 37614,
+      "nondef_clauses": 10151,
+      "cnf_sha256": "5a5d5b3762c4018b124556462db7e074b79447203eb53d6c313e462bd974bbe6",
+      "proof_sha256": "59893e71dc2ddef58f4661408d148a817f3c9a6764c7af4235d13da270002279"
+    },
+    "6": {
+      "status": "SAT",
+      "seconds": 0.043,
+      "clauses": 37614,
+      "nondef_clauses": 10151,
+      "cnf_sha256": "ec34f5ada4db87854b1c41aa486be479d93bdac940b7248e2338a99a3f2049d6",
+      "proof_sha256": "a753b34b1593055b36fdb8c477eaaa6777a997ac578c3b1daeea5ae817248f34"
+    },
+    "7": {
+      "status": "SAT",
+      "seconds": 0.024,
+      "clauses": 37620,
+      "nondef_clauses": 10157,
+      "cnf_sha256": "2eacbe36f4f49dd858400d7a998dd9424856eca4f6f71588ff0a1157e1598ae4",
+      "proof_sha256": "ba123a092faa2784bb86bec79e5cb17eb6bd621d5d77cb6d3fd81cc5d09b28c0"
+    },
+    "8": {
+      "status": "SAT",
+      "seconds": 0.022,
+      "clauses": 37614,
+      "nondef_clauses": 10151,
+      "cnf_sha256": "5234355aada8f90a4764b0b2454a9b27235b5ab1f7d6f60d3c0ae66fc970d22d",
+      "proof_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "INF": {
+      "status": "SAT",
+      "seconds": 0.021,
+      "clauses": 37544,
+      "nondef_clauses": 10081,
+      "cnf_sha256": "43d452c065fb72b08dc6a6e3d8aadf09e056b0a783f9bd27a5983b5e7050b829",
+      "proof_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "killed": false,
+  "killing_faces": [],
+  "face_timeouts": 0,
+  "wall_seconds": 0.9
+}

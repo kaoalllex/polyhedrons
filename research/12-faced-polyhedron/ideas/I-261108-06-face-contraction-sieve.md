@@ -2,7 +2,7 @@
 id: I-261108-06
 title: Face-contraction sieve - is a plain S5 formula already UNSAT on the clauses of the rank-3 contraction at one face?
 date: 2026-11-08
-status: open
+status: parked
 direction: [DR19, DR9]
 origin: [E-261101-06, E-261108-02]
 ---
@@ -26,3 +26,8 @@ Power first: the 203 known-UNSAT (9, 3) maps x 9 faces at 20 s, 10 shards (<= 1 
 ## Source
 
 Lead review 2026-11-08d, §6 idea N3; week item 5.
+
+## 2026-11-09 result
+
+E-261109-05: 0 of 203 (9, 3) maps killed by a one-face contraction (cap 20 s, controls pass). Parked; the contraction
+never contains TRIPLE or REFLEX1 (three-face clauses), which is where the (9, 3) obstructions live.

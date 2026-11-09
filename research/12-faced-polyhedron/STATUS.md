@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-09** (E-261109-04 union of matched solids, 0 of 256 samples, 3ab; E-261109-03 second encoder agrees on six (9,3) maps, 3aa; E-261109-02 independent census agrees, 3z; E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
+As of **2026-11-09** (E-261109-05 face-contraction sieve, 0 of 203, 3ac; E-261109-04 union of matched solids, 0 of 256 samples, 3ab; E-261109-03 second encoder agrees on six (9,3) maps, 3aa; E-261109-02 independent census agrees, 3z; E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
 credences in `ROADMAP.md`; before it lead review 2026-11-08 applied: (9, 3) credences moved; sections
 3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
 and item 5a recorded in 3d the same day; E-261103-03 concluded; E-261103-07 cost probe recorded in 3w). Definitions, counters and
@@ -293,6 +293,13 @@ Boolean union of Szilassi with a projectively matched Szilassi (k = 4) or a tetr
 arrangement; controls pass (identical copies return Szilassi, a distant copy fails). 128 valid samples per source: 0 boundaries
 with 10 simple faces, genus 4 and a connected solid (best clean-faced A sample: genus 2, 35 of 45 pairs; B: genus 1 only).
 Sampled negative at this resolution (EXACT computation, float arrangement); both sources parked, nothing excluded.
+
+## 3ac. E-261109-05 face-contraction sieve (2026-11-09)
+
+Owner request (lead review addendum 2026-11-09 §2). For each of the 203 admissible (9, 3) plain formulas and each face, the
+clauses whose chirotope signs all contain that face (the rank-3 contraction): 0 of 203 maps killed, every sub-formula SAT
+(EXACT per sub-formula), controls pass (planted core found exactly). I-261108-06 parked; the (10, 4) sweep stays unsieved.
+0.052 core-h (CONCLUSION).
 
 ## 4. What may and may not be claimed
 
