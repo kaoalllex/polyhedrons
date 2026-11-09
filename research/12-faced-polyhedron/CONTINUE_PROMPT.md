@@ -25,10 +25,9 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
   Actions calibration (I-261108-07), no holdout; cube-and-conquer still open. The lead review decides.
 * Week item 1 = E-261109-01, concluded 2026-11-09: m = 3, 4 grooved-box controls pass (STATUS 3y); the item 1 caveat is lifted.
 * Week item 3 = E-261109-02, concluded 2026-11-09: independent growth enumerator agrees with E-261103-01 at (7,1), (8,2), (9,3) (240 / 203, STATUS 3z); (10,4) not run.
-* Week item 4 = E-261109-03 (pre-registered cd79dda, pilot 5cc9726): independent encoder `enc2.py` (Lemma 5.1 + line-interval
-  parity, no INCONS/RFCONS/REFLEX1/POC) agrees with exact geometry on 808 samples (0 mismatches) and decides maps 40 and 30
-  UNSAT-VERIFIED unstrengthened (32 s, 65 s). NEXT: the owner launch `bash research/12-faced-polyhedron/overnight/launch.sh
-  E-261109-03 start 8` (about 10 core-min expected; then `status`), then `experiment-conclude`, then week item 5.
+* Week item 4 = E-261109-03, concluded 2026-11-09 (0.18 core-h): independent encoder `enc2.py` agrees with exact geometry
+  (0 mismatches) and decides maps 40, 43, 10, 30, 48, 5 UNSAT-VERIFIED; all controls pass (STATUS 3aa).
+* NEXT: week item 5 (union of two matched solids, I-261108-11 stage 1; <= 1 session + 1 core-h, 8 shards).
 * Branch `lab/2026-11-08` (from `main` 49e2a5c after PR #6; pushed): the week plan's only branch. No active process.
 * For the lead: after week item 5 concludes, decide the next stages of I-261108-11 (owner 2026-11-08): if the
   mechanism works, general genus-0 pieces (e.g. Szilassi + a cube on 3 planes), the (9, 4) sources, the rigid (9, 3)
