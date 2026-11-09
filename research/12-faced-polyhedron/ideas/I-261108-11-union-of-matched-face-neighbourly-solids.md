@@ -76,3 +76,7 @@ cross-check (finite list) are separate later items.
 
 Review `reviews/strategy-review-2026-11-08e.md` Follow-up Q5 (Szilassi + Szilassi at (10, 4)); the lead's extension
 to other pieces and to the 12-face target after the owner's question "why only Szilassi?" (2026-11-08).
+
+## Stage 1 result (2026-11-09)
+
+E-261109-04: 0 of 128 Szilassi + Szilassi (k = 4) and 0 of 128 Szilassi + tetrahedron (k = 1) samples give 10 simple faces with genus 4; both sources parked at this resolution (STATUS 3ab).

@@ -1191,16 +1191,16 @@ window.GRAPH = {
    "id": "E-261109-04",
    "kind": "experiment",
    "title": "Boolean union of two projectively matched exact solids as a (10, 4) source - Szilassi + Szilassi (k = 4) and Szilassi + tetrahedron (k = 1) (week item 5, I-261108-11 stage 1)",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-09",
-   "concluded": "",
+   "concluded": "2026-11-09",
    "path": "experiments/E-261109-04-union-of-matched-solids/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "LOW-YIELD@0.03-core-h",
    "preregistered": "true",
-   "conclusion": "Verdict for the direction (FOUNDATION / PROMISING / OPEN / OPEN-LOW / LOW-YIELD@budget / REFUTED with proof):"
+   "conclusion": "Verdict for the direction (DR19): LOW-YIELD@0.03 core-h, 128 samples per source; both sources parked at this resolution (kill rule of the row)."
   },
   {
    "id": "FD11",
