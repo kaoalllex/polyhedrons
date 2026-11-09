@@ -1145,16 +1145,16 @@ window.GRAPH = {
    "id": "E-261109-01",
    "kind": "experiment",
    "title": "Grooved-box multiplicity control - does the S5 encoder accept a real embedded polyhedron with a face pair sharing 3 and 4 segments",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-09",
-   "concluded": "",
+   "concluded": "2026-11-09",
    "path": "experiments/E-261109-01-grooved-box-multiplicity-control/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "FOUNDATION (m = 3 and m = 4 pinned positives SAT, swapped-pairing negatives UNSAT-VERIFIED; unpinned k = 2 SAT)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction: FOUNDATION (control passed)."
   },
   {
    "id": "FD11",

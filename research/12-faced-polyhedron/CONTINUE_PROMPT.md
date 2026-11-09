@@ -23,7 +23,8 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
 * Week item 2 = E-261108-03, launched and concluded 2026-11-09 (CONCLUSION, STATUS 3x): kissat wins, decides (10,4) maps 96, 85,
   146, 845 as UNSAT-SOLVER in 189-2749 s, best ratio 2.35x (no 10x), P(4) = P(16) = 475 core-h without DRAT; follow-up tree:
   Actions calibration (I-261108-07), no holdout; cube-and-conquer still open. The lead review decides.
-* NEXT: week item 1 in a lab session (no night); a (10,4) UNSAT carries the item 1 caveat until item 1 passes.
+* Week item 1 = E-261109-01, concluded 2026-11-09: m = 3, 4 grooved-box controls pass (STATUS 3y); the item 1 caveat is lifted.
+* NEXT: week item 3 (independent census, I-261108-08) in a lab session (no night).
 * Branch `lab/2026-11-08` (from `main` 49e2a5c after PR #6; pushed): the week plan's only branch. No active process.
 * For the lead: after week item 5 concludes, decide the next stages of I-261108-11 (owner 2026-11-08): if the
   mechanism works, general genus-0 pieces (e.g. Szilassi + a cube on 3 planes), the (9, 4) sources, the rigid (9, 3)

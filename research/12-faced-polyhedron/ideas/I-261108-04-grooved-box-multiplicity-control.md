@@ -2,7 +2,7 @@
 id: I-261108-04
 title: Grooved-box positive control - an embedded polyhedron in which one face pair shares three or four collinear segments
 date: 2026-11-08
-status: open
+status: done
 direction: [DR19]
 origin: [E-261103-02, E-261103-03]
 ---

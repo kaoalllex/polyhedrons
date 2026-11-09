@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-09** (E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
+As of **2026-11-09** (E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
 credences in `ROADMAP.md`; before it lead review 2026-11-08 applied: (9, 3) credences moved; sections
 3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
 and item 5a recorded in 3d the same day; E-261103-03 concluded; E-261103-07 cost probe recorded in 3w). Definitions, counters and
@@ -263,6 +263,13 @@ bounded below (> 3.3 over all maps, > 11 for `(2,2,2)/(2,2,2)`). No hypothesis, 
 Winner kissat (sum B 380 against 777 core-h): P(4) = P(16) = 475 core-h without DRAT (n = 1-2 per stratum, a scenario, not a bound).
 NUMERICAL, instance scope; UNSAT-SOLVER is not a negative result and (10, 4) UNSATs carry the item 1 caveat. Next by the follow-up tree: Actions
 calibration (I-261108-07); no holdout (P(4) > 160). No hypothesis, credence or witness change (E-261108-03 CONCLUSION).
+
+## 3y. E-261109-01 grooved-box multiplicity control (2026-11-09)
+
+Box with k = 2, 3 pyramidal notches across one edge, exact planes, EMBEDDED by `ladder_exact` (F 12 / 15, top/front pair shares
+3 / 4 segments). E-261103-02 encoder, `submap=True`: pinned own map SAT (k = 2, 3), same planes with a swapped segment pairing
+(valid map, not embedded) UNSAT-VERIFIED, unpinned k = 2 SAT. EXACT, instance scope (other multiple-segment positions, m >= 5,
+unpinned k = 3 not run); lifts the item 1 caveat on the (9,3) and (10,4) UNSATs (E-261109-01 CONCLUSION).
 
 ## 4. What may and may not be claimed
 
