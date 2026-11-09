@@ -48,3 +48,20 @@ Pre-registration (`PROTOCOL.md` §2) of `ROADMAP.md` week item 4 (idea I-261031-
 * **STATUS / ROADMAP**: agreement -> STATUS 3 line and the item 4 "Done"; disagreement -> STATUS claim marked suspended.
 
 ## Amendments
+
+### 2026-11-09: pilot (session, before the owner launch; no plan change)
+
+* Code at commit of this amendment: `enc2.py`, `difftest.py`, `solve2.py`, `units.py`, `run.sh` (8 shards, 15 units:
+  7 pinned controls, 2 unpinned SAT controls (Szilassi (7,1), Roest-Vigh), the six targets; each shard first reruns the
+  differential test with its own seed, 12 perturbations per object, and stops on a mismatch).
+* Differential test, 808 samples (100 perturbations x 8 objects; amplitudes 3-30000 on planes scaled by 1000), plus
+  Szilassi: 0 mismatches against `ladder_exact.verify`; both classes occur for every object that has a perturbation
+  class (Roest-Vigh 34 EMBEDDED / 67 not, Mizhaev 32 / 69, grooved k = 2: 85 / 16, k = 3: 82 / 19; swapped-pairing and
+  cross maps: 0 / 101 each). Szilassi's own planes are non-uniform (zero minors), so only its perturbations are used.
+* Targets: map 40 UNSAT-VERIFIED (solver 32 s, drat-trim 19 s, 20,485 variables, 84,013 clauses) and map 30
+  UNSAT-VERIFIED (65 s, 37 s) with the unstrengthened formula (no INCONS/RFCONS/REFLEX1/POC): the pilot gate holds
+  (build < 60 s; map 40 < 600 s), no strengthening amendment is needed. Pilot results are not experiment results:
+  these two units are rerun in the launch.
+* Not run: a pinned negative for a target map (no known (9, 3) realization exists to pin).
+* Launch cap per unit 1800 s solver + 1800 s checker; expected total about 10 core-min, worst case far above 1 core-h
+  only if several units hit both caps (then TIMEOUT, reported as such).
