@@ -8,7 +8,7 @@ evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experim
 `ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
 numbers; other files link here.
 
-No active process (item 5a, the E-261103-07 probe and the E-261108-03 benchmark finished). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-08d done, next: week item 1 (`ROADMAP.md`). E-261103-04, E-261103-05, E-261103-06
+No active process (item 5a, the E-261103-07 probe and the E-261108-03 benchmark finished). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-09 done, next: week item 1 of its week plan (`ROADMAP.md`). E-261103-04, E-261103-05, E-261103-06
 and E-261107-01 are concluded (sections 3g, 3j-3u).
 
 ## 0. State in one paragraph

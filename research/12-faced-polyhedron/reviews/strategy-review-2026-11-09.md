@@ -270,3 +270,13 @@ laptop nights -> "cannot tell" back to 0.45. Any realized SAT -> "exists" 1.
 2. **Lab session:** week item 1 prep (PLAN, frozen queue, smoke test), so the owner can launch tonight.
 3. **Lab session, during the night:** week item 2 prep (dispatch on the lab branch, kissat build, LRAT job), then
    week item 3 (soundness chain).
+
+## Owner's decisions (2026-11-09)
+
+* Week item 1 (stratum C night) and the credences of §8 approved.
+* **The note is deferred**: no session time on it unless a genuinely worthwhile result is found. Week items 3
+  (soundness chain) and 5 (defect census) leave the week; N1 (LRAT) leaves item 2, since its purpose was the proof
+  route for negative claims and the note.
+* GitHub Actions terms: the lab session reads them in item 2's prep and records the finding before any job.
+* Applied week plan: 1 stratum C sweep; 2 Actions calibration (without the LRAT job); 3 cube-and-conquer pilot
+  (explore). Merge `lab/2026-11-08` into `main` by PR.

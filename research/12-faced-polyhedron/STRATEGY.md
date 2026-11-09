@@ -13,14 +13,15 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
     UNSAT-VERIFIED (EXACT, formula scope); the geometric reading "no S5 polyhedron at (8, 2) or (9, 3)" is PROVED-1,
     conditional on census coverage and encoder soundness (`STATUS.md` 3d). (10, 4) is the next case and the first
     genus where every heuristic engine of ours failed; nothing is in print for it (CLAIMED, web check of 2026-11-08).
-  * **Gate.** The exact plain route at default settings is out of laptop reach (E-261103-07: 10/10 TIMEOUT; untested
-    estimate 1,200-4,900 core-h). A speed-up benchmark decides the compute route: two laptop nights, a campaign on
-    GitHub Actions, or none. If no route exists, the owner chooses between an Actions campaign, a return to S0 and
-    consolidation only.
+  * **Gate (decided 2026-11-09, E-261108-03).** Kissat decides (10, 4) maps in minutes to under an hour; a sweep of all
+    1117 maps without DRAT is priced at about 475 core-h (a scenario, not a bound): about five laptop nights or Actions.
+    Route: a stratified first-witness sweep without DRAT, fastest patterns first, first-SAT stop; stratum C on the
+    laptop first, strata A and B on the laptop or on Actions after calibration (owner, 2026-11-09).
   * Symmetric realizations are allowed; uniform symmetric formulas apply only to face-free rotations.
-* **Side track: the (8, 2) / (9, 3) negative result.** Consolidate it at low compute (a positive control with pairs of
-  multiplicity >= 3, an independent census, a second encoder), then regenerate and archive the proofs and write a note.
-  The note says plainly that no independent (human) review took place (owner, 2026-11-08).
+* **Side track: the (8, 2) / (9, 3) negative result.** Consolidated at low compute (multiplicity >= 3 control, second
+  census, second encoder on six maps: all passed, 2026-11-09). **The note is deferred** (owner, 2026-11-09): no session
+  time on it unless a genuinely worthwhile result is found; if written, it says plainly that no independent (human)
+  review took place (owner, 2026-11-08).
 * **Compute.** GitHub Actions may be tried as a compute source (owner, 2026-11-08); first a calibration wave on maps
   with known answers.
 * **Defining problem: S0 (Szilassi-12, (12, 6)), parked 2026-11-03, not abandoned.** Every S0 result stays as it is
@@ -68,3 +69,6 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 * 2026-11-08 (owner's decision on lead review 2026-11-08d): focus moves to S5 at (10, 4), gated by a speed-up
   benchmark; the (8, 2) / (9, 3) negative result becomes a side track towards a note marked as not independently
   reviewed; GitHub Actions approved for a trial. Stance and S0 parking unchanged.
+* 2026-11-09 (owner's decisions on lead review 2026-11-09): the gate is decided (kissat, P(4) = 475 core-h, route =
+  stratified first-witness sweep, stratum C first); the note is deferred unless a worthwhile result is found; the lab
+  checks GitHub's Actions terms before any job. Targets, stance and S0 parking unchanged.
