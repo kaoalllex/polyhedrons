@@ -1188,6 +1188,21 @@ window.GRAPH = {
    "conclusion": "Verdict for the direction: FOUNDATION (audit passed; H-261101-07 credence unchanged)."
   },
   {
+   "id": "E-261109-04",
+   "kind": "experiment",
+   "title": "Boolean union of two projectively matched exact solids as a (10, 4) source - Szilassi + Szilassi (k = 4) and Szilassi + tetrahedron (k = 1) (week item 5, I-261108-11 stage 1)",
+   "status": "running",
+   "date": "2026-11-09",
+   "concluded": "",
+   "path": "experiments/E-261109-04-union-of-matched-solids/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction (FOUNDATION / PROMISING / OPEN / OPEN-LOW / LOW-YIELD@budget / REFUTED with proof):"
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -5020,6 +5035,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261107-01",
+   "to": "E-261109-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261107-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5071,6 +5091,11 @@ window.GRAPH = {
   {
    "from": "E-261109-03",
    "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261109-04",
+   "to": "H-261103-02",
    "kind": "tests"
   },
   {
@@ -5881,6 +5906,11 @@ window.GRAPH = {
   {
    "from": "I-261108-09",
    "to": "I-261108-10",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261108-11",
+   "to": "E-261109-04",
    "kind": "origin"
   },
   {
