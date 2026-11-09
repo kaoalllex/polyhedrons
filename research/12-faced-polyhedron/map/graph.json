@@ -1172,6 +1172,22 @@
    "conclusion": ""
   },
   {
+   "id": "E-261109-03",
+   "kind": "experiment",
+   "title": "Second, independently written S5 encoder on six (9, 3) maps and the pinned controls (week item 4, I-261031-03)",
+   "status": "running",
+   "date": "2026-11-09",
+   "concluded": "",
+   "path": "experiments/E-261109-03-second-encoder-six-9-3-maps/README.md",
+   "direction": [
+    "DR8",
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -4874,6 +4890,11 @@
   },
   {
    "from": "E-261103-02",
+   "to": "E-261109-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-02",
    "to": "I-261108-04",
    "kind": "origin"
   },
@@ -4890,6 +4911,11 @@
   {
    "from": "E-261103-03",
    "to": "E-261109-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "E-261109-03",
    "kind": "origin"
   },
   {
@@ -5039,6 +5065,11 @@
   },
   {
    "from": "E-261109-02",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261109-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5545,6 +5576,11 @@
   {
    "from": "I-261031-03",
    "to": "E-261101-09",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-03",
+   "to": "E-261109-03",
    "kind": "origin"
   },
   {
