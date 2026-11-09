@@ -47,3 +47,9 @@ sub-formula; no geometric claim.
   `tested` with the verdict.
 
 ## Amendments
+
+### Pilot 2026-11-09 (no plan change)
+
+* Scratchpad run of C0, C1, C2, maps 40 and 0 (not recorded as results): C0 full SAT, every con(X) SAT (pass); C1 con(X)
+  UNSAT-VERIFIED exactly at 4, 5, 6, INF (pass); C2 fires at face 1 only (descriptive: the measure moves on a non-planted
+  contradiction); maps 40 and 0 not killed. Every solve 0.02-0.08 s; projected total about 3 min wall. Gate passed.
