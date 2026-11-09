@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-09** (E-261109-02 independent census agrees, 3z; E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
+As of **2026-11-09** (E-261109-03 second encoder agrees on six (9,3) maps, 3aa; E-261109-02 independent census agrees, 3z; E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
 credences in `ROADMAP.md`; before it lead review 2026-11-08 applied: (9, 3) credences moved; sections
 3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
 and item 5a recorded in 3d the same day; E-261103-03 concluded; E-261103-07 cost probe recorded in 3w). Definitions, counters and
@@ -277,6 +277,15 @@ A second enumerator (triangle-by-triangle growth, own canonical form, C search) 
 (8,2) 2, (9,3) 240 classes with 203 admissible, same canonical sets, |Aut+| and reflexibility; 120 s for (9,3). EXACT as a
 computation; coverage arguments still PROVED-1 (AI-written, no human review); the census is now two-algorithm for the class
 lists. (10,4) not run (E-261109-02 README).
+
+## 3aa. E-261109-03 second encoder on six (9,3) maps (2026-11-09)
+
+An encoder written independently of `omsat.py` / `pilot.build` (`enc2.py`: Lemma 5.1, line-interval crossing parity, no
+INCONS/RFCONS/REFLEX1/POC) matches exact geometry on 8 objects (0 mismatches, ~1,300 perturbed instances, both classes
+present) and decides (9,3) maps 40, 43, 10, 30, 48, 5 UNSAT-VERIFIED in 20-81 s, as the first encoder does; all pinned
+controls and unpinned Szilassi / Roest-Vigh SAT behave as expected. EXACT as a computation; the encoder's soundness is
+PROVED-1 (AI-written). The (9,3) caveat now reads "two encoders agree on six maps and all controls"; the other 197 maps
+are covered by the first encoder only.
 
 ## 4. What may and may not be claimed
 

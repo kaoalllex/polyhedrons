@@ -1,0 +1,14 @@
+=== 2026-11-09 21:27:29 launch.sh start, shard 0
+roest_vigh {'exact=True enc2=True': 7, 'exact=False enc2=False': 6}
+mizhaev {'exact=True enc2=True': 6, 'exact=False enc2=False': 7}
+grooved2 {'exact=True enc2=True': 13}
+grooved2_swapped {'exact=False enc2=False': 13}
+grooved3 {'exact=True enc2=True': 11, 'exact=False enc2=False': 2}
+grooved3_swapped {'exact=False enc2=False': 13}
+szilassi {'nonuniform': 1, 'exact=True enc2=True': 5, 'exact=False enc2=False': 7}
+rv_planes_mizhaev_map {'exact=False enc2=False': 13}
+mizhaev_planes_rv_map {'exact=False enc2=False': 13}
+MISMATCHES 0 []
+
+{"name": "pinned_pos_roest_vigh", "variables": 10336, "clauses": 41558, "cnf_sha256": "80c6939cd672bbdbf0d78a3fe29c102f21c012f5b554264c1988a907629a6432", "solver_seconds": 0.0, "solver_cap": 300, "status": "SAT", "expected": "SAT"}
+{"name": "unpinned_roest_vigh", "variables": 10336, "clauses": 41439, "cnf_sha256": "73d4273c55b10716418f410916f80ec8dfae14b99e94051324e164f9253f4212", "solver_seconds": 1.2, "solver_cap": 1800, "status": "SAT", "expected": "SAT (TIMEOUT = no information)"}

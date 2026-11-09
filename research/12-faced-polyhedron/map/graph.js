@@ -1175,17 +1175,17 @@ window.GRAPH = {
    "id": "E-261109-03",
    "kind": "experiment",
    "title": "Second, independently written S5 encoder on six (9, 3) maps and the pinned controls (week item 4, I-261031-03)",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-09",
-   "concluded": "",
+   "concluded": "2026-11-09",
    "path": "experiments/E-261109-03-second-encoder-six-9-3-maps/README.md",
    "direction": [
     "DR8",
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "FOUNDATION",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction: FOUNDATION (audit passed; H-261101-07 credence unchanged)."
   },
   {
    "id": "FD11",

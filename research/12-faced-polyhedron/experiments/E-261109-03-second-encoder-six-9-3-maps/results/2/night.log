@@ -1,0 +1,14 @@
+=== 2026-11-09 21:27:29 launch.sh start, shard 2
+roest_vigh {'exact=True enc2=True': 2, 'exact=False enc2=False': 11}
+mizhaev {'exact=True enc2=True': 2, 'exact=False enc2=False': 11}
+grooved2 {'exact=True enc2=True': 10, 'exact=False enc2=False': 3}
+grooved2_swapped {'exact=False enc2=False': 13}
+grooved3 {'exact=True enc2=True': 12, 'exact=False enc2=False': 1}
+grooved3_swapped {'exact=False enc2=False': 13}
+szilassi {'nonuniform': 1, 'exact=False enc2=False': 8, 'exact=True enc2=True': 4}
+rv_planes_mizhaev_map {'exact=False enc2=False': 13}
+mizhaev_planes_rv_map {'exact=False enc2=False': 13}
+MISMATCHES 0 []
+
+{"name": "pinned_pos_grooved2", "variables": 95753, "clauses": 427534, "cnf_sha256": "9d230dcd62ed1e61137f40f741033fbbc65299b55670a15e900355450760136a", "solver_seconds": 0.1, "solver_cap": 300, "status": "SAT", "expected": "SAT"}
+{"name": "map43", "variables": 20486, "clauses": 84017, "cnf_sha256": "5b1fe1b1fca8b2e6655306bf57a5d9245e57f2446a82d0ef46f2b3271252e6cf", "solver_seconds": 31.9, "solver_cap": 1800, "status": "UNSAT-VERIFIED", "checker_seconds": 19.6, "proof_sha256": "a5d891fe005fbe45ca2db54764373a81b48578965f9d8a9851a8a1af9b0477c1", "expected": "UNSAT-VERIFIED"}
