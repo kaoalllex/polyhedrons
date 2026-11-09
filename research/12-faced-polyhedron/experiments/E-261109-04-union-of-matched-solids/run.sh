@@ -35,7 +35,7 @@ finish() {
 }
 trap finish EXIT
 
-# ---- the experiment: differential test, then this shard's units (resumes: recorded units are skipped) ----
+# ---- the experiment: controls, then this shard's slice of the frozen samples (resumes: recorded samples are skipped) ----
 PY="${PYTHON:-$HOME/.venvs/polyhedra/bin/python}"
 cd "$HERE"
-"$PY" units.py "$SHARD" "$SHARDS" "$OUT"
+"$PY" union.py "$SHARD" "$SHARDS" "$OUT"

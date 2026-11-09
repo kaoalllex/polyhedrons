@@ -56,3 +56,12 @@ Pre-registration (`PROTOCOL.md` §2) of `ROADMAP.md` week item 5 (idea I-261108-
 * **STATUS / ROADMAP**: concluded -> STATUS section 3ab, the item 5 "Done" line, the verdict in "For the lead".
 
 ## Amendments
+
+### 2026-11-09: cap amendment (session, before any union boundary of a sample was evaluated)
+
+* `union.py` written; controls (single Szilassi image, identical copies by two correspondences, generic far-away copy)
+  pass. A dry draw of the frozen sample list (no boundary computed) gave 17 valid of 3200 draws for source A (400
+  correspondences; 3179 rejected because the pole plane meets copy 2, 4 for a non-general arrangement), so the
+  registered cap of 400 correspondences would leave A with 17 samples. Amended: the cap is 4000 correspondences
+  (same seed, same draw order, so the first 17 samples are unchanged); the target stays 128 valid samples, the
+  rejection counts by reason are reported. Source B reaches 128 in 139 draws (11 degenerate); no change.
