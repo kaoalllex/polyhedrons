@@ -94,6 +94,19 @@ class ChatTests(unittest.TestCase):
         self.assertEqual(state['floor'], ['claude', 'owner'])
         self.assertEqual(state['held'], [])
 
+    def test_parallel_answers_reach_both_models(self):
+        self.post('owner', 'both', 'Question')
+        self.post('claude', 'both', 'From claude')
+        self.post('astra', 'both', 'From astra')
+        for author, other in (('astra', 'From claude'), ('claude', 'From astra')):
+            result = self.command('wait', 'test', '--as', author, '--timeout', '0')
+            self.assertEqual(result.returncode, 0)
+            self.assertIn(other, result.stdout)
+            self.assertNotIn('Question', result.stdout)
+        self.post('claude', 'owner', 'Second')
+        self.assertEqual(self.post('astra', 'owner', 'Second too'), '0004-astra.md')
+        self.assertEqual(self.floor(), ['owner'])
+
     def test_owner_flushes_held_before_override(self):
         for nxt, floor in [('astra', ['astra']), ('pause', []), ('close', [])]:
             with self.subTest(nxt=nxt):
@@ -184,6 +197,13 @@ class ChatTests(unittest.TestCase):
         self.assertIn('&lt;script&gt;', rendered)
         self.assertNotIn('<script>', rendered)
         self.assertIn('Привет', rendered)
+        local = 'http://localhost:{}'.format(server.server_port)
+        with urlopen(Request(local + '/post', data=payload, headers={'Origin': local}), timeout=5) as response:
+            self.assertEqual(response.status, 200)
+        with self.assertRaises(HTTPError) as result:
+            urlopen(Request(base + '/messages', headers={'Host': 'evil.example'}), timeout=5)
+        self.assertEqual(result.exception.code, 403)
+        result.exception.close()
         with urlopen(base, timeout=5) as response:
             page = response.read().decode('utf-8')
         self.assertIn('content.innerHTML=m.html', page)
@@ -193,11 +213,14 @@ class ChatTests(unittest.TestCase):
         body = '# Title\n\n**bold** *italic* `code` [link](https://example.com)\n- one\n- two\n1. first\n2. second\n```\n<script>\n```\n| A | B |\n| --- | --- |\n| <img> | value |'
         rendered = chat.render_markdown(body)
         for fragment in ('<h1>Title</h1>', '<strong>bold</strong>', '<em>italic</em>',
-                         '<code>code</code>', '<ul>', '<ol>', '<table>', '&lt;img&gt;',
+                         '<code>code</code>', '<ul>', '<ol start="1">', '<table>', '&lt;img&gt;',
                          '&lt;script&gt;', '[link](https://example.com)'):
             self.assertIn(fragment, rendered)
         self.assertNotIn('<img>', rendered)
         self.assertNotIn('<a ', rendered)
+        self.assertEqual(chat.render_markdown('E = a * b * c\nwrapped line'), '<p>E = a * b * c wrapped line</p>')
+        self.assertEqual(chat.render_markdown('3. first\n   wrapped\n   - nested\n\n4. second\ntext'),
+                         '<ol start="3"><li>first wrapped<br>- nested</li><li>second</li></ol><p>text</p>')
 
 
 if __name__ == '__main__':

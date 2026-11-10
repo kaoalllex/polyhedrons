@@ -114,19 +114,20 @@ def snapshot_unlocked(path):
                 pending = None
                 closed = nxt == 'close'
                 floor = set() if nxt in ('close', 'pause') else speakers(nxt)
-        elif floor == MODELS or pending is not None:
+        elif MODELS <= floor or pending is not None:
             if pending is None:
-                pending = {'remaining': set(MODELS), 'next': set()}
+                pending = {'remaining': set(MODELS), 'next': set(), 'first': message['n']}
+            message['batch'] = pending['first']
             pending['remaining'].discard(author)
             pending['next'].update(speakers(nxt))
             if not pending['remaining']:
-                floor = pending['next']
+                floor = (floor - MODELS) | pending['next']
                 pending = None
         else:
             floor.discard(author)
             floor.update(speakers(nxt))
     held = [read_message(p) for p in sorted((path / 'sealed').glob('*.md'))]
-    waiting = (pending['remaining'] if pending else floor) - {m['author'] for m in held}
+    waiting = ((floor - MODELS) | pending['remaining'] if pending else floor) - {m['author'] for m in held}
     return {'config': config, 'messages': messages, 'floor': sorted(waiting),
             'closed': closed, 'held': held}
 
@@ -169,7 +170,7 @@ def post(path, author, nxt, body, round_label=''):
             number += 1
             return target.name
 
-        if author != 'owner' and (set(state['floor']) == MODELS or state['held']):
+        if author != 'owner' and (MODELS <= set(state['floor']) or state['held']):
             atomic_write(path / 'sealed' / (author + '.md'), message_text(message))
             held = [read_message(p) for p in sorted((path / 'sealed').glob('*.md'))]
             if len(held) < 2:
@@ -198,9 +199,10 @@ def wait(path, author, timeout):
         if state['closed']:
             return 3
         if author in state['floor']:
-            last = max((m['n'] for m in state['messages'] if m['author'] == author), default=0)
+            own = [m for m in state['messages'] if m['author'] == author]
+            last = own[-1].get('batch', own[-1]['n'] + 1) - 1 if own else 0
             for message in state['messages']:
-                if message['n'] > last:
+                if message['n'] > last and message['author'] != author:
                     print(message_text(message), end='\n')
             return 0
         if time.monotonic() >= deadline:
@@ -210,7 +212,7 @@ def wait(path, author, timeout):
 
 def inline(text):
     """Escape each source fragment before emitting any renderer-owned HTML."""
-    pattern = r'(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*)'
+    pattern = r'(`[^`]+`|\*\*(?=\S)[^*]+(?<=\S)\*\*|\*(?=\S)[^*]+(?<=\S)\*)'
     parts = re.split(pattern, text)
     output = []
     for part in parts:
@@ -223,6 +225,10 @@ def inline(text):
         else:
             output.append(html.escape(part))
     return ''.join(output)
+
+
+ITEM = r'^(\s*)([-*+] |\d+\. )(.*)'
+BLOCK = r'^(```|#{1,6} |\s*(?:[-*+] |\d+\. )|.*\|)'
 
 
 def render_markdown(body):
@@ -249,21 +255,32 @@ def render_markdown(body):
                 i += 1
             output.append(''.join(table) + '</table></div>')
             continue
-        elif re.match(r'^\s*(?:[-*+] |\d+\. )', line):
-            ordered = bool(re.match(r'^\s*\d+\. ', line))
-            tag = 'ol' if ordered else 'ul'
-            output.append('<' + tag + '>')
-            pattern = r'^\s*\d+\. (.*)' if ordered else r'^\s*[-*+] (.*)'
+        elif re.match(ITEM, line):
+            first = re.match(ITEM, line)
+            ordered, items = first[2][0].isdigit(), []
             while i < len(lines):
-                match = re.match(pattern, lines[i])
-                if not match:
+                match = re.match(ITEM, lines[i])
+                if match and match[1] == first[1] and match[2][0].isdigit() == ordered:
+                    items.append(inline(match[3]))
+                elif match and len(match[1]) > len(first[1]):
+                    items[-1] += '<br>' + html.escape(match[2]) + inline(match[3])
+                elif lines[i].startswith((' ', '\t')) and lines[i].strip():
+                    items[-1] += ' ' + inline(lines[i].strip())
+                elif not lines[i].strip() and i + 1 < len(lines) and re.match(ITEM, lines[i + 1]):
+                    pass
+                else:
                     break
-                output.append('<li>' + inline(match[1]) + '</li>')
                 i += 1
-            output.append('</' + tag + '>')
+            start = ' start="{}"'.format(int(first[2][:-2])) if ordered else ''
+            output.append('<{0}{1}>{2}</{0}>'.format('ol' if ordered else 'ul', start,
+                                                     ''.join('<li>' + item + '</li>' for item in items)))
             continue
         elif line.strip():
-            output.append('<p>' + inline(line) + '</p>')
+            paragraph = [line.strip()]
+            while i + 1 < len(lines) and lines[i + 1].strip() and not re.match(BLOCK, lines[i + 1]):
+                i += 1
+                paragraph.append(lines[i].strip())
+            output.append('<p>' + inline(' '.join(paragraph)) + '</p>')
         i += 1
     return ''.join(output)
 
@@ -285,8 +302,9 @@ form{position:sticky;bottom:0;background:#f4f5f8;border-top:1px solid #ddd}texta
 const messages=document.querySelector('#messages'),statusLine=document.querySelector('#status'),
 body=document.querySelector('#body'),next=document.querySelector('#next'),error=document.querySelector('#error');
 let previous='',busy=false;
+const labels={keep:'nobody new (interjection, the floor stays)',both:'both, in parallel (answers sealed)',claude:'claude',astra:'astra',pause:'nobody (pause)',close:'nobody (close the thread)'};
 function bubble(m){const b=document.createElement('article');b.className='bubble '+m.author;
- const meta=document.createElement('div');meta.className='meta';meta.textContent='#'+m.n+' · '+m.author+' · '+m.round+' · '+m.time;b.append(meta);
+ const meta=document.createElement('div');meta.className='meta';meta.textContent=['#'+m.n,m.author,m.round,m.time].filter(Boolean).join(' · ');b.append(meta);
  const content=document.createElement('div');content.innerHTML=m.html;b.append(content);return b;}
 async function refresh(){try{const response=await fetch('/messages');if(!response.ok)throw Error('Cannot read thread');const s=await response.json();
  const signature=JSON.stringify(s);if(signature===previous)return;previous=signature;
@@ -298,7 +316,7 @@ async function refresh(){try{const response=await fetch('/messages');if(!respons
  statusLine.textContent=s.closed?'Thread closed':('Waiting for: '+(s.floor.join(', ')||'paused'));
  const values=(s.floor.some(x=>x!=='owner')?['keep']:[]).concat(['both','claude','astra','pause','close']);
  const selected=next.value;next.replaceChildren();if(!values.includes(selected)){const option=document.createElement('option');option.value='';option.textContent='Choose who answers';option.disabled=true;option.selected=true;if(!values.includes('keep'))next.append(option);}
- for(const value of values){const option=document.createElement('option');option.value=value;option.textContent=value;next.append(option);}
+ for(const value of values){const option=document.createElement('option');option.value=value;option.textContent=labels[value];next.append(option);}
  if(values.includes(selected))next.value=selected;else if(values.includes('keep'))next.value='keep';
  body.disabled=s.closed;document.querySelector('button').disabled=s.closed;if(bottom)window.scrollTo(0,document.documentElement.scrollHeight);
  }catch(e){error.textContent=e.message;}}
@@ -323,8 +341,17 @@ def make_server(path, port):
             self.end_headers()
             self.wfile.write(payload)
 
+        def log_message(self, *args):
+            pass
+
+        def local(self):
+            return self.headers.get('Host') in ('{}:{}'.format(name, self.server.server_port)
+                                                for name in ('127.0.0.1', 'localhost'))
+
         def do_GET(self):
-            if self.path == '/':
+            if not self.local():
+                self.respond(403, {'error': 'Foreign Host'})
+            elif self.path == '/':
                 self.respond(200, PAGE, 'text/html; charset=utf-8')
             elif self.path == '/messages':
                 state = snapshot(path)
@@ -335,8 +362,7 @@ def make_server(path, port):
                 self.respond(404, {'error': 'Not found'})
 
         def do_POST(self):
-            host = '127.0.0.1:{}'.format(self.server.server_port)
-            if self.headers.get('Host') != host or self.headers.get('Origin') != 'http://' + host:
+            if not self.local() or self.headers.get('Origin') != 'http://' + self.headers.get('Host'):
                 self.respond(403, {'error': 'Foreign Origin or Host'})
                 return
             if self.path != '/post':
