@@ -36,7 +36,7 @@ This repository has two parts:
   and escalate instead of improvising (`PROTOCOL.md` §8b).
 - **Skills** (`.agents/skills/`; Claude copies in `.claude/skills/`):
   - `experiment-start`: from a ROADMAP row to a pre-registered experiment;
-  - `experiment-conclude`: results to `CONCLUSION.md` and the ledger, night reports included;
+  - `experiment-conclude`: results to `CONCLUSION.md` and the ledger;
   - `candidate-check`: run before anyone calls anything a result;
   - `session-handover`: end of a session;
   - `strategy-review`: the regular review of strategy and queue (separate session, strongest model);

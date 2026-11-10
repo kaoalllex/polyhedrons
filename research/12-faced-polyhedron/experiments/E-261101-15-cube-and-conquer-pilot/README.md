@@ -31,3 +31,9 @@ handling. Revised 2026-11-01: the 2,000 core-h threshold is not the gate any mor
 * Per cube: CaDiCaL with LRAT, `cake_lpr` on the fly inside the shard, keep cube, verdict and hashes, discard the
   checked proof (the policy of the Keller and Schur-5 campaigns). Shards under 5 h (`PROTOCOL.md` section 6).
 * Coordinate with `polyhedraproof` after E-261101-09: same type, both encodings, compare verdict and cost.
+
+## 2026-11-10: edge-convexity bits as the cube basis (I-261110-07)
+
+Proposed replacement of the split basis: the 66 edge-convexity bits instead of the 44 vertex-type bits, if
+E-261110-01 confirms on data that the edge signs determine the vertex types (statements 1 and 2 of I-261110-07;
+statement 2 is unchecked). No new experiment: this row takes the basis that survives that check.

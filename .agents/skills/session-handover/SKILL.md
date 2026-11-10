@@ -9,7 +9,9 @@ Paths and commands are relative to `research/12-faced-polyhedron/`. Use `python3
 with `requirements.txt` installed.
 
 1. **Uncommitted work.** Run `git status`.
-   - Commit your own work on the session branch.
+   - Commit your own work on the session branch. The handover block and the log entry go into the commit of the
+     stage they close (pre-registration or conclusion); make a handover-only commit only when the session ends with
+     no stage commit to carry them (`PROTOCOL.md` §8b, owner 2026-11-10).
    - Never commit the owner's untracked notes (the root `TODO.md`).
    - Update the owner's root `TODO.md` (local, untracked, in Russian) whenever the session changed the week plan,
      the rules, the branch, the next step or the owner's own tasks; keep it short and current.

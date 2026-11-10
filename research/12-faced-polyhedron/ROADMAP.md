@@ -5,7 +5,11 @@
 2026-11-08 the focus was (9, 3), now decided (STATUS 3d). The S5 queue below was proposed by `reviews/strategy-review-2026-11-03.md` and approved by the owner on
 2026-11-03; the S0 queue follows it, parked as it stood.
 
-As of 2026-11-09. Principle: **theory and a cheap filter first -> a discriminating experiment -> an exact
+**2026-11-10:** compute is the owner's laptop only (no GitHub Actions, no rented compute; owner). A new target set
+(S6 at (10, 3); S1 with the genus free at 9, 10 and 12 faces) and a new week plan are **proposed and pending the
+owner's approval** (`reviews/strategy-review-2026-11-10.md`); until then `STRATEGY.md` of 2026-11-09 is in force.
+
+As of 2026-11-10. Principle: **theory and a cheap filter first -> a discriminating experiment -> an exact
 solver -> a lemma or a certificate**. We do not try to enumerate the search space; we pick small, motivated
 regions where one experiment can exclude a whole class or reveal a new constraint. How to run an item:
 `PROTOCOL.md`. Current state: `STATUS.md`.
@@ -48,67 +52,124 @@ parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-mis
     formulas).
   * READMEs link to `STATUS.md` instead of repeating numbers.
   * Pilot the GitHub Actions runner before relying on it. Owner approved an Actions trial on 2026-11-08: the
-    calibration wave on known (9,3) maps (I-261108-07, lead review 2026-11-08d queue item 6).
+    calibration wave on known (9,3) maps (I-261108-07, lead review 2026-11-08d queue item 6). **Parked by the owner on
+    2026-11-10** (laptop-only compute).
   * `lint_docs.py` also checks that every new `PLAN.md` has the counter-calibration and scenario-move lines (template
     changed 2026-11-01 after `reviews/strategy-review-2026-11-01.md`).
+* **Harness changes approved by the owner on 2026-11-10** (`reviews/HANDOFF_PROMPT_2026-11-10-wedges.md` §11; less
+  owner time, same control; each passes the infrastructure filter of `PROTOCOL.md` §3). One lab session each, in this
+  order, before or between week items, never during a night. Acceptance check of every item: the control-surface test
+  (`start` -> `status` / `board` -> `stop` -> `start` in a scratch directory), `verify_all.py --quick` green, no change
+  to any recorded result.
+  1. **Permissions and hooks** (`.claude/settings.json`, half a session). Allowlist the read-only commands of lab
+     sessions (git status / log / diff / show, ls, `trace.py --check`, `launch.sh status`, the test files of
+     `verify_all`); run the `fewer-permission-prompts` skill once; a `PostToolUse` hook on edits under `ideas/`,
+     `hypotheses/`, `experiments/*/README.md` and `ROADMAP.md` runs `trace.py --check`; a `Stop` hook warns when the
+     tree is dirty without a handover. Never in the allowlist: push, `sudo`, `launch.sh start`. The allowlist is one
+     commit the owner reviews.
+  2. **Experiment contract and `lint_docs.py`** (it absorbs the two `lint_docs.py` bullets above). Every night
+     experiment ships `queue.json` or a unit list, `progress.sh`, `summary.py` / `verdict.json`, and a `run.sh` that
+     verifies candidates in the run. `lint_docs.py` in `verify_all --quick`: PLAN committed before any `results/`,
+     T + D >= 3 on every open row, STATUS "As of" equals the latest CONCLUSION date, README `status` equals the ROADMAP
+     State, every backticked path exists, the text budgets of `PROTOCOL.md` §8b.
+  3. **`launch.sh post` and `board`** (extend `launch.sh`, no new launcher). `post` runs when the last shard of a queue
+     ends: `summary.py` writes `results/SUMMARY.md` and `verdict.json` (the PLAN's registered rules, machine-readable),
+     every CANDIDATE goes through `verify_candidate.py`, results are committed on the lab branch, a macOS notification
+     reports the verdict line. `board` (`verification/board.py`) prints one screen: branch and dirty flag, running
+     shards, last verdict, next week item, open approvals, the credence table; `board.py --handover` writes the
+     mechanical handover lines; `trace.py` generates the STATUS §3 experiment table from the README headers
+     (hand-written STATUS keeps §0-§2 and §4-§7). Optional: `arm HH:MM` (refuses off AC power, on a dirty tree or
+     without a committed PLAN) and `session N`. `start` / `arm` stays the owner's approval of a night.
+  4. **Compute accounting** (15 minutes). Record CPU seconds (`resource.getrusage(RUSAGE_CHILDREN)` in
+     `run_overnight.py`, or `/usr/bin/time -l` in `run.sh`): `core_hours = wall x WORKERS` overstates (lead review
+     2026-11-09, audit A2), and the pricing of the (10, 4) nights depends on it.
 
-## Week plan (lead review 2026-11-09, `reviews/strategy-review-2026-11-09.md` §2 as amended by the owner's decisions at its end; replaced by the next lead review)
+  The tools of the new targets (`code/edge_types.py`, a generic `solid` job in `run_overnight.py`,
+  `code/lutz_import.py`, `verify_candidate.py --target S6` once the SPEC entry is approved, benchmark-ladder rows for
+  wedge-seeded engines) are built inside the preps of E-261110-01, -02 and -03. A headless morning session
+  (`launch.sh morning`: `experiment-conclude` with a restricted tool set, a `DRAFT` commit on the lab branch, never a
+  push or a merge) is built only after two manual mornings went well. Already applied as wording on 2026-11-10: no
+  night report, one commit per stage, the lead review's size and owner digest, chained lab items (`PROTOCOL.md` §8b).
 
-Lab sessions take these in order (PROTOCOL.md §8b). Anything outside a follow-up tree goes to "For the lead".
-Laptop: at most 10 cores in total; every splittable run uses 8-10 shards (owner, 2026-11-08). Item 1 is one owner
-night; item 2 uses GitHub Actions only and may run during that night; item 3 is a day run. Aggregate core-hour caps
-override per-unit caps. Search runs skip DRAT (owner, 2026-11-08): their UNSATs are UNSAT-SOLVER, which may skip or
-rank a map but are never a negative result. The note is deferred (owner, 2026-11-09): no session time on it unless a
-genuinely worthwhile result is found.
+## Week plan (lead session 2026-11-10, `reviews/strategy-review-2026-11-10.md`; **proposed, pending the owner's approval**; replaced by the next lead review)
 
-1. **(10,4) first-witness sweep, stratum C** (exploit, jump; follow-up of E-261108-03, new experiment; owner approved
-   2026-11-09). Question: does any of the 360 admissible (10,4) maps outside the patterns `(1^4,2)` and `1^6` have a SAT
-   plain S5 formula, and what does each pattern cost? Queue (frozen in the PLAN with the `maps_10_4.json` SHA-256), in
-   this order: `(1,2,3)/(2,3)` 38, `(1,1,1,3)` 58, `(1,1,2,2)/(2,3)` 70, `(1,1,2,2)/(2,2,2)` 186, `(2,2,2)/(2,2,2)` 7,
-   `(3,3)/(4)` 1; maps 146 and 845 reuse their E-261108-03 records. Solver: kissat rel-4.0.4 (binary hash of
-   E-261108-03), E-261103-02 encoder, `submap=False`, no DRAT, solver cap 3600 s per unit; positive and negative pinned
-   controls in every shard.
-   * Budget: 1 prep session (PLAN, queue, smoke test); one owner night, 10 shards, <= 80 core-h, <= 10 h wall.
-     Scenario 51 core-h (review 2026-11-09 §3.2, untested).
-   * Kill: a control fails -> stop that shard and escalate. Aggregate cap reached with < 300 units decided -> stop,
-     record, escalate (the per-map cost model is wrong by > 1.5x).
-   * Follow-up tree (nothing starts without the owner):
-     * any SAT -> first-SAT stop of all shards; exact model check against the clauses; the realization stage with the
-       E-261103-04 saved-OM tools (I-261029-57); realized -> `verify_candidate.py --target S5`, `candidate-check`; not
-       realized in one session -> final polynomials (I-261029-45) and escalate. An OM model alone is not a result;
-     * all decided, 0 SAT -> per-pattern table (n, median, max, censored); price strata A and B with the measured
-       C ratios; laptop price <= 4 nights -> propose stratum A as the next nights (fastest maps first, same design);
-       otherwise Actions after item 2, if its terms allow it;
-     * > 10 % of units censored at 3600 s -> no A/B proposal; escalate (route LOW-YIELD at this cap for those
-       patterns, not refuted).
-2. **Parked by the owner (2026-11-10): no Actions work in the near-term plan; the (10,4) route is laptop-only.**
-   **Actions calibration wave** ([I-261108-07](ideas/I-261108-07-actions-calibration-wave.md), infrastructure). Question: how fast are free
-   runners on our formulas? First, the lab reads GitHub's current Actions terms of use and records in the PLAN whether
-   this use is allowed (owner, 2026-11-09); not allowed or unclear -> no job, escalate. Trigger `workflow_dispatch`
-   with `--ref` the lab branch (no `experiment/<ID>` branch, `PROTOCOL.md` §7); the job builds kissat rel-4.0.4 and
-   records its hash. At most 10 jobs, 4 processes each: (10,4) maps 96, 85, 146, 845 and (9,3) maps 7, 87, 130, 165,
-   29, 184 with kissat, no DRAT (known laptop times). Record per unit: runner/laptop time ratio r and peak RSS.
-   * Budget: 1 prep session, 0 laptop core-h, jobs <= 3 h each.
-   * Kill: the build or the workflow fails twice -> Actions parked for this research; laptop-only route.
-   * Follow-up tree: answers disagree with the records -> stop, escalate (environment bug); r <= 2 and no OOM ->
-     strata A/B become an Actions campaign proposal (PLAN after item 1, owner approves); r > 2 or OOM -> laptop-only.
-3. **Cube-and-conquer pilot** (explore; [I-261031-02](ideas/I-261031-02-cube-and-conquer-rank3-split.md), the open V2 of E-261108-03). Question: does
-   splitting cut the summed core-seconds on the slow strata? Cubes from march_cu, or from the segment-order variables of
-   the doubled pairs; each cube by kissat, no DRAT; maps 96 (1073 s) and 85 (2749 s), 8-10 shards. If march_cu cannot be
-   built in the prep session, use the segment-order cubes; no other substitution.
+Until the owner approves this plan, only item 4 may run: it is item 3 of the approved plan of lead review 2026-11-09,
+unchanged. Lab sessions take the items in order and may chain consecutive items that need neither a night nor an
+owner approval (`PROTOCOL.md` §8b). Anything outside a follow-up tree goes to "For the lead". Compute is the owner's
+laptop only (owner, 2026-11-10): at most 10 cores in total, every splittable run uses 8-10 shards, nights under
+`caffeinate` on AC power; no GitHub Actions, no rented compute. Aggregate core-hour caps override per-unit caps.
+Harness sessions (Phase 0) come before or between items, never during a night. The new targets are reported as S6 or
+S1, never as S0 or S5. The note stays deferred (owner, 2026-11-09).
+
+1. **Filing** (done 2026-11-10 by the lead session, no compute): ideas I-261110-01 to -07, hypotheses H-261110-01 to
+   -03, planned experiments E-261110-01 to -06, the corrected E-261101-08, the SPEC S6 proposal, the approved harness
+   wording.
+2. **(10, 3) face-minimal decision** ([E-261110-02](experiments/E-261110-02-face-minimal-10-3-decision/), exploit, jump; PLAN committed). Question: does the dual
+   of any of the 20 vertex-minimal 10-vertex genus-3 triangulations have a SAT plain formula (`submap=True`, single
+   adjacencies), and does a model realize? kissat rel-4.0.4 with checked DRAT, cap 3600 s per map.
+   * Budget: 1 prep session (`code/lutz_import.py`, the (7, 1) and (12, 6) controls, a two-map pilot, the smoke test
+     of the owner's entry point, amendment 1 with the input hashes); one owner night, 10 shards, <= 80 core-h. **The
+     night needs the owner's approval.**
+   * Kill: a control fails twice -> stop, escalate. The list of the 20 maps cannot be obtained or fails its checks ->
+     stop, escalate (an own enumeration is a lead decision).
+   * Follow-up tree: any SAT -> exact model check, the realization stage with the E-261103-04 saved-OM tools,
+     `verify_candidate.py` (EMBEDDED, 42 adjacent pairs, all single), `candidate-check`, escalate; 20 UNSAT-VERIFIED
+     -> H-261110-03 weakened at genus 3, (11, 4) proposed only if the median time is below 10 minutes; timeouts on
+     > 20 % of the maps -> record, escalate.
+   * Lab: Opus, high for the prep (an error wastes the night) and for the conclusion (it may meet a SAT model).
+3. **Edge-type tool, null model and family scoring at 8 planes** ([E-261110-01](experiments/E-261110-01-edge-types-wedge-census/), PLAN committed; then
+   [E-261110-03](experiments/E-261110-03-arrangement-family-scoring-8-planes/), explore). Question: which arrangement family yields all-pairs solids at 8 planes, and does
+   the wedge covariate predict a hit inside a family?
+   * Budget: 1 prep session + <= 3 core-h day run, 8-10 shards.
+   * Kill: an E-261110-01 control fails twice -> escalate, no scoring run.
+   * Follow-up tree: a family with >= 10 positives -> the E-261110-04 night with that family is proposed to the
+     owner; wedge ratio < 2 inside every family -> I-261110-01 parked with its rate, E-261110-04 uses the best family
+     without wedge seeding; fewer than 10 positives in total -> UNDERPOWERED, record, escalate.
+   * Lab: Opus, medium (a new exact tool and a generic solid job).
+4. **Cube-and-conquer pilot** (explore; [I-261031-02](ideas/I-261031-02-cube-and-conquer-rank3-split.md), the open V2 of E-261108-03; unchanged from the 2026-11-09
+   plan). Question: does splitting cut the summed core-seconds on the slow strata? Cubes from march_cu, or from the
+   segment-order variables of the doubled pairs; each cube by kissat, no DRAT; maps 96 (1073 s) and 85 (2749 s), 8-10
+   shards. If march_cu cannot be built in the prep session, use the segment-order cubes; no other substitution.
    * Budget: 1 prep session + <= 3 core-h, day run.
    * Kill: summed cube time >= 0.7x of monolithic kissat on both maps -> park cube-and-conquer at this budget.
-   * Follow-up tree: <= 0.5x on both -> the A/B proposal of item 1 uses cubes; in between -> record, no change.
+   * Follow-up tree: <= 0.5x on both -> the A/B pricing uses cubes; in between -> record, no change. Then the rule of
+     [E-261110-06](experiments/E-261110-06-s5-10-4-strata-ab-remainder/): A + B at <= 3 laptop nights -> proposed to the owner as nights; otherwise one explore night
+     after items 2 and 3, nothing more without the lead.
+   * Lab: Opus, medium.
+5. **Immersion-only and segment-free formulas** ([E-261110-05](experiments/E-261110-05-immersion-only-s5-formulas/), explore). Question: which clause family
+   refutes the two (8, 2) and six (9, 3) formulas (H-261110-01)?
+   * Budget: 1 prep session + <= 3 core-h day run, 8-10 shards.
+   * Kill: a plain formula does not rebuild to its recorded CNF hash -> stop, escalate.
+   * Follow-up tree: V2 (no `SEGMENT_DISJOINT`) SAT on an (8, 2) map -> H-261110-01 supported, one paragraph in
+     `theory/`; V1 (immersion-only) UNSAT -> core mining on the (8, 2) formulas with the I-261101-02 / E-261101-05
+     tools, one session; V1 SAT and V2 UNSAT -> H-261110-01 weakened, record.
+   * Lab: Opus, medium (a default-off encoder option; recorded CNF hashes must not change).
 
-Not in this week: strata A (520) and B (237) of the sweep (with Actions parked, a laptop proposal needs the owner, after item 3); the note package, its soundness
-chain (review 08e Q3) and the defect census I-261108-10 (deferred by the owner); the empirical hardness model and the
-kissat configuration screen (review 2026-11-09 §6); every I-261108-11 stage (parked, review 2026-11-09 §3.3). The
-low-cost S0 slot (E-261101-10) stays outside the week.
+Not in this week: strata A (520) and B (237) of the (10, 4) sweep (rule of E-261110-06); E-261110-04 and E-261101-08
+(wait for item 3); the note and its soundness chain (deferred by the owner); I-261110-05 to -07 (low priority, no
+slot); every Actions item (parked by the owner). The low-cost S0 slot (E-261101-10) stays outside the week.
 
-Previous week plan (lead review 2026-11-08d amended by 08e) is done: multiplicity control E-261109-01, speed-up
-benchmark E-261108-03, independent census E-261109-02, second encoder E-261109-03, union of solids E-261109-04
-(STATUS 3x-3ab). Its text is in `reviews/strategy-review-2026-11-08d.md` §2 and `-08e` §7. The week plan before it
-(lead review 2026-11-08) decided all 203 admissible (9,3) plain formulas (STATUS 3d).
+Previous week plan (lead review 2026-11-09, owner-approved): item 1 done (E-261109-06, STATUS 3ad: 360/360
+UNSAT-SOLVER, 0 SAT); item 2 (Actions calibration, I-261108-07) parked by the owner on 2026-11-10; item 3 is item 4
+above. Its text is in `reviews/strategy-review-2026-11-09.md` §2 as amended by the owner's decisions at its end. The
+plans before it: `reviews/strategy-review-2026-11-08d.md` §2 and `-08e` §7 (all done, STATUS 3x-3ab), and lead review
+2026-11-08 (all 203 admissible (9,3) plain formulas decided, STATUS 3d).
+
+## Queue: constructive targets on the laptop (proposed 2026-11-10, pending the owner's approval)
+
+Proposed by `reviews/strategy-review-2026-11-10.md` from the handoff of the 2026-11-10 strategy session. Targets: S6 at
+(10, 3) (proposed SPEC entry), S1 with the genus free at 9, 10 and 12 faces, and the (10, 4) remainder under a rule.
+Every row is a `planned` folder; `PLAN.md` before any compute. "J" = jump (2 reaches the target genus directly).
+
+| ID | State | Tests | Question | T D F G R | Budget | Stop rule |
+|---|---|---|---|---|---|---|
+| [E-261110-02](experiments/E-261110-02-face-minimal-10-3-decision/) | open (PLAN committed; the night needs the owner) | H-261110-03, H-261110-01 | **Exploit, J 2.** The 20 duals of the vertex-minimal genus-3 triangulations (10 faces, 42 of 45 pairs, single adjacencies): plain formulas with `submap=True`, kissat, checked DRAT, cap 3600 s; controls (7, 1), (12, 6), pinned positive / negative per shard | 2 2 2 2 2 | 1 prep session + one owner night, <= 80 core-h, 10 shards | all 20 recorded, a failed control, or the cap |
+| [E-261110-01](experiments/E-261110-01-edge-types-wedge-census/) | open (PLAN committed) | - | **Calibration.** `code/edge_types.py` (exact edge convexity, vertex types, dihedral angles, wedge covariate) on Szilassi, Roest-Vigh, Mizhaev, the S3 witnesses and the archive; the null model from committed code; statements 1 and 2 of I-261110-07 on data | 1 2 2 1 2 | 1 session, < 0.1 core-h | all inputs and null rows, or a failed control |
+| [E-261110-03](experiments/E-261110-03-arrangement-family-scoring-8-planes/) | open | H-261110-02 | **Explore.** Four 8-plane families (isotropic, D2, wedge-seeded isotropic, wedge-seeded D2), 200 arrangements each, all 28 pairs adjacent, E free; rate per family and with / without four disjoint pairs <= 25 degrees | 2 2 2 1 2 | 1 prep session + <= 3 core-h, 8-10 shards | 800 arrangements decided or 3 core-h |
+| [E-261110-05](experiments/E-261110-05-immersion-only-s5-formulas/) | open | H-261110-01 | **Explore.** Immersion-only (V1) and plain without `SEGMENT_DISJOINT` (V2) on the two (8, 2) maps and six (9, 3) maps, cap 1800 s, DRAT for (8, 2) | 2 2 2 2 2 | <= 3 core-h, 8-10 shards | 16 units ended or 3 core-h |
+| [E-261110-04](experiments/E-261110-04-genus-free-9-10-faces-sweep/) | open, gated by E-261110-03 | H-261110-02 | **Explore, J 2.** Nine and ten mutually adjacent faces, genus free (E in {45, 51} and {54}), the family E-261110-03 scores best; what is different from the parked (9, 3) solid-first runs: E free and a measured rate | 2 2 2 1 2 | one owner night | the night, or the first exact all-pairs solid |
+| [E-261101-08](experiments/E-261101-08-relaxed-s1-twelve-faces/) | open, gated by E-261110-03 / -04 (S0 queue row below) | H-261101-07 | **J 2.** Relaxed Szilassi-12: 12 faces, every pair adjacent, six or more extra segments, genus >= 7; T-orbit (exhaustive), D2 x 3 orbits, six wedges | 2 2 2 2 2 | one night per family | calibration fails -> fix the engine, do not run n = 12 |
+| [E-261110-06](experiments/E-261110-06-s5-10-4-strata-ab-remainder/) | open, gated by week item 4 | H-261101-07 | **Conditional.** (10, 4) strata A (520) and B (237): laptop nights only if cubes price A + B at <= 3 nights, otherwise one explore night | 1 2 2 1 2 | by the rule; <= 80 core-h per night | first SAT, the night's cap, or a failed control |
 
 ## Queue: focus target S5 (approved 2026-11-03)
 
@@ -178,11 +239,11 @@ filled and committed before any compute.
 | [E-261101-24](experiments/E-261101-24-farkas-descent-pilot/) | open | H-261101-16, H-261101-09 | Farkas-certificate descent: the exact dual gradient of offset infeasibility moves the normals (what is different from DR2/DR4: guided, not annealed); pilot on the 80 radius-0 seeds and a perturbed witness | 2 2 2 1 2 | 1 day coding, ~5 core-h | 50 steps per seed, or the first exact S3 object at a level where sampling found none; positive control first |
 | [E-261101-19](experiments/E-261101-19-barrier-continuation-genus3-handle/) | open | H-261101-10, H-261101-03 | Barrier continuation inside the genus-3 realization space towards an in-class handle, with a measure that can go negative (replaces E-261101-07) | 2 2 1 2 2 | 1 core-h pilot, then one night (40 realizations) | all extendable arms of 40 realizations, or the first exact genus-4 object |
 | [E-261101-17](experiments/E-261101-17-realization-space-geometry/) | open | H-261101-09, H-261101-10 | Geometry of the realization spaces: chord widths by hit-and-run, offsets and normals separately, shrinkage per handle, connectivity of the type-15 archive | 1 2 2 1 2 | ~10 core-h | 10 realizations x 2,000 steps and the pairwise segment tests |
-| [E-261101-15](experiments/E-261101-15-cube-and-conquer-pilot/) | open | H-261101-06, H-261101-01, H-261101-12 | Cube-and-conquer pilot on one trivial-Aut type as an Actions matrix, cubes on the 44 vertex-type bits pruned by E-261101-21, LRAT checked on the fly (after E-261101-09 agreement) | 2 2 1 1 2 | ~300 core-h of Actions | one type decided, or the matrix exhausted; report refuted fraction per core-hour and proof-handling cost |
+| [E-261101-15](experiments/E-261101-15-cube-and-conquer-pilot/) | open | H-261101-06, H-261101-01, H-261101-12 | Cube-and-conquer pilot on one trivial-Aut type as an Actions matrix, cubes on the 44 vertex-type bits pruned by E-261101-21 (or the 66 edge-convexity bits, I-261110-07, if E-261110-01 confirms them), LRAT checked on the fly (after E-261101-09 agreement) | 2 2 1 1 2 | ~300 core-h of Actions | one type decided, or the matrix exhausted; report refuted fraction per core-hour and proof-handling cost |
 | [E-261101-10](experiments/E-261101-10-write-up-symmetric-immersion/) | open | FD6, H-261101-13 | Write-up: no symmetric immersion (second encoder, soundness proofs, archived certificates, Lemma A for improper isometries reviewed or the statement restricted to rotations) | 2 1 1 1 2 | 2-3 sessions | arXiv-ready draft reviewed by `adversarial-verifier` (a filter) and one human |
 | [E-261101-03](experiments/E-261101-03-type0-dossier/) | open | H-261101-05, FD10 | Type-0 genus-3 dossier: the owner's independent second verifier first, then canonical form, certificate re-run, novelty search | 1 2 2 1 2 | 1-2 sessions, no compute | stop after the 5 steps or 2 sessions; any verifier mismatch -> fix FD10 first |
 | [E-261101-20](experiments/E-261101-20-incremental-sat-across-types/) | open | H-261101-06 | One incremental SAT session for the 25 symmetric instances with selector literals: do shared GP lemmas cut the total time? | 1 2 2 1 2 | a few core-h | two orders; below 1.5x closes it, above 2x makes it the campaign default |
-| [E-261101-08](experiments/E-261101-08-relaxed-s1-twelve-faces/) | open | H-261101-07, DR12 | Relaxed S1 target, a goal in itself: 12 faces, three doubled pairs as one C3 orbit (genus 7, the smallest S1 case), after Roest-Vigh calibration | 1 2 2 1 2 | 2 nights max, <= 25 % of compute | calibration fails -> fix engine, do not run n = 12 |
+| [E-261101-08](experiments/E-261101-08-relaxed-s1-twelve-faces/) | open | H-261101-07, DR12 | Relaxed S1 target, a goal in itself: 12 faces, six extra segments (genus 7, the smallest S1 case; corrected 2026-11-10, this row said "three doubled pairs"), after Roest-Vigh calibration (done, STATUS 3g); re-scored and queued 2026-11-10 in the constructive queue above | 2 2 2 2 2 | one night per family | calibration fails -> fix engine, do not run n = 12 |
 | [E-261101-12](experiments/E-261101-12-maximal-face-neighbourly/) | open | H-261101-07, DR12, DR15 | Umbrella row of the focus, split on 2026-11-03 into E-261103-01 to -07 (S5 queue above). **Focus target since 2026-11-03 (`STRATEGY.md`): (9, 3) first, stretch (10, 4)** (SPEC S5, `--target S5`); the strategy review splits this row into experiments. Maximal face-neighbourly cubic polyhedra per genus, (F, g) = (8, 2), (9, 3), (10, 4), (11, 5) with 2, 3, 3, 2 doubled pairs; (8, 2) only as a warm-up if it calibrates the (9, 3) method; symmetric ansatzes first (black-box engines were underpowered there) | 1 2 2 2 2 | literature 1 session; then 1 night per case | (9, 3): an S5 PASS (`candidate-check`), or every map tried UNSAT with a written power statement; then (10, 4) under the same rule |
 
 Done or merged this cycle: [E-261102-03](experiments/E-261102-03-chirotope-alt-cap-or-wall/) (done 2026-11-03, night 7: full-map frontier unchanged with the cap lifted, 0/12 at 120 min, R6k k = 8, 9 4/4 each) and [E-261102-04](experiments/E-261102-04-genus-ladder-engine-score/) (done 2026-11-03, night 7: genus-ladder search, R4 0/14, R5 5/10 at 6 min); [E-261102-02](experiments/E-261102-02-chirotope-first-night2/) (killed 2026-11-03 before any run, by the pre-registered rule of E-261102-03); [E-261101-23](experiments/E-261101-23-k-face-subinstances-face-cegar/) and [E-261101-25](experiments/E-261101-25-chirotope-first/) (done 2026-11-02, night 6, both UNDERPOWERED: a final-polynomial LP without a time limit hung 9 of 10 shards; follow-ups E-261102-01, -02); [E-261102-01](experiments/E-261102-01-kface-sweep-completion/) (done 2026-11-02, LOW-YIELD@4.2 core-h for exclusion on the greedy face set at k <= 9, UNDERPOWERED for realization); [E-261101-07](experiments/E-261101-07-pinned-hemisphere-margin/) (done, verdict ARTEFACT:
@@ -234,6 +295,17 @@ horizon by our tools; moved by the "scenario move" lines of the E-261103 PLANs):
 | (9, 3) | 0.03 | 0.97 | 0 | E-261103-03: all 203 admissible plain formulas UNSAT-VERIFIED (EXACT); m = 3, 4 control passed, census reproduced by a second enumerator, two encoders agree on six maps (E-261109-01..03); still PROVED-1, no human review (lead review 2026-11-09 §8) |
 | (8, 2) | 0.02 | 0.98 | 0 | E-261103-03: both plain formulas UNSAT-VERIFIED; m = 3, 4 control passed and census reproduced (E-261109-01, -02); conditional PROVED-1, not reviewed (lead review 2026-11-09 §8) |
 | (10, 4) | 0.15 | 0.50 | 0.35 | E-261108-03: kissat decides four maps in <= 2749 s (UNSAT-SOLVER), sweep priced at about 424-475 core-h (scenario); four UNSAT-SOLVER maps are no existence evidence; proof checking of long solves does not fit 48 GB (lead review 2026-11-09 §8) |
+
+Targets of 2026-11-10 (**proposed** by `reviews/strategy-review-2026-11-10.md` §4, pending the owner's approval; all
+CONJECTURE: planning weights of one AI session, not evidence; moved by the "scenario move" lines of the E-261110 PLANs):
+
+| Case | exists | Evidence in one line |
+|---|---|---|
+| (10, 3) face-minimal, single adjacencies (S6) | 0.25 | the vertex version is realizable at genus 3 (CLAIMED); the face version has no data; nothing run |
+| nine mutually adjacent faces, genus >= 4 (S1) | 0.55 | eight exist at genus 3 (Mizhaev, Roest-Vigh); (9, 3) excluded at formula scope; nothing run with E free |
+| relaxed Szilassi-12, genus >= 7 (S1) | 0.40 | no data; the engine is calibrated at 8 planes only |
+| (10, 4) S5 | 0.10 (0.10 / 0.50 / 0.40 in the table above; was 0.15 / 0.50 / 0.35) | stratum C 360/360 UNSAT-SOLVER is weak evidence against; laptop-only compute raises "cannot tell" |
+| S0 | the handoff session's weight is 0.05; the S0 table above (A = 0.20) is **not** changed: no S0 evidence since 2026-11-01 | owner's call |
 
 Rules for S5: both (8, 2) and (9, 3) decided non-existent -> write the note, focus moves to (10, 4) with E-261103-07
 (fired 2026-11-08: owner approved lead review 2026-11-08d; the note is gated by week items 1, 3, 4 and says that no

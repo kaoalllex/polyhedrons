@@ -59,3 +59,11 @@ readable UNSAT), but our data give it no extra prior; the PLAN should not call i
 ## Source
 
 Primary reads 2026-11-01 (Roest-Vigh Theorem 1 item 3, Mizhaev face data, our exact re-check).
+
+## 2026-11-10: the edge-level view (NUMERICAL, session computation, not in the repository)
+
+The same three objects classified by edges (`reviews/HANDOFF_PROMPT_2026-11-10-wedges.md` §2): convex + reflex edges
+are 16 + 5 (Szilassi), 20 + 16 (Roest-Vigh), 22 + 14 (Mizhaev); the vertex counts above are reproduced; every saddle
+has mixed edge signs. The sharpest convex edges form disjoint face pairs, but a null model puts that near chance. The
+follow-ups are separate files: I-261110-01 (wedge-plate ansatz), I-261110-07 (edge bits as a cube basis), and
+E-261110-01, which recomputes all of this exactly from committed code.

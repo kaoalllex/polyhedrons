@@ -1,6 +1,6 @@
 ---
 name: experiment-conclude
-description: Use when a run of a 12-face research experiment has finished (laptop night, GitHub Actions shards, or an interactive run), or when night results arrive and must be analysed, verified and recorded in the ledger; also for night reports and for any edit of STATUS.md, ROADMAP.md or SPEC.md.
+description: Use when a run of a 12-face research experiment has finished (laptop night, GitHub Actions shards, or an interactive run), or when night results arrive and must be analysed, verified and recorded in the ledger; also for any edit of STATUS.md, ROADMAP.md or SPEC.md.
 ---
 
 # Conclude an experiment and update the ledger
@@ -28,6 +28,8 @@ Use `python3` from an activated environment with `requirements.txt` installed.
      acceptance separately from fresh replay. E-261103-03 evidence tests use `REPLAY_DRAT=1` for
      explicit audit replay; initial checking of new UNSAT certificates remains mandatory.
 4. **Conclude.** Fill in `CONCLUSION.md` from the template:
+   - for a laptop night, a "Runs" bullet: wall time vs budget, any sleep gaps, per job the tasks, outcomes and
+     exact checks. It replaces the night report (owner, 2026-11-10; `PROTOCOL.md` §8b); write nothing in `reports/`;
    - prediction vs outcome;
    - claims with `SPEC.md` §5 labels and their scope (instance / family / theorem), and what must not be
      claimed;
@@ -35,7 +37,8 @@ Use `python3` from an activated environment with `requirements.txt` installed.
    - for a claim that changes an FD or witness row: a `REVIEW.md` by someone other than the author;
    - the verdict with its budget (e.g. "LOW-YIELD@8 core-h, 2 seeds"; REFUTED only with a proof);
    - the next step.
-5. **Ledger, in the same commit:**
+5. **Ledger, in the same commit** (one commit for the whole conclusion, the handover block included; `PROTOCOL.md`
+   §8b):
    - **`STATUS.md`:** update the row(s) and the "As of" date.
    - **`ROADMAP.md`:** set the State to `done` or `killed`. A follow-up row needs scores, T + D >= 3, a budget, a
      stop rule and its DR/FD link.
@@ -47,11 +50,7 @@ Use `python3` from an activated environment with `requirements.txt` installed.
    - Run `verification/trace.py` so the map is up to date.
 
    Do not restate numbers anywhere else. `results.md` is frozen. Change `SPEC.md` only through its change log.
-6. **Night report.** For a laptop night, also write a short `reports/NIGHT_REPORT_YYYY-MM-DD.md` covering:
-   - wall time vs budget, and any sleep gaps;
-   - per job: tasks, outcomes, exact checks;
-   - the verdict.
-7. **Close.** Reuse applicable successful checks from the run/session; conclusion and ledger wording edits
+6. **Close.** Reuse applicable successful checks from the run/session; conclusion and ledger wording edits
    alone do not trigger tests. For relevant code/evidence changes, run only affected checks not already
    covered; run `python3 verification/verify_all.py --quick` once if an integration concern remains. State
    the reason before repeating any check; reuse the result at handover. Follow `PROTOCOL.md` section 8.
