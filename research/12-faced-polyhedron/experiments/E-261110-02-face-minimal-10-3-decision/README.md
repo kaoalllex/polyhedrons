@@ -11,13 +11,13 @@ preregistered: true
 ---
 
 > Planned. Scores T D F G R: 2 2 2 2 2, jump 2 | budget: 1 prep session + one owner night, <= 80 core-h, 10 shards.
-> `PLAN.md` is committed. **The night needs the owner's approval** and the prep amendment with the input hashes.
+> `PLAN.md` is committed. The night is approved by the owner (2026-11-10); it starts after the prep amendment with the input hashes.
 
 ## Goal
 
 Decide the plain formula of each of the 20 maps (10 faces, 28 vertices, 42 edges, 42 of 45 pairs adjacent, every
 adjacency single) with `submap=True`, kissat and checked DRAT. A SAT model that realizes is a new polyhedron of the
-proposed target S6; 20 UNSAT-VERIFIED formulas are a conditional face-minimality statement for genus 3 in the cubic
+target S6; 20 UNSAT-VERIFIED formulas are a conditional face-minimality statement for genus 3 in the cubic
 single-adjacency class (I-261110-02). Never reported as S0 or S5.
 
 ## Next

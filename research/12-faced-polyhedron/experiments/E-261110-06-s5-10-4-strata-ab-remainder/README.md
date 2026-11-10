@@ -22,7 +22,7 @@ the Actions branch of the E-261109-06 follow-up tree no longer exists.
 
 ## Next
 
-Rule (proposed 2026-11-10, replaces "Actions after item 2"):
+Rule (owner-approved 2026-11-10, replaces "Actions after item 2"):
 
 * Gate: the cube-and-conquer pilot on maps 96 and 85 (week plan item 4; registered by the lab session that runs it).
 * The pilot prices A + B at <= 3 laptop nights -> A + B are proposed to the owner as nights of the E-261109-06 design

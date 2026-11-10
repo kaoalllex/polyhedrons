@@ -9,8 +9,8 @@ origin: [I-261110-02, H-261101-07, L:schewe2010, L:hlz2010]
 ## Statement
 
 Some dual of a vertex-minimal triangulation of the orientable surface of genus 3 (10 faces, 42 of 45 pairs adjacent)
-and of genus 4 (11 faces, 51 of 55) is realizable as an embedded polyhedron with planar simple faces (proposed
-target S6); at genus 5 or genus 6 (12 faces; genus 6 is S0) none is. This is the face analogue of the picture in
+and of genus 4 (11 faces, 51 of 55) is realizable as an embedded polyhedron with planar simple faces (target
+S6); at genus 5 or genus 6 (12 faces; genus 6 is S0) none is. This is the face analogue of the picture in
 print for the vertex version (CLAIMED: realizable through genus 4, mixed at genus 5, none at genus 6).
 
 ## Rival

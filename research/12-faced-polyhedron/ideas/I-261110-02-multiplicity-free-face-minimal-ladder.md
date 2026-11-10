@@ -12,8 +12,8 @@ origin: [owner, I-261101-07, L:schewe2010, L:hlz2010]
 The S5 ladder (I-261101-07) needs multiple adjacencies at every rung below S0 (2, 3, 3, 2 extra segments at (8, 2),
 (9, 3), (10, 4), (11, 5)); S0 has none. A second ladder has S0's zero slack at every rung: the duals of the
 **vertex-minimal triangulations** of the orientable surfaces. Such a dual is a cubic map whose faces are simple
-polygons, every adjacency is single, and **not** every pair of faces is adjacent. Proposed target id S6
-(`reviews/strategy-review-2026-11-10.md` §3; not in `SPEC.md` until the owner approves; S0 is not weakened).
+polygons, every adjacency is single, and **not** every pair of faces is adjacent. Target id S6 (`SPEC.md` §2,
+owner-approved 2026-11-10; S0 is not weakened).
 
 | (F, g) | maps | adjacent pairs | Label of the count |
 |---|---:|---|---|

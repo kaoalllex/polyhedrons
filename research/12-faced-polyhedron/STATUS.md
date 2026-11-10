@@ -8,12 +8,14 @@ evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experim
 `ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
 numbers; other files link here.
 
-No active process (item 5a, the E-261103-07 probe and the E-261108-03 benchmark finished). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-09 done; week item 1 (E-261109-06) concluded (3ad); Actions parked by the owner on 2026-11-10 (laptop-only compute), next: the cube-and-conquer pilot; a new target set and week plan are proposed and pending the owner's approval (`ROADMAP.md`, `reviews/strategy-review-2026-11-10.md`; no result, no row of this file changed). E-261103-04, E-261103-05, E-261103-06
+No active process (item 5a, the E-261103-07 probe and the E-261108-03 benchmark finished). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-09 done; week item 1 (E-261109-06) concluded (3ad); Actions parked by the owner on 2026-11-10 (laptop-only compute), focus changed by the owner on 2026-11-10 to three constructive targets (`STRATEGY.md` §1; SPEC S6 added), next: the E-261110-02 prep of the week plan (`ROADMAP.md`; no result, no row of this file changed). E-261103-04, E-261103-05, E-261103-06
 and E-261107-01 are concluded (sections 3g, 3j-3u).
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-08 (`STRATEGY.md`): S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
+**Focus since 2026-11-10 (`STRATEGY.md` §1, owner): three constructive targets on the laptop**: S6 at (10, 3) first
+(E-261110-02), S1 with the genus free at 9, 10 and 12 faces, S5 at (10, 4) only under the rule of E-261110-06; nothing
+has run on the new targets. **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
 4, gated by a speed-up benchmark (E-261103-07: 10/10 TIMEOUT, section 3w); from 2026-11-03 to 2026-11-08 the focus was
 (9, 3), now decided at formula scope (below); its negative result is a side track towards a note marked as not
 independently reviewed. No geometric witness is known; the paired exact pilot is complete (section 3e); the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes

@@ -5,25 +5,24 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 
 ## 1. Targets
 
-* **Focus target: S5 at (10, 4)** (owner, 2026-11-08, lead review `reviews/strategy-review-2026-11-08d.md`), a maximal
-  face-neighbourly polyhedron with 10 faces and genus 4: embedded, cubic, every two faces adjacent, exactly three
-  adjacencies beyond the 45 pairs (V, E, F, chi = 32, 48, 10, -6). Success is only
-  `verification/verify_candidate.py FILE --target S5` PASS with these counts, then `candidate-check`.
-  * Why (10, 4): the two smaller minimal-genus cases are decided. All admissible (8, 2) and (9, 3) plain formulas are
-    UNSAT-VERIFIED (EXACT, formula scope); the geometric reading "no S5 polyhedron at (8, 2) or (9, 3)" is PROVED-1,
-    conditional on census coverage and encoder soundness (`STATUS.md` 3d). (10, 4) is the next case and the first
-    genus where every heuristic engine of ours failed; nothing is in print for it (CLAIMED, web check of 2026-11-08).
-  * **Gate (decided 2026-11-09, E-261108-03).** Kissat decides (10, 4) maps in minutes to under an hour; a sweep of all
-    1117 maps without DRAT is priced at about 475 core-h (a scenario, not a bound): about five laptop nights or Actions.
-    Route: a stratified first-witness sweep without DRAT, fastest patterns first, first-SAT stop; stratum C on the
-    laptop first, strata A and B on the laptop or on Actions after calibration (owner, 2026-11-09).
-  * Symmetric realizations are allowed; uniform symmetric formulas apply only to face-free rotations.
+* **Focus (owner, 2026-11-10): constructive, laptop-only, three targets in parallel.**
+  * **S6 at (10, 3) first**: the duals of the 20 vertex-minimal genus-3 triangulations (10 faces, 42 of 45 pairs
+    adjacent, every adjacency single). One night decides it either way (E-261110-02). Success is only
+    `verification/verify_candidate.py FILE --target S6` PASS with these counts, then `candidate-check`.
+  * **S1 with the genus free**: nine or ten mutually adjacent faces at any genus (E-261110-04), then relaxed
+    Szilassi-12 at genus >= 7 (E-261101-08), both gated by the family scoring at 8 planes (E-261110-03). Success is
+    `verify_candidate.py FILE --all-pairs` PASS with the face count, genus and multiplicities reported, then
+    `candidate-check`.
+  * **S5 at (10, 4)** continues only under the rule of E-261110-06: strata A and B run as laptop nights if the
+    cube-and-conquer pilot prices them at <= 3 nights, otherwise as one explore night.
+  * These targets are reported as S6 or S1, never as S0 or S5. Symmetric realizations are allowed (FD5 covers the
+    59 single-adjacency (12, 6) maps only).
 * **Side track: the (8, 2) / (9, 3) negative result.** Consolidated at low compute (multiplicity >= 3 control, second
   census, second encoder on six maps: all passed, 2026-11-09). **The note is deferred** (owner, 2026-11-09): no session
   time on it unless a genuinely worthwhile result is found; if written, it says plainly that no independent (human)
   review took place (owner, 2026-11-08).
-* **Compute.** GitHub Actions may be tried as a compute source (owner, 2026-11-08); first a calibration wave on maps
-  with known answers.
+* **Compute: the owner's laptop only** (owner, 2026-11-10): at most 10 cores, 8-10 shards per splittable run, nights
+  under `caffeinate`; no rented compute, no GitHub Actions.
 * **Defining problem: S0 (Szilassi-12, (12, 6)), parked 2026-11-03, not abandoned.** Every S0 result stays as it is
   (FD rows, certificates, witnesses, the engine-score table, the 59-type data, all experiment folders). Work on S0
   resumes when the owner says so or when a focus result transfers (a method that passes R4, a structural fact
@@ -31,12 +30,14 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 
 ## 2. Stance: risky, jump-first
 
-* **Compute is scarce** (one laptop, at most 10 cores, free GitHub Actions); ideas are cheap. Prefer methods that
+* **Compute is scarce** (one laptop, at most 10 cores); ideas are cheap. Prefer methods that
   can succeed in one night over methods that need a campaign.
 * **Jump, do not climb.** Evidence suggests a ravine between genus 3 and 4 for handle ladders at nearly fixed planes
   (H-261101-10; the Gauss gate on 21 of 21 type-0 arms; night 7: no engine passes R4). Methods that reach the target
   genus directly get priority: symmetric ansatzes with few parameters (legal for S5), arrangement first (E-261101-16),
   embedded first, planar later (I-261103-01), chirotope-first on small instances.
+* **Score the sampler first.** An arrangement family is scored on a rung with known answers (8 planes) before it is
+  used on a target, and its report includes the wedge covariate.
 * **Risky ideas are welcome and killed fast.** Every new engine gets a one-session pilot on the benchmark ladder
   (R1 Szilassi, then a rung with a known answer at the target's size) with a stated kill criterion; a pass earns a
   night, a fail parks the idea with its failure mode written down.
@@ -72,3 +73,8 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 * 2026-11-09 (owner's decisions on lead review 2026-11-09): the gate is decided (kissat, P(4) = 475 core-h, route =
   stratified first-witness sweep, stratum C first); the note is deferred unless a worthwhile result is found; the lab
   checks GitHub's Actions terms before any job. Targets, stance and S0 parking unchanged.
+* 2026-11-10 (owner's decisions on the handoff of the 2026-11-10 strategy session,
+  `reviews/strategy-review-2026-11-10.md`): compute is laptop-only, no rented compute, no Actions; the (10, 4) route
+  is demoted to the rule of E-261110-06; three constructive targets (S6 at (10, 3); S1 with the genus free at 9, 10
+  and 12 faces) adopted for one week of tests; the wedge ansatz is an explore item gated by E-261110-03. The side
+  track and S0 parking are unchanged.

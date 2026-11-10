@@ -143,3 +143,8 @@ proposed table is in `ROADMAP.md`, "Decision point".
 1. Owner: the four approvals of the digest.
 2. Lab (Opus, high): the E-261110-02 prep, then the owner's night.
 3. Lab (Opus, medium), in one chained session: the cube-and-conquer pilot, then E-261110-01 with the E-261110-03 prep.
+
+## Owner's decisions (2026-11-10)
+
+All four approvals of the digest given: the `STRATEGY.md` text (§2), `SPEC.md` S6 (§3), the week plan and credences
+(S0 table unchanged), the E-261110-02 night after its prep and amendment 1. Applied the same day.
