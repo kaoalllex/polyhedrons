@@ -81,7 +81,8 @@ genuinely worthwhile result is found.
        otherwise Actions after item 2, if its terms allow it;
      * > 10 % of units censored at 3600 s -> no A/B proposal; escalate (route LOW-YIELD at this cap for those
        patterns, not refuted).
-2. **Actions calibration wave** ([I-261108-07](ideas/I-261108-07-actions-calibration-wave.md), infrastructure). Question: how fast are free
+2. **Parked by the owner (2026-11-10): no Actions work in the near-term plan; the (10,4) route is laptop-only.**
+   **Actions calibration wave** ([I-261108-07](ideas/I-261108-07-actions-calibration-wave.md), infrastructure). Question: how fast are free
    runners on our formulas? First, the lab reads GitHub's current Actions terms of use and records in the PLAN whether
    this use is allowed (owner, 2026-11-09); not allowed or unclear -> no job, escalate. Trigger `workflow_dispatch`
    with `--ref` the lab branch (no `experiment/<ID>` branch, `PROTOCOL.md` §7); the job builds kissat rel-4.0.4 and
@@ -99,7 +100,7 @@ genuinely worthwhile result is found.
    * Kill: summed cube time >= 0.7x of monolithic kissat on both maps -> park cube-and-conquer at this budget.
    * Follow-up tree: <= 0.5x on both -> the A/B proposal of item 1 uses cubes; in between -> record, no change.
 
-Not in this week: strata A (520) and B (237) of the sweep (item 1 or 2 proposes them); the note package, its soundness
+Not in this week: strata A (520) and B (237) of the sweep (with Actions parked, a laptop proposal needs the owner, after item 3); the note package, its soundness
 chain (review 08e Q3) and the defect census I-261108-10 (deferred by the owner); the empirical hardness model and the
 kissat configuration screen (review 2026-11-09 §6); every I-261108-11 stage (parked, review 2026-11-09 §3.3). The
 low-cost S0 slot (E-261101-10) stays outside the week.
