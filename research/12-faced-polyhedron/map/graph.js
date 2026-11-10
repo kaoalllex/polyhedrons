@@ -1222,16 +1222,16 @@ window.GRAPH = {
    "id": "E-261109-06",
    "kind": "experiment",
    "title": "(10,4) first-witness sweep, stratum C - 358 maps of the six fastest patterns, kissat, no DRAT",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-09",
-   "concluded": "",
+   "concluded": "2026-11-10",
    "path": "experiments/E-261109-06-s5-10-4-stratum-c-sweep/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "OPEN@63.84 core-h (stratum C 360/360 UNSAT-SOLVER, 0 SAT; f = 7.16, A + B = 6.06 laptop nights -> Actions route)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction: (10,4) plain exact route with kissat: OPEN@63.84 core-h, stratum C 360/360 UNSAT-SOLVER, 0 SAT (the route works at the predicted cost; no witness in C). H-261101-07 stays open; no scenario move (0 SAT, all decided, below 1.5x)."
   },
   {
    "id": "FD11",

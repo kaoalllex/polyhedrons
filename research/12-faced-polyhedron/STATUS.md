@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-09** (E-261109-05 face-contraction sieve, 0 of 203, 3ac; E-261109-04 union of matched solids, 0 of 256 samples, 3ab; E-261109-03 second encoder agrees on six (9,3) maps, 3aa; E-261109-02 independent census agrees, 3z; E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
+As of **2026-11-10** (E-261109-06 (10,4) stratum C sweep, 360/360 UNSAT-SOLVER, 0 SAT, 3ad; E-261109-05 face-contraction sieve, 0 of 203, 3ac; E-261109-04 union of matched solids, 0 of 256 samples, 3ab; E-261109-03 second encoder agrees on six (9,3) maps, 3aa; E-261109-02 independent census agrees, 3z; E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
 credences in `ROADMAP.md`; before it lead review 2026-11-08 applied: (9, 3) credences moved; sections
 3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
 and item 5a recorded in 3d the same day; E-261103-03 concluded; E-261103-07 cost probe recorded in 3w). Definitions, counters and
@@ -8,7 +8,7 @@ evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experim
 `ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
 numbers; other files link here.
 
-No active process (item 5a, the E-261103-07 probe and the E-261108-03 benchmark finished). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-09 done, next: week item 1 of its week plan (`ROADMAP.md`). E-261103-04, E-261103-05, E-261103-06
+No active process (item 5a, the E-261103-07 probe and the E-261108-03 benchmark finished). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-09 done; week item 1 (E-261109-06) concluded (3ad), next: week item 2 of its week plan (`ROADMAP.md`). E-261103-04, E-261103-05, E-261103-06
 and E-261107-01 are concluded (sections 3g, 3j-3u).
 
 ## 0. State in one paragraph
@@ -300,6 +300,14 @@ Owner request (lead review addendum 2026-11-09 §2). For each of the 203 admissi
 clauses whose chirotope signs all contain that face (the rank-3 contraction): 0 of 203 maps killed, every sub-formula SAT
 (EXACT per sub-formula), controls pass (planted core found exactly). I-261108-06 parked; the (10, 4) sweep stays unsieved.
 0.052 core-h (CONCLUSION).
+
+## 3ad. E-261109-06 (10, 4) stratum C sweep (2026-11-09/10)
+
+Week item 1, one owner night, 10 shards, 63.84 core-h (cap 80), 6.87 h wall, controls pass in every shard. kissat rel-4.0.4,
+no DRAT, cap 3600 s: all 358 queued maps UNSAT-SOLVER (148-2041 s), 0 SAT, 0 TIMEOUT; with 845 and 146 (3x) all 360 stratum C
+maps decided, 1.25x the review scenario. Measured factor f = 7.16 prices A + B at 485 core-h = 6.06 laptop nights (> 4):
+Actions route after week item 2. NUMERICAL, instance scope; UNSAT-SOLVER is not a negative result, strata A and B not run.
+No hypothesis, credence or witness change (CONCLUSION, per-pattern table there).
 
 ## 4. What may and may not be claimed
 

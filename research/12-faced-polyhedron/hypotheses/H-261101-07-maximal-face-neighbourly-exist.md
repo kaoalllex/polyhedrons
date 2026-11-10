@@ -67,3 +67,9 @@ retains its preceding status and credence.
 E-261103-03 item 5a: all 203 admissible (9,3) plain formulas UNSAT-VERIFIED (EXACT, formula scope); the geometric
 reading excludes genus 3 at 9 faces, conditional PROVED-1 (census coverage, encoder soundness, one encoder, no human
 review; STATUS 3d). Genus 2 and 3 are excluded at that level; genus 4-5 are untested, so the status stays open.
+
+## 2026-11-10 (10,4) stratum C
+
+E-261109-06: kissat reports UNSAT on the plain formula of all 360 admissible (10,4) maps outside `(1^4,2)` and `1^6`
+(UNSAT-SOLVER, no checked proof, so not a negative result; STATUS 3ad). No SAT, no candidate; strata A (520) and B (237)
+untested. Status stays open.
