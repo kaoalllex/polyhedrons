@@ -327,6 +327,17 @@ class TrancheTests(unittest.TestCase):
             self.assertEqual(called, [True])
 
 
+class RecordedPathTests(unittest.TestCase):
+    def test_records_keep_paths_relative_to_the_repository(self):
+        import tranche
+        inside = tranche.ROOT / 'experiments' / 'E-x' / 'results' / '0'
+        self.assertEqual(tranche.recorded(inside), 'research/12-faced-polyhedron/experiments/E-x/results/0')
+        self.assertEqual(tranche.REPO / tranche.recorded(inside), inside)
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(tranche.recorded(tmp), str(Path(tmp).resolve()))
+            self.assertEqual(tranche.REPO / tranche.recorded(tmp), Path(tmp).resolve())
+
+
 class TrancheEvidenceTests(unittest.TestCase):
     def test_saved_same_path_pilot_evidence(self):
         import hashlib

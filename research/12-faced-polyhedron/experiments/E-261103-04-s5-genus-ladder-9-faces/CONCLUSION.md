@@ -171,11 +171,11 @@ human review, geometric search or sleep telemetry was checked.
 
 Pre-registration `871d8cc`, first implementation `5643bc5`, reflected-reference
 correction and committed amendment `70347ad`. Both attempts used the activated
-`/Users/a.konyaev/.venvs/polyhedra` environment from the repository root, one shard
+`~/.venvs/polyhedra` environment from the repository root, one shard
 and one worker. The actual registered entry points were
 
 ```bash
-source /Users/a.konyaev/.venvs/polyhedra/bin/activate
+source ~/.venvs/polyhedra/bin/activate
 STAGE=recovery bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0
 OUT="$PWD/research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/results/recovery-pilot-oriented" STAGE=recovery bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0
 ```
@@ -675,7 +675,7 @@ focus gates remain closed even if individual intermediates become geometric.
 Pre-registration `7faeac4`. The actual command from the repository root was:
 
 ```bash
-source /Users/a.konyaev/.venvs/polyhedra/bin/activate
+source ~/.venvs/polyhedra/bin/activate
 STAGE=om-realization bash research/12-faced-polyhedron/experiments/E-261103-04-s5-genus-ladder-9-faces/run.sh 0
 ```
 

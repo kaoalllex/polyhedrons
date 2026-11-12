@@ -27,7 +27,7 @@ its bounded startup check. Stage B has a separate gated queue row and is not pre
 
 ## Environment (checked 2026-11-12, no solver call)
 
-From the repository root: `source /Users/a.konyaev/.venvs/polyhedra/bin/activate`.
+From the repository root: `source ~/.venvs/polyhedra/bin/activate`.
 Python 3.14.6, macOS arm64; all eight installed versions match `../../requirements.txt`, including
 `ortools==9.15.6755`; `python3 -m pip check` reports no broken requirements. OR-Tools native imports,
 CpModel constraint construction and CpSolver construction pass;

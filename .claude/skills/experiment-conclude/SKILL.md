@@ -10,7 +10,8 @@ Use `python3` from an activated environment with `requirements.txt` installed.
 
 1. **Collect.**
    - Actions: `gh run download <run-id>`.
-   - Laptop: the run's `results/` folder.
+   - Laptop: the run's `results/` folder. Raw unit output (`attempt_*/` logs, specs, maps) is read here but not
+     committed (`PROTOCOL.md` §5); after the conclusion commit run `python3 overnight/move_raw.py`.
 
    Sum the core-hours from every `manifest.txt`. If a manifest is missing, say so; do not estimate.
 2. **Controls first.** If the positive control failed, or never had the chance to succeed under the same budget,
