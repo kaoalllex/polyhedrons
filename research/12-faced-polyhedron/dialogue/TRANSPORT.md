@@ -11,13 +11,15 @@ human, through the browser page of `chat.py serve`). A dialogue is a **thread**,
 
 ```
 dialogue/threads/<thread>/
-  thread.json          participants, max_lines, created (written by `chat.py new`)
+  thread.json          participants, max_lines, max_auto_turns, created (written by `chat.py new`)
+  agents.json          dispatched mode: the owner's agent commands (written only by `chat.py agent`)
+  dispatch.json        dispatched mode: pids and retry bookkeeping of the server; safe to delete while it is stopped
   0001-owner.md        one file per message, numbered in posting order
   0002-astra.md
   0003-claude.md
   sealed/              held messages of a parallel step; helper only, never read by a model
-  work/claude/         drafts and scripts of that model
-  work/astra/
+  work/claude/         drafts and scripts of that model; in dispatched mode also NOTES.md,
+  work/astra/          turn-<n>.md (the turn prompt) and wake-<n>-<attempt>.log (the command's output)
 ```
 
 A message file is Markdown with a small header:
@@ -57,16 +59,58 @@ read the other's answer before giving its own. The owner's page shows a held mes
 python3 dialogue/chat.py new <thread>                              create a thread (owner or the first session)
 python3 dialogue/chat.py status <thread>                           floor, last message, held messages
 python3 dialogue/chat.py wait <thread> --as NAME [--timeout 540]   block until NAME is on the floor
-python3 dialogue/chat.py post <thread> --as NAME --next WHO [--round LABEL] --file PATH
-python3 dialogue/chat.py serve <thread> [--port 8765]              the owner's page, 127.0.0.1 only
+python3 dialogue/chat.py post <thread> --as NAME --next WHO [--round LABEL] [--seen N] --file PATH
+python3 dialogue/chat.py serve <thread> [--port 8765] [--no-dispatch]   the owner's page, 127.0.0.1 only
+python3 dialogue/chat.py agent <thread> --as NAME [--mode resume|fresh] [--limit-pattern REGEX]
+                         [--turn-timeout MINUTES] -- ARGV...       register a model's command (owner only)
+python3 dialogue/chat.py agent <thread> --as NAME --off            remove it
 ```
 
 * `wait` exits 0 when you are on the floor and prints every message published since your last post, in full; 2 on
   timeout (run it again); 3 when the thread is closed.
 * `post` exits 0 and prints the file name, or `held` in a parallel step; 4 when refused, with the reason (not on the
   floor, empty body, more than `max_lines` lines, unknown `--next`). Nothing is written on a refusal.
+* `post --seen N` exits 5 when a message by another author with a number above `N` is published: it prints those
+  messages, writes nothing, and you amend your answer in the same turn and post again with the new `N`. Without
+  `--seen`, `post` behaves as above.
+* `serve` also runs the dispatcher of §4 unless `--no-dispatch` is given; it does nothing for a model without an
+  `agents.json` entry.
 
 ## 4. The loop of a model session
+
+A model runs in one of two modes, chosen by the owner per model. **Interactive**: the session lives in its own
+terminal and loops on `wait` (below). **Dispatched**: the model has an `agents.json` entry and `serve` starts its
+command whenever it has to speak; between turns no model process exists. A dispatched model must not also be open
+interactively: the vendor CLI refuses a second writer of the same session, and two sessions of one model would
+answer the same message twice.
+
+### Dispatched mode
+
+The server wakes a model when the thread is open, the model is on the floor and has no held message. In a parallel
+step both models are started at once. The command gets the turn prompt `work/NAME/turn-<n>.md`: the paths of this
+contract, the brief and `work/NAME/NOTES.md`, every message since the model's last post (the selection `wait`
+prints, so a held answer of the other model is never included), and the step: post once with
+`post ... --seen <n>`, append at most 30 lines to `NOTES.md`, end the turn. A dispatched model never calls `wait` or
+`status` and never polls.
+
+* `--mode resume` resumes the same vendor session each turn: the model keeps its private context but pays for the
+  whole context again on every turn, also after a long pause. `--mode fresh` starts a new session each turn; its
+  prompt says to read the contract, the brief, `NOTES.md` and the thread's `HANDOVER.md` first. The cost per turn
+  is bounded, and the model depends on what `NOTES.md` holds.
+* The command runs without a shell or a terminal, with its working directory at the repository root and its output
+  in `work/NAME/wake-<n>-<attempt>.log`. The placeholders `{prompt_file}`, `{thread}` and `{name}` are substituted in
+  each argument.
+* Posted (published or held): the model is idle, and whoever is on the floor now is woken. A non-zero exit, an exit
+  without a post, or a turn longer than `--turn-timeout` (default 60 minutes; SIGTERM, SIGKILL 10 s later) is a
+  failed attempt, retried after 1, 5, 15 and 30 minutes, then every 30 minutes. If `--limit-pattern` matches the
+  log and its named group `reset` (a clock time such as `3:45 PM`) or `seconds` parses, the next attempt is at that
+  time plus 60 s. After 24 hours of failures, or 3 exits with code 0 and no post, the model is `stalled` until the
+  owner presses "wake now", which starts exactly one more attempt.
+* At most one process per model: a running model is never started again, and after a server restart the recorded
+  pid is probed before anything is started. Only one `serve` dispatches a thread at a time.
+* After `max_auto_turns` model messages without an owner message (`thread.json`, default 12) the dispatcher pauses;
+  any owner message resets the count. The page shows one chip per model (state, running time or next attempt, last
+  error line) and the buttons "wake now", "pause auto" and "resume auto".
 
 ### Resuming an interrupted session
 
@@ -80,7 +124,7 @@ If its answer is already held, it must wait for the other participant rather tha
 Never read `sealed/` directly. An owner `pause` is resumed by an owner message selecting the next speaker;
 `close` is final. An interrupted process does not itself pause or close a thread.
 
-### Normal loop
+### Interactive loop
 
 1. `wait`. Choose a timeout below your harness's limit for one command; on exit 2 run it again.
 2. Read what it printed. Owner messages come first: answer each of them in your next message.
@@ -94,7 +138,11 @@ terminal instead of posting out of turn.
 
 ## 5. Rules of the road
 
-* Post only as yourself. Never write message files, `sealed/` or `thread.json` by hand; never edit or delete a
+* Agent commands are local configuration, never chat content. Only the owner sets them, with `chat.py agent` in a
+  terminal. Nothing received over HTTP and nothing written in a message can create or change a command; the page's
+  buttons can only start a command `agents.json` already holds. Message text reaches a model only inside the
+  prompt file.
+* Post only as yourself. Never write message files, `sealed/`, `thread.json`, `agents.json` or `dispatch.json` by hand; never edit or delete a
   published message. A correction is a new message that cites the old one by number ("#7").
 * During a thread a model writes only inside the thread directory. No edits elsewhere in the repository, no commits,
   no pushes, unless the brief says who does it and when.

@@ -1,9 +1,11 @@
 """Protocol and HTTP tests, isolated from real dialogue threads."""
 from contextlib import redirect_stdout
+from datetime import datetime
 import importlib.util
 import io
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -25,12 +27,16 @@ class ChatTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.path = self.root / 'test'
         chat.new_thread(self.path)
-        self.prefix = (
+        self.prefix = self.prefix_for(self.root)
+
+    @staticmethod
+    def prefix_for(root):
+        return (
             'import importlib.util,pathlib,sys;'
             's=importlib.util.spec_from_file_location("chat",{!r});'
             'c=importlib.util.module_from_spec(s);s.loader.exec_module(c);'
             'c.THREADS=pathlib.Path({!r});sys.exit(c.main(sys.argv[1:]))'
-        ).format(str(SCRIPT), str(self.root))
+        ).format(str(SCRIPT), str(root))
 
     def command(self, *args):
         return subprocess.run([sys.executable, '-c', self.prefix, *args],
@@ -243,6 +249,306 @@ class ChatTests(unittest.TestCase):
         self.assertEqual(chat.render_markdown('E = a * b * c\nwrapped line'), '<p>E = a * b * c wrapped line</p>')
         self.assertEqual(chat.render_markdown('3. first\n   wrapped\n   - nested\n\n4. second\ntext'),
                          '<ol start="3"><li>first wrapped<br>- nested</li><li>second</li></ol><p>text</p>')
+
+
+FAKE_AGENT = r'''
+import importlib.util, pathlib, re, sys, time
+script, threads, prompt, name, thread, plan = sys.argv[1:7]
+counter = pathlib.Path(prompt).parent / 'count'
+count = int(counter.read_text()) if counter.exists() else 0
+counter.write_text(str(count + 1))
+actions = plan.split(',')
+action = actions[min(count, len(actions) - 1)]
+text = pathlib.Path(prompt).read_text(encoding='utf-8')
+if action == 'fail':
+    print('boom')
+    sys.exit(1)
+if action == 'quiet':
+    sys.exit(0)
+if action == 'limit':
+    print('Usage limit reached. Try again at 3:45 PM.')
+    sys.exit(1)
+if action == 'sleep':
+    time.sleep(60)
+    sys.exit(0)
+spec = importlib.util.spec_from_file_location('chat', script)
+chat = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(chat)
+chat.THREADS = pathlib.Path(threads)
+body = pathlib.Path(prompt).with_suffix('.body')
+body.write_text('From {} {}'.format(name, count + 1), encoding='utf-8')
+seen = re.search(r'--seen (\d+)', text)[1]
+sys.exit(chat.main(['post', thread, '--as', name, '--next', action.split(':')[1], '--seen', seen, '--file', str(body)]))
+'''
+
+
+class DispatchTests(unittest.TestCase):
+    """Fake agents only: no test starts a real model session."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.path = self.root / 'test'
+        chat.new_thread(self.path)
+        self.fake = self.root / 'fake_agent.py'
+        self.fake.write_text(FAKE_AGENT, encoding='utf-8')
+        self.addCleanup(setattr, chat, 'ROOT', chat.ROOT)
+        chat.ROOT = self.root
+        self.now = datetime(2026, 11, 12, 14, 0).timestamp()
+        self.dispatchers = []
+        self.addCleanup(self.kill_all)
+        self.prefix = ChatTests.prefix_for(self.root)
+
+    cli = ChatTests.command
+
+    def kill_all(self):
+        for dispatcher in self.dispatchers:
+            for proc in dispatcher.procs.values():
+                proc.kill()
+                proc.wait()
+
+    def dispatcher(self):
+        dispatcher = chat.Dispatcher(self.path, clock=lambda: self.now)
+        self.dispatchers.append(dispatcher)
+        return dispatcher
+
+    def register(self, name, plan, **options):
+        entry = {'argv': [sys.executable, str(self.fake), str(SCRIPT), str(self.root), '{prompt_file}', '{name}',
+                          '{thread}', plan], 'mode': 'resume', 'limit_pattern': None, 'turn_timeout': 60}
+        entry.update(options)
+        chat.set_agent(self.path, name, entry)
+
+    def settle(self, dispatcher):
+        for _ in range(30):
+            dispatcher.step()
+            if not dispatcher.procs:
+                return
+            for proc in list(dispatcher.procs.values()):
+                proc.wait(timeout=30)
+        self.fail('Dispatcher did not settle')
+
+    def count(self, name):
+        counter = self.path / 'work' / name / 'count'
+        return int(counter.read_text()) if counter.exists() else 0
+
+    def messages(self):
+        return [(m['n'], m['author'], m['next']) for m in chat.snapshot(self.path)['messages']]
+
+    def prompt_messages(self, name, seen):
+        text = (self.path / 'work' / name / 'turn-{}.md'.format(seen)).read_text(encoding='utf-8')
+        return text.split('## Unseen messages\n\n', 1)[1].split('\n## Your step', 1)[0]
+
+    def test_alternation(self):
+        def no_wait(*args):
+            raise AssertionError('wait called')
+        self.addCleanup(setattr, chat, 'wait', chat.wait)
+        chat.wait = no_wait
+        self.register('claude', 'post:astra')
+        self.register('astra', 'post:owner')
+        chat.post(self.path, 'owner', 'claude', 'Question')
+        self.settle(self.dispatcher())
+        self.assertEqual(self.messages(), [(1, 'owner', 'claude'), (2, 'claude', 'astra'), (3, 'astra', 'owner')])
+        state = chat.snapshot(self.path)
+        expected = lambda numbers: ''.join(chat.message_text(m) + '\n' for m in state['messages'] if m['n'] in numbers)
+        self.assertEqual(self.prompt_messages('claude', 1), expected({1}))
+        self.assertEqual(self.prompt_messages('astra', 2), expected({1, 2}))
+        self.assertIn('--seen 2', (self.path / 'work' / 'astra' / 'turn-2.md').read_text(encoding='utf-8'))
+
+    def test_parallel_step(self):
+        self.register('claude', 'post:owner')
+        self.register('astra', 'post:owner')
+        chat.post(self.path, 'owner', 'both', 'Question')
+        dispatcher = self.dispatcher()
+        dispatcher.step()
+        self.assertEqual(sorted(dispatcher.procs), ['astra', 'claude'])
+        self.settle(dispatcher)
+        self.assertEqual(self.messages(), [(1, 'owner', 'both'), (2, 'astra', 'owner'), (3, 'claude', 'owner')])
+        for name in ('astra', 'claude'):
+            self.assertNotIn('From', self.prompt_messages(name, 1))
+            self.assertIn('Question', self.prompt_messages(name, 1))
+
+    def test_retry_after_failures(self):
+        self.register('claude', 'fail,fail,post:owner')
+        chat.post(self.path, 'owner', 'claude', 'Question')
+        dispatcher = self.dispatcher()
+        start = self.now
+        for offset, attempts in ((0, 1), (59, 1), (60, 2), (60 + 299, 2), (60 + 300, 3)):
+            self.now = start + offset
+            self.settle(dispatcher)
+            self.assertEqual(self.count('claude'), attempts, offset)
+        self.assertEqual(self.messages(), [(1, 'owner', 'claude'), (2, 'claude', 'owner')])
+        self.assertEqual(dispatcher.view()['agents']['claude']['state'], 'idle')
+        self.assertEqual(sorted(p.name for p in (self.path / 'work' / 'claude').glob('wake-*.log')),
+                         ['wake-1-1.log', 'wake-1-2.log', 'wake-1-3.log'])
+
+    def test_limit_reset_time(self):
+        self.register('claude', 'limit,post:owner', limit_pattern=r'Try again at (?P<reset>[0-9:]+ [AP]M)')
+        chat.post(self.path, 'owner', 'claude', 'Question')
+        dispatcher = self.dispatcher()
+        self.settle(dispatcher)
+        view = dispatcher.view()['agents']['claude']
+        self.assertEqual(view['state'], 'backoff')
+        self.assertEqual(view['next_try'], datetime(2026, 11, 12, 15, 46).timestamp())
+        self.assertIn('Try again at 3:45 PM', view['error'])
+        self.now = view['next_try'] - 1
+        self.settle(dispatcher)
+        self.assertEqual(self.count('claude'), 1)
+        self.now += 1
+        self.settle(dispatcher)
+        self.assertEqual(len(self.messages()), 2)
+        seconds = re.search(r'in (?P<seconds>\d+) s', 'in 90 s')
+        self.assertEqual(chat.limit_time(seconds, 100.0), 190.0)
+
+    def test_quiet_exits_stall(self):
+        self.register('claude', 'quiet')
+        chat.post(self.path, 'owner', 'claude', 'Question')
+        dispatcher = self.dispatcher()
+        for offset in (0, 60, 360, 100000):
+            self.now += offset
+            self.settle(dispatcher)
+        self.assertEqual(self.count('claude'), 3)
+        self.assertEqual(dispatcher.view()['agents']['claude']['state'], 'stalled')
+        dispatcher.wake('claude')
+        self.settle(dispatcher)
+        self.assertEqual(self.count('claude'), 4)
+        self.assertEqual(dispatcher.view()['agents']['claude']['state'], 'stalled')
+
+    def test_single_process_per_model(self):
+        self.register('claude', 'sleep')
+        chat.post(self.path, 'owner', 'claude', 'Question')
+        first = self.dispatcher()
+        first.step()
+        proc = first.procs['claude']
+        with self.assertRaisesRegex(chat.Refused, 'already running'):
+            first.wake('claude')
+        restarted = self.dispatcher()
+        restarted.step()
+        self.assertEqual(restarted.data['agents']['claude']['pid'], proc.pid)
+        self.assertEqual(restarted.view()['agents']['claude']['state'], 'running')
+        with self.assertRaisesRegex(chat.Refused, 'already running'):
+            restarted.wake('claude')
+        self.assertEqual(len(list((self.path / 'work' / 'claude').glob('wake-*.log'))), 1)
+        data = json.loads((self.path / 'dispatch.json').read_text(encoding='utf-8'))
+        data['server'] = proc.pid
+        (self.path / 'dispatch.json').write_text(json.dumps(data), encoding='utf-8')
+        with self.assertRaisesRegex(chat.Refused, 'Another dispatcher'):
+            chat.Dispatcher(self.path, clock=lambda: self.now)
+        proc.kill()
+        proc.wait()
+        first.procs.clear()
+        data['server'] = None
+        (self.path / 'dispatch.json').write_text(json.dumps(data), encoding='utf-8')
+        after = self.dispatcher()
+        after.step()
+        record = after.data['agents']['claude']
+        self.assertNotIn('pid', record)
+        self.assertEqual(after.view()['agents']['claude']['state'], 'backoff')
+
+    def test_post_seen(self):
+        chat.post(self.path, 'owner', 'claude', 'Question')
+        chat.post(self.path, 'owner', 'keep', 'Interjection')
+        body = self.root / 'answer.md'
+        body.write_text('Answer', encoding='utf-8')
+        before = sorted(self.path.rglob('*'))
+        result = self.cli('post', 'test', '--as', 'claude', '--next', 'owner', '--seen', '1', '--file', str(body))
+        self.assertEqual(result.returncode, 5, result.stderr)
+        self.assertIn('Interjection', result.stdout)
+        self.assertNotIn('Question', result.stdout)
+        self.assertEqual(before, sorted(self.path.rglob('*')))
+        result = self.cli('post', 'test', '--as', 'claude', '--next', 'owner', '--seen', '2', '--file', str(body))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.messages()[-1], (3, 'claude', 'owner'))
+
+    def test_turn_limit_and_pause(self):
+        config = json.loads((self.path / 'thread.json').read_text(encoding='utf-8'))
+        config['max_auto_turns'] = 2
+        (self.path / 'thread.json').write_text(json.dumps(config), encoding='utf-8')
+        self.register('claude', 'post:astra')
+        self.register('astra', 'post:claude')
+        chat.post(self.path, 'owner', 'claude', 'Question')
+        dispatcher = self.dispatcher()
+        self.settle(dispatcher)
+        self.assertEqual(len(self.messages()), 3)
+        self.assertEqual(dispatcher.view()['auto'], 'turn limit')
+        chat.post(self.path, 'owner', 'keep', 'Go on')
+        self.assertEqual(dispatcher.view()['auto'], 'on')
+        self.settle(dispatcher)
+        self.assertEqual(len(self.messages()), 6)
+        dispatcher.set_paused(False)
+        dispatcher.set_paused(True)
+        self.settle(dispatcher)
+        self.assertEqual(dispatcher.view()['auto'], 'paused')
+        self.assertEqual(len(self.messages()), 6)
+        dispatcher.set_paused(False)
+        self.settle(dispatcher)
+        self.assertEqual(len(self.messages()), 8)
+
+    def test_no_command_injection(self):
+        self.register('claude', 'post:owner')
+        agents_before = (self.path / 'agents.json').read_bytes()
+        marker = self.root / 'X'
+        other = self.root / 'Y'
+        chat.post(self.path, 'owner', 'claude', '$(touch {})\n; touch {}\n`touch {}`'.format(marker, other, other))
+        dispatcher = self.dispatcher()
+        server = chat.make_server(self.path, 0, dispatcher)
+        thread = threading.Thread(target=server.serve_forever)
+        thread.start()
+        self.addCleanup(thread.join)
+        self.addCleanup(server.server_close)
+        self.addCleanup(server.shutdown)
+        base = 'http://127.0.0.1:{}'.format(server.server_port)
+        payload = json.dumps({'name': 'claude', 'argv': ['touch', str(marker)], 'mode': 'fresh'}).encode('utf-8')
+        for url in ('/wake', '/pause', '/resume', '/agent', '/post'):
+            with self.assertRaises(HTTPError) as result:
+                urlopen(Request(base + url, data=payload, headers={'Origin': 'https://evil.example'}), timeout=5)
+            self.assertEqual(result.exception.code, 403)
+            result.exception.close()
+        self.assertEqual(dispatcher.procs, {})
+        self.assertEqual(self.count('claude'), 0)
+        with urlopen(Request(base + '/wake', data=payload, headers={'Origin': base}), timeout=5) as response:
+            self.assertEqual(response.status, 200)
+        self.settle(dispatcher)
+        self.assertEqual(self.messages()[-1][1], 'claude')
+        for url in ('/wake', '/pause', '/resume', '/agent', '/post'):
+            try:
+                urlopen(Request(base + url, data=payload, headers={'Origin': base}), timeout=5).close()
+            except HTTPError as exc:
+                exc.close()
+        self.assertEqual((self.path / 'agents.json').read_bytes(), agents_before)
+        self.assertFalse(marker.exists())
+        self.assertFalse(other.exists())
+        with urlopen(base + '/messages', timeout=5) as response:
+            self.assertEqual(set(json.load(response)['dispatch']['agents']), {'astra', 'claude'})
+
+    def test_turn_timeout(self):
+        self.register('claude', 'sleep', turn_timeout=1)
+        chat.post(self.path, 'owner', 'claude', 'Question')
+        dispatcher = self.dispatcher()
+        dispatcher.step()
+        proc = dispatcher.procs['claude']
+        self.now += 59
+        dispatcher.step()
+        self.assertIsNone(proc.poll())
+        self.now += 1
+        dispatcher.step()
+        self.assertNotEqual(proc.wait(timeout=10), 0)
+        dispatcher.step()
+        view = dispatcher.view()['agents']['claude']
+        self.assertEqual(view['state'], 'backoff')
+        self.assertTrue(view['error'].startswith('turn timeout'))
+        self.assertEqual(view['attempt'], 1)
+
+    def test_agent_command(self):
+        run = lambda *args: self.cli('agent', 'test', *args)
+        result = run('--as', 'astra', '--mode', 'fresh', '--limit-pattern', r'in (?P<seconds>\d+)s', '--',
+                     'codex', 'exec', '--flag', '{prompt_file}')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(chat.agents(self.path)['astra']['argv'], ['codex', 'exec', '--flag', '{prompt_file}'])
+        self.assertEqual(run('--as', 'owner', '--', 'x').returncode, 4)
+        self.assertEqual(run('--as', 'claude', '--limit-pattern', '(', '--', 'x').returncode, 4)
+        self.assertEqual(run('--as', 'astra', '--off').returncode, 0)
+        self.assertEqual(chat.agents(self.path), {})
 
 
 if __name__ == '__main__':
