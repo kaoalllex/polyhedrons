@@ -50,7 +50,8 @@ python3 run_overnight.py status
 
 Run every job inside an experiment, with `--results-dir ../experiments/<ID>-<slug>/results` (the experiment's
 `run.sh` does this; `HOW_TO_RUN.md`). `--git` commits that folder every 30 minutes (`--commit-minutes`), on stop,
-and immediately when a candidate appears; add `--push` to push each commit. Jobs that read another job's records
+and immediately when a candidate appears; add `--push` to push each commit. Raw per-unit output in `attempt_*/`
+folders is not committed (`PROTOCOL.md` §5); after a conclusion, `python3 move_raw.py` moves it out of the checkout. Jobs that read another job's records
 (`gate`, `arch`, `n5`) look in the results dir first, then in the newest experiment that recorded that job.
 
 ## Files

@@ -129,6 +129,14 @@ whose proofs go to a GitHub release or Zenodo; git keeps the URL, size and SHA-2
 may skip proofs (owner, 2026-11-08 22:15): its UNSATs are `UNSAT-SOLVER` (SPEC §4), the record keeps the CNF SHA-256,
 and every shard still runs its SAT and UNSAT controls.
 
+Git keeps the summary of a run, not its raw per-unit output (owner, 2026-11-12): each shard's `results.jsonl`,
+`progress.jsonl`, manifests and `night.log`, and in each `attempt_*/` folder its `manifest.json`,
+`controls/summary.json` and every unit's `result.json`. The rest of `attempt_*/` (solver, checker and unit logs, unit
+specs, maps, raw control files) is ignored by the root `.gitignore`; after the conclusion commit,
+`overnight/move_raw.py` moves it to `../polyhedrons-data/<same path>` (SHA-256 checked). Raw files committed before
+2026-11-12 stay in git history (`git show f5eeffea:<path>`) and in that folder. An attempt cited as evidence is
+re-included in `.gitignore` by name, as the E-261103-03 same-path pilot is.
+
 ## 6. Compute
 
 **Laptop** (owner's MacBook, 11 workers): always under `caffeinate -dimsu` (night 4 lost 8 h to sleep); jobs
