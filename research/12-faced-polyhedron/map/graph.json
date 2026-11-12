@@ -1269,7 +1269,7 @@
    "id": "E-261110-03",
    "kind": "experiment",
    "title": "Arrangement-family scoring at the 8-plane rung with the wedge covariate - four families, all 28 pairs, E free",
-   "status": "planned",
+   "status": "parked",
    "date": "2026-11-10",
    "concluded": "",
    "path": "experiments/E-261110-03-arrangement-family-scoring-8-planes/README.md",
@@ -1286,7 +1286,7 @@
    "id": "E-261110-04",
    "kind": "experiment",
    "title": "Genus-free sweep at 9 and 10 planes - every pair adjacent, multiple adjacencies allowed, E free",
-   "status": "planned",
+   "status": "parked",
    "date": "2026-11-10",
    "concluded": "",
    "path": "experiments/E-261110-04-genus-free-9-10-faces-sweep/README.md",
@@ -1325,6 +1325,40 @@
    "path": "experiments/E-261110-06-s5-10-4-strata-ab-remainder/README.md",
    "direction": [
     "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261112-01",
+   "kind": "experiment",
+   "title": "Ninth-plane Stage A - exact near-copy cells over both eight-plane sources",
+   "status": "planned",
+   "date": "2026-11-12",
+   "concluded": "",
+   "path": "experiments/E-261112-01-ninth-plane-stage-a/README.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR12"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261112-02",
+   "kind": "experiment",
+   "title": "Ninth-plane Stage B - full generic cell lists, Roest-Vigh first",
+   "status": "planned",
+   "date": "2026-11-12",
+   "concluded": "",
+   "path": "experiments/E-261112-02-ninth-plane-stage-b/README.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR12"
    ],
    "verdict": "",
    "preregistered": "false",
@@ -1914,6 +1948,18 @@
    "date": "2026-11-10",
    "concluded": "",
    "path": "hypotheses/H-261110-03-face-minimal-single-adjacency-polyhedra.md",
+   "direction": [],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "H-261112-01",
+   "kind": "hypothesis",
+   "title": "A generic ninth-plane extension of a known eight-plane source contains an all-pairs solid",
+   "status": "open",
+   "date": "2026-11-12",
+   "concluded": "",
+   "path": "hypotheses/H-261112-01-ninth-plane-s1.md",
    "direction": [],
    "verdict": "",
    "preregistered": ""
@@ -3945,6 +3991,22 @@
    "preregistered": ""
   },
   {
+   "id": "I-261112-01",
+   "kind": "idea",
+   "title": "Exact ninth-plane cells over the Roest-Vigh and Mizhaev arrangements",
+   "status": "open",
+   "date": "2026-11-12",
+   "concluded": "",
+   "path": "ideas/I-261112-01-ninth-plane-cells.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR12"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -5414,6 +5476,11 @@
   },
   {
    "from": "E-261108-01",
+   "to": "E-261112-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261108-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5421,6 +5488,11 @@
    "from": "E-261108-01",
    "to": "H-261103-02",
    "kind": "tests"
+  },
+  {
+   "from": "E-261108-01",
+   "to": "I-261112-01",
+   "kind": "origin"
   },
   {
    "from": "E-261108-02",
@@ -5550,6 +5622,21 @@
   {
    "from": "E-261110-06",
    "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261112-01",
+   "to": "E-261112-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261112-01",
+   "to": "H-261112-01",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261112-02",
+   "to": "H-261112-01",
    "kind": "tests"
   },
   {
@@ -6418,6 +6505,16 @@
    "kind": "origin"
   },
   {
+   "from": "I-261103-04",
+   "to": "E-261112-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261103-04",
+   "to": "I-261112-01",
+   "kind": "origin"
+  },
+  {
    "from": "I-261103-05",
    "to": "E-261103-06",
    "kind": "origin"
@@ -6518,6 +6615,16 @@
    "kind": "origin"
   },
   {
+   "from": "I-261110-03",
+   "to": "E-261112-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261110-03",
+   "to": "I-261112-01",
+   "kind": "origin"
+  },
+  {
    "from": "I-261110-04",
    "to": "E-261110-05",
    "kind": "origin"
@@ -6530,6 +6637,21 @@
   {
    "from": "I-261110-07",
    "to": "E-261110-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261112-01",
+   "to": "E-261112-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261112-01",
+   "to": "E-261112-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261112-01",
+   "to": "H-261112-01",
    "kind": "origin"
   },
   {
@@ -6899,6 +7021,16 @@
   },
   {
    "from": "owner",
+   "to": "E-261112-01",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "E-261112-02",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
    "to": "H-261029-01",
    "kind": "origin"
   },
@@ -7215,6 +7347,11 @@
   {
    "from": "owner",
    "to": "I-261110-02",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261112-01",
    "kind": "origin"
   }
  ],

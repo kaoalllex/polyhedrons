@@ -58,3 +58,14 @@ approves it and after amendment 1 (prep: input hashes, pilot outcome) is committ
   proposed credence table; a SAT goes through `candidate-check` before any wording.
 
 ## Amendments
+
+### 2026-11-12: owner-approved bridge gate and queue order
+
+The approved dialogue makes this week item 2, after ninth-plane cells. Before the construction night, require
+SAT on the S6 (10,2) witness map with `submap=True`, plus exact recovery through the SAT-to-coordinates bridge
+from a foreign model without using its source coordinates. Failure of either control blocks the night.
+The existing input, converter, proof, pilot and startup gates remain; freeze the control inputs and hashes in
+the prep amendment. The local witness is a control, not a new headline; its initial verification is not rerun
+by this filing. Two payoffs stay distinct: twenty checked UNSATs give a conditional exclusion; a SAT model
+without coordinates leaves realization open. No native sampling night or (11,3) follow-up is authorized.
+No run or numerical credence change in this amendment. The pending prep is the second amendment.

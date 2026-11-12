@@ -11,7 +11,8 @@ preregistered: true
 ---
 
 > Planned. Scores T D F G R: 1 2 2 1 2 | budget: 1 session, < 0.1 core-h. `PLAN.md` is committed; the run is batched
-> with the prep of E-261110-03 (week item 3).
+> with a future approved prep if needed. Deferred 2026-11-12: random-family scoring is replaced by exact cells;
+> the tool is optional support for the thin-wedge gate (week item 3), not an active run.
 
 ## Goal
 

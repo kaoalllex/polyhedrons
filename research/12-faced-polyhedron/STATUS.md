@@ -1,15 +1,12 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-10** (E-261109-06 (10,4) stratum C sweep, 360/360 UNSAT-SOLVER, 0 SAT, 3ad; E-261109-05 face-contraction sieve, 0 of 203, 3ac; E-261109-04 union of matched solids, 0 of 256 samples, 3ab; E-261109-03 second encoder agrees on six (9,3) maps, 3aa; E-261109-02 independent census agrees, 3z; E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
-credences in `ROADMAP.md`; before it lead review 2026-11-08 applied: (9, 3) credences moved; sections
-3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
-and item 5a recorded in 3d the same day; E-261103-03 concluded; E-261103-07 cost probe recorded in 3w). Definitions, counters and
-evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experiment-log.md`; what to do next:
-`ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
-numbers; other files link here.
+As of **2026-11-12** (owner-approved strategy filing, no research computation). The latest registered results
+remain E-261109-06 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
+`experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
-No active process (item 5a, the E-261103-07 probe and the E-261108-03 benchmark finished). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-09 done; week item 1 (E-261109-06) concluded (3ad); Actions parked by the owner on 2026-11-10 (laptop-only compute), focus changed by the owner on 2026-11-10 to three constructive targets (`STRATEGY.md` §1; SPEC S6 added), next: the E-261110-02 prep of the week plan (`ROADMAP.md`; no result, no row of this file changed). E-261103-04, E-261103-05, E-261103-06
-and E-261107-01 are concluded (sections 3g, 3j-3u).
+No research run launched by this filing. Next is E-261112-01 preparation (ninth-plane Stage A); Stage B is gated,
+S6 (10,3) follows its formula/bridge controls. The dialogue's checks remain session checks, not new ledger evidence;
+the local S6 (10,2) witness work is separate. S0 stays parked and the (8,2)/(9,3) note deferred. No credence change.
 
 ## 0. State in one paragraph
 
@@ -231,8 +228,9 @@ by the quick suite; disk-encoding argument PROVED-1). 0.0052 core-h. Engine cali
 
 30 uniform 9-plane arrangements (c3 / d2p1 / random, 10 each), hard model 36 pairs, E = 39: all 30 INFEASIBLE,
 5.9-21 s each (cap 180 s), controls pass (E-261107-01 CONCLUSION). EXACT computation, geometric reading PROVED-1
-via the E-261103-05 encoding; no DRAT. Best Phase B pair count 32 (diagnostic only). Verdict LOW-YIELD@0.38
-core-h; configuration parked. No hypothesis, credence or witness change.
+via the E-261103-05 encoding; no DRAT. Best Phase B pair count 32 (diagnostic only). Recorded cost 0.38
+core-h; the configuration remains parked. Owner reinterpretation 2026-11-12: withdraw LOW-YIELD as an inference
+about the family; recovery did not measure discovery power. No hypothesis, credence or witness change.
 
 ## 3u. E-261103-06 embedded-first R1 pilot (2026-11-07)
 
@@ -246,8 +244,9 @@ are the rejected steps. EXACT, instance scope; UNDERPOWERED, not a refutation; i
 300 exact 9-plane arrangements (100 Roest-Vigh + random ninth plane, 100 Mizhaev + ninth, 100 random C2-invariant),
 hard model 36 pairs, E = 39, cap 60 s, 10 shards: all 300 INFEASIBLE (6-28 s each), 0 SOLID; 40/40 controls pass
 (E-261108-01 CONCLUSION). EXACT computation, geometric reading PROVED-1 via the E-261103-05 encoding; no DRAT. Density
-bound < 1 % pooled under an i.i.d. assumption. Verdict LOW-YIELD@1.33 core-h; arrangement-first for (9, 3) parked.
-No hypothesis, credence or witness change.
+bound < 1 % pooled under an i.i.d. assumption. Recorded cost 1.33 core-h; configuration parked.
+Owner reinterpretation 2026-11-12: withdraw LOW-YIELD as a family inference; discovery power was unmeasured.
+The pooled bound is not a bound for another source or genus. No hypothesis, credence or witness change.
 
 ## 3w. E-261103-07 (10, 4) cost probe (2026-11-08)
 

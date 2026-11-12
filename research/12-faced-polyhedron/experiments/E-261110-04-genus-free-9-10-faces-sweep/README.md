@@ -2,7 +2,7 @@
 id: E-261110-04
 title: Genus-free sweep at 9 and 10 planes - every pair adjacent, multiple adjacencies allowed, E free
 date: 2026-11-10
-status: planned
+status: parked
 direction: [DR7, DR18, DR12]
 origin: [I-261110-03, I-261110-01, E-261107-01, E-261108-01, E-261110-03]
 tests: [H-261110-02]
@@ -10,8 +10,9 @@ produces: []
 preregistered: false
 ---
 
-> Planned. Scores T D F G R: 2 2 2 1 2, jump 2 | budget: one owner night. **Gated**: only after E-261110-03 names a
-> family with a measured rate at 8 planes. Before any compute: `PLAN.md` (skill `experiment-start`).
+> Parked by the owner, 2026-11-12; not run. Replaced by E-261112-01/02 (exact ninth-plane cells).
+> Historical proposal below is retained, not an active launch instruction. Recovery alone did not establish
+> discovery power. No hypothesis change or negative result; future sampling needs a new power statement and PLAN.
 
 ## Goal
 

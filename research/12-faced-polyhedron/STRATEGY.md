@@ -5,17 +5,19 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 
 ## 1. Targets
 
-* **Focus (owner, 2026-11-10): constructive, laptop-only, three targets in parallel.**
-  * **S6 at (10, 3) first**: the duals of the 20 vertex-minimal genus-3 triangulations (10 faces, 42 of 45 pairs
-    adjacent, every adjacency single). One night decides it either way (E-261110-02). Success is only
-    `verification/verify_candidate.py FILE --target S6` PASS with these counts, then `candidate-check`.
-  * **S1 with the genus free**: nine or ten mutually adjacent faces at any genus (E-261110-04), then relaxed
-    Szilassi-12 at genus >= 7 (E-261101-08), both gated by the family scoring at 8 planes (E-261110-03). Success is
-    `verify_candidate.py FILE --all-pairs` PASS with the face count, genus and multiplicities reported, then
-    `candidate-check`.
-  * **S5 at (10, 4)** continues only under the rule of E-261110-06: strata A and B run as laptop nights if the
-    cube-and-conquer pilot prices them at <= 3 nights, otherwise as one explore night.
-  * These targets are reported as S6 or S1, never as S0 or S5. Symmetric realizations are allowed (FD5 covers the
+* **Focus (owner, 2026-11-12): one constructive target at a time, each at least as significant as the 2026
+  eight-face objects (owner's filter).**
+  * **First: nine mutually adjacent faces, genus free (S1)**, searched as an exact finite family: one plane added
+    to the eight planes of Roest-Vigh or Mizhaev, one decision per chirotope cell of the new plane, the cell list
+    certified by its count. Stage A (near-copy cells), then Stage B (all cells, one source per night). Success is
+    only `verify_candidate.py FILE --all-pairs` PASS with nine faces, then `candidate-check`. A run without
+    checked proofs yields no family negative.
+  * **Second (kept by the owner, 2026-11-12): S6 at (10, 3)** by E-261110-02, gated by the (10,2) witness as the
+    control of the formula and of the model-to-coordinates bridge. Success is only
+    `verification/verify_candidate.py FILE --target S6` PASS at (10, 3), then `candidate-check`.
+  * **S5 at (10, 4)** only under the rule of E-261110-06. Success is only
+    `verification/verify_candidate.py FILE --target S5` PASS at (10, 4), then `candidate-check`.
+  * S1 and S6 objects are never reported as S0 or S5. Symmetric realizations are allowed (FD5 covers the
     59 single-adjacency (12, 6) maps only).
 * **Side track: the (8, 2) / (9, 3) negative result.** Consolidated at low compute (multiplicity >= 3 control, second
   census, second encoder on six maps: all passed, 2026-11-09). **The note is deferred** (owner, 2026-11-09): no session
@@ -38,6 +40,13 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   embedded first, planar later (I-261103-01), chirotope-first on small instances.
 * **Score the sampler first.** An arrangement family is scored on a rung with known answers (8 planes) before it is
   used on a target, and its report includes the wedge covariate.
+* **Prefer enumeration to sampling** when a certified list of cells and its decisions fit the budget. The list
+  carries distinct exact rational representatives and an independently justified count.
+* **State the power of a sample.** A sampling result names its unit, a hit rate p measured on a rung with a known
+  answer in the same family, and the detection probability 1 - (1 - p)^N; without them it is not "low yield".
+* **Two controls for a solver result, reported separately**: planted recovery and discovery power. A missing or
+  failed correctness control blocks conclusions about the target; an unresolved time-capped solve is
+  "solver-limited"; passing recovery alone does not establish discovery power.
 * **Risky ideas are welcome and killed fast.** Every new engine gets a one-session pilot on the benchmark ladder
   (R1 Szilassi, then a rung with a known answer at the target's size) with a stated kill criterion; a pass earns a
   night, a fail parks the idea with its failure mode written down.
@@ -78,3 +87,7 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   is demoted to the rule of E-261110-06; three constructive targets (S6 at (10, 3); S1 with the genus free at 9, 10
   and 12 faces) adopted for one week of tests; the wedge ansatz is an explore item gated by E-261110-03. The side
   track and S0 parking are unchanged.
+* 2026-11-12 (owner's decisions #2, #7, #14 and approval #29 in the dialogue of 2026-11-10,
+  `reviews/dialogue-2026-11-10-strategy.md`; filed at the owner's request): significance filter; first target nine
+  mutually adjacent faces by ninth-plane cells; (10, 3) second; three standing rules added; S0 parking and the
+  side track unchanged.

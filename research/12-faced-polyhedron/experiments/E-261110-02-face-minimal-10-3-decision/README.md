@@ -11,7 +11,8 @@ preregistered: true
 ---
 
 > Planned. Scores T D F G R: 2 2 2 2 2, jump 2 | budget: 1 prep session + one owner night, <= 80 core-h, 10 shards.
-> `PLAN.md` is committed. The night is approved by the owner (2026-11-10); it starts after the prep amendment with the input hashes.
+> `PLAN.md` is committed. The approved night now follows ninth-plane cells and the 2026-11-12 bridge gate;
+> it starts only after the prep amendment with input hashes and passing formula/realization controls.
 
 ## Goal
 
@@ -22,6 +23,6 @@ single-adjacency class (I-261110-02). Never reported as S0 or S5.
 
 ## Next
 
-`PLAN.md`. Prep (one lab session): `code/lutz_import.py`, the (7, 1) and (12, 6) controls, the two-map pilot, the
+`PLAN.md`, including its 2026-11-12 amendment. First the (10,2) formula and foreign-model bridge controls. Prep: `code/lutz_import.py`, the (7, 1) and (12, 6) controls, the two-map pilot, the
 smoke test of the owner's entry point, amendment 1 with hashes. Stop rule: all 20 maps recorded, a failed control, or
 the 80 core-h cap.

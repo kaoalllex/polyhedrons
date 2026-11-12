@@ -2,7 +2,7 @@
 id: E-261110-03
 title: Arrangement-family scoring at the 8-plane rung with the wedge covariate - four families, all 28 pairs, E free
 date: 2026-11-10
-status: planned
+status: parked
 direction: [DR7, DR18, DR12]
 origin: [I-261110-01, I-261110-03, E-261103-05, E-261110-01]
 tests: [H-261110-02]
@@ -10,8 +10,9 @@ produces: []
 preregistered: false
 ---
 
-> Planned. Scores T D F G R: 2 2 2 1 2 | budget: 1 prep session + <= 3 core-h day run, 8-10 shards. Before any
-> compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`), after E-261110-01 passes its controls.
+> Parked by the owner, 2026-11-12; not run. Replaced by E-261112-01/02 (exact ninth-plane cells).
+> Historical proposal below is retained, not an active launch instruction. Recovery alone did not establish
+> discovery power. No hypothesis change or negative result; future sampling needs a new power statement and PLAN.
 
 ## Goal
 
