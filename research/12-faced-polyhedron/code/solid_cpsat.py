@@ -6,7 +6,7 @@ plane (checked afterwards with solid_fast; violated solutions are cut off by a n
 re-solved, up to a limit) the result is an embedded polyhedron with n faces whose number of edges is
 max_adjacent = 30 + 6 g for n = 12 (generally 3(n-2) + 6g... for n = 7, 21 = Szilassi).
 With target_edges, the hard decision variant permits max_runs per pair and enforces connected
-disk faces, all pair adjacencies and a fixed total edge count.
+disk faces, all pair adjacencies and a fixed total edge count (a lower bound with edges_at_least=True).
 Usage (histogram): python3 -I solid_cpsat.py N N_ARRANGEMENTS SEED [TIME_PER_SOLVE]"""
 import sys, time, itertools
 import numpy as np
@@ -69,7 +69,8 @@ def connected_faces(model, selected, planes, links):
 
 
 def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, hint=None, target_adj=None, target_pairs=None,
-               max_runs=1, target_edges=None, model_path=None):
+               max_runs=1, target_edges=None, model_path=None, edges_at_least=False):
+    assert target_edges is not None or not edges_at_least
     if target_edges is not None:
         assert target_adj is None and target_pairs is None and require_one_face
     T = T or Tables(A)
@@ -163,7 +164,8 @@ def best_solid(A, T=None, time_limit=10.0, max_cuts=30, require_one_face=True, h
                 slack.append(d)
     if target_edges is not None:
         connected_faces(model, bf, T.fplane, list(T.FX) + list(T.FY))
-        model.Add(sum(s for ss in starts_by_pair.values() for s in ss) == target_edges)
+        runs = sum(s for ss in starts_by_pair.values() for s in ss)
+        model.Add(runs >= target_edges if edges_at_least else runs == target_edges)
         for a in adj:
             model.Add(a == 1)
     model.Add(sum(x) >= 1)

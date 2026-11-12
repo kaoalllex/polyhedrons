@@ -82,6 +82,9 @@ CHECKS = [
     ('solid-first: multirun disk model, known controls, random D2 recovery, independent checker',
      lambda: run(['test_pilot.py'], os.path.join(ROOT, 'experiments', 'E-261103-05-s5-symmetric-solid-first'),
                  lambda out: '\nOK' in out and 'skipped=' not in out)),
+    ('ninth-plane Stage A: frozen cell list, lower-bound model, budget and runner branches',
+     lambda: run(['test_stage_a.py'], os.path.join(ROOT, 'experiments', 'E-261112-01-ninth-plane-stage-a'),
+                 lambda out: '\nOK' in out and 'skipped=' not in out)),
     ('Lemma 5.1 on perturbed Szilassi planes (n = 7, 0 mismatches)',
      lambda: run(['test_szilassi.py'], HERE, lambda out: re.findall(r"'trials': \d+", out) and not re.search(
          r"'zero_viol_NOT_embedded': [1-9]|'pos_viol_but_embedded': [1-9]", out))),

@@ -11,7 +11,7 @@ preregistered: true
 ---
 
 > Scores T D F G R: 2 2 2 1 2. Preparation plus <= 7.3 core-h, 10 shards, laptop day run.
-> Owner-approved dialogue, filed 2026-11-12. Planned, not running; the owner explicitly requested no compute.
+> Owner-approved dialogue, filed 2026-11-12. Prep amendment 2026-11-12; pilot not launched.
 
 ## Goal / origin
 
@@ -21,9 +21,10 @@ The new finite list and E >= 39 replace the random fixed-E sweeps; no LOW-YIELD 
 
 ## Next
 
-Implement and freeze the list, coverage/orbit checks and runner under [PLAN.md](PLAN.md); then commit the prep
-amendment before any pilot. No `run.sh` or launch command is provided until that entry point exists and passes
-its bounded startup check. Stage B has a separate gated queue row and is not pre-registered for execution.
+Prep done ([PLAN.md](PLAN.md) amendment 1): frozen list, controls and runner. Owner, from the research folder:
+`PILOT=1 bash overnight/launch.sh 261112-01 start` (10 shards, <= 0.5 core-h). A lab session then checks the
+pilot gate (controls, projection within 7.3 core-h); only after it passes: `bash overnight/launch.sh 261112-01 start`.
+`status` / `stop` work as for every launch. Stage B has a separate gated queue row and is not pre-registered.
 
 ## Environment (checked 2026-11-12, no solver call)
 
