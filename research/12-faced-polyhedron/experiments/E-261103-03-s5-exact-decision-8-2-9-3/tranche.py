@@ -18,6 +18,16 @@ import pilot
 from pilot import HERE, ROOT, sha
 
 QUEUE = HERE / 'tranche_queue.json'
+REPO = ROOT.parents[1]
+
+
+def recorded(path):
+    """A path as records keep it: relative to the repository when inside it, so records carry no home directory."""
+    path = Path(path).resolve()
+    try:
+        return str(path.relative_to(REPO))
+    except ValueError:
+        return str(path)
 BUDGET_SECONDS = 22319
 SOLVER_CAP, CHECKER_CAP = 60, 120  # registered defaults; --timeout / --s5-checker-timeout override
 CASE, CONTROL = (9, 3), 'control_f9.json'  # a custom queue may name another census case and control file
@@ -242,7 +252,7 @@ def unit(spec):
         rec = pilot.census(*case)['maps'][index]
         pilot.dump(out / 'map.json', rec)
         c = pilot.CNF(faces); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
-        on_sat = lambda: latch_sat(root, dict(map_index=index, unit=str(out), name=name))
+        on_sat = lambda: latch_sat(root, dict(map_index=index, unit=recorded(out), name=name))
     name = f'map{index}_plain'
     try:
         r = pilot.solve(c, out, name, spec['solver_cap'], checker_timeout=spec['checker_cap'], solver_gate=lambda: dispatch_gate(root),
@@ -251,7 +261,7 @@ def unit(spec):
         r = dict(status='SKIPPED-STOP')
     r.update(task=name, map_index=index, scope=f'{spec["control"]} control: submap formula, planes pinned' if spec.get('control')
              else 'plain uniform embedding formula',
-             canonical_sha256=spec.get('canonical_sha256', spec.get('control_sha256')), unit=str(out),
+             canonical_sha256=spec.get('canonical_sha256', spec.get('control_sha256')), unit=recorded(out),
              formula_sha256=hashlib.sha256(json.dumps([c.nv, c.clauses], separators=(',', ':')).encode()).hexdigest())
     atomic(out / 'result.json', r)
 
@@ -266,7 +276,7 @@ def process_stage(out, name, task, payload, first, state, remaining):
         else:
             work = out / (task + '_' + uuid.uuid4().hex); work.mkdir()
             cap = remaining(120)
-            attempts[task] = dict(directory=str(work), budget_seconds=cap)
+            attempts[task] = dict(directory=recorded(work), budget_seconds=cap)
             atomic(state, first)
             processing[task] = pilot.stage(work, name, task, payload, cap)
         atomic(state, first)
@@ -281,7 +291,7 @@ def process_first_sat(root, remaining):
         first = json.loads(path.read_text())
         if first['status'] != 'SAT-PENDING':
             return
-        out = Path(first['unit']); name = first['name']; index = first['map_index']
+        out = REPO / first['unit']; name = first['name']; index = first['map_index']
         rec = pilot.census(*CASE)['maps'][index]
         c = pilot.CNF(CASE[0]); pilot.build(c, pilot.from_links(rec['links']), pilot.ALL_OPTS)
         model = json.loads((out / (name + '.model.json')).read_text())
@@ -409,7 +419,7 @@ def run(args):
                 if CASE != (9, 3) or CONTROL != 'control_f9.json':
                     spec.update(case=list(CASE), control_file=CONTROL)
                 atomic(work / 'spec.json', spec)
-                append_checkpoint(out / 'progress.jsonl', dict(map_index=index, event='START', unit=str(work)))
+                append_checkpoint(out / 'progress.jsonl', dict(map_index=index, event='START', unit=recorded(work)))
                 print('map', index, f'start, solver {solver_cap}s checker {checker_cap}s', flush=True)
                 cap = min(solver_cap + checker_cap + 60, deadline - time.monotonic() - 360)
                 if cap <= 0:
@@ -436,7 +446,7 @@ def run(args):
             raise
         except BaseException as exc:
             manifest.update(status='ERROR', error=repr(exc))
-            atomic(root / 'stop.json', dict(error=repr(exc), attempt=str(attempt)))
+            atomic(root / 'stop.json', dict(error=repr(exc), attempt=recorded(attempt)))
             raise
         finally:
             # Hashes are streamed; CNF and proof files were deleted after their check (PROTOCOL.md §5).
@@ -445,7 +455,7 @@ def run(args):
                                                if p.is_file() and p != attempt / 'manifest.json'}
             except TimeoutError as exc:
                 manifest.update(status='ERROR', error=repr(exc), hashing='INCOMPLETE')
-                atomic(root / 'stop.json', dict(error=repr(exc), attempt=str(attempt)))
+                atomic(root / 'stop.json', dict(error=repr(exc), attempt=recorded(attempt)))
                 raise
             finally:
                 signal.setitimer(signal.ITIMER_REAL, 0)

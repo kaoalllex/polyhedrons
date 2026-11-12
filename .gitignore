@@ -14,13 +14,18 @@ research/12-faced-polyhedron/experiments/*/results/**/launch.pids
 # Run-control markers of overnight runs (launch.sh stop); never evidence
 stop.requested
 
-# Raw per-unit output of tranche runs (attempt_*/): logs, unit specs and maps stay outside git, moved to
-# ../polyhedrons-data by research/12-faced-polyhedron/overnight/move_raw.py. Git keeps each attempt's manifest,
-# its control summary and every unit's result.json (other experiments read them), besides the shard files.
+# Raw per-unit output of tranche runs (attempt_*/): solver and unit logs, unit specs, maps and control inputs and
+# outputs stay outside git, moved to ../polyhedrons-data by research/12-faced-polyhedron/overnight/move_raw.py.
+# Git keeps the evidence (PROTOCOL.md section 5): manifests, control summaries, every unit's result.json (other
+# experiments read them), every SAT model and every checker transcript.
 **/attempt_*/**
 !**/attempt_*/*/
 !**/attempt_*/manifest.json
+!**/attempt_*/controls/manifest.json
 !**/attempt_*/controls/summary.json
 !**/attempt_*/map*/result.json
+!**/attempt_*/**/*.model.json
+!**/attempt_*/**/*.checker.log
+!**/attempt_*/**/*.recheck.log
 # Exception: the same-path pilot is cited evidence of E-261103-03 (test_tranche checks its output hashes)
 !research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/results/coverage_pilot/**
