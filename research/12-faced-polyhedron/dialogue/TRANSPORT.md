@@ -1,4 +1,4 @@
-# Dialogue transport: how two AI sessions and the owner talk through files
+# Dialogue transport: how AI sessions and the owner talk through files
 
 This file is the contract of `dialogue/chat.py` and the usage manual for the participants. It says nothing about
 what to discuss; that is the thread's brief (`dialogue/BRIEF_*.md`). Paths are relative to
@@ -6,13 +6,16 @@ what to discuss; that is the thread's brief (`dialogue/BRIEF_*.md`). Paths are r
 
 ## 1. Participants and files
 
-Three participants: `claude` and `astra` (AI sessions, each in its own terminal in this checkout) and `owner` (a
-human, through the browser page of `chat.py serve`). A dialogue is a **thread**, one directory:
+Participants are `owner` (a human, through the browser page of `chat.py serve`) and the **agents** of the thread:
+AI sessions named by a lowercase word (`claude`, `astra`, `critic`, …). `chat.py new` starts a thread with `claude`
+and `astra`; a thread made on the page starts with none, and the owner connects agents to it (§4). An agent joins
+or leaves from the next message on: `thread.json` keeps the roster with message numbers, so the history keeps its
+meaning. A dialogue is a **thread**, one directory:
 
 ```
 dialogue/threads/<thread>/
-  thread.json          participants, max_lines, max_auto_turns, created (written by `chat.py new`)
-  agents.json          dispatched mode: the owner's agent commands (written only by `chat.py agent`)
+  thread.json          participants, roster, max_lines, max_auto_turns, created
+  agents.json          dispatched mode: how each agent is started (runner, model, effort, mode, session)
   dispatch.json        dispatched mode: pids and retry bookkeeping of the server; safe to delete while it is stopped
   0001-owner.md        one file per message, numbered in posting order
   0002-astra.md
@@ -40,18 +43,19 @@ synthesis is committed, by the session the brief names.
 
 ## 2. The floor
 
-`next` names who must speak after a message: `claude`, `astra`, `both`, `owner`, or for the owner also `keep`,
-`pause` and `close`. The helper keeps a set of pending speakers, the **floor**:
+`next` names who must speak after a message: an agent of the thread, `all` (every agent of the thread; `both` is
+the same word kept for old threads), `owner`, or for the owner also `keep`, `pause` and `close`. The helper keeps a
+set of pending speakers, the **floor**:
 
 * a new thread starts with the floor on `owner`;
 * when a pending model posts with `next: S`, it leaves the floor and `S` joins it;
-* an owner message with `next: keep` is an interjection: the floor does not change; with `claude`, `astra` or `both`
-  it replaces the floor; `pause` empties it; `close` ends the thread;
+* an owner message with `next: keep` is an interjection: the floor does not change; with an agent or `all` it
+  replaces the floor; `pause` empties it; `close` ends the thread;
 * a model can post only while it is on the floor. The owner can always post.
 
-**Parallel step.** While both models are on the floor at once, their posts are sealed: each is held in `sealed/` and
-both are published together, in alphabetical order of the authors, when the second one arrives. Neither model can
-read the other's answer before giving its own. The owner's page shows a held message as a placeholder.
+**Parallel step.** While two or more agents are on the floor at once, their posts are sealed: each is held in
+`sealed/` and all are published together, in alphabetical order of the authors, when the last one arrives. No agent
+can read another's answer before giving its own. The owner's page shows a held message as a placeholder.
 
 ## 3. Commands
 
@@ -60,7 +64,7 @@ python3 dialogue/chat.py new <thread>                              create a thre
 python3 dialogue/chat.py status <thread>                           floor, last message, held messages
 python3 dialogue/chat.py wait <thread> --as NAME [--timeout 540]   block until NAME is on the floor
 python3 dialogue/chat.py post <thread> --as NAME --next WHO [--round LABEL] [--seen N] --file PATH
-python3 dialogue/chat.py serve <thread> [--port 8765] [--no-dispatch]   the owner's page, 127.0.0.1 only
+python3 dialogue/chat.py serve [<thread>] [--port 8765] [--no-dispatch]   the owner's page for all threads
 python3 dialogue/chat.py agent <thread> --as NAME [--mode resume|fresh] [--limit-pattern REGEX]
                          [--turn-timeout MINUTES] -- ARGV...       register a model's command (owner only)
 python3 dialogue/chat.py agent <thread> --as NAME --off            remove it
@@ -73,44 +77,55 @@ python3 dialogue/chat.py agent <thread> --as NAME --off            remove it
 * `post --seen N` exits 5 when a message by another author with a number above `N` is published: it prints those
   messages, writes nothing, and you amend your answer in the same turn and post again with the new `N`. Without
   `--seen`, `post` behaves as above.
-* `serve` also runs the dispatcher of §4 unless `--no-dispatch` is given; it does nothing for a model without an
-  `agents.json` entry.
+* `serve` listens on 127.0.0.1 only and serves every thread under `dialogue/threads/`; a thread name opens the page
+  on it. It also runs the dispatcher of §4 for every thread with `agents.json`, unless `--no-dispatch` is given.
 
 ## 4. The loop of a model session
 
-A model runs in one of two modes, chosen by the owner per model. **Interactive**: the session lives in its own
-terminal and loops on `wait` (below). **Dispatched**: the model has an `agents.json` entry and `serve` starts its
-command whenever it has to speak; between turns no model process exists. A dispatched model must not also be open
+An agent runs in one of two modes, chosen by the owner per agent. **Interactive**: the session lives in its own
+terminal and loops on `wait` (below). **Dispatched**: the agent has an `agents.json` entry and `serve` starts its
+command whenever it has to speak; between turns no agent process exists. A dispatched model must not also be open
 interactively: the vendor CLI refuses a second writer of the same session, and two sessions of one model would
 answer the same message twice.
 
 ### Dispatched mode
 
 The server wakes a model when the thread is open, the model is on the floor and has no held message. In a parallel
-step both models are started at once. The command gets the turn prompt `work/NAME/turn-<n>.md`: the paths of this
+step all of them are started at once. The command gets the turn prompt `work/NAME/turn-<n>.md`: the paths of this
 contract, the brief and `work/NAME/NOTES.md`, every message since the model's last post (the selection `wait`
-prints, so a held answer of the other model is never included), and the step: post once with
+prints, so a held answer of another agent is never included), and the step: post once with
 `post ... --seen <n>`, append at most 30 lines to `NOTES.md`, end the turn. A dispatched model never calls `wait` or
 `status` and never polls.
 
-* `--mode resume` resumes the same vendor session each turn: the model keeps its private context but pays for the
-  whole context again on every turn, also after a long pause. `--mode fresh` starts a new session each turn; its
+* **Connecting an agent.** On the page, "connect agent" under a thread takes a name, a runner (a CLI), a model, an
+  effort, the mode and optionally the UUID of an existing session to continue. Runners are templates in
+  `dialogue/runners.json`, a local file ignored by git (start from `runners.example.json`): `new` starts a session,
+  `resume` continues one, with the placeholders `{prompt_file}`, `{thread}`, `{name}`, `{session}`, `{model}` and
+  `{effort}`, plus the lists of models and efforts the page may offer. With `"session": "uuid"` the dispatcher picks
+  the id of a new session; otherwise `session_pattern` finds it in the output of the first turn. The session is kept
+  once a turn has posted; a first turn that fails starts the next attempt in a new session. The owner can also
+  register any argv with `chat.py agent ... -- ARGV` in a terminal.
+* **Console.** Clicking an agent opens a panel beside the chat with the output of its current or an earlier turn:
+  JSON events of `claude -p --output-format stream-json` and `codex exec --json` are shown as text, tool calls and
+  their output; other lines as they are.
+* Mode `resume` resumes the same vendor session each turn: the agent keeps its private context but pays for the
+  whole context again on every turn, also after a long pause. Mode `fresh` starts a new session each turn; its
   prompt says to read the contract, the brief, `NOTES.md` and the thread's `HANDOVER.md` first. The cost per turn
   is bounded, and the model depends on what `NOTES.md` holds.
 * The command runs without a shell or a terminal, with its working directory at the repository root and its output
-  in `work/NAME/wake-<n>-<attempt>.log`. The placeholders `{prompt_file}`, `{thread}` and `{name}` are substituted in
-  each argument.
-* Posted (published or held): the model is idle, and whoever is on the floor now is woken. A non-zero exit, an exit
+  in `work/NAME/wake-<n>-<attempt>.log`. Placeholders are substituted inside each argument.
+* Posted (published or held): the agent is idle, and whoever is on the floor now is woken. A non-zero exit, an exit
   without a post, or a turn longer than `--turn-timeout` (default 60 minutes; SIGTERM, SIGKILL 10 s later) is a
-  failed attempt, retried after 1, 5, 15 and 30 minutes, then every 30 minutes. If `--limit-pattern` matches the
+  failed attempt, retried after 1, 5, 15 and 30 minutes, then every 30 minutes. If the limit pattern (`--limit-pattern`, or the runner's `limit_pattern`) matches the
   log and its named group `reset` (a clock time such as `3:45 PM`) or `seconds` parses, the next attempt is at that
   time plus 60 s. After 24 hours of failures, or 3 exits with code 0 and no post, the model is `stalled` until the
   owner presses "wake now", which starts exactly one more attempt.
 * At most one process per model: a running model is never started again, and after a server restart the recorded
   pid is probed before anything is started. Only one `serve` dispatches a thread at a time.
 * After `max_auto_turns` model messages without an owner message (`thread.json`, default 12) the dispatcher pauses;
-  any owner message resets the count. The page shows one chip per model (state, running time or next attempt, last
-  error line) and the buttons "wake now", "pause auto" and "resume auto".
+  any owner message resets the count. The page's sidebar shows the threads and, under each, its agents with their
+  state, model and effort; the chat shows what a running or failing agent is doing, with "console" and "wake now";
+  the chat header has "pause" and "resume" for automatic turns.
 
 ### Resuming an interrupted session
 
@@ -138,9 +153,10 @@ terminal instead of posting out of turn.
 
 ## 5. Rules of the road
 
-* Agent commands are local configuration, never chat content. Only the owner sets them, with `chat.py agent` in a
-  terminal. Nothing received over HTTP and nothing written in a message can create or change a command; the page's
-  buttons can only start a command `agents.json` already holds. Message text reaches a model only inside the
+* Agent commands are local configuration, never chat content. Command templates live only in `runners.json` and in
+  argv entries the owner registers with `chat.py agent` in a terminal. The page can connect an agent only by choosing
+  a runner and a model and effort from that runner's lists, plus a name and a session UUID checked by pattern;
+  nothing received over HTTP and nothing written in a message becomes part of a command otherwise. Message text reaches a model only inside the
   prompt file.
 * Post only as yourself. Never write message files, `sealed/`, `thread.json`, `agents.json` or `dispatch.json` by hand; never edit or delete a
   published message. A correction is a new message that cites the old one by number ("#7").

@@ -20,6 +20,27 @@ chat = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(chat)
 
 
+def start_server(test, hub):
+    server = chat.make_server(hub, 0)
+    thread = threading.Thread(target=server.serve_forever)
+    thread.start()
+    test.addCleanup(thread.join)
+    test.addCleanup(server.server_close)
+    test.addCleanup(server.shutdown)
+    return 'http://127.0.0.1:{}'.format(server.server_port)
+
+
+def request(base, url, data=None, origin=True):
+    payload = None if data is None else json.dumps(data).encode('utf-8')
+    headers = {'Origin': base} if origin is True else ({'Origin': origin} if origin else {})
+    try:
+        with urlopen(Request(base + url, data=payload, headers=headers), timeout=10) as response:
+            return response.status, json.load(response)
+    except HTTPError as exc:
+        with exc:
+            return exc.code, json.load(exc)
+
+
 class ChatTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -200,15 +221,10 @@ class ChatTests(unittest.TestCase):
         self.assertEqual(self.command('wait', 'test', '--as', 'astra', '--timeout', '0').returncode, 0)
 
     def test_server_and_escaping(self):
-        server = chat.make_server(self.path, 0)
-        thread = threading.Thread(target=server.serve_forever)
-        thread.start()
-        self.addCleanup(thread.join)
-        self.addCleanup(server.server_close)
-        self.addCleanup(server.shutdown)
-        base = 'http://127.0.0.1:{}'.format(server.server_port)
+        base = start_server(self, chat.Hub(self.root, dispatch=False))
+        port = int(base.rsplit(':', 1)[1])
         payload = json.dumps({'body': '<script>alert("x")</script>\n\u041f\u0440\u0438\u0432\u0435\u0442', 'next': 'both',
-                              'author': 'astra', 'thread': 'other'}).encode('utf-8')
+                              'author': 'astra', 'thread': 'test'}).encode('utf-8')
         for headers in ({'Origin': 'https://evil.example'},
                         {'Origin': base, 'Host': 'evil.example'}, {}):
             with self.assertRaises(HTTPError) as result:
@@ -218,24 +234,31 @@ class ChatTests(unittest.TestCase):
         self.assertEqual(chat.snapshot(self.path)['messages'], [])
         with urlopen(Request(base + '/post', data=payload, headers={'Origin': base}), timeout=5) as response:
             self.assertEqual(response.status, 200)
-        with urlopen(base + '/messages', timeout=5) as response:
+        with urlopen(base + '/messages?thread=test', timeout=5) as response:
             state = json.load(response)
         self.assertEqual(state['messages'][0]['author'], 'owner')
         rendered = state['messages'][0]['html']
         self.assertIn('&lt;script&gt;', rendered)
         self.assertNotIn('<script>', rendered)
         self.assertIn('\u041f\u0440\u0438\u0432\u0435\u0442', rendered)
-        local = 'http://localhost:{}'.format(server.server_port)
+        local = 'http://localhost:{}'.format(port)
         with urlopen(Request(local + '/post', data=payload, headers={'Origin': local}), timeout=5) as response:
             self.assertEqual(response.status, 200)
         with self.assertRaises(HTTPError) as result:
-            urlopen(Request(base + '/messages', headers={'Host': 'evil.example'}), timeout=5)
+            urlopen(Request(base + '/messages?thread=test', headers={'Host': 'evil.example'}), timeout=5)
         self.assertEqual(result.exception.code, 403)
         result.exception.close()
         with urlopen(base, timeout=5) as response:
             page = response.read().decode('utf-8')
-        self.assertIn('content.innerHTML=m.html', page)
+        self.assertIn('content.innerHTML = m.html', page)
         self.assertNotIn('<script src=', page)
+        self.assertEqual(request(base, '/messages?thread=../x')[0], 400)
+        status, data = request(base, '/threads')
+        self.assertEqual([t['name'] for t in data['threads']], ['test'])
+        self.assertEqual(request(base, '/new', {'thread': 'second'})[0], 200)
+        self.assertEqual(request(base, '/new', {'thread': '../evil'})[0], 400)
+        self.assertEqual([t['name'] for t in request(base, '/threads')[1]['threads']], ['second', 'test'])
+        self.assertEqual(chat.snapshot(self.root / 'second')['agents'], [])
 
     def test_markdown(self):
         body = '# Title\n\n**bold** *italic* `code` [link](https://example.com)\n- one\n- two\n1. first\n2. second\n```\n<script>\n```\n| A | B |\n| --- | --- |\n| <img> | value |'
@@ -260,6 +283,8 @@ counter.write_text(str(count + 1))
 actions = plan.split(',')
 action = actions[min(count, len(actions) - 1)]
 text = pathlib.Path(prompt).read_text(encoding='utf-8')
+for extra in sys.argv[7:]:
+    print(extra)
 if action == 'fail':
     print('boom')
     sys.exit(1)
@@ -491,15 +516,13 @@ class DispatchTests(unittest.TestCase):
         other = self.root / 'Y'
         chat.post(self.path, 'owner', 'claude', '$(touch {})\n; touch {}\n`touch {}`'.format(marker, other, other))
         dispatcher = self.dispatcher()
-        server = chat.make_server(self.path, 0, dispatcher)
-        thread = threading.Thread(target=server.serve_forever)
-        thread.start()
-        self.addCleanup(thread.join)
-        self.addCleanup(server.server_close)
-        self.addCleanup(server.shutdown)
-        base = 'http://127.0.0.1:{}'.format(server.server_port)
-        payload = json.dumps({'name': 'claude', 'argv': ['touch', str(marker)], 'mode': 'fresh'}).encode('utf-8')
-        for url in ('/wake', '/pause', '/resume', '/agent', '/post'):
+        hub = chat.Hub(self.root, clock=lambda: self.now)
+        hub.dispatchers['test'] = dispatcher
+        base = start_server(self, hub)
+        payload = json.dumps({'thread': 'test', 'name': 'claude', 'argv': ['touch', str(marker)], 'mode': 'fresh',
+                              'runner': 'claude', 'model': 'm', 'effort': 'e'}).encode('utf-8')
+        urls = ('/wake', '/pause', '/resume', '/connect', '/new', '/post', '/agent')
+        for url in urls + ('/disconnect',):
             with self.assertRaises(HTTPError) as result:
                 urlopen(Request(base + url, data=payload, headers={'Origin': 'https://evil.example'}), timeout=5)
             self.assertEqual(result.exception.code, 403)
@@ -510,7 +533,7 @@ class DispatchTests(unittest.TestCase):
             self.assertEqual(response.status, 200)
         self.settle(dispatcher)
         self.assertEqual(self.messages()[-1][1], 'claude')
-        for url in ('/wake', '/pause', '/resume', '/agent', '/post'):
+        for url in urls:
             try:
                 urlopen(Request(base + url, data=payload, headers={'Origin': base}), timeout=5).close()
             except HTTPError as exc:
@@ -518,8 +541,122 @@ class DispatchTests(unittest.TestCase):
         self.assertEqual((self.path / 'agents.json').read_bytes(), agents_before)
         self.assertFalse(marker.exists())
         self.assertFalse(other.exists())
-        with urlopen(base + '/messages', timeout=5) as response:
+        with urlopen(base + '/messages?thread=test', timeout=5) as response:
             self.assertEqual(set(json.load(response)['dispatch']['agents']), {'astra', 'claude'})
+
+    def runner(self, **extra):
+        self.addCleanup(setattr, chat, 'RUNNERS', chat.RUNNERS)
+        chat.RUNNERS = self.root / 'runners.json'
+        base = [sys.executable, str(self.fake), str(SCRIPT), str(self.root), '{prompt_file}', '{name}', '{thread}']
+        runner = {'models': ['m1', 'm2'], 'efforts': ['low', 'high'],
+                  'new': base + ['{plan}', 'new', 'session={session}', 'model={model}', 'effort={effort}'],
+                  'resume': base + ['{plan}', 'resume', 'session={session}', 'model={model}']}
+        runner.update(extra)
+        chat.RUNNERS.write_text(json.dumps({'fake': runner, '_comment': 'ignored'}), encoding='utf-8')
+
+    def log(self, name, seen, attempt=1):
+        return (self.path / 'work' / name / 'wake-{}-{}.log'.format(seen, attempt)).read_text(encoding='utf-8')
+
+    def test_runner_sessions(self):
+        for name, extra in (('claude', {'session': 'uuid'}),
+                            ('astra', {'session_pattern': r'"thread_id": "(?P<session>[0-9a-f-]{36})"'})):
+            with self.subTest(runner=name):
+                self.runner(**extra)
+                chat.connect(self.path, {'name': name, 'runner': 'fake', 'model': 'm2', 'effort': 'high', 'mode': 'resume'})
+                runner = json.loads(chat.RUNNERS.read_text(encoding='utf-8'))['fake']
+                for key in ('new', 'resume'):
+                    runner[key] = [arg.replace('{plan}', 'post:' + name) for arg in runner[key]]
+                if name == 'astra':
+                    runner['new'].append('{"type": "thread.started", "thread_id": "11111111-2222-3333-4444-555555555555"}')
+                chat.RUNNERS.write_text(json.dumps({'fake': runner}), encoding='utf-8')
+                messages = len(self.messages())
+                chat.post(self.path, 'owner', name, 'Question')
+                dispatcher = self.dispatcher()
+                self.settle(dispatcher)
+                first = self.log(name, messages + 1)
+                self.assertIn('new\n', first)
+                self.assertIn('model=m2\neffort=high', first)
+                session = chat.agents(self.path)[name]['session']
+                self.assertRegex(session, chat.UUID)
+                self.assertIn('session=' + (session if name == 'claude' else '\n'), first)
+                chat.post(self.path, 'owner', name, 'Again')
+                self.settle(dispatcher)
+                second = self.log(name, messages + 3)
+                self.assertIn('resume\nsession={}\nmodel=m2'.format(session), second)
+                self.assertEqual(self.messages()[-1][1], name)
+                self.dispatchers.remove(dispatcher)
+                (self.path / 'dispatch.json').unlink()
+
+    def test_connect_from_page(self):
+        self.runner()
+        hub = chat.Hub(self.root, clock=lambda: self.now)
+        base = start_server(self, hub)
+        good = {'thread': 'test', 'name': 'critic', 'runner': 'fake', 'model': 'm1', 'effort': 'low', 'mode': 'fresh'}
+        for change in ({'runner': 'other'}, {'model': 'm3'}, {'effort': 'max'}, {'mode': 'shell'},
+                       {'name': 'owner'}, {'name': 'Bad'}, {'name': 'all'}, {'session': 'x; touch y'},
+                       {'turn_timeout': 0}, {'thread': '../x'}):
+            self.assertEqual(request(base, '/connect', dict(good, **change))[0], 400, change)
+        self.assertEqual(request(base, '/connect', good, origin='https://evil.example')[0], 403)
+        self.assertEqual(chat.agents(self.path), {})
+        status, data = request(base, '/connect', dict(good, argv=['touch', str(self.root / 'Z')]))
+        self.assertEqual(status, 200, data)
+        entry = chat.agents(self.path)['critic']
+        self.assertNotIn('argv', entry)
+        self.assertEqual((entry['runner'], entry['model'], entry['effort'], entry['mode']), ('fake', 'm1', 'low', 'fresh'))
+        self.assertEqual(chat.snapshot(self.path)['agents'], ['astra', 'claude', 'critic'])
+        status, data = request(base, '/threads')
+        self.assertEqual(data['runners'], {'fake': {'label': 'fake', 'models': ['m1', 'm2'], 'efforts': ['low', 'high']}})
+        agents_view = data['threads'][0]['dispatch']['agents']
+        self.assertEqual((agents_view['critic']['model'], agents_view['critic']['state']), ('m1', 'idle'))
+        self.assertEqual(request(base, '/disconnect', {'thread': 'test', 'name': 'critic'})[0], 200)
+        self.assertEqual(chat.agents(self.path), {})
+        self.assertEqual(chat.snapshot(self.path)['agents'], ['astra', 'claude'])
+        self.assertFalse((self.root / 'Z').exists())
+
+    def test_three_agents_and_roster(self):
+        chat.set_agent(self.path, 'critic', {'argv': ['true']})
+        chat.post(self.path, 'owner', 'all', 'Question')
+        self.assertEqual(chat.post(self.path, 'claude', 'owner', 'C'), 'held')
+        self.assertEqual(chat.post(self.path, 'astra', 'owner', 'A'), 'held')
+        self.assertEqual(chat.snapshot(self.path)['floor'], ['critic'])
+        self.assertEqual(chat.post(self.path, 'critic', 'owner', 'K'), '0004-critic.md')
+        self.assertEqual(self.messages(), [(1, 'owner', 'all'), (2, 'astra', 'owner'), (3, 'claude', 'owner'),
+                                           (4, 'critic', 'owner')])
+        before = chat.snapshot(self.path)
+        chat.set_agent(self.path, 'critic', None, roster=True)
+        chat.set_agent(self.path, 'fourth', {'argv': ['true']})
+        after = chat.snapshot(self.path)
+        self.assertEqual([m.get('batch') for m in before['messages']], [m.get('batch') for m in after['messages']])
+        self.assertEqual(after['floor'], ['owner'])
+        self.assertEqual(after['agents'], ['astra', 'claude', 'fourth'])
+        chat.post(self.path, 'owner', 'both', 'Second')
+        self.assertEqual(chat.snapshot(self.path)['floor'], ['astra', 'claude', 'fourth'])
+        with self.assertRaisesRegex(chat.Refused, 'Unknown --next'):
+            chat.post(self.path, 'owner', 'critic', 'Back?')
+
+    def test_console_rendering(self):
+        work = self.path / 'work' / 'claude'
+        lines = [
+            {'type': 'system', 'subtype': 'init', 'session_id': 's1', 'model': 'opus'},
+            {'type': 'assistant', 'message': {'content': [{'type': 'text', 'text': 'Checking #27'},
+                                                          {'type': 'tool_use', 'name': 'Bash', 'input': {'command': 'ls'}}]}},
+            {'type': 'user', 'message': {'content': [{'type': 'tool_result', 'content': [{'type': 'text', 'text': 'a\nb'}]}]}},
+            {'type': 'result', 'subtype': 'success', 'num_turns': 2, 'total_cost_usd': 0.5},
+            {'type': 'thread.started', 'thread_id': 't1'},
+            {'type': 'item.started', 'item': {'type': 'command_execution', 'command': 'pytest'}},
+            {'type': 'item.completed', 'item': {'type': 'command_execution', 'aggregated_output': 'ok', 'exit_code': 0}},
+            {'type': 'item.completed', 'item': {'type': 'agent_message', 'text': 'Posted'}},
+            {'type': 'turn.failed', 'error': {'message': 'limit'}},
+        ]
+        (work / 'wake-3-1.log').write_text('\n'.join(json.dumps(x) for x in lines) + '\nplain <b>text</b>\n', encoding='utf-8')
+        (work / 'wake-12-1.log').write_text('later\n', encoding='utf-8')
+        latest = chat.console(self.path, 'claude')
+        self.assertEqual((latest['logs'], latest['log'], latest['lines']), (['wake-3-1.log', 'wake-12-1.log'], 'wake-12-1.log', [['raw', 'later']]))
+        kinds = [kind for kind, _ in chat.console(self.path, 'claude', 'wake-3-1.log')['lines']]
+        self.assertEqual(kinds, ['info', 'text', 'tool', 'output', 'info', 'info', 'tool', 'output', 'text', 'error', 'raw'])
+        for name, log in (('claude', '../thread.json'), ('../x', None), ('claude', 'wake-9-9.log')):
+            with self.assertRaises(chat.Refused):
+                chat.console(self.path, name, log)
 
     def test_turn_timeout(self):
         self.register('claude', 'sleep', turn_timeout=1)

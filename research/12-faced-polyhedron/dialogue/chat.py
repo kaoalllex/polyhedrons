@@ -5,6 +5,7 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 import html
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import parse_qs
 import json
 import os
 from pathlib import Path
@@ -15,10 +16,13 @@ import sys
 import tempfile
 import threading
 import time
+import uuid
 
-PARTICIPANTS = ('astra', 'claude', 'owner')
-MODELS = {'astra', 'claude'}
-THREADS = Path(__file__).resolve().parent / 'threads'
+DEFAULT_AGENTS = ('astra', 'claude')
+RESERVED = {'owner', 'all', 'both', 'keep', 'pause', 'close'}
+HERE = Path(__file__).resolve().parent
+THREADS = HERE / 'threads'
+RUNNERS = HERE / 'runners.json'
 ROOT = Path(__file__).resolve().parents[3]
 RETRY = (60, 300, 900, 1800)
 
@@ -39,19 +43,55 @@ def thread_path(name):
     return THREADS / name
 
 
-def new_thread(path):
+def agent_name(name):
+    if not isinstance(name, str) or not re.fullmatch(r'[a-z][a-z0-9]{0,15}', name) or name in RESERVED:
+        raise Refused('Invalid agent name')
+    return name
+
+
+def new_thread(path, names=DEFAULT_AGENTS):
     path.parent.mkdir(parents=True, exist_ok=True)
     try:
         path.mkdir()
     except FileExistsError:
         raise Refused('Thread already exists')
     (path / 'sealed').mkdir()
-    for author in MODELS:
-        (path / 'work' / author).mkdir(parents=True)
+    for author in names:
+        (path / 'work' / agent_name(author)).mkdir(parents=True)
     atomic_write(path / 'thread.json', json.dumps({
-        'participants': list(PARTICIPANTS), 'max_lines': 60, 'max_auto_turns': 12,
+        'participants': sorted(names) + ['owner'], 'max_lines': 60, 'max_auto_turns': 12,
         'created': datetime.now().isoformat(timespec='seconds'),
+        'roster': [{'n': 0, 'join': author} for author in sorted(names)],
     }, indent=2) + '\n')
+
+
+def models_at(config, before=float('inf')):
+    """Agents in the dialogue for a message numbered `before`; `all` expands to them."""
+    if 'roster' not in config:
+        return set(config['participants']) - {'owner'}
+    active = set()
+    for event in config['roster']:
+        if event['n'] < before:
+            if 'join' in event:
+                active.add(event['join'])
+            else:
+                active.discard(event['leave'])
+    return active
+
+
+def set_roster(path, name, join):
+    """Join or leave the dialogue from the next message on; history keeps its meaning."""
+    config = json.loads((path / 'thread.json').read_text(encoding='utf-8'))
+    if join == (name in models_at(config)):
+        return
+    files = [p for p in path.glob('*.md') if re.fullmatch(r'\d+-[a-z][a-z0-9]*\.md', p.name)]
+    last = max([int(p.name.split('-')[0]) for p in files] + [0])
+    config.setdefault('roster', [{'n': 0, 'join': author} for author in sorted(models_at(config))])
+    config['roster'].append({'n': last, 'join' if join else 'leave': name})
+    if name not in config['participants']:
+        config['participants'].insert(-1 if config['participants'][-1:] == ['owner'] else len(config['participants']), name)
+    (path / 'work' / name).mkdir(parents=True, exist_ok=True)
+    atomic_write(path / 'thread.json', json.dumps(config, indent=2) + '\n')
 
 
 def atomic_write(path, text):
@@ -109,38 +149,40 @@ def message_text(message):
                                  for key in ('n', 'author', 'next', 'round', 'time')) + '---\n' + message['body']
 
 
-def speakers(value):
-    return set(MODELS) if value == 'both' else {value}
+def speakers(value, models):
+    return set(models) if value in ('all', 'both') else {value}
 
 
 def snapshot_unlocked(path):
     config = json.loads((path / 'thread.json').read_text(encoding='utf-8'))
-    files = [p for p in path.glob('*.md') if re.fullmatch(r'\d+-[a-z]+\.md', p.name)]
+    files = [p for p in path.glob('*.md') if re.fullmatch(r'\d+-[a-z][a-z0-9]*\.md', p.name)]
     messages = [read_message(p) for p in sorted(files, key=lambda p: int(p.name.split('-')[0]))]
     floor, closed, pending = {'owner'}, False, None
     for message in messages:
-        author, nxt = message['author'], message['next']
+        author, nxt, models = message['author'], message['next'], models_at(config, message['n'])
         if author == 'owner':
             if nxt != 'keep':
                 pending = None
                 closed = nxt == 'close'
-                floor = set() if nxt in ('close', 'pause') else speakers(nxt)
-        elif MODELS <= floor or pending is not None:
+                floor = set() if nxt in ('close', 'pause') else speakers(nxt, models)
+        elif pending is not None or len(floor - {'owner'}) > 1:
             if pending is None:
-                pending = {'remaining': set(MODELS), 'next': set(), 'first': message['n']}
+                group = floor - {'owner'}
+                pending = {'group': group, 'remaining': set(group), 'next': set(), 'first': message['n']}
             message['batch'] = pending['first']
             pending['remaining'].discard(author)
-            pending['next'].update(speakers(nxt))
+            pending['next'].update(speakers(nxt, models))
             if not pending['remaining']:
-                floor = (floor - MODELS) | pending['next']
+                floor = (floor - pending['group']) | pending['next']
                 pending = None
         else:
             floor.discard(author)
-            floor.update(speakers(nxt))
+            floor.update(speakers(nxt, models))
     held = [read_message(p) for p in sorted((path / 'sealed').glob('*.md'))]
-    waiting = ((floor - MODELS) | pending['remaining'] if pending else floor) - {m['author'] for m in held}
-    return {'config': config, 'messages': messages, 'floor': sorted(waiting),
-            'closed': closed, 'held': held}
+    group = pending['remaining'] if pending else floor - {'owner'}
+    waiting = ((floor - pending['group']) | pending['remaining'] if pending else floor) - {m['author'] for m in held}
+    return {'config': config, 'messages': messages, 'floor': sorted(waiting), 'closed': closed, 'held': held,
+            'parallel': sorted(group) if len(group) > 1 or held else [], 'agents': sorted(models_at(config))}
 
 
 def snapshot(path):
@@ -152,11 +194,11 @@ def post(path, author, nxt, body, round_label='', seen=None):
     """The sole writer path for both CLI and HTTP messages."""
     with locked(path):
         state = snapshot_unlocked(path)
-        if author not in state['config']['participants'] or author not in PARTICIPANTS:
+        if author not in state['config']['participants']:
             raise Refused('Unknown participant')
         if state['closed']:
             raise Refused('Thread is closed')
-        allowed = {'astra', 'claude', 'both', 'owner'}
+        allowed = set(state['agents']) | {'all', 'both', 'owner'}
         if author == 'owner':
             allowed.update(('keep', 'pause', 'close'))
         if nxt not in allowed:
@@ -185,10 +227,10 @@ def post(path, author, nxt, body, round_label='', seen=None):
             number += 1
             return target.name
 
-        if author != 'owner' and (MODELS <= set(state['floor']) or state['held']):
+        if author != 'owner' and state['parallel']:
             atomic_write(path / 'sealed' / (author + '.md'), message_text(message))
             held = [read_message(p) for p in sorted((path / 'sealed').glob('*.md'))]
-            if len(held) < 2:
+            if not {m['author'] for m in held} >= set(state['parallel']):
                 return 'held'
             result = None
             for item in held:
@@ -213,7 +255,7 @@ def unseen(state, author):
 
 
 def wait(path, author, timeout):
-    if author not in PARTICIPANTS:
+    if author not in snapshot(path)['config']['participants']:
         raise Refused('Unknown participant')
     deadline = time.monotonic() + timeout
     while True:
@@ -236,17 +278,74 @@ def agents(path):
         return {}
 
 
-def set_agent(path, name, entry):
-    """Local configuration only: the CLI is the sole writer of agents.json."""
-    if name not in MODELS:
-        raise Refused('Unknown model')
+def set_agent(path, name, entry, roster=False):
+    """Write one agents.json entry; with `roster`, also join (or, for None, leave) the dialogue."""
+    agent_name(name)
     with locked(path):
         data = agents(path)
         if entry is None:
             data.pop(name, None)
         else:
             data[name] = entry
+        if roster or entry is not None:
+            set_roster(path, name, entry is not None)
         atomic_write(path / 'agents.json', json.dumps(data, indent=2) + '\n')
+
+
+def runners():
+    try:
+        return json.loads(RUNNERS.read_text(encoding='utf-8'))
+    except FileNotFoundError:
+        return {}
+
+
+UUID = r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+
+
+def connect(path, data):
+    """The page's "connect agent": values are checked against runners.json; argv never comes from the page."""
+    name = agent_name(data.get('name'))
+    runner = runners().get(data.get('runner'))
+    if not isinstance(runner, dict):
+        raise Refused('Unknown runner')
+    if data.get('model') not in runner.get('models', []) or data.get('effort') not in runner.get('efforts', []):
+        raise Refused('Model or effort not offered by this runner')
+    if data.get('mode') not in ('resume', 'fresh'):
+        raise Refused('Mode must be resume or fresh')
+    session = data.get('session') or None
+    if session is not None and (not isinstance(session, str) or not re.fullmatch(UUID, session)):
+        raise Refused('Session must be a UUID')
+    timeout = data.get('turn_timeout', 60)
+    if not isinstance(timeout, (int, float)) or not 1 <= timeout <= 600:
+        raise Refused('Turn timeout must be 1 to 600 minutes')
+    if snapshot(path)['closed']:
+        raise Refused('Thread is closed')
+    entry = {'runner': data['runner'], 'model': data['model'], 'effort': data['effort'], 'mode': data['mode'],
+             'session': session, 'turn_timeout': timeout}
+    set_agent(path, name, entry)
+    return entry
+
+
+def command_argv(path, name, entry, prompt, session):
+    """The argv of one turn: the registered argv, or the runner's `new` / `resume` template."""
+    if 'runner' not in entry:
+        template = entry['argv']
+    else:
+        runner = runners().get(entry['runner'])
+        if not isinstance(runner, dict):
+            raise Refused('Runner {} is not in runners.json'.format(entry['runner']))
+        template = runner['resume' if entry['mode'] == 'resume' and entry.get('session') else 'new']
+    values = {'{prompt_file}': str(prompt), '{thread}': path.name, '{name}': name, '{session}': session or '',
+              '{model}': entry.get('model', ''), '{effort}': entry.get('effort', '')}
+    argv = list(template)
+    for key, value in values.items():
+        argv = [arg.replace(key, value) for arg in argv]
+    return argv
+
+
+def runner_of(entry):
+    runner = runners().get(entry.get('runner')) if 'runner' in entry else None
+    return runner if isinstance(runner, dict) else {}
 
 
 def alive(pid):
@@ -257,6 +356,10 @@ def alive(pid):
     except PermissionError:
         pass
     return True
+
+
+def log_order(name):
+    return [int(part) for part in re.findall(r'\d+', name)]
 
 
 def own_count(state, name):
@@ -339,16 +442,8 @@ class Dispatcher:
     def save(self):
         atomic_write(self.path / 'dispatch.json', json.dumps(self.data, indent=2) + '\n')
 
-    def turns(self, state):
-        start = max([m['n'] for m in state['messages'] if m['author'] == 'owner'] + [self.data['resumed_at']])
-        return sum(1 for m in state['messages'] if m['n'] > start and m['author'] in MODELS)
-
     def auto(self, state):
-        if self.data['paused']:
-            return 'paused'
-        if self.turns(state) >= state['config'].get('max_auto_turns', 12):
-            return 'turn limit'
-        return 'on'
+        return dispatch_view(self.path, self.data, state, True)['auto']
 
     def kill(self, record, sig):
         try:
@@ -397,21 +492,21 @@ class Dispatcher:
         prompt = work / 'turn-{}.md'.format(seen)
         atomic_write(prompt, turn_prompt(self.path, name, state, seen, command.get('mode') == 'fresh'))
         log = work / 'wake-{}-{}.log'.format(seen, attempt)
-        values = {'{prompt_file}': str(prompt), '{thread}': self.path.name, '{name}': name}
-        argv = list(command['argv'])
-        for key, value in values.items():
-            argv = [arg.replace(key, value) for arg in argv]
+        session = command.get('session') if command.get('mode') == 'resume' else None
+        if not session and runner_of(command).get('session') == 'uuid':
+            session = str(uuid.uuid4())
         for key in ('force', 'stalled', 'next_try'):
             record.pop(key, None)
         try:
+            argv = command_argv(self.path, name, command, prompt, session)
             with open(log, 'a', encoding='utf-8') as output:
                 proc = subprocess.Popen(argv, shell=False, stdin=subprocess.DEVNULL, stdout=output,
                                         stderr=subprocess.STDOUT, cwd=ROOT, start_new_session=True)
-        except OSError as exc:
+        except (OSError, Refused, KeyError) as exc:
             self.fail(record, command, None, '', 'cannot start: {}'.format(exc))
             return
         self.procs[name] = proc
-        record.update(pid=proc.pid, since=self.clock(), mark=own_count(state, name), log=str(log))
+        record.update(pid=proc.pid, since=self.clock(), mark=own_count(state, name), log=str(log), session=session)
 
     def finish(self, name, record, code, state, command):
         self.procs.pop(name, None)
@@ -421,8 +516,17 @@ class Dispatcher:
             text = ''
         timed_out = 'term_at' in record
         posted = own_count(state, name) != record['mark']
-        for key in ('pid', 'since', 'mark', 'log', 'term_at'):
+        session = record.get('session')
+        for key in ('pid', 'since', 'mark', 'log', 'term_at', 'session'):
             record.pop(key, None)
+        if posted and command.get('mode') == 'resume' and not command.get('session'):
+            pattern = runner_of(command).get('session_pattern')
+            match = re.search(pattern, text) if pattern else None
+            session = match['session'] if match else session
+            current = agents(self.path).get(name)
+            if session and current and current.get('runner') == command.get('runner') and not current.get('session'):
+                current['session'] = session
+                set_agent(self.path, name, current)
         if posted or state['closed'] or name not in state['floor']:
             record.clear()
         elif timed_out:
@@ -439,7 +543,8 @@ class Dispatcher:
         lines = [line.strip() for line in text.splitlines() if line.strip()]
         record['error'] = (reason + (': ' + lines[-1] if lines else ''))[:200]
         retry = now + RETRY[min(record['attempt'], len(RETRY)) - 1]
-        match = re.search(command['limit_pattern'], text) if command.get('limit_pattern') else None
+        pattern = command.get('limit_pattern') or runner_of(command).get('limit_pattern')
+        match = re.search(pattern, text) if pattern else None
         if match:
             reset = limit_time(match, now)
             if reset is not None:
@@ -477,16 +582,7 @@ class Dispatcher:
 
     def view(self):
         with self.lock:
-            commands, state, result = agents(self.path), snapshot(self.path), {}
-            for name in sorted(MODELS):
-                record = self.data['agents'].get(name, {})
-                result[name] = {
-                    'state': ('running' if record.get('pid') else 'off' if name not in commands else
-                              'stalled' if record.get('stalled') else 'backoff' if record.get('next_try') else 'idle'),
-                    'since': record.get('since'), 'next_try': record.get('next_try'),
-                    'attempt': record.get('attempt', 0), 'error': record.get('error')}
-            return {'auto': self.auto(state), 'turns': self.turns(state),
-                    'max_auto_turns': state['config'].get('max_auto_turns', 12), 'agents': result}
+            return dispatch_view(self.path, self.data, snapshot(self.path), True)
 
 
 def inline(text):
@@ -564,62 +660,177 @@ def render_markdown(body):
     return ''.join(output)
 
 
-PAGE = r'''<!doctype html>
-<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Dialogue</title><style>
-*{box-sizing:border-box}body{margin:0;background:#f4f5f8;color:#202530;font:16px/1.5 system-ui,sans-serif}
-header,main,form{max-width:1100px;margin:auto;padding:16px}header{position:sticky;top:0;background:#f4f5f8;z-index:1;border-bottom:1px solid #ddd}
-h1{font-size:1.3em;margin:0}#messages{padding-bottom:24px}.bubble{width:fit-content;max-width:90%;margin:16px 0;padding:14px 18px;border-radius:16px;background:#e1ebff;overflow-wrap:anywhere}
-.bubble.claude{background:#f5e7d9}.bubble.owner{background:#d9eee4;margin-left:auto}.meta{font-size:12px;color:#505765;margin-bottom:8px}
-p{margin:6px 0}pre{overflow:auto;background:#ffffff90;padding:12px;border-radius:6px}code{font-family:monospace;white-space:pre-wrap}pre code{white-space:pre}
-.table{max-width:100%;overflow-x:auto}table{border-collapse:collapse}th,td{border:1px solid #b5bdc8;padding:6px 10px;white-space:pre-wrap;min-width:90px}
-form{position:sticky;bottom:0;background:#f4f5f8;border-top:1px solid #ddd}textarea{display:block;width:100%;resize:vertical;min-height:90px;font:inherit;padding:10px;border:1px solid #aaa;border-radius:8px}
-.controls{display:flex;gap:12px;align-items:center;margin-top:8px}button,select{font:inherit;padding:7px 12px}#error{color:#a82020}details{margin:12px 0;padding:12px;border:1px dashed #888;border-radius:8px}summary{cursor:pointer}
-.chip{display:inline-flex;gap:8px;align-items:center;margin:6px 8px 0 0;padding:3px 10px;border-radius:12px;background:#e3e6ed;font-size:13px}.chip button{padding:2px 8px;font-size:12px}
-</style><header><h1>Dialogue</h1><div id="status"></div><div id="agents"></div></header><main id="messages"></main>
-<form id="composer"><textarea id="body" aria-label="Message" placeholder="Write a message…"></textarea><div class="controls"><label>Who answers <select id="next"></select></label><button>Send</button><span id="error" role="alert"></span></div></form>
-<script>
-const messages=document.querySelector('#messages'),statusLine=document.querySelector('#status'),
-body=document.querySelector('#body'),next=document.querySelector('#next'),error=document.querySelector('#error'),agentsBar=document.querySelector('#agents');
-let previous='',busy=false;
-function control(label,url,data){const b=document.createElement('button');b.type='button';b.textContent=label;b.addEventListener('click',async()=>{error.textContent='';try{
- const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data||{})});const result=await response.json();if(!response.ok)throw Error(result.error);previous='';await refresh();
- }catch(e){error.textContent=e.message;}});return b;}
-function clock(t){return new Date(t*1000).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
-function dispatchBar(d){agentsBar.replaceChildren();if(!d)return;
- for(const [name,a] of Object.entries(d.agents)){const chip=document.createElement('span');chip.className='chip';let text=name+': '+a.state;
-  if(a.state==='running')text+=' '+Math.floor((Date.now()/1000-a.since)/60)+' min';if(a.state==='backoff')text+=', next try '+clock(a.next_try);if(a.error)text+=' · '+a.error;
-  chip.textContent=text;if(a.state!=='off'&&a.state!=='running')chip.append(control('wake now','/wake',{name}));agentsBar.append(chip);}
- const auto=document.createElement('span');auto.className='chip';auto.textContent='auto: '+d.auto+' ('+d.turns+' of '+d.max_auto_turns+' turns)';
- auto.append(d.auto==='on'?control('pause auto','/pause'):control('resume auto','/resume'));agentsBar.append(auto);}
-const labels={keep:'nobody new (interjection, the floor stays)',both:'both, in parallel (answers sealed)',claude:'claude',astra:'astra',pause:'nobody (pause)',close:'nobody (close the thread)'};
-function bubble(m){const b=document.createElement('article');b.className='bubble '+m.author;
- const meta=document.createElement('div');meta.className='meta';meta.textContent=['#'+m.n,m.author,m.round,m.time].filter(Boolean).join(' · ');b.append(meta);
- const content=document.createElement('div');content.innerHTML=m.html;b.append(content);return b;}
-async function refresh(){try{const response=await fetch('/messages');if(!response.ok)throw Error('Cannot read thread');const s=await response.json();dispatchBar(s.dispatch);
- const signature=JSON.stringify(s);if(signature===previous)return;previous=signature;
- const bottom=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-100;
- const expanded=new Set([...messages.querySelectorAll('details[open]')].map(d=>d.dataset.author));messages.replaceChildren();
- for(const m of s.messages)messages.append(bubble(m));
- for(const m of s.held){const d=document.createElement('details');d.dataset.author=m.author;d.open=expanded.has(m.author);
- const label=document.createElement('summary');label.textContent=m.author+' has answered; hidden until '+(m.author==='astra'?'claude':'astra')+' answers';d.append(label,bubble(m));messages.append(d);}
- statusLine.textContent=s.closed?'Thread closed':('Waiting for: '+(s.floor.join(', ')||'paused'));
- const values=(s.floor.some(x=>x!=='owner')?['keep']:[]).concat(['both','claude','astra','pause','close']);
- const selected=next.value;next.replaceChildren();if(!values.includes(selected)){const option=document.createElement('option');option.value='';option.textContent='Choose who answers';option.disabled=true;option.selected=true;if(!values.includes('keep'))next.append(option);}
- for(const value of values){const option=document.createElement('option');option.value=value;option.textContent=labels[value];next.append(option);}
- if(values.includes(selected))next.value=selected;else if(values.includes('keep'))next.value='keep';
- body.disabled=s.closed;document.querySelector('form button').disabled=s.closed;if(bottom)window.scrollTo(0,document.documentElement.scrollHeight);
- }catch(e){error.textContent=e.message;}}
-document.querySelector('form').addEventListener('submit',async e=>{e.preventDefault();if(busy)return;if(!next.value){error.textContent='Choose who answers';return;}busy=true;error.textContent='';try{
- const response=await fetch('/post',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({body:body.value,next:next.value})});
- const result=await response.json();if(!response.ok)throw Error(result.error);body.value='';next.value='';await refresh();
- }catch(e){error.textContent=e.message;}finally{busy=false;}});
-body.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();document.querySelector('form').requestSubmit();}});
-refresh();setInterval(refresh,2000);
-</script></html>'''
+def compact(value, limit=300):
+    text = value if isinstance(value, str) else json.dumps(value, ensure_ascii=False)
+    return text if len(text) <= limit else text[:limit] + ' …'
 
 
-def make_server(path, port, dispatcher=None):
+def flatten(content):
+    if isinstance(content, list):
+        return '\n'.join(c.get('text', '') if isinstance(c, dict) else str(c) for c in content)
+    return content if isinstance(content, str) else compact(content)
+
+
+def console_event(event):
+    """Readable lines of one JSON event of `claude -p --output-format stream-json` or `codex exec --json`."""
+    kind = event.get('type')
+    if kind in ('assistant', 'user'):
+        lines = []
+        for part in (event.get('message') or {}).get('content') or []:
+            if not isinstance(part, dict):
+                continue
+            if part.get('type') == 'text':
+                lines.append(['text', part.get('text', '')])
+            elif part.get('type') == 'thinking':
+                lines.append(['think', part.get('thinking', '')])
+            elif part.get('type') == 'tool_use':
+                lines.append(['tool', '{} {}'.format(part.get('name'), compact(part.get('input')))])
+            elif part.get('type') == 'tool_result':
+                lines.append(['output', compact(flatten(part.get('content')), 4000)])
+        return lines
+    if kind == 'system':
+        return [['info', 'session {} · {}'.format(event.get('session_id'), event.get('model'))]] if event.get('subtype') == 'init' else []
+    if kind == 'result':
+        return [['error' if event.get('is_error') else 'info', 'result: {} · {} turns · cost {}'.format(
+            event.get('subtype'), event.get('num_turns'), event.get('total_cost_usd'))]]
+    if kind == 'thread.started':
+        return [['info', 'session {}'.format(event.get('thread_id'))]]
+    if kind in ('item.started', 'item.completed'):
+        item = event.get('item') or {}
+        done, sort = kind == 'item.completed', item.get('type')
+        if sort == 'command_execution':
+            return [['tool', item.get('command', '')]] if not done else [
+                ['output', compact('{}\n(exit {})'.format(item.get('aggregated_output', ''), item.get('exit_code')), 4000)]]
+        if not done:
+            return []
+        if sort == 'agent_message':
+            return [['text', item.get('text', '')]]
+        if sort == 'reasoning':
+            return [['think', item.get('text', '')]]
+        if sort == 'file_change':
+            return [['tool', 'edit ' + ', '.join(str(c.get('path')) for c in item.get('changes', []) if isinstance(c, dict))]]
+        if sort == 'error':
+            return [['error', item.get('message', '')]]
+        return [['info', compact(item)]]
+    if kind in ('turn.started', 'item.updated', 'stream_event'):
+        return []
+    if kind == 'turn.completed':
+        return [['info', 'turn completed · usage {}'.format(compact(event.get('usage')))]]
+    if kind in ('turn.failed', 'error'):
+        return [['error', compact(event.get('error') or event.get('message'), 2000)]]
+    return None
+
+
+def console(path, name, log=None):
+    """The rendered tail of one wake log of an agent (the latest by default)."""
+    work = path / 'work' / agent_name(name)
+    logs = sorted((p.name for p in work.glob('wake-*.log')), key=log_order)
+    if log is None and logs:
+        log = logs[-1]
+    if log is None:
+        return {'logs': [], 'log': None, 'lines': []}
+    if not re.fullmatch(r'wake-\d+-\d+\.log', log) or log not in logs:
+        raise Refused('Unknown log')
+    data = (work / log).read_bytes()
+    text = data[-524288:].decode('utf-8', 'replace')
+    if len(data) > 524288:
+        text = text.split('\n', 1)[-1]
+    lines = []
+    for line in text.splitlines():
+        try:
+            event = json.loads(line)
+        except ValueError:
+            event = None
+        rendered = console_event(event) if isinstance(event, dict) else None
+        if rendered is None and line.strip():
+            rendered = [['raw', compact(line, 2000)]]
+        lines.extend(rendered or [])
+    return {'logs': logs, 'log': log, 'lines': lines}
+
+
+def dispatch_view(path, data, state, dispatching):
+    commands, result = agents(path), {}
+    records = data.get('agents', {})
+    for name in sorted(set(state['agents']) | set(commands)):
+        record, command = records.get(name, {}), commands.get(name, {})
+        result[name] = {
+            'runner': command.get('runner') or ('custom' if command else None), 'model': command.get('model'),
+            'effort': command.get('effort'), 'mode': command.get('mode'), 'session': command.get('session'),
+            'in_dialogue': name in state['agents'], 'on_floor': name in state['floor'],
+            'state': ('running' if record.get('pid') else 'off' if name not in commands else
+                      'stalled' if record.get('stalled') else 'backoff' if record.get('next_try') else 'idle'),
+            'since': record.get('since'), 'next_try': record.get('next_try'),
+            'attempt': record.get('attempt', 0), 'error': record.get('error')}
+    start = max([m['n'] for m in state['messages'] if m['author'] == 'owner'] + [data.get('resumed_at', 0)])
+    turns = sum(1 for m in state['messages'] if m['n'] > start and m['author'] != 'owner')
+    limit = state['config'].get('max_auto_turns', 12)
+    auto = ('off' if not dispatching else 'paused' if data.get('paused') else 'turn limit' if turns >= limit else 'on')
+    return {'auto': auto, 'turns': turns, 'max_auto_turns': limit, 'agents': result}
+
+
+class Hub:
+    """Every thread under one root, with one dispatcher per thread that has agents.json."""
+
+    def __init__(self, root, dispatch=True, clock=time.time):
+        self.root, self.dispatch, self.clock = root, dispatch, clock
+        self.dispatchers, self.errors, self.lock = {}, {}, threading.Lock()
+
+    def path(self, name):
+        if not isinstance(name, str) or not re.fullmatch(r'[a-z0-9][a-z0-9-]*', name):
+            raise Refused('Invalid thread name')
+        path = self.root / name
+        if not (path / 'thread.json').is_file():
+            raise Refused('Unknown thread')
+        return path
+
+    def names(self):
+        return sorted(p.parent.name for p in self.root.glob('*/thread.json'))
+
+    def dispatcher(self, name):
+        if not self.dispatch:
+            return None
+        with self.lock:
+            if name not in self.dispatchers:
+                try:
+                    self.dispatchers[name] = Dispatcher(self.path(name), self.clock)
+                except Refused as exc:
+                    if self.errors.get(name) != str(exc):
+                        print('{}: {}'.format(name, exc), file=sys.stderr, flush=True)
+                    self.errors[name] = str(exc)
+                    return None
+            return self.dispatchers[name]
+
+    def step(self):
+        for name in self.names():
+            if name in self.dispatchers or (self.root / name / 'agents.json').is_file():
+                dispatcher = self.dispatcher(name)
+                if dispatcher:
+                    dispatcher.step()
+
+    def view(self, name, state=None):
+        path = self.path(name)
+        state = state or snapshot(path)
+        dispatcher = self.dispatchers.get(name)
+        if dispatcher:
+            with dispatcher.lock:
+                return dispatch_view(path, dispatcher.data, state, True)
+        return dispatch_view(path, {}, state, self.dispatch)
+
+    def summary(self):
+        result = []
+        for name in self.names():
+            state = snapshot(self.path(name))
+            last = state['messages'][-1] if state['messages'] else None
+            result.append({'name': name, 'closed': state['closed'], 'floor': state['floor'],
+                           'count': len(state['messages']), 'last': last and last['time'],
+                           'dispatch': self.view(name, state), 'error': self.errors.get(name)})
+        return result
+
+
+PAGE = HERE / 'page.html'
+
+
+def make_server(hub, port):
     class Handler(BaseHTTPRequestHandler):
         def respond(self, code, data, content_type='application/json; charset=utf-8'):
             payload = data.encode('utf-8') if isinstance(data, str) else json.dumps(data, ensure_ascii=False).encode('utf-8')
@@ -641,23 +852,36 @@ def make_server(path, port, dispatcher=None):
         def do_GET(self):
             if not self.local():
                 self.respond(403, {'error': 'Foreign Host'})
-            elif self.path == '/':
-                self.respond(200, PAGE, 'text/html; charset=utf-8')
-            elif self.path == '/messages':
-                state = snapshot(path)
-                for message in state['messages'] + state['held']:
-                    message['html'] = render_markdown(message['body'])
-                if dispatcher:
-                    state['dispatch'] = dispatcher.view()
-                self.respond(200, state)
-            else:
-                self.respond(404, {'error': 'Not found'})
+                return
+            route, _, query = self.path.partition('?')
+            params = {key: values[0] for key, values in parse_qs(query).items()}
+            try:
+                if route == '/':
+                    self.respond(200, PAGE.read_text(encoding='utf-8'), 'text/html; charset=utf-8')
+                elif route == '/threads':
+                    self.respond(200, {'threads': hub.summary(),
+                                       'runners': {name: {'label': r.get('label', name), 'models': r.get('models', []),
+                                                          'efforts': r.get('efforts', [])}
+                                                   for name, r in runners().items() if isinstance(r, dict)}})
+                elif route == '/messages':
+                    state = snapshot(hub.path(params.get('thread')))
+                    for message in state['messages'] + state['held']:
+                        message['html'] = render_markdown(message['body'])
+                    state['dispatch'] = hub.view(params['thread'], state)
+                    self.respond(200, state)
+                elif route == '/console':
+                    self.respond(200, console(hub.path(params.get('thread')), params.get('agent'), params.get('log')))
+                else:
+                    self.respond(404, {'error': 'Not found'})
+            except (ValueError, OSError) as exc:
+                self.respond(400, {'error': str(exc)})
 
         def do_POST(self):
             if not self.local() or self.headers.get('Origin') != 'http://' + self.headers.get('Host'):
                 self.respond(403, {'error': 'Foreign Origin or Host'})
                 return
-            if self.path != '/post' and (dispatcher is None or self.path not in ('/wake', '/pause', '/resume')):
+            routes = ('/post', '/new', '/connect', '/disconnect', '/wake', '/pause', '/resume')
+            if self.path not in routes:
                 self.respond(404, {'error': 'Not found'})
                 return
             try:
@@ -667,19 +891,35 @@ def make_server(path, port, dispatcher=None):
                 data = json.loads(self.rfile.read(length).decode('utf-8') or '{}')
                 if not isinstance(data, dict):
                     raise ValueError('Expected a JSON object')
-                if self.path == '/wake':
-                    if not isinstance(data.get('name'), str):
-                        raise ValueError('Expected a name string')
-                    dispatcher.wake(data['name'])
-                    self.respond(200, {'woken': data['name']})
-                elif self.path != '/post':
-                    dispatcher.set_paused(self.path == '/pause')
-                    self.respond(200, {'paused': self.path == '/pause'})
-                else:
+                if self.path == '/new':
+                    if not isinstance(data.get('thread'), str) or not re.fullmatch(r'[a-z0-9][a-z0-9-]{0,63}', data['thread']):
+                        raise Refused('Invalid thread name')
+                    new_thread(hub.root / data['thread'], ())
+                    self.respond(200, {'thread': data['thread']})
+                    return
+                path = hub.path(data.get('thread'))
+                if self.path == '/post':
                     if not isinstance(data.get('body'), str) or not isinstance(data.get('next'), str):
                         raise ValueError('Expected body and next strings')
-                    filename = post(path, 'owner', data['next'], data['body'])
-                    self.respond(200, {'file': filename})
+                    self.respond(200, {'file': post(path, 'owner', data['next'], data['body'])})
+                elif self.path == '/connect':
+                    self.respond(200, {'agent': connect(path, data)})
+                elif self.path == '/disconnect':
+                    name = agent_name(data.get('name'))
+                    dispatcher = hub.dispatcher(path.name)
+                    if dispatcher and dispatcher.data['agents'].get(name, {}).get('pid'):
+                        raise Refused('{} is running; wait for its turn to end'.format(name))
+                    set_agent(path, name, None, roster=True)
+                    self.respond(200, {'removed': name})
+                else:
+                    dispatcher = hub.dispatcher(path.name)
+                    if dispatcher is None:
+                        raise Refused('Dispatching is off for this thread')
+                    if self.path == '/wake':
+                        dispatcher.wake(data.get('name'))
+                    else:
+                        dispatcher.set_paused(self.path == '/pause')
+                    self.respond(200, {'ok': True})
             except (ValueError, UnicodeError) as exc:
                 self.respond(400, {'error': str(exc)})
 
@@ -691,7 +931,7 @@ def main(argv=None):
     commands = parser.add_subparsers(dest='command', required=True)
     for command in ('new', 'status', 'wait', 'post', 'serve', 'agent'):
         sub = commands.add_parser(command)
-        sub.add_argument('thread')
+        sub.add_argument('thread', nargs='?' if command == 'serve' else None)
         if command in ('post', 'wait', 'agent'):
             sub.add_argument('--as', dest='author', required=True)
         if command == 'wait':
@@ -712,7 +952,7 @@ def main(argv=None):
             sub.add_argument('argv', nargs='*', help='the command after --; {prompt_file}, {thread}, {name} are substituted')
     args = parser.parse_args(argv)
     try:
-        path = thread_path(args.thread)
+        path = thread_path(args.thread) if args.thread else None
         if args.command == 'new':
             new_thread(path)
             print(path)
@@ -738,18 +978,19 @@ def main(argv=None):
             set_agent(path, args.author, entry)
             print(json.dumps({args.author: entry}, ensure_ascii=False))
         else:
-            snapshot(path)
-            dispatcher = None if args.no_dispatch else Dispatcher(path)
-            server = make_server(path, args.port, dispatcher)
-            print('http://127.0.0.1:{}/'.format(server.server_port), flush=True)
+            if path:
+                snapshot(path)
+            THREADS.mkdir(exist_ok=True)
+            hub = Hub(THREADS, dispatch=not args.no_dispatch)
+            server = make_server(hub, args.port)
+            print('http://127.0.0.1:{}/{}'.format(server.server_port, '#' + path.name if path else ''), flush=True)
             threading.Thread(target=server.serve_forever, daemon=True).start()
             try:
                 while True:
-                    if dispatcher:
-                        try:
-                            dispatcher.step()
-                        except Exception as exc:
-                            print('dispatcher: {}'.format(exc), file=sys.stderr, flush=True)
+                    try:
+                        hub.step()
+                    except Exception as exc:
+                        print('dispatcher: {}'.format(exc), file=sys.stderr, flush=True)
                     time.sleep(2)
             except KeyboardInterrupt:
                 pass
