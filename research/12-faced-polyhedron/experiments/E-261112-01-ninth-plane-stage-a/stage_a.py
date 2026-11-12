@@ -9,7 +9,9 @@
   C2: tetrahedron, K = 7, must be INFEASIBLE.
 A SOLID is a CANDIDATE only (verify_candidate.py --all-pairs, candidate-check). INFEASIBLE is UNSAT-SOLVER for this
 exact model; UNKNOWN / HARD-TIMEOUT leave the unit open. The shard budget (core-s; total / SHARDS) covers controls,
-pilot and units of every start; a unit starts only if spent + cap + OVERHEAD <= budget.
+pilot and units of every start; a unit starts only if spent + cap + OVERHEAD <= budget. The shard's first two units
+are its pilot; before its first later unit the pilot gate requires both pilot records, no ERROR, and spent + mean
+pilot wall (all shards' records) x remaining units <= budget, else the shard stops (exit 6) for an owner decision.
 Usage: stage_a.py --out DIR --shard S --shards N [--cap 60] [--budget B] [--pilot]   (run.sh drives it)"""
 import argparse
 import json
@@ -30,7 +32,7 @@ from solid_fast import Tables  # noqa: E402
 
 UNITS = HERE / 'list' / 'units.json'
 UNITS_SHA256 = 'ef132bc74c243121842406543ca7a9b36d55ef1af4f6974c66e50b5b1f67b360'
-TOTAL_CORE_SECONDS = 7.3 * 3600
+TOTAL_CORE_SECONDS = 12 * 3600                   # owner's budget decision, 2026-11-12 (amendment 2)
 OVERHEAD = 30                                        # process start + arrangement + tables, seconds
 PILOT_UNITS, PILOT_CORE_SECONDS = 2, 0.5 * 3600
 TETRA = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [-1, -1, -1, 1]]
@@ -38,6 +40,11 @@ TETRA = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [-1, -1, -1, 1]]
 
 def can_start(spent, cap, budget):
     return spent + cap + OVERHEAD <= budget
+
+
+def projection_ok(spent, mean_unit, remaining, budget):
+    """Pilot gate: the shard's spent time plus the measured mean pilot cost of its remaining units fits."""
+    return spent + mean_unit * remaining <= budget
 
 
 def worker(inp_path, out_path):
@@ -155,22 +162,36 @@ def run_shard(a):
             print('CONTROL-FAILED', name, flush=True); return 3
     done = {r['unit'] for d in out.parent.glob('[0-9]*') for r in records(d / 'results.jsonl')}
     mine = [u for u in units if u['ordinal'] % a.shards == a.shard]
+    pilot = {u['unit'] for u in mine[:PILOT_UNITS]}
     if a.pilot:
         mine = mine[:PILOT_UNITS]
     todo = [u for u in mine if u['unit'] not in done]
+    gate = False
     D = {s: cells.duals(cells.source_planes(s)) for s in cells.SOURCES}
     for u in todo:
         if flag.exists():
             print('CANDIDATE-STOP', flag.read_text().strip(), flush=True); return 5
         if not can_start(spent, a.cap, budget):
             print(f'BUDGET-STOP at {spent:.0f} of {budget:.0f} core-s; {len(todo)} were open at start', flush=True); return 4
+        if u['unit'] not in pilot and not gate:           # pilot gate, once per start, before the first day unit
+            own = [r for r in records(out / 'results.jsonl') if r['unit'] in pilot]
+            walls = [r['wall_seconds'] for d in out.parent.glob('[0-9]*') for r in records(d / 'results.jsonl')
+                     if r.get('phase') == 'pilot']
+            left = sum(v['unit'] not in pilot for v in todo[todo.index(u):])
+            mean = sum(walls) / len(walls) if walls else float('inf')
+            if len(own) < len(pilot) or any(r['verdict'] == 'ERROR' for r in own) or \
+                    not projection_ok(spent, mean, left, budget):
+                print(f'PILOT-GATE-STOP: spent {spent:.0f} + {left} x {mean:.1f} s vs {budget:.0f} core-s; '
+                      f'pilot records {len(own)}/{len(pilot)}', flush=True); return 6
+            print(f'PILOT-GATE-PASS: spent {spent:.0f} + {left} x {mean:.1f} s <= {budget:.0f} core-s', flush=True)
+            gate = True
         p = [cells.Fr(v) for v in u['ninth']]
         if cells.key_str(cells.key_of(D[u['source']], p)) != u['key']:
             raise ArithmeticError(u['unit'] + ': representative is not in its cell')
         r = run_unit(raw, u['unit'], dict(planes=cells.source_planes(u['source']) + [u['ninth']], edges_min=39, cap=a.cap))
         spent += r['wall_seconds']
         rec = dict(unit=u['unit'], ordinal=u['ordinal'], source=u['source'], orbit_size=u['orbit_size'],
-                   phase='pilot' if a.pilot else 'day', started=stamp,
+                   phase='pilot' if u['unit'] in pilot else 'day', started=stamp,
                    **{k: r.get(k) for k in ('verdict', 'wall_seconds', 'cpu_seconds', 'budget_fraction', 't_tables', 't_solve',
                                             'bounded_cells', 'model_sha256', 'returncode', 'error_tail')},
                    ended_by=r.get('solver', {}).get('ended_by'), solver_seconds=r.get('solver', {}).get('seconds'))

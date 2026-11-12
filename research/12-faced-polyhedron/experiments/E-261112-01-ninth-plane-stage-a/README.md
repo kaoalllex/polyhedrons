@@ -10,8 +10,8 @@ produces: []
 preregistered: true
 ---
 
-> Scores T D F G R: 2 2 2 1 2. Preparation plus <= 7.3 core-h, 10 shards, laptop day run.
-> Owner-approved dialogue, filed 2026-11-12. Prep amendment 2026-11-12; pilot not launched.
+> Scores T D F G R: 2 2 2 1 2. Preparation plus <= 12 core-h (amendment 2), 10 shards, laptop run.
+> Owner-approved dialogue, filed 2026-11-12. Prep amendments 1-2 on 2026-11-12; not launched yet.
 
 ## Goal / origin
 
@@ -21,10 +21,10 @@ The new finite list and E >= 39 replace the random fixed-E sweeps; no LOW-YIELD 
 
 ## Next
 
-Prep done ([PLAN.md](PLAN.md) amendment 1): frozen list, controls and runner. Owner, from the research folder:
-`PILOT=1 bash overnight/launch.sh 261112-01 start` (10 shards, <= 0.5 core-h). A lab session then checks the
-pilot gate (controls, projection within 7.3 core-h); only after it passes: `bash overnight/launch.sh 261112-01 start`.
-`status` / `stop` work as for every launch. Stage B has a separate gated queue row and is not pre-registered.
+Prep done ([PLAN.md](PLAN.md) amendments 1-2). Owner, from the research folder, one launch (pilot, automatic pilot
+gate, then the rest; about 1-1.5 h on 10 cores): `bash overnight/launch.sh 261112-01 start`; `status` / `stop` as
+usual. Exit 6 in a shard = pilot gate stop (owner decision); exit 5 = candidate (run `candidate-check`).
+Stage B has a separate gated queue row and is not pre-registered.
 
 ## Environment (checked 2026-11-12, no solver call)
 

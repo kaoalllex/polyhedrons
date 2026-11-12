@@ -59,6 +59,25 @@ class StageATests(unittest.TestCase):
             self.assertTrue((Path(tmp) / 'CANDIDATE').exists())
             self.assertEqual(stage_a.run_shard(args(1e6)), 5)                         # flag stops every shard
 
+    def test_pilot_gate(self):
+        self.assertTrue(stage_a.projection_ok(100, 2, 50, 200))
+        self.assertFalse(stage_a.projection_ok(100, 2, 51, 200))
+        def fake(raw, name, u):
+            v = 'SOLID' if name.startswith(('C0', 'C1')) else 'INFEASIBLE'
+            g = dict(all_pairs_adjacent=True, V_E_F_chi=[8, 0, 8, 0], EMBEDDED=v == 'SOLID')
+            return dict(verdict=v, wall_seconds=1.0, solver=dict(status=v), geometry=g, planes=[], links={})
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(stage_a, 'run_unit', fake), \
+                mock.patch.object(stage_a, 'c1_unit', lambda n: dict(planes=[], edges_min=30, method='lp', differs=True)):
+            out = Path(tmp) / '3'
+            args = lambda b: mock.Mock(out=out, shard=3, shards=10, cap=60, budget=b, pilot=False)
+            self.assertEqual(stage_a.run_shard(args(150)), 6)        # pilot fits, 198 more units x 1 s do not
+            rec = stage_a.records(out / 'results.jsonl')
+            self.assertEqual([r['phase'] for r in rec], ['pilot', 'pilot'])
+            self.assertEqual(stage_a.run_shard(args(1e6)), 0)        # gate passes, the shard completes
+            rec = stage_a.records(out / 'results.jsonl')
+            self.assertEqual(len(rec), 201)
+            self.assertEqual({r['phase'] for r in rec[2:]}, {'day'})
+
 
 if __name__ == '__main__':
     unittest.main()
