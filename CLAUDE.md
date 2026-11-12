@@ -3,9 +3,11 @@
 This repository has two parts:
 - the public 3D viewer: `index.html`, published by GitHub Pages from `main`, so every commit on `main` is live;
 - the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
-  (`STRATEGY.md`, 2026-11-09): a maximal face-neighbourly polyhedron (SPEC S5) at (10, 4), searched by a stratified
-  kissat sweep; (8, 2) and (9, 3) are decided (conditional negative), the note is deferred; the 12-face problem
-  is parked, not abandoned.
+  (`STRATEGY.md`, owner-approved 2026-11-12): one constructive target at a time on the owner's laptop, subject to
+  the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) by exact ninth-plane cells first;
+  S6 at (10, 3) second, behind formula and realization-bridge controls; thin wedges as a backup. S5 at (10, 4)
+  only under the rule of E-261110-06. (8, 2) and (9, 3) are decided (conditional negative),
+  the note is deferred; the 12-face problem is parked, not abandoned.
 
 ## Implementation preferences
 
@@ -36,7 +38,7 @@ This repository has two parts:
   and escalate instead of improvising (`PROTOCOL.md` §8b).
 - **Skills** (`.claude/skills/`):
   - `experiment-start`: from a ROADMAP row to a pre-registered experiment;
-  - `experiment-conclude`: results to `CONCLUSION.md` and the ledger, night reports included;
+  - `experiment-conclude`: results to `CONCLUSION.md` and the ledger;
   - `candidate-check`: run before anyone calls anything a result;
   - `session-handover`: end of a session;
   - `strategy-review`: the regular review of strategy and queue (separate session, strongest model);
@@ -44,9 +46,10 @@ This repository has two parts:
 
 Hard rules:
 - Never weaken the target, never fabricate a result, and report failures with their output. Only
-  `verification/verify_candidate.py FILE --target S0` returning PASS is a solution of the 12-face problem; for the
-  focus target only `--target S5` PASS (with the face count and genus of `STRATEGY.md`) is a result. Never report
-  an S5 object as an S0 solution.
+  `verification/verify_candidate.py FILE --target S0` returning PASS is a solution of the 12-face problem; for a
+  focus target only the success check that `STRATEGY.md` §1 names for it (`--target S6`, `--all-pairs` or
+  `--target S5`, with its face count and genus) returning PASS is a result. Never report an S1, S5 or S6 object as
+  an S0 solution, or an S1 or S6 object as S5.
 - Label every claim with a `SPEC.md` §5 label. A proof written by an AI session is at most PROVED-1. AI agents are
   not independent reviewers.
 - Start an experiment only from a `ROADMAP.md` row with T + D >= 3, and only after its `PLAN.md` is committed.
@@ -55,8 +58,8 @@ Hard rules:
 - A diagnostic that is constant across many runs is suspect: check the measuring function on controls before naming
   a phenomenon (`reviews/strategy-review-2026-11-01.md` §5.1). Every negative statement names its scope (`SPEC.md` §4)
   and what was not run.
-- Long runs go to the owner's laptop (under `caffeinate -dimsu`, on AC power) or to GitHub Actions. Never start
-  a multi-hour run from a session.
+- Long runs go to the owner's laptop only (under `caffeinate -dimsu`, on AC power; no GitHub Actions, no rented
+  compute: owner, 2026-11-10). Never start a multi-hour run from a session.
 - Ask the owner before large subagent tasks and before long runs. Search runs may skip DRAT (owner, 2026-11-08
   22:15): an UNSAT without a checked proof is `UNSAT-SOLVER`, which may skip or rank a map but is never a negative
   result; a negative claim (a note, an exclusion in `STATUS.md`) needs a replay with a checked proof. Runs with

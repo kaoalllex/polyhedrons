@@ -31,3 +31,9 @@ Face-grouped minimal unsatisfiable cores of the saved plain formulas of the fast
 ## Source
 
 Strategy review 2026-11-08, §7.1.
+
+## 2026-11-10: from "which faces" to "which clause family"
+
+E-261108-02 found no UNSAT sub-formula on <= 6 faces (STATUS 3d), so the face-local form of this idea is parked at
+that grouping. The clause-family form (does the refutation need `SEGMENT_DISJOINT`, or the global triples at all) is
+I-261110-04, hypothesis H-261110-01, experiment E-261110-05.

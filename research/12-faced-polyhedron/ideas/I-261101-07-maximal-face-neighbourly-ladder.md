@@ -22,3 +22,9 @@ Literature check, then (8,2).
 ## Source
 
 owner question 2026-11-01.
+
+## 2026-11-10: a companion ladder without multiple adjacencies
+
+Every rung of this ladder below (12, 6) needs multiple adjacencies; (8, 2) and (9, 3) are now excluded at formula
+scope (STATUS 3d). The ladder with single adjacencies at every rung (duals of the vertex-minimal triangulations:
+(10, 3), (11, 4), (12, 5), then S0) is I-261110-02.

@@ -16,7 +16,7 @@ throughout, as in the model.
 | F4 | edge-type rule | in gauge, at every vertex: the 3 edges have equal dihedral type ⟺ corner vertex | [P] sound; equivalent to F1 given F3 | as F1 |
 | F5 | reflex-parity link | reflex literal (local χ-product) = parity of boundary crossings on the ray beyond the corner | [P] sound | it is the bridge between local signs and the parity predicates |
 | F6 | face turning rule | per face, the 11 vectors `κ_i p_i` wind exactly once (+1) about 0 | [P] sound | probably implied (rank-3 Umlaufsatz), not checked |
-| F7 | Gauss degree `DEG_W` | for each `W`: Σ over oriented triangles `t ∌ W` with `-n_W ∈ cone(t)` of `χ(t,∞)` equals `χ(S)/2 = -5` | [P] sound | **not known to be implied** (uses Hopf / Morse theory) |
+| F7 | Gauss degree `DEG_W` | for each `W`: Σ over oriented triangles `t ∌ W` with `-n_W ∈ cone(t)` of `χ(t,∞)` equals `χ(S)/2 = -5` | [P] sound | inside the abstract encoding **not known to be implied**; for realizations it follows from Euler's formula, simple faces and 1.1, without Hopf (addendum 2026-11-12, unreviewed) |
 | F8 | covering `COV_W` | for each `W`: some positively oriented triangle has `-n_W` in its cone; hence `q_W ≥ 6` | [P] sound | **not known to be implied** (uses existence of a global maximum) |
 | F9 | saddle count | `#{saddle vertices} ≥ 13` (generally `≥ 2g+1`) | [P] sound | **not known to be implied** (metric: area argument) |
 | F10 | offset-line parity / orientation alternation | along lines offset from `L_XY` into each quadrant, the crossings of `S` are even in number and alternate entering/leaving, the direction being fixed by the gauge normal | [P] sound | parity part implied in realizable case; Moki–Julio report the parity part slowed the solver; the alternation part is new and untested |
@@ -346,3 +346,62 @@ changes p from 1 to [v' convex], because in general position only the tiles of v
 boundary; so v' is convex. The edge graph is connected, hence every vertex is convex, deg = 1, g = 0. Consequently a
 Szilassi-12 has p >= 2 on a set of positive measure next to every convex-saddle edge, and the sum of delta over
 its convex corners exceeds 4 pi strictly; a "tight ansatz" is empty (idea I-261101-14, parked).
+
+## Addendum 2026-11-12 (dialogue `2026-11-10-strategy`): Gauss degree without Hopf, [P, two AI sessions, unreviewed]
+
+Setting of 2.1: a closed trivalent polyhedral surface S in GP with simple faces, outward (gauge) normals N_X, dual
+triangles t_v = (X, Y, Z) counter-clockwise at v, D_v = sign det(N_X, N_Y, N_Z) (+1 at a corner, -1 at a saddle,
+2.1), and deg(m) = sum_v D_v [m in cone(t_v)] for a direction m. Call m generic if det(m, N_Y, N_Z) != 0 for every
+edge e_YZ and m is parallel to no line through two vertices of a face.
+
+**Lemma C (planar ray count).** Let F be a simple polygon with k corners and c a point of its plane, or a direction
+(c at infinity), on no line through two vertices of F. For a corner v let r(v) be the number of rays of the line
+cv, from v, that enter the corner (convex corner: 0 or 1; reflex corner: 2 or 1). Then
+sum_v r(v) = k - 2 + 2 [c in F].
+Proof. Cut F by diagonals into k - 2 triangles. The triangles at v partition the corner at v and no ray runs along a
+diagonal, so the ray counts add. A triangle that does not contain c has exactly one vertex whose line cv enters it;
+the triangle that contains c has three. ∎
+
+**Lemma D (index of a vertex).** For a generic direction m put j(v) = 1 - (1/2) sum_{X at v} r_X(v), the rays
+being those of the level line F_X cap {m.x = m.v}. Then j(v) = D_v ([m in cone(t_v)] + [-m in cone(t_v)]).
+Proof. In the normal form of 1.1 (u_XY, u_XZ, u_YZ = e1, e2, e3) let s_XY, s_XZ, s_YZ be the signs of m on the three
+edge rays. A convex corner between two rays is entered once iff their signs differ; a reflex corner is entered once
+if they differ and twice if they agree. Corner type: sum r is 0 if the three signs agree and 2 otherwise, so j = 1 or
+0. Saddle type, X reflex: sum r = 1 + [s_XY = s_XZ] + [s_XY != s_YZ] + [s_XZ != s_YZ], so j = -1 iff
+s_XY = s_XZ != s_YZ, and 0 otherwise. On the other side, m or -m lies in cone(t_v) iff det(m, N_Y, N_Z),
+det(m, N_Z, N_X), det(m, N_X, N_Y) have one sign, and N_Y x N_Z = c_YZ u_YZ and so on. For the octant (N = -e3, -e2,
+-e1 for X, Y, Z) all three c are -1; for the saddle solid {c <= 0} cup O (N = e3, -e2, -e1) they are c_YZ = -1,
+c_XZ = c_XY = +1; complements reverse all normals and keep the products. So "one sign" means: the three s agree
+(corner type), or s_XY = s_XZ != s_YZ (saddle type). The pattern of the c is affine invariant up to a common
+factor. ∎
+
+**Lemma E (cancellation of the half-difference; astra, dialogue #21).** deg(m) = deg(-m) for generic m.
+Proof. Let q_X be the projection of N_X to the plane orthogonal to m; q_X != 0 and sign det(m, N_Y, N_Z) =
+sign det(q_Y, q_Z). For an oriented dual edge YZ let alpha_YZ in (-pi, pi) be the angle from q_Y to q_Z. For a
+triangle let w = (alpha_XY + alpha_YZ + alpha_ZX) / (2 pi): it is +1 if the three determinants are positive, -1 if
+they are negative and 0 otherwise. If the three determinants have a common sign r, then m is in cone(t_v) iff
+r = D_v and -m is iff r = -D_v, so D_v ([m in cone t_v] - [-m in cone t_v]) = r = w; otherwise both sides are 0.
+Hence deg(m) - deg(-m) is the sum of w over all triangles. Every edge of the closed oriented dual map occurs once in
+each direction and alpha_ZY = -alpha_YZ, so that sum vanishes. ∎
+
+**Proposition.** deg(m) = chi(S) / 2 for every generic m, and therefore DEG_W (F7) holds.
+Proof. By Lemma C with c at infinity, sum_v j(v) = V - (1/2) sum_F (k_F - 2) = V - E + F = chi(S). By Lemma D the
+left side is deg(m) + deg(-m), by Lemma E the two terms are equal. The point -N_W lies on no arc N_Y N_Z (2.1), deg
+is constant off these arcs, and every neighbourhood of -N_W contains generic directions. ∎
+
+Remarks. (i) The proof uses Euler's formula, simple faces (Lemma C; with c at infinity it follows from turning
+number +1, the fact behind F6, but it was not compared with the implemented F6 clauses), the local types of 1.1 and
+the closed oriented dual map; no smoothing and no Hopf theorem. It also holds
+for immersions with simple faces and embedded vertex stars, so F7 cannot separate embedded from immersed objects.
+(ii) Scope: realizations. Inside the abstract OM encoding the argument would need the perturbed direction as an
+extension element and Lemma C for the rank-3 contraction at X; neither is shown, so the last column of the F7 row
+in section 0 stays open there. F8 and F9 are not affected (they use the maximum and the area argument).
+(iii) Finite axes add nothing: for a generic line L through p with direction d, the same three lemmas with
+c_X = L cap H_X and g_v = d x (v - p) in place of m give G+(L) = G-(L) = (chi(S) - #(L cap S)) / 2, where
+G+-(L) = sum_v D_v [+-g_v in cone(t_v)]; for L = A cap B of two planes, det(g_v, N_Y, N_Z) = -[A B Y Z]. An own axis
+L_XY is never generic (c lies on edge lines); no one-sided form was derived.
+(iv) Checks: exact-arithmetic session checks K10-K12 of the dialogue on the Szilassi polyhedron and the S6 (10,2)
+witness (Lemma C and the index sum on 300 lines per object; Lemma D pointwise and both halves on 500 lines; Lemma E
+on random rank-two vector sets, with a negative control). The scripts `pencil_identity.py`, `pencil_gauss.py` and
+`half_cancellation.py` are in the untracked thread directory `dialogue/threads/2026-11-10-strategy/work/claude/`;
+they are not part of the repository's verification. Summary: `reviews/dialogue-2026-11-10-strategy.md`.

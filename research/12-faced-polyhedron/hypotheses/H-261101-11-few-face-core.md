@@ -20,6 +20,9 @@ Cores need ten or more faces; the obstruction is global.
 None. The D3 case (#3) is UNSAT with face simplicity alone (`results.md`), a hint that few families suffice, not
 that few faces do.
 
+2026-11-09 (S5, (9, 3), not S0): no one-face contraction core (E-261109-05) and no face-indexed core on <= 7
+faces (E-261108-02); the (9, 3) UNSATs look global. Status unchanged.
+
 ## What would move it
 
 E-261101-18. A recurring small core also yields the asymmetric sub-instance test described there.

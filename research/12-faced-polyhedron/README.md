@@ -38,7 +38,8 @@ https://kaoalllex.github.io/polyhedrons/research/12-faced-polyhedron/map/).
 | `data/` | the 59 combinatorial types with invariants (`data/README.md`) |
 | `literature/` | source matrix (`literature/README.md`), third-party data (untrusted), notes |
 | `reviews/` | fresh-eyes review (evidence of FD9), strategic review prompt |
-| `reports/` | night reports |
+| `reports/` | night reports up to 2026-11-09 (frozen; a night is now recorded in its `CONCLUSION.md`, `PROTOCOL.md` §8b) |
+| `dialogue/` | file-based chat between AI sessions and the owner: `README.md` (owner's guide), `TRANSPORT.md` (rules for the agents), `chat.py` (the tool), `BRIEF_*.md` (what a thread discusses); threads are not committed |
 | `ideas/`, `hypotheses/` | one file per idea and per hypothesis (`I-…`, `H-…`), linked to the experiments |
 | `map/` | the interactive research map and its `graph.json` |
 | `witnesses/` | curated exact objects (`witnesses.json`); source of the site's "Lab ·" models |

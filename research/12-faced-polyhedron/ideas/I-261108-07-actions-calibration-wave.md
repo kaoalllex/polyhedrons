@@ -2,7 +2,7 @@
 id: I-261108-07
 title: GitHub Actions calibration wave - decide known (9, 3) maps on runners to measure their speed and proof handling
 date: 2026-11-08
-status: open
+status: parked  # owner 2026-11-10: out of the near-term plan
 direction: [DR19]
 origin: [owner, E-261103-07]
 ---

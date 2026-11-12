@@ -1,0 +1,29 @@
+{
+  "_comment": "Copy to runners.json (ignored by git) and check every command against the installed CLI's --help. Placeholders: {prompt_file} {thread} {name} {session} {model} {effort}. 'new' starts a session, 'resume' continues the agent's session. 'session': 'uuid' makes the dispatcher choose the id; otherwise 'session_pattern' finds it in the first turn's output.",
+  "claude": {
+    "label": "Claude Code",
+    "models": ["claude-opus-5-5", "claude-fable-5-2", "claude-sonnet-5-5", "claude-haiku-5-5"],
+    "efforts": ["low", "medium", "high", "xhigh", "max"],
+    "session": "uuid",
+    "new": ["claude", "-p", "--session-id", "{session}", "--model", "{model}", "--effort", "{effort}",
+            "--output-format", "stream-json", "--verbose", "--permission-mode", "auto",
+            "Read {prompt_file} and do exactly what it says."],
+    "resume": ["claude", "-p", "--resume", "{session}", "--model", "{model}", "--effort", "{effort}",
+               "--output-format", "stream-json", "--verbose", "--permission-mode", "auto",
+               "Read {prompt_file} and do exactly what it says."],
+    "limit_pattern": "(?i)limit.{0,80}?resets? (?:at )?(?P<reset>\\d{1,2}(?::\\d{2})?\\s*[ap]\\.?m\\.?)"
+  },
+  "codex": {
+    "label": "Codex",
+    "models": ["gpt-6-astra", "gpt-6.1-sol", "gpt-6.1-terra", "gpt-6-sol", "gpt-6-luna", "gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"],
+    "efforts": ["low", "medium", "high", "xhigh", "max", "ultra"],
+    "session_pattern": "\"thread_id\"\\s*:\\s*\"(?P<session>[0-9a-f-]{36})\"",
+    "new": ["/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+            "exec", "--json", "--approve-for-me", "-m", "{model}", "-c", "model_reasoning_effort=\"{effort}\"",
+            "Read {prompt_file} and do exactly what it says."],
+    "resume": ["/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+               "exec", "--json", "--approve-for-me", "-m", "{model}", "-c", "model_reasoning_effort=\"{effort}\"",
+               "resume", "{session}", "Read {prompt_file} and do exactly what it says."],
+    "limit_pattern": "(?i)(?:try again|resets?) at (?P<reset>\\d{1,2}(?::\\d{2})?\\s*(?:[ap]\\.?m\\.?)?)"
+  }
+}

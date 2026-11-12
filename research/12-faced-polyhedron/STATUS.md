@@ -1,19 +1,18 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-09** (E-261109-04 union of matched solids, 0 of 256 samples, 3ab; E-261109-03 second encoder agrees on six (9,3) maps, 3aa; E-261109-02 independent census agrees, 3z; E-261109-01 multiplicity control passed, 3y; E-261108-03 speed-up benchmark recorded in 3x; lead review 2026-11-08d applied: focus moved to (10, 4) by the owner, new week plan and S5
-credences in `ROADMAP.md`; before it lead review 2026-11-08 applied: (9, 3) credences moved; sections
-3d-3s compacted the same day, wording only, details in each experiment's CONCLUSION; E-261103-03 unit (a), the long-cap launch
-and item 5a recorded in 3d the same day; E-261103-03 concluded; E-261103-07 cost probe recorded in 3w). Definitions, counters and
-evidence labels: `SPEC.md`. Evidence details: `results.md`; chronology: `experiment-log.md`; what to do next:
-`ROADMAP.md`. Update this file in the same commit as any result that changes a row. This file owns the verdicts and
-numbers; other files link here.
+As of **2026-11-12** (owner-approved strategy filing, no research computation). The latest registered results
+remain E-261109-06 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
+`experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
-No active process (item 5a, the E-261103-07 probe and the E-261108-03 benchmark finished). E-261103-03 is concluded (sections 3d-3i): every admissible (9, 3) plain formula is UNSAT-VERIFIED; lead review 2026-11-09 done, next: week item 1 of its week plan (`ROADMAP.md`). E-261103-04, E-261103-05, E-261103-06
-and E-261107-01 are concluded (sections 3g, 3j-3u).
+No research run launched by this filing. Next is E-261112-01 preparation (ninth-plane Stage A); Stage B is gated,
+S6 (10,3) follows its formula/bridge controls. The dialogue's checks remain session checks, not new ledger evidence;
+the local S6 (10,2) witness work is separate. S0 stays parked and the (8,2)/(9,3) note deferred. No credence change.
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-08 (`STRATEGY.md`): S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
+**Focus since 2026-11-10 (`STRATEGY.md` §1, owner): three constructive targets on the laptop**: S6 at (10, 3) first
+(E-261110-02), S1 with the genus free at 9, 10 and 12 faces, S5 at (10, 4) only under the rule of E-261110-06; nothing
+has run on the new targets. **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
 4, gated by a speed-up benchmark (E-261103-07: 10/10 TIMEOUT, section 3w); from 2026-11-03 to 2026-11-08 the focus was
 (9, 3), now decided at formula scope (below); its negative result is a side track towards a note marked as not
 independently reviewed. No geometric witness is known; the paired exact pilot is complete (section 3e); the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes
@@ -229,8 +228,9 @@ by the quick suite; disk-encoding argument PROVED-1). 0.0052 core-h. Engine cali
 
 30 uniform 9-plane arrangements (c3 / d2p1 / random, 10 each), hard model 36 pairs, E = 39: all 30 INFEASIBLE,
 5.9-21 s each (cap 180 s), controls pass (E-261107-01 CONCLUSION). EXACT computation, geometric reading PROVED-1
-via the E-261103-05 encoding; no DRAT. Best Phase B pair count 32 (diagnostic only). Verdict LOW-YIELD@0.38
-core-h; configuration parked. No hypothesis, credence or witness change.
+via the E-261103-05 encoding; no DRAT. Best Phase B pair count 32 (diagnostic only). Recorded cost 0.38
+core-h; the configuration remains parked. Owner reinterpretation 2026-11-12: withdraw LOW-YIELD as an inference
+about the family; recovery did not measure discovery power. No hypothesis, credence or witness change.
 
 ## 3u. E-261103-06 embedded-first R1 pilot (2026-11-07)
 
@@ -244,8 +244,9 @@ are the rejected steps. EXACT, instance scope; UNDERPOWERED, not a refutation; i
 300 exact 9-plane arrangements (100 Roest-Vigh + random ninth plane, 100 Mizhaev + ninth, 100 random C2-invariant),
 hard model 36 pairs, E = 39, cap 60 s, 10 shards: all 300 INFEASIBLE (6-28 s each), 0 SOLID; 40/40 controls pass
 (E-261108-01 CONCLUSION). EXACT computation, geometric reading PROVED-1 via the E-261103-05 encoding; no DRAT. Density
-bound < 1 % pooled under an i.i.d. assumption. Verdict LOW-YIELD@1.33 core-h; arrangement-first for (9, 3) parked.
-No hypothesis, credence or witness change.
+bound < 1 % pooled under an i.i.d. assumption. Recorded cost 1.33 core-h; configuration parked.
+Owner reinterpretation 2026-11-12: withdraw LOW-YIELD as a family inference; discovery power was unmeasured.
+The pooled bound is not a bound for another source or genus. No hypothesis, credence or witness change.
 
 ## 3w. E-261103-07 (10, 4) cost probe (2026-11-08)
 
@@ -293,6 +294,21 @@ Boolean union of Szilassi with a projectively matched Szilassi (k = 4) or a tetr
 arrangement; controls pass (identical copies return Szilassi, a distant copy fails). 128 valid samples per source: 0 boundaries
 with 10 simple faces, genus 4 and a connected solid (best clean-faced A sample: genus 2, 35 of 45 pairs; B: genus 1 only).
 Sampled negative at this resolution (EXACT computation, float arrangement); both sources parked, nothing excluded.
+
+## 3ac. E-261109-05 face-contraction sieve (2026-11-09)
+
+Owner request (lead review addendum 2026-11-09 §2). For each of the 203 admissible (9, 3) plain formulas and each face, the
+clauses whose chirotope signs all contain that face (the rank-3 contraction): 0 of 203 maps killed, every sub-formula SAT
+(EXACT per sub-formula), controls pass (planted core found exactly). I-261108-06 parked; the (10, 4) sweep stays unsieved.
+0.052 core-h (CONCLUSION).
+
+## 3ad. E-261109-06 (10, 4) stratum C sweep (2026-11-09/10)
+
+Week item 1, one owner night, 10 shards, 63.84 core-h (cap 80), 6.87 h wall, controls pass in every shard. kissat rel-4.0.4,
+no DRAT, cap 3600 s: all 358 queued maps UNSAT-SOLVER (148-2041 s), 0 SAT, 0 TIMEOUT; with 845 and 146 (3x) all 360 stratum C
+maps decided, 1.25x the review scenario. Measured factor f = 7.16 prices A + B at 485 core-h = 6.06 laptop nights (> 4):
+Actions route after week item 2. NUMERICAL, instance scope; UNSAT-SOLVER is not a negative result, strata A and B not run.
+No hypothesis, credence or witness change (CONCLUSION, per-pattern table there).
 
 ## 4. What may and may not be claimed
 

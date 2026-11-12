@@ -97,6 +97,14 @@ CHECKS = [
                    SF + 'genus3_12faces_48pairs_polished.json', genus=3)),
     ('witness: solid-first genus-2',
      lambda: files(True, SF + 'genus2_12faces_42pairs.json', genus=2)),
+    ('witness: S6 (10,2), embedded and independent rational geometry/topology check',
+     lambda: (lambda embedded, independent: (embedded[0] and independent[0], independent[1]))(
+         files(True, 'witnesses/s6_10_2.json', genus=2),
+         run(['verify_s6_10_2.py', 's6_10_2.json'], os.path.join(ROOT, 'witnesses'), '"verdict": "ACCEPT"'))),
+    ('witness: S6 (10,2) polished (site copy), embedded and independent rational check',
+     lambda: (lambda embedded, independent: (embedded[0] and independent[0], independent[1]))(
+         files(True, 'witnesses/s6_10_2_polished.json', genus=2),
+         run(['verify_s6_10_2.py', 's6_10_2_polished.json'], os.path.join(ROOT, 'witnesses'), '"verdict": "ACCEPT"'))),
     ('negative control: --target S0 and S5 reject Roest-Vigh (doubled adjacencies; not maximal)', s0_rejects_roest_vigh),
     ('positive control: --target S5 accepts Szilassi (7 faces, genus 1, maximal)',
      lambda: (lambda r: (all(x['PASS'] for x in r), '%d record(s), S5 PASS %s' % (len(r), [x['PASS'] for x in r])))(

@@ -20,7 +20,7 @@ one report and one proposed queue, which the owner approves before any session a
 ## Read
 
 `STRATEGY.md` (the current stance and targets; the review may recommend changing it, never changes it), `STATUS.md`,
-`ROADMAP.md`, `SPEC.md`, `PROTOCOL.md` §2, §8a; the last two night reports in `reports/`; the `CONCLUSION.md` of
+`ROADMAP.md`, `SPEC.md`, `PROTOCOL.md` §2, §8a; the `CONCLUSION.md` ("Runs" bullet included; night reports ended on 2026-11-09) of
 every experiment concluded since the previous review (`experiment-log.md` tells which); the previous
 `reviews/strategy-review-*.md`; `map/graph.json` for the full list of ideas, hypotheses and experiments with their
 status and links (read the files themselves only for the candidates you rank).
@@ -35,7 +35,9 @@ status and links (read the files themselves only for the candidates you rank).
    the first result that could park it). Candidates that serve the parked target only are listed separately, not
    dropped.
 3. **Propose the queue** and the **week plan** (`PROTOCOL.md` §8b): at most five items for the lab sessions, each
-   with its follow-up tree (allowed conditional next steps) and kill rule, plus answers to the "For the lead"
+   with its follow-up tree (allowed conditional next steps), kill rule and the **lab model and effort** it needs
+   (default: a cheaper model at medium effort, `PROTOCOL.md` §8b; one line of why when an item needs more, e.g. a
+   prep that can waste a night or a conclusion that may meet a SAT model), plus answers to the "For the lead"
    questions in `CONTINUE_PROMPT.md`. Then the top 5-8 items in order, each with its hypothesis, the cheapest falsifying test, what
    each outcome changes, the budget and the stop rule; mark which are "explore". Name the single first item.
 4. **Missing ideas**: at most 5 new ones, concrete enough for an idea file (statement, why, cheapest test). Prefer
@@ -47,10 +49,13 @@ status and links (read the files themselves only for the candidates you rank).
 
 ## Output
 
-`reviews/strategy-review-YYYY-MM-DD.md`: a 10-line verdict; the week plan, ready to paste into `ROADMAP.md`; the answers above; the scored table; the proposed queue;
-new ideas; audit findings; the 3 things to do first. Label factual claims with `SPEC.md` §5 evidence levels;
+`reviews/strategy-review-YYYY-MM-DD.md`, at most 150 lines (owner, 2026-11-10; `PROTOCOL.md` §8b). It opens with a
+10-line **owner digest**: the verdict, the approvals needed, the first item; the owner reads the digest only. Then: the
+week plan, ready to paste into `ROADMAP.md`; the answers above; the scored table; the proposed queue; new ideas; audit
+findings; the 3 things to do first. Label factual claims with `SPEC.md` §5 evidence levels;
 identify untested hypotheses and recommendations separately. Commit the report on the current branch; do not push. Then tell the owner, in
 Russian, the verdict and the proposed first item; the owner decides, and a working session applies the approved
 changes to `ROADMAP.md`, `STATUS.md` and the idea files.
 Once the owner approves, the same session or the working session also updates the owner's root `TODO.md`
-(local, untracked, in Russian: week plan, rules, next step); never commit it.
+(local, untracked, in Russian: week plan, rules, next step); never commit it. `TODO.md` opens, right under its
+title, with a short table of the week's lab work: item number, one-line task, model, effort, who launches it.

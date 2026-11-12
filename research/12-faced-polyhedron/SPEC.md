@@ -37,6 +37,7 @@ evidence of a solution.
 | S2 | **Polyhedral immersion**: conditions 1-3 plus *local* embeddedness (simple faces, at most one reflex corner per vertex, orientation consistency); global intersections allowed | symmetric case excluded (CERTIFIED); asymmetric open |
 | S3 | **Partial polyhedron**: 12 planar simple faces, embedded, genus g < 6, 30 + 6g adjacent pairs, every adjacency single | genus 3 reached (types 0, 15, 39, 53) |
 | S5 | **Maximal face-neighbourly polyhedron (F, g)**: embedded, cubic, every two of the F faces adjacent (multiple adjacencies allowed: a pair may share two or more collinear edge segments; the multiplicity is reported), and F = F_max(g), the most faces possible at genus g (F (F - 1) / 2 <= E = 3 (F + 2g - 2)): (7, 1) Szilassi, (8, 2), (9, 3), (10, 4), (11, 5); (12, 6) is S0. Success check: `verify_candidate.py FILE --target S5` PASS | (7, 1) known; the 2026 eight-face objects are (8, 3), not maximal; (8, 2) to (11, 5) unknown to us (literature check open); symmetric realizations allowed (FD5 is about S0 only) |
+| S6 | **Face-minimal polyhedron with single adjacencies (F, g)**: embedded, cubic, every face a planar simple polygon, every two faces share at most one edge (the dual map is a simplicial complex), and F is the vertex count of the vertex-minimal triangulations of the orientable surface of genus g: (7, 1) Szilassi, (10, 2), (10, 3), (11, 4), (12, 5); (12, 6) is S0. Not every pair of faces is adjacent: the adjacent pairs number E = 3 (F + 2g - 2) (21, 36, 42, 51, 60, 66). "Face-minimal" means minimal among cubic polyhedra with pairwise single adjacencies (F (F - 1) / 2 >= 3 (F + 2g - 2)); non-cubic polyhedra and polyhedra with multiple adjacencies can have fewer faces. Success check: `verify_candidate.py FILE --target S6` PASS (EMBEDDED, cubic, F and genus from the list, every adjacency single, adjacent pairs = E) | (7, 1) known; (10, 2) to (12, 5) unknown to us (nothing found in print for the face version, CLAIMED, web search 2026-11-10); (12, 5) is S3 at genus 5; symmetric realizations allowed (FD5 is about S0 only) |
 | S4 | **Smaller analogues**: n mutually adjacent faces, n = 7 (Szilassi, genus 1), n = 8 (genus 2 needs doubled adjacencies or 4-valent vertices) | n = 7 solved by every engine; n = 8 strict rungs open |
 
 "Extendable" (for S3) means only: the abstract map can be completed to a genus-6 target map by handle
@@ -103,6 +104,10 @@ claims need a human mathematical review outside this chain of agents.
 
 ## Change log
 
+* 2026-11-10 (owner-approved, `reviews/strategy-review-2026-11-10.md` §3): §2 adds S6 (face-minimal polyhedra with
+  single adjacencies) and its check `--target S6`; S0 is unchanged and not weakened; an S6 object is never a
+  solution. The check is built in the E-261110-02 prep; until it exists a (10, 3) candidate is checked by the plain
+  EMBEDDED verdict plus the stated counts.
 * 2026-11-08 (correction, strategy review M1): the 2026-11-03 evening entry's count is wrong; the exact census has
   18 admissible (9, 3) maps with a tripled pair, not 10. Definitions unchanged.
 * 2026-11-03 (evening, strategy review applied): §2 S5 says explicitly that adjacencies of multiplicity two or more

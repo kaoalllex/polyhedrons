@@ -9,13 +9,14 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-09, lead review 2026-11-09 approved and applied)
+## Hand-over (2026-11-12, approved dialogue filed; no compute)
 
-* Focus: S5 at (10, 4). Gate decided (E-261108-03, STATUS 3x): kissat, about 475 core-h for all 1117 maps without DRAT
-  (scenario); route = stratified first-witness sweep, fastest patterns first (`STRATEGY.md` §1, owner 2026-11-09).
-* The note is deferred (owner, 2026-11-09): no session time on it unless a worthwhile result is found.
-* Week plan in `ROADMAP.md` (lead review 2026-11-09, owner-approved): 1 stratum C first-witness night (360 maps,
-  kissat, no DRAT, <= 80 core-h, owner launch); 2 Actions calibration (read GitHub's Actions terms first, record the
-  finding in the PLAN; no job if not allowed); 3 cube-and-conquer pilot on maps 96, 85 (explore).
-* NEXT: week item 1 prep (PLAN, frozen queue, smoke test) so the owner can launch the night; then item 2 prep.
-* Branch `lab/2026-11-09` (from `main` after the merge of `lab/2026-11-08`): the week plan's only branch. No active process.
+* Branch `lab/2026-11-09`; no run launched here. Existing viewer/witness/chat edits remain separate and uncommitted.
+* `STRATEGY.md` and ROADMAP week plan: ninth-plane cells first, gated S6 (10,3) second, thin wedges backup.
+* NEXT: E-261112-01 prep under its PLAN: exact list/count/orbits, explicit lower-bound solver path, runner and hashes.
+* Controls pending: eight-plane recovery and deleted-plane reinsertion through the same representative path; no pilot now.
+* Environment: `source /Users/a.konyaev/.venvs/polyhedra/bin/activate`; all requirement pins and OR-Tools API pass, no Solve.
+* Stage A planned, not running; Stage B queued without PLAN, gated by full counts, real orbits and 50-cell pricing.
+* Owner actions: launch each night only after its gates; decide any Stage B source budget above one night; no push requested.
+* Checks: trace metadata and documentation links only; no solver, enumeration, candidate check or startup test in this filing.
+* For the lead: crease lemma proof/five outside chords; pencil planar lemma versus implemented clauses; novelty checks deferred.

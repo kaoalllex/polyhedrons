@@ -143,7 +143,8 @@ same cores (`launch.sh 02-03 02-04 start`), never side by side. `stop` lets each
 interrupt never lose recorded results: finished units stay in `results.jsonl`, logs are appended, and a restart resumes.
 Use the `overnight-run-script` skill to write night scripts. Long runs belong to the owner's machine, not to a cloud AI session (its background processes die).
 
-**GitHub Actions** (public repository, free standard runners): `.github/workflows/experiment.yml` runs
+**GitHub Actions: parked by the owner on 2026-11-10** (compute is the laptop only, no rented compute; the text below
+is kept for the record, `verify.yml` stays in use). Public repository, free standard runners: `.github/workflows/experiment.yml` runs
 `experiments/<ID>/run.sh <shard>` for every shard listed in `experiments/<ID>/matrix.json` (default one shard)
 when a commit whose message contains `[run]` is pushed to `experiment/<ID>`, or by hand (Actions tab ->
 experiment -> Run workflow, give the ID; the workflow file must be on `main` for that). Limits (2026-10-31):
@@ -186,10 +187,12 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
   it analyses the week's results in depth, updates the plan and writes the **week plan**. *Lab* sessions (cheaper
   models, medium effort) execute week-plan items; the owner launches nights and calls the lead when needed.
 * **Week plan** = the "Week plan" block at the top of the `ROADMAP.md` S5 queue: at most five items, each with its
-  question, budget, kill rule and **follow-up tree** (the conditional next steps allowed without the lead). A lab
-  session works only on week-plan items, in order.
+  question, budget, kill rule, **follow-up tree** (the conditional next steps allowed without the lead) and the lab
+  model and effort it needs. A lab session works only on week-plan items, in order.
 * **One item at a time.** Lab sessions run sequentially on the week branch (section 7), taking the first unfinished
-  item unless the owner names one in the prompt. Two sessions in one checkout at once only if the owner asks.
+  item unless the owner names one in the prompt. Two sessions in one checkout at once only if the owner asks. A lab
+  session may take consecutive week items in one session when none of them needs a night or an owner approval (owner,
+  2026-11-10).
 * **Escalate, do not improvise.** If the next step is not in the item's follow-up tree, or an item fails its
   control twice, stop that item: write one line under "For the lead" in `CONTINUE_PROMPT.md` and take the next
   item. A lab session never designs a new audit chain on its own.
@@ -198,9 +201,20 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 * **Batch cheap steps.** Steps with less than ~5 minutes of compute and no target claim run back to back in one
   session and are concluded together (one CONCLUSION section, one ledger commit), not one commit cycle each.
 * **Text budgets.** PLAN <= 80 lines; amendment <= 15 lines; CONCLUSION section <= 25 lines; STATUS section <= 8
-  lines; log entry 1-3 lines; handover <= 12 lines. State each number once (CONCLUSION) and link to it. Cite the
+  lines; log entry 1-3 lines; handover <= 12 lines; lead review <= 150 lines, opening with a 10-line **owner digest**
+  (verdict, approvals needed, first item), which is all the owner has to read (owner, 2026-11-10). State each number once (CONCLUSION) and link to it. Cite the
   `SPEC.md` scope and label once per section instead of repeating caveats in every paragraph. Rigour lives in
   manifests, hashes and checkers, not in prose.
+* **No night report** (owner, 2026-11-10). A laptop night is recorded by the "Runs" bullet of its `CONCLUSION.md` (wall
+  time against budget, sleep gaps; per job: tasks, outcomes, exact checks) and by the run's summary (`summary.py`
+  output; `results/SUMMARY.md` once `launch.sh post` exists). `reports/` is frozen history.
+* **One commit per stage** (owner, 2026-11-10): the pre-registration (PLAN, README, ROADMAP row, queue) and the
+  conclusion (CONCLUSION, ledger, log entry, handover block). No handover-only commit, unless a session ends with no
+  stage commit to carry the block.
+* **Harness changes approved by the owner on 2026-11-10** (`reviews/HANDOFF_PROMPT_2026-11-10-wedges.md` §11). The four
+  wording changes above are in force; the tool items are the Phase 0 list of `ROADMAP.md`, one lab session each. The
+  owner keeps: the week-plan approval, the nights (`start`), merges to `main`, changes to `SPEC.md` and `STRATEGY.md`,
+  and candidate announcements.
 
 ## 8. AI sessions and agents
 
