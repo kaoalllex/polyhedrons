@@ -1,0 +1,170 @@
+{
+  "planes": [
+    [
+      -927843635,
+      239098151,
+      286248603,
+      25539433
+    ],
+    [
+      52948473,
+      -824581856,
+      563259463,
+      -69270826
+    ],
+    [
+      -111794781,
+      603989046,
+      -789112894,
+      -989016591
+    ],
+    [
+      256431910,
+      409076162,
+      875727908,
+      -453386550
+    ],
+    [
+      -441053576,
+      -270886956,
+      855623749,
+      170504146
+    ],
+    [
+      -149460566,
+      84407657,
+      985158305,
+      -447966259
+    ],
+    [
+      -213646171,
+      -902302887,
+      374439332,
+      -729679540
+    ],
+    [
+      -922045927,
+      123988240,
+      -366685457,
+      1636398730
+    ],
+    [
+      -64060681,
+      -606016518,
+      792868343,
+      686158815
+    ],
+    [
+      238718400,
+      96827947,
+      -966249385,
+      -123553612
+    ]
+  ],
+  "links": {
+    "0": [
+      1,
+      8,
+      3,
+      5,
+      2,
+      7,
+      6,
+      9,
+      4
+    ],
+    "1": [
+      4,
+      3,
+      7,
+      2,
+      8,
+      0
+    ],
+    "2": [
+      5,
+      9,
+      6,
+      4,
+      8,
+      1,
+      7,
+      0
+    ],
+    "3": [
+      0,
+      8,
+      7,
+      1,
+      4,
+      6,
+      5
+    ],
+    "4": [
+      0,
+      9,
+      8,
+      2,
+      6,
+      3,
+      1
+    ],
+    "5": [
+      0,
+      3,
+      6,
+      7,
+      9,
+      2
+    ],
+    "6": [
+      7,
+      5,
+      3,
+      4,
+      2,
+      9,
+      0
+    ],
+    "7": [
+      2,
+      1,
+      3,
+      8,
+      9,
+      5,
+      6,
+      0
+    ],
+    "8": [
+      1,
+      2,
+      4,
+      9,
+      7,
+      3,
+      0
+    ],
+    "9": [
+      0,
+      6,
+      2,
+      5,
+      7,
+      8,
+      4
+    ]
+  },
+  "provenance": {
+    "thread": "2026-11-10-strategy",
+    "generator": "work/claude/s6_native.py",
+    "seed": 903,
+    "iteration": 4,
+    "rounding_scale": 1000000000,
+    "raw_candidate_sha256": "aa233062523bd4988d35f463b6a861abd5062b5bdd6609314595ca3903833f9c",
+    "note": "Polished copy of s6_10_2.json for the site viewer: same map, same counts; checked exactly by both verifiers.",
+    "polished_from": "witnesses/s6_10_2.json",
+    "polished_from_sha256": "08a0758e8c087fe2e40411d06aa285c4da6adca35b94def13ee968fdcffe12fc",
+    "polish_method": "code/polish_solid.py hill climb adapted to planes+links: random single-plane moves accepted only if the map is unchanged, ladder.pair_energy is 0 and code/beauty.py beauty does not decrease; seeds 3 (150 s) then 12 (300 s); planes normalized, rounded to integers at scale 1e9"
+  }
+}
