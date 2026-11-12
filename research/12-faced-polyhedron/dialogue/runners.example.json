@@ -15,8 +15,8 @@
   },
   "codex": {
     "label": "Codex",
-    "models": ["gpt-6-astra"],
-    "efforts": ["low", "medium", "high", "xhigh"],
+    "models": ["gpt-6-astra", "gpt-6.1-sol", "gpt-6.1-terra", "gpt-6-sol", "gpt-6-luna", "gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"],
+    "efforts": ["low", "medium", "high", "xhigh", "max", "ultra"],
     "session_pattern": "\"thread_id\"\\s*:\\s*\"(?P<session>[0-9a-f-]{36})\"",
     "new": ["/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
             "exec", "--json", "--approve-for-me", "-m", "{model}", "-c", "model_reasoning_effort=\"{effort}\"",
