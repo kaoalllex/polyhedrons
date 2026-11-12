@@ -125,7 +125,7 @@ class ChatTests(unittest.TestCase):
 
     def test_concurrent_owner_posts(self):
         body = self.root / 'body.txt'
-        body.write_text('Complete\nРусский текст\nEnd', encoding='utf-8')
+        body.write_text('Complete\n\u0420\u0443\u0441\u0441\u043a\u0438\u0439 \u0442\u0435\u043a\u0441\u0442\nEnd', encoding='utf-8')
         processes = [subprocess.Popen([sys.executable, '-c', self.prefix, 'post', 'test',
                                       '--as', 'owner', '--next', 'keep', '--file', str(body)],
                                      stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -171,6 +171,28 @@ class ChatTests(unittest.TestCase):
             with self.assertRaises(chat.Refused):
                 chat.thread_path(name)
 
+    def test_restart_with_held_answer_and_pause(self):
+        self.post('owner', 'both', 'Opening')
+        self.post('astra', 'both', 'Held position')
+        restarted = self.command('status', 'test')
+        self.assertEqual(restarted.returncode, 0, restarted.stderr)
+        state = json.loads(restarted.stdout)
+        self.assertEqual(state['floor'], ['claude'])
+        self.assertEqual(state['held'], ['astra'])
+        waiting = self.command('wait', 'test', '--as', 'claude', '--timeout', '0')
+        self.assertEqual(waiting.returncode, 0)
+        self.assertIn('Opening', waiting.stdout)
+        self.assertNotIn('Held position', waiting.stdout)
+        body = self.root / 'resumed.md'
+        body.write_text('Resumed position', encoding='utf-8')
+        posted = self.command('post', 'test', '--as', 'claude', '--next', 'both', '--file', str(body))
+        self.assertEqual(posted.returncode, 0, posted.stderr)
+        self.assertEqual(len(chat.snapshot(self.path)['messages']), 3)
+        self.post('owner', 'pause', 'Until tomorrow')
+        self.assertEqual(self.command('wait', 'test', '--as', 'astra', '--timeout', '0').returncode, 2)
+        self.post('owner', 'both', 'Continue')
+        self.assertEqual(self.command('wait', 'test', '--as', 'astra', '--timeout', '0').returncode, 0)
+
     def test_server_and_escaping(self):
         server = chat.make_server(self.path, 0)
         thread = threading.Thread(target=server.serve_forever)
@@ -179,7 +201,7 @@ class ChatTests(unittest.TestCase):
         self.addCleanup(server.server_close)
         self.addCleanup(server.shutdown)
         base = 'http://127.0.0.1:{}'.format(server.server_port)
-        payload = json.dumps({'body': '<script>alert("x")</script>\nПривет', 'next': 'both',
+        payload = json.dumps({'body': '<script>alert("x")</script>\n\u041f\u0440\u0438\u0432\u0435\u0442', 'next': 'both',
                               'author': 'astra', 'thread': 'other'}).encode('utf-8')
         for headers in ({'Origin': 'https://evil.example'},
                         {'Origin': base, 'Host': 'evil.example'}, {}):
@@ -196,7 +218,7 @@ class ChatTests(unittest.TestCase):
         rendered = state['messages'][0]['html']
         self.assertIn('&lt;script&gt;', rendered)
         self.assertNotIn('<script>', rendered)
-        self.assertIn('Привет', rendered)
+        self.assertIn('\u041f\u0440\u0438\u0432\u0435\u0442', rendered)
         local = 'http://localhost:{}'.format(server.server_port)
         with urlopen(Request(local + '/post', data=payload, headers={'Origin': local}), timeout=5) as response:
             self.assertEqual(response.status, 200)

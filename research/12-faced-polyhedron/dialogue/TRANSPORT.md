@@ -68,6 +68,20 @@ python3 dialogue/chat.py serve <thread> [--port 8765]              the owner's p
 
 ## 4. The loop of a model session
 
+### Resuming an interrupted session
+
+The transport is persistent: messages, held answers and the floor are reconstructed from the thread's files.
+Restart `serve <thread>` with the same name if the browser server stopped; do not run `new` again.
+Restart a model with this contract, the same brief and thread name, and its original participant name.
+Read the thread's `HANDOVER.md` if present, then call `wait <thread> --as NAME` as usual.
+`wait` replays published messages since that participant's last post (including the other parallel answer);
+it does not restore the model's private context. Use its own `work/NAME/` drafts and the handover for that.
+If its answer is already held, it must wait for the other participant rather than post a duplicate.
+Never read `sealed/` directly. An owner `pause` is resumed by an owner message selecting the next speaker;
+`close` is final. An interrupted process does not itself pause or close a thread.
+
+### Normal loop
+
 1. `wait`. Choose a timeout below your harness's limit for one command; on exit 2 run it again.
 2. Read what it printed. Owner messages come first: answer each of them in your next message.
 3. Think, check, write the message to `work/<you>/NNNN-draft.md`.
