@@ -16,10 +16,13 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
   `PLAN.md` that says what is different this time.
 - The wrapper is `experiments/E-YYMMDD-NN-slug/run.sh` (from `experiments/_template/`). It writes the provenance
   manifest and calls `run_overnight.py <job> ... --results-dir "$OUT"`, so a night gets both the manifest and
-  resume. Do not build a third framework.
+  resume. Do not build a third framework, and do not write a new launcher: the owner's `start`/`status`/`stop`
+  is `overnight/launch.sh` (a prep session once wrote `item1.sh` beside it; fix `run.sh` or `launch.sh` instead).
 - `--git` commits go to the experiment branch, never to `main`.
-- SAT jobs check each proof during the run and then delete it and its CNF, keeping the hashes and the checker
-  transcript (`PROTOCOL.md` §5, owner 2026-11-08). Record `cadical --version` and the drat-trim commit in the manifest.
+- SAT jobs run without proofs by default (`NO_PROOF=1`; UNSATs are `UNSAT-SOLVER`; owner 2026-11-13). Only when the
+  plan names the negative claim they are for, they check each proof during the run and then delete it and its CNF,
+  keeping the hashes and the checker transcript (`PROTOCOL.md` §5). Record the solver version, and the drat-trim
+  commit when proofs are checked, in the manifest.
 
 ## Shell wrapper checklist
 
@@ -67,6 +70,12 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
 - **Manifest survives restarts.** `run.sh` writes the manifest header only if it is absent and appends a
   `restarted_utc` line otherwise; the `finish` trap appends `finished_utc`, `exit_status`, `wall_seconds` and
   `core_hours` every time, so the core-hours of a restarted shard are the sum of its lines.
+- **The owner types only `start`, `status`, `stop`** (owner, 2026-11-08), through `overnight/launch.sh` or a launcher with the same three words;
+  never a long command line with paths, caps and environment. Stop, crash and emergency interrupt must not lose
+  recorded results; test `start` -> `status` -> `stop` -> `start` in a scratch directory before handing over. A
+  background job ignores SIGINT: stop with the signal the runner handles (SIGTERM).
+- **Progress in `status`.** If `experiments/<ID>/progress.sh` exists, `launch.sh status` prints its output (units done / left,
+  what each shard runs now, time left). Write one for every long run, so the owner sees progress without reading logs.
 - **One command for the whole night** (`overnight/launch.sh CODE [CODE ...] start [CORES]`, CODE = the end of the experiment id, CORES default 10): starts CORES detached processes (`nohup ... &`, each
   under its own `caffeinate -dimsu` and `nice -n 10`), one core each (M4 Pro: 10 performance cores; 8-10 for every splittable run, by day too), with `status`, `stop` (after the current unit) and
   `kill` (now) modes. `run.sh` must split its units by `SHARDS` (the launcher sets `SHARDS=CORES`; it refuses a `run.sh` that

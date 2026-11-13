@@ -26,6 +26,8 @@ focus target. Use `python3` from an activated environment with `requirements.txt
    - the target (S0-S5), including (F, g) for S5, and the counters by their `SPEC.md` §4 names;
    - a positive control that must succeed and a negative control that must fail;
    - a power statement;
+   - **proofs**: none by default (UNSATs are `UNSAT-SOLVER`); DRAT only if the plan names the negative claim it is
+     for (a note, a `STATUS.md` exclusion) or the owner asks (`PROTOCOL.md` §5);
    - **counter calibration**: for every float diagnostic that may appear in the verdict, one control input on each
      side of its threshold (a clamped or saturating measure is not a measurement; `gauss_gate.hemisphere_margin`
      floors at 0, E-261101-07);
@@ -42,7 +44,10 @@ focus target. Use `python3` from an activated environment with `requirements.txt
    expected outcomes. Apply the long-run gates of `PROTOCOL.md` §2 and re-check T + D. Record the pilot under
    `## Amendments`; commit any plan changes before running the amended experiment.
 8. **Hand over the launch.** Give the owner the exact command:
-   - laptop: `caffeinate -dimsu bash experiments/E-YYMMDD-NN-slug/run.sh 0`, on AC power, lid open;
+   - laptop: `bash research/12-faced-polyhedron/overnight/launch.sh CODE start` (then `status`, `stop`), on AC power. Only
+     these three words reach the owner; stop and interrupt keep every recorded result (`PROTOCOL.md` §6). If `run.sh`
+     cannot be driven by `launch.sh` (custom queue, caps), add a mode to `run.sh` or extend `launch.sh`; do not write a
+     separate launcher script;
    - Actions: push the branch with `[run]` in the commit message.
 
    Do not start a multi-hour run from a session.

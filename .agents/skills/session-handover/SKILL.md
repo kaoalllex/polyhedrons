@@ -27,7 +27,7 @@ with `requirements.txt` installed.
 
    At most 12 lines.
 
-   Standing rules live in the root `AGENTS.md`; do not copy them into the prompt.
+   Standing rules live in the root `CLAUDE.md`; do not copy them into the prompt.
 4. **Ledger.** Check that `STATUS.md` "As of" and the ROADMAP State column match reality.
 5. **Verification evidence.** Reuse the latest applicable successful checks; report their commands,
    outcomes and scope. Handover or wording-only edits do not trigger a test run. Run only affected checks

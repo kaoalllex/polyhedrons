@@ -10,7 +10,8 @@ Use `python3` from an activated environment with `requirements.txt` installed.
 
 1. **Collect.**
    - Actions: `gh run download <run-id>`.
-   - Laptop: the run's `results/` folder.
+   - Laptop: the run's `results/` folder. Raw unit output (`attempt_*/` logs, specs, maps) is read here but not
+     committed (`PROTOCOL.md` §5); after the conclusion commit run `python3 overnight/move_raw.py`.
 
    Sum the core-hours from every `manifest.txt`. If a manifest is missing, say so; do not estimate.
 2. **Controls first.** If the positive control failed, or never had the chance to succeed under the same budget,
@@ -20,6 +21,9 @@ Use `python3` from an activated environment with `requirements.txt` installed.
    (`SPEC.md` section 4) and what was not run.
 3. **Verify.** Run every candidate through the `candidate-check` skill. Every UNSAT used as evidence keeps its
    formula's SHA-256 and its proof's SHA-256 with the checker transcript (files deleted, `PROTOCOL.md` §5).
+   - Runs skip DRAT by default (owner, 2026-11-13): an UNSAT without a checked proof is reported as `UNSAT-SOLVER`
+     (`SPEC.md` §4), never as UNSAT or UNSAT-VERIFIED; it may skip or rank a map, never carry a negative claim. A
+     claim that needs it gets a proof replay of exactly those formulas, on the owner's word.
    - Routine conclusions reuse a saved successful proof check when CNF, proof and checker provenance
      are bound by recorded hashes and the success transcript is intact. Validate hashes and transcripts;
      do not replay DRAT merely because a new session starts or drat-trim is installed. Replay once for
