@@ -1,18 +1,18 @@
 Traceback (most recent call last):
-  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/overnight/run_overnight.py", line 1300, in <module>
+  File "research/12-faced-polyhedron/overnight/run_overnight.py", line 1300, in <module>
     main()
     ~~~~^^
-  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/overnight/run_overnight.py", line 1295, in main
+  File "research/12-faced-polyhedron/overnight/run_overnight.py", line 1295, in main
     {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'ladder': job_ladder, 'sdefect': job_sdefect, 'glad': job_glad, 'arch': job_arch, 'gate': job_gate, 'n5': job_n5, 's5': job_s5, 'status': job_status}[args.job](
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
         args, committer)
         ^^^^^^^^^^^^^^^^
-  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/overnight/run_overnight.py", line 1234, in job_s5
+  File "research/12-faced-polyhedron/overnight/run_overnight.py", line 1234, in job_s5
     tranche.run(args)
     ~~~~~~~~~~~^^^^^^
-  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/overnight/../experiments/E-261103-03-s5-exact-decision-8-2-9-3/tranche.py", line 345, in run
+  File "research/12-faced-polyhedron/overnight/../experiments/E-261103-03-s5-exact-decision-8-2-9-3/tranche.py", line 345, in run
     key = reserve(root, allowance)
-  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/overnight/../experiments/E-261103-03-s5-exact-decision-8-2-9-3/tranche.py", line 190, in reserve
+  File "research/12-faced-polyhedron/overnight/../experiments/E-261103-03-s5-exact-decision-8-2-9-3/tranche.py", line 190, in reserve
     raise RuntimeError('registered cumulative core budget exhausted; unresolved work remains')
 RuntimeError: registered cumulative core budget exhausted; unresolved work remains
 controls start 8
