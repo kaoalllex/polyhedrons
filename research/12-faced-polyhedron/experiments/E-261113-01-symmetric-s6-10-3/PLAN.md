@@ -91,3 +91,24 @@ so the counter varies on the control). Lutz #15: 48 labellings x 17 t (roots -3,
 constancy holds, 0 EMBEDDED, every unit with 12, 20 or 24 coincident vertex pairs, 0 errors. Reading: in every
 T-equivariant labelling some map vertices sit on the forced quadruple points (for example (t, -1, 1) on y = -1,
 z = 1 and two tetrahedron planes) for every t. Outcome (a): no EMBEDDED unit; conclusion deferred to CONCLUSION.md.
+
+### 2026-11-13: amendment 2, part (b) prep and pilot
+
+* Code: `tranche.submap_formula(faces, links, generator=None)`; with a generator it builds `omsat_sym.build_sym`
+  (det rho = +1, orbit-flip and mirror normalisation) on the `submap=True` triangulation with `ALL_OPTS`; `unit()`
+  reads `sym_generator` from the formula record. `test_tranche`: 27 OK. `make_queue.py`: `maps/sym_formulas.json`
+  (sha256 df15c114...41cc; one class per map, two for #20, as predicted), `queue.json` (2ec652e8...ce7c),
+  `queue_pilot.json` (55b06a34...0922). `run.sh` budget reservation 50,400 s (14 core-h, runner margins), solver
+  time at most 10 x 3600 s; `summary.py --selftest` passes (3 of 10 timeouts escalate, 2 do not).
+* Controls (`prep/controls/controls.json`, kissat, no proofs): c1 25/25 FD5 CNF hashes equal; c2 SAT; c3 SAT; c4a,
+  c4b UNSAT-SOLVER; c5 unpinned SAT in 0.09 s, hinge realizes the model, `--all-pairs` PASS (24, 36, 8, -4); c6 10/10
+  (no forced zero, uniform symmetric configuration, SYM relation, normalised SAT). All pre-registered controls pass.
+* Added control c7 (not pre-registered), C3 with a fixed face on an embedded object: the convex map of part (a), a
+  small C3-symmetric perturbation (uniform, EMBEDDED): pinned SAT, unpinned SAT (0.2 s), but the bridge realized
+  none of 7 models (first plus seeds 1-6; fp reports numerical non-realizability). Reading: the C3 formula accepts
+  a symmetric embedded object; the bridge's discovery power on C3 models is weak, so a SAT in (b) may stay
+  SAT-NOT-REALIZED (follow-up unchanged: more models, then escalate).
+* Pilot (`prep/pilot`, 2 shards, cap 300 s): shard controls pass; Lutz #1 C3 UNSAT-SOLVER in 0.3 s, #6 C2
+  UNSAT-SOLVER in 3.8 s. Projection: the ten formulas take minutes, far below the 10 core-h budget. Gate met
+  (controls pass; the cap does not bind). P2 is likely to hold; a separate `launch.sh` startup check is skipped
+  (the pilot ran the same `run.sh`). Launch: owner, `launch.sh 13-01 start`.

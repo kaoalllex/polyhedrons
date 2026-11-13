@@ -1,0 +1,60 @@
+{
+ "target": "S6 (10,3) E-261113-01 (b) pilot, Lutz #1 C3, #6 C2 at 300 s",
+ "target_check": "S6",
+ "case": [
+  10,
+  3
+ ],
+ "maps_file": "experiments/E-261113-01-symmetric-s6-10-3/maps/sym_formulas.json",
+ "maps_sha256": "df15c1141077c3ddbd261a155d189e0ec9a04e74ffbc538d15ab11b81d9441cc",
+ "control_file": "control_f10.json",
+ "shards": 2,
+ "maps": [
+  {
+   "index": "control-f10-s0",
+   "control": "positive",
+   "control_sha256": "63eac4a7c9bc97fd2fe16198452525388f95ef2d73657e3d11bd9c575bdc272e",
+   "solver_cap": 60,
+   "checker_cap": 120
+  },
+  {
+   "index": "control-f10-s1",
+   "control": "positive",
+   "control_sha256": "63eac4a7c9bc97fd2fe16198452525388f95ef2d73657e3d11bd9c575bdc272e",
+   "solver_cap": 60,
+   "checker_cap": 120
+  },
+  {
+   "index": "control-f10-neg-s0",
+   "control": "negative",
+   "control_sha256": "63eac4a7c9bc97fd2fe16198452525388f95ef2d73657e3d11bd9c575bdc272e",
+   "solver_cap": 60,
+   "checker_cap": 120
+  },
+  {
+   "index": "control-f10-neg-s1",
+   "control": "negative",
+   "control_sha256": "63eac4a7c9bc97fd2fe16198452525388f95ef2d73657e3d11bd9c575bdc272e",
+   "solver_cap": 60,
+   "checker_cap": 120
+  },
+  {
+   "index": 0,
+   "lutz": 1,
+   "sym_group": "C3",
+   "sym_class": 0,
+   "solver_cap": 300,
+   "checker_cap": 60,
+   "canonical_sha256": "9d66865d8f62aa1a5aa9f8e93acb5bbb5ce385299e80f7318c8b3a2bb655f8b6"
+  },
+  {
+   "index": 6,
+   "lutz": 6,
+   "sym_group": "C2",
+   "sym_class": 0,
+   "solver_cap": 300,
+   "checker_cap": 60,
+   "canonical_sha256": "aaac971eddcb570e499d72a928b5a5294a3ad107cc51ee41af82d69305ead05f"
+  }
+ ]
+}

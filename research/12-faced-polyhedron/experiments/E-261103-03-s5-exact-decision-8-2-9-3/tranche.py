@@ -144,10 +144,16 @@ def imported_maps(path):
     return json.loads((ROOT / path).read_text())['maps']
 
 
-def submap_formula(faces, links):
+def submap_formula(faces, links, generator=None):
+    """With a generator: the uniform symmetric formula of the cyclic group it generates (rotations, det rho = +1;
+    omsat_sym.build_sym with its orbit-flip and mirror normalisation)."""
     tris = sorted({tuple(sorted((x, a, b))) for x, link in links.items() for a, b in zip(link, link[1:] + link[:1])})
-    c = pilot.CNF(faces); pilot.build(c, pilot.Triangulation(faces, tris, links=links, submap=True), pilot.ALL_OPTS)
-    return c
+    t = pilot.Triangulation(faces, tris, links=links, submap=True)
+    if generator is None:
+        c = pilot.CNF(faces); pilot.build(c, t, pilot.ALL_OPTS)
+        return c
+    group = sorted(pilot.closure([tuple(generator)], faces))
+    return pilot.build_sym(t, group, {g: 1 for g in group}, pilot.ALL_OPTS)[0]
 
 
 def bridge(out, name, c, links, target):
@@ -295,7 +301,7 @@ def unit(spec):
         rec = imported_maps(spec['maps_file'])[index]
         pilot.dump(out / 'map.json', rec)
         links = dict(enumerate(rec['links']))
-        c = submap_formula(faces, links)
+        c = submap_formula(faces, links, rec.get('sym_generator'))
         on_sat = None
     else:
         rec = pilot.census(*case)['maps'][index]
@@ -311,7 +317,8 @@ def unit(spec):
     if spec.get('maps_file') and not spec.get('control') and r['status'] == 'SAT':
         r.update(bridge(out, name, c, links, spec['target']))
     r.update(task=name, map_index=index, scope=f'{spec["control"]} control: submap formula, planes pinned' if spec.get('control')
-             else 'sub-map embedding formula (submap=True)' if spec.get('maps_file') else 'plain uniform embedding formula',
+             else 'sub-map embedding formula (submap=True)' + (f', uniform symmetric {rec["sym_group"]}' if rec.get('sym_generator') else '')
+             if spec.get('maps_file') else 'plain uniform embedding formula',
              canonical_sha256=spec.get('canonical_sha256', spec.get('control_sha256')), unit=recorded(out),
              formula_sha256=hashlib.sha256(json.dumps([c.nv, c.clauses], separators=(',', ':')).encode()).hexdigest())
     atomic(out / 'result.json', r)
