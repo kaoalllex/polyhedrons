@@ -1415,6 +1415,22 @@ window.GRAPH = {
    "conclusion": ""
   },
   {
+   "id": "E-261113-04",
+   "kind": "experiment",
+   "title": "Cube-and-conquer pilot on (10, 4) maps 96 and 85 - do segment-order cubes cut the summed kissat time?",
+   "status": "running",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "experiments/E-261113-04-cube-and-conquer-pilot-10-4/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -5653,6 +5669,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261108-03",
+   "to": "E-261113-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261108-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5768,6 +5789,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261110-06",
+   "to": "E-261113-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-06",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5809,6 +5835,11 @@ window.GRAPH = {
   {
    "from": "E-261113-03",
    "to": "H-261112-01",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261113-04",
+   "to": "H-261101-06",
    "kind": "tests"
   },
   {
@@ -6354,6 +6385,11 @@ window.GRAPH = {
   {
    "from": "I-261031-02",
    "to": "E-261110-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-02",
+   "to": "E-261113-04",
    "kind": "origin"
   },
   {
