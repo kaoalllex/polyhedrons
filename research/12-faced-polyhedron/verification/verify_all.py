@@ -57,7 +57,9 @@ def lutz_import_reproduces():
                        '10', '3', '20', out], ROOT, '20 maps, pairwise non-isomorphic')
         same = ok and open(out, 'rb').read() == open(os.path.join(exp, 'maps', 'maps_10_3.json'), 'rb').read()
     queues = run(['make_queue.py', '--check'], exp, 'queue.json sha256')
-    return same and queues[0], '%s; identical %s; %s' % (msg, same, queues[1])
+    rung = run(['make_queue.py', '--check'], os.path.join(ROOT, 'experiments', 'E-261113-02-s6-10-2-calibration-rung'),
+               'seeded_formulas.json sha256')  # E-261113-02: the (10, 2) list re-imported, 50 maps redrawn
+    return same and queues[0] and rung[0], '%s; identical %s; %s; E-261113-02 %s' % (msg, same, queues[1], rung[0])
 
 
 def s0_rejects_roest_vigh():
@@ -131,7 +133,7 @@ CHECKS = [
          [verify_file(os.path.join(ROOT, p), target='S6')[0]['PASS'] for p in
           ('witnesses/s6_10_2.json', 'experiments/E-261029-20-solid-first-n7/results/szilassi_found_without_map.json',
            GL + 'type0_genus3_extendable.json')])),
-    ('E-261110-02 inputs: the Lutz import reproduces maps_10_3.json; queues match make_queue.py',
+    ('E-261110-02 / E-261113-02 inputs: the Lutz imports reproduce the map files; queues match make_queue.py',
      lutz_import_reproduces),
     ('site: lab models in index.html = exactly re-verified witnesses/witnesses.json',
      lambda: run(['export_site.py', '--check'], os.path.join(ROOT, 'witnesses'), 'in sync')),

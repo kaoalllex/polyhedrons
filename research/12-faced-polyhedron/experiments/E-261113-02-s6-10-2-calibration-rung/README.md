@@ -2,16 +2,16 @@
 id: E-261113-02
 title: (10, 2) calibration rung - time to SAT over seeds and bridge realization rate on 50 of Lutz's 865 maps
 date: 2026-11-13
-status: planned
+status: running
 direction: [DR19, DR8]
 origin: [I-261113-02, E-261110-02]
 tests: [H-261110-03]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned, explore, calibration. Scores T D F G R: 1 2 2 2 2 | budget: one prep session + <= 3 core-h, 10 shards.
-> Before any compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). No proofs.
+> Running (pre-registered in `PLAN.md`), explore, calibration. Scores T D F G R: 1 2 2 2 2 | budget: one prep session +
+> <= 3 core-h, 10 shards. No proofs.
 
 ## Goal
 

@@ -46,3 +46,12 @@ by `code/lutz_import.py` under `python3 -I`, never executed).
   orientable, (V, E, F) = (10, 42, 28), pairwise non-isomorphic up to mirror; the torus is the Szilassi map; the same
   importer on the 59-entry genus-6 file gives a bijection with `data/k12_triangulations.json` equal to `data/lutz_to_ourid.json`.
   The completeness of the list (exactly 20 classes) is Lutz's claim (CLAIMED), not re-enumerated here.
+
+## Lutz's 10-vertex genus-2 list (E-261113-02)
+
+**File:** `literature/lutz-manifold-page/manifolds_lex_d2_n10_o1_g2.txt` (206,033 bytes), downloaded 2026-11-13 from the
+same archived page (untrusted data; only parsed by `code/lutz_import.py`), sha256
+`66012aea7471a3250a46018391d5ca0a2d8ecb8ac8d929787a8a7ec3ab3e67f1`: 865 entries #1..#865, the 10-vertex triangulations of
+the orientable genus-2 surface (Lutz's enumeration; completeness CLAIMED). Verified here (EXACT, `lutz_import.py`): all 865
+simplicial, closed, connected, orientable, (V, E, F) = (10, 36, 24), pairwise non-isomorphic up to mirror; the map of the
+S6 (10, 2) witness (`witnesses/s6_10_2.json`) is #739.

@@ -1,0 +1,90 @@
+{
+ "target": "S6 (10,2) E-261113-02 pilot, Lutz #739 and #17, seeds 0-2",
+ "target_check": "S6",
+ "case": [
+  10,
+  2
+ ],
+ "maps_file": "experiments/E-261113-02-s6-10-2-calibration-rung/maps/seeded_formulas.json",
+ "maps_sha256": "13d1761043bdf9de35982d1c2afd13174373fa733f2b4ddab9e1f7ea806c86ca",
+ "control_file": "control_f10.json",
+ "shards": 2,
+ "maps": [
+  {
+   "index": "control-f10-s0",
+   "control": "positive",
+   "control_sha256": "63eac4a7c9bc97fd2fe16198452525388f95ef2d73657e3d11bd9c575bdc272e",
+   "solver_cap": 60,
+   "checker_cap": 120
+  },
+  {
+   "index": "control-f10-s1",
+   "control": "positive",
+   "control_sha256": "63eac4a7c9bc97fd2fe16198452525388f95ef2d73657e3d11bd9c575bdc272e",
+   "solver_cap": 60,
+   "checker_cap": 120
+  },
+  {
+   "index": "control-f10-neg-s0",
+   "control": "negative",
+   "control_sha256": "63eac4a7c9bc97fd2fe16198452525388f95ef2d73657e3d11bd9c575bdc272e",
+   "solver_cap": 60,
+   "checker_cap": 120
+  },
+  {
+   "index": "control-f10-neg-s1",
+   "control": "negative",
+   "control_sha256": "63eac4a7c9bc97fd2fe16198452525388f95ef2d73657e3d11bd9c575bdc272e",
+   "solver_cap": 60,
+   "checker_cap": 120
+  },
+  {
+   "index": 0,
+   "lutz": 17,
+   "seed": 0,
+   "solver_cap": 300,
+   "checker_cap": 360,
+   "canonical_sha256": "05971b70d84877c256db7744b9d83ee30d098b83247f24b1e8e556b88a19e4b8"
+  },
+  {
+   "index": 1,
+   "lutz": 17,
+   "seed": 1,
+   "solver_cap": 300,
+   "checker_cap": 360,
+   "canonical_sha256": "05971b70d84877c256db7744b9d83ee30d098b83247f24b1e8e556b88a19e4b8"
+  },
+  {
+   "index": 2,
+   "lutz": 17,
+   "seed": 2,
+   "solver_cap": 300,
+   "checker_cap": 360,
+   "canonical_sha256": "05971b70d84877c256db7744b9d83ee30d098b83247f24b1e8e556b88a19e4b8"
+  },
+  {
+   "index": 150,
+   "lutz": 739,
+   "seed": 0,
+   "solver_cap": 300,
+   "checker_cap": 360,
+   "canonical_sha256": "06ec85d9caaf8872dfaee22ef688b4ad313c3851dec38323cb0949c398285339"
+  },
+  {
+   "index": 151,
+   "lutz": 739,
+   "seed": 1,
+   "solver_cap": 300,
+   "checker_cap": 360,
+   "canonical_sha256": "06ec85d9caaf8872dfaee22ef688b4ad313c3851dec38323cb0949c398285339"
+  },
+  {
+   "index": 152,
+   "lutz": 739,
+   "seed": 2,
+   "solver_cap": 300,
+   "checker_cap": 360,
+   "canonical_sha256": "06ec85d9caaf8872dfaee22ef688b4ad313c3851dec38323cb0949c398285339"
+  }
+ ]
+}

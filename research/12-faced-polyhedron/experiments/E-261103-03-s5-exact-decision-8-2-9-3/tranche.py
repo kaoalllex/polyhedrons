@@ -302,6 +302,8 @@ def unit(spec):
         pilot.dump(out / 'map.json', rec)
         links = dict(enumerate(rec['links']))
         c = submap_formula(faces, links, rec.get('sym_generator'))
+        if 'seed' in rec:  # a seeded formula record (E-261113-02): the same CNF under another solver seed
+            pilot.SOLVER_OPTS = [*pilot.SOLVER_OPTS, f'--seed={rec["seed"]}']
         on_sat = None
     else:
         rec = pilot.census(*case)['maps'][index]
@@ -321,6 +323,8 @@ def unit(spec):
              if spec.get('maps_file') else 'plain uniform embedding formula',
              canonical_sha256=spec.get('canonical_sha256', spec.get('control_sha256')), unit=recorded(out),
              formula_sha256=hashlib.sha256(json.dumps([c.nv, c.clauses], separators=(',', ':')).encode()).hexdigest())
+    if spec.get('maps_file') and not spec.get('control') and 'seed' in rec:
+        r['seed'] = rec['seed']
     atomic(out / 'result.json', r)
 
 
