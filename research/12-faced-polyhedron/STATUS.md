@@ -1,12 +1,13 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-13** (E-261110-02 concluded). The latest registered result is E-261110-02 (section 3af), after
-E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
+As of **2026-11-13** (E-261113-01 concluded). The latest registered result is E-261113-01 (section 3ag), after
+E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
 Ninth-plane Stage A is exhausted with no candidate: all near-copy cells UNSAT-SOLVER at instance scope, no family
 negative (section 3ae). S6 (10,3): the night left all 20 formulas undecided at 3600 s, controls pass; solver-limited,
-escalated (section 3af). Owner's decisions of 2026-11-13 (`reviews/strategy-review-2026-11-13.md`): S6 at (10, 3) is
+escalated (section 3af); the symmetric C3 / free C2 formulas are all UNSAT-SOLVER and the T family of Lutz #15 has no
+embedded member (section 3ag). Owner's decisions of 2026-11-13 (`reviews/strategy-review-2026-11-13.md`): S6 at (10, 3) is
 the first target, symmetric realizations first (E-261113-01); Stage B is gated by the rung-below census
 E-261113-03. The dialogue's checks
 remain session checks, not new ledger evidence; the local S6 (10,2) witness work is separate. S0 stays parked and the
@@ -17,7 +18,7 @@ remain session checks, not new ledger evidence; the local S6 (10,2) witness work
 **Focus since 2026-11-13 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: S6 at (10, 3)
 first, symmetric realizations first (E-261113-01); nine mutually adjacent faces (S1, genus free) second, Stage B gated
 by E-261113-03; S5 at (10, 4) only under the rule of E-261110-06. Run so far: ninth-plane Stage A (no candidate,
-section 3ae) and the S6 (10, 3) night (20/20 TIMEOUT, section 3af). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
+section 3ae), the S6 (10, 3) night (20/20 TIMEOUT, section 3af) and its symmetric runs (no candidate, section 3ag). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
 4, gated by a speed-up benchmark (E-261103-07: 10/10 TIMEOUT, section 3w); from 2026-11-03 to 2026-11-08 the focus was
 (9, 3), now decided at formula scope (below); its negative result is a side track towards a note marked as not
 independently reviewed. No geometric witness is known; the paired exact pilot is complete (section 3e); the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes
@@ -329,6 +330,15 @@ Week item 2, one owner launch, 10 shards, 20.03 core-h (cap 80), 2.0 h wall, con
 and pilot in prep). kissat rel-4.0.4, no proofs, cap 3600 s, `submap=True`: all 20 maps of Lutz's (10, 3) list TIMEOUT,
 0 SAT, 0 UNSAT. NUMERICAL, instance scope; a timeout says nothing about existence. OPEN@20.03 core-h, solver-limited;
 "> 20 % timeouts" rule -> escalated. No hypothesis status, credence or witness change (CONCLUSION).
+
+## 3ag. E-261113-01 symmetric S6 (10, 3) (2026-11-13)
+
+Week item 1. (a) Lutz #15 with rotation group T (planes `|x| = |y| = |z| = 1`, `n_i . p = t`): 0 EMBEDDED over all 48
+equivariant labellings and every interval and wall of `t`; family scope, exact computation (`tetra.py`, not in
+`verify_all`), reduction PROVED-1, unreviewed. (b) one owner launch, 10 shards, 0.034 core-h, controls pass: the ten
+uniform C3 / free C2 `submap=True` formulas all UNSAT-SOLVER in <= 4.1 s (kissat, no proofs), 0 SAT: instance scope,
+ranks these ansatzes below the asymmetric formulas, no negative claim. Not run: fixed-face C2, improper symmetries.
+OPEN@0.034 core-h; no hypothesis status, credence or witness change (CONCLUSION).
 
 ## 4. What may and may not be claimed
 

@@ -953,3 +953,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-13: lead review `reviews/strategy-review-2026-11-13.md` (no solver; symmetry screen of the 20 (10,3) maps) and the
   owner's decisions: S6 (10,3) first with symmetric realizations, Stage B gated by a rung-below census, two standing rules,
   no proofs in the symmetric runs; filed I-261113-01..04, E-261113-01..03 (planned, no PLAN yet); new week plan in `ROADMAP.md`.
+* 2026-11-13: E-261113-01 symmetric S6 (10,3): (a) Lutz #15 with group T, 0 EMBEDDED of 816 units (family scope, reduction
+  PROVED-1); (b) one owner launch, 10 shards, 0.034 core-h, controls pass: ten C3 / free C2 formulas UNSAT-SOLVER in
+  seconds, 0 SAT; OPEN, no negative claim (CONCLUSION, STATUS 3ag).

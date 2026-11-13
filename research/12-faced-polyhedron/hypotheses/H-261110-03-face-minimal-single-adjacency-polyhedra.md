@@ -21,7 +21,9 @@ vertex result does not transfer by duality, so the analogy carries no weight on 
 ## Evidence so far
 
 None for the face version (nothing found in print, CLAIMED, one web search 2026-11-10). E-261110-02 (2026-11-13):
-all 20 (10, 3) `submap=True` formulas TIMEOUT at 3600 s (kissat, no proofs): no information, no move (STATUS 3af). Planning
+all 20 (10, 3) `submap=True` formulas TIMEOUT at 3600 s (kissat, no proofs): no information, no move (STATUS 3af). E-261113-01 (2026-11-13): Lutz #15 has no embedded T-symmetric
+realization (family scope, reduction PROVED-1) and the ten C3 / free C2 symmetric formulas are UNSAT-SOLVER: symmetric
+scope only, no move (STATUS 3ag). Planning
 weight of the 2026-11-10 session for "(10, 3) exists": 0.25 (CONJECTURE).
 
 ## What would move it

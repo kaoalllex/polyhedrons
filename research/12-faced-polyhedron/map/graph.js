@@ -1368,18 +1368,18 @@ window.GRAPH = {
    "id": "E-261113-01",
    "kind": "experiment",
    "title": "Symmetric S6 (10, 3) - the tetrahedral family of Lutz",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-13",
-   "concluded": "",
+   "concluded": "2026-11-13",
    "path": "experiments/E-261113-01-symmetric-s6-10-3/README.md",
    "direction": [
     "DR19",
     "DR8",
     "DR18"
    ],
-   "verdict": "",
+   "verdict": "OPEN@0.034 core-h ((a) 0 EMBEDDED of 816 units; (b) 10/10 UNSAT-SOLVER, 0 SAT, 0 TIMEOUT; no proofs)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction (DR19 / DR8 / DR18, S6 at (10, 3), symmetric rotation ansatz): OPEN@0.034 core-h: the ten uniform C3 / free C2 formulas are exhausted with UNSAT-SOLVER and the T family of #15 with 0 EMBEDDED; the asymmetric formulas stay at 20/20 TIMEOUT (STATUS 3af). No scenario move (\"(10, 3) exists\" stays 0.25, CONJECTURE); H-261110-03 stays open; S0 table unchanged."
   },
   {
    "id": "E-261113-02",
@@ -4060,7 +4060,7 @@ window.GRAPH = {
    "id": "I-261113-01",
    "kind": "idea",
    "title": "Symmetric realizations of the (10, 3) maps - rotation-compatible automorphisms, the one-parameter tetrahedral family of Lutz",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-13",
    "concluded": "",
    "path": "ideas/I-261113-01-symmetric-s6-10-3.md",

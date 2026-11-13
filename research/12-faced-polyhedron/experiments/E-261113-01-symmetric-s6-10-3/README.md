@@ -2,17 +2,20 @@
 id: E-261113-01
 title: Symmetric S6 (10, 3) - the tetrahedral family of Lutz #15 and ten symmetric formulas
 date: 2026-11-13
-status: running
+status: done
 direction: [DR19, DR8, DR18]
 origin: [I-261113-01, E-261110-02, E-261103-02]
 tests: [H-261110-03]
 produces: []
 preregistered: true
+verdict: OPEN@0.034 core-h ((a) 0 EMBEDDED of 816 units; (b) 10/10 UNSAT-SOLVER, 0 SAT, 0 TIMEOUT; no proofs)
+concluded: 2026-11-13
 ---
 
-> Planned, exploit, jump 2. Scores T D F G R: 2 2 2 2 2 | budget: one prep session + <= 10 core-h day run, 10
-> shards. Before any compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). No proofs (owner,
-> 2026-11-13): every UNSAT is UNSAT-SOLVER.
+> Done (2026-11-13): (a) Lutz #15 with rotation group T, 0 EMBEDDED over every equivariant labelling and interval
+> of `t` (family scope, reduction PROVED-1); (b) one owner launch, 10 shards, 0.034 core-h: all ten symmetric formulas
+> UNSAT-SOLVER in seconds, controls pass. OPEN; no negative claim from (b) (`CONCLUSION.md`). Scores T D F G R:
+> 2 2 2 2 2, jump 2.
 
 ## Goal
 
@@ -24,8 +27,6 @@ to (b)). (b) `omsat.build(..., sym=...)` with `submap=True`: C3 on Lutz #1, 2, 4
 
 ## Next
 
-Controls: the free-C2 formula of an eight-face source SAT unpinned and realized by the bridge; S0 symmetric CNF
-hashes unchanged; a wrong determinant sign UNSAT. Stop rule: all units recorded, a failed control or the cap.
-Reading (decided now): SAT -> at least 6 models by seed, bridge, `verify_candidate.py --target S6` at (10, 3),
-`candidate-check`, escalate; an OM model alone is not a result. All UNSAT-SOLVER -> a scoped search outcome that
-ranks the maps, no exclusion row; a replay with proofs only on the owner's word. More than 20 % timeouts -> escalate.
+None from this experiment: a replay of (b) with proofs only on the owner's word. Week item 2 (E-261113-02) next;
+fixed-face C2 (I-261113-04) and improper symmetries are not run. Evidence: `CONCLUSION.md`, `results/a/tetra.json`,
+`results/run/` (summary: `python3 summary.py`), prep records in `prep/`, inputs in `maps/` and `queue.json`.
