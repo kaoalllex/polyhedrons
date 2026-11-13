@@ -85,3 +85,13 @@ witness's), `--target S6` PASS (24,36,10,-2), `witnesses/verify_s6_10_2.py` ACCE
 (`prep/controls-bd`). Pilot (`prep/pilot`, 2 shards): controls (c) SAT / UNSAT-VERIFIED; Lutz #1, #2 TIMEOUT at 1200 s,
 solver peak 0.45 GiB; proofs grow ~2.3 MB/s; no proof-check data. Startup check: `launch.sh 10-02 start`, BUDGET=100,
 10 shards reach the runner and stop cleanly (`prep/startup`). Pilot gate met (controls pass); P3 already fails for 2 maps.
+
+### 2026-11-13: owner amendment, no DRAT in the night
+
+Owner's decision after the pilot: the night runs kissat without proofs (`NO_PROOF=1`, as E-261109-06), so every UNSAT is
+UNSAT-SOLVER: it may rank or skip a map, never a negative claim. The "20 UNSAT-VERIFIED" outcome is not available from
+this night; a proof replay of UNSAT maps runs only if a note or a STATUS exclusion needs it, with the owner's word.
+SAT handling, bridge, controls and stop rule unchanged; the shard negative control expects UNSAT-SOLVER. `queue.json`
+sha256 942b0fed...8fb6 (checker cap 60 s, unused); budget cap 80 core-h unchanged, expected ~20 core-h (20 maps x
+3600 s at most), about 2 h wall. Check: shard-0 controls through `run.sh` without proofs: SAT / UNSAT-SOLVER, identity
+`no_proof` (`prep/noproof-check`). `summary.py` verdicts updated; selftest passes.

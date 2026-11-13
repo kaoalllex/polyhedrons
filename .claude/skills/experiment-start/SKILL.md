@@ -26,6 +26,8 @@ focus target. Use `python3` from an activated environment with `requirements.txt
    - the target (S0-S5), including (F, g) for S5, and the counters by their `SPEC.md` §4 names;
    - a positive control that must succeed and a negative control that must fail;
    - a power statement;
+   - **proofs**: none by default (UNSATs are `UNSAT-SOLVER`); DRAT only if the plan names the negative claim it is
+     for (a note, a `STATUS.md` exclusion) or the owner asks (`PROTOCOL.md` §5);
    - **counter calibration**: for every float diagnostic that may appear in the verdict, one control input on each
      side of its threshold (a clamped or saturating measure is not a measurement; `gauss_gate.hemisphere_margin`
      floors at 0, E-261101-07);

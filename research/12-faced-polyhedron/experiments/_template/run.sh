@@ -36,6 +36,7 @@ finish() {
 trap finish EXIT
 
 # ---- the experiment: bounded, checkpointing into $OUT (EDIT) ----
+export NO_PROOF="${NO_PROOF:-1}"   # SAT jobs: no DRAT unless PLAN.md names the negative claim (PROTOCOL.md §5)
 cd "$ROOT/code"
 echo "replace this line with the experiment command, e.g. python3 my_script.py --shard $SHARD --shards $SHARDS --out \"$OUT/result.json\" or python3 \"$ROOT/overnight/run_overnight.py\" JOB --results-dir \"$OUT\" ..."
 exit 1

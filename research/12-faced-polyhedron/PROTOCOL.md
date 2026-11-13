@@ -125,9 +125,11 @@ core-hours (seconds x workers). The experiment adds its own parameters and the S
 output file it claims anything about. Proofs (DRAT / LRAT) are checked during the run and then deleted; the record
 keeps the CNF and proof SHA-256 and the checker transcript, and CNFs are rebuilt from the committed encoder when
 needed (hash-checked). Proof and CNF files never go into git. A claim that goes into a note gets one replay run
-whose proofs go to a GitHub release or Zenodo; git keeps the URL, size and SHA-256 (owner, 2026-11-08). A search run
-may skip proofs (owner, 2026-11-08 22:15): its UNSATs are `UNSAT-SOLVER` (SPEC §4), the record keeps the CNF SHA-256,
-and every shard still runs its SAT and UNSAT controls.
+whose proofs go to a GitHub release or Zenodo; git keeps the URL, size and SHA-256 (owner, 2026-11-08). **Runs skip
+proofs by default** (owner, 2026-11-13): a run produces and checks proofs only when its `PLAN.md` names the negative
+claim they are for (a note, an exclusion in `STATUS.md`) or the owner asks; otherwise its UNSATs are `UNSAT-SOLVER`
+(SPEC §4), the record keeps the CNF SHA-256, and every shard still runs its SAT and UNSAT controls. A claim found
+later gets a proof replay of exactly the formulas it rests on.
 
 Git keeps the summary and the evidence of a run, not its raw per-unit output (owner, 2026-11-12): each shard's
 `results.jsonl`, `progress.jsonl`, manifests and `night.log`, and in each `attempt_*/` folder its manifests, the

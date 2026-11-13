@@ -2,10 +2,10 @@
 """Per-map table and the registered verdict of PLAN.md (E-261110-02).
 
 Usage: summary.py --selftest | summary.py [RESULTS_RUN_DIR] [QUEUE_JSON]
-Statuses (SPEC §4): SAT, UNSAT-VERIFIED, UNSAT-SOLVER (an unchecked or failed proof check is recorded as
-UNSAT-UNCHECKED by the runner and counted here as UNSAT-SOLVER), TIMEOUT (no information). Escalation on timeouts:
-more than 20 % of the maps. (11, 4) is proposed only if all 20 are UNSAT-VERIFIED and the median decided solver time
-is below 600 s."""
+Statuses (SPEC §4): SAT, UNSAT-VERIFIED, UNSAT-SOLVER (the night runs without proofs, owner 2026-11-13; an unchecked
+or failed proof check is recorded as UNSAT-UNCHECKED and counted as UNSAT-SOLVER), TIMEOUT (no information).
+Escalation on timeouts: more than 20 % of the maps. With all 20 decided UNSAT, (11, 4) is proposed only if the median
+decided solver time is below 600 s; UNSAT-SOLVER answers are never a negative claim."""
 import glob
 import json
 from pathlib import Path
@@ -34,9 +34,10 @@ def verdict(units, controls_ok):
         out['verdict'] = 'TIMEOUTS>20%: record, escalate'
     elif len(units) < N_MAPS:
         out['verdict'] = 'INCOMPLETE: maps left; restart'
-    elif count['UNSAT-VERIFIED'] == N_MAPS:
-        out['verdict'] = ('ALL-UNSAT-VERIFIED: conditional exclusion at formula scope; '
-                          + ('propose (11, 4)' if median < 600 else 'no (11, 4) proposal'))
+    elif count['UNSAT-VERIFIED'] + count['UNSAT-SOLVER'] == N_MAPS:
+        head = ('ALL-UNSAT-VERIFIED: conditional exclusion at formula scope; ' if count['UNSAT-VERIFIED'] == N_MAPS else
+                'ALL-UNSAT, not all checked: no negative claim (a proof replay only if a claim needs it); ')
+        out['verdict'] = head + ('propose (11, 4)' if median < 600 else 'no (11, 4) proposal')
     else:
         out['verdict'] = 'NO-SAT: unchecked UNSATs or timeouts left; replay or escalate, no negative claim'
     out['sat_maps'] = sats
@@ -51,7 +52,7 @@ def load(run, queue):
             d = json.loads(line)
             if isinstance(d['map_index'], int):
                 units.append((lutz[d['map_index']], d['status'], d['seconds'], d.get('status_note'), d))
-            elif d['status'] != ('SAT' if '-neg-' not in d['map_index'] else 'UNSAT-VERIFIED'):
+            elif d['status'] not in (('SAT',) if '-neg-' not in d['map_index'] else ('UNSAT-VERIFIED', 'UNSAT-SOLVER')):
                 controls_ok = False
     controls_ok &= not Path(run, 'stop.json').exists()
     return sorted(units, key=lambda u: u[0]), controls_ok
@@ -79,9 +80,13 @@ def selftest():
     assert verdict(base[:19] + [(20, 'SAT', 9.0, 'CANDIDATE-NEEDS-REVIEW')], True)['verdict'].startswith('CANDIDATE')
     unchecked = base[:19] + [(20, 'UNSAT-UNCHECKED', 300.0, None)]
     v = verdict(unchecked, True)
-    assert v['UNSAT-SOLVER'] == 1 and v['verdict'].startswith('NO-SAT'), v
+    assert v['UNSAT-SOLVER'] == 1 and v['verdict'].startswith('ALL-UNSAT, not all checked'), v
+    solver = [(l, 'UNSAT-SOLVER', sec, n) for l, _, sec, n in base]
+    assert verdict(solver, True)['verdict'] == ('ALL-UNSAT, not all checked: no negative claim '
+                                                '(a proof replay only if a claim needs it); propose (11, 4)')
+    assert verdict(t4[:4] + solver[4:], True)['verdict'].startswith('NO-SAT')
     print('selftest OK: 5/20 timeouts escalate, 4/20 do not; median 599 s proposes (11, 4), 601 s does not; '
-          'an unchecked proof is UNSAT-SOLVER, never part of a negative claim')
+          'UNSAT-SOLVER answers are never a negative claim')
 
 
 if __name__ == '__main__':

@@ -60,9 +60,11 @@ Hard rules:
   and what was not run.
 - Long runs go to the owner's laptop only (under `caffeinate -dimsu`, on AC power; no GitHub Actions, no rented
   compute: owner, 2026-11-10). Never start a multi-hour run from a session.
-- Ask the owner before large subagent tasks and before long runs. Search runs may skip DRAT (owner, 2026-11-08
-  22:15): an UNSAT without a checked proof is `UNSAT-SOLVER`, which may skip or rank a map but is never a negative
-  result; a negative claim (a note, an exclusion in `STATUS.md`) needs a replay with a checked proof. Runs with
+- Ask the owner before large subagent tasks and before long runs. **No DRAT by default** (owner, 2026-11-13; search
+  runs since 2026-11-08): produce and check proofs only when the plan names the negative claim they are for (a note,
+  an exclusion in `STATUS.md`) or the owner asks. An UNSAT without a checked proof is `UNSAT-SOLVER`, which may skip
+  or rank a map but is never a negative result; a negative claim needs a replay with a checked proof. If a plan asks
+  for proofs without naming such a claim, raise it with the owner before the run instead of following it. Runs with
   proofs record the SHA-256 of every CNF and proof and keep the checker transcript; proofs are checked during the
   run and then deleted, CNFs are rebuilt from the committed encoder and hash-checked; SAT models are kept. Proofs
   are archived (Zenodo or a release, not git) only for a claim that goes into a note (owner, 2026-11-08).
