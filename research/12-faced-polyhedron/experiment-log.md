@@ -959,3 +959,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-13: week items 2 and 3 prepared. E-261113-02: Lutz's 865 (10,2) list imported (checks pass, witness = #739),
   50 maps x 3 kissat seeds queued; pilot 6/6 SAT in seconds, bridge 0/6 realized (PLAN amendment 1). E-261110-05: encoder
   option `no_segment_disjoint`; (8,2) V2, V1 all UNSAT-SOLVER, controls pass (amendment 1). One owner launch pending.
+* 2026-11-13: E-261113-02 (10,2) rung, one owner launch, 0.239 core-h: 153/153 SAT, median 0.83 s, no timeout; bridge
+  16/153 realized; readings LIGHT, BRIDGE<50 %, CHEAP (CONCLUSION, STATUS 3ah). E-261110-05, 0.44 core-h: V2 UNSAT-SOLVER on
+  all eight maps, V1 SAT on five (9,3) maps, UNSAT-SOLVER at (8,2); H-261110-01 weakened (CONCLUSION, STATUS 3ai).

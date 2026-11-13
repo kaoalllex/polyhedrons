@@ -27,5 +27,10 @@ stop.requested
 !**/attempt_*/**/*.model.json
 !**/attempt_*/**/*.checker.log
 !**/attempt_*/**/*.recheck.log
+# E-261113-02 (owner, 2026-11-13): its per-unit result.json and SAT models (18.5 MB, mostly bridge output) live in
+# ../polyhedrons-data; git keeps the attempt manifests and each shard's results.jsonl, which summary.py reads.
+research/12-faced-polyhedron/experiments/E-261113-02-s6-10-2-calibration-rung/**/attempt_*/*/**
+!research/12-faced-polyhedron/experiments/E-261113-02-s6-10-2-calibration-rung/**/attempt_*/controls/manifest.json
+!research/12-faced-polyhedron/experiments/E-261113-02-s6-10-2-calibration-rung/**/attempt_*/controls/summary.json
 # Exception: the same-path pilot is cited evidence of E-261103-03 (test_tranche checks its output hashes)
 !research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/results/coverage_pilot/**

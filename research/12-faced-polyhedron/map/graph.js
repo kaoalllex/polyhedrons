@@ -1303,17 +1303,17 @@ window.GRAPH = {
    "id": "E-261110-05",
    "kind": "experiment",
    "title": "Immersion-only and segment-free formulas on the two (8, 2) maps and six (9, 3) maps - which clause family refutes",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-10",
-   "concluded": "",
+   "concluded": "2026-11-13",
    "path": "experiments/E-261110-05-immersion-only-s5-formulas/README.md",
    "direction": [
     "DR19",
     "DR11"
    ],
-   "verdict": "",
+   "verdict": "DONE@0.44 core-h (V2 8/8 UNSAT-SOLVER; V1 (8,2) 2/2 UNSAT-SOLVER, (9,3) 5 SAT + 1 TIMEOUT; no proofs)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: DONE@0.44 core-h: H-261110-01 weakened (planning evidence: the segment clauses are not what refutes these formulas); at (9, 3) the triples carry the refutation, at (8, 2) even the immersion-only formula is refuted. No scenario move."
   },
   {
    "id": "E-261110-06",
@@ -1385,17 +1385,17 @@ window.GRAPH = {
    "id": "E-261113-02",
    "kind": "experiment",
    "title": "(10, 2) calibration rung - time to SAT over seeds and bridge realization rate on 50 of Lutz's 865 maps",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-13",
-   "concluded": "",
+   "concluded": "2026-11-13",
    "path": "experiments/E-261113-02-s6-10-2-calibration-rung/README.md",
    "direction": [
     "DR19",
     "DR8"
    ],
-   "verdict": "",
+   "verdict": "DONE (calibration)@0.239 core-h (153/153 SAT, median 0.83 s, no timeout; bridge 16/153 realized; no proofs)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: DONE (calibration)@0.239 core-h: SAT at (10, 2) is fast and light-tailed, realization is the bottleneck. No scenario move; H-261110-03 unchanged."
   },
   {
    "id": "E-261113-03",
@@ -1970,7 +1970,7 @@ window.GRAPH = {
    "id": "H-261110-01",
    "kind": "hypothesis",
    "title": "The multiple-adjacency constraints are what refutes the (8, 2), (9, 3) and (10, 4) formulas",
-   "status": "open",
+   "status": "weakened",
    "date": "2026-11-10",
    "concluded": "",
    "path": "hypotheses/H-261110-01-multiple-adjacency-constraints-refute-s5-formulas.md",

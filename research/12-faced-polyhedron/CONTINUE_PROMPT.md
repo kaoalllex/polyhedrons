@@ -9,16 +9,15 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-13, week items 2 and 3 prepared; one owner launch pending)
+## Hand-over (2026-11-13, week items 2 and 3 concluded)
 
-* Branch `lab/2026-11-09`, committed, not pushed. Nothing in flight.
-* OWNER: `bash research/12-faced-polyhedron/overnight/launch.sh 13-02 10-05 start` (on AC; then `status`). Expected:
-  E-261113-02 ~0.3 core-h (153 (10, 2) units), then E-261110-05 <= 3 core-h (twelve (9, 3) units, cap 900 s).
-* E-261113-02 pilot (PLAN amendment 1): controls pass, SAT in 0.2-3.6 s, seeds diversify; bridge realized 0 of 6.
-* E-261110-05 stage 1 (amendment 1): controls pass; (8, 2) V2 and V1 all UNSAT-SOLVER -> reading LOCAL.
-* NEXT after the run: `experiment-conclude` for both (Opus, medium); 13-02 under 0.3 core-h -> the full 865 (tree).
-  Then item 4, item 5 (prep only).
-* Checks: `verify_all.py --quick` ALL PASS after the encoder option and tranche seed; `test_tranche` 27 OK.
-* For the lead: (1) LOCAL at (8, 2) asks for one core-mining session: not in the week plan, schedule it?
-  (2) the bridge's hinge stage returns one loss from all 6 random starts (one attractor), so its restarts add nothing.
+* Branch `lab/2026-11-09`, committed, not pushed. Nothing in flight; raw output moved by `overnight/move_raw.py`.
+* E-261113-02 done (STATUS 3ah): 153/153 SAT at (10, 2), median 0.83 s; bridge 16/153; readings LIGHT, CHEAP.
+* E-261110-05 done (STATUS 3ai): V2 UNSAT-SOLVER on all eight; V1 SAT on five (9, 3) maps; H-261110-01 weakened.
+* NEXT: (a) CHEAP branch of E-261113-02: `make_queue.py` gains the full 865 x 3 seeds (registered follow-up, no new
+  amendment), then one owner launch; (b) week item 4 (cube-and-conquer, `experiment-start`, Opus, medium);
+  item 5 prep only.
+* Checks: both runs' controls pass; `summary.py` on the final results; no code changed since `verify_all --quick`.
+* For the lead: (1) the bridge realizes ~10 % of (10, 2) models where objects exist: a (10, 3) SAT would stall at
+  realization, not at the solver; (2) LOCAL at (8, 2) asks for one core-mining session (outside the week plan);
   (3) symmetric (10, 3) route: only fixed-face C2 and improper symmetries left; does S6 (10, 3) keep first place?

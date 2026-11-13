@@ -2,17 +2,18 @@
 id: E-261113-02
 title: (10, 2) calibration rung - time to SAT over seeds and bridge realization rate on 50 of Lutz's 865 maps
 date: 2026-11-13
-status: running
+status: done
 direction: [DR19, DR8]
 origin: [I-261113-02, E-261110-02]
 tests: [H-261110-03]
 produces: []
 preregistered: true
+verdict: DONE (calibration)@0.239 core-h (153/153 SAT, median 0.83 s, no timeout; bridge 16/153 realized; no proofs)
+concluded: 2026-11-13
 ---
 
-> Running (pre-registered in `PLAN.md`), explore, calibration. Scores T D F G R: 1 2 2 2 2 | budget: one prep session +
-> <= 3 core-h, 10 shards. No proofs.
-
+> Done (2026-11-13): SAT at (10, 2) is fast and light-tailed (median 0.83 s, max 5.2 s over 150 drawn units); the
+> frozen bridge realizes ~10 % of models. Readings LIGHT, BRIDGE < 50 %, CHEAP (`CONCLUSION.md`, STATUS 3ah).
 ## Goal
 
 Week item 2 (`ROADMAP.md`). Fetch Lutz's list of the 865 vertex-minimal 10-vertex genus-2 triangulations from the

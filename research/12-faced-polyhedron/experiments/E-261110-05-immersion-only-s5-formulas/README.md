@@ -2,17 +2,18 @@
 id: E-261110-05
 title: Immersion-only and segment-free formulas on the two (8, 2) maps and six (9, 3) maps - which clause family refutes
 date: 2026-11-10
-status: running
+status: done
 direction: [DR19, DR11]
 origin: [I-261110-04, E-261103-03, E-261109-03]
 tests: [H-261110-01]
 produces: []
 preregistered: true
+verdict: DONE@0.44 core-h (V2 8/8 UNSAT-SOLVER; V1 (8,2) 2/2 UNSAT-SOLVER, (9,3) 5 SAT + 1 TIMEOUT; no proofs)
+concluded: 2026-11-13
 ---
 
-> Running (pre-registered in `PLAN.md`: kissat, no proofs, cap 900 s), explore. Scores T D F G R: 2 2 2 2 2 |
-> budget: <= 3 core-h day run, 10 shards.
-
+> Done (2026-11-13): V2 UNSAT-SOLVER on all eight maps; V1 UNSAT-SOLVER at (8, 2), SAT on five (9, 3) maps:
+> H-261110-01 weakened; LOCAL at (8, 2) -> core mining (`CONCLUSION.md`, STATUS 3ai).
 ## Goal
 
 Test (ii) of H-261110-01 on maps whose plain formula is UNSAT-VERIFIED: the two (8, 2) maps and the six (9, 3) maps

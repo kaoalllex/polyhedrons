@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-13** (E-261113-01 concluded). The latest registered result is E-261113-01 (section 3ag), after
-E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
+As of **2026-11-13** (E-261113-02 and E-261110-05 concluded). The latest registered results are E-261113-02 and
+E-261110-05 (sections 3ah, 3ai), after E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
 Ninth-plane Stage A is exhausted with no candidate: all near-copy cells UNSAT-SOLVER at instance scope, no family
@@ -339,6 +339,21 @@ equivariant labellings and every interval and wall of `t`; family scope, exact c
 uniform C3 / free C2 `submap=True` formulas all UNSAT-SOLVER in <= 4.1 s (kissat, no proofs), 0 SAT: instance scope,
 ranks these ansatzes below the asymmetric formulas, no negative claim. Not run: fixed-face C2, improper symmetries.
 OPEN@0.034 core-h; no hypothesis status, credence or witness change (CONCLUSION).
+
+## 3ah. E-261113-02 (10, 2) calibration rung (2026-11-13)
+
+Week item 2. 50 of Lutz's 865 (10, 2) maps plus the witness map #739, kissat seeds 0-2, `submap=True`, no proofs, one
+owner launch, 0.239 core-h, controls pass: 153/153 SAT, median 0.83 s, max 5.2 s, no timeout, no seed spread; the
+frozen bridge realized 16 of 153 models (13 maps, `--target S6` PASS in the run; control objects, not headlines).
+Readings: LIGHT (the (10, 3) timeouts read "probably UNSAT" for planning only), BRIDGE < 50 %, CHEAP (full 865 next).
+Instance scope, NUMERICAL timing; nothing about (10, 3) existence (CONCLUSION).
+
+## 3ai. E-261110-05 immersion-only and segment-free formulas (2026-11-13)
+
+Week item 3. Eight maps ((8, 2) #0, #1; (9, 3) #40, 43, 10, 30, 48, 5), kissat, no proofs, cap 900 s, 0.44 core-h,
+controls pass. V2 (no SEGMENT_DISJOINT) UNSAT-SOLVER on all eight; V1 (immersion-only) UNSAT-SOLVER on both (8, 2) maps,
+SAT on five (9, 3) maps, TIMEOUT on #5. Readings: H-261110-01 weakened (planning evidence); triples carry the (9, 3)
+refutation; LOCAL at (8, 2) -> one core-mining session. Instance scope, no negative claim (CONCLUSION).
 
 ## 4. What may and may not be claimed
 
