@@ -1,0 +1,47 @@
+{
+  "b1_szilassi_pinned": {
+    "status": "SAT",
+    "seconds": 0.022111125057563186,
+    "budget_seconds": 120,
+    "budget_fraction": 0.00018425937547969322,
+    "ended_by": "completed",
+    "variables": 1891,
+    "clauses": 13784,
+    "cnf_sha256": "057513f861d71cf8c056b946cca77dd34eb5766a2a197b27fa50afafa9dce649",
+    "solver_children_maxrss": 3457024,
+    "model_checked": true,
+    "proof_sha256": "395f59bd662f5f1336f136345eb78c9244ed0110eed36660806cf0cb6d48fbe1"
+  },
+  "b2_lutz_torus_unpinned": {
+    "status": "SAT",
+    "seconds": 0.041682958020828664,
+    "budget_seconds": 120,
+    "budget_fraction": 0.00034735798350690554,
+    "ended_by": "completed",
+    "variables": 1890,
+    "clauses": 13710,
+    "cnf_sha256": "bac6bbe32626087367d5e8b84ce0e3fccfe34d142cf8bafe9df3f2ffad8fca32",
+    "solver_children_maxrss": 5619712,
+    "model_checked": true,
+    "proof_sha256": "44b52f7e814599a84844b178caf196dae638ae1e4e0c10900f87f0249f869515"
+  },
+  "d_s3_genus3_pinned": {
+    "status": "SAT",
+    "seconds": 0.13242266699671745,
+    "budget_seconds": 600,
+    "budget_fraction": 0.00022070444499452908,
+    "ended_by": "completed",
+    "variables": 21744,
+    "clauses": 490240,
+    "cnf_sha256": "a7989ffb30b6315bc85f8c6e99c0888b8e08ef5cfc2a35e47e3111f31ca2bc0e",
+    "solver_children_maxrss": 96698368,
+    "model_checked": true,
+    "proof_sha256": "7a81b8ff26a30d3a8921965cd035a11d455e74fdf261822a836c5a62314e3a52"
+  },
+  "inputs_sha256": {
+    "research/12-faced-polyhedron/experiments/E-261030-03-genus-ladder-type0-genus3/results/type0_genus3_extendable_polished.json": "4644ffa51b274af0e270216d8f19fda9fe28ca3dc5c76f40eb1204dd931c2117",
+    "index.html": "b20ffb9a7385828495aef5e7cf50995527b50fe3dc1098123691acbc14403ce2",
+    "maps_7_1": "fe01c493914f1f2ba439e15d63d3a647cb82b321d5e4b1133a53f3b6b95d7837"
+  },
+  "PASS": true
+}

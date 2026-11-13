@@ -69,3 +69,19 @@ the prep amendment. The local witness is a control, not a new headline; its init
 by this filing. Two payoffs stay distinct: twenty checked UNSATs give a conditional exclusion; a SAT model
 without coordinates leaves realization open. No native sampling night or (11,3) follow-up is authorized.
 No run or numerical credence change in this amendment. The pending prep is the second amendment.
+
+### 2026-11-13: prep amendment (lab session; second amendment)
+
+Inputs: Lutz's lists from the archived Manifold Page (`literature/lutz-manifold-page/`, hashes in `DATA_FOUND.md`) via
+`code/lutz_import.py` -> `maps/maps_10_3.json` (sha256 d7a1d18f...e8f5b): 20 classes, simplicial, orientable, (10,42,28),
+pairwise non-isomorphic. Converter controls (a) pass: torus = Szilassi map; the 59-type file gives `data/lutz_to_ourid.json`.
+Runner: E-261103-03 `tranche.py` imported-map mode (`submap_formula`, no first-SAT stop; every SAT through `bridge`:
+hinge, two_stage, fp, restarts 6, sub-map exact check, `verify_candidate.py --target S6`, now implemented; an unchecked
+proof is recorded, counted as UNSAT-SOLVER). `queue.json` sha256 ffda027a...14a0: per shard the two control (c) units, then
+2 maps; caps 3600 s solver, 7200 s checker; 10 shards, 288,000 s. Bridge gate (`prep/bridge-gate`): G1 pinned SAT, G2
+unpinned SAT (0.7 s); G3 first failed with the inherited stage settings (1 restart; the all-pairs exact check, which
+rejects every S6 object); with the frozen settings two_stage realizes the foreign model (175/330 signs equal the
+witness's), `--target S6` PASS (24,36,10,-2), `witnesses/verify_s6_10_2.py` ACCEPT. Controls (b), (d): SAT
+(`prep/controls-bd`). Pilot (`prep/pilot`, 2 shards): controls (c) SAT / UNSAT-VERIFIED; Lutz #1, #2 TIMEOUT at 1200 s,
+solver peak 0.45 GiB; proofs grow ~2.3 MB/s; no proof-check data. Startup check: `launch.sh 10-02 start`, BUDGET=100,
+10 shards reach the runner and stop cleanly (`prep/startup`). Pilot gate met (controls pass); P3 already fails for 2 maps.

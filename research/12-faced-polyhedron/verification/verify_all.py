@@ -46,6 +46,20 @@ def english_only():
     return not bad, '%d tracked file(s) with Cyrillic%s' % (len(bad), (': ' + ', '.join(bad[:3])) if bad else '')
 
 
+def lutz_import_reproduces():
+    """E-261110-02: re-import Lutz's untrusted list (parsed, never executed) and compare with the committed map file."""
+    import tempfile
+    exp = os.path.join(ROOT, 'experiments', 'E-261110-02-face-minimal-10-3-decision')
+    with tempfile.TemporaryDirectory() as tmp:
+        out = os.path.join(tmp, 'maps_10_3.json')
+        ok, msg = run(['-I', os.path.join(CODE, 'lutz_import.py'),
+                       os.path.join(ROOT, 'literature', 'lutz-manifold-page', 'manifolds_lex_d2_n10_o1_g3.txt'),
+                       '10', '3', '20', out], ROOT, '20 maps, pairwise non-isomorphic')
+        same = ok and open(out, 'rb').read() == open(os.path.join(exp, 'maps', 'maps_10_3.json'), 'rb').read()
+    queues = run(['make_queue.py', '--check'], exp, 'queue.json sha256')
+    return same and queues[0], '%s; identical %s; %s' % (msg, same, queues[1])
+
+
 def s0_rejects_roest_vigh():
     """The strict target must reject an embedded all-pairs object with doubled adjacencies."""
     sys.path.insert(0, CODE)
@@ -112,6 +126,13 @@ CHECKS = [
     ('positive control: --target S5 accepts Szilassi (7 faces, genus 1, maximal)',
      lambda: (lambda r: (all(x['PASS'] for x in r), '%d record(s), S5 PASS %s' % (len(r), [x['PASS'] for x in r])))(
          verify_file(os.path.join(ROOT, 'experiments/E-261029-20-solid-first-n7/results/szilassi_found_without_map.json'), target='S5'))),
+    ('controls: --target S6 accepts the (10,2) witness and Szilassi, rejects the 12-face genus-3 witness',
+     lambda: (lambda r: (r == [True, True, False], 'S6 PASS %s' % r))(
+         [verify_file(os.path.join(ROOT, p), target='S6')[0]['PASS'] for p in
+          ('witnesses/s6_10_2.json', 'experiments/E-261029-20-solid-first-n7/results/szilassi_found_without_map.json',
+           GL + 'type0_genus3_extendable.json')])),
+    ('E-261110-02 inputs: the Lutz import reproduces maps_10_3.json; queues match make_queue.py',
+     lutz_import_reproduces),
     ('site: lab models in index.html = exactly re-verified witnesses/witnesses.json',
      lambda: run(['export_site.py', '--check'], os.path.join(ROOT, 'witnesses'), 'in sync')),
     ('negative control: genus-4 attempts are NOT embedded',

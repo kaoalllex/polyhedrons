@@ -1,0 +1,8 @@
+controls start 1
+map control-f10-s1 start, solver 60s checker 120s
+map control-f10-s1 SAT
+map control-f10-neg-s1 start, solver 60s checker 120s
+map control-f10-neg-s1 UNSAT-VERIFIED
+map 1 start, solver 1200s checker 2400s
+map 1 TIMEOUT
+SHARD-COMPLETE wall_seconds 1209.39

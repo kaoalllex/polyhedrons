@@ -945,3 +945,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   Existing polyhedra environment matches all requirement pins; OR-Tools import/model construction passed without Solve; handover updated.
 * 2026-11-13: E-261112-01 ninth-plane Stage A (10 shards, 8.01 core-h, 49 min wall): controls pass in every shard; all 2,004
   near-copy cell orbits INFEASIBLE (UNSAT-SOLVER), 0 SOLID, 0 open; OPEN, instance scope, no family negative (CONCLUSION, STATUS 3ae).
+* 2026-11-13: E-261110-02 prep: Lutz's 20 (10,3) maps imported and checked; `--target S6`; tranche imported-map mode;
+  (10,2) bridge gate passes (foreign model realized, S6 PASS) after fixing the all-pairs check; controls pass; pilot
+  Lutz #1, #2 TIMEOUT at 1200 s; startup check clean. Night ready (PLAN amendment 2).

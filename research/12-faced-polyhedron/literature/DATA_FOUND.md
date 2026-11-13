@@ -30,3 +30,19 @@ Secondary data: `sage-GenusSix/` (the one triangulation, copied from Sage source
 Lutz numbering and ABS96 numbering are DIFFERENT; keep a mapping table when citing "map #k".
 
 Update: the third-party repo pirozhkov-andrei/polyhedraproof (docs/SOURCES.md) reports downloading Lutz's `manifolds_lex_d2_n12_o1_g6.txt` from the Manifold Page on 2026-10-13/15 with size 25,272 bytes and raw sha256 identical to the hash above, so the Hashirama copy is very likely byte-identical to Lutz's file (not verified by us; Lutz's page is blocked in this sandbox).
+
+Update 2026-11-13 (E-261110-02 prep): Lutz's own `manifolds_lex_d2_n12_o1_g6.txt`, downloaded from the archived Manifold
+Page (https://www3.math.tu-berlin.de/IfM/Nachrufe/Frank_Lutz/stellar/manifolds_lex/), has sha256 `55912614...89b7`, the
+hash above: the Hashirama copy is byte-identical to Lutz's file (EXACT, hash comparison; the downloaded copy is not kept).
+
+## Lutz's 10-vertex genus-3 and 7-vertex torus lists (E-261110-02)
+
+**Directory:** `literature/lutz-manifold-page/`, downloaded 2026-11-13 from the same archived page (untrusted data; parsed
+by `code/lutz_import.py` under `python3 -I`, never executed).
+- `manifolds_lex_d2_n10_o1_g3.txt` (5,407 bytes), sha256 `28700a9307f44335f7778ed322379aeb82cfd9919d7945eb1cb5168e87d4d868`:
+  20 entries #1..#20, the vertex-minimal 10-vertex triangulations of the orientable genus-3 surface (Lutz, arXiv:math/0506316).
+- `manifolds_lex_d2_n7_o1_g1.txt` (146 bytes), sha256 `d216a896d06c90f5c286381aedbfa99e8b870146feff77a1bf81f06cbcfa0290`: the 7-vertex torus.
+- Verified here (EXACT, `lutz_import.py` and the E-261110-02 converter controls): all 20 simplicial, closed, connected,
+  orientable, (V, E, F) = (10, 42, 28), pairwise non-isomorphic up to mirror; the torus is the Szilassi map; the same
+  importer on the 59-entry genus-6 file gives a bijection with `data/k12_triangulations.json` equal to `data/lutz_to_ourid.json`.
+  The completeness of the list (exactly 20 classes) is Lutz's claim (CLAIMED), not re-enumerated here.
