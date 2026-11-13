@@ -56,3 +56,15 @@ this commit (the c1/c2 hash and literal checks ran without a solver).
   week item 4 marked done.
 
 ## Amendments
+
+### 2026-11-13: amendment 1, pilot (no plan change)
+
+`OUT_DIR=results/pilot LIMIT=4 SHARDS=10 bash run.sh 1` (one shard alone, 0.006 core-h, 20 s wall): controls pass
+(c1 the three plain hashes equal the records; c2 nine distinct unfixed literals and 512 cubes on both arms; c3 the
+pinned Roest-Vigh chirotope with the eight cubes of pair (0, 5): cube 2 SAT, the cube read off the pinned model, the
+other seven UNSAT-SOLVER; cube 2 on the unpinned formula SAT; the unpinned formula without a cube SAT). Units:
+map 96 cubes 0, 10, 20, 30 UNSAT-SOLVER in 0.2, 10.6, 7.3, 0.1 s (each solver log ends `s UNSATISFIABLE`). Not a
+reading: four cubes on an unloaded machine; their mean (4.5 s) times 512 is about 2.2x the monolithic time of 96, so
+PARK is the likelier outcome, but the cube times are far from uniform. Gate met (controls pass, no cube at its cap):
+the run starts unchanged by the owner (`launch.sh 13-04 start`). The calibration unit 845 and shard 0 were not
+exercised in the pilot (same code path as the cubes, `pilot.solve` without units).
