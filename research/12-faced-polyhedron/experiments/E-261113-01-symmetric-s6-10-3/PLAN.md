@@ -81,3 +81,13 @@ Pre-registration, 2026-11-13 (lab session, week item 1 of the owner-approved pla
   labellings at t = 2 and the other 24 at t = -2. Corrected control: EMBEDDED only for 1 < |t| < 3, at t = 2 and
   t = -2; none at t = 4, -4, 1/2; none of 200 seeded non-equivariant labellings at t = 2. No Lutz #15 unit was
   computed before this amendment.
+
+### 2026-11-13: part (a) run (prep session; seconds, no solver)
+
+First Lutz #15 run: every unit raised inside the verifier (zero-length edges), a constant outcome, so not used.
+`tetra.py` now counts coincident map vertices before calling the verifier; rerun `results/a/tetra.json`: controls
+PASS (convex: EMBEDDED only for 1 < |t| < 3, 24 + 24 labellings at t = +-2; 96 wall units with coincident vertices,
+so the counter varies on the control). Lutz #15: 48 labellings x 17 t (roots -3, -1, 0, 1, 3) = 816 units, interval
+constancy holds, 0 EMBEDDED, every unit with 12, 20 or 24 coincident vertex pairs, 0 errors. Reading: in every
+T-equivariant labelling some map vertices sit on the forced quadruple points (for example (t, -1, 1) on y = -1,
+z = 1 and two tetrahedron planes) for every t. Outcome (a): no EMBEDDED unit; conclusion deferred to CONCLUSION.md.

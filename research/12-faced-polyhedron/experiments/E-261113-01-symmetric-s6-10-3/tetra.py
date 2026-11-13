@@ -25,7 +25,7 @@ import time
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path.insert(0, str(ROOT / 'code'))
-from ladder_exact import verify  # noqa: E402
+from ladder_exact import solve3, verify  # noqa: E402
 from omsat_sym import automorphisms  # noqa: E402
 
 MAPS = ROOT / 'experiments/E-261110-02-face-minimal-10-3-decision/maps/maps_10_3.json'
@@ -144,8 +144,20 @@ def labellings(links):
 
 
 def decide(links, t, phi):
+    """Coincident map vertices (two corner triples at one point, a zero-length edge) are counted first: the
+    verifier's pair check assumes distinct edge ends and raises on them."""
     R = rows(t)
     H = [R[phi[X]] for X in range(len(links))]
+    points = {}
+    for tri in {frozenset((X, a, b)) for X, L in links.items() for a, b in zip(L, L[1:] + L[:1])}:
+        try:
+            p = solve3([H[x] for x in sorted(tri)])
+        except AssertionError:
+            return dict(EMBEDDED=False, error='three planes of a corner triple are dependent')
+        points.setdefault(p, []).append(tri)
+    coincident = sum(len(v) - 1 for v in points.values())
+    if coincident:
+        return dict(EMBEDDED=False, coincident=coincident)
     try:
         rep = verify(H, links, require_all_pairs=False)
     except Exception as exc:  # degenerate wall geometry; recorded, counts as not embedded
@@ -180,6 +192,9 @@ def sweep(links, out, name, target=None):
             candidates.append(dict(file=path.name, verify_target=target, rc=rc))
     return dict(roots=[str(r) for r in rs], labellings=len(phis), aut_plus=aut, units=len(table) * len(phis),
                 interval_constancy=constancy, embedded_units=sum(len(u['embedded']) for u in table),
+                coincident_units=sum(1 for u in table for r in u['reports'] if r.get('coincident')),
+                error_units=sum(1 for u in table for r in u['reports'] if 'error' in r),
+                coincident_counts=sorted({r['coincident'] for u in table for r in u['reports'] if r.get('coincident')}),
                 embedded_t=sorted({u['t'] for u in table if u['embedded']}, key=Fr), candidates=candidates,
                 table=table), phis
 
@@ -246,6 +261,7 @@ def main(out):
     report['controls'] = dict(
         convex_links={str(k): v for k, v in cl.items()}, labellings=control['labellings'], aut_plus=control['aut_plus'],
         roots=control['roots'], embedded_t=control['embedded_t'], interval_constancy=control['interval_constancy'],
+        coincident_units=control['coincident_units'], error_units=control['error_units'],
         positive_t2=sum(at2), positive_tm2=sum(atm2), negative_t4_tm4_thalf=sum(neg_t), negative_wrong_labelling=sum(wrong), wrong_tried=len(wrong))
     report['controls']['PASS'] = (bool(control['embedded_t']) and inside and any(at2) and any(atm2) and not any(neg_t)
                                   and not any(wrong) and control['interval_constancy'])
@@ -263,8 +279,9 @@ def main(out):
     report['lutz15'] = dict(result, labellings_list=phis, canonical_sha256=rec['canonical_sha256'])
     report['wall_seconds'] = time.monotonic() - started
     (out / 'tetra.json').write_text(json.dumps(report, indent=1) + '\n')
-    summary = {k: report['lutz15'][k] for k in ('roots', 'labellings', 'units', 'interval_constancy',
-                                                 'embedded_units', 'embedded_t', 'candidates')}
+    summary = {k: report['lutz15'][k] for k in ('roots', 'labellings', 'units', 'interval_constancy', 'embedded_units',
+                                                 'embedded_t', 'candidates', 'coincident_units', 'coincident_counts',
+                                                 'error_units')}
     print('controls PASS', json.dumps({k: v for k, v in report['controls'].items() if k != 'convex_links'}))
     print('lutz15', json.dumps(summary))
     return 0 if result['interval_constancy'] else 1
