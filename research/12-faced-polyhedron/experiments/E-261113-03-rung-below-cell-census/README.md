@@ -2,16 +2,16 @@
 id: E-261113-03
 title: Rung-below cell census - all eighth-plane cells over seven planes of Roest-Vigh, the gate of Stage B
 date: 2026-11-13
-status: planned
+status: running
 direction: [DR7, DR18, DR12]
 origin: [I-261113-03, E-261112-01]
 tests: [H-261112-01]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned, explore, control. Scores T D F G R: 2 2 2 1 2 | budget: one prep session, then an owner day run of
-> <= 20 core-h, 10 shards. Before any compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`).
+> Running (pre-registered 2026-11-13, `PLAN.md`; pilot then owner day run), explore, control. Scores T D F G R: 2 2 2 1 2 | budget: one prep session, then an owner day run of
+> <= 20 core-h, 10 shards.
 
 ## Goal
 

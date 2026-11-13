@@ -110,14 +110,19 @@ def near_copy_cells(h, a):
     """Local regions of plane a: {key: b} with b exactly verified; floats only propose the wedge directions."""
     el = [r for i, r in enumerate(h) if i != a] + [INF]
     W = sorted({canon(cross4(h[a], x, y)) for x, y in itertools.combinations(el, 2)})
+    return W, local_cells(h[a], W)
+
+
+def local_cells(A, W):
+    """Regions of the central rank-3 arrangement W (all orthogonal to A) acting on b modulo A: {key: b}, exact."""
     out = {}
     for i, j in itertools.combinations(range(len(W)), 2):
-        r0 = cross4(h[a], W[i], W[j])
+        r0 = cross4(A, W[i], W[j])
         if not any(r0):
             continue
         for r in (r0, [-v for v in r0]):
             on = [m for m in range(len(W)) if dot(W[m], r) == 0]
-            e1 = W[on[0]]; e2 = cross4(h[a], r, e1)
+            e1 = W[on[0]]; e2 = cross4(A, r, e1)
             n1, n2 = math.sqrt(dot(e1, e1)), math.sqrt(dot(e2, e2))
             ang = sorted({round(math.atan2(dot(W[m], e2) / n2, dot(W[m], e1) / n1) % math.pi, 12) for m in on})
             ang = ang + [t + math.pi for t in ang]; ang.append(ang[0] + 2 * math.pi)
@@ -136,7 +141,7 @@ def near_copy_cells(h, a):
                 if tuple(sgn(dot(w, b)) for w in W) != key:
                     raise ArithmeticError('local representative misses its cell')
                 out[key] = b
-    return W, out
+    return out
 
 
 def ninth_plane(h, a, b):

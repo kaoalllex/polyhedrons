@@ -1401,7 +1401,7 @@ window.GRAPH = {
    "id": "E-261113-03",
    "kind": "experiment",
    "title": "Rung-below cell census - all eighth-plane cells over seven planes of Roest-Vigh, the gate of Stage B",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-13",
    "concluded": "",
    "path": "experiments/E-261113-03-rung-below-cell-census/README.md",
@@ -1411,7 +1411,7 @@ window.GRAPH = {
     "DR12"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
