@@ -142,7 +142,8 @@ def run_shard(a):
     manifest = dict(commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
                     dirty=subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=no'], text=True),
                     started_utc=stamp, shard=a.shard, shards=a.shards, cap=a.cap, budget_core_seconds=budget,
-                    pilot=a.pilot, units_sha256=UNITS_SHA256, python=sys.version, executable=sys.executable,
+                    pilot=a.pilot, units_sha256=UNITS_SHA256, python=sys.version,
+                    executable=sys.executable.replace(str(Path.home()), '~', 1),   # no home directory in records
                     cpu_count=os.cpu_count())
     base.dump(out / f'manifest-{stamp}.json', manifest)
     base.command([sys.executable, '-m', 'pip', 'freeze'], out / f'pip-freeze-{stamp}.txt', 60)
