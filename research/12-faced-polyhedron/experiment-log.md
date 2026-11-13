@@ -950,3 +950,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   Lutz #1, #2 TIMEOUT at 1200 s; startup check clean. Night ready (PLAN amendment 2).
 * 2026-11-13: E-261110-02 S6 (10,3) night (10 shards, 20.03 core-h, 2.0 h wall, no proofs): controls pass in every shard;
   all 20 Lutz maps TIMEOUT at 3600 s, 0 SAT, 0 UNSAT; OPEN, solver-limited, escalated (CONCLUSION, STATUS 3af).
+* 2026-11-13: lead review `reviews/strategy-review-2026-11-13.md` (no solver; symmetry screen of the 20 (10,3) maps) and the
+  owner's decisions: S6 (10,3) first with symmetric realizations, Stage B gated by a rung-below census, two standing rules,
+  no proofs in the symmetric runs; filed I-261113-01..04, E-261113-01..03 (planned, no PLAN yet); new week plan in `ROADMAP.md`.

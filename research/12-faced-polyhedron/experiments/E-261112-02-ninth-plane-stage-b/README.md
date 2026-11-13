@@ -10,7 +10,8 @@ produces: []
 preregistered: false
 ---
 
-> Scores T D F G R: 2 2 1 1 2. Gated queue registration only; PLAN and runner are not yet prepared.
+> Scores T D F G R: 2 1 1 1 2 (D down, lead review 2026-11-13: a miss changes nothing). Gated by the rung-below
+> census E-261113-03 (owner, 2026-11-13): proposed only if it finds a second map. PLAN and runner are not prepared.
 > One prep session, then one owner night per source, Roest-Vigh first, <= 80 core-h per night, 10 shards.
 
 ## Goal / gates

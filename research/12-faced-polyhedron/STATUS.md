@@ -6,16 +6,18 @@ E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; 
 
 Ninth-plane Stage A is exhausted with no candidate: all near-copy cells UNSAT-SOLVER at instance scope, no family
 negative (section 3ae). S6 (10,3): the night left all 20 formulas undecided at 3600 s, controls pass; solver-limited,
-escalated (section 3af). Stage B stays gated. The dialogue's checks
+escalated (section 3af). Owner's decisions of 2026-11-13 (`reviews/strategy-review-2026-11-13.md`): S6 at (10, 3) is
+the first target, symmetric realizations first (E-261113-01); Stage B is gated by the rung-below census
+E-261113-03. The dialogue's checks
 remain session checks, not new ledger evidence; the local S6 (10,2) witness work is separate. S0 stays parked and the
 (8,2)/(9,3) note deferred. No credence change.
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-10 (`STRATEGY.md` §1, owner): three constructive targets on the laptop**: S6 at (10, 3) first
-(E-261110-02), S1 with the genus free at 9, 10 and 12 faces, S5 at (10, 4) only under the rule of E-261110-06; of these
-ninth-plane Stage A (S1 at nine faces, no candidate, section 3ae) and the S6 (10, 3) night (20/20 TIMEOUT, section 3af)
-have run. **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
+**Focus since 2026-11-13 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: S6 at (10, 3)
+first, symmetric realizations first (E-261113-01); nine mutually adjacent faces (S1, genus free) second, Stage B gated
+by E-261113-03; S5 at (10, 4) only under the rule of E-261110-06. Run so far: ninth-plane Stage A (no candidate,
+section 3ae) and the S6 (10, 3) night (20/20 TIMEOUT, section 3af). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
 4, gated by a speed-up benchmark (E-261103-07: 10/10 TIMEOUT, section 3w); from 2026-11-03 to 2026-11-08 the focus was
 (9, 3), now decided at formula scope (below); its negative result is a side track towards a note marked as not
 independently reviewed. No geometric witness is known; the paired exact pilot is complete (section 3e); the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes

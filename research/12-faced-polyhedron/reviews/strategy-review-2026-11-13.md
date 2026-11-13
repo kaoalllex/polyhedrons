@@ -5,14 +5,12 @@
 1. **Verdict (Recommendation).** Keep the strategy, change the order. Both runs ended without information by their
    set-up: Stage A has no positive control at nine planes, the (10, 3) night repeated a pilot that had timed out.
 2. **Old items 3 / 4 / 5** are independent. 4 and 5 stay; 3 (thin wedges) waits for the cell enumerator (§3).
-3. **New fact of this review (EXACT, no solver):** 12 of the 20 (10, 3) maps have automorphisms that pass the
-   necessary conditions of a rotation; 9 of them fit the existing symmetric encoder; Lutz #15 has the rotation group
-   of the tetrahedron, which leaves a family of plane arrangements with **one real parameter** (§3).
+3. **New fact (EXACT, no solver):** 12 of the 20 (10, 3) maps pass the necessary conditions of a rotation, 9 fit the
+   existing symmetric encoder; Lutz #15 has the tetrahedral group: plane arrangements with **one parameter** (§3).
 4. **No new brainstorm now**; call one after items 1-2, on one narrow question (§3, Owner 3).
 5. **Approval 1: the week plan of §2** (replaces the 2026-11-12 plan; Stage B and wedges move behind gates).
 6. **Approval 2: `STRATEGY.md`** (§3, Owner 2): S6 at (10, 3) first, nine faces second; two standing rules.
-7. **Approval 3: checked proofs in item 1.** Its PLAN names the negative claim they are for (a STATUS exclusion row
-   for the symmetric formulas); the formulas are small. Without your word the UNSATs are UNSAT-SOLVER.
+7. **Approval 3: checked proofs in item 1** (its PLAN would name the claim: a STATUS exclusion row).
 8. **First item:** symmetric S6 (10, 3): the one-parameter family of Lutz #15, then ten symmetric formulas.
 9. **Stage B gets no night now**: first the same enumerator one rung below, where an object is known (item 5).
 10. **Not done:** no solver run, no literature check of the symmetric vertex-version objects, no human review.
@@ -107,8 +105,7 @@ ideas before I-261103 keep the scores of the 2026-11-09 review; nothing ran.
 2. **Item 2** (explore). H: SAT at this size is found in seconds. Decides between cubes and seed portfolios.
 3. **E-261110-05** (explore): do the S5 negatives say anything about single-adjacency targets? **Cube pilot**
    (explore): stop and park if the summed cube time is >= 0.7x monolithic on both maps.
-4. **Item 5 run** (explore; owner's day run, <= 20 core-h, priced by its 50 cells). Decides Stage B: one night for
-   Roest-Vigh, <= 80 core-h, only if a second map is found.
+4. **Item 5 run** (explore; owner's day run, <= 20 core-h). Decides Stage B: one night, only if a second map is found.
 5. **Asymmetric (10, 3) with cubes** (exploit): only after 1, 2 and 4; proofs if the PLAN names the claim.
 6. **Thin wedges, exact replay of K3** (explore): one session after item 5's enumerator; stop if the replay fails.
 
@@ -120,8 +117,7 @@ ideas before I-261103 keep the scores of the 2026-11-09 review; nothing ran.
   meet at forced points (e.g. `(1, -1, t)`), so the arrangement is not simple.
 * **N3. Rung-below census** (item 5). Why: the only discovery-power control available for a cell family.
 * **N4. (10, 2) census as a calibration ladder** (item 2); the full 865 is a follow-up if 50 maps cost < 0.3 core-h.
-* **N5. Fixed-face C2 by symmetric arrangements** for #16, 17, 19, 20 (two parallel planes, four plane pairs; with
-  the D2 of #20 six parameters). Cheapest test: Szilassi's own C2 at seven planes against the Gaussian rate 6.4e-4.
+* **N5. Fixed-face C2 by symmetric arrangements** for #16, 17, 19, 20; test: Szilassi's C2 against the Gaussian 6.4e-4.
 
 ## 7. Audit
 
@@ -131,8 +127,7 @@ ideas before I-261103 keep the scores of the 2026-11-09 review; nothing ran.
    against `STRATEGY.md:47-49`. Stage B as queued (`ROADMAP.md:107-109`) would repeat it for two nights.
 3. **E = 39 sweeps are void twice.** `ROADMAP.md:183-184`: both nine-plane sweeps fixed E = 39, that is genus 3,
    which the 203 UNSAT-VERIFIED formulas exclude at formula scope. Before Stage A no registered run had E free.
-4. **Stale state.** `STATUS.md:15-17` names S6 (10, 3) as the first target since 2026-11-10; `STRATEGY.md:8-17`
-   (2026-11-12) says nine faces first. `ROADMAP.md:298` still says "nothing run with E free".
+4. **Stale state.** `STATUS.md:15-17` (S6 first since 2026-11-10) against `STRATEGY.md:8-17`; `ROADMAP.md:298`.
 5. **Process cost.** `STRATEGY.md:79-93`: three focus changes in five days; two nights passed without a run.
 6. **Chains to stop** (follow-up rule): (10, 4) A + B as a sweep without proofs (`ROADMAP.md:160`); thin wedges
    before an exact replay (`ideas/I-261110-01-wedge-plate-ansatz.md:35-37`: the matching is close to chance).
@@ -148,3 +143,8 @@ ideas before I-261103 keep the scores of the 2026-11-09 review; nothing ran.
 
 1. Owner: the three approvals of the digest. 2. Lab (Opus, high): item 1 prep and its day run. 3. Lab (Opus,
 medium), one chained session: the preps of items 2 and 3; their day runs share one launch.
+
+## Owner's decisions (2026-11-13)
+
+Approvals 1 and 2 given (week plan; `STRATEGY.md` order and two rules). Approval 3 declined: no proofs without an
+explicit need, so item 1 runs without them and its UNSATs are UNSAT-SOLVER (no exclusion row). Applied the same day.

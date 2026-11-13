@@ -1365,6 +1365,56 @@ window.GRAPH = {
    "conclusion": ""
   },
   {
+   "id": "E-261113-01",
+   "kind": "experiment",
+   "title": "Symmetric S6 (10, 3) - the tetrahedral family of Lutz",
+   "status": "planned",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "experiments/E-261113-01-symmetric-s6-10-3/README.md",
+   "direction": [
+    "DR19",
+    "DR8",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261113-02",
+   "kind": "experiment",
+   "title": "(10, 2) calibration rung - time to SAT over seeds and bridge realization rate on 50 of Lutz's 865 maps",
+   "status": "planned",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "experiments/E-261113-02-s6-10-2-calibration-rung/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261113-03",
+   "kind": "experiment",
+   "title": "Rung-below cell census - all eighth-plane cells over seven planes of Roest-Vigh, the gate of Stage B",
+   "status": "planned",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "experiments/E-261113-03-rung-below-cell-census/README.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR12"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -4007,6 +4057,68 @@ window.GRAPH = {
    "preregistered": ""
   },
   {
+   "id": "I-261113-01",
+   "kind": "idea",
+   "title": "Symmetric realizations of the (10, 3) maps - rotation-compatible automorphisms, the one-parameter tetrahedral family of Lutz",
+   "status": "open",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "ideas/I-261113-01-symmetric-s6-10-3.md",
+   "direction": [
+    "DR19",
+    "DR8",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261113-02",
+   "kind": "idea",
+   "title": "The (10, 2) maps as a calibration rung for S6 - time to SAT over seeds and the bridge realization rate",
+   "status": "open",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "ideas/I-261113-02-s6-10-2-calibration-rung.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261113-03",
+   "kind": "idea",
+   "title": "Rung-below cell census - all eighth-plane cells over seven planes of a known eight-face object as the discovery-power control of the cell method",
+   "status": "open",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "ideas/I-261113-03-rung-below-cell-census.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR12"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261113-04",
+   "kind": "idea",
+   "title": "Fixed-face C2 realizations of (10, 3) maps by symmetric plane arrangements",
+   "status": "open",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "ideas/I-261113-04-fixed-face-c2-arrangements.md",
+   "direction": [
+    "DR18",
+    "DR7"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -5276,7 +5388,17 @@ window.GRAPH = {
   },
   {
    "from": "E-261103-02",
+   "to": "E-261113-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-02",
    "to": "I-261108-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-02",
+   "to": "I-261113-01",
    "kind": "origin"
   },
   {
@@ -5407,6 +5529,11 @@ window.GRAPH = {
   {
    "from": "E-261103-05",
    "to": "H-261110-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-05",
+   "to": "I-261113-04",
    "kind": "origin"
   },
   {
@@ -5591,6 +5718,16 @@ window.GRAPH = {
   },
   {
    "from": "E-261110-02",
+   "to": "E-261113-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-02",
+   "to": "E-261113-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-02",
    "to": "H-261110-01",
    "kind": "tests"
   },
@@ -5598,6 +5735,16 @@ window.GRAPH = {
    "from": "E-261110-02",
    "to": "H-261110-03",
    "kind": "tests"
+  },
+  {
+   "from": "E-261110-02",
+   "to": "I-261113-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-02",
+   "to": "I-261113-02",
+   "kind": "origin"
   },
   {
    "from": "E-261110-03",
@@ -5631,11 +5778,36 @@ window.GRAPH = {
   },
   {
    "from": "E-261112-01",
+   "to": "E-261113-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261112-01",
    "to": "H-261112-01",
    "kind": "tests"
   },
   {
+   "from": "E-261112-01",
+   "to": "I-261113-03",
+   "kind": "origin"
+  },
+  {
    "from": "E-261112-02",
+   "to": "H-261112-01",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261113-01",
+   "to": "H-261110-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261113-02",
+   "to": "H-261110-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261113-03",
    "to": "H-261112-01",
    "kind": "tests"
   },
@@ -6600,6 +6772,16 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261110-02",
+   "to": "I-261113-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261110-02",
+   "to": "I-261113-02",
+   "kind": "origin"
+  },
+  {
    "from": "I-261110-03",
    "to": "E-261101-08",
    "kind": "origin"
@@ -6652,6 +6834,31 @@ window.GRAPH = {
   {
    "from": "I-261112-01",
    "to": "H-261112-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261112-01",
+   "to": "I-261113-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261113-01",
+   "to": "E-261113-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261113-01",
+   "to": "I-261113-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261113-02",
+   "to": "E-261113-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261113-03",
+   "to": "E-261113-03",
    "kind": "origin"
   },
   {

@@ -3,11 +3,11 @@
 This repository has two parts:
 - the public 3D viewer: `index.html`, published by GitHub Pages from `main`, so every commit on `main` is live;
 - the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
-  (`STRATEGY.md`, owner-approved 2026-11-12): one constructive target at a time on the owner's laptop, subject to
-  the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) by exact ninth-plane cells first;
-  S6 at (10, 3) second, behind formula and realization-bridge controls; thin wedges as a backup. S5 at (10, 4)
-  only under the rule of E-261110-06. (8, 2) and (9, 3) are decided (conditional negative),
-  the note is deferred; the 12-face problem is parked, not abandoned.
+  (`STRATEGY.md`, owner-approved 2026-11-13): one constructive target at a time on the owner's laptop, subject to
+  the significance filter. S6 at (10, 3) first, symmetric realizations first, behind formula and realization-bridge
+  controls; nine mutually adjacent faces (SPEC S1, genus free) by exact ninth-plane cells second, Stage B gated by
+  a census one rung below; thin wedges as a backup. S5 at (10, 4) only under the rule of E-261110-06. (8, 2) and
+  (9, 3) are decided (conditional negative), the note is deferred; the 12-face problem is parked, not abandoned.
 
 ## Implementation preferences
 
