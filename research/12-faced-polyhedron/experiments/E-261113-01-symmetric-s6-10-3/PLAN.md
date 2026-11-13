@@ -69,3 +69,15 @@ Pre-registration, 2026-11-13 (lab session, week item 1 of the owner-approved pla
   H-261110-03 evidence line; a SAT or EMBEDDED unit goes through `candidate-check` before any wording.
 
 ## Amendments
+
+### 2026-11-13: amendment 1 (prep, before any Lutz #15 unit)
+
+* `code/ladder_exact.verify` raised on two parallel planes (it builds the line of every pair). Fixed: distinct
+  parallel planes share no point and are skipped; coplanar faces are rejected. Needed by any candidate with a C2
+  fixing two faces, so also by the `--target S6` check of (a). `verify_all.py --quick`: ALL PASS after the change.
+* (a) control expectation corrected: the pre-registered negative "fails at t = -2" was wrong, since the point
+  reflection maps the family at t to the family at -t with the other half of the labellings. First control run:
+  48 labellings, roots -3, -1, 0, 1, 3, EMBEDDED exactly at the interior points of (1, 3) and (-3, -1), 24
+  labellings at t = 2 and the other 24 at t = -2. Corrected control: EMBEDDED only for 1 < |t| < 3, at t = 2 and
+  t = -2; none at t = 4, -4, 1/2; none of 200 seeded non-equivariant labellings at t = 2. No Lutz #15 unit was
+  computed before this amendment.

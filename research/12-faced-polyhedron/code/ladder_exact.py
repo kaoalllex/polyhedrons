@@ -114,6 +114,11 @@ def verify(H, links, require_all_pairs=True):
     for X, Y in combinations(range(n), 2):
         hx, hy = H[X], H[Y]
         d = (hx[1] * hy[2] - hx[2] * hy[1], hx[2] * hy[0] - hx[0] * hy[2], hx[0] * hy[1] - hx[1] * hy[0])
+        if d == (0, 0, 0):
+            # parallel planes: distinct ones share no point; coplanar faces are rejected rather than checked
+            if all(hx[i] * hy[j] == hx[j] * hy[i] for i, j in combinations(range(4), 2)):
+                bad.append((X, Y))
+            continue
         k = max(range(3), key=lambda j: abs(d[j]))
         aux = tuple(1 if j == k else 0 for j in range(3)) + (0,)        # plane x_k = 0 through the line
         p0 = solve3([hx, hy, aux])
