@@ -965,3 +965,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-13: week item 4 prepared. E-261113-04 cube pilot on (10,4) maps 96, 85: march_cu not buildable in the session,
   so segment-order cubes (9 existing order literals of the 3 doubled pairs, 512 cubes per map); pilot 0.006 core-h,
   controls pass, four map-96 cubes UNSAT-SOLVER in 0.1-10.6 s (PLAN amendment 1). One owner launch pending.
+* 2026-11-13: E-261113-04 cube pilot, one owner launch, 1.08 core-h, controls pass, calibration 0.92: segment-order cubes
+  cost >= 1.07x (96) and >= 0.92x (85) monolithic kissat, 0 SAT: PARK; E-261110-06 -> one explore night at most, by a lead
+  review (CONCLUSION, STATUS 3aj). march_cu built by the owner afterwards (untried).

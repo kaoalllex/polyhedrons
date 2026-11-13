@@ -1,0 +1,90 @@
+c ---- [ banner ] ------------------------------------------------------------
+c
+c Kissat SAT Solver
+c 
+c Copyright (c) 2021-2024 Armin Biere University of Freiburg
+c Copyright (c) 2019-2021 Armin Biere Johannes Kepler University Linz
+c 
+c Version 4.0.4 8af8e56f174b778aef3aa45af9f739b2a5f492c2
+c Apple clang version 21.0.0 (clang-2100.3.34.2) -W -Wall -O3 -DNDEBUG
+c Sun Nov 8 21:34:28 +03 2026 Darwin IOSM-FQNJVXCGPH 25.6.0 arm64
+c
+c ---- [ parsing ] -----------------------------------------------------------
+c
+c opened and reading DIMACS file:
+c
+c   /Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261113-04-cube-and-conquer-pilot-10-4/results/4/map96_cube003.cnf
+c
+c parsed 'p cnf 12958 157386' header
+c closing input after reading 3798818 bytes (4 MB)
+c finished parsing after 0.02 seconds
+c
+c ---- [ solving ] -----------------------------------------------------------
+c
+c seconds switched rate     size/glue tier1  binary           remaining
+c        MB reductions conflicts size  tier2     irredundant
+c         level restarts redundant glue  trail           variables
+c
+c *  0.02 24 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 12999 143704 12780 99%
+c (  0.02 33 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 12999 143704 12780 99%
+c .  0.03 33 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 13102 143254 12780 99%
+c c  0.05 37 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 13140 142058 11921 92%
+c d  0.06 40 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11493 142058 11919 92%
+c b  0.06 40 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11493 142058 11916 92%
+c f  0.09 41 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11492 142040 11917 92%
+c )  0.09 41 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11492 142040 11917 92%
+c lucky 1 units
+c l  0.09 41 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11492 142040 11916 92%
+c {  0.09 41 0 0 0  0 0   0   0 0.0 0 0 2 6 0% 11492 142040 11916 92%
+c i  0.09 41 53 0 0  0 7  39  18 1.5 6 4 2 5 6% 11498 142040 11913 92%
+c i  0.09 41 48 0 0  0 6  43  18 1.5 6 4 2 5 6% 11500 142040 11910 92%
+c i  0.09 41 45 0 0  0 6  45  18 1.5 6 4 2 5 5% 11501 142040 11905 92%
+c }  0.09 41 44 0 0  0 6  47  18 1.5 5 4 2 5 5% 11501 142040 11900 92%
+c 0  0.09 41 44 0 0  0 6  47  18 1.5 5 4 2 5 5% 11501 142040 11900 92%
+c
+c ---- [ result ] ------------------------------------------------------------
+c
+s UNSATISFIABLE
+c
+c ---- [ profiling ] ---------------------------------------------------------
+c
+c           0.07   73.49 %  preprocess
+c           0.06   69.40 %  probe
+c           0.03   31.21 %  congruence
+c           0.02   20.59 %  sweep
+c           0.02   20.12 %  parse
+c           0.01   11.11 %  factor
+c           0.01    5.93 %  substitute
+c           0.00    5.53 %  lucky
+c           0.00    0.66 %  search
+c           0.00    0.66 %  focused
+c           0.00    0.55 %  backbone
+c           0.00    0.00 %  simplify
+c =============================================
+c           0.09  100.00 %  total
+c
+c ---- [ statistics ] --------------------------------------------------------
+c
+c conflicts:                               47              520.18 per second
+c congruent:                              810                6 %  variables
+c decisions:                              219                4.66 per conflict
+c factored:                                 1                0 %  variables
+c iterations:                               4                0 %  variables
+c propagations:                         55049           609259    per second
+c substituted:                            792                6 %  variables
+c switched:                                 0                0    interval
+c
+c ---- [ glue usage ] --------------------------------------------------------
+c
+c focused glue 2 used 19 clauses 70.37% accumulated 70.37% tier1
+c focused glue 3 used  1 clauses  3.70% accumulated 74.07%
+c focused glue 4 used  4 clauses 14.81% accumulated 88.89% tier2
+c
+c ---- [ resources ] ---------------------------------------------------------
+c
+c maximum-resident-set-size:      44006637568 bytes      41968 MB
+c process-time:                                              0.09 seconds
+c
+c ---- [ shutting down ] -----------------------------------------------------
+c
+c exit 20

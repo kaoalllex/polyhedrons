@@ -1,0 +1,90 @@
+c ---- [ banner ] ------------------------------------------------------------
+c
+c Kissat SAT Solver
+c 
+c Copyright (c) 2021-2024 Armin Biere University of Freiburg
+c Copyright (c) 2019-2021 Armin Biere Johannes Kepler University Linz
+c 
+c Version 4.0.4 8af8e56f174b778aef3aa45af9f739b2a5f492c2
+c Apple clang version 21.0.0 (clang-2100.3.34.2) -W -Wall -O3 -DNDEBUG
+c Sun Nov 8 21:34:28 +03 2026 Darwin IOSM-FQNJVXCGPH 25.6.0 arm64
+c
+c ---- [ parsing ] -----------------------------------------------------------
+c
+c opened and reading DIMACS file:
+c
+c   /Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261113-04-cube-and-conquer-pilot-10-4/results/8/map96_cube007.cnf
+c
+c parsed 'p cnf 12958 157386' header
+c closing input after reading 3798817 bytes (4 MB)
+c finished parsing after 0.02 seconds
+c
+c ---- [ solving ] -----------------------------------------------------------
+c
+c seconds switched rate     size/glue tier1  binary           remaining
+c        MB reductions conflicts size  tier2     irredundant
+c         level restarts redundant glue  trail           variables
+c
+c *  0.02 24 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 12999 143704 12780 99%
+c (  0.02 33 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 12999 143704 12780 99%
+c .  0.03 33 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 13102 143254 12780 99%
+c c  0.05 36 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 13140 142058 11921 92%
+c d  0.05 38 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11522 142006 11918 92%
+c d  0.05 38 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11496 142006 11905 92%
+c )  0.08 39 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11496 142006 11905 92%
+c {  0.08 39 0 0 0  0 0   0   0 0.0 0 0 2 6 0% 11496 142006 11905 92%
+c i  0.10 40 38 0 0 100 8 535 443 1.9 15 8 5 11 14% 11513 142005 11904 92%
+c i  0.10 40 45 0 0 100 9 558 451 1.9 15 8 5 13 14% 11520 142003 11903 92%
+c i  0.10 40 46 0 0 100 9 559 451 1.9 15 8 5 13 14% 11520 142003 11895 92%
+c }  0.10 40 46 0 0 100 9 561 451 1.9 15 8 5 13 14% 11520 142003 11889 92%
+c 0  0.10 40 46 0 0 100 9 561 451 1.9 15 8 5 13 14% 11520 142003 11889 92%
+c
+c ---- [ result ] ------------------------------------------------------------
+c
+s UNSATISFIABLE
+c
+c ---- [ profiling ] ---------------------------------------------------------
+c
+c           0.06   57.59 %  preprocess
+c           0.06   54.15 %  probe
+c           0.02   23.63 %  congruence
+c           0.02   20.09 %  search
+c           0.02   20.09 %  focused
+c           0.02   17.14 %  parse
+c           0.02   16.40 %  sweep
+c           0.01    8.69 %  factor
+c           0.01    4.97 %  substitute
+c           0.01    4.97 %  lucky
+c           0.00    0.45 %  backbone
+c           0.00    0.00 %  simplify
+c =============================================
+c           0.10  100.00 %  total
+c
+c ---- [ statistics ] --------------------------------------------------------
+c
+c chronological:                            6                1 %  conflicts
+c conflicts:                              561             5283.48 per second
+c congruent:                              810                6 %  variables
+c decisions:                             4438                7.91 per conflict
+c iterations:                               4                0 %  variables
+c propagations:                        295611          2784055    per second
+c restarts:                               100                6    interval
+c substituted:                            792                6 %  variables
+c switched:                                 0                0    interval
+c
+c ---- [ glue usage ] --------------------------------------------------------
+c
+c focused glue 4    used  51 clauses 10.60% accumulated 50.73% tier1
+c focused glue 5    used  48 clauses  9.98% accumulated 60.71%
+c focused glue 6-11 used 135 clauses 28.07% accumulated 88.77%
+c focused glue 12   used   4 clauses  0.83% accumulated 89.60%
+c focused glue 13   used   5 clauses  1.04% accumulated 90.64% tier2
+c
+c ---- [ resources ] ---------------------------------------------------------
+c
+c maximum-resident-set-size:      42765123584 bytes      40784 MB
+c process-time:                                              0.10 seconds
+c
+c ---- [ shutting down ] -----------------------------------------------------
+c
+c exit 20

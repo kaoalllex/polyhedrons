@@ -1418,17 +1418,17 @@ window.GRAPH = {
    "id": "E-261113-04",
    "kind": "experiment",
    "title": "Cube-and-conquer pilot on (10, 4) maps 96 and 85 - do segment-order cubes cut the summed kissat time?",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-13",
-   "concluded": "",
+   "concluded": "2026-11-13",
    "path": "experiments/E-261113-04-cube-and-conquer-pilot-10-4/README.md",
    "direction": [
     "DR19",
     "DR8"
    ],
-   "verdict": "",
+   "verdict": "PARKED@1.08 core-h (segment-order cubes r >= 1.07 on 96, >= 0.92 on 85; 0 SAT; no proofs)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction: DR8 cube-and-conquer with segment-order cubes: PARKED@1.08 core-h (two maps, r >= 0.92 and >= 1.07). Not a refutation of cube-and-conquer."
   },
   {
    "id": "FD11",

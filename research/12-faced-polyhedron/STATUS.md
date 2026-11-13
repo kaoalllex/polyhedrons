@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-13** (E-261113-02 and E-261110-05 concluded). The latest registered results are E-261113-02 and
-E-261110-05 (sections 3ah, 3ai), after E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
+As of **2026-11-13** (E-261113-04 concluded). The latest registered results are E-261113-04 (section 3aj), after
+E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
 Ninth-plane Stage A is exhausted with no candidate: all near-copy cells UNSAT-SOLVER at instance scope, no family
@@ -84,7 +84,7 @@ No direction is REFUTED today.
 | DR5 | Near-miss repair (relocation, ILS, polar duals, dual-mesh planes) | wrong topological class (FD11) | session 1-2 | LOW-YIELD: every known near-miss fails the Gauss class (FD11, EXACT), so none is close in that invariant; not a proof that repair cannot work |
 | DR6 | Black-box engines on the unchanged energy (SA, CMA-ES, GA, ILS, NGOpt, DE, LNS, floors) | all solve n = 7; none breaks n = 8 (1-2) or genus 4 | sessions 2-5 | LOW-YIELD@sessions 2-5: solve n = 7, plateau at n = 8 and genus 4; a new objective would make a new run informative, more seeds would not |
 | DR7 | Solid-first + exact CP-SAT inner step | S0: genus 3 from random planes, dead-end maps; S5 variant passes known (8,3) and random D2 recovery controls (section 3g) | night 2-3 | OPEN-LOW as a generator of new maps / benchmarks |
-| DR8 | Exact asymmetric decision per type (OM-SAT, cube-and-conquer, certificates) | never run to completion; `immersion` 8/8 timeouts at 2.2 h; third-party pilot 2 maps in 648.5 core-h (CLAIMED); night 6: k-face sub-instances on the greedy face set SAT for 27 types at k = 8 and 15 at k = 9, every k = 10 a timeout at 20 min, 0 UNSAT, 0 of 42 models realized (E-261101-23); chirotope-first k = 7 models for 6 of 27 seeds, none realized (E-261101-25); both UNDERPOWERED by a final-polynomial LP hang (see their `CONCLUSION.md`); E-261102-01 completed the sweep: k = 8 SAT for all 59 types, k = 9 SAT for 33, TIMEOUT for 25, 0 UNSAT, 0 realized, 3 exact final polynomials, checked by an independent standard-library checker in `verify_all` (2026-11-03, `verification/certificates/final_polynomial/`, EXACT; each excludes one SAT model, no type) (LOW-YIELD for exclusion on the greedy face set, `CONCLUSION.md`); the chirotope-first engine scored on known answers (section 3b, E-261101-26, E-261102-03): its frontier is the full 12-face genus-3 map, also with the alternation cap lifted (0/12 at 120 min; SAT calls of minutes at k = 10-11); E-261102-02 killed | ~18 core-h + 104 (night 6, ~14 productive) + 4.2 + 6.6 + 35.9 (night 7) | PROMISING, but only after E-261101-06/E-261101-09 show a cost below ~2,000 core-h per type |
+| DR8 | Exact asymmetric decision per type (OM-SAT, cube-and-conquer, certificates) | never run to completion; `immersion` 8/8 timeouts at 2.2 h; third-party pilot 2 maps in 648.5 core-h (CLAIMED); night 6: k-face sub-instances on the greedy face set SAT for 27 types at k = 8 and 15 at k = 9, every k = 10 a timeout at 20 min, 0 UNSAT, 0 of 42 models realized (E-261101-23); chirotope-first k = 7 models for 6 of 27 seeds, none realized (E-261101-25); both UNDERPOWERED by a final-polynomial LP hang (see their `CONCLUSION.md`); E-261102-01 completed the sweep: k = 8 SAT for all 59 types, k = 9 SAT for 33, TIMEOUT for 25, 0 UNSAT, 0 realized, 3 exact final polynomials, checked by an independent standard-library checker in `verify_all` (2026-11-03, `verification/certificates/final_polynomial/`, EXACT; each excludes one SAT model, no type) (LOW-YIELD for exclusion on the greedy face set, `CONCLUSION.md`); the chirotope-first engine scored on known answers (section 3b, E-261101-26, E-261102-03): its frontier is the full 12-face genus-3 map, also with the alternation cap lifted (0/12 at 120 min; SAT calls of minutes at k = 10-11); E-261102-02 killed; segment-order cubes on (10,4) maps 96, 85 cost >= 0.92x monolithic kissat, parked (E-261113-04, section 3aj) | ~18 core-h + 104 (night 6, ~14 productive) + 4.2 + 6.6 + 35.9 (night 7) | PROMISING, but only after E-261101-06/E-261101-09 show a cost below ~2,000 core-h per type |
 | DR9 | Rank-3 (normals-only) SAT per type with degree, covering, saddle, face-winding clauses | proposed (review 2026-10-30 dir. 6), not run | 0 | PROMISING: cheap, outcomes decisive either way |
 | DR10 | Proof mining: UNSAT cores of fixed-normal offset problems (Q1 sphere; r = 0 drift seeds) -> geometric lemmas | Q10 found cores empty of global triples (local + period conditions) | ~1 h | PROMISING |
 | DR11 | Local immersion theory (one reflex corner per vertex, crossing parity, minimal cores of symmetric instances) | REFLEX1, parity theorem PROVED-1 | - | PROMISING (turns computation into lemmas) |
@@ -354,6 +354,14 @@ Week item 3. Eight maps ((8, 2) #0, #1; (9, 3) #40, 43, 10, 30, 48, 5), kissat, 
 controls pass. V2 (no SEGMENT_DISJOINT) UNSAT-SOLVER on all eight; V1 (immersion-only) UNSAT-SOLVER on both (8, 2) maps,
 SAT on five (9, 3) maps, TIMEOUT on #5. Readings: H-261110-01 weakened (planning evidence); triples carry the (9, 3)
 refutation; LOCAL at (8, 2) -> one core-mining session. Instance scope, no negative claim (CONCLUSION).
+
+## 3aj. E-261113-04 cube-and-conquer pilot on (10, 4) maps 96 and 85 (2026-11-13)
+
+Week item 4, gate of E-261110-06. march_cu not buildable in the prep session, so segment-order cubes (three order
+literals per doubled pair, 512 cubes per map), kissat, no proofs; one owner launch, 1.08 core-h, controls pass,
+speed calibration 0.92. Summed cube time >= 1.07x (96) and >= 0.92x (85) the monolithic time before the arm cap,
+0 SAT: **PARK** for these cubes at this budget (NUMERICAL, instance scope; not a verdict on march_cu or other cubes).
+E-261110-06 takes its "one explore night" branch, scheduled only by a lead review (CONCLUSION).
 
 ## 4. What may and may not be claimed
 
