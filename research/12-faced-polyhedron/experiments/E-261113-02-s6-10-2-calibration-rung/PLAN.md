@@ -55,3 +55,15 @@ Pre-registration, 2026-11-13 (lab session, week item 2 of the owner-approved pla
   goes to "For the lead" when it changes a route.
 
 ## Amendments
+
+### 2026-11-13: amendment 1, pilot (prep session)
+
+`prep/pilot` (2 shards, `run.sh` with `QUEUE=queue_pilot.json`, 48.8 core-s): shard controls SAT / UNSAT-SOLVER; all 6
+units SAT, solver 0.2-3.6 s (ended by completion); the seed reaches kissat (`seed=1`, `seed=2` in the solver logs) and
+the six models are pairwise distinct, so the seed diversifies (no shuffle amendment). Bridge: 0 of 6 realized, the
+three #739 models included (`SAT-NOT-REALIZED`; fp FEASIBLE on 5, NONREALIZABLE-NUMERICAL on 1); about 3 s per model.
+The hinge stage returns the same loss from all 6 random starts on each model (one attractor), so its restarts add
+nothing here; two_stage restarts vary (64-121 of 715 signs wrong). The G3 realization of E-261110-02 came from one
+two_stage restart. Projection: 153 units x ~6 s plus controls ~0.3 core-h, far below 3 core-h; the cap does not bind.
+Gate met (controls pass; P3 is at risk). Startup: the pilot ran the owner's `run.sh`; the `launch.sh` path is the one
+E-261113-01 used, not re-exercised. Launch: owner, together with E-261110-05.

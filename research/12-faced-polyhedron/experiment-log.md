@@ -956,3 +956,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-13: E-261113-01 symmetric S6 (10,3): (a) Lutz #15 with group T, 0 EMBEDDED of 816 units (family scope, reduction
   PROVED-1); (b) one owner launch, 10 shards, 0.034 core-h, controls pass: ten C3 / free C2 formulas UNSAT-SOLVER in
   seconds, 0 SAT; OPEN, no negative claim (CONCLUSION, STATUS 3ag).
+* 2026-11-13: week items 2 and 3 prepared. E-261113-02: Lutz's 865 (10,2) list imported (checks pass, witness = #739),
+  50 maps x 3 kissat seeds queued; pilot 6/6 SAT in seconds, bridge 0/6 realized (PLAN amendment 1). E-261110-05: encoder
+  option `no_segment_disjoint`; (8,2) V2, V1 all UNSAT-SOLVER, controls pass (amendment 1). One owner launch pending.

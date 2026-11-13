@@ -112,7 +112,8 @@ Done under the 2026-11-12 plan: ninth-plane Stage A (E-261112-01, STATUS 3ae) an
      UNSAT-SOLVER -> a scoped search outcome that ranks the maps, no exclusion row (a replay with proofs only on the
      owner's word); > 20 % timeouts -> escalate.
    * Lab: Opus, high (may meet a SAT model; the symmetric path at 10 faces is new).
-2. **(10, 2) rung: time to SAT and bridge rate** ([E-261113-02](experiments/E-261113-02-s6-10-2-calibration-rung/), explore; I-261113-02).
+2. **(10, 2) rung: time to SAT and bridge rate** ([E-261113-02](experiments/E-261113-02-s6-10-2-calibration-rung/), explore; I-261113-02). Prepared 2026-11-13
+   (PLAN amendment 1); run pending the owner's launch with item 3.
    * Question: where SAT is known to occur, how fast does kissat find it and how often does a model realize? Lutz's
      865 list (untrusted data, same importer), 50 maps by a frozen seed, 3 seeds each, cap 300 s, bridge on <= 6
      models per SAT map; <= 3 core-h, no proofs. Kill: importer control fails. Realized objects are controls.
@@ -120,7 +121,8 @@ Done under the 2026-11-12 plan: ninth-plane Stage A (E-261112-01, STATUS 3ae) an
      (never a claim), route = item 4; a heavy tail -> propose a seed-portfolio day run on (10, 3) to the owner;
      bridge rate < 50 % -> item 1 takes more models per SAT; 50 maps under 0.3 core-h -> the full 865 in the same budget.
    * Lab: Opus, medium.
-3. **Immersion-only and segment-free formulas** ([E-261110-05](experiments/E-261110-05-immersion-only-s5-formulas/), unchanged explore item).
+3. **Immersion-only and segment-free formulas** ([E-261110-05](experiments/E-261110-05-immersion-only-s5-formulas/), unchanged explore item). (8,2) stage done
+   2026-11-13 (PLAN amendment 1: all four UNSAT-SOLVER, reading LOCAL); (9,3) run pending the owner's launch.
    * Question: which clause family refutes the two (8,2) and six (9,3) maps? V2 on the two (8,2) maps first;
      one prep session + <= 3 core-h, 8-10 shards. Plain-formula CNF hash mismatch or failed control -> stop.
    * Follow-up unchanged: V2 (no `SEGMENT_DISJOINT`) SAT at (8,2) -> H-261110-01 supported, theory paragraph;

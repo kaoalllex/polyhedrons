@@ -48,3 +48,15 @@ Pre-registration, 2026-11-13 (lab session, week item 3 of the owner-approved pla
   done.
 
 ## Amendments
+
+### 2026-11-13: amendment 1, stage 1 ((8, 2) units, prep session)
+
+First attempt: `units.py` built the convex f9 control with `from_links`, which asserts a neighborly map; it raised
+before any control or unit (0 s). Fixed: the f9 control is built with `submap=True`, as `tranche.unit` builds it.
+Rerun `results/prep-8-2/` (2 shards, 0.085 core-h): controls pass in both shards (c1 both (8, 2) plain hashes equal
+the records; c2 SEGMENT_DISJOINT 12 and 8 clauses, the only family V2 drops, V2 = plain on f9; c3 Roest-Vigh and
+Mizhaev SAT under V1 and V2; c4 V2 UNSAT-SOLVER, V1 also UNSAT-SOLVER). Units: #0 V2 UNSAT-SOLVER 6.4 s, V1 149.8 s;
+#1 V2 13.0 s, V1 134.1 s; all ended by completion. Reading (registered tree): LOCAL on both (8, 2) maps -> one
+session of core mining on the (8, 2) formulas (later, not this item's run); P1 failed, P2 failed. Gate met: the
+(9, 3) run starts unchanged (owner, `launch.sh 13-02 10-05 start`; V1 at (8, 2) took ~140 s, so 900 s may bind at
+(9, 3)). The (9, 3) startup path (`run.sh` default `CASE=9_3`) is the same code; not separately exercised.

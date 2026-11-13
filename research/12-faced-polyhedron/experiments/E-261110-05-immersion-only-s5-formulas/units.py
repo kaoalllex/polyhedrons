@@ -34,8 +34,14 @@ PLAIN_SHA256 = {
 SOLVER_CAP, CONTROL_CAP = 900, 60
 
 
-def formula(links, opts):
-    c = pilot.CNF(len(links)); pilot.build(c, pilot.from_links(links), opts)
+def formula(links, opts, submap=False):
+    """The plain formula (from_links); submap=True for the non-neighborly convex control map, as tranche.unit builds it."""
+    if submap:
+        tris = sorted({tuple(sorted((x, a, b))) for x, link in enumerate(links) for a, b in zip(link, link[1:] + link[:1])})
+        t = pilot.Triangulation(len(links), tris, links=dict(enumerate(links)), submap=True)
+    else:
+        t = pilot.from_links(links)
+    c = pilot.CNF(len(links)); pilot.build(c, t, opts)
     return c
 
 
@@ -66,7 +72,8 @@ def controls(case, out):
         report[f'map{i}'] = dict(c1_plain_hash=c1, c2_families=c2, plain_tags=plain.tags, v1_tags=v1.tags, v2_tags=v2.tags)
         ok &= c1 and c2
     f9 = json.loads((RUNNER / 'control_f9.json').read_text())
-    same = cnf_sha(formula(f9['links'], VARIANTS['V2']), 'f9') == cnf_sha(formula(f9['links'], pilot.ALL_OPTS), 'f9')
+    f9_links = [f9['links'][str(k)] for k in range(len(f9['links']))]
+    same = (cnf_sha(formula(f9_links, VARIANTS['V2'], True), 'f9') == cnf_sha(formula(f9_links, pilot.ALL_OPTS, True), 'f9'))
     report['c2_f9_v2_equals_plain'] = same; ok &= same
     for name, planes, t in pilot.controls()[:2]:
         for v, opts in VARIANTS.items():
@@ -75,7 +82,7 @@ def controls(case, out):
             report[f'c3_{name}_{v}'] = r['status']; ok &= r['status'] == 'SAT'
     for v, opts in VARIANTS.items():
         neg = {int(k): x for k, x in f9['negative_links'].items()}
-        r = pilot.solve(pinned(formula([neg[k] for k in range(len(neg))], opts), f9['planes']), out, f'c4_f9_negative_{v}',
+        r = pilot.solve(pinned(formula([neg[k] for k in range(len(neg))], opts, True), f9['planes']), out, f'c4_f9_negative_{v}',
                         CONTROL_CAP)
         report[f'c4_f9_negative_{v}'] = r['status']
         if v == 'V2':
