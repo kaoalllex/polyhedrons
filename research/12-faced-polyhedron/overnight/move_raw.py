@@ -27,13 +27,10 @@ def sha(path):
 
 
 def alive(pid):
-    try:
-        os.kill(pid, 0)
-    except ProcessLookupError:
-        return False
-    except PermissionError:
-        pass
-    return True
+    # A PID recorded by an old run may since have been reused by an unrelated process, so only a process whose
+    # command line is a launch.sh shard chain counts.
+    command = subprocess.run(['ps', '-o', 'command=', '-p', str(pid)], capture_output=True, text=True).stdout
+    return 'launch.sh start, shard' in command
 
 
 def main():
