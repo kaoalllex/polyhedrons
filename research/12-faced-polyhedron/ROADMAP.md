@@ -113,7 +113,7 @@ Done under the 2026-11-12 plan: ninth-plane Stage A (E-261112-01, STATUS 3ae) an
      owner's word); > 20 % timeouts -> escalate.
    * Lab: Opus, high (may meet a SAT model; the symmetric path at 10 faces is new).
 2. **(10, 2) rung: time to SAT and bridge rate** ([E-261113-02](experiments/E-261113-02-s6-10-2-calibration-rung/), explore; I-261113-02). Done 2026-11-13
-   (STATUS 3ah): LIGHT, bridge 16/153, CHEAP -> full 865 next (owner launch).
+   (STATUS 3ah): LIGHT, bridge 16/153, CHEAP; the full-865 branch is held for the lead (owner, 2026-11-13).
    * Question: where SAT is known to occur, how fast does kissat find it and how often does a model realize? Lutz's
      865 list (untrusted data, same importer), 50 maps by a frozen seed, 3 seeds each, cap 300 s, bridge on <= 6
      models per SAT map; <= 3 core-h, no proofs. Kill: importer control fails. Realized objects are controls.
