@@ -10,7 +10,7 @@ produces: []
 preregistered: true
 ---
 
-> Running (pre-registered 2026-11-13, `PLAN.md`; pilot then owner day run), explore, control. Scores T D F G R: 2 2 2 1 2 | budget: one prep session, then an owner day run of
+> Running (pre-registered 2026-11-13, `PLAN.md`; pilot passed, amendment 1; owner day run pending), explore, control. Scores T D F G R: 2 2 2 1 2 | budget: one prep session, then an owner day run of
 > <= 20 core-h, 10 shards.
 
 ## Goal

@@ -968,3 +968,7 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-13: E-261113-04 cube pilot, one owner launch, 1.08 core-h, controls pass, calibration 0.92: segment-order cubes
   cost >= 1.07x (96) and >= 0.92x (85) monolithic kissat, 0 SAT: PARK; E-261110-06 -> one explore night at most, by a lead
   review (CONCLUSION, STATUS 3aj). march_cu built by the owner afterwards (untried).
+* 2026-11-13: week item 5 prepared. E-261113-03 rung-below census: exact list of 25,531 eighth-plane cells over seven
+  Roest-Vigh planes (deletions 0 and 4; rank-4 Zaslavsky counts match), Stage A worker at eight faces, map classifier;
+  pre-registration `9080665e`. Pilot 50/50 UNSAT-SOLVER at mean 2.34 s, planted cells SOLID with the source map,
+  projected 16.6 core-h (PLAN amendment 1). Owner day run pending.

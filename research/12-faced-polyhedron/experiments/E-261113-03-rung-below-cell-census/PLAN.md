@@ -73,3 +73,14 @@ pilot; the list and the code below are part of this commit.
   conclusion commit; ROADMAP E-261113-03 -> done; E-261112-02 -> proposed or parked by the reading above.
 
 ## Amendments
+
+**Amendment 1 (pilot, 2026-11-13, lab session; nothing in the plan changes).** `PILOT=1 bash overnight/launch.sh
+261113-03 start`, 10 shards, commit `9080665e` in every manifest, clean tree. Controls 40/40 pass: C0, P0 (`d0_c08712`),
+P4 (`d4_c04592`) SOLID in every shard with Roest-Vigh's map (`41ed92cc4a913726`, genus 3, V E F chi 24 36 8 -4), C2
+INFEASIBLE; so the planted cells give the source object unaided through their LP representatives. Pilot units: 50/50
+INFEASIBLE (UNSAT-SOLVER), `ended_by: completed`, 0 SOLID / UNKNOWN / ERROR; wall 1.80-3.53 s (mean 2.34, median 2.30;
+delete 0: 2.38, delete 4: 2.29), at most 0.059 of the 60 s cap; controls 97.5 s per start of 10 shards. Gate: the
+binding limit is the budget, not the cap; projected total 16.6 core-h (recorded + 2.34 s x 25,481 units + one control
+round; another start adds about 0.03 core-h) <= 20 core-h -> **pass**; about 1.7 h wall on 10 cores. P1 so far holds
+(2.34 <= 2.8 s), P3 holds (no SOLID in 50); P2 is open, so T + D = 4 stands. The day run uses the same results
+directory, skips the 50 recorded units and is the owner's launch.
