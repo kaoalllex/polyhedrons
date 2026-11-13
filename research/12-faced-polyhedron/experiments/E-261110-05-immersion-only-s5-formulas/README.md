@@ -2,16 +2,16 @@
 id: E-261110-05
 title: Immersion-only and segment-free formulas on the two (8, 2) maps and six (9, 3) maps - which clause family refutes
 date: 2026-11-10
-status: planned
+status: running
 direction: [DR19, DR11]
 origin: [I-261110-04, E-261103-03, E-261109-03]
 tests: [H-261110-01]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned, explore. Scores T D F G R: 2 2 2 2 2 | budget: <= 3 core-h day run, 8-10 shards. Before any compute:
-> `PLAN.md` from `experiments/_template/` (skill `experiment-start`).
+> Running (pre-registered in `PLAN.md`: kissat, no proofs, cap 900 s), explore. Scores T D F G R: 2 2 2 2 2 |
+> budget: <= 3 core-h day run, 10 shards.
 
 ## Goal
 

@@ -1303,7 +1303,7 @@ window.GRAPH = {
    "id": "E-261110-05",
    "kind": "experiment",
    "title": "Immersion-only and segment-free formulas on the two (8, 2) maps and six (9, 3) maps - which clause family refutes",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-10",
    "concluded": "",
    "path": "experiments/E-261110-05-immersion-only-s5-formulas/README.md",
@@ -1312,7 +1312,7 @@ window.GRAPH = {
     "DR11"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
