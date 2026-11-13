@@ -943,3 +943,5 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-12: filed the owner's approved `reviews/dialogue-2026-11-10-strategy.md`: strategy, five-item week plan and queue updated;
   E-261112-01 Stage A pre-registered, E-261112-02 Stage B gated; E-261110-03/04 parked, E-261110-02 bridge gate added. No research compute.
   Existing polyhedra environment matches all requirement pins; OR-Tools import/model construction passed without Solve; handover updated.
+* 2026-11-13: E-261112-01 ninth-plane Stage A (10 shards, 8.01 core-h, 49 min wall): controls pass in every shard; all 2,004
+  near-copy cell orbits INFEASIBLE (UNSAT-SOLVER), 0 SOLID, 0 open; OPEN, instance scope, no family negative (CONCLUSION, STATUS 3ae).

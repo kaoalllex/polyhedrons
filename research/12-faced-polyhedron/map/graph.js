@@ -1334,18 +1334,18 @@ window.GRAPH = {
    "id": "E-261112-01",
    "kind": "experiment",
    "title": "Ninth-plane Stage A - exact near-copy cells over both eight-plane sources",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-12",
-   "concluded": "",
+   "concluded": "2026-11-13",
    "path": "experiments/E-261112-01-ninth-plane-stage-a/README.md",
    "direction": [
     "DR7",
     "DR18",
     "DR12"
    ],
-   "verdict": "",
+   "verdict": "OPEN@8.01 core-h (Stage A list exhausted, 2,004/2,004 UNSAT-SOLVER, 0 SAT, 0 open; discovery power unmeasured)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction (DR7 / DR18 at nine faces): OPEN@8.01 core-h (Stage A list exhausted, 2,004/2,004 UNSAT-SOLVER, 0 SAT, 0 open; discovery power unmeasured). H-261112-01 stays open."
   },
   {
    "id": "E-261112-02",
