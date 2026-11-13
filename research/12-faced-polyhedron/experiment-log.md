@@ -962,3 +962,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-13: E-261113-02 (10,2) rung, one owner launch, 0.239 core-h: 153/153 SAT, median 0.83 s, no timeout; bridge
   16/153 realized; readings LIGHT, BRIDGE<50 %, CHEAP (CONCLUSION, STATUS 3ah). E-261110-05, 0.44 core-h: V2 UNSAT-SOLVER on
   all eight maps, V1 SAT on five (9,3) maps, UNSAT-SOLVER at (8,2); H-261110-01 weakened (CONCLUSION, STATUS 3ai).
+* 2026-11-13: week item 4 prepared. E-261113-04 cube pilot on (10,4) maps 96, 85: march_cu not buildable in the session,
+  so segment-order cubes (9 existing order literals of the 3 doubled pairs, 512 cubes per map); pilot 0.006 core-h,
+  controls pass, four map-96 cubes UNSAT-SOLVER in 0.1-10.6 s (PLAN amendment 1). One owner launch pending.
