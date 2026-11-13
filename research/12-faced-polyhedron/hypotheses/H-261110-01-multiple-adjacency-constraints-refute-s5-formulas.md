@@ -24,7 +24,9 @@ as well, and the S5 negatives are evidence about S0.
   `(2,2,2)` in 22-76 s, spread-out `1^6` in 523-914 s. Suggestive only: a time is not a cause.
 * E-261108-02 found no UNSAT sub-formula on <= 6 faces of the 24 11-gon maps (its grouping, cap 20 s): the
   refutation is not small in faces.
-* Nothing else. The statement is the judgment of one AI session (2026-11-10).
+* E-261110-02 (2026-11-13): the 20 (10, 3) formulas all TIMEOUT at 3600 s, so the comparison with (10, 4) has no
+  data point; no move (STATUS 3af).
+* Nothing else beyond these. The statement is the judgment of one AI session (2026-11-10).
 
 ## What would move it
 

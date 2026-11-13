@@ -9,15 +9,15 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-13, E-261110-02 prep done; night ready without DRAT; no candidate)
+## Hand-over (2026-11-13, E-261110-02 concluded: 20/20 TIMEOUT, OPEN, escalated; no candidate)
 
-* Branch `lab/2026-11-09`, committed, not pushed. No runs in flight. Prep (PLAN amendment 2): 20 Lutz (10,3) maps
-  checked; `--target S6`; tranche imported-map mode; (10,2) bridge gate PASS; controls pass; pilot #1, #2 TIMEOUT at 1200 s.
-* Owner (2026-11-13): the night runs without proofs (owner amendment, ~20 core-h); no DRAT by default from now on
-  (`CLAUDE.md`, `AGENTS.md`, `PROTOCOL.md` §5, skills, template).
-* NEXT: the owner's night `bash research/12-faced-polyhedron/overnight/launch.sh 10-02 start` (AC power), then
-  `summary.py` and `experiment-conclude`; then week item 1B (Stage B) or 3 as the owner decides.
-* Checks: records in `prep/`; test_tranche 27/27, test_pilot 12/12, summary selftest; verify_all --quick at d26fe532.
-* For the lead: the bridge passed on its second configuration (6 restarts, sub-map check; the first had an all-pairs
-  check that rejects every S6 object); 3 of 6 foreign (10,2) models look non-realizable (fp numerical); pilot timeouts
-  make > 20 % night timeouts likely. Unchanged: crease lemma / five outside chords; pencil lemma vs clauses.
+* Branch `lab/2026-11-09`, committed, not pushed. No runs in flight. Raw `attempt_*/` output to be moved by
+  `overnight/move_raw.py` after this commit (owner or next session, if not done here).
+* E-261110-02 night: 20.03 core-h, 2.0 h wall, controls pass; all 20 (10,3) maps TIMEOUT at 3600 s (kissat, no proofs);
+  OPEN@20.03 core-h, solver-limited (`CONCLUSION.md`, STATUS 3af). "> 20 % timeouts" rule -> escalated.
+* NEXT: the owner decides: week item 1B (Stage B, gated PLAN first) or 3 (thin wedges, PLAN first); items 4, 5 are lab
+  items. No further S6 (10,3) compute without a new PLAN amendment saying what is different.
+* Checks: summary.py on the night (20 TIMEOUT, verdict escalate); trace.py 0 errors; no code changed.
+* For the lead: S6 (10,3) after 0/20 at 3600 s: changed set-up (symmetry breaking via map automorphisms, cube-and-conquer
+  as in item 5, another solver/options, longer cap on 1-2 maps) or drop to backup? Unchanged: crease lemma / five outside
+  chords; pencil lemma vs clauses; 3 of 6 foreign (10,2) models look non-realizable (fp numerical).

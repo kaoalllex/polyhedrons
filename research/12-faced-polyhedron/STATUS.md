@@ -1,19 +1,21 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-13** (E-261112-01 concluded). The latest registered result is E-261112-01 (section 3ae), after
-E-261109-06 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
+As of **2026-11-13** (E-261110-02 concluded). The latest registered result is E-261110-02 (section 3af), after
+E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
 Ninth-plane Stage A is exhausted with no candidate: all near-copy cells UNSAT-SOLVER at instance scope, no family
-negative (section 3ae). Stage B stays gated, S6 (10,3) follows its formula/bridge controls. The dialogue's checks
+negative (section 3ae). S6 (10,3): the night left all 20 formulas undecided at 3600 s, controls pass; solver-limited,
+escalated (section 3af). Stage B stays gated. The dialogue's checks
 remain session checks, not new ledger evidence; the local S6 (10,2) witness work is separate. S0 stays parked and the
 (8,2)/(9,3) note deferred. No credence change.
 
 ## 0. State in one paragraph
 
 **Focus since 2026-11-10 (`STRATEGY.md` §1, owner): three constructive targets on the laptop**: S6 at (10, 3) first
-(E-261110-02), S1 with the genus free at 9, 10 and 12 faces, S5 at (10, 4) only under the rule of E-261110-06; of these only
-ninth-plane Stage A has run (S1 at nine faces, no candidate, section 3ae). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
+(E-261110-02), S1 with the genus free at 9, 10 and 12 faces, S5 at (10, 4) only under the rule of E-261110-06; of these
+ninth-plane Stage A (S1 at nine faces, no candidate, section 3ae) and the S6 (10, 3) night (20/20 TIMEOUT, section 3af)
+have run. **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
 4, gated by a speed-up benchmark (E-261103-07: 10/10 TIMEOUT, section 3w); from 2026-11-03 to 2026-11-08 the focus was
 (9, 3), now decided at formula scope (below); its negative result is a side track towards a note marked as not
 independently reviewed. No geometric witness is known; the paired exact pilot is complete (section 3e); the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes
@@ -318,6 +320,13 @@ pass in every shard, pilot gate passed. All 2,004 certified near-copy cell orbit
 frozen hard model (36 pairs, edge runs >= 39, genus free) INFEASIBLE in CP-SAT without proofs, 0 SOLID, 0 open.
 NUMERICAL, instance scope; UNSAT-SOLVER is not a negative result; nine-plane discovery power unmeasured; Stage B cells,
 walls and other sources not run. OPEN@8.01 core-h; no hypothesis status, credence or witness change (CONCLUSION).
+
+## 3af. E-261110-02 S6 (10, 3) twenty-map night (2026-11-13)
+
+Week item 2, one owner launch, 10 shards, 20.03 core-h (cap 80), 2.0 h wall, controls pass in every shard (bridge gate
+and pilot in prep). kissat rel-4.0.4, no proofs, cap 3600 s, `submap=True`: all 20 maps of Lutz's (10, 3) list TIMEOUT,
+0 SAT, 0 UNSAT. NUMERICAL, instance scope; a timeout says nothing about existence. OPEN@20.03 core-h, solver-limited;
+"> 20 % timeouts" rule -> escalated. No hypothesis status, credence or witness change (CONCLUSION).
 
 ## 4. What may and may not be claimed
 

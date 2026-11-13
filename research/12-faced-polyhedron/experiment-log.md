@@ -948,3 +948,5 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-13: E-261110-02 prep: Lutz's 20 (10,3) maps imported and checked; `--target S6`; tranche imported-map mode;
   (10,2) bridge gate passes (foreign model realized, S6 PASS) after fixing the all-pairs check; controls pass; pilot
   Lutz #1, #2 TIMEOUT at 1200 s; startup check clean. Night ready (PLAN amendment 2).
+* 2026-11-13: E-261110-02 S6 (10,3) night (10 shards, 20.03 core-h, 2.0 h wall, no proofs): controls pass in every shard;
+  all 20 Lutz maps TIMEOUT at 3600 s, 0 SAT, 0 UNSAT; OPEN, solver-limited, escalated (CONCLUSION, STATUS 3af).
