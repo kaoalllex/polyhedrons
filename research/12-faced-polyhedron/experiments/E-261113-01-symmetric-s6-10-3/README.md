@@ -2,12 +2,12 @@
 id: E-261113-01
 title: Symmetric S6 (10, 3) - the tetrahedral family of Lutz #15 and ten symmetric formulas
 date: 2026-11-13
-status: planned
+status: running
 direction: [DR19, DR8, DR18]
 origin: [I-261113-01, E-261110-02, E-261103-02]
 tests: [H-261110-03]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned, exploit, jump 2. Scores T D F G R: 2 2 2 2 2 | budget: one prep session + <= 10 core-h day run, 10

@@ -1368,7 +1368,7 @@ window.GRAPH = {
    "id": "E-261113-01",
    "kind": "experiment",
    "title": "Symmetric S6 (10, 3) - the tetrahedral family of Lutz",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-13",
    "concluded": "",
    "path": "experiments/E-261113-01-symmetric-s6-10-3/README.md",
@@ -1378,7 +1378,7 @@ window.GRAPH = {
     "DR18"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
