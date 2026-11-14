@@ -11,8 +11,8 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
 
 ## Hand-over (2026-11-14, lead review applied)
 
-* Branch `lab/2026-11-09`, committed, not pushed. Nothing in flight. A PR of this branch into `main` and the next
-  `lab/` branch wait for the owner's word.
+* Branch `lab/2026-11-14`, created from `main` after PR #11 merged `lab/2026-11-09` (`verify` green, 2026-11-14).
+  Committed, not pushed. Nothing in flight.
 * Lead review `reviews/strategy-review-2026-11-14.md`, approved by the owner the same day: new week plan in
   `ROADMAP.md`; `STRATEGY.md` order S6 (10, 3), then S5 (10, 4), then nine faces. Not applied (not asked): the
   credences of the review's §8 and the PLAN-template sentence of its §3.
