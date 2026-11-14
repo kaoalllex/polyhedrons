@@ -2,7 +2,9 @@
 id: E-261110-06
 title: Normalised S5 (10,4) strata A and B
 date: 2026-11-10
-status: running
+status: done
+concluded: 2026-11-14
+verdict: COMPLETE-UNSAT-SOLVER
 direction: [DR19]
 origin: [E-261109-06, E-261108-03, I-261031-02]
 tests: [H-261101-07]
@@ -10,7 +12,7 @@ produces: []
 preregistered: true
 ---
 
-> Running, exploit, jump 2 (reopened by the owner on 2026-11-14 as week item 2, the second target of `STRATEGY.md`).
+> Done, exploit, jump 2 (reopened by the owner on 2026-11-14 as week item 2, the second target of `STRATEGY.md`).
 > Scores T D F G R: 2 2 2 2 2 (lead review 2026-11-14) | budget: one prep session + one owner night <= 80 core-h,
 > 10 shards. Before any compute: `PLAN.md` (skill `experiment-start`) and the owner's approval of the night.
 
@@ -31,14 +33,10 @@ models, bridge, `--target S5`, `candidate-check`, escalate; all UNSAT-SOLVER -> 
 
 The superseded cube rule is retained in the git history. The current stop and follow-up rules are in `PLAN.md`.
 
-## Preparation
+## Results
 
-READY for the owner night; see `CONCLUSION.md` and `results/validation.json`. The experiment remains running pending that night.
+The registered A+B queue is complete with only UNSAT-SOLVER answers; no candidate or geometric exclusion.
+Controls and provenance checks pass. H-261101-07 remains open. Counts, costs and verification scope are in
+`CONCLUSION.md`; machine-readable evidence is in `results/night-summary.json`.
 
-Owner entry point (AC power; launch.sh supplies caffeinate):
-
-```sh
-bash research/12-faced-polyhedron/overnight/launch.sh 10-06 start
-```
-
-Use `status` or `stop` in place of `start`; restart resumes recorded work.
+Next: week item 5. The lead receives the registered proof-replay / (11,5) follow-up; no further launch is scheduled.

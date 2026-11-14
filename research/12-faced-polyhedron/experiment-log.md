@@ -988,3 +988,8 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 
 2026-11-14 — E-261110-06 normalized A+B prep READY for one owner night; saved controls reused, startup/restart and quick checks pass.
 See `experiments/E-261110-06-s5-10-4-strata-ab-remainder/CONCLUSION.md` (NUMERICAL; no geometric negative).
+
+### 2026-11-14 — E-261110-06 owner run concluded
+
+COMPLETE-UNSAT-SOLVER; provenance, queue coverage and solver-log audit PASS; no geometric negative.
+See `experiments/E-261110-06-s5-10-4-strata-ab-remainder/CONCLUSION.md`; item 5 next, proof-replay proposal to the lead.

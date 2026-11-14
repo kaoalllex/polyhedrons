@@ -1319,14 +1319,14 @@ window.GRAPH = {
    "id": "E-261110-06",
    "kind": "experiment",
    "title": "Normalised S5 (10,4) strata A and B",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-10",
-   "concluded": "",
+   "concluded": "2026-11-14",
    "path": "experiments/E-261110-06-s5-10-4-strata-ab-remainder/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "COMPLETE-UNSAT-SOLVER",
    "preregistered": "true",
    "conclusion": "Verdict: READY FOR ONE OWNER NIGHT. NUMERICAL cost estimate; SPEC §4 instance scope. No target witness and no geometric negative; H-261101-07 and A/B/C unchanged."
   },
