@@ -2,16 +2,16 @@
 id: E-261114-02
 title: Bridge recovery control - exact chirotopes of the 16 realized (10, 2) objects and 30 seeds on five unrealized maps
 date: 2026-11-14
-status: planned
+status: running
 direction: [DR19]
 origin: [I-261114-02, E-261113-02]
 tests: [H-261110-03]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned, explore, control. Scores T D F G R: 1 2 2 2 2 | budget: < 1 core-h, chained with the prep of E-261114-01.
-> Before any compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). No proofs.
+> In preparation, explore, control. Scores T D F G R: 1 2 2 2 2 | budget: < 1 core-h, chained with the prep of E-261114-01.
+> Pre-registration: `PLAN.md`. No proofs.
 
 ## Goal
 

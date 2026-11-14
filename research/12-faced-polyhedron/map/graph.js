@@ -1450,7 +1450,7 @@ window.GRAPH = {
    "id": "E-261114-02",
    "kind": "experiment",
    "title": "Bridge recovery control - exact chirotopes of the 16 realized (10, 2) objects and 30 seeds on five unrealized maps",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-14",
    "concluded": "",
    "path": "experiments/E-261114-02-bridge-recovery-control/README.md",
@@ -1458,7 +1458,7 @@ window.GRAPH = {
     "DR19"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
