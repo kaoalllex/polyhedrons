@@ -1,0 +1,195 @@
+{
+ "kissat": "~/bin/kissat",
+ "cap": 600,
+ "gauge": {
+  "roest_vigh": {
+   "found": true,
+   "mirrored": true
+  },
+  "mizhaev": {
+   "found": true,
+   "mirrored": false
+  },
+  "szilassi": {
+   "found": true,
+   "mirrored": true
+  }
+ },
+ "units": [
+  {
+   "name": "gauge_roest_vigh_pinned_sb",
+   "status": "SAT",
+   "seconds": 0.06,
+   "cap": 60,
+   "variables": 4879,
+   "clauses": 38064,
+   "cnf_sha256": "5534b2616125f7738b39567ba731581ee0fe0bac060cd825d660c4fc47e3e29a"
+  },
+  {
+   "name": "gauge_mizhaev_pinned_sb",
+   "status": "SAT",
+   "seconds": 0.04,
+   "cap": 60,
+   "variables": 4891,
+   "clauses": 38112,
+   "cnf_sha256": "9958752d08ad2800d067761894dfd4370642a16f48085ec9706c4d334b219f8c"
+  },
+  {
+   "name": "gauge_szilassi_pinned_sb",
+   "status": "SAT",
+   "seconds": 0.03,
+   "cap": 60,
+   "variables": 1891,
+   "clauses": 13792,
+   "cnf_sha256": "7d8bda75fbfca3b6f5c8584df5a18faa5a6de650084ef6eae5e31ba1a7547e09"
+  },
+  {
+   "name": "sat_10_2_lutz17_plain",
+   "status": "SAT",
+   "seconds": 0.3,
+   "cap": 60,
+   "variables": 9867,
+   "clauses": 146365,
+   "cnf_sha256": "4615e7fdc126afe1648b6d3fdf4d79913039d474f71c91df4687c9a54c4b9bea"
+  },
+  {
+   "name": "sat_10_2_lutz17_sb",
+   "status": "SAT",
+   "seconds": 1.26,
+   "cap": 60,
+   "variables": 9867,
+   "clauses": 146376,
+   "cnf_sha256": "605633bd98a69da1f059afbb828ebc1674eeac3b322618b11166998323cbb621"
+  },
+  {
+   "name": "sat_10_2_lutz17_plain",
+   "status": "SAT",
+   "seconds": 0.27,
+   "cap": 60,
+   "variables": 9867,
+   "clauses": 146365,
+   "cnf_sha256": "4615e7fdc126afe1648b6d3fdf4d79913039d474f71c91df4687c9a54c4b9bea"
+  },
+  {
+   "name": "sat_10_2_lutz17_sb",
+   "status": "SAT",
+   "seconds": 1.27,
+   "cap": 60,
+   "variables": 9867,
+   "clauses": 146376,
+   "cnf_sha256": "605633bd98a69da1f059afbb828ebc1674eeac3b322618b11166998323cbb621"
+  },
+  {
+   "name": "sat_10_2_lutz17_plain",
+   "status": "SAT",
+   "seconds": 0.27,
+   "cap": 60,
+   "variables": 9867,
+   "clauses": 146365,
+   "cnf_sha256": "4615e7fdc126afe1648b6d3fdf4d79913039d474f71c91df4687c9a54c4b9bea"
+  },
+  {
+   "name": "sat_10_2_lutz17_sb",
+   "status": "SAT",
+   "seconds": 1.32,
+   "cap": 60,
+   "variables": 9867,
+   "clauses": 146376,
+   "cnf_sha256": "605633bd98a69da1f059afbb828ebc1674eeac3b322618b11166998323cbb621"
+  },
+  {
+   "name": "sat_10_2_lutz32_plain",
+   "status": "SAT",
+   "seconds": 0.74,
+   "cap": 60,
+   "variables": 9866,
+   "clauses": 146361,
+   "cnf_sha256": "00a2258d90eb891d986c20651940f9cacdf1c8fb0e36dc5b4d786b30e6a21569"
+  },
+  {
+   "name": "sat_10_2_lutz32_sb",
+   "status": "SAT",
+   "seconds": 1.67,
+   "cap": 60,
+   "variables": 9866,
+   "clauses": 146372,
+   "cnf_sha256": "44867201301fdb33ec7500a5c29e315eba3de0a4ef4fb97587c9f29c00f87ccc"
+  },
+  {
+   "name": "unsat_8_2_map0_plain",
+   "status": "UNSAT-SOLVER",
+   "seconds": 7.98,
+   "cap": 600,
+   "variables": 4269,
+   "clauses": 35651,
+   "cnf_sha256": "816bf6ca8975c2ae49548bb51a5c555cacedc828248b85fb1c7b58797c0808bc"
+  },
+  {
+   "name": "unsat_8_2_map0_sb",
+   "status": "UNSAT-SOLVER",
+   "seconds": 0.09,
+   "cap": 600,
+   "variables": 4269,
+   "clauses": 35660,
+   "cnf_sha256": "cfd43f85cc8f4ebdb098f8e8d24e5992881062f53f959322fee402a9d5ca883a"
+  },
+  {
+   "name": "unsat_9_3_map40_plain",
+   "status": "UNSAT-SOLVER",
+   "seconds": 58.66,
+   "cap": 600,
+   "variables": 7817,
+   "clauses": 78586,
+   "cnf_sha256": "fe46b9ccb4fa0934745a04b3fc6e5b43236e470980cf1ae49ca071af28385e16"
+  },
+  {
+   "name": "unsat_9_3_map40_sb",
+   "status": "UNSAT-SOLVER",
+   "seconds": 1.12,
+   "cap": 600,
+   "variables": 7817,
+   "clauses": 78596,
+   "cnf_sha256": "eb479dd0135b65ce52ee5e3be9181e8f9cffe429568ec3efb98e92d527e09a3f"
+  },
+  {
+   "name": "unsat_10_4_map845_plain",
+   "status": "UNSAT-SOLVER",
+   "seconds": 145.84,
+   "cap": 600,
+   "variables": 12948,
+   "clauses": 157355,
+   "cnf_sha256": "7b125e1c3862dd80209e5725a1e096cc6b4c38802d9dd45b63c9911a5aedd025",
+   "plain_hash_equals_record": true
+  },
+  {
+   "name": "unsat_10_4_map845_sb",
+   "status": "UNSAT-SOLVER",
+   "seconds": 4.4,
+   "cap": 600,
+   "variables": 12948,
+   "clauses": 157366,
+   "cnf_sha256": "bb657a9dd83676bc4a7fb5a9841fc0e308306fc02d7c4cd035b167a1c5247afe",
+   "recorded_plain_seconds": 188.38
+  },
+  {
+   "name": "unsat_10_4_map96_sb",
+   "status": "UNSAT-SOLVER",
+   "seconds": 25.32,
+   "cap": 600,
+   "variables": 12958,
+   "clauses": 157388,
+   "cnf_sha256": "09e8b0b61083a29b1fe7fadaf9d1f5d71a72d0e8f91b26ab2b65fd342fce0578",
+   "recorded_plain_seconds": 1073.49
+  },
+  {
+   "name": "unsat_10_4_map85_sb",
+   "status": "UNSAT-SOLVER",
+   "seconds": 210.77,
+   "cap": 600,
+   "variables": 12970,
+   "clauses": 157436,
+   "cnf_sha256": "bae01b9afb509234e516ef12cbd6c585d95b7786dc8fd2d3ead9af8dbc05b249",
+   "recorded_plain_seconds": 2748.86
+  }
+ ]
+}
