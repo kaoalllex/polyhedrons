@@ -21,3 +21,6 @@ Symmetric case: no immersion (FD6, DRAT-checked). Asymmetric: 8/8 OM-SAT runs ti
 ## What would move it
 
 An asymmetric immersion instance decided (needs cube-and-conquer), or a numerical immersion found and exactly checked.
+
+E-261114-04: eight-face V1 face-group analogue concluded; see its CONCLUSION.md.
+No change to this twelve-face statement; status remains open.

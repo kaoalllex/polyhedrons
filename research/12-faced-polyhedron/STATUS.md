@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-14** (E-261110-06 owner run concluded). The latest registered results are E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
+As of **2026-11-14** (week item 5 concluded). The latest registered results are E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
 E-261113-04 (section 3aj), E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -409,6 +409,14 @@ Saved controls and source/environment provenance match; record, coverage and sol
 No candidate to verify. H-261101-07 and A/B/C unchanged; no FD or witness row changes.
 Week item 2 done; item 5 next. Proof replay and the (11,5) probe go to the lead.
 Counts, costs and evidence: `experiments/E-261110-06-s5-10-4-strata-ab-remainder/CONCLUSION.md`.
+
+## 3ap. E-261114-04 immersion face-group cores (2026-11-14)
+
+Week item 5 completed; park. Exhaustive normalised V1 restrictions on both (8,2) maps;
+controls and provenance/coverage audit PASS, checked Boolean SAT assignments.
+NUMERICAL planning evidence, instance scope; UNSAT-SOLVER only, no geometric exclusion.
+The core uses all face groups while circuits retain all eight planes; see
+`experiments/E-261114-04-immersion-core-8-2/CONCLUSION.md`. Hypotheses and A/B/C unchanged.
 
 ## 4. What may and may not be claimed
 

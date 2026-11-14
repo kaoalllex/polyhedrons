@@ -993,3 +993,6 @@ See `experiments/E-261110-06-s5-10-4-strata-ab-remainder/CONCLUSION.md` (NUMERIC
 
 COMPLETE-UNSAT-SOLVER; provenance, queue coverage and solver-log audit PASS; no geometric negative.
 See `experiments/E-261110-06-s5-10-4-strata-ab-remainder/CONCLUSION.md`; item 5 next, proof-replay proposal to the lead.
+
+2026-11-14 — E-261114-04 week item 5 completed; park the small face-group core route.
+See `experiments/E-261114-04-immersion-core-8-2/CONCLUSION.md`; controls and coverage audit PASS, no geometric negative.

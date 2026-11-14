@@ -1481,18 +1481,18 @@ window.GRAPH = {
    "id": "E-261114-04",
    "kind": "experiment",
    "title": "(8, 2) immersion core - face-grouped minimal cores of the immersion-only formulas of both (8, 2) maps",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-14",
-   "concluded": "",
+   "concluded": "2026-11-14",
    "path": "experiments/E-261114-04-immersion-core-8-2/README.md",
    "direction": [
     "DR10",
     "DR11",
     "DR19"
    ],
-   "verdict": "",
-   "preregistered": "false",
-   "conclusion": ""
+   "verdict": "PARK-NO-SMALL-GROUP-CORE",
+   "preregistered": "true",
+   "conclusion": "Verdict: completed; park under week item 5's follow-up tree. No theory session triggered, no additional compute. Next: lead review of the unresolved focus routes."
   },
   {
    "id": "FD11",

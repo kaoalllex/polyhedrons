@@ -33,3 +33,6 @@ at k = 9, 18 SAT and 14 timeouts at 10 min. Together: k = 8 SAT for all 59 types
 
 E-261101-23: UNSAT at k <= 9 for a type supports it (and excludes that type, EXACT after drat-trim); all k <= 9
 sub-instances SAT on three types weakens it, and their models feed face-CEGAR.
+
+E-261114-04: eight-face V1 face-group analogue concluded; see its CONCLUSION.md.
+No change to this twelve-face statement; status remains open.
