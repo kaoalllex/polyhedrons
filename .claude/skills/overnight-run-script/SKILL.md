@@ -19,8 +19,10 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
   resume. Do not build a third framework, and do not write a new launcher: the owner's `start`/`status`/`stop`
   is `overnight/launch.sh` (a prep session once wrote `item1.sh` beside it; fix `run.sh` or `launch.sh` instead).
 - `--git` commits go to the experiment branch, never to `main`.
-- SAT jobs check each proof during the run and then delete it and its CNF, keeping the hashes and the checker
-  transcript (`PROTOCOL.md` §5, owner 2026-11-08). Record `cadical --version` and the drat-trim commit in the manifest.
+- SAT jobs run without proofs by default (`NO_PROOF=1`; UNSATs are `UNSAT-SOLVER`; owner 2026-11-13). Only when the
+  plan names the negative claim they are for, they check each proof during the run and then delete it and its CNF,
+  keeping the hashes and the checker transcript (`PROTOCOL.md` §5). Record the solver version, and the drat-trim
+  commit when proofs are checked, in the manifest.
 
 ## Shell wrapper checklist
 

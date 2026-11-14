@@ -18,6 +18,7 @@ add dated amendments at the end instead.
 * **Grid** (PROTOCOL §2.5): the parameter the outcome depends on and its values, or why one setting suffices.
 * **Budget**: core-hours, wall time, shards (`matrix.json`), where (laptop / Actions).
 * **Power statement**: what the budget can and cannot detect.
+* **Proofs**: none by default (UNSATs are `UNSAT-SOLVER`); DRAT only for a named negative claim or on the owner's word.
 * **Counter calibration**: for every float diagnostic in the planned verdict, a control input on each side of its
   threshold (a saturating measure is not a measurement).
 * **Scenario move**: how each outcome moves the three credences of the `ROADMAP.md` decision point (A exists /

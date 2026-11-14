@@ -1253,17 +1253,17 @@
    "id": "E-261110-02",
    "kind": "experiment",
    "title": "(10, 3) face-minimal decision - the duals of the 20 vertex-minimal genus-3 triangulations, single adjacencies",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-10",
-   "concluded": "",
+   "concluded": "2026-11-13",
    "path": "experiments/E-261110-02-face-minimal-10-3-decision/README.md",
    "direction": [
     "DR19",
     "DR8"
    ],
-   "verdict": "",
+   "verdict": "OPEN@20.03 core-h, solver-limited (20/20 TIMEOUT at 3600 s, kissat, no proofs; 0 SAT, 0 UNSAT)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction (DR19 / DR8, S6 at (10, 3)): OPEN@20.03 core-h, solver-limited (20/20 TIMEOUT at 3600 s, kissat, 1 configuration). No scenario move (\"(10, 3) exists\" stays 0.25, CONJECTURE); H-261110-03 and H-261110-01 stay open; S0 table unchanged."
   },
   {
    "id": "E-261110-03",
@@ -1303,17 +1303,17 @@
    "id": "E-261110-05",
    "kind": "experiment",
    "title": "Immersion-only and segment-free formulas on the two (8, 2) maps and six (9, 3) maps - which clause family refutes",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-10",
-   "concluded": "",
+   "concluded": "2026-11-13",
    "path": "experiments/E-261110-05-immersion-only-s5-formulas/README.md",
    "direction": [
     "DR19",
     "DR11"
    ],
-   "verdict": "",
-   "preregistered": "false",
-   "conclusion": ""
+   "verdict": "DONE@0.44 core-h (V2 8/8 UNSAT-SOLVER; V1 (8,2) 2/2 UNSAT-SOLVER, (9,3) 5 SAT + 1 TIMEOUT; no proofs)",
+   "preregistered": "true",
+   "conclusion": "Verdict: DONE@0.44 core-h: H-261110-01 weakened (planning evidence: the segment clauses are not what refutes these formulas); at (9, 3) the triples carry the refutation, at (8, 2) even the immersion-only formula is refuted. No scenario move."
   },
   {
    "id": "E-261110-06",
@@ -1334,24 +1334,24 @@
    "id": "E-261112-01",
    "kind": "experiment",
    "title": "Ninth-plane Stage A - exact near-copy cells over both eight-plane sources",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-12",
-   "concluded": "",
+   "concluded": "2026-11-13",
    "path": "experiments/E-261112-01-ninth-plane-stage-a/README.md",
    "direction": [
     "DR7",
     "DR18",
     "DR12"
    ],
-   "verdict": "",
+   "verdict": "OPEN@8.01 core-h (Stage A list exhausted, 2,004/2,004 UNSAT-SOLVER, 0 SAT, 0 open; discovery power unmeasured)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction (DR7 / DR18 at nine faces): OPEN@8.01 core-h (Stage A list exhausted, 2,004/2,004 UNSAT-SOLVER, 0 SAT, 0 open; discovery power unmeasured). H-261112-01 stays open."
   },
   {
    "id": "E-261112-02",
    "kind": "experiment",
    "title": "Ninth-plane Stage B - full generic cell lists, Roest-Vigh first",
-   "status": "planned",
+   "status": "parked",
    "date": "2026-11-12",
    "concluded": "",
    "path": "experiments/E-261112-02-ninth-plane-stage-b/README.md",
@@ -1359,6 +1359,136 @@
     "DR7",
     "DR18",
     "DR12"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261113-01",
+   "kind": "experiment",
+   "title": "Symmetric S6 (10, 3) - the tetrahedral family of Lutz",
+   "status": "done",
+   "date": "2026-11-13",
+   "concluded": "2026-11-13",
+   "path": "experiments/E-261113-01-symmetric-s6-10-3/README.md",
+   "direction": [
+    "DR19",
+    "DR8",
+    "DR18"
+   ],
+   "verdict": "OPEN@0.034 core-h ((a) 0 EMBEDDED of 816 units; (b) 10/10 UNSAT-SOLVER, 0 SAT, 0 TIMEOUT; no proofs)",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction (DR19 / DR8 / DR18, S6 at (10, 3), symmetric rotation ansatz): OPEN@0.034 core-h: the ten uniform C3 / free C2 formulas are exhausted with UNSAT-SOLVER and the T family of #15 with 0 EMBEDDED; the asymmetric formulas stay at 20/20 TIMEOUT (STATUS 3af). No scenario move (\"(10, 3) exists\" stays 0.25, CONJECTURE); H-261110-03 stays open; S0 table unchanged."
+  },
+  {
+   "id": "E-261113-02",
+   "kind": "experiment",
+   "title": "(10, 2) calibration rung - time to SAT over seeds and bridge realization rate on 50 of Lutz's 865 maps",
+   "status": "done",
+   "date": "2026-11-13",
+   "concluded": "2026-11-13",
+   "path": "experiments/E-261113-02-s6-10-2-calibration-rung/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "DONE (calibration)@0.239 core-h (153/153 SAT, median 0.83 s, no timeout; bridge 16/153 realized; no proofs)",
+   "preregistered": "true",
+   "conclusion": "Verdict: DONE (calibration)@0.239 core-h: SAT at (10, 2) is fast and light-tailed, realization is the bottleneck. No scenario move; H-261110-03 unchanged."
+  },
+  {
+   "id": "E-261113-03",
+   "kind": "experiment",
+   "title": "Rung-below cell census - all eighth-plane cells over seven planes of Roest-Vigh, the gate of Stage B",
+   "status": "done",
+   "date": "2026-11-13",
+   "concluded": "2026-11-14",
+   "path": "experiments/E-261113-03-rung-below-cell-census/README.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR12"
+   ],
+   "verdict": "OPEN@15.97 core-h (25,531 cells, 4 SOLID, all with Roest-Vigh's map; 0 open; Stage B parked)",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: DR7 / DR18 cell method at the rung below: discovery power measured, map family rigid at this rung: OPEN@15.97 core-h (25,531 cells, one map class). Not a refutation of Stage B or of H-261112-01."
+  },
+  {
+   "id": "E-261113-04",
+   "kind": "experiment",
+   "title": "Cube-and-conquer pilot on (10, 4) maps 96 and 85 - do segment-order cubes cut the summed kissat time?",
+   "status": "done",
+   "date": "2026-11-13",
+   "concluded": "2026-11-13",
+   "path": "experiments/E-261113-04-cube-and-conquer-pilot-10-4/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "PARKED@1.08 core-h (segment-order cubes r >= 1.07 on 96, >= 0.92 on 85; 0 SAT; no proofs)",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: DR8 cube-and-conquer with segment-order cubes: PARKED@1.08 core-h (two maps, r >= 0.92 and >= 1.07). Not a refutation of cube-and-conquer."
+  },
+  {
+   "id": "E-261114-01",
+   "kind": "experiment",
+   "title": "Normalised S6 (10, 3) - the twenty sub-map formulas with the reorientation and mirror units",
+   "status": "planned",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "experiments/E-261114-01-normalised-s6-10-3/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261114-02",
+   "kind": "experiment",
+   "title": "Bridge recovery control - exact chirotopes of the 16 realized (10, 2) objects and 30 seeds on five unrealized maps",
+   "status": "planned",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "experiments/E-261114-02-bridge-recovery-control/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261114-03",
+   "kind": "experiment",
+   "title": "Chart normalisation at a hull vertex - lemma, re-charting controls and per-vertex cubes on the slowest normalised maps",
+   "status": "planned",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "experiments/E-261114-03-hull-vertex-chart-pilot/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261114-04",
+   "kind": "experiment",
+   "title": "(8, 2) immersion core - face-grouped minimal cores of the immersion-only formulas of both (8, 2) maps",
+   "status": "planned",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "experiments/E-261114-04-immersion-core-8-2/README.md",
+   "direction": [
+    "DR10",
+    "DR11",
+    "DR19"
    ],
    "verdict": "",
    "preregistered": "false",
@@ -1920,7 +2050,7 @@
    "id": "H-261110-01",
    "kind": "hypothesis",
    "title": "The multiple-adjacency constraints are what refutes the (8, 2), (9, 3) and (10, 4) formulas",
-   "status": "open",
+   "status": "weakened",
    "date": "2026-11-10",
    "concluded": "",
    "path": "hypotheses/H-261110-01-multiple-adjacency-constraints-refute-s5-formulas.md",
@@ -4007,6 +4137,144 @@
    "preregistered": ""
   },
   {
+   "id": "I-261113-01",
+   "kind": "idea",
+   "title": "Symmetric realizations of the (10, 3) maps - rotation-compatible automorphisms, the one-parameter tetrahedral family of Lutz",
+   "status": "tried",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "ideas/I-261113-01-symmetric-s6-10-3.md",
+   "direction": [
+    "DR19",
+    "DR8",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261113-02",
+   "kind": "idea",
+   "title": "The (10, 2) maps as a calibration rung for S6 - time to SAT over seeds and the bridge realization rate",
+   "status": "open",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "ideas/I-261113-02-s6-10-2-calibration-rung.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261113-03",
+   "kind": "idea",
+   "title": "Rung-below cell census - all eighth-plane cells over seven planes of a known eight-face object as the discovery-power control of the cell method",
+   "status": "tried",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "ideas/I-261113-03-rung-below-cell-census.md",
+   "direction": [
+    "DR7",
+    "DR18",
+    "DR12"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261113-04",
+   "kind": "idea",
+   "title": "Fixed-face C2 realizations of (10, 3) maps by symmetric plane arrangements",
+   "status": "open",
+   "date": "2026-11-13",
+   "concluded": "",
+   "path": "ideas/I-261113-04-fixed-face-c2-arrangements.md",
+   "direction": [
+    "DR18",
+    "DR7"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261114-01",
+   "kind": "idea",
+   "title": "Normalised asymmetric formulas - the reorientation and mirror units on the plain S5 / S6 formulas",
+   "status": "open",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "ideas/I-261114-01-normalised-asymmetric-formulas.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261114-02",
+   "kind": "idea",
+   "title": "Bridge recovery control - does the SAT-to-coordinates bridge recover chirotopes that are known to be realizable",
+   "status": "open",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "ideas/I-261114-02-bridge-recovery-control.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261114-03",
+   "kind": "idea",
+   "title": "(11, 5), the last S5 rung below S0 - census and a cost probe at 12 elements with the normalised formulas",
+   "status": "open",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "ideas/I-261114-03-s5-11-5-rung.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261114-04",
+   "kind": "idea",
+   "title": "Handle-neighbourhood SAT - solve a (10, 3) formula from the chirotope of a realized (10, 2) parent",
+   "status": "open",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "ideas/I-261114-04-handle-neighbourhood-sat.md",
+   "direction": [
+    "DR19",
+    "DR13",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261114-05",
+   "kind": "idea",
+   "title": "Geometry of realization spaces - regions, quotients and transitions instead of single coordinate solutions",
+   "status": "open",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "ideas/I-261114-05-realization-space-geometry.md",
+   "direction": [
+    "DR10",
+    "DR13",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -5120,6 +5388,11 @@
    "kind": "origin"
   },
   {
+   "from": "E-261101-25",
+   "to": "I-261114-04",
+   "kind": "origin"
+  },
+  {
    "from": "E-261101-26",
    "to": "E-261102-03",
    "kind": "origin"
@@ -5255,6 +5528,11 @@
    "kind": "origin"
   },
   {
+   "from": "E-261103-01",
+   "to": "I-261114-03",
+   "kind": "origin"
+  },
+  {
    "from": "E-261103-02",
    "to": "E-261103-03",
    "kind": "origin"
@@ -5276,7 +5554,17 @@
   },
   {
    "from": "E-261103-02",
+   "to": "E-261113-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-02",
    "to": "I-261108-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-02",
+   "to": "I-261113-01",
    "kind": "origin"
   },
   {
@@ -5410,6 +5698,11 @@
    "kind": "origin"
   },
   {
+   "from": "E-261103-05",
+   "to": "I-261113-04",
+   "kind": "origin"
+  },
+  {
    "from": "E-261103-06",
    "to": "H-261101-07",
    "kind": "tests"
@@ -5526,12 +5819,22 @@
   },
   {
    "from": "E-261108-03",
+   "to": "E-261113-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261108-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
   {
    "from": "E-261108-03",
    "to": "I-261110-05",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261108-03",
+   "to": "I-261114-01",
    "kind": "origin"
   },
   {
@@ -5591,6 +5894,21 @@
   },
   {
    "from": "E-261110-02",
+   "to": "E-261113-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-02",
+   "to": "E-261113-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-02",
+   "to": "E-261114-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-02",
    "to": "H-261110-01",
    "kind": "tests"
   },
@@ -5598,6 +5916,21 @@
    "from": "E-261110-02",
    "to": "H-261110-03",
    "kind": "tests"
+  },
+  {
+   "from": "E-261110-02",
+   "to": "I-261113-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-02",
+   "to": "I-261113-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-02",
+   "to": "I-261114-01",
+   "kind": "origin"
   },
   {
    "from": "E-261110-03",
@@ -5616,8 +5949,18 @@
   },
   {
    "from": "E-261110-05",
+   "to": "E-261114-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-05",
    "to": "H-261110-01",
    "kind": "tests"
+  },
+  {
+   "from": "E-261110-06",
+   "to": "E-261113-04",
+   "kind": "origin"
   },
   {
    "from": "E-261110-06",
@@ -5631,12 +5974,82 @@
   },
   {
    "from": "E-261112-01",
+   "to": "E-261113-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261112-01",
    "to": "H-261112-01",
    "kind": "tests"
   },
   {
+   "from": "E-261112-01",
+   "to": "I-261113-03",
+   "kind": "origin"
+  },
+  {
    "from": "E-261112-02",
    "to": "H-261112-01",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261113-01",
+   "to": "H-261110-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261113-02",
+   "to": "E-261114-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261113-02",
+   "to": "H-261110-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261113-02",
+   "to": "I-261114-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261113-02",
+   "to": "I-261114-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261113-03",
+   "to": "H-261112-01",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261113-04",
+   "to": "H-261101-06",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261114-01",
+   "to": "H-261110-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261114-02",
+   "to": "H-261110-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261114-03",
+   "to": "H-261101-06",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261114-04",
+   "to": "H-261029-06",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261114-04",
+   "to": "H-261101-15",
    "kind": "tests"
   },
   {
@@ -5935,6 +6348,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261029-43",
+   "to": "I-261114-01",
+   "kind": "origin"
+  },
+  {
    "from": "I-261029-44",
    "to": "E-261029-13",
    "kind": "origin"
@@ -5987,6 +6405,11 @@
   {
    "from": "I-261029-57",
    "to": "I-261101-21",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-57",
+   "to": "I-261114-02",
    "kind": "origin"
   },
   {
@@ -6186,6 +6609,11 @@
   },
   {
    "from": "I-261031-02",
+   "to": "E-261113-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261031-02",
    "to": "I-261101-12",
    "kind": "origin"
   },
@@ -6265,6 +6693,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261101-05",
+   "to": "I-261114-05",
+   "kind": "origin"
+  },
+  {
    "from": "I-261101-06",
    "to": "E-261101-11",
    "kind": "origin"
@@ -6287,6 +6720,11 @@
   {
    "from": "I-261101-07",
    "to": "I-261110-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-07",
+   "to": "I-261114-03",
    "kind": "origin"
   },
   {
@@ -6327,6 +6765,11 @@
   {
    "from": "I-261101-09",
    "to": "H-261101-09",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-09",
+   "to": "I-261114-05",
    "kind": "origin"
   },
   {
@@ -6600,6 +7043,16 @@
    "kind": "origin"
   },
   {
+   "from": "I-261110-02",
+   "to": "I-261113-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261110-02",
+   "to": "I-261113-02",
+   "kind": "origin"
+  },
+  {
    "from": "I-261110-03",
    "to": "E-261101-08",
    "kind": "origin"
@@ -6631,7 +7084,17 @@
   },
   {
    "from": "I-261110-04",
+   "to": "E-261114-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261110-04",
    "to": "H-261110-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261110-06",
+   "to": "E-261114-03",
    "kind": "origin"
   },
   {
@@ -6652,6 +7115,51 @@
   {
    "from": "I-261112-01",
    "to": "H-261112-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261112-01",
+   "to": "I-261113-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261113-01",
+   "to": "E-261113-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261113-01",
+   "to": "I-261113-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261113-02",
+   "to": "E-261113-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261113-03",
+   "to": "E-261113-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261114-01",
+   "to": "E-261114-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261114-01",
+   "to": "E-261114-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261114-01",
+   "to": "I-261114-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261114-02",
+   "to": "E-261114-02",
    "kind": "origin"
   },
   {
@@ -7352,6 +7860,16 @@
   {
    "from": "owner",
    "to": "I-261112-01",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261114-04",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261114-05",
    "kind": "origin"
   }
  ],

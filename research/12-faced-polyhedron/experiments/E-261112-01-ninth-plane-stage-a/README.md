@@ -2,16 +2,21 @@
 id: E-261112-01
 title: Ninth-plane Stage A - exact near-copy cells over both eight-plane sources
 date: 2026-11-12
-status: planned
+status: done
 direction: [DR7, DR18, DR12]
 origin: [owner, I-261112-01, I-261103-04, I-261110-03, E-261108-01]
 tests: [H-261112-01]
 produces: []
 preregistered: true
+verdict: OPEN@8.01 core-h (Stage A list exhausted, 2,004/2,004 UNSAT-SOLVER, 0 SAT, 0 open; discovery power unmeasured)
+concluded: 2026-11-13
 ---
 
-> Scores T D F G R: 2 2 2 1 2. Preparation plus <= 7.3 core-h, 10 shards, laptop day run.
-> Owner-approved dialogue, filed 2026-11-12. Planned, not running; the owner explicitly requested no compute.
+> Scores T D F G R: 2 2 2 1 2. Preparation plus <= 12 core-h (amendment 2), 10 shards, laptop run.
+> Owner-approved dialogue, filed 2026-11-12. Prep amendments 1-2 on 2026-11-12; one launch 2026-11-12/13.
+
+> Concluded 2026-11-13: controls pass in every shard; all 2,004 near-copy cells INFEASIBLE (UNSAT-SOLVER), 0 SOLID,
+> 0 open, 8.01 core-h. Instance scope only, no family negative; H-261112-01 stays open ([CONCLUSION.md](CONCLUSION.md)).
 
 ## Goal / origin
 
@@ -21,9 +26,7 @@ The new finite list and E >= 39 replace the random fixed-E sweeps; no LOW-YIELD 
 
 ## Next
 
-Implement and freeze the list, coverage/orbit checks and runner under [PLAN.md](PLAN.md); then commit the prep
-amendment before any pilot. No `run.sh` or launch command is provided until that entry point exists and passes
-its bounded startup check. Stage B has a separate gated queue row and is not pre-registered for execution.
+None in this experiment; see [CONCLUSION.md](CONCLUSION.md). Stage B stays a separately gated queue item.
 
 ## Environment (checked 2026-11-12, no solver call)
 

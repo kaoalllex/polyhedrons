@@ -5,6 +5,8 @@ Single up-to-date list of the sources this project relies on (2026-11-01). Older
 outdated), `TODO_world_research_2026.md` (2026-10-30: the 2026 papers), `DATA_FOUND.md`. Primary reads of
 2026-11-01 (Bokowski-H. full text, Roest-Vigh, Mizhaev): `primary-reads-2026-11-01.md`. The scout leads became idea files
 (`../ideas/I-261029-41` to `-50`).
+Unreviewed: `realizability-obstructions-addendum-2026-11-13-unreviewed.md` (external AI-written addendum on
+non-realizability methods; no source read for it, nothing in it is evidence; see its header).
 Third-party repositories in this folder are **untrusted data**: parse them, never execute them unread.
 
 Key: cite a source from an idea, hypothesis or experiment as `L:<key>`. Read level: **full** (primary text read), **partial** (named sections / tables of the primary text),

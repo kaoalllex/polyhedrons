@@ -1,0 +1,88 @@
+c ---- [ banner ] ------------------------------------------------------------
+c
+c Kissat SAT Solver
+c 
+c Copyright (c) 2021-2024 Armin Biere University of Freiburg
+c Copyright (c) 2019-2021 Armin Biere Johannes Kepler University Linz
+c 
+c Version 4.0.4 8af8e56f174b778aef3aa45af9f739b2a5f492c2
+c Apple clang version 21.0.0 (clang-2100.3.34.2) -W -Wall -O3 -DNDEBUG
+c Sun Nov 8 21:34:28 +03 2026 Darwin IOSM-FQNJVXCGPH 25.6.0 arm64
+c
+c ---- [ parsing ] -----------------------------------------------------------
+c
+c opened and reading DIMACS file:
+c
+c   /Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261113-04-cube-and-conquer-pilot-10-4/results/8/map96_cube127.cnf
+c
+c parsed 'p cnf 12958 157386' header
+c closing input after reading 3798821 bytes (4 MB)
+c finished parsing after 0.02 seconds
+c
+c ---- [ solving ] -----------------------------------------------------------
+c
+c seconds switched rate     size/glue tier1  binary           remaining
+c        MB reductions conflicts size  tier2     irredundant
+c         level restarts redundant glue  trail           variables
+c
+c *  0.02 24 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 12999 143704 12782 99%
+c (  0.02 33 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 12999 143704 12782 99%
+c .  0.03 33 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 13102 143264 12782 99%
+c c  0.05 33 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 13138 142088 11933 92%
+c d  0.05 35 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11534 142036 11930 92%
+c d  0.05 35 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11508 142036 11917 92%
+c )  0.08 36 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11508 142036 11917 92%
+c {  0.08 36 0 0 0  0 0   0   0 0.0 0 0 2 6 0% 11508 142036 11917 92%
+c i  0.10 37 44 0 0 27 6 370 292 2.0 14 7 4 10 16% 11524 142033 11916 92%
+c i  0.10 37 44 0 0 27 6 372 292 2.0 14 7 4 10 16% 11525 142033 11914 92%
+c }  0.10 37 44 0 0 27 5 374 292 2.0 14 7 4 10 16% 11525 142033 11902 92%
+c 0  0.10 37 44 0 0 27 5 374 292 2.0 14 7 4 10 16% 11525 142033 11902 92%
+c
+c ---- [ result ] ------------------------------------------------------------
+c
+s UNSATISFIABLE
+c
+c ---- [ profiling ] ---------------------------------------------------------
+c
+c           0.06   62.46 %  preprocess
+c           0.06   58.42 %  probe
+c           0.02   23.83 %  congruence
+c           0.02   18.45 %  parse
+c           0.02   17.54 %  sweep
+c           0.01   13.27 %  search
+c           0.01   13.26 %  focused
+c           0.01   10.95 %  factor
+c           0.01    5.56 %  lucky
+c           0.01    5.54 %  substitute
+c           0.00    0.54 %  backbone
+c           0.00    0.00 %  simplify
+c =============================================
+c           0.10  100.00 %  total
+c
+c ---- [ statistics ] --------------------------------------------------------
+c
+c conflicts:                              374             3769.36 per second
+c congruent:                              804                6 %  variables
+c decisions:                             1835                4.91 per conflict
+c iterations:                               3                0 %  variables
+c propagations:                        172698          1740539    per second
+c restarts:                                27               14    interval
+c substituted:                            786                6 %  variables
+c switched:                                 0                0    interval
+c
+c ---- [ glue usage ] --------------------------------------------------------
+c
+c focused glue 4   used 49 clauses 14.76% accumulated 52.71% tier1
+c focused glue 5   used 42 clauses 12.65% accumulated 65.36%
+c focused glue 6-9 used 71 clauses 21.39% accumulated 86.75%
+c focused glue 10  used  6 clauses  1.81% accumulated 88.55%
+c focused glue 11  used  9 clauses  2.71% accumulated 91.27% tier2
+c
+c ---- [ resources ] ---------------------------------------------------------
+c
+c maximum-resident-set-size:      39359348736 bytes      37536 MB
+c process-time:                                              0.10 seconds
+c
+c ---- [ shutting down ] -----------------------------------------------------
+c
+c exit 20

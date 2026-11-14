@@ -31,6 +31,10 @@ def recorded(path):
 BUDGET_SECONDS = 22319
 SOLVER_CAP, CHECKER_CAP = 60, 120  # registered defaults; --timeout / --s5-checker-timeout override
 CASE, CONTROL = (9, 3), 'control_f9.json'  # a custom queue may name another census case and control file
+# A custom queue may instead name an imported map file (E-261110-02, S6): sub-map formulas, every SAT model processed
+# in its own unit by the bridge below, no first-SAT stop, and an unchecked proof recorded instead of stopping.
+MAPS_FILE = None
+BRIDGE = dict(submap=True, restarts=6)
 
 
 def atomic(path, value):
@@ -88,16 +92,27 @@ def load_queue(custom=False):
     data = json.loads(QUEUE.read_text())
     if custom:  # explicit map list (long-cap units): census identity and per-map canonical hashes only
         global CASE, CONTROL
+        global MAPS_FILE
         CASE = tuple(data.get('case', CASE)); CONTROL = data.get('control_file', CONTROL)
-        maps = pilot.census(*CASE)['maps']
-        if sha(ROOT / f'experiments/E-261103-01-s5-map-census/results/maps_{CASE[0]}_{CASE[1]}.json') != data['census_sha256']:
-            raise ValueError('census identity changed')
+        MAPS_FILE = data.get('maps_file')
+        if MAPS_FILE:
+            if sha(ROOT / MAPS_FILE) != data['maps_sha256']:
+                raise ValueError('map file identity changed')
+            maps = imported_maps(MAPS_FILE)
+        else:
+            maps = pilot.census(*CASE)['maps']
+            if sha(ROOT / f'experiments/E-261103-01-s5-map-census/results/maps_{CASE[0]}_{CASE[1]}.json') != data['census_sha256']:
+                raise ValueError('census identity changed')
         for entry in data['maps']:
             if entry.get('control'):
                 if sha(HERE / CONTROL) != entry['control_sha256']:
                     raise ValueError('control identity changed')
                 continue
             rec = maps[entry['index']]
+            if MAPS_FILE:
+                if rec['canonical_sha256'] != entry['canonical_sha256']:
+                    raise ValueError('imported map identity changed')
+                continue
             digest = hashlib.sha256(json.dumps(rec['code'], separators=(',', ':')).encode()).hexdigest()
             if not rec['admissible'] or digest != entry['canonical_sha256']:
                 raise ValueError('custom queue map not admissible or identity changed')
@@ -123,6 +138,40 @@ def load_queue(custom=False):
         if digest != entry['canonical_sha256']:
             raise ValueError('canonical map identity changed')
     return data['maps']
+
+
+def imported_maps(path):
+    return json.loads((ROOT / path).read_text())['maps']
+
+
+def submap_formula(faces, links, generator=None):
+    """With a generator: the uniform symmetric formula of the cyclic group it generates (rotations, det rho = +1;
+    omsat_sym.build_sym with its orbit-flip and mirror normalisation)."""
+    tris = sorted({tuple(sorted((x, a, b))) for x, link in links.items() for a, b in zip(link, link[1:] + link[:1])})
+    t = pilot.Triangulation(faces, tris, links=links, submap=True)
+    if generator is None:
+        c = pilot.CNF(faces); pilot.build(c, t, pilot.ALL_OPTS)
+        return c
+    group = sorted(pilot.closure([tuple(generator)], faces))
+    return pilot.build_sym(t, group, {g: 1 for g in group}, pilot.ALL_OPTS)[0]
+
+
+def bridge(out, name, c, links, target):
+    """Every SAT model of a sub-map formula: the realization stages with BRIDGE, then the saved-file exact check."""
+    model = set(json.loads((out / (name + '.model.json')).read_text()))
+    chi = {q: 1 if v in model else -1 for q, v in c.qvar.items()}
+    processing = {}
+    for task in ('hinge', 'two_stage', 'fp'):
+        result = processing[task] = pilot.stage(out, name + '_' + task, task,
+                                                pilot.payload(chi, [links[i] for i in range(len(links))], **BRIDGE), 120)
+        if result.get('geometry', {}).get('EMBEDDED'):
+            candidate = out / (name + '.candidate.json')
+            pilot.dump(candidate, dict(planes=result['planes'], links=links))
+            rc = pilot.command([sys.executable, str(ROOT / 'verification/verify_candidate.py'), str(candidate),
+                                '--target', target], out / (name + '.candidate.log'), 60)
+            return dict(processing=processing, candidate=recorded(candidate), candidate_verify_rc=rc,
+                        status_note='CANDIDATE-NEEDS-REVIEW' if rc == 0 else 'EMBEDDED-BUT-TARGET-FAIL')
+    return dict(processing=processing, candidate=None, status_note='SAT-NOT-REALIZED')
 
 
 def check_identity(root, identity):
@@ -166,7 +215,7 @@ def pending(root, queue, shard, shards):
         checkpoints += list((root / 'coverage_pilot').glob('[0-9]*/results.jsonl'))
     for path in checkpoints:
         for rec in records(path):
-            if rec['status'] in ('SAT', 'UNSAT-VERIFIED', 'UNSAT-SOLVER', 'TIMEOUT'):
+            if rec['status'] in ('SAT', 'UNSAT-VERIFIED', 'UNSAT-SOLVER', 'TIMEOUT') + (('UNSAT-UNCHECKED',) if MAPS_FILE else ()):
                 if 'unit' in rec:
                     work = path.parent.parent.joinpath(*Path(rec['unit']).parts[-3:])
                     name = f'map{rec["map_index"]}_plain'
@@ -248,6 +297,14 @@ def unit(spec):
         c = pilot.CNF(faces); pilot.build(c, pilot.Triangulation(faces, tris, links=links, submap=True), pilot.ALL_OPTS)
         c.clauses.extend([[c.qvar[q] if v > 0 else -c.qvar[q]] for q, v in pilot.chirotope_from_planes(data['planes']).items()])
         on_sat = None
+    elif spec.get('maps_file'):
+        rec = imported_maps(spec['maps_file'])[index]
+        pilot.dump(out / 'map.json', rec)
+        links = dict(enumerate(rec['links']))
+        c = submap_formula(faces, links, rec.get('sym_generator'))
+        if 'seed' in rec:  # a seeded formula record (E-261113-02): the same CNF under another solver seed
+            pilot.SOLVER_OPTS = [*pilot.SOLVER_OPTS, f'--seed={rec["seed"]}']
+        on_sat = None
     else:
         rec = pilot.census(*case)['maps'][index]
         pilot.dump(out / 'map.json', rec)
@@ -259,10 +316,15 @@ def unit(spec):
                         on_sat=on_sat)
     except DispatchStopped:
         r = dict(status='SKIPPED-STOP')
+    if spec.get('maps_file') and not spec.get('control') and r['status'] == 'SAT':
+        r.update(bridge(out, name, c, links, spec['target']))
     r.update(task=name, map_index=index, scope=f'{spec["control"]} control: submap formula, planes pinned' if spec.get('control')
-             else 'plain uniform embedding formula',
+             else 'sub-map embedding formula (submap=True)' + (f', uniform symmetric {rec["sym_group"]}' if rec.get('sym_generator') else '')
+             if spec.get('maps_file') else 'plain uniform embedding formula',
              canonical_sha256=spec.get('canonical_sha256', spec.get('control_sha256')), unit=recorded(out),
              formula_sha256=hashlib.sha256(json.dumps([c.nv, c.clauses], separators=(',', ':')).encode()).hexdigest())
+    if spec.get('maps_file') and not spec.get('control') and 'seed' in rec:
+        r['seed'] = rec['seed']
     atomic(out / 'result.json', r)
 
 
@@ -418,6 +480,8 @@ def run(args):
                 spec = dict(entry, root=str(root), out=str(work), solver_cap=solver_cap, checker_cap=checker_cap)
                 if CASE != (9, 3) or CONTROL != 'control_f9.json':
                     spec.update(case=list(CASE), control_file=CONTROL)
+                if MAPS_FILE:
+                    spec.update(maps_file=MAPS_FILE, target=json.loads(QUEUE.read_text())['target_check'])
                 atomic(work / 'spec.json', spec)
                 append_checkpoint(out / 'progress.jsonl', dict(map_index=index, event='START', unit=recorded(work)))
                 print('map', index, f'start, solver {solver_cap}s checker {checker_cap}s', flush=True)
@@ -435,7 +499,7 @@ def run(args):
                 expected = {'positive': 'SAT', 'negative': pilot.UNSAT_OK}.get(entry.get('control'))
                 if expected and result['status'] != expected:
                     raise RuntimeError(f'control {index} expected {expected}, got {result["status"]}')
-                if result['status'] not in ('SAT', pilot.UNSAT_OK, 'TIMEOUT', 'SKIPPED-STOP'):
+                if result['status'] not in ('SAT', pilot.UNSAT_OK, 'TIMEOUT', 'SKIPPED-STOP') + (('UNSAT-UNCHECKED',) if MAPS_FILE else ()):
                     raise RuntimeError(f'map {index}: {result["status"]}')
             process_first_sat(root, remaining)
             manifest['status'] = ('FIRST-SAT-STOP' if (root / 'first_sat.json').exists() else

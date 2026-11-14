@@ -60,5 +60,24 @@ Status is planned until the prep amendment and launch gates pass; the dialogue c
 
 ## Amendments
 
-Prep amendment pending: committed code/input hashes, independent count method, exact formula, runner/startup
-check, and manifest schema. Implementing and checking that path is the next stage; no launch is authorized now.
+**Amendment 1 (prep, 2026-11-12; lab session).** List: `cells.py` ported from the prototypes with exact checks
+(each local b verified, per-plane found = Zaslavsky 2 (1 + c2): RV 510 x 8, Mizhaev 508/504; nonzero 84 signs;
+symmetries permute D; orbit partition checked per key). Union/orbits: RV 4,024/1,006, Mizhaev 3,992/998, every
+orbit size 4 (EXACT, matches the predictions). Representatives: max-margin LP rounded to 1e-9, all 2,004 verified
+exactly (no witness fallback). `list/units.json` SHA-256 ef132bc7...b360, pinned in `stage_a.py`; key, orbit and
+representative hashes in `list/certificate.json`. Queue: source-interleaved in blocks of 10, so the pilot (first
+two units of each shard) is one orbit per source per shard. Formula: `best_solid(target_edges=39,
+edges_at_least=True, max_runs=3)`, an explicit option of `code/solid_cpsat.py` (equality path unchanged,
+E-261103-05 tests pass); cap 60 s, one worker, hard limit cap + 30 s per unit process. Controls as registered; C1
+uses `cells.representative` (LP point, not the deleted plane). Runner: `run.sh` / `stage_a.py`; shard budget =
+total / SHARDS over every start (`PILOT=1`: 0.5 core-h, first two units); first SOLID writes `results/CANDIDATE`
+and stops all shards; ERROR units keep raw files and do not stop. Startup check through `overnight/launch.sh` with
+`BUDGET=1` (2 shards, then 1 after an edit): C0/C1 SOLID (V E F chi 24 36 8 -4), C2 INFEASIBLE, ~10 s per start,
+BUDGET-STOP before any unit; records in `startup/`. Unit branch covered by a stub-solver test; no target unit solved.
+
+**Amendment 2 (owner, 2026-11-12, before any target unit).** Budget raised from 7.3 to 12 core-h total (owner's
+decision on the pilot-gate escalation, made in advance). Pilot and day run are one launch: each shard's first two
+units are its pilot; before its next unit the runner applies the registered gate automatically (both pilot records,
+no ERROR, spent + mean pilot wall over all shards x remaining units <= the shard's 1.2 core-h), else exit 6 and the
+remaining units wait for an owner decision. Controls, list, formula and cap unchanged; stub-solver tests cover the
+gate both ways; startup check 3 (`startup/check-3`) passes as before.

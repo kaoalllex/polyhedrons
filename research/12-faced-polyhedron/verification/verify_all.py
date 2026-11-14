@@ -46,6 +46,22 @@ def english_only():
     return not bad, '%d tracked file(s) with Cyrillic%s' % (len(bad), (': ' + ', '.join(bad[:3])) if bad else '')
 
 
+def lutz_import_reproduces():
+    """E-261110-02: re-import Lutz's untrusted list (parsed, never executed) and compare with the committed map file."""
+    import tempfile
+    exp = os.path.join(ROOT, 'experiments', 'E-261110-02-face-minimal-10-3-decision')
+    with tempfile.TemporaryDirectory() as tmp:
+        out = os.path.join(tmp, 'maps_10_3.json')
+        ok, msg = run(['-I', os.path.join(CODE, 'lutz_import.py'),
+                       os.path.join(ROOT, 'literature', 'lutz-manifold-page', 'manifolds_lex_d2_n10_o1_g3.txt'),
+                       '10', '3', '20', out], ROOT, '20 maps, pairwise non-isomorphic')
+        same = ok and open(out, 'rb').read() == open(os.path.join(exp, 'maps', 'maps_10_3.json'), 'rb').read()
+    queues = run(['make_queue.py', '--check'], exp, 'queue.json sha256')
+    rung = run(['make_queue.py', '--check'], os.path.join(ROOT, 'experiments', 'E-261113-02-s6-10-2-calibration-rung'),
+               'seeded_formulas.json sha256')  # E-261113-02: the (10, 2) list re-imported, 50 maps redrawn
+    return same and queues[0] and rung[0], '%s; identical %s; %s; E-261113-02 %s' % (msg, same, queues[1], rung[0])
+
+
 def s0_rejects_roest_vigh():
     """The strict target must reject an embedded all-pairs object with doubled adjacencies."""
     sys.path.insert(0, CODE)
@@ -82,6 +98,9 @@ CHECKS = [
     ('solid-first: multirun disk model, known controls, random D2 recovery, independent checker',
      lambda: run(['test_pilot.py'], os.path.join(ROOT, 'experiments', 'E-261103-05-s5-symmetric-solid-first'),
                  lambda out: '\nOK' in out and 'skipped=' not in out)),
+    ('ninth-plane Stage A: frozen cell list, lower-bound model, budget and runner branches',
+     lambda: run(['test_stage_a.py'], os.path.join(ROOT, 'experiments', 'E-261112-01-ninth-plane-stage-a'),
+                 lambda out: '\nOK' in out and 'skipped=' not in out)),
     ('Lemma 5.1 on perturbed Szilassi planes (n = 7, 0 mismatches)',
      lambda: run(['test_szilassi.py'], HERE, lambda out: re.findall(r"'trials': \d+", out) and not re.search(
          r"'zero_viol_NOT_embedded': [1-9]|'pos_viol_but_embedded': [1-9]", out))),
@@ -109,6 +128,13 @@ CHECKS = [
     ('positive control: --target S5 accepts Szilassi (7 faces, genus 1, maximal)',
      lambda: (lambda r: (all(x['PASS'] for x in r), '%d record(s), S5 PASS %s' % (len(r), [x['PASS'] for x in r])))(
          verify_file(os.path.join(ROOT, 'experiments/E-261029-20-solid-first-n7/results/szilassi_found_without_map.json'), target='S5'))),
+    ('controls: --target S6 accepts the (10,2) witness and Szilassi, rejects the 12-face genus-3 witness',
+     lambda: (lambda r: (r == [True, True, False], 'S6 PASS %s' % r))(
+         [verify_file(os.path.join(ROOT, p), target='S6')[0]['PASS'] for p in
+          ('witnesses/s6_10_2.json', 'experiments/E-261029-20-solid-first-n7/results/szilassi_found_without_map.json',
+           GL + 'type0_genus3_extendable.json')])),
+    ('E-261110-02 / E-261113-02 inputs: the Lutz imports reproduce the map files; queues match make_queue.py',
+     lutz_import_reproduces),
     ('site: lab models in index.html = exactly re-verified witnesses/witnesses.json',
      lambda: run(['export_site.py', '--check'], os.path.join(ROOT, 'witnesses'), 'in sync')),
     ('negative control: genus-4 attempts are NOT embedded',

@@ -10,9 +10,9 @@ produces: []
 preregistered: false
 ---
 
-> Planned, conditional. Scores T D F G R: 1 2 2 1 2 (T down from 2: the lead session of 2026-11-10 judges (10, 4) a
-> weak proxy for S0, `reviews/strategy-review-2026-11-10.md`) | budget: set by the rule below. Before any compute:
-> `PLAN.md` (skill `experiment-start`) and the owner's approval of every night.
+> Planned, exploit, jump 2 (reopened by the owner on 2026-11-14 as week item 2, the second target of `STRATEGY.md`).
+> Scores T D F G R: 2 2 2 2 2 (lead review 2026-11-14) | budget: one prep session + one owner night <= 80 core-h,
+> 10 shards. Before any compute: `PLAN.md` (skill `experiment-start`) and the owner's approval of the night.
 
 ## Goal
 
@@ -22,7 +22,14 @@ the Actions branch of the E-261109-06 follow-up tree no longer exists.
 
 ## Next
 
-Rule (owner-approved 2026-11-10, replaces "Actions after item 2"):
+Since 2026-11-14 (`reviews/strategy-review-2026-11-14.md` §2 item 2): the formulas carry the reorientation and mirror
+units of E-261114-01, after its soundness controls pass. Prep: the 10 maps of E-261103-07 (10 / 10 TIMEOUT without the
+units), cap 1800 s, price the 757 maps. Projected <= 80 core-h -> one owner night, cap 3600 s, bridge on every SAT, no
+first-SAT stop; above -> the fastest patterns first inside one night, the rest to the lead. Follow-up: SAT -> 30
+models, bridge, `--target S5`, `candidate-check`, escalate; all UNSAT-SOLVER -> the lead proposes a proof replay and the
+(11, 5) probe (I-261114-03).
+
+History, the rule of 2026-11-10 (replaced "Actions after item 2"; its gate E-261113-04 ended PARK):
 
 * Gate: the cube-and-conquer pilot on maps 96 and 85 (week plan item 4; registered by the lab session that runs it).
 * The pilot prices A + B at <= 3 laptop nights -> A + B are proposed to the owner as nights of the E-261109-06 design

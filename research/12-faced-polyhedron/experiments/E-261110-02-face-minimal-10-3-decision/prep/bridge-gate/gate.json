@@ -1,0 +1,147 @@
+{
+  "witness_sha256": "08a0758e8c087fe2e40411d06aa285c4da6adca35b94def13ee968fdcffe12fc",
+  "solver_sha256": "4bc069939394b3b56f8dfa9518094f3a716246d65701635f9c722c2c7af4ceb7",
+  "drat_sha256": "8ae847701b5d9537322a3cbdca840ca49f2dd77c6ab7d83539e33bc4eb8c8b09",
+  "bridge": {
+    "submap": true,
+    "restarts": 6
+  },
+  "gates": {
+    "G1_pinned": {
+      "status": "SAT",
+      "seconds": 0.041770707932300866,
+      "budget_seconds": 600,
+      "budget_fraction": 6.961784655383477e-05,
+      "ended_by": "completed",
+      "variables": 9873,
+      "clauses": 146691,
+      "cnf_sha256": "79a33f8dd0670e8bb839820ecfac61f8685c29c7cf0c8b2ea357edfd22c99463",
+      "solver_children_maxrss": 30081024,
+      "model_checked": true,
+      "proof_sha256": "26c16aa7a2d0ab6171261ac3e19041c2d7826e7f307586c4247cac203a02a0c3"
+    },
+    "G2_unpinned": {
+      "status": "SAT",
+      "seconds": 0.7823254159884527,
+      "budget_seconds": 3600,
+      "budget_fraction": 0.000217312615552348,
+      "ended_by": "completed",
+      "variables": 9873,
+      "clauses": 146361,
+      "cnf_sha256": "9eda91d8d5106f36ece07bfcd94f77168c21be8cf52ba5632ae354549924a876",
+      "solver_children_maxrss": 37535744,
+      "model_checked": true,
+      "proof_sha256": "89b25a4ad0d119d9c5b76963e58aa918eb900b8695c404dcc44f8b381ac7739a"
+    },
+    "G3_bridge": {
+      "chi_agree_with_witness": 175,
+      "chi_size": 330,
+      "processing": {
+        "hinge": {
+          "wrong_signs": 1,
+          "signs_match": false,
+          "seconds": 1.4981335409684107,
+          "budget_seconds": 120,
+          "ended_by": "completed"
+        },
+        "two_stage": {
+          "wrong_signs": 0,
+          "signs_match": true,
+          "geometry": {
+            "corner_triples_distinct": true,
+            "all_pairs_adjacent": false,
+            "V_E_F_chi": [
+              24,
+              36,
+              10,
+              -2
+            ],
+            "points_distinct": true,
+            "simple_faces": 10,
+            "nonsimple_faces": [],
+            "edges_consistent": true,
+            "bad_pairs": [],
+            "EMBEDDED": true
+          },
+          "planes": [
+            [
+              -525065976,
+              -822119474,
+              220057473,
+              -768940273
+            ],
+            [
+              -315973479,
+              -867399559,
+              -384420038,
+              -494214958
+            ],
+            [
+              170053080,
+              -901317228,
+              -398383239,
+              -546996849
+            ],
+            [
+              286918037,
+              182967338,
+              940319623,
+              1000000000
+            ],
+            [
+              -424129427,
+              555702031,
+              715059076,
+              -1000000000
+            ],
+            [
+              445102141,
+              826625044,
+              -344347384,
+              1000000000
+            ],
+            [
+              756578881,
+              -635048193,
+              -155891596,
+              -973475280
+            ],
+            [
+              893814886,
+              -277159788,
+              -352530002,
+              -473783952
+            ],
+            [
+              699244859,
+              -358414645,
+              -618543102,
+              -767898273
+            ],
+            [
+              905940667,
+              187489128,
+              379630523,
+              -1000000000
+            ]
+          ],
+          "seconds": 0.9606915829936042,
+          "budget_seconds": 120,
+          "ended_by": "completed"
+        }
+      },
+      "candidate": "research/12-faced-polyhedron/experiments/E-261110-02-face-minimal-10-3-decision/prep/bridge-gate/g2_unpinned.candidate.json",
+      "candidate_verify_rc": 0,
+      "status_note": "CANDIDATE-NEEDS-REVIEW",
+      "V_E_F_chi": [
+        24,
+        36,
+        10,
+        -2
+      ],
+      "PASS": true
+    }
+  },
+  "PASS": true,
+  "wall_seconds": 3.800056666950695
+}

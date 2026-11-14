@@ -532,7 +532,7 @@ class Predicates:
 # ----------------------------------------------------------------------------- instance
 
 DEFAULT_OPTS = dict(gp=True, triples=True, inconsist=False, reflex=False, reflexconsist=False,
-                    poc=False, symbreak=False, mirror=False)
+                    poc=False, symbreak=False, mirror=False, no_segment_disjoint=False)
 
 
 def build(B, T, opts=None, sym=None):
@@ -548,6 +548,7 @@ def build(B, T, opts=None, sym=None):
                     over the corners of each face                                (F6)
       symbreak      reorientation normalisation chi(0,1,k,INF)=chi(0,2,3,INF)=chi(1,2,3,INF)=+1
       mirror        chi(0,1,2,3) = +1  (only together with symbreak)
+      no_segment_disjoint  drop SEGMENT_DISJOINT under triples (a relaxation, E-261110-05 V2)
     sym: optional list of (perm, detsign) - chi(perm(S)) = detsign * chi(S) for all S
     """
     o = dict(DEFAULT_OPTS)
@@ -558,7 +559,7 @@ def build(B, T, opts=None, sym=None):
     INF = n
     if o['gp']:
         B.gp()
-    if o['triples'] and T.multi:
+    if o['triples'] and T.multi and not o['no_segment_disjoint']:
         # Distinct boundary runs on one line must have disjoint closed intervals.
         for X, Y in itertools.combinations(range(n), 2):
             for (A, C), (D, E) in itertools.combinations(T.segments(X, Y), 2):

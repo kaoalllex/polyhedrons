@@ -1,0 +1,11 @@
+=== 2026-11-13 10:07:24 launch.sh start, shard 1
+controls start 1
+map control-f10-s1 start, solver 60s checker 120s
+map control-f10-s1 SAT
+map control-f10-neg-s1 start, solver 60s checker 120s
+map control-f10-neg-s1 UNSAT-SOLVER
+map 1 start, solver 3600s checker 60s
+map 1 TIMEOUT
+map 11 start, solver 3600s checker 60s
+map 11 TIMEOUT
+SHARD-COMPLETE wall_seconds 7211.292

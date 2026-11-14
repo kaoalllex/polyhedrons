@@ -9,14 +9,17 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-12, approved dialogue filed; no compute)
+## Hand-over (2026-11-14, lead review applied)
 
-* Branch `lab/2026-11-09`; no run launched here. Existing viewer/witness/chat edits remain separate and uncommitted.
-* `STRATEGY.md` and ROADMAP week plan: ninth-plane cells first, gated S6 (10,3) second, thin wedges backup.
-* NEXT: E-261112-01 prep under its PLAN: exact list/count/orbits, explicit lower-bound solver path, runner and hashes.
-* Controls pending: eight-plane recovery and deleted-plane reinsertion through the same representative path; no pilot now.
-* Environment: `source ~/.venvs/polyhedra/bin/activate`; all requirement pins and OR-Tools API pass, no Solve.
-* Stage A planned, not running; Stage B queued without PLAN, gated by full counts, real orbits and 50-cell pricing.
-* Owner actions: launch each night only after its gates; decide any Stage B source budget above one night; no push requested.
-* Checks: trace metadata and documentation links only; no solver, enumeration, candidate check or startup test in this filing.
-* For the lead: crease lemma proof/five outside chords; pencil planar lemma versus implemented clauses; novelty checks deferred.
+* Branch `lab/2026-11-09`, committed, not pushed. Nothing in flight. A PR of this branch into `main` and the next
+  `lab/` branch wait for the owner's word.
+* Lead review `reviews/strategy-review-2026-11-14.md`, approved by the owner the same day: new week plan in
+  `ROADMAP.md`; `STRATEGY.md` order S6 (10, 3), then S5 (10, 4), then nine faces. Not applied (not asked): the
+  credences of the review's §8 and the PLAN-template sentence of its §3.
+* Finding behind the plan: the plain S5 / S6 formulas (`ALL_OPTS`) have no reorientation or mirror units; session
+  check `reviews/strategy-review-2026-11-14-symbreak.py` (known answers, UNSAT-SOLVER, not ledger evidence).
+* NEXT: week item 1, E-261114-01 (Opus, high): `experiment-start`, PLAN, the soundness prep (a)-(d), with item 3
+  (E-261114-02) chained; then the owner's day run. No target formula before the invariance test and the re-gauged
+  positive controls pass.
+* Checks: none run for the ledger edits; `trace.py` refreshed.
+* For the lead: nothing open.

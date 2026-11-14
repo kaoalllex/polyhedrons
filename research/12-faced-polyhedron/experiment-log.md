@@ -943,3 +943,38 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-12: filed the owner's approved `reviews/dialogue-2026-11-10-strategy.md`: strategy, five-item week plan and queue updated;
   E-261112-01 Stage A pre-registered, E-261112-02 Stage B gated; E-261110-03/04 parked, E-261110-02 bridge gate added. No research compute.
   Existing polyhedra environment matches all requirement pins; OR-Tools import/model construction passed without Solve; handover updated.
+* 2026-11-13: E-261112-01 ninth-plane Stage A (10 shards, 8.01 core-h, 49 min wall): controls pass in every shard; all 2,004
+  near-copy cell orbits INFEASIBLE (UNSAT-SOLVER), 0 SOLID, 0 open; OPEN, instance scope, no family negative (CONCLUSION, STATUS 3ae).
+* 2026-11-13: E-261110-02 prep: Lutz's 20 (10,3) maps imported and checked; `--target S6`; tranche imported-map mode;
+  (10,2) bridge gate passes (foreign model realized, S6 PASS) after fixing the all-pairs check; controls pass; pilot
+  Lutz #1, #2 TIMEOUT at 1200 s; startup check clean. Night ready (PLAN amendment 2).
+* 2026-11-13: E-261110-02 S6 (10,3) night (10 shards, 20.03 core-h, 2.0 h wall, no proofs): controls pass in every shard;
+  all 20 Lutz maps TIMEOUT at 3600 s, 0 SAT, 0 UNSAT; OPEN, solver-limited, escalated (CONCLUSION, STATUS 3af).
+* 2026-11-13: lead review `reviews/strategy-review-2026-11-13.md` (no solver; symmetry screen of the 20 (10,3) maps) and the
+  owner's decisions: S6 (10,3) first with symmetric realizations, Stage B gated by a rung-below census, two standing rules,
+  no proofs in the symmetric runs; filed I-261113-01..04, E-261113-01..03 (planned, no PLAN yet); new week plan in `ROADMAP.md`.
+* 2026-11-13: E-261113-01 symmetric S6 (10,3): (a) Lutz #15 with group T, 0 EMBEDDED of 816 units (family scope, reduction
+  PROVED-1); (b) one owner launch, 10 shards, 0.034 core-h, controls pass: ten C3 / free C2 formulas UNSAT-SOLVER in
+  seconds, 0 SAT; OPEN, no negative claim (CONCLUSION, STATUS 3ag).
+* 2026-11-13: week items 2 and 3 prepared. E-261113-02: Lutz's 865 (10,2) list imported (checks pass, witness = #739),
+  50 maps x 3 kissat seeds queued; pilot 6/6 SAT in seconds, bridge 0/6 realized (PLAN amendment 1). E-261110-05: encoder
+  option `no_segment_disjoint`; (8,2) V2, V1 all UNSAT-SOLVER, controls pass (amendment 1). One owner launch pending.
+* 2026-11-13: E-261113-02 (10,2) rung, one owner launch, 0.239 core-h: 153/153 SAT, median 0.83 s, no timeout; bridge
+  16/153 realized; readings LIGHT, BRIDGE<50 %, CHEAP (CONCLUSION, STATUS 3ah). E-261110-05, 0.44 core-h: V2 UNSAT-SOLVER on
+  all eight maps, V1 SAT on five (9,3) maps, UNSAT-SOLVER at (8,2); H-261110-01 weakened (CONCLUSION, STATUS 3ai).
+* 2026-11-13: week item 4 prepared. E-261113-04 cube pilot on (10,4) maps 96, 85: march_cu not buildable in the session,
+  so segment-order cubes (9 existing order literals of the 3 doubled pairs, 512 cubes per map); pilot 0.006 core-h,
+  controls pass, four map-96 cubes UNSAT-SOLVER in 0.1-10.6 s (PLAN amendment 1). One owner launch pending.
+* 2026-11-13: E-261113-04 cube pilot, one owner launch, 1.08 core-h, controls pass, calibration 0.92: segment-order cubes
+  cost >= 1.07x (96) and >= 0.92x (85) monolithic kissat, 0 SAT: PARK; E-261110-06 -> one explore night at most, by a lead
+  review (CONCLUSION, STATUS 3aj). march_cu built by the owner afterwards (untried).
+* 2026-11-13: week item 5 prepared. E-261113-03 rung-below census: exact list of 25,531 eighth-plane cells over seven
+  Roest-Vigh planes (deletions 0 and 4; rank-4 Zaslavsky counts match), Stage A worker at eight faces, map classifier;
+  pre-registration `9080665e`. Pilot 50/50 UNSAT-SOLVER at mean 2.34 s, planted cells SOLID with the source map,
+  projected 16.6 core-h (PLAN amendment 1). Owner day run pending.
+* 2026-11-14: E-261113-03 rung-below census, owner day run, 15.97 core-h, controls pass: all 25,531 cells recorded,
+  25,527 UNSAT-SOLVER, 4 SOLID (planted cells and one more per deletion), all with Roest-Vigh's map: H0, Stage B
+  (E-261112-02) parked at this budget (CONCLUSION, STATUS 3ak). Week plan done.
+* 2026-11-14: lead review (`reviews/strategy-review-2026-11-14.md`) and the owner's decisions: the plain S5 / S6 formulas
+  carry no reorientation or mirror units; session check 10-89x on five known UNSAT formulas (not ledger evidence). New
+  week plan: E-261114-01 normalised (10, 3) first, E-261110-06 (10, 4) A + B second, E-261114-02..04; I-261114-01..05.

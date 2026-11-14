@@ -1,0 +1,87 @@
+c ---- [ banner ] ------------------------------------------------------------
+c
+c Kissat SAT Solver
+c 
+c Copyright (c) 2021-2024 Armin Biere University of Freiburg
+c Copyright (c) 2019-2021 Armin Biere Johannes Kepler University Linz
+c 
+c Version 4.0.4 8af8e56f174b778aef3aa45af9f739b2a5f492c2
+c Apple clang version 21.0.0 (clang-2100.3.34.2) -W -Wall -O3 -DNDEBUG
+c Sun Nov 8 21:34:28 +03 2026 Darwin IOSM-FQNJVXCGPH 25.6.0 arm64
+c
+c ---- [ parsing ] -----------------------------------------------------------
+c
+c opened and reading DIMACS file:
+c
+c   /Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261113-04-cube-and-conquer-pilot-10-4/results/6/map96_cube095.cnf
+c
+c parsed 'p cnf 12958 157386' header
+c closing input after reading 3798820 bytes (4 MB)
+c finished parsing after 0.02 seconds
+c
+c ---- [ solving ] -----------------------------------------------------------
+c
+c seconds switched rate     size/glue tier1  binary           remaining
+c        MB reductions conflicts size  tier2     irredundant
+c         level restarts redundant glue  trail           variables
+c
+c *  0.02 24 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 12999 143704 12782 99%
+c (  0.02 33 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 12999 143704 12782 99%
+c .  0.03 33 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 13102 143264 12782 99%
+c c  0.05 33 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 13138 142088 11933 92%
+c d  0.05 36 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11508 142088 11933 92%
+c )  0.09 36 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11508 142088 11933 92%
+c {  0.09 36 0 0 0  0 0   0   0 0.0 0 0 2 6 0% 11508 142088 11933 92%
+c i  0.09 36 44 0 0  8 6 107  70 1.6 10 6 4 14 8% 11514 142088 11932 92%
+c i  0.09 36 41 0 0  8 6 112  69 1.6 10 6 4 14 7% 11517 142088 11931 92%
+c }  0.09 36 41 0 0  8 6 116  69 1.6 10 6 3 8 7% 11518 142087 11918 92%
+c 0  0.09 36 41 0 0  8 6 116  69 1.6 10 6 3 8 7% 11518 142087 11918 92%
+c
+c ---- [ result ] ------------------------------------------------------------
+c
+s UNSATISFIABLE
+c
+c ---- [ profiling ] ---------------------------------------------------------
+c
+c           0.06   67.68 %  preprocess
+c           0.06   63.07 %  probe
+c           0.02   25.65 %  congruence
+c           0.02   20.23 %  parse
+c           0.02   18.89 %  sweep
+c           0.01   11.75 %  factor
+c           0.01    7.69 %  lucky
+c           0.01    6.19 %  substitute
+c           0.00    3.99 %  search
+c           0.00    3.99 %  focused
+c           0.00    0.57 %  backbone
+c           0.00    0.00 %  simplify
+c =============================================
+c           0.09  100.00 %  total
+c
+c ---- [ statistics ] --------------------------------------------------------
+c
+c conflicts:                              116             1222.13 per second
+c congruent:                              804                6 %  variables
+c decisions:                              559                4.82 per conflict
+c iterations:                               3                0 %  variables
+c propagations:                         81039           853797    per second
+c restarts:                                 8               14    interval
+c substituted:                            784                6 %  variables
+c switched:                                 0                0    interval
+c
+c ---- [ glue usage ] --------------------------------------------------------
+c
+c focused glue 3   used  8 clauses 10.96% accumulated 57.53% tier1
+c focused glue 4   used  8 clauses 10.96% accumulated 68.49%
+c focused glue 5-6 used 11 clauses 15.07% accumulated 83.56%
+c focused glue 7   used  3 clauses  4.11% accumulated 87.67%
+c focused glue 8   used  1 clauses  1.37% accumulated 89.04% tier2
+c
+c ---- [ resources ] ---------------------------------------------------------
+c
+c maximum-resident-set-size:      39040581632 bytes      37232 MB
+c process-time:                                              0.09 seconds
+c
+c ---- [ shutting down ] -----------------------------------------------------
+c
+c exit 20

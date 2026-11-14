@@ -3,11 +3,11 @@
 This repository has two parts:
 - the public 3D viewer: `index.html`, published by GitHub Pages from `main`, so every commit on `main` is live;
 - the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
-  (`STRATEGY.md`, owner-approved 2026-11-12): one constructive target at a time on the owner's laptop, subject to
-  the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) by exact ninth-plane cells first;
-  S6 at (10, 3) second, behind formula and realization-bridge controls; thin wedges as a backup. S5 at (10, 4)
-  only under the rule of E-261110-06. (8, 2) and (9, 3) are decided (conditional negative),
-  the note is deferred; the 12-face problem is parked, not abandoned.
+  (`STRATEGY.md`, owner-approved 2026-11-14): one constructive target at a time on the owner's laptop, subject to
+  the significance filter. S6 at (10, 3) first, by the normalised formulas (reorientation and mirror units) behind
+  soundness and realization-bridge controls; S5 at (10, 4) second, strata A + B in one night by the same formulas;
+  nine mutually adjacent faces (SPEC S1, genus free) third, Stage B parked; thin wedges as a backup. (8, 2) and
+  (9, 3) are decided (conditional negative), the note is deferred; the 12-face problem is parked, not abandoned.
 
 ## Implementation preferences
 
@@ -60,9 +60,11 @@ Hard rules:
   and what was not run.
 - Long runs go to the owner's laptop only (under `caffeinate -dimsu`, on AC power; no GitHub Actions, no rented
   compute: owner, 2026-11-10). Never start a multi-hour run from a session.
-- Ask the owner before large subagent tasks and before long runs. Search runs may skip DRAT (owner, 2026-11-08
-  22:15): an UNSAT without a checked proof is `UNSAT-SOLVER`, which may skip or rank a map but is never a negative
-  result; a negative claim (a note, an exclusion in `STATUS.md`) needs a replay with a checked proof. Runs with
+- Ask the owner before large subagent tasks and before long runs. **No DRAT by default** (owner, 2026-11-13; search
+  runs since 2026-11-08): produce and check proofs only when the plan names the negative claim they are for (a note,
+  an exclusion in `STATUS.md`) or the owner asks. An UNSAT without a checked proof is `UNSAT-SOLVER`, which may skip
+  or rank a map but is never a negative result; a negative claim needs a replay with a checked proof. If a plan asks
+  for proofs without naming such a claim, raise it with the owner before the run instead of following it. Runs with
   proofs record the SHA-256 of every CNF and proof and keep the checker transcript; proofs are checked during the
   run and then deleted, CNFs are rebuilt from the committed encoder and hash-checked; SAT models are kept. Proofs
   are archived (Zenodo or a release, not git) only for a claim that goes into a note (owner, 2026-11-08).

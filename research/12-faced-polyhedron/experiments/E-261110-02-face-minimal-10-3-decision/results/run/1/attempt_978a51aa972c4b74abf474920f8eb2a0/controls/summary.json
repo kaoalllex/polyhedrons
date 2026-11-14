@@ -1,0 +1,653 @@
+{
+  "status": "CONTROLS-PASS",
+  "controls": {
+    "roest_vigh": {
+      "status": "SAT",
+      "seconds": 0.020767207955941558,
+      "budget_seconds": 15.0,
+      "budget_fraction": 0.0013844805303961038,
+      "ended_by": "completed",
+      "variables": 4879,
+      "clauses": 38055,
+      "cnf_sha256": "b20395520b6746dcfdfe710a6b0f9d7b2584f2307b46ca6833513c11860bb553",
+      "solver_children_maxrss": 45957120,
+      "model_checked": true
+    },
+    "roest_vigh_hinge_warm": {
+      "wrong_signs": 0,
+      "signs_match": true,
+      "geometry": {
+        "corner_triples_distinct": true,
+        "all_pairs_adjacent": true,
+        "V_E_F_chi": [
+          24,
+          36,
+          8,
+          -4
+        ],
+        "points_distinct": true,
+        "simple_faces": 8,
+        "nonsimple_faces": [],
+        "edges_consistent": true,
+        "bad_pairs": [],
+        "EMBEDDED": true
+      },
+      "planes": [
+        [
+          630729265,
+          -538068761,
+          -206266872,
+          -519742518
+        ],
+        [
+          -630731329,
+          538070265,
+          -206265566,
+          -519739336
+        ],
+        [
+          630729265,
+          538068761,
+          206266872,
+          -519742518
+        ],
+        [
+          -630731329,
+          -538070265,
+          206265566,
+          -519739336
+        ],
+        [
+          -384258514,
+          513213768,
+          -724953602,
+          -251721043
+        ],
+        [
+          384261280,
+          -513212915,
+          -724952411,
+          -251723143
+        ],
+        [
+          -384258514,
+          -513213768,
+          724953602,
+          -251721043
+        ],
+        [
+          384261279,
+          513212915,
+          724952411,
+          -251723143
+        ]
+      ],
+      "seconds": 0.6700388749595731,
+      "budget_seconds": 45,
+      "ended_by": "completed"
+    },
+    "roest_vigh_hinge_unseeded": {
+      "wrong_signs": 0,
+      "signs_match": true,
+      "geometry": {
+        "corner_triples_distinct": true,
+        "all_pairs_adjacent": true,
+        "V_E_F_chi": [
+          24,
+          36,
+          8,
+          -4
+        ],
+        "points_distinct": true,
+        "simple_faces": 8,
+        "nonsimple_faces": [],
+        "edges_consistent": true,
+        "bad_pairs": [],
+        "EMBEDDED": true
+      },
+      "planes": [
+        [
+          -254134137,
+          756670102,
+          -306942976,
+          -518294236
+        ],
+        [
+          -98341192,
+          -832248264,
+          136102171,
+          -528363868
+        ],
+        [
+          -213438928,
+          341527942,
+          754353585,
+          -518417868
+        ],
+        [
+          568330410,
+          -256626742,
+          -585382459,
+          -518135393
+        ],
+        [
+          -636925820,
+          -723010968,
+          -7129774,
+          -267452286
+        ],
+        [
+          -621077809,
+          433258239,
+          -598125115,
+          -262200229
+        ],
+        [
+          929829120,
+          54489623,
+          -269835049,
+          -244172969
+        ],
+        [
+          332082620,
+          249291671,
+          874871999,
+          -249291755
+        ]
+      ],
+      "seconds": 0.7210910420399159,
+      "budget_seconds": 45,
+      "ended_by": "completed"
+    },
+    "roest_vigh_two_stage_warm": {
+      "wrong_signs": 0,
+      "signs_match": true,
+      "geometry": {
+        "corner_triples_distinct": true,
+        "all_pairs_adjacent": true,
+        "V_E_F_chi": [
+          24,
+          36,
+          8,
+          -4
+        ],
+        "points_distinct": true,
+        "simple_faces": 8,
+        "nonsimple_faces": [],
+        "edges_consistent": true,
+        "bad_pairs": [],
+        "EMBEDDED": true
+      },
+      "planes": [
+        [
+          557086015,
+          -742781353,
+          -371390676,
+          -1000000000
+        ],
+        [
+          -557086015,
+          742781353,
+          -371390676,
+          -1000000000
+        ],
+        [
+          557086015,
+          742781353,
+          371390676,
+          -1000000000
+        ],
+        [
+          -557086015,
+          -742781353,
+          371390676,
+          -1000000000
+        ],
+        [
+          -272165527,
+          680413817,
+          -680413817,
+          -416673038
+        ],
+        [
+          272165527,
+          -680413817,
+          -680413817,
+          -416673038
+        ],
+        [
+          -272165527,
+          -680413817,
+          680413817,
+          -416673038
+        ],
+        [
+          272165527,
+          680413817,
+          680413817,
+          -416673038
+        ]
+      ],
+      "seconds": 0.7729344579856843,
+      "budget_seconds": 45,
+      "ended_by": "completed"
+    },
+    "roest_vigh_two_stage_unseeded": {
+      "wrong_signs": 0,
+      "signs_match": true,
+      "geometry": {
+        "corner_triples_distinct": true,
+        "all_pairs_adjacent": true,
+        "V_E_F_chi": [
+          24,
+          36,
+          8,
+          -4
+        ],
+        "points_distinct": true,
+        "simple_faces": 8,
+        "nonsimple_faces": [],
+        "edges_consistent": true,
+        "bad_pairs": [],
+        "EMBEDDED": true
+      },
+      "planes": [
+        [
+          -852749457,
+          218266810,
+          474529201,
+          -1000000000
+        ],
+        [
+          6340099,
+          117274738,
+          -993079271,
+          -1000000000
+        ],
+        [
+          -291050289,
+          -365474974,
+          884148049,
+          -1000000000
+        ],
+        [
+          804201387,
+          178414326,
+          -566946609,
+          -1000000000
+        ],
+        [
+          -551510346,
+          134763348,
+          -823210288,
+          -303622192
+        ],
+        [
+          -830090309,
+          446725658,
+          -333745808,
+          179011965
+        ],
+        [
+          997661035,
+          32292007,
+          -60246877,
+          -723739510
+        ],
+        [
+          377239574,
+          -477432990,
+          793566660,
+          -808823410
+        ]
+      ],
+      "seconds": 0.7605680829146877,
+      "budget_seconds": 45,
+      "ended_by": "completed"
+    },
+    "mizhaev": {
+      "status": "SAT",
+      "seconds": 0.024248292087577283,
+      "budget_seconds": 15.0,
+      "budget_fraction": 0.0016165528058384856,
+      "ended_by": "completed",
+      "variables": 4891,
+      "clauses": 38103,
+      "cnf_sha256": "d0352965114be74fb63925cd9718a07e9c9c8a93c7fbf8df7598fb4e6cd847a7",
+      "solver_children_maxrss": 79806464,
+      "model_checked": true
+    },
+    "mizhaev_hinge_warm": {
+      "wrong_signs": 0,
+      "signs_match": true,
+      "geometry": {
+        "corner_triples_distinct": true,
+        "all_pairs_adjacent": true,
+        "V_E_F_chi": [
+          24,
+          36,
+          8,
+          -4
+        ],
+        "points_distinct": true,
+        "simple_faces": 8,
+        "nonsimple_faces": [],
+        "edges_consistent": true,
+        "bad_pairs": [],
+        "EMBEDDED": true
+      },
+      "planes": [
+        [
+          494361071,
+          113300026,
+          -748889724,
+          426559848
+        ],
+        [
+          494361071,
+          113300026,
+          748889724,
+          -426559848
+        ],
+        [
+          628071375,
+          -59664258,
+          250007958,
+          -734481133
+        ],
+        [
+          628071375,
+          -59664258,
+          -250007958,
+          734481133
+        ],
+        [
+          59664258,
+          628071375,
+          -250007958,
+          -734481133
+        ],
+        [
+          59664258,
+          628071375,
+          250007958,
+          734481133
+        ],
+        [
+          113300026,
+          -494361071,
+          748889724,
+          426559848
+        ],
+        [
+          113300026,
+          -494361071,
+          -748889724,
+          -426559848
+        ]
+      ],
+      "seconds": 0.6157804999966174,
+      "budget_seconds": 45,
+      "ended_by": "completed"
+    },
+    "mizhaev_hinge_unseeded": {
+      "wrong_signs": 0,
+      "signs_match": true,
+      "geometry": {
+        "corner_triples_distinct": true,
+        "all_pairs_adjacent": true,
+        "V_E_F_chi": [
+          24,
+          36,
+          8,
+          -4
+        ],
+        "points_distinct": true,
+        "simple_faces": 8,
+        "nonsimple_faces": [],
+        "edges_consistent": true,
+        "bad_pairs": [],
+        "EMBEDDED": true
+      },
+      "planes": [
+        [
+          934808875,
+          92994167,
+          24105904,
+          -341941591
+        ],
+        [
+          30711361,
+          -329201027,
+          -852418902,
+          -405049893
+        ],
+        [
+          349635642,
+          13134394,
+          -579288980,
+          -736219402
+        ],
+        [
+          784170216,
+          146775087,
+          -581620791,
+          -158905937
+        ],
+        [
+          289873023,
+          -696178634,
+          219327791,
+          -619034114
+        ],
+        [
+          131134738,
+          -928430141,
+          -58847546,
+          342563550
+        ],
+        [
+          -417641736,
+          291962516,
+          -784206596,
+          354066315
+        ],
+        [
+          253527337,
+          852156356,
+          255722266,
+          -379691478
+        ]
+      ],
+      "seconds": 0.6169103330466896,
+      "budget_seconds": 45,
+      "ended_by": "completed"
+    },
+    "mizhaev_two_stage_warm": {
+      "wrong_signs": 0,
+      "signs_match": true,
+      "geometry": {
+        "corner_triples_distinct": true,
+        "all_pairs_adjacent": true,
+        "V_E_F_chi": [
+          24,
+          36,
+          8,
+          -4
+        ],
+        "points_distinct": true,
+        "simple_faces": 8,
+        "nonsimple_faces": [],
+        "edges_consistent": true,
+        "bad_pairs": [],
+        "EMBEDDED": true
+      },
+      "planes": [
+        [
+          895443009,
+          127920430,
+          -426401433,
+          778806950
+        ],
+        [
+          895443009,
+          127920430,
+          426401433,
+          -778806950
+        ],
+        [
+          948683298,
+          0,
+          316227766,
+          -1000000000
+        ],
+        [
+          948683298,
+          0,
+          -316227766,
+          1000000000
+        ],
+        [
+          0,
+          948683298,
+          -316227766,
+          -1000000000
+        ],
+        [
+          0,
+          948683298,
+          316227766,
+          1000000000
+        ],
+        [
+          127920430,
+          -895443009,
+          426401433,
+          778806950
+        ],
+        [
+          127920430,
+          -895443009,
+          -426401433,
+          -778806950
+        ]
+      ],
+      "seconds": 0.617980416980572,
+      "budget_seconds": 45,
+      "ended_by": "completed"
+    },
+    "mizhaev_two_stage_unseeded": {
+      "wrong_signs": 0,
+      "signs_match": true,
+      "geometry": {
+        "corner_triples_distinct": true,
+        "all_pairs_adjacent": true,
+        "V_E_F_chi": [
+          24,
+          36,
+          8,
+          -4
+        ],
+        "points_distinct": true,
+        "simple_faces": 8,
+        "nonsimple_faces": [],
+        "edges_consistent": true,
+        "bad_pairs": [],
+        "EMBEDDED": true
+      },
+      "planes": [
+        [
+          830384257,
+          -236170326,
+          504663811,
+          -53289733
+        ],
+        [
+          -700357829,
+          665585207,
+          -257866716,
+          218627187
+        ],
+        [
+          -269510298,
+          512091299,
+          815553003,
+          -1000000000
+        ],
+        [
+          508864117,
+          -8460337,
+          860805282,
+          1000000000
+        ],
+        [
+          934001562,
+          -41929920,
+          -354799893,
+          -1000000000
+        ],
+        [
+          574649530,
+          245880083,
+          -780590099,
+          1000000000
+        ],
+        [
+          -958192042,
+          272205665,
+          88159440,
+          843641279
+        ],
+        [
+          273894158,
+          -389586323,
+          879320469,
+          -795746424
+        ]
+      ],
+      "seconds": 0.559976291959174,
+      "budget_seconds": 45,
+      "ended_by": "completed"
+    },
+    "negative_cross_map": {
+      "status": "UNSAT-SOLVER",
+      "seconds": 0.0222014170140028,
+      "budget_seconds": 15.0,
+      "budget_fraction": 0.0014800944676001866,
+      "ended_by": "completed",
+      "variables": 4891,
+      "clauses": 38103,
+      "cnf_sha256": "e437871061a72bdf423b3b312bd1020e464c3c70a6378c38d3280a81e0c2489f",
+      "solver_children_maxrss": 80297984
+    },
+    "inadmissible_maps": "REJECTED",
+    "eight_face_evidence": "REPLAY-PASS",
+    "malformed_pairing": "REJECTED",
+    "nine_plane_control": {
+      "status": "SAT",
+      "seconds": 0.043033915921114385,
+      "budget_seconds": 30.0,
+      "budget_fraction": 0.0014344638640371463,
+      "ended_by": "completed",
+      "variables": 7840,
+      "clauses": 128482,
+      "cnf_sha256": "7c93ea91ce332fb81335ed4700a1a18588daca0136aa071dc587a6633e53e0cd",
+      "solver_children_maxrss": 80297984,
+      "model_checked": true
+    },
+    "C3_control": {
+      "status": "SAT",
+      "seconds": 0.023105666041374207,
+      "budget_seconds": 15.0,
+      "budget_fraction": 0.0015403777360916138,
+      "ended_by": "completed",
+      "variables": 211,
+      "clauses": 51451,
+      "cnf_sha256": "f15e245e0054cd805160018a56dc89af480d4f12eef97112f8aa578554c2800b",
+      "solver_children_maxrss": 80297984,
+      "model_checked": true
+    }
+  },
+  "targets": {},
+  "construction_power": "CONTROL-PASS"
+}

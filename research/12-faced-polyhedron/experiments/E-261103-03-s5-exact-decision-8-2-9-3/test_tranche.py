@@ -105,6 +105,27 @@ class TrancheTests(unittest.TestCase):
         maps = [e for e in queue if 'control' not in e]
         self.assertEqual(sorted((e['solver_cap'], e['checker_cap']) for e in maps), [(300, 450)] * 6 + [(1800, 2700)] * 4)
 
+    def test_imported_map_queue_checks_identity_and_builds_submap_formulas(self):
+        t = self.module()
+        night = pilot.ROOT / 'experiments/E-261110-02-face-minimal-10-3-decision/queue.json'
+        with patch.object(t, 'QUEUE', night), patch.object(t, 'CASE', t.CASE), patch.object(t, 'CONTROL', t.CONTROL), \
+                patch.object(t, 'MAPS_FILE', None):
+            queue = t.load_queue(custom=True)
+            self.assertEqual((t.CASE, t.CONTROL, t.MAPS_FILE), ((10, 3), 'control_f10.json',
+                             'experiments/E-261110-02-face-minimal-10-3-decision/maps/maps_10_3.json'))
+            maps = t.imported_maps(t.MAPS_FILE)
+        self.assertIsNone(t.MAPS_FILE)
+        self.assertEqual([e.get('control') for e in queue[0::10]], ['positive', 'negative', None, None])
+        self.assertEqual(sorted(e['index'] for e in queue if 'control' not in e), list(range(20)))
+        c = t.submap_formula(10, dict(enumerate(maps[0]['links'])))
+        self.assertEqual(len(c.qvar), 330)
+        with tempfile.TemporaryDirectory() as tmp:
+            bad = json.loads(night.read_text()); bad['maps'][-1]['canonical_sha256'] = '0' * 64
+            path = Path(tmp) / 'queue.json'; path.write_text(json.dumps(bad))
+            with patch.object(t, 'QUEUE', path), patch.object(t, 'CASE', t.CASE), patch.object(t, 'CONTROL', t.CONTROL), \
+                    patch.object(t, 'MAPS_FILE', None), self.assertRaisesRegex(ValueError, 'imported map identity'):
+                t.load_queue(custom=True)
+
     def test_shard_budget_share_survives_restarts(self):
         t = self.module()
         with tempfile.TemporaryDirectory() as tmp, patch.object(t, 'BUDGET_SECONDS', 300):

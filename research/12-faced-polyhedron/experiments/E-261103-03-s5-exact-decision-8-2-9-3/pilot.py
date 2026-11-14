@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import platform
+import resource
 import shlex
 import signal
 import subprocess
@@ -94,7 +95,9 @@ def solve(c, out, name, timeout, checker_timeout=None, on_sat=None, solver_gate=
     elapsed = time.monotonic() - started
     r = dict(status='TIMEOUT' if rc is None else 'ERROR', seconds=elapsed, budget_seconds=timeout,
              budget_fraction=elapsed / timeout, ended_by='solver_timeout' if rc is None else 'completed',
-             variables=c.nv, clauses=len(c.clauses), cnf_sha256=sha(cnf))
+             variables=c.nv, clauses=len(c.clauses), cnf_sha256=sha(cnf),
+             # peak RSS of finished children so far (bytes on macOS, KiB on Linux): solver here, max with checker below
+             solver_children_maxrss=resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss)
     if rc == 10:
         model = [int(v) for line in (out / (name + '.solver.log')).read_text().splitlines()
                  if line.startswith('v ') for v in line[2:].split() if int(v)]
@@ -111,7 +114,8 @@ def solve(c, out, name, timeout, checker_timeout=None, on_sat=None, solver_gate=
         ok = check_proof(cnf, proof, out / (name + '.checker.log'), checker_timeout)
         r.update(status='UNSAT-VERIFIED' if ok else 'UNSAT-UNCHECKED',
                  checker_seconds=time.monotonic() - check_started, checker_budget_seconds=checker_timeout,
-                 checker_ended_by='completed' if ok else 'failed_or_timeout')
+                 checker_ended_by='completed' if ok else 'failed_or_timeout',
+                 checker_children_maxrss=resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss)
     if proof.exists():
         r['proof_sha256'] = sha(proof)
     # The proof was checked above; records keep the hashes and transcripts, not the files (PROTOCOL.md §5).
@@ -215,13 +219,16 @@ def worker(args):
         import chirotope_first as cf
         import numpy as np
         fn = cf.realize if args.task == 'hinge' else cf.realize2
+        # A payload may name its restart count (E-261110-02 bridge); the default keeps the E-261103-03 behaviour.
         planes, bad = fn(chi, len(data['links']), start_planes=data.get('start_planes'),
-                         restarts=2 if args.task == 'two_stage' and data.get('start_planes') is not None else 1,
+                         restarts=data.get('restarts') or
+                         (2 if args.task == 'two_stage' and data.get('start_planes') is not None else 1),
                          rng=np.random.default_rng(26110303))
         match = reconstruction_ok(bad, planes is not None and chirotope_from_planes(planes) == chi)
         result = dict(wrong_signs=bad, signs_match=match)
         if match:
-            result['geometry'] = verify(planes, dict(enumerate(data['links'])))
+            # A sub-map (S6) has non-adjacent pairs by definition, so the all-pairs requirement is dropped for it.
+            result['geometry'] = verify(planes, dict(enumerate(data['links'])), require_all_pairs=not data.get('submap'))
             result['planes'] = [[int(x) for x in row] for row in planes]
     dump(args.output, result)
 
@@ -238,8 +245,8 @@ def stage(out, name, task, inp, budget):
     return result
 
 
-def payload(chi, links, start=None):
-    return dict(chi={','.join(map(str, k)): v for k, v in chi.items()}, links=links, start_planes=start)
+def payload(chi, links, start=None, **options):
+    return dict(chi={','.join(map(str, k)): v for k, v in chi.items()}, links=links, start_planes=start, **options)
 
 
 def arm_deadline(seconds):

@@ -1,0 +1,37 @@
+=== 2026-11-13 18:28:09 launch.sh start, shard 5
+controls start 5
+map control-f10-s5 start, solver 60s checker 120s
+map control-f10-s5 SAT
+map control-f10-neg-s5 start, solver 60s checker 120s
+map control-f10-neg-s5 UNSAT-SOLVER
+map 5 start, solver 300s checker 360s
+map 5 SAT
+map 15 start, solver 300s checker 360s
+map 15 SAT
+map 25 start, solver 300s checker 360s
+map 25 SAT
+map 35 start, solver 300s checker 360s
+map 35 SAT
+map 45 start, solver 300s checker 360s
+map 45 SAT
+map 55 start, solver 300s checker 360s
+map 55 SAT
+map 65 start, solver 300s checker 360s
+map 65 SAT
+map 75 start, solver 300s checker 360s
+map 75 SAT
+map 85 start, solver 300s checker 360s
+map 85 SAT
+map 95 start, solver 300s checker 360s
+map 95 SAT
+map 105 start, solver 300s checker 360s
+map 105 SAT
+map 115 start, solver 300s checker 360s
+map 115 SAT
+map 125 start, solver 300s checker 360s
+map 125 SAT
+map 135 start, solver 300s checker 360s
+map 135 SAT
+map 145 start, solver 300s checker 360s
+map 145 SAT
+SHARD-COMPLETE wall_seconds 93.191

@@ -22,6 +22,10 @@ predicate.
 
 Third-party pilot: 648.5 core-h for 2 maps (CLAIMED).
 
+E-261113-04 (2026-11-13, NUMERICAL, instance scope): cubes on the segment order of the doubled pairs do not lower kissat's
+cost on (10, 4) S5 maps 96 and 85 (summed cube time >= 1.07x and >= 0.92x monolithic); march_cu cubes untried. No status
+change.
+
 ## What would move it
 
 E-261101-09 (predicate equality of the two encoders); E-261101-15 (one type on an Actions matrix); E-261101-20

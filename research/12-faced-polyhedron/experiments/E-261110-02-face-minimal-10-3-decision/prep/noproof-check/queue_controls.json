@@ -1,0 +1,28 @@
+{
+ "target": "S6 (10,3) E-261110-02 PLAN.md, 20 maps, kissat, no proof, submap=True; startup check: shard-0 controls only",
+ "target_check": "S6",
+ "case": [
+  10,
+  3
+ ],
+ "maps_file": "experiments/E-261110-02-face-minimal-10-3-decision/maps/maps_10_3.json",
+ "maps_sha256": "d7a1d18ff54c52fe1b335dfd2041cf8c62e6131a494bc8e3d5086d89603e8f5b",
+ "control_file": "control_f10.json",
+ "shards": 1,
+ "maps": [
+  {
+   "index": "control-f10-s0",
+   "control": "positive",
+   "control_sha256": "63eac4a7c9bc97fd2fe16198452525388f95ef2d73657e3d11bd9c575bdc272e",
+   "solver_cap": 60,
+   "checker_cap": 120
+  },
+  {
+   "index": "control-f10-neg-s0",
+   "control": "negative",
+   "control_sha256": "63eac4a7c9bc97fd2fe16198452525388f95ef2d73657e3d11bd9c575bdc272e",
+   "solver_cap": 60,
+   "checker_cap": 120
+  }
+ ]
+}

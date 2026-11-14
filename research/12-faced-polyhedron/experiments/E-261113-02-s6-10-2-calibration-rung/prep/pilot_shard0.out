@@ -1,0 +1,12 @@
+controls start 0
+map control-f10-s0 start, solver 60s checker 120s
+map control-f10-s0 SAT
+map control-f10-neg-s0 start, solver 60s checker 120s
+map control-f10-neg-s0 UNSAT-SOLVER
+map 0 start, solver 300s checker 360s
+map 0 SAT
+map 2 start, solver 300s checker 360s
+map 2 SAT
+map 151 start, solver 300s checker 360s
+map 151 SAT
+SHARD-COMPLETE wall_seconds 23.416

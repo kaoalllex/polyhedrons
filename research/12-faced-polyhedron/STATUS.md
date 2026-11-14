@@ -1,18 +1,27 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-12** (owner-approved strategy filing, no research computation). The latest registered results
-remain E-261109-06 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
+As of **2026-11-14** (E-261113-03 concluded). The latest registered results are E-261113-03 (section 3ak), after
+E-261113-04 (section 3aj), E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
-No research run launched by this filing. Next is E-261112-01 preparation (ninth-plane Stage A); Stage B is gated,
-S6 (10,3) follows its formula/bridge controls. The dialogue's checks remain session checks, not new ledger evidence;
-the local S6 (10,2) witness work is separate. S0 stays parked and the (8,2)/(9,3) note deferred. No credence change.
+Ninth-plane Stage A is exhausted with no candidate: all near-copy cells UNSAT-SOLVER at instance scope, no family
+negative (section 3ae). S6 (10,3): the night left all 20 formulas undecided at 3600 s, controls pass; solver-limited,
+escalated (section 3af); the symmetric C3 / free C2 formulas are all UNSAT-SOLVER and the T family of Lutz #15 has no
+embedded member (section 3ag). Owner's decisions of 2026-11-13 (`reviews/strategy-review-2026-11-13.md`): S6 at (10, 3) is
+the first target, symmetric realizations first (E-261113-01); Stage B was gated by the rung-below census
+E-261113-03, which found only the source map, so Stage B is parked at this budget (section 3ak). The dialogue's checks
+remain session checks, not new ledger evidence; the local S6 (10,2) witness work is separate. S0 stays parked and the
+(8,2)/(9,3) note deferred. No credence change. Owner's decisions of 2026-11-14 (`reviews/strategy-review-2026-11-14.md`):
+S6 at (10, 3) by the normalised formulas first (E-261114-01), S5 at (10, 4) second (E-261110-06, one night), nine faces
+third. The review's finding that the plain S5 / S6 formulas carry no reorientation or mirror units, and its 10-89x
+ratios on five known UNSAT formulas, are a session check (NUMERICAL, UNSAT-SOLVER), not ledger evidence.
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-10 (`STRATEGY.md` §1, owner): three constructive targets on the laptop**: S6 at (10, 3) first
-(E-261110-02), S1 with the genus free at 9, 10 and 12 faces, S5 at (10, 4) only under the rule of E-261110-06; nothing
-has run on the new targets. **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
+**Focus since 2026-11-14 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: S6 at (10, 3)
+first, by the normalised formulas (E-261114-01); S5 at (10, 4) second, strata A + B in one night (E-261110-06); nine
+mutually adjacent faces (S1, genus free) third, Stage B parked after E-261113-03 (source map only, section 3ak). Run so far: ninth-plane Stage A (no candidate,
+section 3ae), the S6 (10, 3) night (20/20 TIMEOUT, section 3af) and its symmetric runs (no candidate, section 3ag). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
 4, gated by a speed-up benchmark (E-261103-07: 10/10 TIMEOUT, section 3w); from 2026-11-03 to 2026-11-08 the focus was
 (9, 3), now decided at formula scope (below); its negative result is a side track towards a note marked as not
 independently reviewed. No geometric witness is known; the paired exact pilot is complete (section 3e); the candidate-map census is complete (section 3c; EXACT computation, coverage PROVED-1): 240 classes
@@ -78,7 +87,7 @@ No direction is REFUTED today.
 | DR5 | Near-miss repair (relocation, ILS, polar duals, dual-mesh planes) | wrong topological class (FD11) | session 1-2 | LOW-YIELD: every known near-miss fails the Gauss class (FD11, EXACT), so none is close in that invariant; not a proof that repair cannot work |
 | DR6 | Black-box engines on the unchanged energy (SA, CMA-ES, GA, ILS, NGOpt, DE, LNS, floors) | all solve n = 7; none breaks n = 8 (1-2) or genus 4 | sessions 2-5 | LOW-YIELD@sessions 2-5: solve n = 7, plateau at n = 8 and genus 4; a new objective would make a new run informative, more seeds would not |
 | DR7 | Solid-first + exact CP-SAT inner step | S0: genus 3 from random planes, dead-end maps; S5 variant passes known (8,3) and random D2 recovery controls (section 3g) | night 2-3 | OPEN-LOW as a generator of new maps / benchmarks |
-| DR8 | Exact asymmetric decision per type (OM-SAT, cube-and-conquer, certificates) | never run to completion; `immersion` 8/8 timeouts at 2.2 h; third-party pilot 2 maps in 648.5 core-h (CLAIMED); night 6: k-face sub-instances on the greedy face set SAT for 27 types at k = 8 and 15 at k = 9, every k = 10 a timeout at 20 min, 0 UNSAT, 0 of 42 models realized (E-261101-23); chirotope-first k = 7 models for 6 of 27 seeds, none realized (E-261101-25); both UNDERPOWERED by a final-polynomial LP hang (see their `CONCLUSION.md`); E-261102-01 completed the sweep: k = 8 SAT for all 59 types, k = 9 SAT for 33, TIMEOUT for 25, 0 UNSAT, 0 realized, 3 exact final polynomials, checked by an independent standard-library checker in `verify_all` (2026-11-03, `verification/certificates/final_polynomial/`, EXACT; each excludes one SAT model, no type) (LOW-YIELD for exclusion on the greedy face set, `CONCLUSION.md`); the chirotope-first engine scored on known answers (section 3b, E-261101-26, E-261102-03): its frontier is the full 12-face genus-3 map, also with the alternation cap lifted (0/12 at 120 min; SAT calls of minutes at k = 10-11); E-261102-02 killed | ~18 core-h + 104 (night 6, ~14 productive) + 4.2 + 6.6 + 35.9 (night 7) | PROMISING, but only after E-261101-06/E-261101-09 show a cost below ~2,000 core-h per type |
+| DR8 | Exact asymmetric decision per type (OM-SAT, cube-and-conquer, certificates) | never run to completion; `immersion` 8/8 timeouts at 2.2 h; third-party pilot 2 maps in 648.5 core-h (CLAIMED); night 6: k-face sub-instances on the greedy face set SAT for 27 types at k = 8 and 15 at k = 9, every k = 10 a timeout at 20 min, 0 UNSAT, 0 of 42 models realized (E-261101-23); chirotope-first k = 7 models for 6 of 27 seeds, none realized (E-261101-25); both UNDERPOWERED by a final-polynomial LP hang (see their `CONCLUSION.md`); E-261102-01 completed the sweep: k = 8 SAT for all 59 types, k = 9 SAT for 33, TIMEOUT for 25, 0 UNSAT, 0 realized, 3 exact final polynomials, checked by an independent standard-library checker in `verify_all` (2026-11-03, `verification/certificates/final_polynomial/`, EXACT; each excludes one SAT model, no type) (LOW-YIELD for exclusion on the greedy face set, `CONCLUSION.md`); the chirotope-first engine scored on known answers (section 3b, E-261101-26, E-261102-03): its frontier is the full 12-face genus-3 map, also with the alternation cap lifted (0/12 at 120 min; SAT calls of minutes at k = 10-11); E-261102-02 killed; segment-order cubes on (10,4) maps 96, 85 cost >= 0.92x monolithic kissat, parked (E-261113-04, section 3aj) | ~18 core-h + 104 (night 6, ~14 productive) + 4.2 + 6.6 + 35.9 (night 7) | PROMISING, but only after E-261101-06/E-261101-09 show a cost below ~2,000 core-h per type |
 | DR9 | Rank-3 (normals-only) SAT per type with degree, covering, saddle, face-winding clauses | proposed (review 2026-10-30 dir. 6), not run | 0 | PROMISING: cheap, outcomes decisive either way |
 | DR10 | Proof mining: UNSAT cores of fixed-normal offset problems (Q1 sphere; r = 0 drift seeds) -> geometric lemmas | Q10 found cores empty of global triples (local + period conditions) | ~1 h | PROMISING |
 | DR11 | Local immersion theory (one reflex corner per vertex, crossing parity, minimal cores of symmetric instances) | REFLEX1, parity theorem PROVED-1 | - | PROMISING (turns computation into lemmas) |
@@ -309,6 +318,64 @@ no DRAT, cap 3600 s: all 358 queued maps UNSAT-SOLVER (148-2041 s), 0 SAT, 0 TIM
 maps decided, 1.25x the review scenario. Measured factor f = 7.16 prices A + B at 485 core-h = 6.06 laptop nights (> 4):
 Actions route after week item 2. NUMERICAL, instance scope; UNSAT-SOLVER is not a negative result, strata A and B not run.
 No hypothesis, credence or witness change (CONCLUSION, per-pattern table there).
+
+## 3ae. E-261112-01 ninth-plane Stage A (2026-11-12/13)
+
+Week item 1, one owner launch, 10 shards, 8.01 core-h (cap 12), 49 min wall, controls (C0/C1 SOLID, C2 INFEASIBLE)
+pass in every shard, pilot gate passed. All 2,004 certified near-copy cell orbits (Roest-Vigh 1,006, Mizhaev 998) of the
+frozen hard model (36 pairs, edge runs >= 39, genus free) INFEASIBLE in CP-SAT without proofs, 0 SOLID, 0 open.
+NUMERICAL, instance scope; UNSAT-SOLVER is not a negative result; nine-plane discovery power unmeasured; Stage B cells,
+walls and other sources not run. OPEN@8.01 core-h; no hypothesis status, credence or witness change (CONCLUSION).
+
+## 3af. E-261110-02 S6 (10, 3) twenty-map night (2026-11-13)
+
+Week item 2, one owner launch, 10 shards, 20.03 core-h (cap 80), 2.0 h wall, controls pass in every shard (bridge gate
+and pilot in prep). kissat rel-4.0.4, no proofs, cap 3600 s, `submap=True`: all 20 maps of Lutz's (10, 3) list TIMEOUT,
+0 SAT, 0 UNSAT. NUMERICAL, instance scope; a timeout says nothing about existence. OPEN@20.03 core-h, solver-limited;
+"> 20 % timeouts" rule -> escalated. No hypothesis status, credence or witness change (CONCLUSION).
+
+## 3ag. E-261113-01 symmetric S6 (10, 3) (2026-11-13)
+
+Week item 1. (a) Lutz #15 with rotation group T (planes `|x| = |y| = |z| = 1`, `n_i . p = t`): 0 EMBEDDED over all 48
+equivariant labellings and every interval and wall of `t`; family scope, exact computation (`tetra.py`, not in
+`verify_all`), reduction PROVED-1, unreviewed. (b) one owner launch, 10 shards, 0.034 core-h, controls pass: the ten
+uniform C3 / free C2 `submap=True` formulas all UNSAT-SOLVER in <= 4.1 s (kissat, no proofs), 0 SAT: instance scope,
+ranks these ansatzes below the asymmetric formulas, no negative claim. Not run: fixed-face C2, improper symmetries.
+OPEN@0.034 core-h; no hypothesis status, credence or witness change (CONCLUSION).
+
+## 3ah. E-261113-02 (10, 2) calibration rung (2026-11-13)
+
+Week item 2. 50 of Lutz's 865 (10, 2) maps plus the witness map #739, kissat seeds 0-2, `submap=True`, no proofs, one
+owner launch, 0.239 core-h, controls pass: 153/153 SAT, median 0.83 s, max 5.2 s, no timeout, no seed spread; the
+frozen bridge realized 16 of 153 models (13 maps, `--target S6` PASS in the run; control objects, not headlines).
+Readings: LIGHT (the (10, 3) timeouts read "probably UNSAT" for planning only), BRIDGE < 50 %, CHEAP (full 865 next).
+Instance scope, NUMERICAL timing; nothing about (10, 3) existence (CONCLUSION).
+
+## 3ai. E-261110-05 immersion-only and segment-free formulas (2026-11-13)
+
+Week item 3. Eight maps ((8, 2) #0, #1; (9, 3) #40, 43, 10, 30, 48, 5), kissat, no proofs, cap 900 s, 0.44 core-h,
+controls pass. V2 (no SEGMENT_DISJOINT) UNSAT-SOLVER on all eight; V1 (immersion-only) UNSAT-SOLVER on both (8, 2) maps,
+SAT on five (9, 3) maps, TIMEOUT on #5. Readings: H-261110-01 weakened (planning evidence); triples carry the (9, 3)
+refutation; LOCAL at (8, 2) -> one core-mining session. Instance scope, no negative claim (CONCLUSION).
+
+## 3aj. E-261113-04 cube-and-conquer pilot on (10, 4) maps 96 and 85 (2026-11-13)
+
+Week item 4, gate of E-261110-06. march_cu not buildable in the prep session, so segment-order cubes (three order
+literals per doubled pair, 512 cubes per map), kissat, no proofs; one owner launch, 1.08 core-h, controls pass,
+speed calibration 0.92. Summed cube time >= 1.07x (96) and >= 0.92x (85) the monolithic time before the arm cap,
+0 SAT: **PARK** for these cubes at this budget (NUMERICAL, instance scope; not a verdict on march_cu or other cubes).
+E-261110-06 takes its "one explore night" branch, scheduled only by a lead review (CONCLUSION).
+
+## 3ak. E-261113-03 rung-below cell census (2026-11-13/14)
+
+Week item 5, gate of Stage B. Pilot plus one owner day run, 10 shards, 15.97 core-h (cap 20), 1 h 36 min wall,
+controls pass in every shard (planted cells P0, P4 SOLID unaided). All 25,531 certified generic eighth-plane cells over
+seven planes of Roest-Vigh (deletions 0 and 4), frozen Stage A model at eight faces (28 pairs, edge runs >= 30, genus
+free), CP-SAT without proofs: 25,527 UNSAT-SOLVER, 4 SOLID (the two planted cells and one far cell per deletion), every
+SOLID with Roest-Vigh's map (genus 3), exact check in the worker; 0 open. Discovery power of the cell method measured at
+this rung; one map class (H0). EXACT for the four cells, NUMERICAL otherwise, instance scope; one solid per cell, walls
+and other sources not run. Stage B parked at this budget; OPEN@15.97 core-h; no hypothesis status, credence or witness
+change (CONCLUSION).
 
 ## 4. What may and may not be claimed
 
