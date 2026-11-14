@@ -2,16 +2,16 @@
 id: E-261114-01
 title: Normalised S6 (10, 3) - the twenty sub-map formulas with the reorientation and mirror units
 date: 2026-11-14
-status: planned
+status: running
 direction: [DR19, DR8]
 origin: [I-261114-01, E-261110-02]
 tests: [H-261110-03]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned, exploit, jump 2. Scores T D F G R: 2 2 2 2 2 | budget: one prep session + <= 20 core-h day run, 10 shards.
-> Before any compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). No proofs.
+> In preparation, exploit, jump 2. Scores T D F G R: 2 2 2 2 2 | budget: one prep session + <= 20 core-h day run, 10 shards.
+> Pre-registration: `PLAN.md`. No proofs.
 
 ## Goal
 
