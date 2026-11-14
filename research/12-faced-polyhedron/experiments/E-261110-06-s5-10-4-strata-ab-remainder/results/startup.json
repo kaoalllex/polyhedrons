@@ -1,0 +1,18 @@
+{
+  "PASS": true,
+  "records": 10,
+  "restart_records": 10,
+  "statuses": [
+    "TIMEOUT"
+  ],
+  "solver_cap": 0.01,
+  "commands": "launch.sh 10-06 start/status/stop/start/status",
+  "fixture": "results/smoke/queue.json",
+  "results": "results/smoke3/run",
+  "environment_overrides": {
+    "S5AB_QUEUE": "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261110-06-s5-10-4-strata-ab-remainder/results/smoke/queue.json",
+    "BUDGET": 600,
+    "HOURS": 0.016
+  },
+  "note": "First detached attempt signal 9; second fixture lost QUEUE override; corrected S5AB_QUEUE test passes."
+}

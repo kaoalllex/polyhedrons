@@ -30,3 +30,15 @@ models, bridge, `--target S5`, `candidate-check`, escalate; all UNSAT-SOLVER -> 
 (11, 5) probe (I-261114-03).
 
 The superseded cube rule is retained in the git history. The current stop and follow-up rules are in `PLAN.md`.
+
+## Preparation
+
+READY for the owner night; see `CONCLUSION.md` and `results/validation.json`. The experiment remains running pending that night.
+
+Owner entry point (AC power; launch.sh supplies caffeinate):
+
+```sh
+bash research/12-faced-polyhedron/overnight/launch.sh 10-06 start
+```
+
+Use `status` or `stop` in place of `start`; restart resumes recorded work.

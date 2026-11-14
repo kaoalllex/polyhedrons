@@ -985,3 +985,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-14: E-261114-03 hull-vertex chart pilot concluded UNRESOLVED (pre-registration `a46658fe`):
   re-charting controls pass, all small-pilot cubes TIMEOUT; full pilot not run. Week item 2 next;
   no speedup or geometric negative established (CONCLUSION, STATUS 3an).
+
+2026-11-14 — E-261110-06 normalized A+B prep READY for one owner night; saved controls reused, startup/restart and quick checks pass.
+See `experiments/E-261110-06-s5-10-4-strata-ab-remainder/CONCLUSION.md` (NUMERICAL; no geometric negative).

@@ -1328,7 +1328,7 @@ window.GRAPH = {
    ],
    "verdict": "",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: READY FOR ONE OWNER NIGHT. NUMERICAL cost estimate; SPEC §4 instance scope. No target witness and no geometric negative; H-261101-07 and A/B/C unchanged."
   },
   {
    "id": "E-261112-01",

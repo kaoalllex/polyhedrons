@@ -9,15 +9,15 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-14, hull-vertex chart pilot concluded)
+## Hand-over (2026-11-14, S5 A+B prep ready)
 
-* Branch `lab/2026-11-14`; E-261114-03 pre-registration `a46658fe`; conclusion committed, not pushed.
-* Nothing in flight. E-261114-03: controls pass, UNRESOLVED; small-pilot gate closes full pilot (STATUS 3an).
-* NEXT: week item 2, E-261110-06; use experiment-start to register the normalized A+B prep from the week plan.
-* No chart/full S6 launch is ready. E-261114-01 remains NO-DAY-RUN; E-261114-02 bridge remains ADEQUATE.
-* Reuse unchanged formula controls and require thirty models per target SAT. No proofs or geometric negative.
-* Checks: E-261114-03/results/validation.json binds saved controls, transcripts, dependencies and small pilot.
-* Shared optimizer-seed regression / quick suite from E-261114-02 reused; no new full/archive replay.
-* Accounting: worker CPU deltas recorded; parent CPU absent; endpoint clock comparison only, no sleep heartbeat.
-* For the lead: chart speedup unresolved; reopening after all small-pilot TIMEOUTs needs an explicit decision.
-* No owner launch action now; activate `~/.venvs/polyhedra` for Python commands.
+* Branch `lab/2026-11-14`; E-261110-06 prep registered 745044e8; night amendment dc807943 / fix 10f88e12.
+* Nothing in flight. Week item 2 awaits one owner night; STATUS 3ao / experiment CONCLUSION own the evidence.
+* Owner on AC: `bash research/12-faced-polyhedron/overnight/launch.sh 10-06 start` (also status / stop).
+* Launcher supplies caffeinate; restart resumes. Queue and budget frozen in E-261110-06/PLAN.md and queue.json.
+* Next session: experiment-conclude on E-261110-06/results/run; then week item 5, not another night.
+* SAT: thirty seed models, bridge, --target S5 and candidate-check; incomplete recovery goes to the lead.
+* Reuse saved normalization/bridge controls. No proofs or geometric negative; H-261101-07 and A/B/C unchanged.
+* Checks: E-261110-06/results/validation.json; focused tests and integrated quick PASS, archive skipped.
+* Startup corrected after signal-9 / fixture-variable failures; actual start/status/stop/start PASS, no replayed tasks.
+* For the lead: E-261114-03 chart speedup remains unresolved; S6 full run remains NO-DAY-RUN.
