@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-14** (E-261114-01 concluded). The latest registered results are E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
+As of **2026-11-14** (E-261114-03 concluded). The latest registered results are E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
 E-261113-04 (section 3aj), E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -392,6 +392,14 @@ control-instance checks pass; normalized target pilots both TIMEOUT, no negative
 The full day run was not started. Registered next step: E-261114-03 (week item 4) before item 2.
 H-261110-03 and A/B/C unchanged. Counts, NUMERICAL timings, scope and accounting limits:
 `experiments/E-261114-01-normalised-s6-10-3/CONCLUSION.md`.
+
+## 3an. E-261114-03 hull-vertex chart pilot (2026-11-14)
+
+**UNRESOLVED / OPEN, solver-limited** (NUMERICAL timing, control-instance checks; lemma PROVED-1).
+Re-charting and orientation-mutation controls pass; all small-pilot cubes TIMEOUT. The full pilot
+was not run; neither a speedup nor a kill ratio is established against the censored baselines.
+No geometric negative or new focus witness. H-261101-06 and A/B/C unchanged; next: week item 2.
+Counts, saved verification and accounting limits: `experiments/E-261114-03-hull-vertex-chart-pilot/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

@@ -982,3 +982,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   recovery and five-map discovery arms complete, exact control checks saved. CONCLUSION, STATUS 3al.
 * 2026-11-14: E-261114-01 normalized S6 prep concluded NO-DAY-RUN (pre-registration `ada4ee1c`):
   control gates pass, target pilot gate fails by TIMEOUT; item 4 next, no negative claim (CONCLUSION, STATUS 3am).
+* 2026-11-14: E-261114-03 hull-vertex chart pilot concluded UNRESOLVED (pre-registration `a46658fe`):
+  re-charting controls pass, all small-pilot cubes TIMEOUT; full pilot not run. Week item 2 next;
+  no speedup or geometric negative established (CONCLUSION, STATUS 3an).

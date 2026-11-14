@@ -1,0 +1,1108 @@
+[
+  {
+    "vertex": [
+      0,
+      2,
+      4
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "inward": [
+        [
+          "999211/9995060",
+          "0",
+          "999211/499753000",
+          "0"
+        ],
+        [
+          "-124867/124938250",
+          "249734/2498765",
+          "-124867/124938250",
+          "0"
+        ],
+        [
+          "249903/249876500",
+          "-749709/249876500",
+          "249903/2498765",
+          "0"
+        ]
+      ]
+    },
+    "epsilon": "12826871607/2401589792000",
+    "support_plane": [
+      "6245111/62469125",
+      "24223691/249876500",
+      "50480343/499753000",
+      "0"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "candidate": "grooved_k2_0_2_4.json",
+    "candidate_sha256": "bb53e5a65168c2f2a5ccb04e7a59b17758ee227636458649ce18fb4e177bb97e",
+    "verifier_rc": 0,
+    "checker_sha256": "0f0e5ea349f2f6436644ffcdd511480e9e889df9cf2ed8c2cdfebb334418b0cd",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.13041579199489206,
+      "budget_seconds": 10,
+      "budget_fraction": 0.013041579199489206,
+      "ended_by": "completed",
+      "variables": 14876,
+      "clauses": 466168,
+      "cnf_sha256": "596f13e63a6ea343f1051e00387d5e3c58f854b24a1251d74cf997d66f9f04f2",
+      "solver_children_maxrss": 94683136,
+      "model_checked": true
+    },
+    "negative": {
+      "violations": [
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE"
+      ],
+      "formula": {
+        "status": "UNSAT-SOLVER",
+        "seconds": 0.022319582996715326,
+        "budget_seconds": 10,
+        "budget_fraction": 0.0022319582996715324,
+        "ended_by": "completed",
+        "variables": 1282,
+        "clauses": 3412,
+        "cnf_sha256": "acde65d8d77ed74c97aa74c90ee0dbb416b51403006acdc3325fd76db381d002",
+        "solver_children_maxrss": 94683136
+      }
+    }
+  },
+  {
+    "vertex": [
+      0,
+      2,
+      5
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "inward": [
+        [
+          "29900265100/63693106811",
+          "0",
+          "598005302/63693106811",
+          "0"
+        ],
+        [
+          "-124809/127326500",
+          "124809/1273265",
+          "-124809/127326500",
+          "0"
+        ],
+        [
+          "1/1000",
+          "3/500",
+          "-1/10",
+          "1"
+        ]
+      ]
+    },
+    "epsilon": "5570972041/152463590000",
+    "support_plane": [
+      "1522902580660618677/3243928145748316600",
+      "13244859/127326500",
+      "-742789587319950249/8109820364370791500",
+      "1"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        -1
+      ]
+    },
+    "candidate": "grooved_k2_0_2_5.json",
+    "candidate_sha256": "427e52297d7cc45e8b1d5f76b6cd3e7988d16b7bd349d2674e581430b00bb084",
+    "verifier_rc": 0,
+    "checker_sha256": "0f0e5ea349f2f6436644ffcdd511480e9e889df9cf2ed8c2cdfebb334418b0cd",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.12645687499752967,
+      "budget_seconds": 10,
+      "budget_fraction": 0.012645687499752967,
+      "ended_by": "completed",
+      "variables": 14876,
+      "clauses": 466168,
+      "cnf_sha256": "93033aff24cb8dd6e65d2f997939a94d2ac491f8c8c60e20a8f21b5549ab3cdf",
+      "solver_children_maxrss": 94683136,
+      "model_checked": true
+    }
+  },
+  {
+    "vertex": [
+      0,
+      3,
+      4
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "inward": [
+        [
+          "49883/509316",
+          "0",
+          "49883/25465800",
+          "0"
+        ],
+        [
+          "3/500",
+          "-1/10",
+          "3/1000",
+          "1"
+        ],
+        [
+          "124809/128614750",
+          "-374427/128614750",
+          "249618/2572295",
+          "0"
+        ]
+      ]
+    },
+    "epsilon": "2101187738443/713755111344600",
+    "support_plane": [
+      "171807252374/1637638750275",
+      "-6617951/64307375",
+      "3340776252959/32752775005500",
+      "1"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        1
+      ]
+    },
+    "candidate": "grooved_k2_0_3_4.json",
+    "candidate_sha256": "ad49893ad57da5a4e4ffbe88c5e940dcde82dba65c9a4e4da4f673f61fde9ccd",
+    "verifier_rc": 0,
+    "checker_sha256": "0f0e5ea349f2f6436644ffcdd511480e9e889df9cf2ed8c2cdfebb334418b0cd",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.13801900000544265,
+      "budget_seconds": 10,
+      "budget_fraction": 0.013801900000544265,
+      "ended_by": "completed",
+      "variables": 14876,
+      "clauses": 466168,
+      "cnf_sha256": "509fce8f958940e092ecb69d29bc08b456a6d45f40087ed100657be467253087",
+      "solver_children_maxrss": 94699520,
+      "model_checked": true
+    }
+  },
+  {
+    "vertex": [
+      0,
+      3,
+      5
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "inward": [
+        [
+          "498701/5042260",
+          "0",
+          "498701/252113000",
+          "0"
+        ],
+        [
+          "749709/127326500",
+          "-249903/2546530",
+          "749709/254653000",
+          "249903/254653"
+        ],
+        [
+          "124867/128614750",
+          "374601/64307375",
+          "-249734/2572295",
+          "499468/514459"
+        ]
+      ]
+    },
+    "epsilon": "3085364800373451046112027/139592468538732519651129250",
+    "support_plane": [
+      "436655989554616626/4128619118854643875",
+      "-3023334650019/32752131931750",
+      "-304407838663693587/3302895295083715100",
+      "255755872081/131008527727"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    },
+    "candidate": "grooved_k2_0_3_5.json",
+    "candidate_sha256": "999d6d695b572232bf4fd8e2e95e8b82ea5aa24f042c49998fb04dd5d77c7cff",
+    "verifier_rc": 0,
+    "checker_sha256": "0f0e5ea349f2f6436644ffcdd511480e9e889df9cf2ed8c2cdfebb334418b0cd",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.13254479199531488,
+      "budget_seconds": 10,
+      "budget_fraction": 0.013254479199531488,
+      "ended_by": "completed",
+      "variables": 14876,
+      "clauses": 466168,
+      "cnf_sha256": "6fe48e8913814e92a6ad923642505b9eaab59fdc44e69b20e3e4fd5ab63c0ff8",
+      "solver_children_maxrss": 94699520,
+      "model_checked": true
+    }
+  },
+  {
+    "vertex": [
+      1,
+      2,
+      4
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "inward": [
+        [
+          "-1/10",
+          "1/500",
+          "-3/1000",
+          "1"
+        ],
+        [
+          "-49883/52450100",
+          "49883/524501",
+          "-49883/52450100",
+          "0"
+        ],
+        [
+          "83293/84958500",
+          "-83293/28319500",
+          "83293/849585",
+          "0"
+        ]
+      ]
+    },
+    "epsilon": "10737935401/492921606400",
+    "support_plane": [
+      "-1113693601903/11140204552125",
+      "699340784423/7426803034750",
+      "8385327752239/89121636417000",
+      "1"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "candidate": "grooved_k2_1_2_4.json",
+    "candidate_sha256": "f4d41da4f25d905803bb360982b67a8d82ae04999cb44386cdc5723e7b696da0",
+    "verifier_rc": 0,
+    "checker_sha256": "0f0e5ea349f2f6436644ffcdd511480e9e889df9cf2ed8c2cdfebb334418b0cd",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.07934949999616947,
+      "budget_seconds": 10,
+      "budget_fraction": 0.007934949999616947,
+      "ended_by": "completed",
+      "variables": 14876,
+      "clauses": 466168,
+      "cnf_sha256": "dc8c70dbada4e3baf4178681dc6cc1ef8184e7951e147437cd908c64ace5fb08",
+      "solver_children_maxrss": 94978048,
+      "model_checked": true
+    }
+  },
+  {
+    "vertex": [
+      1,
+      2,
+      5
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "inward": [
+        [
+          "-2059810880/3580111663",
+          "205981088/17900558315",
+          "-308971632/17900558315",
+          "20598108800/3580111663"
+        ],
+        [
+          "-498701/534102000",
+          "498701/5341020",
+          "-498701/534102000",
+          "0"
+        ],
+        [
+          "999211/1019502000",
+          "999211/169917000",
+          "-999211/10195020",
+          "999211/1019502"
+        ]
+      ]
+    },
+    "epsilon": "9360155179992112071536738243/246740369471952503570390682000",
+    "support_plane": [
+      "-18691896778467212855849/32490590788502359504200",
+      "1999243750652047278477/18050328215834644169000",
+      "-37755327086000226395371/324905907885023595042000",
+      "24577100072715493/3649931000651826"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        -1
+      ]
+    },
+    "candidate": "grooved_k2_1_2_5.json",
+    "candidate_sha256": "0a086dbdf54d3bf81835aa7d4a5a1bcc51d6f3889739a1c124179b726075c025",
+    "verifier_rc": 0,
+    "checker_sha256": "0f0e5ea349f2f6436644ffcdd511480e9e889df9cf2ed8c2cdfebb334418b0cd",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.12950550000095973,
+      "budget_seconds": 10,
+      "budget_fraction": 0.012950550000095973,
+      "ended_by": "completed",
+      "variables": 14876,
+      "clauses": 466168,
+      "cnf_sha256": "35f1699c825f1545f47c1de80aa65e2e7d5bbff1f10681b1711bde51f11ed390",
+      "solver_children_maxrss": 94978048,
+      "model_checked": true
+    }
+  },
+  {
+    "vertex": [
+      1,
+      3,
+      4
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "inward": [
+        [
+          "-124867/1273290",
+          "124867/63664500",
+          "-124867/42443000",
+          "124867/127329"
+        ],
+        [
+          "2997633/524501000",
+          "-999211/10490020",
+          "2997633/1049002000",
+          "999211/1049002"
+        ],
+        [
+          "498701/524903000",
+          "-1496103/524903000",
+          "498701/5249030",
+          "0"
+        ]
+      ]
+    },
+    "epsilon": "4556991072053/2663170339530900",
+    "support_plane": [
+      "-32040869392786939/350552205440055870",
+      "-674058653707304687/7011044108801117400",
+      "443676784108315831/4674029405867411600",
+      "258214270153/133568375658"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        1
+      ]
+    },
+    "candidate": "grooved_k2_1_3_4.json",
+    "candidate_sha256": "d40af36ec5b6c40fb9ea22d46a8804311ff58ff5bf5e52e3c9fa8ac9585a953f",
+    "verifier_rc": 0,
+    "checker_sha256": "0f0e5ea349f2f6436644ffcdd511480e9e889df9cf2ed8c2cdfebb334418b0cd",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.13421316599851707,
+      "budget_seconds": 10,
+      "budget_fraction": 0.013421316599851707,
+      "ended_by": "completed",
+      "variables": 14876,
+      "clauses": 466168,
+      "cnf_sha256": "dee79b49929e33e2937c034bd2d1448098e76fcafa9bed6a4070502ae58accbc",
+      "solver_children_maxrss": 94978048,
+      "model_checked": true
+    }
+  },
+  {
+    "vertex": [
+      1,
+      3,
+      5
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "inward": [
+        [
+          "-124809/1260565",
+          "124809/63028250",
+          "-374427/126056500",
+          "249618/252113"
+        ],
+        [
+          "249879/44508500",
+          "-83293/890170",
+          "249879/89017000",
+          "83293/89017"
+        ],
+        [
+          "49883/52490300",
+          "149649/26245150",
+          "-49883/524903",
+          "498830/524903"
+        ]
+      ]
+    },
+    "epsilon": "955229223493018743/21658200034076222000",
+    "support_plane": [
+      "-136127128597919851/1472506640782707875",
+      "-252940100611619071/2945013281565415750",
+      "-1121414107518275473/11780053126261663000",
+      "33880955776276775/11780053126261663"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    },
+    "candidate": "grooved_k2_1_3_5.json",
+    "candidate_sha256": "20b9a7e559522774634f37c203b5caa906bd58debbe8d6b466cb40bb2491005f",
+    "verifier_rc": 0,
+    "checker_sha256": "0f0e5ea349f2f6436644ffcdd511480e9e889df9cf2ed8c2cdfebb334418b0cd",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.0795459170039976,
+      "budget_seconds": 10,
+      "budget_fraction": 0.00795459170039976,
+      "ended_by": "completed",
+      "variables": 14876,
+      "clauses": 466168,
+      "cnf_sha256": "883b9441a0b937f2d2fffe09e824c27c211f7477336371f09a1c38a76b905dfe",
+      "solver_children_maxrss": 94978048,
+      "model_checked": true
+    }
+  },
+  {
+    "vertex": [
+      2,
+      5,
+      6
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          5
+        ],
+        [
+          1,
+          2,
+          5
+        ]
+      ],
+      "weights": [
+        "19357744719475377/24662934665084000",
+        "5305189945608623/24662934665084000"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      2,
+      5,
+      8
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "3612641767773088554/24515679678221080561",
+        "20903037910447992007/24515679678221080561"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      2,
+      5,
+      9
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "32143860239894450831/49511641236441190099",
+        "17367780996546739268/49511641236441190099"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      2,
+      5,
+      11
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "18580947626360231623/23933262016925324688",
+        "5352314390565093065/23933262016925324688"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      2,
+      6,
+      7
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "957406002250782167/11752086599708781600",
+        "3445806512880611/3917362199902927200",
+        "13480428972399197/14690108249635977"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      2,
+      7,
+      8
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "4539508499623/52086357180000",
+        "277354615961131599453143/4034663071903312039620000",
+        "770890727826757/913265588018610"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      2,
+      9,
+      10
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "1724729114201/17578253484000",
+        "727201356489251144662441/1361629686548383366356000",
+        "1473746093442323/4006749432218034"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      2,
+      10,
+      11
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "2450871735277/25626202272000",
+        "1383103921340209253053757/1985032119306354500448000",
+        "1212595384043017/5841181633698672"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      5,
+      6,
+      8
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          3,
+          5
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "239678336049/1983110237500",
+        "2497229000491196321687/21944824150686572537500",
+        "47026973748550039133/61445507621922403105"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      5,
+      9,
+      11
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          3,
+          5
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "900899693643/7858336927000",
+        "64523825012488926953709/86959271713134759799000",
+        "87263505321767649223/608714901991943318593"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      6,
+      7,
+      8
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "47324593/249876500",
+        "440880870319/23159053773000",
+        "36160579178840712759709/358784849227369864541400",
+        "80223699366720508/116134152012484581"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      9,
+      10,
+      11
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "46075923/249876500",
+        "7383219040339/254749591503000",
+        "2891388973244543015349217/3946633341501068509955400",
+        "6271397615102588/116134152012484581"
+      ]
+    }
+  }
+]

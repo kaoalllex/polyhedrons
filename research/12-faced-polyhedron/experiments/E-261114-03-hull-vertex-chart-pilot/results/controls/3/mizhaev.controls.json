@@ -1,0 +1,1016 @@
+[
+  {
+    "vertex": [
+      0,
+      1,
+      4
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ],
+        [
+          4,
+          5,
+          7
+        ]
+      ],
+      "weights": [
+        "62/73",
+        "28/219",
+        "5/219"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      0,
+      1,
+      5
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ],
+        [
+          4,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "62/73",
+        "28/219",
+        "5/219"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      0,
+      2,
+      3
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "1",
+        "12/5",
+        "1"
+      ],
+      "inward": [
+        [
+          "-7/600",
+          "-1/600",
+          "1/180",
+          "-4/5"
+        ],
+        [
+          "-1/144",
+          "0",
+          "-1/432",
+          "13/24"
+        ],
+        [
+          "1/18",
+          "0",
+          "-1/54",
+          "13/3"
+        ]
+      ]
+    },
+    "epsilon": "1/10",
+    "support_plane": [
+      "49/1800",
+      "-1/600",
+      "-1/54",
+      "29/6"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        1
+      ]
+    },
+    "candidate": "mizhaev_0_2_3.json",
+    "candidate_sha256": "a0b963a34626a7acfaae89ed1bf36d1f7f7ec7597dae3bcff81b86bde2636d6d",
+    "verifier_rc": 0,
+    "checker_sha256": "e755a8314ee970842e89d6f5c3e2fbae3616ced431b599ca780e23999dbb31a6",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.022707040996465366,
+      "budget_seconds": 10,
+      "budget_fraction": 0.002270704099646537,
+      "ended_by": "completed",
+      "variables": 4996,
+      "clauses": 38645,
+      "cnf_sha256": "605cf890f4efdefaf81dbfab318b71e0a73ad293b6a9b4773065c4c4d589f204",
+      "solver_children_maxrss": 18563072,
+      "model_checked": true
+    },
+    "negative": {
+      "violations": [
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE",
+        "HULL_NEGATIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_POSITIVE",
+        "HULL_NEGATIVE"
+      ],
+      "formula": {
+        "status": "UNSAT-SOLVER",
+        "seconds": 0.013137792004272342,
+        "budget_seconds": 10,
+        "budget_fraction": 0.0013137792004272342,
+        "ended_by": "completed",
+        "variables": 317,
+        "clauses": 986,
+        "cnf_sha256": "0a3fa698c8cf50745b6ab3c1ce55397fe22e67d2dc2feb3f1daafe0332f18d08",
+        "solver_children_maxrss": 18563072
+      }
+    }
+  },
+  {
+    "vertex": [
+      0,
+      2,
+      4
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          2,
+          4,
+          6
+        ],
+        [
+          4,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "49/76",
+        "6/19",
+        "0",
+        "3/76"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      0,
+      3,
+      4
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ],
+        [
+          4,
+          5,
+          7
+        ]
+      ],
+      "weights": [
+        "40/73",
+        "28/73",
+        "5/73"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      0,
+      3,
+      6
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          3,
+          4,
+          7
+        ],
+        [
+          4,
+          5,
+          7
+        ]
+      ],
+      "weights": [
+        "1352/3577",
+        "4/49",
+        "36/73",
+        "169/3577"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      0,
+      3,
+      7
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "weights": [
+        "25/657",
+        "140/657",
+        "164/219"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      0,
+      4,
+      6
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ],
+        [
+          4,
+          5,
+          7
+        ]
+      ],
+      "weights": [
+        "164/219",
+        "140/657",
+        "25/657"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      0,
+      5,
+      7
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "weights": [
+        "169/3577",
+        "36/73",
+        "4/49",
+        "1352/3577"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      1,
+      2,
+      3
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "1",
+        "1",
+        "12/5"
+      ],
+      "inward": [
+        [
+          "7/600",
+          "1/600",
+          "1/180",
+          "-4/5"
+        ],
+        [
+          "-1/18",
+          "0",
+          "-1/54",
+          "13/3"
+        ],
+        [
+          "1/144",
+          "0",
+          "-1/432",
+          "13/24"
+        ]
+      ]
+    },
+    "epsilon": "1/10",
+    "support_plane": [
+      "-49/1800",
+      "1/600",
+      "-1/54",
+      "29/6"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        1
+      ]
+    },
+    "candidate": "mizhaev_1_2_3.json",
+    "candidate_sha256": "0931bc1e6cd10e374e2874adf7b7872e607846468d7313be2f7bc79bace51cf7",
+    "verifier_rc": 0,
+    "checker_sha256": "e755a8314ee970842e89d6f5c3e2fbae3616ced431b599ca780e23999dbb31a6",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.021961917002045084,
+      "budget_seconds": 10,
+      "budget_fraction": 0.002196191700204508,
+      "ended_by": "completed",
+      "variables": 4996,
+      "clauses": 38645,
+      "cnf_sha256": "9b6917388c566f27ebce88288e14ef3aa69d0502b2247b742b6854387d61d459",
+      "solver_children_maxrss": 18563072,
+      "model_checked": true
+    }
+  },
+  {
+    "vertex": [
+      1,
+      2,
+      5
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ],
+        [
+          4,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "40/73",
+        "28/73",
+        "5/73"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      1,
+      2,
+      6
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "25/657",
+        "140/657",
+        "164/219"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      1,
+      2,
+      7
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ],
+        [
+          4,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "4/49",
+        "1352/3577",
+        "36/73",
+        "169/3577"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      1,
+      3,
+      5
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          5,
+          7
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          7
+        ]
+      ],
+      "weights": [
+        "6/19",
+        "0",
+        "49/76",
+        "3/76"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      1,
+      4,
+      6
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          5,
+          6
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "weights": [
+        "169/3577",
+        "36/73",
+        "1352/3577",
+        "4/49"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      1,
+      5,
+      7
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          2,
+          5,
+          6
+        ],
+        [
+          4,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "164/219",
+        "140/657",
+        "25/657"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      2,
+      4,
+      6
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "5/73",
+        "28/73",
+        "40/73"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      2,
+      5,
+      6
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          3,
+          4,
+          7
+        ],
+        [
+          4,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "3/76",
+        "0",
+        "6/19",
+        "49/76"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      2,
+      6,
+      7
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "weights": [
+        "5/219",
+        "28/219",
+        "62/73"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      3,
+      4,
+      7
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          3,
+          6
+        ],
+        [
+          2,
+          5,
+          6
+        ],
+        [
+          4,
+          5,
+          7
+        ]
+      ],
+      "weights": [
+        "3/76",
+        "0",
+        "6/19",
+        "49/76"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      3,
+      5,
+      7
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "weights": [
+        "5/73",
+        "28/73",
+        "40/73"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      3,
+      6,
+      7
+    ],
+    "certificate": {
+      "kind": "nonhull",
+      "vertices": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "weights": [
+        "5/219",
+        "28/219",
+        "62/73"
+      ]
+    }
+  },
+  {
+    "vertex": [
+      4,
+      5,
+      6
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "1",
+        "12/5",
+        "1"
+      ],
+      "inward": [
+        [
+          "0",
+          "-1/18",
+          "1/54",
+          "13/3"
+        ],
+        [
+          "0",
+          "1/144",
+          "1/432",
+          "13/24"
+        ],
+        [
+          "-1/600",
+          "7/600",
+          "-1/180",
+          "-4/5"
+        ]
+      ]
+    },
+    "epsilon": "1/10",
+    "support_plane": [
+      "-1/600",
+      "-49/1800",
+      "1/54",
+      "29/6"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        1
+      ]
+    },
+    "candidate": "mizhaev_4_5_6.json",
+    "candidate_sha256": "7ccf3f19c252f56f6b4b4618a4c28dc4da2abf57e88941e0f9a9fd2583c5e47a",
+    "verifier_rc": 0,
+    "checker_sha256": "e755a8314ee970842e89d6f5c3e2fbae3616ced431b599ca780e23999dbb31a6",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.02184708399727242,
+      "budget_seconds": 10,
+      "budget_fraction": 0.0021847083997272422,
+      "ended_by": "completed",
+      "variables": 4996,
+      "clauses": 38645,
+      "cnf_sha256": "5b9191e700d18a6e95ec03918f4548c1abf24096ab75104949a73f44b36e1720",
+      "solver_children_maxrss": 18563072,
+      "model_checked": true
+    }
+  },
+  {
+    "vertex": [
+      4,
+      5,
+      7
+    ],
+    "certificate": {
+      "kind": "hull",
+      "weights": [
+        "12/5",
+        "1",
+        "1"
+      ],
+      "inward": [
+        [
+          "0",
+          "-1/144",
+          "1/432",
+          "13/24"
+        ],
+        [
+          "0",
+          "1/18",
+          "1/54",
+          "13/3"
+        ],
+        [
+          "1/600",
+          "-7/600",
+          "-1/180",
+          "-4/5"
+        ]
+      ]
+    },
+    "epsilon": "1/10",
+    "support_plane": [
+      "1/600",
+      "49/1800",
+      "1/54",
+      "29/6"
+    ],
+    "gauge": {
+      "mirror": false,
+      "reorientation": [
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        1
+      ]
+    },
+    "candidate": "mizhaev_4_5_7.json",
+    "candidate_sha256": "ce35f6a9044b0415e69ae437a18b79dee99ee2a80fd0fe62b340e0ef6f4264ee",
+    "verifier_rc": 0,
+    "checker_sha256": "e755a8314ee970842e89d6f5c3e2fbae3616ced431b599ca780e23999dbb31a6",
+    "formula": {
+      "status": "SAT",
+      "seconds": 0.023785749996022787,
+      "budget_seconds": 10,
+      "budget_fraction": 0.0023785749996022786,
+      "ended_by": "completed",
+      "variables": 4996,
+      "clauses": 38645,
+      "cnf_sha256": "3b0b14f47d3b320f3f7508660fab08a911f66735ea2ed147592d9501c16ef247",
+      "solver_children_maxrss": 18563072,
+      "model_checked": true
+    }
+  }
+]

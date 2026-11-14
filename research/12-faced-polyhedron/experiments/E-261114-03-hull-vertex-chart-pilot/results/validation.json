@@ -1,0 +1,29 @@
+{
+  "kind": "saved-evidence-validation",
+  "replayed_solvers": false,
+  "replayed_geometry": false,
+  "stages": {
+    "controls": {
+      "summary_sha256": "2249f569a6b6074f72b33421cd0f34f72df5c7ebc8b431ad0e488bf6b6d480b9",
+      "manifests": 10,
+      "output_hashes_checked": 580,
+      "PASS": true
+    },
+    "small": {
+      "summary_sha256": "4d871ae90fbe604500e5f55287c572f96cd4f995ea25fcd95ff305218ca8d8a8",
+      "manifests": 10,
+      "output_hashes_checked": 20,
+      "PASS": true
+    }
+  },
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "saved_geometry_PASS_transcripts": 131,
+  "pinned_models_checked_in_run": 131,
+  "orientation_mutations_detected": 23,
+  "baseline_environment_inputs_checked": 9,
+  "dependency_list_matches": true,
+  "baseline_cnf_rebuild": "Both hashes checked by chart.main before the small pilot; no solver replay.",
+  "startup_failure": "First resume command used a temporary system-site-packages venv and failed on import: ModuleNotFoundError: No module named numpy. No worker or solver started. Retried in the existing ~/.venvs/polyhedra environment; dependency list matches baseline.",
+  "accounting_limits": "Worker totals only; parent preparation and failed import CPU unrecorded. Sleep-gap fields compare endpoint wall and monotonic clocks, not a heartbeat trace.",
+  "PASS": true
+}
