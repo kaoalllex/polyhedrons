@@ -52,3 +52,16 @@ Pre-registration, 2026-11-14; replaces the unexecuted 2026-11-10 cube rule.
   and escalate; night conclusion -> done. Record counts only in CONCLUSION and STATUS.
 
 ## Amendments
+
+### 2026-11-14: night queue and startup
+
+Prep passes; select both strata, excluding the four already decided timing samples.
+`queue.json` binds the census, preparation summary and shared formula/solver/bridge sources.
+The `s5ab` dispatch in run_overnight calls this experiment's run.py; reuse tranche locks,
+reservations and append checkpoints, pilot.solve and tranche.bridge (submap=False).
+Thirty seeds per SAT map are processed; fewer than thirty SAT models is explicitly incomplete
+and goes to the lead, never a failed realization claim. Interrupted seed models survive.
+No first-SAT latch; stop on verified candidate, shared error or cumulative budget.
+Actual launcher smoke uses a scratch results path and ten maps capped at 0.01 s;
+exercise start/status/stop/start with the same entry point, then restore production paths.
+Smoke TIMEOUTs are dispatch tests only, excluded from timing projections and production.
