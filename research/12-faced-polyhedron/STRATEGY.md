@@ -7,17 +7,20 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 
 * **Focus (owner, 2026-11-12): one constructive target at a time, each at least as significant as the 2026
   eight-face objects (owner's filter).**
-  * **First (owner, 2026-11-13): S6 at (10, 3)**, symmetric realizations first (E-261113-01), the asymmetric maps
-    only with a changed solver set-up; gated by the (10,2) witness as the control of the formula and of the
+  * **First (owner, 2026-11-13; route of 2026-11-14): S6 at (10, 3)** by the normalised asymmetric formulas
+    (reorientation and mirror units, E-261114-01), after the symmetric runs (E-261113-01, no candidate); gated by
+    the soundness controls of the units and by the (10,2) objects as controls of the formula and of the
     model-to-coordinates bridge. Success is only `verification/verify_candidate.py FILE --target S6` PASS at
     (10, 3), then `candidate-check`.
-  * **Second: nine mutually adjacent faces, genus free (S1)**, searched as an exact finite family: one plane added
+  * **Second (owner, 2026-11-14): S5 at (10, 4)**, strata A + B by the normalised formulas, one night
+    (E-261110-06). Success is only `verification/verify_candidate.py FILE --target S5` PASS at (10, 4), then
+    `candidate-check`.
+  * **Third: nine mutually adjacent faces, genus free (S1)**, searched as an exact finite family: one plane added
     to the eight planes of Roest-Vigh or Mizhaev, one decision per chirotope cell of the new plane, the cell list
-    certified by its count. Stage A (near-copy cells, done), then Stage B (all cells, one source per night), gated
-    by the same enumeration one rung below (E-261113-03). Success is only `verify_candidate.py FILE --all-pairs`
-    PASS with nine faces, then `candidate-check`. A run without checked proofs yields no family negative.
-  * **S5 at (10, 4)** only under the rule of E-261110-06. Success is only
-    `verification/verify_candidate.py FILE --target S5` PASS at (10, 4), then `candidate-check`.
+    certified by its count. Stage A (near-copy cells) is done; Stage B (all cells, one source per night) is parked
+    since the census one rung below found only the source map (E-261113-03). Success is only
+    `verify_candidate.py FILE --all-pairs` PASS with nine faces, then `candidate-check`. A run without checked
+    proofs yields no family negative.
   * S1 and S6 objects are never reported as S0 or S5. Symmetric realizations are allowed (FD5 covers the
     59 single-adjacency (12, 6) maps only).
 * **Side track: the (8, 2) / (9, 3) negative result.** Consolidated at low compute (multiplicity >= 3 control, second
@@ -100,3 +103,6 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   first target, symmetric realizations first; nine faces second, Stage B gated by a census one rung below; two
   standing rules added (rung-below scoring, pilot gate). No proofs in the symmetric runs. S0 parking, the side
   track and the stance are unchanged.
+* 2026-11-14 (owner's decisions on lead review `reviews/strategy-review-2026-11-14.md`): the route to S6 at (10, 3)
+  is the normalised asymmetric formulas; S5 at (10, 4) returns as the second target (strata A + B, one night);
+  nine faces third, Stage B parked. Stance, S0 parking and the side track are unchanged.

@@ -1431,6 +1431,70 @@
    "conclusion": "Verdict for the direction: DR8 cube-and-conquer with segment-order cubes: PARKED@1.08 core-h (two maps, r >= 0.92 and >= 1.07). Not a refutation of cube-and-conquer."
   },
   {
+   "id": "E-261114-01",
+   "kind": "experiment",
+   "title": "Normalised S6 (10, 3) - the twenty sub-map formulas with the reorientation and mirror units",
+   "status": "planned",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "experiments/E-261114-01-normalised-s6-10-3/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261114-02",
+   "kind": "experiment",
+   "title": "Bridge recovery control - exact chirotopes of the 16 realized (10, 2) objects and 30 seeds on five unrealized maps",
+   "status": "planned",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "experiments/E-261114-02-bridge-recovery-control/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261114-03",
+   "kind": "experiment",
+   "title": "Chart normalisation at a hull vertex - lemma, re-charting controls and per-vertex cubes on the slowest normalised maps",
+   "status": "planned",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "experiments/E-261114-03-hull-vertex-chart-pilot/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261114-04",
+   "kind": "experiment",
+   "title": "(8, 2) immersion core - face-grouped minimal cores of the immersion-only formulas of both (8, 2) maps",
+   "status": "planned",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "experiments/E-261114-04-immersion-core-8-2/README.md",
+   "direction": [
+    "DR10",
+    "DR11",
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -4135,6 +4199,82 @@
    "preregistered": ""
   },
   {
+   "id": "I-261114-01",
+   "kind": "idea",
+   "title": "Normalised asymmetric formulas - the reorientation and mirror units on the plain S5 / S6 formulas",
+   "status": "open",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "ideas/I-261114-01-normalised-asymmetric-formulas.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261114-02",
+   "kind": "idea",
+   "title": "Bridge recovery control - does the SAT-to-coordinates bridge recover chirotopes that are known to be realizable",
+   "status": "open",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "ideas/I-261114-02-bridge-recovery-control.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261114-03",
+   "kind": "idea",
+   "title": "(11, 5), the last S5 rung below S0 - census and a cost probe at 12 elements with the normalised formulas",
+   "status": "open",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "ideas/I-261114-03-s5-11-5-rung.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261114-04",
+   "kind": "idea",
+   "title": "Handle-neighbourhood SAT - solve a (10, 3) formula from the chirotope of a realized (10, 2) parent",
+   "status": "open",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "ideas/I-261114-04-handle-neighbourhood-sat.md",
+   "direction": [
+    "DR19",
+    "DR13",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261114-05",
+   "kind": "idea",
+   "title": "Geometry of realization spaces - regions, quotients and transitions instead of single coordinate solutions",
+   "status": "open",
+   "date": "2026-11-14",
+   "concluded": "",
+   "path": "ideas/I-261114-05-realization-space-geometry.md",
+   "direction": [
+    "DR10",
+    "DR13",
+    "DR17"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -5248,6 +5388,11 @@
    "kind": "origin"
   },
   {
+   "from": "E-261101-25",
+   "to": "I-261114-04",
+   "kind": "origin"
+  },
+  {
    "from": "E-261101-26",
    "to": "E-261102-03",
    "kind": "origin"
@@ -5380,6 +5525,11 @@
   {
    "from": "E-261103-01",
    "to": "I-261108-10",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
+   "to": "I-261114-03",
    "kind": "origin"
   },
   {
@@ -5683,6 +5833,11 @@
    "kind": "origin"
   },
   {
+   "from": "E-261108-03",
+   "to": "I-261114-01",
+   "kind": "origin"
+  },
+  {
    "from": "E-261109-01",
    "to": "H-261101-07",
    "kind": "tests"
@@ -5749,6 +5904,11 @@
   },
   {
    "from": "E-261110-02",
+   "to": "E-261114-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-02",
    "to": "H-261110-01",
    "kind": "tests"
   },
@@ -5768,6 +5928,11 @@
    "kind": "origin"
   },
   {
+   "from": "E-261110-02",
+   "to": "I-261114-01",
+   "kind": "origin"
+  },
+  {
    "from": "E-261110-03",
    "to": "E-261110-04",
    "kind": "origin"
@@ -5781,6 +5946,11 @@
    "from": "E-261110-04",
    "to": "H-261110-02",
    "kind": "tests"
+  },
+  {
+   "from": "E-261110-05",
+   "to": "E-261114-04",
+   "kind": "origin"
   },
   {
    "from": "E-261110-05",
@@ -5829,8 +5999,23 @@
   },
   {
    "from": "E-261113-02",
+   "to": "E-261114-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261113-02",
    "to": "H-261110-03",
    "kind": "tests"
+  },
+  {
+   "from": "E-261113-02",
+   "to": "I-261114-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261113-02",
+   "to": "I-261114-04",
+   "kind": "origin"
   },
   {
    "from": "E-261113-03",
@@ -5840,6 +6025,31 @@
   {
    "from": "E-261113-04",
    "to": "H-261101-06",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261114-01",
+   "to": "H-261110-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261114-02",
+   "to": "H-261110-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261114-03",
+   "to": "H-261101-06",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261114-04",
+   "to": "H-261029-06",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261114-04",
+   "to": "H-261101-15",
    "kind": "tests"
   },
   {
@@ -6138,6 +6348,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261029-43",
+   "to": "I-261114-01",
+   "kind": "origin"
+  },
+  {
    "from": "I-261029-44",
    "to": "E-261029-13",
    "kind": "origin"
@@ -6190,6 +6405,11 @@
   {
    "from": "I-261029-57",
    "to": "I-261101-21",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-57",
+   "to": "I-261114-02",
    "kind": "origin"
   },
   {
@@ -6473,6 +6693,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261101-05",
+   "to": "I-261114-05",
+   "kind": "origin"
+  },
+  {
    "from": "I-261101-06",
    "to": "E-261101-11",
    "kind": "origin"
@@ -6495,6 +6720,11 @@
   {
    "from": "I-261101-07",
    "to": "I-261110-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-07",
+   "to": "I-261114-03",
    "kind": "origin"
   },
   {
@@ -6535,6 +6765,11 @@
   {
    "from": "I-261101-09",
    "to": "H-261101-09",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-09",
+   "to": "I-261114-05",
    "kind": "origin"
   },
   {
@@ -6849,7 +7084,17 @@
   },
   {
    "from": "I-261110-04",
+   "to": "E-261114-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261110-04",
    "to": "H-261110-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261110-06",
+   "to": "E-261114-03",
    "kind": "origin"
   },
   {
@@ -6895,6 +7140,26 @@
   {
    "from": "I-261113-03",
    "to": "E-261113-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261114-01",
+   "to": "E-261114-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261114-01",
+   "to": "E-261114-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261114-01",
+   "to": "I-261114-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261114-02",
+   "to": "E-261114-02",
    "kind": "origin"
   },
   {
@@ -7595,6 +7860,16 @@
   {
    "from": "owner",
    "to": "I-261112-01",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261114-04",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261114-05",
    "kind": "origin"
   }
  ],

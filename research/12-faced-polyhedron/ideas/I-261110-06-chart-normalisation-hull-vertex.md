@@ -33,6 +33,14 @@ fixes it as a normalisation.
 Three known (9, 3) maps with recorded times, with and without the selectors; the pinned positive controls must stay
 SAT. Kill: < 1.5x on all three. Low priority, as I-261110-05.
 
+## Update 2026-11-14
+
+The plain S5 / S6 formulas did not carry the reorientation breakers (I-261114-01), so the sentence above held for the
+S0 formulas only. Stronger form (lead review 2026-11-14, N2, sketch only): with the plane just outside the hull vertex
+sent to infinity, INF is a positive combination of the three outward planes at the vertex, so `chi(i, j, k, INF)` is
+forced whenever the signs of `i, j, k` against the three planes agree; that constrains all C(F, 3) signs with INF,
+not 3 (F - 3). Planned as E-261114-03, conditional on E-261114-01.
+
 ## Source
 
 Handoff of the 2026-11-10 strategy session (`reviews/HANDOFF_PROMPT_2026-11-10-wedges.md` §4 I-F). Untested.

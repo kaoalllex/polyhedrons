@@ -147,3 +147,8 @@ As filed: E-261101-08, E-261110-01, -03, -04 and the other open ideas and hypoth
 
 1. Owner: approvals 1 and 2. 2. Lab (Opus, high): item 1 prep with item 3 chained, then the owner's day run.
 3. Lab (Opus, medium): item 2 prep on the same controls, then the owner's night.
+
+## Owner's decisions (2026-11-14)
+
+Approvals 1 and 2 given (week plan; (10, 4) second in `STRATEGY.md`). Applied the same day; the credences of §8 and
+the PLAN-template sentence of §3 are not applied (not asked).

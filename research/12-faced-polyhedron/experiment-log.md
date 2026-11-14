@@ -975,3 +975,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-14: E-261113-03 rung-below census, owner day run, 15.97 core-h, controls pass: all 25,531 cells recorded,
   25,527 UNSAT-SOLVER, 4 SOLID (planted cells and one more per deletion), all with Roest-Vigh's map: H0, Stage B
   (E-261112-02) parked at this budget (CONCLUSION, STATUS 3ak). Week plan done.
+* 2026-11-14: lead review (`reviews/strategy-review-2026-11-14.md`) and the owner's decisions: the plain S5 / S6 formulas
+  carry no reorientation or mirror units; session check 10-89x on five known UNSAT formulas (not ledger evidence). New
+  week plan: E-261114-01 normalised (10, 3) first, E-261110-06 (10, 4) A + B second, E-261114-02..04; I-261114-01..05.
