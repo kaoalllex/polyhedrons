@@ -972,3 +972,6 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
   Roest-Vigh planes (deletions 0 and 4; rank-4 Zaslavsky counts match), Stage A worker at eight faces, map classifier;
   pre-registration `9080665e`. Pilot 50/50 UNSAT-SOLVER at mean 2.34 s, planted cells SOLID with the source map,
   projected 16.6 core-h (PLAN amendment 1). Owner day run pending.
+* 2026-11-14: E-261113-03 rung-below census, owner day run, 15.97 core-h, controls pass: all 25,531 cells recorded,
+  25,527 UNSAT-SOLVER, 4 SOLID (planted cells and one more per deletion), all with Roest-Vigh's map: H0, Stage B
+  (E-261112-02) parked at this budget (CONCLUSION, STATUS 3ak). Week plan done.

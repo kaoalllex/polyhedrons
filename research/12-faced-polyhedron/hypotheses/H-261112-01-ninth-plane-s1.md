@@ -21,6 +21,11 @@ without proofs (UNSAT-SOLVER, NUMERICAL, instance scope), 0 SAT, 0 open; eight-p
 discovery power unmeasured. No support for the conjecture and no refutation; status unchanged (open). The rest of
 the generic cells (Stage B), walls and other sources are untested.
 
+E-261113-03 (2026-11-14, the gate one rung below): over seven planes of Roest-Vigh, all 25,531 generic eighth-plane cells
+decided with the Stage A model at eight faces; 4 SOLID, all with Roest-Vigh's map (both planted cells recovered
+unaided), 25,527 UNSAT-SOLVER (instance scope). The cell method has discovery power at eight faces, but the family shows
+no second map, so Stage B is parked at this budget. No status change (open).
+
 ## What would move it
 
 An exact verified nine-face witness supports existence, subject to `candidate-check`. Stage A covers only the

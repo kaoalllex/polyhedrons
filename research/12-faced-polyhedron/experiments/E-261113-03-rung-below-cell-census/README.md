@@ -2,16 +2,19 @@
 id: E-261113-03
 title: Rung-below cell census - all eighth-plane cells over seven planes of Roest-Vigh, the gate of Stage B
 date: 2026-11-13
-status: running
+status: done
 direction: [DR7, DR18, DR12]
 origin: [I-261113-03, E-261112-01]
 tests: [H-261112-01]
 produces: []
 preregistered: true
+verdict: OPEN@15.97 core-h (25,531 cells, 4 SOLID, all with Roest-Vigh's map; 0 open; Stage B parked)
+concluded: 2026-11-14
 ---
 
-> Running (pre-registered 2026-11-13, `PLAN.md`; pilot passed, amendment 1; owner day run pending), explore, control. Scores T D F G R: 2 2 2 1 2 | budget: one prep session, then an owner day run of
-> <= 20 core-h, 10 shards.
+> Done (2026-11-14): all 25,531 cells recorded, 25,527 UNSAT-SOLVER, 4 SOLID (both planted cells and one more per
+> deletion), every SOLID with Roest-Vigh's map; controls pass; 15.97 core-h. H0 holds: Stage B parked at this budget
+> (`CONCLUSION.md`, STATUS 3ak). Scores T D F G R: 2 2 2 1 2.
 
 ## Goal
 
@@ -21,10 +24,14 @@ representatives (rank-4 enumeration, independent Zaslavsky count); decide each c
 faces (28 pairs, edge runs >= 30, genus free). Time 50 cells and price the run before it is proposed. The
 enumerator must reach the known object unaided; SOLID cells are classed by canonical dual map and genus.
 
+## Results / conclusions
+
+Controls 80/80 pass; the planted cells P0, P4 give Roest-Vigh's object unaided. 25,531 / 25,531 cells recorded, mean
+2.24 s per cell: 25,527 INFEASIBLE (UNSAT-SOLVER), 4 SOLID (`d0_c08712`, `d0_c03925`, `d4_c04592`, `d4_c09730`), all
+with Roest-Vigh's map (genus 3, all 28 pairs), each verified exactly in the worker. No second map: by the registered
+reading Stage B (E-261112-02) is parked at this budget. Instance scope; no family negative (`CONCLUSION.md`).
+
 ## Next
 
-Kill: a count mismatch, or the planted cell is not found (a defect of the enumerator, not a result). Stop rule: all
-cells recorded or the cap. Reading (decided now): a SOLID cell whose map differs from the source's -> exact
-`verify_candidate.py --all-pairs` at eight faces, `candidate-check`, escalate, and Stage B (E-261112-02) is
-proposed to the owner; the source map only -> Stage B is parked at this budget. UNSAT-SOLVER verdicts are never a
-family negative. The enumerator is the one Stage B and the thin-wedge replay need.
+None in this experiment. The enumerator is kept for the thin-wedge replay and any later Stage B; the lead review
+decides the next item.

@@ -2,7 +2,7 @@
 id: I-261113-03
 title: Rung-below cell census - all eighth-plane cells over seven planes of a known eight-face object as the discovery-power control of the cell method
 date: 2026-11-13
-status: open
+status: tried
 direction: [DR7, DR18, DR12]
 origin: [I-261112-01, E-261112-01]
 ---

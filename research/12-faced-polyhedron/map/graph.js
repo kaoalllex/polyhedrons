@@ -1351,7 +1351,7 @@ window.GRAPH = {
    "id": "E-261112-02",
    "kind": "experiment",
    "title": "Ninth-plane Stage B - full generic cell lists, Roest-Vigh first",
-   "status": "planned",
+   "status": "parked",
    "date": "2026-11-12",
    "concluded": "",
    "path": "experiments/E-261112-02-ninth-plane-stage-b/README.md",
@@ -1401,18 +1401,18 @@ window.GRAPH = {
    "id": "E-261113-03",
    "kind": "experiment",
    "title": "Rung-below cell census - all eighth-plane cells over seven planes of Roest-Vigh, the gate of Stage B",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-13",
-   "concluded": "",
+   "concluded": "2026-11-14",
    "path": "experiments/E-261113-03-rung-below-cell-census/README.md",
    "direction": [
     "DR7",
     "DR18",
     "DR12"
    ],
-   "verdict": "",
+   "verdict": "OPEN@15.97 core-h (25,531 cells, 4 SOLID, all with Roest-Vigh's map; 0 open; Stage B parked)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction: DR7 / DR18 cell method at the rung below: discovery power measured, map family rigid at this rung: OPEN@15.97 core-h (25,531 cells, one map class). Not a refutation of Stage B or of H-261112-01."
   },
   {
    "id": "E-261113-04",
@@ -4107,7 +4107,7 @@ window.GRAPH = {
    "id": "I-261113-03",
    "kind": "idea",
    "title": "Rung-below cell census - all eighth-plane cells over seven planes of a known eight-face object as the discovery-power control of the cell method",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-13",
    "concluded": "",
    "path": "ideas/I-261113-03-rung-below-cell-census.md",
