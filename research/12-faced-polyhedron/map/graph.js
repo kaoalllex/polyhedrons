@@ -1465,7 +1465,7 @@ window.GRAPH = {
    "id": "E-261114-03",
    "kind": "experiment",
    "title": "Chart normalisation at a hull vertex - lemma, re-charting controls and per-vertex cubes on the slowest normalised maps",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-14",
    "concluded": "",
    "path": "experiments/E-261114-03-hull-vertex-chart-pilot/README.md",
@@ -1474,7 +1474,7 @@ window.GRAPH = {
     "DR8"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
