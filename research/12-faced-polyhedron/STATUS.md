@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-14** (E-261113-03 concluded). The latest registered results are E-261113-03 (section 3ak), after
+As of **2026-11-14** (E-261114-01 concluded). The latest registered results are E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
 E-261113-04 (section 3aj), E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -376,6 +376,22 @@ SOLID with Roest-Vigh's map (genus 3), exact check in the worker; 0 open. Discov
 this rung; one map class (H0). EXACT for the four cells, NUMERICAL otherwise, instance scope; one solid per cell, walls
 and other sources not run. Stage B parked at this budget; OPEN@15.97 core-h; no hypothesis status, credence or witness
 change (CONCLUSION).
+
+## 3al. E-261114-02 bridge recovery control (2026-11-14)
+
+**ADEQUATE** (NUMERICAL recovery rates, saved-file exact checks; control-instance scope).
+The registered known-realizable chirotope recovery gate passes, and the five discovery maps each recover.
+Use at least thirty models per target SAT; no realizer detour. H-261110-03 and A/B/C stay unchanged.
+These are (10,2) controls, not a (10,3) result. Counts, CPU accounting and limits:
+`experiments/E-261114-02-bridge-recovery-control/CONCLUSION.md`.
+
+## 3am. E-261114-01 normalised S6 prep and pilot (2026-11-14)
+
+**NO-DAY-RUN**, OPEN / solver-limited at the registered pilot budget. Soundness argument PROVED-1,
+control-instance checks pass; normalized target pilots both TIMEOUT, no negative claim (SPEC §4).
+The full day run was not started. Registered next step: E-261114-03 (week item 4) before item 2.
+H-261110-03 and A/B/C unchanged. Counts, NUMERICAL timings, scope and accounting limits:
+`experiments/E-261114-01-normalised-s6-10-3/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

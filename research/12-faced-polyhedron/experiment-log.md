@@ -978,3 +978,7 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-14: lead review (`reviews/strategy-review-2026-11-14.md`) and the owner's decisions: the plain S5 / S6 formulas
   carry no reorientation or mirror units; session check 10-89x on five known UNSAT formulas (not ledger evidence). New
   week plan: E-261114-01 normalised (10, 3) first, E-261110-06 (10, 4) A + B second, E-261114-02..04; I-261114-01..05.
+* 2026-11-14: E-261114-02 chained bridge control concluded ADEQUATE (pre-registration `9c12d774`);
+  recovery and five-map discovery arms complete, exact control checks saved. CONCLUSION, STATUS 3al.
+* 2026-11-14: E-261114-01 normalized S6 prep concluded NO-DAY-RUN (pre-registration `ada4ee1c`):
+  control gates pass, target pilot gate fails by TIMEOUT; item 4 next, no negative claim (CONCLUSION, STATUS 3am).

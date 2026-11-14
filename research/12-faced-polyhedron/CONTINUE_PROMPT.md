@@ -9,17 +9,14 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-14, lead review applied)
+## Hand-over (2026-11-14, normalised S6 pilot concluded)
 
-* Branch `lab/2026-11-14`, created from `main` after PR #11 merged `lab/2026-11-09` (`verify` green, 2026-11-14).
-  Committed, not pushed. Nothing in flight.
-* Lead review `reviews/strategy-review-2026-11-14.md`, approved by the owner the same day: new week plan in
-  `ROADMAP.md`; `STRATEGY.md` order S6 (10, 3), then S5 (10, 4), then nine faces. Not applied (not asked): the
-  credences of the review's §8 and the PLAN-template sentence of its §3.
-* Finding behind the plan: the plain S5 / S6 formulas (`ALL_OPTS`) have no reorientation or mirror units; session
-  check `reviews/strategy-review-2026-11-14-symbreak.py` (known answers, UNSAT-SOLVER, not ledger evidence).
-* NEXT: week item 1, E-261114-01 (Opus, high): `experiment-start`, PLAN, the soundness prep (a)-(d), with item 3
-  (E-261114-02) chained; then the owner's day run. No target formula before the invariance test and the re-gauged
-  positive controls pass.
-* Checks: none run for the ledger edits; `trace.py` refreshed.
-* For the lead: nothing open.
+* Branch `lab/2026-11-14`; pre-registrations `ada4ee1c`, `9c12d774`; conclusion committed, not pushed.
+* Nothing in flight. E-261114-01: control gates pass, pilot NO-DAY-RUN (STATUS 3am, CONCLUSION).
+* E-261114-02: bridge ADEQUATE (STATUS 3al, CONCLUSION); thirty models per target SAT remain mandatory.
+* NEXT: week item 4, E-261114-03, the registered branch after both target pilot units TIMEOUT.
+  Use experiment-start; no PLAN yet. Do this before item 2. No day launch is ready or authorized by the pilot.
+* Reuse the unchanged invariance/positive/negative gates; no proofs, no negative geometric claim.
+* Checks: optimizer-seed regression and `verify_all.py --quick` ALL PASS; full archive replay skipped.
+* Evidence limitations: CPU counters are cumulative; invariant-test CPU usage and sleep-gap detection absent.
+* For the lead: nothing outside the registered follow-up tree. No owner launch action now.

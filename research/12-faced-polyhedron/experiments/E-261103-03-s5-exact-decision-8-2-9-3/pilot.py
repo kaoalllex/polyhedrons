@@ -223,7 +223,7 @@ def worker(args):
         planes, bad = fn(chi, len(data['links']), start_planes=data.get('start_planes'),
                          restarts=data.get('restarts') or
                          (2 if args.task == 'two_stage' and data.get('start_planes') is not None else 1),
-                         rng=np.random.default_rng(26110303))
+                         rng=np.random.default_rng(data.get('optimizer_seed', 26110303)))
         match = reconstruction_ok(bad, planes is not None and chirotope_from_planes(planes) == chi)
         result = dict(wrong_signs=bad, signs_match=match)
         if match:
