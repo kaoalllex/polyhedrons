@@ -1318,8 +1318,8 @@ window.GRAPH = {
   {
    "id": "E-261110-06",
    "kind": "experiment",
-   "title": "(10, 4) strata A and B remainder - laptop nights only under the cube rule, otherwise one explore night",
-   "status": "planned",
+   "title": "Normalised S5 (10,4) strata A and B",
+   "status": "running",
    "date": "2026-11-10",
    "concluded": "",
    "path": "experiments/E-261110-06-s5-10-4-strata-ab-remainder/README.md",
@@ -1327,7 +1327,7 @@ window.GRAPH = {
     "DR19"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
