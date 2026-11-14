@@ -65,3 +65,11 @@ No first-SAT latch; stop on verified candidate, shared error or cumulative budge
 Actual launcher smoke uses a scratch results path and ten maps capped at 0.01 s;
 exercise start/status/stop/start with the same entry point, then restore production paths.
 Smoke TIMEOUTs are dispatch tests only, excluded from timing projections and production.
+
+### 2026-11-14: startup fixture environment
+
+The first retained-launcher check dispatched no maps: launch.sh owns the shell variable QUEUE,
+so the fixture path was lost and the production 3600 s units did not fit the tiny budget.
+Use S5AB_QUEUE for the fixture override; repeat only startup with the corrected environment.
+The initial detached attempt was killed by signal 9 before task records; cause unestablished.
+No target night or solver decision resulted from these failed startup checks.

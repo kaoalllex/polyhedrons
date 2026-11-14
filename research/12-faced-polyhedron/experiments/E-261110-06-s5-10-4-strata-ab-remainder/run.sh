@@ -12,5 +12,5 @@ export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMBA_N
 export SAT_SOLVER="${SAT_SOLVER:-kissat}" NO_PROOF=1
 nice -n 10 "$PYTHON" "$ROOT/overnight/run_overnight.py" s5ab --workers 1 \
   --shard "$SHARD" --shards "$SHARDS" --results-dir "$OUT" \
-  --s5-queue "${QUEUE:-$HERE/queue.json}" --s5-budget-seconds "${BUDGET:-288000}" --hours "${HOURS:-8}"
+  --s5-queue "${S5AB_QUEUE:-$HERE/queue.json}" --s5-budget-seconds "${BUDGET:-288000}" --hours "${HOURS:-8}"
 "$PYTHON" "$ROOT/overnight/run_overnight.py" status --results-dir "$OUT"
