@@ -24,7 +24,10 @@ STOP_POLL=${STOP_POLL:-10}
 usage() { awk 'NR > 1 && /^#/ {sub(/^# ?/, ""); print; next} NR > 1 {exit}' "$0" >&2; exit 2; }
 
 tree() { echo "$1"; local c; for c in $(pgrep -P "$1" || true); do tree "$c"; done; }
-alive_pid() { [ -n "${1:-}" ] && kill -0 "$1" 2>/dev/null; }
+alive_pid() {
+  [ -n "${1:-}" ] && kill -0 "$1" 2>/dev/null &&
+    ps -p "$1" -o command= | grep -q 'launch.sh start, shard'
+}
 pids_of() { echo "$1/results/launch.pids"; }
 res() { if [ -f "$1/launch.results" ]; then echo "$1/$(cat "$1/launch.results")"; else echo "$1/results"; fi; }
 shard_pid() { [ -f "$(pids_of "$1")" ] && awk -v s="$2" '$1 == s {print $2}' "$(pids_of "$1")" || true; }

@@ -25,6 +25,10 @@ def run(args):
     out.mkdir(parents=True, exist_ok=True)
     queue_path = Path(args.s5_queue or HERE / 'queue.json')
     queue = json.loads(queue_path.read_text())
+    topology = pilot.from_links
+    if queue.get('submap'):
+        sys.path.insert(0, str(ROOT / 'experiments/E-261114-01-normalised-s6-10-3'))
+        from controls import topology
     provenance = prep.controls()
     if queue.get('controls_file'):
         assert json.loads((ROOT / queue['controls_file']).read_text())['PASS'], 'size controls failed'
@@ -79,7 +83,7 @@ def run(args):
                 tranche.append_checkpoint(out/'progress.jsonl', dict(map_index=index, event='START'))
                 print(f'map {index} start', flush=True)
                 build_start = time.monotonic()
-                t = pilot.from_links(maps['maps'][index]['links'])
+                t = topology(maps['maps'][index]['links'])
                 assert t.n == case[0]
                 c = pilot.CNF(t.n); pilot.build(c,t,dict(pilot.ALL_OPTS,symbreak=True,mirror=True))
                 build_seconds = time.monotonic()-build_start
@@ -102,7 +106,7 @@ def run(args):
                     r['solver_opts'] = pilot.SOLVER_OPTS
                     tranche.atomic(state,r)
                     if r['status'] == 'SAT' and queue.get('stop_on_sat'):
-                        tranche.latch_sat(root, dict(r, map_index=index, unit=str(dest.relative_to(ROOT))))
+                        tranche.latch_sat(root, dict(r, map_index=index, unit=str(dest.relative_to(ROOT.resolve()))))
                         tranche.append_checkpoint(dest/'models.jsonl',r); rows.append(r)
                         break
                     if r['status'] == 'SAT' and 'processing' not in r:

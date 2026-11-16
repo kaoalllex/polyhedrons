@@ -1,0 +1,17 @@
+{
+  "runner_tests": {
+    "command": "python3 -m unittest discover -s research/12-faced-polyhedron/experiments/E-261110-06-s5-10-4-strata-ab-remainder -p test_run.py -v",
+    "outcome": "5 tests PASS; initial path-alias failure fixed"
+  },
+  "quick": {
+    "command": "python3 verification/verify_all.py --quick",
+    "outcome": "ALL PASS; archive skipped"
+  },
+  "shell_compile": "PASS",
+  "baseline": "Reuse E-261116-01 recorded runner baseline; original modes retained.",
+  "limitations": [
+    "No production night or new geometry verification",
+    "Initial detached startup killed before manifests; overhead unrecorded",
+    "Initial S6 constructor failure fixed; failed startup logs retained"
+  ]
+}

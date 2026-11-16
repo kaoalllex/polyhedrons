@@ -112,7 +112,7 @@ E-261114-01 (3am, NO-DAY-RUN), E-261114-03 (3an, UNRESOLVED), E-261110-06 (3ao),
      `candidate-check`, escalate. Median <= 20 min -> item 4.
    * Outcome: NO-SWEEP-SYMMETRIC-SLICE (CONCLUSION / STATUS 3aq); no full sweep, I-261116-04 only; item 4 gate not met.
    * Kill: census differs on rerun, a failed control. Lab: Opus, medium; conclusion high on SAT.
-2. **S6 (10, 3) cube pilot — done; follow-up E-261116-05 in preparation** ([E-261116-02](experiments/E-261116-02-s6-10-3-cube-pilot/), exploit, jump 2).
+2. **S6 (10, 3) cube pilot — done; follow-up E-261116-05 ready** ([E-261116-02](experiments/E-261116-02-s6-10-3-cube-pilot/), exploit, jump 2).
    * Lutz #1, #2 normalised: march_cu cubes (built by the owner, untried) at a depth giving 100-500 cubes, cube cap
      600 s; in the same day run `kissat --sat` on both at 3600 s. <= 8 core-h, 10 shards.
    * Controls: cube cover (formula plus "no cube holds" is UNSAT-SOLVER); one SAT (10, 2) map through the same pipeline.
@@ -120,7 +120,7 @@ E-261114-01 (3am, NO-DAY-RUN), E-261114-03 (3an, UNRESOLVED), E-261110-06 (3ao),
      `--target S6`, `candidate-check`. Neither decided -> park S6 (10, 3) as solver-limited at laptop scale (OPEN, no
      negative); no long-cap night unless the owner asks.
    * Outcome: BOTH-DECIDED-UNSAT-SOLVER (CONCLUSION / STATUS 3ar); select monolithic `kissat --sat`.
-     Registered twenty-map owner-night gate passed; E-261116-05 in preparation, reuse the two pilot decisions.
+     Registered twenty-map owner-night gate passed; E-261116-05 READY for owner launch; reuse the two pilot decisions.
    * Lab: Opus, medium.
 3. **(10, 4) proof pricing** (I-261116-02): **parked by the owner (2026-11-16)**, kept for a future note. Not run.
 4. **S0 price probe — parked (item 1 gate not met)** ([E-261116-03](experiments/E-261116-03-s0-price-probe/), exploit, jump 2; I-261116-03; only if item 1 gives a median <= 20 min).
@@ -149,7 +149,7 @@ genus directly).
 |---|---|---|---|---|---|---|
 | [E-261116-01](experiments/E-261116-01-s5-11-5-census-cost-probe/) | done (NO-SWEEP-SYMMETRIC-SLICE; STATUS 3aq) | H-261101-07 | **Exploit, J 2.** (11, 5) census rerun with manifest, ten normalised formulas at 3600 s; price of the 3986 admissible maps and of S0 by the element curve | 2 2 2 2 2 | 1 prep session + <= 10 core-h, 10 shards | ten maps recorded, first verified candidate, failed control, census mismatch or cap |
 | [E-261116-02](experiments/E-261116-02-s6-10-3-cube-pilot/) | done (STATUS 3ar; owner-night follow-up gate passed, preparation pending) | H-261110-03 | **Exploit, J 2.** march_cu cubes and `kissat --sat` on normalised Lutz #1, #2 | 1 2 2 1 2 | 1 prep session + <= 8 core-h, 10 shards | both maps decided or all cubes / units recorded, failed cover control or cap; neither decided -> park S6 (10, 3) |
-| [E-261116-05](experiments/E-261116-05-s6-10-3-sat-night/) | running (item 2 registered follow-up; preparation) | H-261110-03 | **Exploit, J 2.** Normalised monolithic `kissat --sat` on remaining Lutz maps; pilot decisions reused | 1 2 2 1 2 | <=80 core-h, 10 shards, one owner night | first SAT, failed control, owner stop, all units or cap; SAT -> thirty-model bridge, otherwise park unresolved maps |
+| [E-261116-05](experiments/E-261116-05-s6-10-3-sat-night/) | running (READY; owner night pending) | H-261110-03 | **Exploit, J 2.** Normalised monolithic `kissat --sat` on remaining Lutz maps; pilot decisions reused | 1 2 2 1 2 | <=80 core-h, 10 shards, one owner night | first SAT, failed control, owner stop, all units or cap; SAT -> thirty-model bridge, otherwise park unresolved maps |
 | [E-261116-03](experiments/E-261116-03-s0-price-probe/) | parked (E-261116-01 median gate not met; not run) | H-261101-06, H-261101-01 | **Exploit, J 2.** Ten asymmetric S0 embedding formulas at 4 h | 2 2 2 2 2 | 1 prep session + <= 40 core-h, 10 shards | ten types recorded, failed control, first SAT (realizability stage) or cap |
 | [E-261116-04](experiments/E-261116-04-polar-transfer-10-3/) | planned (week item 5; no PLAN yet) | H-261110-03 | **Explore, J 2.** Polar planes of 17 vertex realizations in every affine chart, `--target S6` | 1 2 2 1 2 | 1 session, seconds | all charts tested, failed control or a PASS |
 | [E-261114-01](experiments/E-261114-01-normalised-s6-10-3/) | done (NO-DAY-RUN; pilot gate failed, STATUS 3am) | H-261110-03 | **Exploit, J 2.** The twenty `submap=True` (10, 3) formulas with the reorientation and mirror units, behind the invariance test and re-gauged positive controls; no proofs | 2 2 2 2 2 | 1 prep session + <= 20 core-h day run, 10 shards | all twenty recorded, first verified candidate, failed control or cap; both pilot units TIMEOUT -> no day run |
