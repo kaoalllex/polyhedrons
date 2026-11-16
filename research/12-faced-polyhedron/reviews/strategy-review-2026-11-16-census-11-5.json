@@ -1,0 +1,45 @@
+{
+ "what": "session check of the 2026-11-16 lead review: E-261103-01 census.py run unchanged at (F, g) = (11, 5); not ledger evidence",
+ "command": "census.py 11 5 --seconds 540 --out <scratch>",
+ "complete": true,
+ "stop_reason": "exhausted",
+ "classes": 4099,
+ "admissible": 3986,
+ "aut_plus_admissible": {
+  "1": 3962,
+  "3": 4,
+  "2": 20
+ },
+ "extra_patterns_admissible": {
+  "[2, 2]": 34,
+  "[1, 1, 2]": 1478,
+  "[1, 1, 1, 1]": 2474
+ },
+ "reflexible": 0,
+ "seconds": 44.223587,
+ "maps_json_sha256": "134557388a5951bcc7a7558bb2975e8379fe152c3569e819976a1779d6ed25d8",
+ "codes_sha256": "4e1ce160997ae09ad82f189455fcce38dde418e623ef1ece513cd968d2318fab",
+ "manifest": {
+  "started_utc": "2026-11-16T06:28:45.457419+00:00",
+  "commit": "e6205bc2a3bba318c1ba581703affd3ac507ff68",
+  "branch": "lab/2026-11-14",
+  "dirty": true,
+  "host": "macOS-26.7.2-arm64-arm-64bit-Mach-O",
+  "cpu_count": 14,
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "workers": 1,
+  "n": 11,
+  "genus": 5,
+  "seconds": 540.0,
+  "sources": {
+   "enum_multi.c": "62201da075d44f074b6c429f60fee503e0f02bcfa0af44de38519ec3ff294004",
+   "census.py": "4a588ecd65c0db398347f75b28b2115c64a924f796ae7d5fd4881d96c36c8003",
+   "strategy-review-2026-11-03-flipwalk.py": "776929dd795c25811b46996f55151051b92c96586e70cf10f90b42a62d548c27"
+  },
+  "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+  "exit_status": 0,
+  "finished_utc": "2026-11-16T06:30:33.920705+00:00",
+  "wall_seconds": 108.4624532089947,
+  "core_hours": 0.030128459224720752
+ }
+}

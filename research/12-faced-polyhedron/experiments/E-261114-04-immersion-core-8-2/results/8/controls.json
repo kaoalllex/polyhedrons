@@ -1,0 +1,38 @@
+{
+  "positive": {
+    "status": "SAT",
+    "seconds": 0.021514791005756706,
+    "budget_seconds": 5,
+    "budget_fraction": 0.004302958201151341,
+    "ended_by": "completed",
+    "variables": 4879,
+    "clauses": 38000,
+    "cnf_sha256": "23e4b45de349ab18bc3094246583389d244b140d32120b4e616d430fa46a1f8b",
+    "solver_children_maxrss": 9551872,
+    "model_checked": true
+  },
+  "negative": {
+    "status": "UNSAT-SOLVER",
+    "seconds": 0.022004124999511987,
+    "budget_seconds": 5,
+    "budget_fraction": 0.004400824999902397,
+    "ended_by": "completed",
+    "variables": 4879,
+    "clauses": 38002,
+    "cnf_sha256": "b7bde54b3859292927208251ed304828bbf3423dafb5003e813133a45dc9e244",
+    "solver_children_maxrss": 9551872
+  },
+  "empty": {
+    "status": "SAT",
+    "seconds": 0.021466958001838066,
+    "budget_seconds": 5,
+    "budget_fraction": 0.004293391600367613,
+    "ended_by": "completed",
+    "variables": 4269,
+    "clauses": 35112,
+    "cnf_sha256": "355c0be7c8622f398f38587fd1b49fb9721eedf1b12a8667ca9330943813ab87",
+    "solver_children_maxrss": 9551872,
+    "model_checked": true
+  },
+  "PASS": true
+}

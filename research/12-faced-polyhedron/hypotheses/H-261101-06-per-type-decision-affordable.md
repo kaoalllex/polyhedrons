@@ -26,6 +26,10 @@ E-261113-04 (2026-11-13, NUMERICAL, instance scope): cubes on the segment order 
 cost on (10, 4) S5 maps 96 and 85 (summed cube time >= 1.07x and >= 0.92x monolithic); march_cu cubes untried. No status
 change.
 
+E-261114-03 (2026-11-14, NUMERICAL, instance scope): hull-vertex chart controls pass, but the small-pilot
+gate closes the full comparison on S6 (10,3). Speedup unresolved against censored monolithic baselines;
+no status change. See the experiment's CONCLUSION.md and STATUS section 3an.
+
 ## What would move it
 
 E-261101-09 (predicate equality of the two encoders); E-261101-15 (one type on an Actions matrix); E-261101-20

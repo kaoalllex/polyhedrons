@@ -26,6 +26,12 @@ realization (family scope, reduction PROVED-1) and the ten C3 / free C2 symmetri
 scope only, no move (STATUS 3ag). Planning
 weight of the 2026-11-10 session for "(10, 3) exists": 0.25 (CONJECTURE).
 
+E-261114-02 (2026-11-14): bridge recovery gate ADEQUATE at (10,2); use thirty models per target SAT
+(STATUS 3al, experiment CONCLUSION). Planning calibration only; no move at (10,3).
+
+E-261114-01 (2026-11-14): normalized (10,3) pilot gate fails by TIMEOUT; no day run, no move
+(STATUS 3am). Next is the registered hull-vertex chart pilot, not an exclusion.
+
 ## What would move it
 
 E-261110-02: a SAT model that realizes and passes the exact verifier with 42 single adjacencies -> the (10, 3) part

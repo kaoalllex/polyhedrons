@@ -7,15 +7,17 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 
 * **Focus (owner, 2026-11-12): one constructive target at a time, each at least as significant as the 2026
   eight-face objects (owner's filter).**
-  * **First (owner, 2026-11-13; route of 2026-11-14): S6 at (10, 3)** by the normalised asymmetric formulas
-    (reorientation and mirror units, E-261114-01), after the symmetric runs (E-261113-01, no candidate); gated by
-    the soundness controls of the units and by the (10,2) objects as controls of the formula and of the
-    model-to-coordinates bridge. Success is only `verification/verify_candidate.py FILE --target S6` PASS at
-    (10, 3), then `candidate-check`.
-  * **Second (owner, 2026-11-14): S5 at (10, 4)**, strata A + B by the normalised formulas, one night
-    (E-261110-06). Success is only `verification/verify_candidate.py FILE --target S5` PASS at (10, 4), then
-    `candidate-check`.
-  * **Third: nine mutually adjacent faces, genus free (S1)**, searched as an exact finite family: one plane added
+  * **First (owner, 2026-11-16): S5 at (11, 5)**, the last S5 rung below S0: census and a cost probe with the
+    normalised formulas (E-261116-01); its price decides a sweep and, by the element curve, an S0 price probe.
+    Success is only `verification/verify_candidate.py FILE --target S5` PASS at (11, 5), then `candidate-check`.
+  * **S6 at (10, 3)** (first 2026-11-13 to 2026-11-16): one cube pilot (march_cu, a SAT-oriented configuration,
+    E-261116-02), then parked as solver-limited if no map is decided. Success is only
+    `verification/verify_candidate.py FILE --target S6` PASS at (10, 3), then `candidate-check`.
+  * **S5 at (10, 4): all 1117 admissible maps UNSAT-SOLVER** (E-261109-06, E-261110-06; no candidate). The owner may
+    rely on it in planning; it is no negative result. A checked replay only for a named claim (I-261116-02, parked).
+  * **S0 price probe** (owner, 2026-11-16): ten asymmetric types at a 4 h cap (E-261116-03), only if the (11, 5)
+    median is <= 20 min. S0 stays parked otherwise.
+  * **Parked: nine mutually adjacent faces, genus free (S1)**, searched as an exact finite family: one plane added
     to the eight planes of Roest-Vigh or Mizhaev, one decision per chirotope cell of the new plane, the cell list
     certified by its count. Stage A (near-copy cells) is done; Stage B (all cells, one source per night) is parked
     since the census one rung below found only the source map (E-261113-03). Success is only
@@ -23,10 +25,13 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
     proofs yields no family negative.
   * S1 and S6 objects are never reported as S0 or S5. Symmetric realizations are allowed (FD5 covers the
     59 single-adjacency (12, 6) maps only).
-* **Side track: the (8, 2) / (9, 3) negative result.** Consolidated at low compute (multiplicity >= 3 control, second
-  census, second encoder on six maps: all passed, 2026-11-09). **The note is deferred** (owner, 2026-11-09): no session
+* **Side track: the (8, 2) / (9, 3) negative result**, with (10, 4) at solver level as the possible third rung.
+  Consolidated at low compute (multiplicity >= 3 control, second census, second encoder on six maps: all passed,
+  2026-11-09). **The note is deferred** (owner, 2026-11-09): no session
   time on it unless a genuinely worthwhile result is found; if written, it says plainly that no independent (human)
   review took place (owner, 2026-11-08).
+  **A paper plan is kept** (owner, 2026-11-16): `paper/OUTLINE.md` lists the candidate contents, their evidence
+  levels and what is missing; conclusions keep it current; writing the paper stays deferred.
 * **Compute: the owner's laptop only** (owner, 2026-11-10): at most 10 cores, 8-10 shards per splittable run, nights
   under `caffeinate`; no rented compute, no GitHub Actions.
 * **Defining problem: S0 (Szilassi-12, (12, 6)), parked 2026-11-03, not abandoned.** Every S0 result stays as it is
@@ -106,3 +111,9 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 * 2026-11-14 (owner's decisions on lead review `reviews/strategy-review-2026-11-14.md`): the route to S6 at (10, 3)
   is the normalised asymmetric formulas; S5 at (10, 4) returns as the second target (strata A + B, one night);
   nine faces third, Stage B parked. Stance, S0 parking and the side track are unchanged.
+* 2026-11-16 (owner's decisions on lead review `reviews/strategy-review-2026-11-16.md`): S5 at (11, 5) first
+  (census and cost probe); S6 at (10, 3) one cube pilot, then parked if undecided; (10, 4) recorded as all
+  admissible maps UNSAT-SOLVER, the proof replay parked for a future note; a one-run S0 price probe allowed under
+  the (11, 5) price condition. Stance and the side track unchanged; credences not applied.
+* 2026-11-16 (owner's request): a living paper plan, `paper/OUTLINE.md`, updated by `experiment-conclude`; the
+  paper itself stays deferred.

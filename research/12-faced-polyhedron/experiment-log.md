@@ -978,3 +978,28 @@ normal-level conditions (e.g. the period/closure LP of the sphere map).
 * 2026-11-14: lead review (`reviews/strategy-review-2026-11-14.md`) and the owner's decisions: the plain S5 / S6 formulas
   carry no reorientation or mirror units; session check 10-89x on five known UNSAT formulas (not ledger evidence). New
   week plan: E-261114-01 normalised (10, 3) first, E-261110-06 (10, 4) A + B second, E-261114-02..04; I-261114-01..05.
+* 2026-11-14: E-261114-02 chained bridge control concluded ADEQUATE (pre-registration `9c12d774`);
+  recovery and five-map discovery arms complete, exact control checks saved. CONCLUSION, STATUS 3al.
+* 2026-11-14: E-261114-01 normalized S6 prep concluded NO-DAY-RUN (pre-registration `ada4ee1c`):
+  control gates pass, target pilot gate fails by TIMEOUT; item 4 next, no negative claim (CONCLUSION, STATUS 3am).
+* 2026-11-14: E-261114-03 hull-vertex chart pilot concluded UNRESOLVED (pre-registration `a46658fe`):
+  re-charting controls pass, all small-pilot cubes TIMEOUT; full pilot not run. Week item 2 next;
+  no speedup or geometric negative established (CONCLUSION, STATUS 3an).
+
+2026-11-14 — E-261110-06 normalized A+B prep READY for one owner night; saved controls reused, startup/restart and quick checks pass.
+See `experiments/E-261110-06-s5-10-4-strata-ab-remainder/CONCLUSION.md` (NUMERICAL; no geometric negative).
+
+### 2026-11-14 — E-261110-06 owner run concluded
+
+COMPLETE-UNSAT-SOLVER; provenance, queue coverage and solver-log audit PASS; no geometric negative.
+See `experiments/E-261110-06-s5-10-4-strata-ab-remainder/CONCLUSION.md`; item 5 next, proof-replay proposal to the lead.
+
+2026-11-14 — E-261114-04 week item 5 completed; park the small face-group core route.
+See `experiments/E-261114-04-immersion-core-8-2/CONCLUSION.md`; controls and coverage audit PASS, no geometric negative.
+
+2026-11-16 — Lead review `reviews/strategy-review-2026-11-16.md` (session check: (11, 5) census, 3986 admissible maps).
+Owner approved items 1, 2, 4, 5; item 3 (proof replay of (10, 4)) parked as I-261116-02. Filed E-261116-01..04 and
+I-261116-01..04 (planned, no PLAN); STRATEGY, ROADMAP, STATUS, handover updated. No compute.
+
+2026-11-16 — Owner's request: living paper plan `paper/OUTLINE.md` (contents, evidence levels, gaps); kept current by
+`experiment-conclude`. No compute.

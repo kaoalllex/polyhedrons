@@ -1,0 +1,40 @@
+{
+  "collected_utc": "2026-11-14T07:36:34.934636+00:00",
+  "host": "IOSM-FQNJVXCGPH",
+  "platform": "macOS-26.7.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "cpu_count": 14,
+  "dependencies": [
+    "absl-py==2.5.1",
+    "cma==4.5.0",
+    "immutabledict==4.3.1",
+    "llvmlite==0.50.0",
+    "mpmath==1.3.0",
+    "numba==0.68.1",
+    "numpy==2.5.4",
+    "ortools==9.15.6755",
+    "pandas==3.1.0",
+    "protobuf==6.33.6",
+    "python-dateutil==3.0.0",
+    "python-sat==1.9.dev17",
+    "scipy==1.18.1",
+    "six==1.17.0",
+    "sympy==1.14.0",
+    "typing_extensions==4.16.0",
+    "tzdata==2026.6",
+    "z3-solver==5.3.2.0"
+  ],
+  "solver_sha256": "4bc069939394b3b56f8dfa9518094f3a716246d65701635f9c722c2c7af4ceb7",
+  "inputs_sha256": {
+    "research/12-faced-polyhedron/code/omsat.py": "22e12166bb0a8fce0470031dd819bce1c96a131edb01fcfcd95c1aad102dd8fc",
+    "research/12-faced-polyhedron/code/omsat_validate.py": "16da5fd481679b03f7bff83c3a0388293a0923ea6e07e45bc0d5de09efbded8a",
+    "research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/tranche.py": "d0de5059acb2e9c0b34ffd2eafaddf2c699816a7e5424fa0411e788715b25450",
+    "research/12-faced-polyhedron/experiments/E-261103-03-s5-exact-decision-8-2-9-3/pilot.py": "7f6f90a56146cd86e6e208ac1b13b3b99e79309dc3c85cf8de3fa958d2802984",
+    "research/12-faced-polyhedron/experiments/E-261113-02-s6-10-2-calibration-rung/maps/seeded_formulas.json": "13d1761043bdf9de35982d1c2afd13174373fa733f2b4ddab9e1f7ea806c86ca",
+    "research/12-faced-polyhedron/experiments/E-261110-02-face-minimal-10-3-decision/maps/maps_10_3.json": "d7a1d18ff54c52fe1b335dfd2041cf8c62e6131a494bc8e3d5086d89603e8f5b",
+    "research/12-faced-polyhedron/experiments/E-261103-01-s5-map-census/results/maps_8_2.json": "6062f7b9134ada82056a0b01a47eae7e5824084d1e683219b4fc690167475297",
+    "research/12-faced-polyhedron/experiments/E-261103-01-s5-map-census/results/maps_9_3.json": "0ce7ea60c70399ad4fccf11fd639faf2257591ffb4aa65079df8f4023d38e9a6",
+    "research/12-faced-polyhedron/experiments/E-261103-01-s5-map-census/results/maps_10_4.json": "e563f7cd37118742a48446856b571fde87a21bf12d72931b309b58eebb922328"
+  },
+  "note": "Collected after controls, in the unchanged Python environment. Per-run source hashes take precedence: pilot.py gained only the optional optimizer seed after the negative gate. Invariance shards did not record CPU usage; no CPU total is inferred for that stage."
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Move raw per-unit run output that git ignores (attempt_*/ logs, specs, maps; see the root .gitignore) out of the
-checkout into ../polyhedrons-data/<same path>, so the checkout holds what is committed. Each file is copied,
+"""Move raw per-unit run output that git ignores (attempt_*/ and results/run/*/map*/; see the root .gitignore) out
+of the checkout into ../polyhedrons-data/<same path>, so the checkout holds what is committed. Each file is copied,
 its SHA-256 compared, and only then removed here. Tracked files are never touched; an existing copy with other
 content is never overwritten. Refuses while a recorded run process (results/launch.pids) is alive.
 
@@ -47,7 +47,8 @@ def main():
         sys.exit('refused: run processes are alive ({}); move raw output after the run'.format(', '.join(running)))
     listed = subprocess.check_output(
         ['git', 'ls-files', '-z', '--others', '--ignored', '--exclude-standard', '--',
-         ':(glob)research/12-faced-polyhedron/experiments/**/attempt_*/**'], cwd=root)
+         ':(glob)research/12-faced-polyhedron/experiments/**/attempt_*/**',
+         ':(glob)research/12-faced-polyhedron/experiments/**/results/run/*/map*/**'], cwd=root)
     files = [name for name in listed.decode().split('\0') if name]
     moved = size = 0
     for name in files:

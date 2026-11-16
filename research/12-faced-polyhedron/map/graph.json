@@ -1318,17 +1318,17 @@
   {
    "id": "E-261110-06",
    "kind": "experiment",
-   "title": "(10, 4) strata A and B remainder - laptop nights only under the cube rule, otherwise one explore night",
-   "status": "planned",
+   "title": "Normalised S5 (10,4) strata A and B",
+   "status": "done",
    "date": "2026-11-10",
-   "concluded": "",
+   "concluded": "2026-11-14",
    "path": "experiments/E-261110-06-s5-10-4-strata-ab-remainder/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
-   "preregistered": "false",
-   "conclusion": ""
+   "verdict": "COMPLETE-UNSAT-SOLVER",
+   "preregistered": "true",
+   "conclusion": "Verdict: READY FOR ONE OWNER NIGHT. NUMERICAL cost estimate; SPEC §4 instance scope. No target witness and no geometric negative; H-261101-07 and A/B/C unchanged."
   },
   {
    "id": "E-261112-01",
@@ -1434,41 +1434,74 @@
    "id": "E-261114-01",
    "kind": "experiment",
    "title": "Normalised S6 (10, 3) - the twenty sub-map formulas with the reorientation and mirror units",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-14",
-   "concluded": "",
+   "concluded": "2026-11-14",
    "path": "experiments/E-261114-01-normalised-s6-10-3/README.md",
    "direction": [
     "DR19",
     "DR8"
    ],
-   "verdict": "",
-   "preregistered": "false",
-   "conclusion": ""
+   "verdict": "NO-DAY-RUN",
+   "preregistered": "true",
+   "conclusion": "Verdict: NO-DAY-RUN (OPEN, solver-limited). Lutz #1 and #2 both TIMEOUT at the 1200 s solver cap, budget fraction approximately 1.0 each; no SAT, UNSAT-SOLVER, ERROR or target candidate. The registered prediction that at least one pilot finishes fails. Both units stopped at the intended limit."
   },
   {
    "id": "E-261114-02",
    "kind": "experiment",
    "title": "Bridge recovery control - exact chirotopes of the 16 realized (10, 2) objects and 30 seeds on five unrealized maps",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-14",
-   "concluded": "",
+   "concluded": "2026-11-14",
    "path": "experiments/E-261114-02-bridge-recovery-control/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
-   "preregistered": "false",
-   "conclusion": ""
+   "verdict": "ADEQUATE",
+   "preregistered": "true",
+   "conclusion": "Verdict: ADEQUATE. NUMERICAL recovery/timing observations on the registered controls; saved-file exact S6 checks substantiate each recovered control, not a new focus witness."
   },
   {
    "id": "E-261114-03",
    "kind": "experiment",
    "title": "Chart normalisation at a hull vertex - lemma, re-charting controls and per-vertex cubes on the slowest normalised maps",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-14",
-   "concluded": "",
+   "concluded": "2026-11-14",
    "path": "experiments/E-261114-03-hull-vertex-chart-pilot/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "UNRESOLVED (small-pilot gate closed; solver-limited)",
+   "preregistered": "true",
+   "conclusion": "Verdict: UNRESOLVED / OPEN, solver-limited. The small-pilot gate closes the full pilot; no launch is prepared. H-261101-06 and A/B/C remain unchanged. Next: week item 2, E-261110-06."
+  },
+  {
+   "id": "E-261114-04",
+   "kind": "experiment",
+   "title": "(8, 2) immersion core - face-grouped minimal cores of the immersion-only formulas of both (8, 2) maps",
+   "status": "done",
+   "date": "2026-11-14",
+   "concluded": "2026-11-14",
+   "path": "experiments/E-261114-04-immersion-core-8-2/README.md",
+   "direction": [
+    "DR10",
+    "DR11",
+    "DR19"
+   ],
+   "verdict": "PARK-NO-SMALL-GROUP-CORE",
+   "preregistered": "true",
+   "conclusion": "Verdict: completed; park under week item 5's follow-up tree. No theory session triggered, no additional compute. Next: lead review of the unresolved focus routes."
+  },
+  {
+   "id": "E-261116-01",
+   "kind": "experiment",
+   "title": "(11, 5) census and cost probe - the last S5 rung below S0, ten normalised formulas at 12 elements",
+   "status": "planned",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "experiments/E-261116-01-s5-11-5-census-cost-probe/README.md",
    "direction": [
     "DR19",
     "DR8"
@@ -1478,16 +1511,46 @@
    "conclusion": ""
   },
   {
-   "id": "E-261114-04",
+   "id": "E-261116-02",
    "kind": "experiment",
-   "title": "(8, 2) immersion core - face-grouped minimal cores of the immersion-only formulas of both (8, 2) maps",
+   "title": "S6 (10, 3) cube pilot - march_cu cubes and a SAT-oriented kissat configuration on Lutz",
    "status": "planned",
-   "date": "2026-11-14",
+   "date": "2026-11-16",
    "concluded": "",
-   "path": "experiments/E-261114-04-immersion-core-8-2/README.md",
+   "path": "experiments/E-261116-02-s6-10-3-cube-pilot/README.md",
    "direction": [
-    "DR10",
-    "DR11",
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261116-03",
+   "kind": "experiment",
+   "title": "S0 price probe - ten asymmetric embedding formulas of the 59 types at a 4 h cap",
+   "status": "planned",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "experiments/E-261116-03-s0-price-probe/README.md",
+   "direction": [
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261116-04",
+   "kind": "experiment",
+   "title": "Polar transfer - polar planes of the Hougardy-Lutz-Zelke (10, 3) realizations in every affine chart",
+   "status": "planned",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "experiments/E-261116-04-polar-transfer-10-3/README.md",
+   "direction": [
+    "DR5",
     "DR19"
    ],
    "verdict": "",
@@ -4275,6 +4338,64 @@
    "preregistered": ""
   },
   {
+   "id": "I-261116-01",
+   "kind": "idea",
+   "title": "Polar transfer - the polar planes of the vertex realizations of the (10, 3) maps, tested in every affine chart",
+   "status": "open",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "ideas/I-261116-01-polar-transfer-vertex-realizations.md",
+   "direction": [
+    "DR5",
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261116-02",
+   "kind": "idea",
+   "title": "(10, 4) exclusion at formula scope - a checked proof replay of all 1117 admissible maps, LRAT first",
+   "status": "parked",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "ideas/I-261116-02-s5-10-4-exclusion-proof-replay.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261116-03",
+   "kind": "idea",
+   "title": "S0 per-type price from the element curve - is an exact asymmetric decision of the 59 types a laptop campaign?",
+   "status": "open",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "ideas/I-261116-03-s0-price-from-element-curve.md",
+   "direction": [
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261116-04",
+   "kind": "idea",
+   "title": "Symmetric (11, 5) slice - the 24 admissible maps with Aut+ 2 or 3 by symmetric formulas",
+   "status": "open",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "ideas/I-261116-04-symmetric-11-5-slice.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -5509,6 +5630,11 @@
   },
   {
    "from": "E-261103-01",
+   "to": "E-261116-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5888,6 +6014,11 @@
    "kind": "origin"
   },
   {
+   "from": "E-261109-06",
+   "to": "I-261116-02",
+   "kind": "origin"
+  },
+  {
    "from": "E-261110-01",
    "to": "E-261110-03",
    "kind": "origin"
@@ -5964,8 +6095,23 @@
   },
   {
    "from": "E-261110-06",
+   "to": "E-261116-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-06",
    "to": "H-261101-07",
    "kind": "tests"
+  },
+  {
+   "from": "E-261110-06",
+   "to": "I-261116-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261110-06",
+   "to": "I-261116-03",
+   "kind": "origin"
   },
   {
    "from": "E-261112-01",
@@ -5998,6 +6144,11 @@
    "kind": "tests"
   },
   {
+   "from": "E-261113-01",
+   "to": "I-261116-04",
+   "kind": "origin"
+  },
+  {
    "from": "E-261113-02",
    "to": "E-261114-02",
    "kind": "origin"
@@ -6024,13 +6175,28 @@
   },
   {
    "from": "E-261113-04",
+   "to": "E-261116-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261113-04",
    "to": "H-261101-06",
    "kind": "tests"
   },
   {
    "from": "E-261114-01",
+   "to": "E-261116-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261114-01",
    "to": "H-261110-03",
    "kind": "tests"
+  },
+  {
+   "from": "E-261114-01",
+   "to": "I-261116-03",
+   "kind": "origin"
   },
   {
    "from": "E-261114-02",
@@ -6050,6 +6216,36 @@
   {
    "from": "E-261114-04",
    "to": "H-261101-15",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261116-01",
+   "to": "E-261116-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261116-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261116-02",
+   "to": "H-261110-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261116-03",
+   "to": "H-261101-01",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261116-03",
+   "to": "H-261101-06",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261116-04",
+   "to": "H-261110-03",
    "kind": "tests"
   },
   {
@@ -7053,6 +7249,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261110-02",
+   "to": "I-261116-01",
+   "kind": "origin"
+  },
+  {
    "from": "I-261110-03",
    "to": "E-261101-08",
    "kind": "origin"
@@ -7163,6 +7364,31 @@
    "kind": "origin"
   },
   {
+   "from": "I-261114-03",
+   "to": "E-261116-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261114-03",
+   "to": "I-261116-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261114-03",
+   "to": "I-261116-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261116-01",
+   "to": "E-261116-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261116-03",
+   "to": "E-261116-03",
+   "kind": "origin"
+  },
+  {
    "from": "L:abs1996",
    "to": "E-261029-01",
    "kind": "origin"
@@ -7225,6 +7451,11 @@
   {
    "from": "L:hlz2010",
    "to": "I-261110-02",
+   "kind": "origin"
+  },
+  {
+   "from": "L:hlz2010",
+   "to": "I-261116-01",
    "kind": "origin"
   },
   {
@@ -7870,6 +8101,11 @@
   {
    "from": "owner",
    "to": "I-261114-05",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261116-02",
    "kind": "origin"
   }
  ],

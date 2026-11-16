@@ -73,3 +73,9 @@ review; STATUS 3d). Genus 2 and 3 are excluded at that level; genus 4-5 are unte
 E-261109-06: kissat reports UNSAT on the plain formula of all 360 admissible (10,4) maps outside `(1^4,2)` and `1^6`
 (UNSAT-SOLVER, no checked proof, so not a negative result; STATUS 3ad). No SAT, no candidate; strata A (520) and B (237)
 untested. Status stays open.
+
+## 2026-11-14 (10,4) strata A+B
+
+E-261110-06 completes the normalized A+B queue (CONCLUSION / STATUS 3ao): UNSAT-SOLVER only,
+no checked proofs, no candidate. NUMERICAL timing evidence supports the one-night cost gate;
+instance solver answers do not exclude geometric realizations. Status and credence remain unchanged.

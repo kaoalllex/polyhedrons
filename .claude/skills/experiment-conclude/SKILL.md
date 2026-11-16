@@ -47,6 +47,8 @@ Use `python3` from an activated environment with `requirements.txt` installed.
    - **`ROADMAP.md`:** set the State to `done` or `killed`. A follow-up row needs scores, T + D >= 3, a budget, a
      stop rule and its DR/FD link.
    - **`experiment-log.md`:** a 1-3 line dated entry pointing to `CONCLUSION.md`.
+   - **`paper/OUTLINE.md`:** if the result adds, strengthens, weakens or removes one of its items, update that item
+     and add a change-log line (owner, 2026-11-16).
 
    - **Experiment `README.md`:** `status: done` (or `killed`), `concluded: YYYY-MM-DD`, `verdict`, `produces` (FD / W: / C: it established),
      and a short results / conclusions summary.

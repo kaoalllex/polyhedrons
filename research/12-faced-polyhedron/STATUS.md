@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-14** (E-261113-03 concluded). The latest registered results are E-261113-03 (section 3ak), after
+As of **2026-11-16** (owner's decisions on the lead review of 2026-11-16). The latest registered results are E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
 E-261113-04 (section 3aj), E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -15,12 +15,18 @@ remain session checks, not new ledger evidence; the local S6 (10,2) witness work
 S6 at (10, 3) by the normalised formulas first (E-261114-01), S5 at (10, 4) second (E-261110-06, one night), nine faces
 third. The review's finding that the plain S5 / S6 formulas carry no reorientation or mirror units, and its 10-89x
 ratios on five known UNSAT formulas, are a session check (NUMERICAL, UNSAT-SOLVER), not ledger evidence.
+**(10, 4) S5 in total (2026-11-16):** with stratum C (section 3ad, plain formulas) and strata A + B (section 3ao,
+normalised), all 1117 admissible maps are UNSAT-SOLVER, no candidate (NUMERICAL, instance scope, no checked proof,
+census coverage PROVED-1). Usable for planning, not a negative result; the replay is parked (I-261116-02). Owner's
+decisions of 2026-11-16 (`reviews/strategy-review-2026-11-16.md`): (11, 5) census and cost probe first (E-261116-01;
+the review's census session check, 3986 admissible maps, is not ledger evidence), (10, 3) cube pilot then park
+(E-261116-02), a conditional S0 price probe (E-261116-03), polar transfer (E-261116-04). No credence change applied.
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-14 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: S6 at (10, 3)
-first, by the normalised formulas (E-261114-01); S5 at (10, 4) second, strata A + B in one night (E-261110-06); nine
-mutually adjacent faces (S1, genus free) third, Stage B parked after E-261113-03 (source map only, section 3ak). Run so far: ninth-plane Stage A (no candidate,
+**Focus since 2026-11-16 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: S5 at (11, 5)
+first, census and cost probe (E-261116-01); S6 at (10, 3) one cube pilot, then parked if undecided (E-261116-02); S5
+(10, 4) all admissible maps UNSAT-SOLVER (sections 3ad, 3ao); nine faces parked after E-261113-03 (section 3ak). Run so far: ninth-plane Stage A (no candidate,
 section 3ae), the S6 (10, 3) night (20/20 TIMEOUT, section 3af) and its symmetric runs (no candidate, section 3ag). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
 4, gated by a speed-up benchmark (E-261103-07: 10/10 TIMEOUT, section 3w); from 2026-11-03 to 2026-11-08 the focus was
 (9, 3), now decided at formula scope (below); its negative result is a side track towards a note marked as not
@@ -376,6 +382,47 @@ SOLID with Roest-Vigh's map (genus 3), exact check in the worker; 0 open. Discov
 this rung; one map class (H0). EXACT for the four cells, NUMERICAL otherwise, instance scope; one solid per cell, walls
 and other sources not run. Stage B parked at this budget; OPEN@15.97 core-h; no hypothesis status, credence or witness
 change (CONCLUSION).
+
+## 3al. E-261114-02 bridge recovery control (2026-11-14)
+
+**ADEQUATE** (NUMERICAL recovery rates, saved-file exact checks; control-instance scope).
+The registered known-realizable chirotope recovery gate passes, and the five discovery maps each recover.
+Use at least thirty models per target SAT; no realizer detour. H-261110-03 and A/B/C stay unchanged.
+These are (10,2) controls, not a (10,3) result. Counts, CPU accounting and limits:
+`experiments/E-261114-02-bridge-recovery-control/CONCLUSION.md`.
+
+## 3am. E-261114-01 normalised S6 prep and pilot (2026-11-14)
+
+**NO-DAY-RUN**, OPEN / solver-limited at the registered pilot budget. Soundness argument PROVED-1,
+control-instance checks pass; normalized target pilots both TIMEOUT, no negative claim (SPEC §4).
+The full day run was not started. Registered next step: E-261114-03 (week item 4) before item 2.
+H-261110-03 and A/B/C unchanged. Counts, NUMERICAL timings, scope and accounting limits:
+`experiments/E-261114-01-normalised-s6-10-3/CONCLUSION.md`.
+
+## 3an. E-261114-03 hull-vertex chart pilot (2026-11-14)
+
+**UNRESOLVED / OPEN, solver-limited** (NUMERICAL timing, control-instance checks; lemma PROVED-1).
+Re-charting and orientation-mutation controls pass; all small-pilot cubes TIMEOUT. The full pilot
+was not run; neither a speedup nor a kill ratio is established against the censored baselines.
+No geometric negative or new focus witness. H-261101-06 and A/B/C unchanged; next: week item 2.
+Counts, saved verification and accounting limits: `experiments/E-261114-03-hull-vertex-chart-pilot/CONCLUSION.md`.
+
+## 3ao. E-261110-06 normalised S5 (10,4) A+B owner run (2026-11-14)
+
+**COMPLETE-UNSAT-SOLVER** (NUMERICAL timings, SPEC §4 instance scope).
+The frozen A+B queue is complete, with no SAT, timeout or error; no checked proof or geometric negative.
+Saved controls and source/environment provenance match; record, coverage and solver-log checks PASS.
+No candidate to verify. H-261101-07 and A/B/C unchanged; no FD or witness row changes.
+Week item 2 done; item 5 next. Proof replay and the (11,5) probe go to the lead.
+Counts, costs and evidence: `experiments/E-261110-06-s5-10-4-strata-ab-remainder/CONCLUSION.md`.
+
+## 3ap. E-261114-04 immersion face-group cores (2026-11-14)
+
+Week item 5 completed; park. Exhaustive normalised V1 restrictions on both (8,2) maps;
+controls and provenance/coverage audit PASS, checked Boolean SAT assignments.
+NUMERICAL planning evidence, instance scope; UNSAT-SOLVER only, no geometric exclusion.
+The core uses all face groups while circuits retain all eight planes; see
+`experiments/E-261114-04-immersion-core-8-2/CONCLUSION.md`. Hypotheses and A/B/C unchanged.
 
 ## 4. What may and may not be claimed
 

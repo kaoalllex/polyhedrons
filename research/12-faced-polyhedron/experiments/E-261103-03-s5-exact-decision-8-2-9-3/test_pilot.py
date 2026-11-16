@@ -69,6 +69,28 @@ class PilotTests(unittest.TestCase):
             c.dimacs(out / 'unsat.cnf'); (out / 'broken.drat').write_text('')
             self.assertFalse(pilot.check_proof(out / 'unsat.cnf', out / 'broken.drat', out / 'broken.log', 5))
 
+    def test_worker_optimizer_seed_preserves_default(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        import numpy as np
+        import chirotope_first as cf
+        with tempfile.TemporaryDirectory() as tmp:
+            inp, out = Path(tmp) / 'input.json', Path(tmp) / 'output.json'
+            for supplied in (None, 26110304):
+                data = dict(chi={'0,1,2,3': 1}, links=[[], [], [], []])
+                if supplied is not None:
+                    data['optimizer_seed'] = supplied
+                inp.write_text(json.dumps(data))
+                observed = []
+                def realize(*args, **kwargs):
+                    observed.append(int(kwargs['rng'].integers(10**9)))
+                    return None, 1
+                with patch.object(cf, 'realize', side_effect=realize):
+                    pilot.worker(SimpleNamespace(input=inp, output=out, task='hinge'))
+                expected = int(np.random.default_rng(26110303 if supplied is None else supplied).integers(10**9))
+                self.assertEqual(observed, [expected])
+                self.assertFalse(json.loads(out.read_text())['signs_match'])
+
     def test_realizer_fallback_is_not_recovery(self):
         self.assertFalse(pilot.reconstruction_ok(10 ** 6, True))
         self.assertFalse(pilot.reconstruction_ok(0, False))
