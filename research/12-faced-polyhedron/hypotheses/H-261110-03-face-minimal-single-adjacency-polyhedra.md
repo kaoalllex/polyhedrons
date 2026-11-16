@@ -36,6 +36,10 @@ E-261116-02 (2026-11-16): normalised Lutz #1 and #2 decided UNSAT-SOLVER by both
 lookahead cubes and monolithic `kissat --sat`; owner-night follow-up gate passes (STATUS 3ar).
 Planning only, no checked proofs or geometric negative; status and credences unchanged.
 
+E-261116-05 (2026-11-16): the other eighteen normalised maps decided UNSAT-SOLVER by monolithic `kissat --sat`,
+so all 20 (10, 3) formulas are UNSAT-SOLVER, no candidate (STATUS 3as). Solver-level support for the rival,
+planning only: not the "20 UNSAT-VERIFIED" below; a checked replay is I-261116-05. Status and credences unchanged.
+
 ## What would move it
 
 E-261110-02: a SAT model that realizes and passes the exact verifier with 42 single adjacencies -> the (10, 3) part

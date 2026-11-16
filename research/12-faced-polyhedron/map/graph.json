@@ -1561,17 +1561,17 @@
    "id": "E-261116-05",
    "kind": "experiment",
    "title": "Normalised S6 (10,3) SAT-oriented owner night",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-16",
-   "concluded": "",
+   "concluded": "2026-11-16",
    "path": "experiments/E-261116-05-s6-10-3-sat-night/README.md",
    "direction": [
     "DR19",
     "DR8"
    ],
-   "verdict": "",
+   "verdict": "ALL-20-DECIDED-UNSAT-SOLVER",
    "preregistered": "true",
-   "conclusion": "Verdict: READY, NUMERICAL control/startup scope (SPEC §4); not a target result. PLAN pre-registered in `da9a862a`. H-261110-03 and S0 A/B/C unchanged."
+   "conclusion": "Verdict: ALL-20-DECIDED-UNSAT-SOLVER@7.269 worker-h (18 fresh, Lutz #1/#2 reused from E-261116-02). NUMERICAL, SPEC §4 instance scope: the twenty normalised uniform S6 embedding formulas (`submap=True`, symbreak, mirror) only. No candidate, no checked proof."
   },
   {
    "id": "FD11",
@@ -4412,6 +4412,21 @@
    "preregistered": ""
   },
   {
+   "id": "I-261116-05",
+   "kind": "idea",
+   "title": "S6 (10, 3) exclusion at formula scope - a checked proof replay of the twenty normalised Lutz formulas",
+   "status": "open",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "ideas/I-261116-05-s6-10-3-exclusion-proof-replay.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -6265,6 +6280,11 @@
    "kind": "tests"
   },
   {
+   "from": "E-261116-02",
+   "to": "I-261116-05",
+   "kind": "origin"
+  },
+  {
    "from": "E-261116-03",
    "to": "H-261101-01",
    "kind": "tests"
@@ -6283,6 +6303,11 @@
    "from": "E-261116-05",
    "to": "H-261110-03",
    "kind": "tests"
+  },
+  {
+   "from": "E-261116-05",
+   "to": "I-261116-05",
+   "kind": "origin"
   },
   {
    "from": "FD2",

@@ -1,12 +1,13 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-16** (owner's decisions on the lead review of 2026-11-16). The latest registered result is E-261116-02 (section 3ar); earlier results are E-261116-01 (section 3aq), E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
+As of **2026-11-16** (owner's decisions on the lead review of 2026-11-16). The latest registered result is E-261116-05 (section 3as); earlier results are E-261116-02 (section 3ar), E-261116-01 (section 3aq), E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
 E-261113-04 (section 3aj), E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
 Ninth-plane Stage A is exhausted with no candidate: all near-copy cells UNSAT-SOLVER at instance scope, no family
 negative (section 3ae). S6 (10,3): the original night left all 20 formulas undecided (section 3af); the normalised
-cube/SAT-oriented pilot now decides Lutz #1 and #2 UNSAT-SOLVER, opening the owner-night gate (section 3ar); the symmetric C3 / free C2 formulas are all UNSAT-SOLVER and the T family of Lutz #15 has no
+cube/SAT-oriented pilot decides Lutz #1 and #2 (section 3ar) and the owner run the other eighteen, so all 20 normalised
+formulas are UNSAT-SOLVER, planning only, no checked proof or negative (section 3as); the symmetric C3 / free C2 formulas are all UNSAT-SOLVER and the T family of Lutz #15 has no
 embedded member (section 3ag). Owner's decisions of 2026-11-13 (`reviews/strategy-review-2026-11-13.md`): S6 at (10, 3) is
 the first target, symmetric realizations first (E-261113-01); Stage B was gated by the rung-below census
 E-261113-03, which found only the source map, so Stage B is parked at this budget (section 3ak). The dialogue's checks
@@ -25,7 +26,8 @@ the review's census session check, 3986 admissible maps, is not ledger evidence)
 ## 0. State in one paragraph
 
 **Focus since 2026-11-16 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: S5 at (11, 5)
-first, census and cost probe (E-261116-01); S6 at (10, 3) one cube pilot, then parked if undecided (E-261116-02); S5
+first, census and cost probe (E-261116-01); S6 at (10, 3) one cube pilot (E-261116-02), then all 20 normalised formulas
+UNSAT-SOLVER (E-261116-05, section 3as); S5
 (10, 4) all admissible maps UNSAT-SOLVER (sections 3ad, 3ao); nine faces parked after E-261113-03 (section 3ak). Run so far: ninth-plane Stage A (no candidate,
 section 3ae), the S6 (10, 3) night (20/20 TIMEOUT, section 3af) and its symmetric runs (no candidate, section 3ag). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
 4, gated by a speed-up benchmark (E-261103-07: 10/10 TIMEOUT, section 3w); from 2026-11-03 to 2026-11-08 the focus was
@@ -441,6 +443,15 @@ Fresh formula-hash, control, provenance, coverage, log and budget audit PASS; no
 Select monolithic `kissat --sat` for the follow-up; prepare its PLAN and launcher, reusing pilot decisions.
 H-261110-03 and S0 A/B/C unchanged; other asymmetric maps not run with these settings.
 Counts, costs and accounting limits: `experiments/E-261116-02-s6-10-3-cube-pilot/CONCLUSION.md`.
+
+## 3as. E-261116-05 S6 (10,3) SAT-oriented owner run (2026-11-16)
+
+**ALL-20-DECIDED-UNSAT-SOLVER**: Lutz #3-#20 decided by monolithic `kissat --sat`, #1/#2 reused (3ar).
+NUMERICAL, SPEC §4 instance scope, the twenty normalised uniform formulas only; no candidate, no checked
+proof, no geometric negative. Fresh CNF-hash, log, provenance, coverage and budget audit PASS.
+Usable for planning (S6 (10,3) by these formulas exhausted at solver level), not an exclusion; a checked
+replay is idea I-261116-05 (owner's word needed). H-261110-03 and S0 A/B/C unchanged.
+Counts, costs, controls and limits: `experiments/E-261116-05-s6-10-3-sat-night/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 
