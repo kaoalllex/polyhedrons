@@ -1269,7 +1269,7 @@ window.GRAPH = {
    "id": "E-261110-03",
    "kind": "experiment",
    "title": "Arrangement-family scoring at the 8-plane rung with the wedge covariate - four families, all 28 pairs, E free",
-   "status": "parked",
+   "status": "planned",
    "date": "2026-11-10",
    "concluded": "",
    "path": "experiments/E-261110-03-arrangement-family-scoring-8-planes/README.md",
@@ -1572,6 +1572,70 @@ window.GRAPH = {
    "verdict": "ALL-20-DECIDED-UNSAT-SOLVER",
    "preregistered": "true",
    "conclusion": "Verdict: ALL-20-DECIDED-UNSAT-SOLVER@7.269 worker-h (18 fresh, Lutz #1/#2 reused from E-261116-02). NUMERICAL, SPEC §4 instance scope: the twenty normalised uniform S6 embedding formulas (`submap=True`, symbreak, mirror) only. No candidate, no checked proof."
+  },
+  {
+   "id": "E-261116-06",
+   "kind": "experiment",
+   "title": "S5 (11, 5) symmetric slice - free-C2 and free-C3 uniform formulas of the 24 symmetric admissible maps",
+   "status": "planned",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "experiments/E-261116-06-s5-11-5-symmetric-slice/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261116-07",
+   "kind": "experiment",
+   "title": "Census-free S1 formula - one OM-SAT instance per (F, g) with tope variables for the solid, ladder pilot",
+   "status": "planned",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "experiments/E-261116-07-census-free-s1-ladder/README.md",
+   "direction": [
+    "DR19",
+    "DR7",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261116-08",
+   "kind": "experiment",
+   "title": "S6 (10, 3) replay pricing - proof size, check time and memory on two of the twenty normalised CNFs",
+   "status": "planned",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "experiments/E-261116-08-s6-10-3-replay-pricing/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261116-09",
+   "kind": "experiment",
+   "title": "Uniformity and perturbation lemmas - which scope words of the small-case results can be removed",
+   "status": "planned",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "experiments/E-261116-09-uniformity-perturbation-lemmas/README.md",
+   "direction": [
+    "DR19",
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "FD11",
@@ -4387,7 +4451,7 @@ window.GRAPH = {
    "id": "I-261116-03",
    "kind": "idea",
    "title": "S0 per-type price from the element curve - is an exact asymmetric decision of the 59 types a laptop campaign?",
-   "status": "open",
+   "status": "parked",
    "date": "2026-11-16",
    "concluded": "",
    "path": "ideas/I-261116-03-s0-price-from-element-curve.md",
@@ -4422,6 +4486,35 @@ window.GRAPH = {
    "direction": [
     "DR19",
     "DR8"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261116-06",
+   "kind": "idea",
+   "title": "Deleted-plane sources - 8- and 9-plane arrangements from the realized (10, 2) S6 objects for all-pairs solids",
+   "status": "open",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "ideas/I-261116-06-deleted-plane-sources-10-2.md",
+   "direction": [
+    "DR7",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261116-07",
+   "kind": "idea",
+   "title": "Uniformity lemma - a cubic embedded polyhedron survives a generic perturbation of its planes, so uniform formulas lose no cubic object",
+   "status": "open",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "ideas/I-261116-07-uniformity-lemma-cubic.md",
+   "direction": [
+    "DR19"
    ],
    "verdict": "",
    "preregistered": ""
@@ -5725,6 +5818,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "E-261103-02",
+   "to": "I-261116-07",
+   "kind": "origin"
+  },
+  {
    "from": "E-261103-03",
    "to": "E-261108-02",
    "kind": "origin"
@@ -6100,16 +6198,6 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
-   "from": "E-261110-03",
-   "to": "H-261110-02",
-   "kind": "tests"
-  },
-  {
-   "from": "E-261110-04",
-   "to": "H-261110-02",
-   "kind": "tests"
-  },
-  {
    "from": "E-261110-05",
    "to": "E-261114-04",
    "kind": "origin"
@@ -6165,6 +6253,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "E-261112-01",
+   "to": "I-261116-06",
+   "kind": "origin"
+  },
+  {
    "from": "E-261112-02",
    "to": "H-261112-01",
    "kind": "tests"
@@ -6197,6 +6290,11 @@ window.GRAPH = {
   {
    "from": "E-261113-02",
    "to": "I-261114-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261113-02",
+   "to": "I-261116-06",
    "kind": "origin"
   },
   {
@@ -6240,6 +6338,11 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
+   "from": "E-261114-02",
+   "to": "I-261116-06",
+   "kind": "origin"
+  },
+  {
    "from": "E-261114-03",
    "to": "H-261101-06",
    "kind": "tests"
@@ -6257,6 +6360,11 @@ window.GRAPH = {
   {
    "from": "E-261116-01",
    "to": "E-261116-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261116-01",
+   "to": "E-261116-06",
    "kind": "origin"
   },
   {
@@ -6301,6 +6409,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261116-05",
+   "to": "E-261116-08",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261116-05",
    "to": "H-261110-03",
    "kind": "tests"
   },
@@ -6308,6 +6421,31 @@ window.GRAPH = {
    "from": "E-261116-05",
    "to": "I-261116-05",
    "kind": "origin"
+  },
+  {
+   "from": "E-261116-05",
+   "to": "I-261116-07",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261116-06",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261116-07",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261116-08",
+   "to": "H-261110-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261116-09",
+   "to": "H-261101-07",
+   "kind": "tests"
   },
   {
    "from": "FD2",
@@ -7200,6 +7338,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261103-02",
+   "to": "E-261116-07",
+   "kind": "origin"
+  },
+  {
    "from": "I-261103-04",
    "to": "E-261108-01",
    "kind": "origin"
@@ -7247,6 +7390,11 @@ window.GRAPH = {
   {
    "from": "I-261108-08",
    "to": "E-261109-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261108-09",
+   "to": "E-261116-09",
    "kind": "origin"
   },
   {
@@ -7447,6 +7595,26 @@ window.GRAPH = {
   {
    "from": "I-261116-03",
    "to": "E-261116-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261116-04",
+   "to": "E-261116-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261116-05",
+   "to": "E-261116-08",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261116-06",
+   "to": "E-261110-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261116-07",
+   "to": "E-261116-09",
    "kind": "origin"
   },
   {

@@ -56,3 +56,8 @@ not the weaker existential one; the fallback is I-261108-10.
 
 Owner's question of 2026-11-08 on non-cubic (9, 3) objects (`STATUS.md` §4 scope entry); the lead's sketch in that
 session; question 3 of `reviews/REVIEW_PROMPT_2026-11-08.md`. Planned for the note package, after week items 1, 3, 4.
+
+## 2026-11-16b decision
+
+Owner-approved week item 5 (`reviews/strategy-review-2026-11-16b.md`), together with the uniformity lemma I-261116-07:
+experiment E-261116-09, one session, PROVED-1 text or a counterexample.

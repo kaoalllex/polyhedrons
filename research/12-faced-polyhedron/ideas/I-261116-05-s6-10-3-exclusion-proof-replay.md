@@ -27,3 +27,9 @@ peak memory; gate on the total for twenty fitting one night and the transient di
 Proposal only, not run. Proofs are off by default (owner, 2026-11-13): it needs the owner's word and a named
 negative claim (a note or a STATUS exclusion) before any plan. Until then the twenty formulas are UNSAT-SOLVER,
 planning only.
+
+## 2026-11-16b decision
+
+The owner approved pricing (`reviews/strategy-review-2026-11-16b.md`, approval 3): named claim, paper item D3
+(formula-scope exclusion of the twenty S6 (10, 3) formulas). Experiment E-261116-08 prices two CNFs in one session;
+the replay night needs its gate (<= 1 night, <= 200 GB transient) and the owner's launch.

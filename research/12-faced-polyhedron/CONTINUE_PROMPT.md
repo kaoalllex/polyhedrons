@@ -9,11 +9,11 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-16, item 5 concluded)
+## Hand-over (2026-11-16, lead review 2026-11-16b applied)
 
-* Branch `lab/2026-11-16`; nothing in flight. E-261116-04 done: NO-CHART-EMBEDDED (STATUS 3at); the week plan is finished.
-* HLZ coordinates now in `literature/eg-models-2006.02.001/` (sha256 in `literature/DATA_FOUND.md`); 20 realizations,
-  56137 charts, 0 EMBEDDED. Controls: octahedron -> cube 9/52; Szilassi round trip 1/307 PASS S6 (7,1).
-* Scope: these realizations only, float-LP cells >= 1e-7; I-261116-01 parked; no candidate, no proofs.
-* For the lead: the next S6 step after (10,3) is exhausted at solver level and the polar transfer is negative; whether to
-  price the replay I-261116-05. H-261110-03, S0 A/B/C unchanged.
+* Branch `lab/2026-11-16`; nothing in flight. New week plan in `ROADMAP.md` (owner-approved, all three approvals);
+  next: week item 1, E-261116-06 ((11, 5) symmetric slice), PLAN first (skill `experiment-start`).
+* Items 2-5 filed: E-261116-07 (census-free ladder), E-261110-03 reopened reduced (gates E-261110-04), E-261116-08
+  (S6 replay pricing; proofs approved for paper item D3), E-261116-09 (lemmas); ideas I-261116-06, I-261116-07.
+* Session check of the review: (8, 3) census >= 34,402 classes, incomplete; not ledger evidence. Credences not applied.
+* For the lead: nothing open.

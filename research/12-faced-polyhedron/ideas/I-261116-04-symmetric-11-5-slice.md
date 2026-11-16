@@ -24,3 +24,8 @@ Source: `reviews/strategy-review-2026-11-16.md` §5 (N3).
 E-261116-01 concludes NO-SWEEP-SYMMETRIC-SLICE (CONCLUSION / STATUS 3aq): this registered follow-up
 is eligible. No symmetric formula has been run here; preparation still needs a scored ROADMAP row and
 committed PLAN. Week item 2 is next; no new full-sweep budget is implied.
+
+## 2026-11-16b decision
+
+Owner-approved week item 1 (`reviews/strategy-review-2026-11-16b.md`): experiment E-261116-06. Only maps with a free
+action are run; a fixed-face involution is outside uniform formulas and is recorded as not decidable here.

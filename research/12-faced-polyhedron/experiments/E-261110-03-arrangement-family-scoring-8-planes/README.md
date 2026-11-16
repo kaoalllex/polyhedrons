@@ -2,13 +2,18 @@
 id: E-261110-03
 title: Arrangement-family scoring at the 8-plane rung with the wedge covariate - four families, all 28 pairs, E free
 date: 2026-11-10
-status: parked
+status: planned
 direction: [DR7, DR18, DR12]
-origin: [I-261110-01, I-261110-03, E-261103-05, E-261110-01]
-tests: [H-261110-02]
+origin: [I-261110-01, I-261110-03, E-261103-05, E-261110-01, I-261116-06]
+tests: []
 produces: []
 preregistered: false
 ---
+
+> **Reopened by the owner, 2026-11-16b** (`reviews/strategy-review-2026-11-16b.md`, week item 3), reduced: families D2
+> 2x4, isotropic and two-planes-deleted (10, 2) S6 objects (I-261116-06); wedge arms dropped; E free; <= 3 core-h.
+> What is different from the 2026-11-12 parking: the ninth-plane cells that replaced it are done (Stage A) or parked
+> (Stage B), and the result now gates the nine-plane night with a measured rate. Needs a new `PLAN.md`.
 
 > Parked by the owner, 2026-11-12; not run. Replaced by E-261112-01/02 (exact ninth-plane cells).
 > Historical proposal below is retained, not an active launch instruction. Recovery alone did not establish

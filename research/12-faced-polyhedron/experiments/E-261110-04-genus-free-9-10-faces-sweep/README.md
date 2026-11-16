@@ -5,10 +5,13 @@ date: 2026-11-10
 status: parked
 direction: [DR7, DR18, DR12]
 origin: [I-261110-03, I-261110-01, E-261107-01, E-261108-01, E-261110-03]
-tests: [H-261110-02]
+tests: []
 produces: []
 preregistered: false
 ---
+
+> **Reopened by the owner, 2026-11-16b, as the follow-up of E-261110-03 only** (week item 3): runs after a family
+> scores >= 10 positives at 8 planes; nine planes, E in {45, 51}; one owner night <= 80 core-h. Needs a new `PLAN.md`.
 
 > Parked by the owner, 2026-11-12; not run. Replaced by E-261112-01/02 (exact ninth-plane cells).
 > Historical proposal below is retained, not an active launch instruction. Recovery alone did not establish

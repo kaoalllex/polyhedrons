@@ -1034,3 +1034,8 @@ See `experiments/E-261116-05-s6-10-3-sat-night/CONCLUSION.md`.
 
 2026-11-16 — E-261116-04 polar transfer: NO-CHART-EMBEDDED (20 HLZ realizations, 56137 charts, 0 EMBEDDED); Szilassi round-trip control passes.
 I-261116-01 parked; week item 5 done. See `experiments/E-261116-04-polar-transfer-10-3/CONCLUSION.md`.
+
+2026-11-16 — Lead review 2026-11-16b applied (owner approved all three): nine faces (S1, genus free) first by map-free
+methods (E-261116-07, E-261110-03 reopened, E-261110-04 gated); (11, 5) symmetric slice E-261116-06; S6 parked after
+(10, 3), replay pricing E-261116-08 (proofs for paper item D3); lemma session E-261116-09; E-261116-03 withdrawn.
+No compute. See `reviews/strategy-review-2026-11-16b.md`.

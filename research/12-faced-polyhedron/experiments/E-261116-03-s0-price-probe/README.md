@@ -10,7 +10,7 @@ produces: []
 preregistered: false
 ---
 
-> Parked, exploit, jump 2; E-261116-01 median gate not met (CONCLUSION / STATUS 3aq). Scores T D F G R: 2 2 2 2 2 | budget: one prep session + <= 40 core-h, 10 shards.
+> Withdrawn 2026-11-16b (owner): parked, exploit, jump 2; E-261116-01 median gate not met (CONCLUSION / STATUS 3aq). Scores T D F G R: 2 2 2 2 2 | budget: one prep session + <= 40 core-h, 10 shards.
 > Runs only if E-261116-01 gives an (11, 5) median <= 20 min (owner, 2026-11-16: S0 unparked for this run only).
 > Before any compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). No proofs.
 

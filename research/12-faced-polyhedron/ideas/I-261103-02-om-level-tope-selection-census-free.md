@@ -32,3 +32,9 @@ park.
 ## Source
 
 Strategy review 2026-11-03 (`reviews/strategy-review-2026-11-03.md` section 4, idea 1).
+
+## 2026-11-16b decision
+
+Owner-approved week item 2 (`reviews/strategy-review-2026-11-16b.md`), experiment E-261116-07. Why now: a map census is
+out of reach at (8, 3) and (9, 4) (session check, >= 34,402 (8, 3) classes after 551 of 1806 patterns), while per-map
+formulas at 10 elements take seconds. Ladder (7, 1), (8, 2), (8, 3) before (9, 4), (9, 5); kill rule in `ROADMAP.md`.

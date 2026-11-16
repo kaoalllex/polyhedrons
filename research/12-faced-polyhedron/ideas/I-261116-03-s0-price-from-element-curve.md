@@ -2,7 +2,7 @@
 id: I-261116-03
 title: S0 per-type price from the element curve - is an exact asymmetric decision of the 59 types a laptop campaign?
 date: 2026-11-16
-status: open
+status: parked
 direction: [DR8]
 origin: [I-261114-03, E-261110-06, E-261114-01]
 ---
@@ -21,3 +21,8 @@ S0 is the defining problem; its 59 formulas are few. Cheapest test: E-261116-03,
 the (11, 5) median is <= 20 min. Untested proposal.
 
 Source: `reviews/strategy-review-2026-11-16.md` §5 (N4).
+
+## 2026-11-16b decision
+
+The S0 price probe E-261116-03 is withdrawn (its (11, 5) median gate failed, STATUS 3aq). The element curve stays a
+scenario, not a bound.

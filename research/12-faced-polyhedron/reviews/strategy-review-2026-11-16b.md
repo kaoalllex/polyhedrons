@@ -148,3 +148,7 @@ Parked target only (S0): E-261101-06 rank-3 SAT per type (2 2 2 2 2, the cheapes
 
 1. Owner: approvals 1 and 2; a yes / no on approval 3. 2. Lab (Opus, medium / gpt-6.1-sol, medium): item 1, minutes of compute.
 3. Lab (Opus, high / gpt-6-astra, high): item 2's ladder; item 3's prep (Opus, medium / gpt-6.1-sol, high) for the owner's day run.
+
+## Owner's decisions (2026-11-16)
+
+Approvals 1-3 given ("ok"); applied the same day. Credences of §7 not applied (not asked).
