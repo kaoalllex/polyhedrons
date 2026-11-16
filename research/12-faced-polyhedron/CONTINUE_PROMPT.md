@@ -9,13 +9,14 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-16, item 1 ready for owner)
+## Hand-over (2026-11-16, item 2 prepared)
 
-* Branch `lab/2026-11-16`; week item 1 E-261116-01 pre-registered, prep PASS (`CONCLUSION.md` in its folder).
-* Nothing in flight; owner on AC: `bash research/12-faced-polyhedron/overnight/launch.sh 16-01 start`.
-* Same entry with `status` / `stop`; launcher supplies caffeinate. Production path: experiment `results/run/`.
-* After the day: run its `summary.py`, conclude by PLAN; tiny startup timeouts are not price data.
-* Checks: matching census/code digest, reused inherited controls, f11 SAT/SAT/UNSAT-SOLVER,
-  actual ten-shard launcher/resume, runner and summary tests PASS; integrated quick PASS, archive skipped.
-* Next item 2; item 4 only for an uncensored median <=20 min (approval already given).
-* Item 3 proof replay parked; no proofs or new credences. For the lead: none.
+* Branch `lab/2026-11-16`; item 1 conclusion changes remain local. Nothing in flight.
+* E-261116-02 PLAN pre-registered in `46784cbc`; prep and launcher evidence in its results folder.
+* Cube-cover and known-SAT pipeline PASS; target conquer not run, no candidate.
+* Owner: on AC, `bash research/12-faced-polyhedron/overnight/launch.sh 16-02 start` (then status / stop).
+* Budget and follow-up: E-261116-02 `PLAN.md`; collect run before taking week item 5.
+* Startup: ten shards reached job with zero solver units; solver-unit stop/resume not exercised.
+* Checks: see E-261116-02 README and startup-check.json; no proof or geometry replay.
+* Item 4 gate not met; item 3 replay parked; (11,5) only I-261116-04 remains.
+* For the lead: none; no new credences or existence claim.
