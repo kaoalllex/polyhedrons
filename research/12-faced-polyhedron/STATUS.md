@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-16** (owner's decisions on the lead review of 2026-11-16). The latest registered result is E-261116-05 (section 3as); earlier results are E-261116-02 (section 3ar), E-261116-01 (section 3aq), E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
+As of **2026-11-16** (owner's decisions on the lead review of 2026-11-16). The latest registered result is E-261116-04 (section 3at); earlier results are E-261116-05 (section 3as), E-261116-02 (section 3ar), E-261116-01 (section 3aq), E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
 E-261113-04 (section 3aj), E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -21,7 +21,7 @@ normalised), all 1117 admissible maps are UNSAT-SOLVER, no candidate (NUMERICAL,
 census coverage PROVED-1). Usable for planning, not a negative result; the replay is parked (I-261116-02). Owner's
 decisions of 2026-11-16 (`reviews/strategy-review-2026-11-16.md`): (11, 5) census and cost probe first (E-261116-01;
 the review's census session check, 3986 admissible maps, is not ledger evidence), (10, 3) cube pilot then park
-(E-261116-02), a conditional S0 price probe (E-261116-03), polar transfer (E-261116-04). No credence change applied.
+(E-261116-02), a conditional S0 price probe (E-261116-03), polar transfer (E-261116-04, done, section 3at). No credence change applied.
 
 ## 0. State in one paragraph
 
@@ -452,6 +452,14 @@ proof, no geometric negative. Fresh CNF-hash, log, provenance, coverage and budg
 Usable for planning (S6 (10,3) by these formulas exhausted at solver level), not an exclusion; a checked
 replay is idea I-261116-05 (owner's word needed). H-261110-03 and S0 A/B/C unchanged.
 Counts, costs, controls and limits: `experiments/E-261116-05-s6-10-3-sat-night/CONCLUSION.md`.
+
+## 3at. E-261116-04 polar transfer of the HLZ (10,3) realizations (2026-11-16)
+
+**NO-CHART-EMBEDDED**: the polar planes of the 20 EG-Models 2006.02.001 realizations (one per vertex-minimal (10,3)
+map), every chart (56137, cells with margin >= 1e-7), give no EMBEDDED polyhedron and no `--target S6` PASS.
+NUMERICAL, SPEC §4 instance scope: these realizations only; not a non-existence statement. Controls: octahedron ->
+cube (9 of 52 EMBEDDED) and the Szilassi round trip (1 of 307, S6 PASS at (7,1)). I-261116-01 parked. H-261110-03 and
+S0 A/B/C unchanged. Counts and limits: `experiments/E-261116-04-polar-transfer-10-3/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

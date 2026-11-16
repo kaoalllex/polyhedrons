@@ -1031,3 +1031,6 @@ See `experiments/E-261116-05-s6-10-3-sat-night/CONCLUSION.md`; no production sol
 2026-11-16 — E-261116-05 owner run: ALL-20-DECIDED-UNSAT-SOLVER (18 fresh, #1/#2 reused); audit PASS.
 No candidate, proof or geometric negative; replay idea I-261116-05; week item 5 next.
 See `experiments/E-261116-05-s6-10-3-sat-night/CONCLUSION.md`.
+
+2026-11-16 — E-261116-04 polar transfer: NO-CHART-EMBEDDED (20 HLZ realizations, 56137 charts, 0 EMBEDDED); Szilassi round-trip control passes.
+I-261116-01 parked; week item 5 done. See `experiments/E-261116-04-polar-transfer-10-3/CONCLUSION.md`.

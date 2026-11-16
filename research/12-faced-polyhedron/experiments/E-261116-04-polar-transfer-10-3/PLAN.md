@@ -41,3 +41,10 @@
 * **STATUS / ROADMAP**: outcome row in STATUS, ROADMAP State; ledger by `experiment-conclude`.
 
 ## Amendments
+
+### 2026-11-16, after the run (no PLAN item changed)
+* Result: 0 EMBEDDED, 0 PASS in 56137 charts, so prediction (b) failed. The constant 0 was checked before
+  interpretation: the octahedron -> cube control gives 9 of 52 (both signs), but it is convex and genus 0. Added
+  `control_szilassi.py` (polar of the embedded Szilassi polyhedron through the same pipeline): 307 cells, exactly 1
+  EMBEDDED and PASS `--target S6` at (7, 1). So the pipeline finds an embedded chart when one exists (genus 1).
+* Reading of the failures (one object, every 20th chart): 7-10 of 10 faces non-simple and 17-24 bad face pairs.
