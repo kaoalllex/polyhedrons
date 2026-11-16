@@ -32,6 +32,10 @@ E-261114-02 (2026-11-14): bridge recovery gate ADEQUATE at (10,2); use thirty mo
 E-261114-01 (2026-11-14): normalized (10,3) pilot gate fails by TIMEOUT; no day run, no move
 (STATUS 3am). Next is the registered hull-vertex chart pilot, not an exclusion.
 
+E-261116-02 (2026-11-16): normalised Lutz #1 and #2 decided UNSAT-SOLVER by both
+lookahead cubes and monolithic `kissat --sat`; owner-night follow-up gate passes (STATUS 3ar).
+Planning only, no checked proofs or geometric negative; status and credences unchanged.
+
 ## What would move it
 
 E-261110-02: a SAT model that realizes and passes the exact verifier with 42 single adjacencies -> the (10, 3) part

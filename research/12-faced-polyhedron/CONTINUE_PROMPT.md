@@ -9,14 +9,15 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-16, item 2 prepared)
+## Hand-over (2026-11-16, item 2 concluded)
 
-* Branch `lab/2026-11-16`; item 1 conclusion and item 2 preparation committed. Nothing in flight.
-* E-261116-02 PLAN pre-registered in `46784cbc`; prep and launcher evidence in its results folder.
-* Cube-cover and known-SAT pipeline PASS; target conquer not run, no candidate.
-* Owner: on AC, `bash research/12-faced-polyhedron/overnight/launch.sh 16-02 start` (then status / stop).
-* Budget and follow-up: E-261116-02 `PLAN.md`; collect run before taking week item 5.
-* Startup: ten shards reached job with zero solver units; solver-unit stop/resume not exercised.
-* Checks: see E-261116-02 README and startup-check.json; no proof or geometry replay.
-* Item 4 gate not met; item 3 replay parked; (11,5) only I-261116-04 remains.
-* For the lead: none; no new credences or existence claim.
+* Branch `lab/2026-11-16`; E-261116-02 conclusion and evidence collected; nothing in flight.
+* BOTH-DECIDED-UNSAT-SOLVER; no candidate, proof or geometric negative (STATUS 3ar).
+* Fresh CNF/control/checkpoint/log/provenance/budget audit PASS: E-261116-02 `results/run-audit.json`.
+* Next: item 2 registered follow-up, prepare one owner night on all twenty normalised S6 maps.
+* Select monolithic `kissat --sat`; reuse Lutz #1/#2 decisions, do not rerun them.
+* Follow-up needs ROADMAP entry, committed PLAN, controls and checked launcher; <=80 core-h, no proofs.
+* Owner launch pending preparation; do not restart completed `16-02` pilot.
+* Item 5 follows that handoff; item 4 gate not met, item 3 replay parked.
+* Checks reused: prep quick PASS; no solver/proof/geometry replay. CPU/startup overhead unrecorded.
+* For the lead: none; H-261110-03 and S0 A/B/C unchanged.

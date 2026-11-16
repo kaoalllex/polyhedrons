@@ -1,12 +1,12 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-16** (owner's decisions on the lead review of 2026-11-16). The latest registered result is E-261116-01 (section 3aq); earlier results are E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
+As of **2026-11-16** (owner's decisions on the lead review of 2026-11-16). The latest registered result is E-261116-02 (section 3ar); earlier results are E-261116-01 (section 3aq), E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
 E-261113-04 (section 3aj), E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
 Ninth-plane Stage A is exhausted with no candidate: all near-copy cells UNSAT-SOLVER at instance scope, no family
-negative (section 3ae). S6 (10,3): the night left all 20 formulas undecided at 3600 s, controls pass; solver-limited,
-escalated (section 3af); the symmetric C3 / free C2 formulas are all UNSAT-SOLVER and the T family of Lutz #15 has no
+negative (section 3ae). S6 (10,3): the original night left all 20 formulas undecided (section 3af); the normalised
+cube/SAT-oriented pilot now decides Lutz #1 and #2 UNSAT-SOLVER, opening the owner-night gate (section 3ar); the symmetric C3 / free C2 formulas are all UNSAT-SOLVER and the T family of Lutz #15 has no
 embedded member (section 3ag). Owner's decisions of 2026-11-13 (`reviews/strategy-review-2026-11-13.md`): S6 at (10, 3) is
 the first target, symmetric realizations first (E-261113-01); Stage B was gated by the rung-below census
 E-261113-03, which found only the source map, so Stage B is parked at this budget (section 3ak). The dialogue's checks
@@ -432,6 +432,15 @@ Census coverage retains its existing PROVED-1 argument; controls reused, provena
 No geometric exclusion, discovery-power claim or change to H-261101-07 / S0 credences.
 Registered (11,5) follow-up: I-261116-04; next week item: E-261116-02.
 Counts, costs and checks: `experiments/E-261116-01-s5-11-5-census-cost-probe/CONCLUSION.md`.
+
+## 3ar. E-261116-02 S6 (10,3) cube pilot (2026-11-16)
+
+**BOTH-DECIDED-UNSAT-SOLVER**; the registered owner-night gate passes.
+NUMERICAL, SPEC §4 instance scope; both pilot methods agree, no checked proof or geometric negative.
+Fresh formula-hash, control, provenance, coverage, log and budget audit PASS; no candidate.
+Select monolithic `kissat --sat` for the follow-up; prepare its PLAN and launcher, reusing pilot decisions.
+H-261110-03 and S0 A/B/C unchanged; other asymmetric maps not run with these settings.
+Counts, costs and accounting limits: `experiments/E-261116-02-s6-10-3-cube-pilot/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

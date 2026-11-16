@@ -1,0 +1,7 @@
+=== 2026-11-16 12:46:21 launch.sh start, shard 5
+nice: setpriority: Operation not permitted
+/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261116-02-s6-10-3-cube-pilot/run.sh: line 13:  6910 Killed: 9               nice -n 10 "$PYTHON" "$ROOT/overnight/run_overnight.py" s6cube --workers 1 --shard "$SHARD" --shards "$SHARDS" --results-dir "$OUT" --hours 2
+=== 2026-11-16 12:46:45 launch.sh start, shard 5
+/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261116-02-s6-10-3-cube-pilot/run.sh: line 13:  8063 Killed: 9               nice -n 10 "$PYTHON" "$ROOT/overnight/run_overnight.py" s6cube --workers 1 --shard "$SHARD" --shards "$SHARDS" --results-dir "$OUT" --hours 2
+=== 2026-11-16 12:47:06 launch.sh start, shard 5
+=== 2026-11-16 12:48:14 launch.sh start, shard 5

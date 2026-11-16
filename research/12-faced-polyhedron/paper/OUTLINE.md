@@ -36,7 +36,7 @@ is a claim on its own: a line may state only what its source says at its label.
 | C4 | Any S6 (10, 3), S5 (11, 5) or nine-face object found later | - | E-261116-02, -04, -01 | `candidate-check`; would become the headline |
 | D1 | Known numerical near-misses fail the Gauss class and are not immersions (1005 seeds) | EXACT per instance | FD11, FD7 | short section or appendix |
 | D2 | Normalisation of the OM-SAT formulas (reorientation, mirror) and its effect (13-45x on three known UNSAT (10, 4) maps) | PROVED-1 + NUMERICAL | E-261114-01; `reviews/strategy-review-2026-11-14.md` | methods section; keep the speed-up as an observation |
-| D3 | The (10, 3) S6 status: twenty maps undecided; symmetric formulas UNSAT-SOLVER; the T family of Lutz #15 empty | UNSAT-SOLVER / EXACT family scope | STATUS 3af, 3ag, 3am | an open-problem paragraph unless E-261116-02 decides |
+| D3 | The (10, 3) S6 status: normalised Lutz #1 and #2 UNSAT-SOLVER; other asymmetric maps undecided; symmetric formulas UNSAT-SOLVER; the T family of Lutz #15 empty | UNSAT-SOLVER / EXACT family scope | STATUS 3af, 3ag, 3am, 3ar | an open-problem paragraph; checked proofs needed for an exclusion |
 
 ## 3. Section skeleton
 
@@ -67,3 +67,6 @@ is a claim on its own: a line may state only what its source says at its label.
   `proof-no-symmetric-immersion/`; B4 added as UNSAT-SOLVER, its replay parked (I-261116-02).
 * 2026-11-16: E-261116-01 concludes the owner probe; B1 includes the reproduced (11,5) census,
   B6 records sampled/censored cost evidence only. No new geometric negative or construction.
+
+* 2026-11-16: E-261116-02 updates D3 with two solver-level decisions; no geometric
+  exclusion or construction. The registered owner-night follow-up gate passes.
