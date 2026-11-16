@@ -30,6 +30,8 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   2026-11-09). **The note is deferred** (owner, 2026-11-09): no session
   time on it unless a genuinely worthwhile result is found; if written, it says plainly that no independent (human)
   review took place (owner, 2026-11-08).
+  **A paper plan is kept** (owner, 2026-11-16): `paper/OUTLINE.md` lists the candidate contents, their evidence
+  levels and what is missing; conclusions keep it current; writing the paper stays deferred.
 * **Compute: the owner's laptop only** (owner, 2026-11-10): at most 10 cores, 8-10 shards per splittable run, nights
   under `caffeinate`; no rented compute, no GitHub Actions.
 * **Defining problem: S0 (Szilassi-12, (12, 6)), parked 2026-11-03, not abandoned.** Every S0 result stays as it is
@@ -113,3 +115,5 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   (census and cost probe); S6 at (10, 3) one cube pilot, then parked if undecided; (10, 4) recorded as all
   admissible maps UNSAT-SOLVER, the proof replay parked for a future note; a one-run S0 price probe allowed under
   the (11, 5) price condition. Stance and the side track unchanged; credences not applied.
+* 2026-11-16 (owner's request): a living paper plan, `paper/OUTLINE.md`, updated by `experiment-conclude`; the
+  paper itself stays deferred.
