@@ -11,7 +11,8 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
 
 ## Hand-over (2026-11-16, lead review applied)
 
-* Branch `lab/2026-11-14`; week plan of `reviews/strategy-review-2026-11-16.md` in `ROADMAP.md` (owner-approved).
+* Branch `lab/2026-11-16` (from `main` after PR #12 merged `lab/2026-11-14`); week plan of
+  `reviews/strategy-review-2026-11-16.md` in `ROADMAP.md` (owner-approved).
 * Nothing in flight. Next: week item 1, E-261116-01 ((11, 5) census and cost probe): PLAN first, then owner day run.
 * Then item 2 (E-261116-02, (10, 3) cube pilot), item 5 (E-261116-04, polar transfer) in any free slot.
 * Item 4 (E-261116-03, S0 price probe) only if item 1 gives a median <= 20 min; owner approval already given.
