@@ -2,12 +2,12 @@
 id: E-261116-04
 title: Polar transfer - polar planes of the Hougardy-Lutz-Zelke (10, 3) realizations in every affine chart
 date: 2026-11-16
-status: planned
+status: running
 direction: [DR5, DR19]
 origin: [I-261116-01]
 tests: [H-261110-03]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned, explore, jump 2. Scores T D F G R: 1 2 2 1 2 | budget: one session, seconds of compute.

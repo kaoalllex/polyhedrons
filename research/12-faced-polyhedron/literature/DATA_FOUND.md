@@ -55,3 +55,13 @@ same archived page (untrusted data; only parsed by `code/lutz_import.py`), sha25
 the orientable genus-2 surface (Lutz's enumeration; completeness CLAIMED). Verified here (EXACT, `lutz_import.py`): all 865
 simplicial, closed, connected, orientable, (V, E, F) = (10, 36, 24), pairwise non-isomorphic up to mirror; the map of the
 S6 (10, 2) witness (`witnesses/s6_10_2.json`) is #739.
+
+## HLZ genus-3 realizations (E-261116-04)
+
+**Directory:** `literature/eg-models-2006.02.001/` (untrusted data, parsed only), downloaded 2026-11-16 from
+http://www.eg-models.de/models/Surfaces/Polyhedral_Surfaces/2006.02.001/ (EG-Models 2006.02.001, Hougardy, Lutz, Zelke).
+- `Polyhedra_Genus-3_Vertices-10_Format-obj.tar.gz`, sha256 `27a99831b6afe16679dd43063132b2bdfadd322b318ea0691cea06e152da8ad1`:
+  20 obj files (10 vertices, 28 triangles each), 17 in the 5x5x5 cube, 3 larger (26888, 28962, 29173). Names carry the catalogue number
+  of Lutz's mixed-lexicographic 10-vertex list, not the #1-#20 of `manifolds_lex_d2_n10_o1_g3.txt`.
+- `Polyhedra_Genus-3_Vertices-10_Format-other.tar.gz`, sha256 `2af7c068fd8c24e404bcbac21bfdc7dcbe12abed63a22b8ca71becf552efcc64`:
+  facets, vertices and symmetry groups. Not used.
