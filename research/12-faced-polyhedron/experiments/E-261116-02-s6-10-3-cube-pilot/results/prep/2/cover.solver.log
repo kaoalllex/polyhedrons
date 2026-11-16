@@ -1,0 +1,90 @@
+c ---- [ banner ] ------------------------------------------------------------
+c
+c Kissat SAT Solver
+c 
+c Copyright (c) 2021-2024 Armin Biere University of Freiburg
+c Copyright (c) 2019-2021 Armin Biere Johannes Kepler University Linz
+c 
+c Version 4.0.4 8af8e56f174b778aef3aa45af9f739b2a5f492c2
+c Apple clang version 21.0.0 (clang-2100.3.34.2) -W -Wall -O3 -DNDEBUG
+c Sun Nov 8 21:34:28 +03 2026 Darwin IOSM-FQNJVXCGPH 25.6.0 arm64
+c
+c ---- [ parsing ] -----------------------------------------------------------
+c
+c opened and reading DIMACS file:
+c
+c   /Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261116-02-s6-10-3-cube-pilot/results/prep/2/cover.cnf
+c
+c parsed 'p cnf 11174 151320' header
+c closing input after reading 3684103 bytes (4 MB)
+c finished parsing after 0.02 seconds
+c
+c ---- [ solving ] -----------------------------------------------------------
+c
+c seconds switched rate     size/glue tier1  binary           remaining
+c        MB reductions conflicts size  tier2     irredundant
+c         level restarts redundant glue  trail           variables
+c
+c *  0.02 26 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 10570 140738 11147 100%
+c (  0.02 35 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 10570 140738 11147 100%
+c .  0.03 35 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 10830 131302 11147 100%
+c c  0.06 38 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 11190 129683 10441 93%
+c d  0.06 38 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 9696 129683 10441 93%
+c )  0.09 38 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 9146 129683 10441 93%
+c {  0.09 38 0 0 0  0 0   0   0 0.0 0 0 2 6 0% 9146 129683 10441 93%
+c i  0.10 38 32 0 0 46 9 225 106 2.2 17 8 6 13 14% 9152 129626 10439 93%
+c i  0.10 38 29 0 0 46 8 265 106 2.2 17 8 6 13 12% 9153 129600 10412 93%
+c i  0.10 38 28 0 0 46 8 283 105 2.2 17 8 6 13 12% 9156 129592 10399 93%
+c i  0.10 38 27 0 0 46 7 291 105 2.2 17 8 6 13 12% 9157 129587 10397 93%
+c i  0.10 38 27 0 0 46 7 294 105 2.2 16 8 6 13 12% 9158 129585 10363 93%
+c }  0.10 38 27 0 0 46 7 296 105 2.2 16 8 6 13 11% 9158 129585 10358 93%
+c 0  0.10 38 27 0 0 46 7 296 105 2.2 16 8 6 13 11% 9158 129585 10358 93%
+c
+c ---- [ result ] ------------------------------------------------------------
+c
+s UNSATISFIABLE
+c
+c ---- [ profiling ] ---------------------------------------------------------
+c
+c           0.07   66.18 %  preprocess
+c           0.07   62.85 %  probe
+c           0.03   27.25 %  congruence
+c           0.02   18.76 %  parse
+c           0.02   17.40 %  sweep
+c           0.01   13.96 %  factor
+c           0.01    9.77 %  search
+c           0.01    9.77 %  focused
+c           0.01    5.09 %  lucky
+c           0.00    3.87 %  substitute
+c           0.00    0.35 %  backbone
+c           0.00    0.00 %  simplify
+c =============================================
+c           0.10  100.00 %  total
+c
+c ---- [ statistics ] --------------------------------------------------------
+c
+c conflicts:                              296             2782.87 per second
+c congruent:                              706                6 %  variables
+c decisions:                             1336                4.51 per conflict
+c iterations:                               6                0 %  variables
+c propagations:                        138396          1301142    per second
+c restarts:                                46                6    interval
+c substituted:                            706                6 %  variables
+c switched:                                 0                0    interval
+c
+c ---- [ glue usage ] --------------------------------------------------------
+c
+c focused glue 6    used  7 clauses  9.59% accumulated 57.53% tier1
+c focused glue 7    used  4 clauses  5.48% accumulated 63.01%
+c focused glue 8-11 used 15 clauses 20.55% accumulated 83.56%
+c focused glue 12   used  3 clauses  4.11% accumulated 87.67%
+c focused glue 13   used  2 clauses  2.74% accumulated 90.41% tier2
+c
+c ---- [ resources ] ---------------------------------------------------------
+c
+c maximum-resident-set-size:      41271951360 bytes      39360 MB
+c process-time:                                              0.10 seconds
+c
+c ---- [ shutting down ] -----------------------------------------------------
+c
+c exit 20

@@ -79,3 +79,9 @@ untested. Status stays open.
 E-261110-06 completes the normalized A+B queue (CONCLUSION / STATUS 3ao): UNSAT-SOLVER only,
 no checked proofs, no candidate. NUMERICAL timing evidence supports the one-night cost gate;
 instance solver answers do not exclude geometric realizations. Status and credence remain unchanged.
+
+## 2026-11-16 (11,5) cost probe
+
+E-261116-01 (CONCLUSION / STATUS 3aq) completes the registered formula sample, with no SAT or candidate.
+NUMERICAL, instance scope: censored costs close the full-sweep gate; only I-261116-04 remains for this target.
+No geometric exclusion or measured discovery power; hypothesis status and credence remain unchanged.

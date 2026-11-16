@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-16** (owner's decisions on the lead review of 2026-11-16). The latest registered results are E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
+As of **2026-11-16** (owner's decisions on the lead review of 2026-11-16). The latest registered result is E-261116-01 (section 3aq); earlier results are E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
 E-261113-04 (section 3aj), E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -424,13 +424,14 @@ NUMERICAL planning evidence, instance scope; UNSAT-SOLVER only, no geometric exc
 The core uses all face groups while circuits retain all eight planes; see
 `experiments/E-261114-04-immersion-core-8-2/CONCLUSION.md`. Hypotheses and A/B/C unchanged.
 
-## 3aq. E-261116-01 S5 (11,5) census and price preparation (2026-11-16)
+## 3aq. E-261116-01 S5 (11,5) census and cost probe (2026-11-16)
 
-**READY for owner day run**; census and new-size controls PASS, saved control provenance reused.
-Census completeness uses the existing PROVED-1 enumeration argument; no new geometric claim.
-NUMERICAL startup timings; the tiny-cap fixture establishes dispatch/resume, not search power.
-No production price sample or new candidate; H-261101-07 and S0 credences unchanged.
-Counts, checks and next command: `experiments/E-261116-01-s5-11-5-census-cost-probe/CONCLUSION.md`.
+**NO-SWEEP-SYMMETRIC-SLICE**; completed owner probe, no SAT or candidate.
+NUMERICAL, SPEC §4 instance scope; censored pricing closes the full-sweep and S0-probe gates.
+Census coverage retains its existing PROVED-1 argument; controls reused, provenance audit PASS.
+No geometric exclusion, discovery-power claim or change to H-261101-07 / S0 credences.
+Registered (11,5) follow-up: I-261116-04; next week item: E-261116-02.
+Counts, costs and checks: `experiments/E-261116-01-s5-11-5-census-cost-probe/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

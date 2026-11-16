@@ -24,12 +24,12 @@ is a claim on its own: a line may state only what its source says at its label.
 | A2 | Same for mirrors and point reflections | PROVED-1 (Lemma A) | I-261101-16 | human review of Lemma A, or state A1 for rotations only |
 | A3 | Projective symmetries are covered too | PROVED-1 sketch | I-261029-15; `proof-no-symmetric-immersion/README.md` item 7 | written proof |
 | A4 | No symmetric embedding (reproduces Moki & Julio 2026) | CERTIFIED | FD5 | overlap statement with `L:mokijulio2026` |
-| B1 | Census of candidate maps for cubic maximal face-neighbourly polyhedra: (7,1) 1, (8,2) 2, (9,3) 240 / 203 admissible, (10,4) 1183 / 1117 | EXACT; coverage PROVED-1 | STATUS 3c; E-261103-01, E-261109-02 (second enumerator to (9,3)) | written coverage argument; second enumerator at (10,4); (11,5) when run (session check: 4099 / 3986) |
+| B1 | Census of candidate maps for cubic maximal face-neighbourly polyhedra: (7,1) 1, (8,2) 2, (9,3) 240 / 203 admissible, (10,4) 1183 / 1117; (11,5) reproduced (STATUS 3aq) | EXACT; coverage PROVED-1 | STATUS 3c; E-261103-01, E-261109-02 (second enumerator to (9,3)), E-261116-01 | written coverage argument; second enumerator at (10,4) and (11,5) |
 | B2 | No cubic maximal face-neighbourly polyhedron with (F, g) = (8, 2) | UNSAT-VERIFIED (EXACT, formula scope); geometric reading PROVED-1 | STATUS 3d; E-261103-03, E-261109-01..03 | archived proofs; encoder soundness write-up; human review |
 | B3 | Same at (9, 3), all 203 admissible maps | as B2; second encoder agrees on six maps | STATUS 3d, 3aa | as B2; second encoder on more maps |
 | B4 | Same at (10, 4), all 1117 admissible maps | UNSAT-SOLVER (no checked proof) | STATUS 3ad, 3ao | checked replay (I-261116-02, parked by the owner); normalisation soundness write-up (E-261114-01 `SOUNDNESS.md`) |
 | B5 | Scope: cubic only; non-cubic objects with every pair adjacent are not covered at (8, 2), (9, 3) | stated in STATUS §4 | STATUS §4; I-261108-09 | perturbation lemma, or keep "cubic" in every statement |
-| B6 | (11, 5) | not run | E-261116-01 | the probe and, if affordable, the sweep |
+| B6 | (11, 5): sampled cost probe complete, no SAT or candidate; full sweep gate closed | NUMERICAL, instance scope; UNSAT-SOLVER only, no geometric negative | STATUS 3aq; E-261116-01 CONCLUSION | registered symmetric slice I-261116-04; existence open |
 | C1 | A 10-face genus-2 polyhedron with single adjacencies (36 of 45 pairs), exact coordinates | EXACT witness | `witnesses/` `lab_s6_10_genus2`; FD10 | literature novelty check; minimality statement only if proved |
 | C2 | Realized (10, 2) face-minimal objects from the SAT-to-coordinates bridge (16 objects, then 5 more maps) | EXACT per object | E-261113-02, E-261114-02 | decide whether a dataset table belongs in the paper |
 | C3 | 12-face genus-3 objects with 48 of 66 pairs adjacent; one map completable to a target map by 3 handles | EXACT witnesses + certificate | `witnesses/` `lab_type0_genus3`, `lab_solid_genus3`; E-261101-03 | dossier (I-261031-04): second verifier, canonical map form, novelty search |
@@ -65,3 +65,5 @@ is a claim on its own: a line may state only what its source says at its label.
 
 * 2026-11-16: created at the owner's request from STATUS §1-§5, the witnesses list and
   `proof-no-symmetric-immersion/`; B4 added as UNSAT-SOLVER, its replay parked (I-261116-02).
+* 2026-11-16: E-261116-01 concludes the owner probe; B1 includes the reproduced (11,5) census,
+  B6 records sampled/censored cost evidence only. No new geometric negative or construction.

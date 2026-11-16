@@ -1,0 +1,175 @@
+{
+  "PASS": true,
+  "scope": "Initial production evidence audit; cached controls reused; no solves, CNF rebuild or proof replay",
+  "commit": "e7d099cd4b4262e2cb31fa7c09c21d839e92542a",
+  "queue_sha256": "a77c3b6c7515fa991777545f211dd4de4d84436946027de29ffeeea97b831fb4",
+  "control_reuse": {
+    "environment_sha256": "82614cac2549b755254893973ec9c2cbc15db8496951ddd1c1df8d17b6802b73",
+    "gates": {
+      "invariance": "93aff25bae02e14c773007a6357363835ec25861e0f25ad16977b1b4b3070ffc",
+      "positive": "c36d2d2a2d6bfdd5055be73125a6a21cd2a3323613c5def555d5867f590f3b09",
+      "negative": "67ae39c14b7f3fe8277390137f4b644eb9b02993eb0d31e3ffebca36f940f8b5"
+    }
+  },
+  "size_controls_reused": true,
+  "manifests_present": 10,
+  "missing_manifests": [],
+  "started_utc": "2026-11-16T08:16:53+00:00",
+  "ended_utc": "2026-11-16T09:16:52.219099+00:00",
+  "elapsed_seconds": 3599.219099,
+  "checks": [
+    {
+      "shard": 0,
+      "map_index": 3725,
+      "status": "UNSAT-SOLVER",
+      "cnf_sha256": "7c9b3be3f2f59dea93bd35d2f6db84fe8eb56ef051c3a57518fa2ab3fbc94280",
+      "solver_log_sha256": "4075d06545f95289e7ac82ca297665a2d989f7ab499fcf5c50483b833f1025b9",
+      "actual_cap": 3597.364041541994
+    },
+    {
+      "shard": 1,
+      "map_index": 3972,
+      "status": "TIMEOUT",
+      "cnf_sha256": "ce3747220ad908238af0ace5fb90858a3f9303242e28a36cb7652868934c7337",
+      "solver_log_sha256": "038bb48f7f49a5e7f601115b52e4624a733f9555b67550a2a36f2cb7df03b4b2",
+      "actual_cap": 3597.369682916993
+    },
+    {
+      "shard": 2,
+      "map_index": 3277,
+      "status": "TIMEOUT",
+      "cnf_sha256": "9826291744c5b08c6d851b04736dc1920bc561d4e17b81eb94dfa087de7a29e2",
+      "solver_log_sha256": "8b7cfefd0eebbcc11b16f2e00e133b0032df5c9163ee107a6fab175d877540df",
+      "actual_cap": 3597.3748559170053
+    },
+    {
+      "shard": 3,
+      "map_index": 3263,
+      "status": "UNSAT-SOLVER",
+      "cnf_sha256": "3dc2080673411c09d5c6563103fccf49b07c26ab4048565ffdc0b53fdf770a0c",
+      "solver_log_sha256": "a7f9d1273c7b0793f5d1fb5b308a1d21c7a4a72f804e0534bd6619396b0e12f9",
+      "actual_cap": 3597.3658296249923
+    },
+    {
+      "shard": 4,
+      "map_index": 3565,
+      "status": "UNSAT-SOLVER",
+      "cnf_sha256": "5e974688430789b617d6fa3e1d8a1a780c20b7f9656fe87be9e8e947b4baebe8",
+      "solver_log_sha256": "44c6f55e3601c64a81b917732d8107b955e15a8d3a5204eba3a808acaafaecf8",
+      "actual_cap": 3597.3704653339955
+    },
+    {
+      "shard": 5,
+      "map_index": 247,
+      "status": "UNSAT-SOLVER",
+      "cnf_sha256": "1a5012bca00cd8eff97e41dd03a12420b0c5a477241974716c3933e44e3a222f",
+      "solver_log_sha256": "5fdc4caa981f367e8bf0cc16fd2223d9223abe5f0441e94e2603e48b9175d7b4",
+      "actual_cap": 3597.370838208997
+    },
+    {
+      "shard": 6,
+      "map_index": 1342,
+      "status": "TIMEOUT",
+      "cnf_sha256": "f25525fdf7fb06211204b3394d12ebee3b834bc7c7873779bde0849b3a9135d6",
+      "solver_log_sha256": "1153ce6f4b8b41a203114fd2e328ab4b435695cd4c7dbe2d7f5fb46f2d5dc00d",
+      "actual_cap": 3597.364262333009
+    },
+    {
+      "shard": 7,
+      "map_index": 1366,
+      "status": "TIMEOUT",
+      "cnf_sha256": "9f49f92fc226f03226f325848d9a1bca63dd6afe1e39a1c8fefe6eb30dc7e729",
+      "solver_log_sha256": "0742abefa7b44e47bfd4fc9ea080a0a1629e1b1774fd3dd82e37eca30711cd06",
+      "actual_cap": 3597.367207000003
+    },
+    {
+      "shard": 8,
+      "map_index": 1186,
+      "status": "TIMEOUT",
+      "cnf_sha256": "521d283053344a96cf996c0181c81f5839c8baca3c8067f867e17879344e32b0",
+      "solver_log_sha256": "4c6aec13c125ee4d87f56fe5acf3bbc2d08909649b70c5df931551db1dffa9a1",
+      "actual_cap": 3597.3665863330098
+    },
+    {
+      "shard": 9,
+      "map_index": 30,
+      "status": "TIMEOUT",
+      "cnf_sha256": "834d72199e9ca6b12e42094f490264d026ac55b8aa72a3017a77507ff6b785f8",
+      "solver_log_sha256": "c4f7a3ab3b5e18dca48869bfccc5e821799d46e5ddfcc17126c4ee47dea85c18",
+      "actual_cap": 3597.366431875009
+    }
+  ],
+  "files_sha256": {
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/0/manifest-1794819730700658000.json": "bc571809dc22571722335efefe3016a653224033fc2251411ded724a5eedb04e",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/0/results.jsonl": "0602cf2abde67c7e6625f87cc663ea7c225669e383b5b1e056c947d7f30d9db8",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/0/progress.jsonl": "416ddacdd0ffb4591afa6e48b9ecb17124b92aa70d98dd96309e8006655cec32",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/0/map3725/map3725_seed0.json": "9c7373a9dd9237f95694b6c2f0d1fdf790703cedb260258952355fef088c52e3",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/0/map3725/models.jsonl": "8c5d7186fc12578a718c14d673f501104e91f49963b3814843fd3f98fb3ffbab",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/0/night.log": "f7b656bb74bd163492edfe2f6b6ba37c16e4ade5bf6db6645ee539a81bc6e02d",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/1/manifest-1794820612569713000.json": "e2e96e4b5f14a9f232bb9d4a5a73e7fedb42087e000820d2a1a557f7bfc18276",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/1/results.jsonl": "efe4e4c6a710c49c22e5bc8ad38e42332ca3f8e433a33a0a2bc3299cf2562e28",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/1/progress.jsonl": "2c850b416553301e5a586c1eecb3e0bcddcedfd2e55edfb0d263e115440e47a5",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/1/map3972/map3972_seed0.json": "7579e41fede3aa16aa4df52f9db41723b389b5838fc8bd1ca1a88723c00709eb",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/1/map3972/models.jsonl": "0962a223722579db7ac04703e05cc098b336ac6c9c71886e3e62aafe18162602",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/1/night.log": "b2fd81f8c420a99e04eaed77003a87fdff5c75fc7dc3cad38c832a879e40420f",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/2/manifest-1794820612575899000.json": "d05db3be40a4268dbb8a0d38c8c1cfa81df66cc92327713c40c7f2ff3a3fff1e",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/2/results.jsonl": "d89f0d8e86d0bfca080248e217eca37999552f7efae6b15a5ed23b6e7b3e6e72",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/2/progress.jsonl": "8f51c44c425efaba1881817bf2320ccfb0f0159d5a574edcd161e63022a7fd20",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/2/map3277/map3277_seed0.json": "f5d26e8220afac9c394586cfbe4bb4171f4931d47d1fa39ceea15e42cfa94dd5",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/2/map3277/models.jsonl": "7f654f1e6bfe2e16674db241849da4a6e634da2e2327640f0f500e529577b6ad",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/2/night.log": "293a1efaf46c154b9bc78a64b12ae65fc6500aaf31bdfd6cea367412df44ebcd",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/3/manifest-1794817918566746000.json": "9e21c8ebab193fc4f5b6f21933d3962d31f05200b2b2f87d3554f43dd06d575b",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/3/results.jsonl": "d87e6a47ee504927ae5ad866bf2d58e3a1724e56d72b1d3d1f6af1a79592b377",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/3/progress.jsonl": "6693176b063fa11bc92da41e9bcb74a5b206763c77797de172b3c28fab431f2e",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/3/map3263/map3263_seed0.json": "7316a1d4c63b39699f8b82a6ac03716afb395163345d95344b1e13b4145d0b87",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/3/map3263/models.jsonl": "6201a2da8bde500ea5e303172f3e8840913ed566be0d20b6e4378828174d0cd8",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/3/night.log": "c6d4a8ba8302a29898e7b9a85b147a42439cdcc5f1f8449f04776032cad2c2fc",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/4/manifest-1794820363806100000.json": "6a2438d835b1a83326c188e1f700caf6080df5db4352beb655509b410bd5da44",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/4/results.jsonl": "81ce0dc7dfdc4a4d3849315c45e66f9dc0479a35db3b1256fadbd2729419493c",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/4/progress.jsonl": "949a8d47d1aeee0f4305b02fc267b53592ce1be268595681d21860e7b1ee05ff",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/4/map3565/map3565_seed0.json": "ac62145b7c2f3638d1e460e831f45fd60aa9b9fac75478da2ac799ce1714581a",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/4/map3565/models.jsonl": "4ee4afd2f383dbb0396b9e21837db5b0e63ecd28e3e030fa522f9a83eabd741f",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/4/night.log": "b4f8f62d703cf992bbe72ae2d26339445be6257ba01cde56e1de004fd47ad37c",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/5/manifest-1794819217302958000.json": "f95b61c630eab362080dee10bdd50e0b665dfffc2ce1eb8c962f6b43f20f6797",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/5/results.jsonl": "9a2d5d6ab5a5a66bf87998702c726cc6af3094803b8ef7a1aaddb782131cff6b",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/5/progress.jsonl": "0c201f84e2bf3fb909713929b44b5edf9cc39508316b3dd7e9c0b2169e8e3738",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/5/map247/map247_seed0.json": "b7dfb1ee56ad1b51fae074a2e10fb3f38396a46929c22d2cd2e0576d17f8f313",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/5/map247/models.jsonl": "79e312e14be2ed2a4f2236e28a16b572c728e606e123ca6821b2b88181d4d160",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/5/night.log": "cbb562a48dcea12a059fc019a5c4d31bd93ca6709797ef023f36bb42287d01cb",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/6/manifest-1794820612577832000.json": "a61f9c4bc2647509c0b74f4a37029b9c84e20fc30e87e01d802cafb6b3344779",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/6/results.jsonl": "ea357b14771b98318baaf44f8440af5067051e1ea5b8110976b5e5b83605b0a8",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/6/progress.jsonl": "99eac7bc205cc305a45009085a50a7f52f49f3934c5f8d7168117bb2e49aa905",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/6/map1342/map1342_seed0.json": "1dfe85449b7f80a5ea582de1748c16f5ad5f9efe8effee6fe7125c80c3dcd6e2",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/6/map1342/models.jsonl": "1554477d56e0f8cd547641160c2737d83c11cf7dccd1b0ff2351766b3c0dd285",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/6/night.log": "41dd3c6f4d36be254cb2a2f34a6683ae2a934a4fed5f1f7018de5a035ab193a8",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/7/manifest-1794820612586330000.json": "7a294e9910e231f1e43017e37f7c0dab21c47e89c125fc474f86b1b1292a8893",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/7/results.jsonl": "ebc59fbd4a62d858f23e3f074f37d4b8b340351067c8fbbc149095893b0ae548",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/7/progress.jsonl": "9306a0f94f28738a4be80891d3ff15a77a8386115ade9435ecc85a735313cada",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/7/map1366/map1366_seed0.json": "393a4e2aa7f6b6f18daeae1df031da52766f93278ef246329d05f77ed997f7da",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/7/map1366/models.jsonl": "300c170f8725ad12f61f14b1ead4cc352e9243449a55a026489320e83b7776f3",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/7/night.log": "1034e9e69f83506f67f1f8494561ae8bd7f5c2bdbf766e1134ee77104479d5f7",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/8/manifest-1794820612585499000.json": "8f0aed5f04afffd44cb3185f3cfa74ece764528abd83709f60459883c19ed4ae",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/8/results.jsonl": "46e496e93021d9623f506eecb021ec261c2dbd41d34508656b67f2187d2b5dfa",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/8/progress.jsonl": "92ed09446eeeae0c8da9579c491f2b14a590b9381ac0f4af680ed415e8077d84",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/8/map1186/map1186_seed0.json": "78d9ad5da08c62c87d9a12ded05a0c8a4bb7d5e8e6e295d5b81fd072adcd3b35",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/8/map1186/models.jsonl": "7b00408a324a55fe0af0b029d3f5a951f8c2eabbf6446c88d17da6dfc9eca30a",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/8/night.log": "c3020cd230891c11ed6da159f40b911b4b81feb812468489306c2b582c5c9c9f",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/9/manifest-1794820612569250000.json": "96a7d4b291d4ff14844e9b837a4912df427800524c1a6001bfb700c8fd563985",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/9/results.jsonl": "ba520fafa04efd430161d91df5074dd1495135a20879e790e5d9dd10eda2ac80",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/9/progress.jsonl": "5bedf23712498fc7f2a9d137509ddc09fb78fc0c4d3196dc4aa05d8ac21e152d",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/9/map30/map30_seed0.json": "47549ed5754affb04a23111fa98da9cd7f07c9ca42f799c82f936deb2282d601",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/9/map30/models.jsonl": "1d8e00bd71f9f98f39f525025680df881d65da94dc94e2bb77302a94b68a27a6",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/run/9/night.log": "73d5883700f7b6280dc7f83bbce873a5f4dd8e6f39c90d955e9deb3f14aee5cc"
+  },
+  "conclusion_checks": {
+    "pricing_tests": {
+      "command": "python3 -m unittest discover -s research/12-faced-polyhedron/experiments/E-261116-01-s5-11-5-census-cost-probe -p test_summary.py -v",
+      "passed": 7,
+      "failed": 0
+    },
+    "independent_price_recalculation": true,
+    "summary_source_sha256": "2ec8e22ebc9d1ebd8ee7eecebfe16b00a7ad56a29a995083bd68a15a1c23293f",
+    "pricing_test_source_sha256": "7302e2ec1e474005bfad16f3e296becfe41948e6155b4678cdbeab3dac44fc02",
+    "production_summary_sha256": "307cd6662c8b39997d46baf38c1c85fdb944cbec96303334554233e7d39b7179"
+  }
+}

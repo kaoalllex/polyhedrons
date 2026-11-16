@@ -1,29 +1,48 @@
 # E-261116-01 run summary
 
-INCOMPLETE
+NO-SWEEP-SYMMETRIC-SLICE
 
 NUMERICAL; sampled formula scope, no geometric negative.
 
 ```json
 {
-  "statuses": {},
-  "completed": 0,
+  "statuses": {
+    "UNSAT-SOLVER": 4,
+    "TIMEOUT": 6
+  },
+  "completed": 10,
   "expected": 10,
-  "remaining": [
-    30,
-    247,
-    1186,
-    1342,
-    1366,
-    3263,
-    3277,
-    3565,
-    3725,
-    3972
-  ],
+  "remaining": [],
   "evidence": "NUMERICAL",
   "scope": "Sampled normalised S5 (11,5) formulas only; no proofs or geometric negative",
-  "verdict": "INCOMPLETE",
+  "median_solver_seconds_lower": 3597.365347104009,
+  "median_solver_seconds_upper": null,
+  "median_censored": true,
+  "s0_price_probe_allowed": false,
+  "strata": {
+    "[1, 1, 1, 1]": {
+      "population": 2474,
+      "sampled": 5,
+      "mean_lower_seconds": 2832.7496773333987,
+      "censored": true
+    },
+    "[1, 1, 2]": {
+      "population": 1478,
+      "sampled": 4,
+      "mean_lower_seconds": 3248.851412770753,
+      "censored": true
+    },
+    "[2, 2]": {
+      "population": 34,
+      "sampled": 1,
+      "mean_lower_seconds": 3597.656091916011,
+      "censored": true
+    }
+  },
+  "projected_core_hours_lower": 3314.5403880342074,
+  "projected_nights_lower": 41.431754850427595,
+  "price_censored": true,
+  "verdict": "NO-SWEEP-SYMMETRIC-SLICE",
   "element_curve": {
     "points": {
       "9": {
@@ -40,6 +59,12 @@ NUMERICAL; sampled formula scope, no geometric negative.
         "sampled": 757,
         "median_solver_seconds": 54.764740541009814,
         "selection": "normalised (10,4) A+B; four prep units plus owner remainder"
+      },
+      "12": {
+        "sampled": 10,
+        "median_solver_seconds_lower": 3597.365347104009,
+        "median_solver_seconds_upper": null,
+        "selection": "ten stratified (11,5) probe maps"
       }
     },
     "inputs_sha256": {
@@ -67,9 +92,9 @@ NUMERICAL; sampled formula scope, no geometric negative.
     },
     "limitation": "Known-negative lower rungs; kissat, normalised, unequal map populations; extrapolation is not a bound"
   },
-  "worker_wall_hours": 0.0,
-  "cpu_core_hours": 0.0,
-  "max_endpoint_clock_gap": null,
+  "worker_wall_hours": 8.54765642508111,
+  "cpu_core_hours": 8.533107193888888,
+  "max_endpoint_clock_gap": 0.07375970199063886,
   "queue_sha256": "a77c3b6c7515fa991777545f211dd4de4d84436946027de29ffeeea97b831fb4"
 }
 ```

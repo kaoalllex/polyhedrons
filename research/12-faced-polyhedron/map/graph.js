@@ -1498,23 +1498,23 @@ window.GRAPH = {
    "id": "E-261116-01",
    "kind": "experiment",
    "title": "(11, 5) census and cost probe - the last S5 rung below S0, ten normalised formulas at 12 elements",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-16",
-   "concluded": "",
+   "concluded": "2026-11-16",
    "path": "experiments/E-261116-01-s5-11-5-census-cost-probe/README.md",
    "direction": [
     "DR19",
     "DR8"
    ],
-   "verdict": "",
+   "verdict": "NO-SWEEP-SYMMETRIC-SLICE",
    "preregistered": "true",
-   "conclusion": "Verdict: READY, not a completed price probe. No new focus witness or geometric negative; H-261101-07 and S0 A/B/C unchanged. SPEC §4 instance scope, NUMERICAL startup/control timings; census coverage and encoder soundness retain their existing PROVED-1 status."
+   "conclusion": "Verdict: NO-SWEEP-SYMMETRIC-SLICE@8.5331 CPU core-h. NUMERICAL, SPEC §4 instance scope: sampled normalised formulas only. Existence is open; no geometric negative or witness."
   },
   {
    "id": "E-261116-02",
    "kind": "experiment",
    "title": "S6 (10, 3) cube pilot - march_cu cubes and a SAT-oriented kissat configuration on Lutz",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-16",
    "concluded": "",
    "path": "experiments/E-261116-02-s6-10-3-cube-pilot/README.md",
@@ -1523,14 +1523,14 @@ window.GRAPH = {
     "DR8"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
    "id": "E-261116-03",
    "kind": "experiment",
    "title": "S0 price probe - ten asymmetric embedding formulas of the 59 types at a 4 h cap",
-   "status": "planned",
+   "status": "parked",
    "date": "2026-11-16",
    "concluded": "",
    "path": "experiments/E-261116-03-s0-price-probe/README.md",
@@ -6227,6 +6227,11 @@ window.GRAPH = {
    "from": "E-261116-01",
    "to": "H-261101-07",
    "kind": "tests"
+  },
+  {
+   "from": "E-261116-01",
+   "to": "I-261116-04",
+   "kind": "origin"
   },
   {
    "from": "E-261116-02",

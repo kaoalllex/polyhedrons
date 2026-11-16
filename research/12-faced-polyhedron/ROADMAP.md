@@ -100,7 +100,7 @@ Done under the 2026-11-14 plan (all five items, about 14.6 core-h, no candidate)
 E-261114-01 (3am, NO-DAY-RUN), E-261114-03 (3an, UNRESOLVED), E-261110-06 (3ao), E-261114-04 (3ap). With stratum C
 (3ad), all 1117 admissible (10, 4) maps are UNSAT-SOLVER.
 
-1. **(11, 5) census and cost probe** ([E-261116-01](experiments/E-261116-01-s5-11-5-census-cost-probe/), exploit, jump 2; I-261114-03).
+1. **(11, 5) census and cost probe — done** ([E-261116-01](experiments/E-261116-01-s5-11-5-census-cost-probe/), exploit, jump 2; I-261114-03).
    * Census: rerun `E-261103-01/census.py 11 5` with its manifest (session check: 3986 admissible, 44 s;
      `reviews/strategy-review-2026-11-16-census-11-5.json`); Euler and admissibility checks, S0 control unchanged.
    * Controls: the E-261114-01 positive / negative sets plus convex f11 pinned and unpinned at 12 elements.
@@ -110,6 +110,7 @@ E-261114-01 (3am, NO-DAY-RUN), E-261114-03 (3an, UNRESOLVED), E-261110-06 (3ao),
    * Follow-up: price <= 1 night -> owner night, fastest pattern first; 1-4 nights -> lead; > 4 nights or >= 5 / 10
      TIMEOUT -> no sweep, only the 24 symmetric maps (I-261116-04). SAT -> 30 models, `--target S5`,
      `candidate-check`, escalate. Median <= 20 min -> item 4.
+   * Outcome: NO-SWEEP-SYMMETRIC-SLICE (CONCLUSION / STATUS 3aq); no full sweep, I-261116-04 only; item 4 gate not met.
    * Kill: census differs on rerun, a failed control. Lab: Opus, medium; conclusion high on SAT.
 2. **S6 (10, 3) cube pilot** ([E-261116-02](experiments/E-261116-02-s6-10-3-cube-pilot/), exploit, jump 2).
    * Lutz #1, #2 normalised: march_cu cubes (built by the owner, untried) at a depth giving 100-500 cubes, cube cap
@@ -120,7 +121,7 @@ E-261114-01 (3am, NO-DAY-RUN), E-261114-03 (3an, UNRESOLVED), E-261110-06 (3ao),
      negative); no long-cap night unless the owner asks.
    * Lab: Opus, medium.
 3. **(10, 4) proof pricing** (I-261116-02): **parked by the owner (2026-11-16)**, kept for a future note. Not run.
-4. **S0 price probe** ([E-261116-03](experiments/E-261116-03-s0-price-probe/), exploit, jump 2; I-261116-03; only if item 1 gives a median <= 20 min).
+4. **S0 price probe — parked (item 1 gate not met)** ([E-261116-03](experiments/E-261116-03-s0-price-probe/), exploit, jump 2; I-261116-03; only if item 1 gives a median <= 20 min).
    * The validated S0 embedding encoder with its units (FD4), asymmetric, 10 types with trivial automorphisms by a
      frozen seed, kissat, cap 4 h, <= 40 core-h, no proofs. Owner's approval given for this one run.
    * Follow-up: any type decided -> price the 59; the lead proposes a campaign with E-261101-09 first. SAT ->
@@ -144,9 +145,9 @@ genus directly).
 
 | ID | State | Tests | Question | T D F G R | Budget | Stop rule |
 |---|---|---|---|---|---|---|
-| [E-261116-01](experiments/E-261116-01-s5-11-5-census-cost-probe/) | running (prep PASS; ready for owner day run) | H-261101-07 | **Exploit, J 2.** (11, 5) census rerun with manifest, ten normalised formulas at 3600 s; price of the 3986 admissible maps and of S0 by the element curve | 2 2 2 2 2 | 1 prep session + <= 10 core-h, 10 shards | ten maps recorded, first verified candidate, failed control, census mismatch or cap |
-| [E-261116-02](experiments/E-261116-02-s6-10-3-cube-pilot/) | planned (week item 2; no PLAN yet) | H-261110-03 | **Exploit, J 2.** march_cu cubes and `kissat --sat` on normalised Lutz #1, #2 | 1 2 2 1 2 | 1 prep session + <= 8 core-h, 10 shards | both maps decided or all cubes / units recorded, failed cover control or cap; neither decided -> park S6 (10, 3) |
-| [E-261116-03](experiments/E-261116-03-s0-price-probe/) | planned (week item 4; conditional on E-261116-01) | H-261101-06, H-261101-01 | **Exploit, J 2.** Ten asymmetric S0 embedding formulas at 4 h | 2 2 2 2 2 | 1 prep session + <= 40 core-h, 10 shards | ten types recorded, failed control, first SAT (realizability stage) or cap |
+| [E-261116-01](experiments/E-261116-01-s5-11-5-census-cost-probe/) | done (NO-SWEEP-SYMMETRIC-SLICE; STATUS 3aq) | H-261101-07 | **Exploit, J 2.** (11, 5) census rerun with manifest, ten normalised formulas at 3600 s; price of the 3986 admissible maps and of S0 by the element curve | 2 2 2 2 2 | 1 prep session + <= 10 core-h, 10 shards | ten maps recorded, first verified candidate, failed control, census mismatch or cap |
+| [E-261116-02](experiments/E-261116-02-s6-10-3-cube-pilot/) | running (prep PASS; owner day launch pending) | H-261110-03 | **Exploit, J 2.** march_cu cubes and `kissat --sat` on normalised Lutz #1, #2 | 1 2 2 1 2 | 1 prep session + <= 8 core-h, 10 shards | both maps decided or all cubes / units recorded, failed cover control or cap; neither decided -> park S6 (10, 3) |
+| [E-261116-03](experiments/E-261116-03-s0-price-probe/) | parked (E-261116-01 median gate not met; not run) | H-261101-06, H-261101-01 | **Exploit, J 2.** Ten asymmetric S0 embedding formulas at 4 h | 2 2 2 2 2 | 1 prep session + <= 40 core-h, 10 shards | ten types recorded, failed control, first SAT (realizability stage) or cap |
 | [E-261116-04](experiments/E-261116-04-polar-transfer-10-3/) | planned (week item 5; no PLAN yet) | H-261110-03 | **Explore, J 2.** Polar planes of 17 vertex realizations in every affine chart, `--target S6` | 1 2 2 1 2 | 1 session, seconds | all charts tested, failed control or a PASS |
 | [E-261114-01](experiments/E-261114-01-normalised-s6-10-3/) | done (NO-DAY-RUN; pilot gate failed, STATUS 3am) | H-261110-03 | **Exploit, J 2.** The twenty `submap=True` (10, 3) formulas with the reorientation and mirror units, behind the invariance test and re-gauged positive controls; no proofs | 2 2 2 2 2 | 1 prep session + <= 20 core-h day run, 10 shards | all twenty recorded, first verified candidate, failed control or cap; both pilot units TIMEOUT -> no day run |
 | [E-261114-02](experiments/E-261114-02-bridge-recovery-control/) | done (bridge ADEQUATE; CONCLUSION, STATUS 3al) | H-261110-03 | **Explore, control.** Does the frozen bridge recover the exact chirotopes of the 16 realized (10, 2) objects; 30 seeds on five unrealized maps | 1 2 2 2 2 | < 1 core-h, chained with the prep of E-261114-01 | all units recorded or cap |

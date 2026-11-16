@@ -7,7 +7,8 @@ class PriceTests(unittest.TestCase):
     def sample(self, timeouts=0, seconds=30):
         queue = dict(maps=[dict(index=i) for i in range(10)], populations={'test':3986})
         rows = [dict(map_index=i, pattern='test', status='TIMEOUT' if i<timeouts else 'UNSAT-SOLVER',
-                     models=[dict(seconds=3600 if i<timeouts else seconds)],
+                     models=[dict(seconds=3600 if i<timeouts else seconds, budget_seconds=3600)],
+                     build_seconds=0,
                      price_seconds=3600 if i<timeouts else seconds) for i in range(10)]
         return queue, rows
 
@@ -25,10 +26,22 @@ class PriceTests(unittest.TestCase):
     def test_censored_price_does_not_open_sweep(self):
         queue,rows=self.sample(1)
         rows[0]['models'][0]['seconds']=1200
+        rows[0]['models'][0]['budget_seconds']=1200
         rows[0]['price_seconds']=1200
         r=verdict(queue,rows)
         self.assertEqual(r['verdict'],'LEAD-REVIEW')
         self.assertTrue(r['s0_price_probe_allowed'])
+
+    def test_timeout_lower_bounds_use_cap_without_shutdown_overhead(self):
+        queue,rows=self.sample(6)
+        for row in rows[:6]:
+            row['models'][0].update(seconds=1200.02,budget_seconds=1200)
+            row.update(build_seconds=2,price_seconds=1202.02)
+        r=verdict(queue,rows)
+        self.assertEqual(r['median_solver_seconds_lower'],1200)
+        self.assertTrue(r['median_censored'])
+        self.assertFalse(r['s0_price_probe_allowed'])
+        self.assertAlmostEqual(r['strata']['test']['mean_lower_seconds'],(6*1202+4*30)/10)
 
     def test_expensive_complete_sample_parks_sweep(self):
         r=verdict(*self.sample(seconds=1201))

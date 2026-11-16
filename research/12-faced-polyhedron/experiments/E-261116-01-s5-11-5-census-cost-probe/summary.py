@@ -57,7 +57,7 @@ def verdict(queue, rows):
     elif result['remaining']:
         result['verdict'] = 'INCOMPLETE'
     else:
-        lower = [r['models'][0]['seconds'] for r in rows]
+        lower = [r['models'][0]['budget_seconds' if r['status']=='TIMEOUT' else 'seconds'] for r in rows]
         upper = [math.inf if r['status']=='TIMEOUT' else r['models'][0]['seconds'] for r in rows]
         lo, hi = statistics.median(lower), statistics.median(upper)
         result.update(median_solver_seconds_lower=lo, median_solver_seconds_upper=hi if math.isfinite(hi) else None,
@@ -65,7 +65,8 @@ def verdict(queue, rows):
         price = 0.; strata = {}
         for pattern, population in queue['populations'].items():
             sample = [r for r in rows if r['pattern']==pattern]
-            mean = statistics.mean(r['price_seconds'] for r in sample)
+            mean = statistics.mean(r['build_seconds']+r['models'][0]['budget_seconds']
+                                   if r['status']=='TIMEOUT' else r['price_seconds'] for r in sample)
             strata[pattern] = dict(population=population, sampled=len(sample), mean_lower_seconds=mean,
                                    censored=any(r['status']=='TIMEOUT' for r in sample))
             price += population*mean/3600

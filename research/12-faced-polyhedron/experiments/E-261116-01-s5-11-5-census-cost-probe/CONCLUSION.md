@@ -1,4 +1,31 @@
-# E-261116-01: preparation; owner price run pending
+# E-261116-01: census and cost probe
+
+## Owner run conclusion (2026-11-16)
+
+* **Verdict: NO-SWEEP-SYMMETRIC-SLICE@8.5331 CPU core-h.** NUMERICAL, SPEC §4 instance
+  scope: sampled normalised formulas only. Existence is open; no geometric negative or witness.
+* **Prediction vs outcome:** four UNSAT-SOLVER, six TIMEOUT, no SAT / ERROR; the prediction
+  of fewer than five timeouts failed. All ten frozen maps recorded once in their assigned shards.
+* **Runs:** commit e7d099cd, ten shards, 08:16:53–09:16:52 UTC, 3599.22 s elapsed;
+  summed worker wall 8.5477 h against 10 h; CPU from all shard manifests, none missing.
+  Maximum endpoint clock gap 0.074 s; no continuous sleep audit, so no claim of zero sleep gaps.
+* **Price:** population-weighted, cap-substituted sample projection >=3314.54 worker-h,
+  >=41.43 laptop nights; every stratum censored. This is a sample estimate, not a lower
+  bound on the unsampled population or a confidence bound. Sample median >=3597.365 s,
+  censored above; the uncensored <=1200 s gate for E-261116-03 is not met.
+* **Element curve:** medians at 9/10/11 elements: 0.291/2.762/54.765 s; 12 elements is
+  the censored sample above. Unequal populations and selection, not a scaling law or S0 price.
+* **Controls / verification:** inherited invariance/positive/negative PASS reused after current
+  source, Python, dependency and solver hash checks; size-control PASS bound by queue hash.
+  Fresh coverage/checkpoint/log/provenance audit PASS (`results/run-audit.json`). No solves,
+  CNF rebuild or DRAT replay; formula hashes retained, UNSAT-SOLVER is not UNSAT-VERIFIED.
+* **Summary correction:** timeout lower bounds now use recorded caps, excluding shutdown
+  overhead, as PLAN requires. Focused pricing tests: seven PASS; production summary regenerated.
+  Existing census/runner checks reused; no integration concern requiring another quick suite.
+* **Scope:** no SAT model to bridge or candidate to verify. Recovery is not discovery-power
+  evidence; H-261101-07 status and S0 A/B/C unchanged. No LOW-YIELD or family exclusion.
+* **Next:** no full sweep; only registered symmetric slice I-261116-04 remains for (11,5).
+  Week item 2 next; item 4 parked by its failed gate. Evidence: `results/run/verdict.json`.
 
 ## Preparation (2026-11-16)
 

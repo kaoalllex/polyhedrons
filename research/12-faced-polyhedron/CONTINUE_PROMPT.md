@@ -11,7 +11,7 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
 
 ## Hand-over (2026-11-16, item 2 prepared)
 
-* Branch `lab/2026-11-16`; item 1 conclusion changes remain local. Nothing in flight.
+* Branch `lab/2026-11-16`; item 1 conclusion and item 2 preparation committed. Nothing in flight.
 * E-261116-02 PLAN pre-registered in `46784cbc`; prep and launcher evidence in its results folder.
 * Cube-cover and known-SAT pipeline PASS; target conquer not run, no candidate.
 * Owner: on AC, `bash research/12-faced-polyhedron/overnight/launch.sh 16-02 start` (then status / stop).

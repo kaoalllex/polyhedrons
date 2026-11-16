@@ -4,7 +4,7 @@ title: Symmetric (11, 5) slice - the 24 admissible maps with Aut+ 2 or 3 by symm
 date: 2026-11-16
 status: open
 direction: [DR19]
-origin: [I-261114-03, E-261113-01]
+origin: [I-261114-03, E-261113-01, E-261116-01]
 ---
 
 ## Idea
@@ -18,3 +18,9 @@ The only (11, 5) slice affordable if a full sweep is priced above four nights; a
 result. Cheapest test: 24 formulas, about one shard-hour. A follow-up of E-261116-01 only. Untested proposal.
 
 Source: `reviews/strategy-review-2026-11-16.md` §5 (N3).
+
+## 2026-11-16 gate
+
+E-261116-01 concludes NO-SWEEP-SYMMETRIC-SLICE (CONCLUSION / STATUS 3aq): this registered follow-up
+is eligible. No symmetric formula has been run here; preparation still needs a scored ROADMAP row and
+committed PLAN. Week item 2 is next; no new full-sweep budget is implied.

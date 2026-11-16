@@ -1010,3 +1010,12 @@ size controls and bounded launcher check; owner day budget <=10 core-h. No targe
 2026-11-16 — E-261116-01 preparation PASS: census matches the lead's code digest, new-size controls and actual
 launcher/resume check passed; inherited controls reused. Ready for owner day run; no production price sample.
 See `experiments/E-261116-01-s5-11-5-census-cost-probe/CONCLUSION.md`.
+
+2026-11-16 — E-261116-01 owner run concluded NO-SWEEP-SYMMETRIC-SLICE; provenance/coverage audit and pricing tests PASS.
+NUMERICAL, instance scope; no candidate or geometric negative, S0 probe gate not met; week item 2 next.
+See `experiments/E-261116-01-s5-11-5-census-cost-probe/CONCLUSION.md`.
+
+## 2026-11-16 — E-261116-02 preparation
+
+PLAN registered in `46784cbc`; cube-cover and SAT pipeline gates PASS; bounded launcher reached ten shards.
+Owner day launch pending; no target solve or candidate. Evidence: experiment README and `results/`.
