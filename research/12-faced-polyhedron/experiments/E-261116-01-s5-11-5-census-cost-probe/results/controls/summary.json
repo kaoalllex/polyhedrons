@@ -1,0 +1,62 @@
+{
+  "PASS": true,
+  "rows": [
+    {
+      "name": "convex_f11_pinned",
+      "status": "SAT",
+      "seconds": 0.07107408299634699,
+      "budget_seconds": 60,
+      "budget_fraction": 0.0011845680499391164,
+      "ended_by": "completed",
+      "variables": 10668,
+      "clauses": 260287,
+      "cnf_sha256": "95a0dca86adbff090c74f4a6bc693b4326d546a90261613fbdddb220b1db45da",
+      "solver_children_maxrss": 52477952,
+      "model_checked": true,
+      "passed": true
+    },
+    {
+      "name": "convex_f11_unpinned",
+      "status": "SAT",
+      "seconds": 0.07523241599847097,
+      "budget_seconds": 60,
+      "budget_fraction": 0.0012538735999745162,
+      "ended_by": "completed",
+      "variables": 10668,
+      "clauses": 259792,
+      "cnf_sha256": "c17871bdd938489a0859842bbf42f40bff3e264ff4fa1db9b7aa8685e6c526ed",
+      "solver_children_maxrss": 55263232,
+      "model_checked": true,
+      "passed": true
+    },
+    {
+      "name": "convex_f11_wrong_map",
+      "status": "UNSAT-SOLVER",
+      "seconds": 0.07672766699397471,
+      "budget_seconds": 60,
+      "budget_fraction": 0.0012787944498995785,
+      "ended_by": "completed",
+      "variables": 10598,
+      "clauses": 260053,
+      "cnf_sha256": "d2152fb56abe36dff1789660cada039860cc8b5011781b47bfc4f065d7fefeab",
+      "solver_children_maxrss": 52035584,
+      "passed": true
+    }
+  ],
+  "reuse": {
+    "environment_sha256": "82614cac2549b755254893973ec9c2cbc15db8496951ddd1c1df8d17b6802b73",
+    "gates": {
+      "invariance": "93aff25bae02e14c773007a6357363835ec25861e0f25ad16977b1b4b3070ffc",
+      "positive": "c36d2d2a2d6bfdd5055be73125a6a21cd2a3323613c5def555d5867f590f3b09",
+      "negative": "67ae39c14b7f3fe8277390137f4b644eb9b02993eb0d31e3ffebca36f940f8b5"
+    }
+  },
+  "inputs_sha256": {
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/probe.py": "3e028e8b593241127d1c8537240e521171fb8778755cf6f67f5f5034759d9afe",
+    "experiments/E-261103-03-s5-exact-decision-8-2-9-3/control_f9.py": "59814e83c1f27bf456e40d9691423efaf3370012ff785d21bde1203e10b2259b",
+    "experiments/E-261114-01-normalised-s6-10-3/controls.py": "231226a848facbe3a5fb9fc3e0f8169f84f19eeae0f36aab35a6e9f27bb4a499",
+    "code/omsat.py": "22e12166bb0a8fce0470031dd819bce1c96a131edb01fcfcd95c1aad102dd8fc",
+    "experiments/E-261103-03-s5-exact-decision-8-2-9-3/pilot.py": "7f6f90a56146cd86e6e208ac1b13b3b99e79309dc3c85cf8de3fa958d2802984",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/control_f11.json": "e751fceea043ad8fc68ae35275b4b51d486116b518ca269c70aaedae3457ed56"
+  }
+}

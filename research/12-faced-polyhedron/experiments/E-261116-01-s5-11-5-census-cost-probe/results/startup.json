@@ -1,0 +1,50 @@
+{
+  "PASS": true,
+  "commands": [
+    {
+      "command": "bash research/12-faced-polyhedron/overnight/launch.sh 16-01 start",
+      "returncode": 0,
+      "output": "started 10 shards (SHARDS=10): E-261116-01-s5-11-5-census-cost-probe \n"
+    },
+    {
+      "command": "bash research/12-faced-polyhedron/overnight/launch.sh 16-01 status",
+      "returncode": 0,
+      "output": "shard 0  ended rc=    1 records, last output   0 min ago | map3725            0 records  {}\nshard 1  ended rc=    1 records, last output   0 min ago | map3972            0 records  {}\nshard 2  ended rc=    1 records, last output   0 min ago | map3277            0 records  {}\nshard 3  ended rc=    1 records, last output   0 min ago | map3263            0 records  {}\nshard 4  ended rc=    1 records, last output   0 min ago | map3565            0 records  {}\nshard 5  ended rc=    1 records, last output   0 min ago | map247             0 records  {}\nshard 6  ended rc=    1 records, last output   0 min ago | map1342            0 records  {}\nshard 7  ended rc=    1 records, last output   0 min ago | map1366            0 records  {}\nshard 8  ended rc=    1 records, last output   0 min ago | map1186            0 records  {}\nshard 9  ended rc=    1 records, last output   0 min ago | map30              0 records  {}\nE-261116-01-s5-11-5-census-cost-probe: 0 shards running, 10 records, 0 probably hung (silent >= 60 min)\n--- progress\n10/10 maps; {'TIMEOUT': 10}\n"
+    },
+    {
+      "command": "bash research/12-faced-polyhedron/overnight/launch.sh 16-01 stop",
+      "returncode": 0,
+      "output": "E-261116-01-s5-11-5-census-cost-probe: nothing running\n"
+    },
+    {
+      "command": "bash research/12-faced-polyhedron/overnight/launch.sh 16-01 start",
+      "returncode": 0,
+      "output": "started 10 shards (SHARDS=10): E-261116-01-s5-11-5-census-cost-probe \n"
+    },
+    {
+      "command": "bash research/12-faced-polyhedron/overnight/launch.sh 16-01 status",
+      "returncode": 0,
+      "output": "shard 0  ended rc=    1 records, last output   0 min ago | map3725            0 records  {}\nshard 1  ended rc=    1 records, last output   0 min ago | map3972            0 records  {}\nshard 2  ended rc=    1 records, last output   0 min ago | map3277            0 records  {}\nshard 3  ended rc=    1 records, last output   0 min ago | map3263            0 records  {}\nshard 4  ended rc=    1 records, last output   0 min ago | map3565            0 records  {}\nshard 5  ended rc=    1 records, last output   0 min ago | map247             0 records  {}\nshard 6  ended rc=    1 records, last output   0 min ago | map1342            0 records  {}\nshard 7  ended rc=    1 records, last output   0 min ago | map1366            0 records  {}\nshard 8  ended rc=    1 records, last output   0 min ago | map1186            0 records  {}\nshard 9  ended rc=    1 records, last output   0 min ago | map30              0 records  {}\nE-261116-01-s5-11-5-census-cost-probe: 0 shards running, 10 records, 0 probably hung (silent >= 60 min)\n--- progress\n10/10 maps; {'TIMEOUT': 10}\n"
+    },
+    {
+      "command": "bash research/12-faced-polyhedron/overnight/launch.sh 16-01 stop",
+      "returncode": 0,
+      "output": "E-261116-01-s5-11-5-census-cost-probe: nothing running\n"
+    }
+  ],
+  "records": 10,
+  "statuses": [
+    "TIMEOUT"
+  ],
+  "checkpoint_hashes_unchanged": true,
+  "solver_cap": 0.01,
+  "shards": 10,
+  "fixture": "research/12-faced-polyhedron/experiments/E-261116-01-s5-11-5-census-cost-probe/results/startup/queue.json",
+  "results": "research/12-faced-polyhedron/experiments/E-261116-01-s5-11-5-census-cost-probe/results/startup/run",
+  "substitutions": {
+    "S5AB_QUEUE": "research/12-faced-polyhedron/experiments/E-261116-01-s5-11-5-census-cost-probe/results/startup/queue.json",
+    "BUDGET": 600,
+    "HOURS": 0.016
+  },
+  "note": "Actual owner entry point and s5ab dispatch; tiny target-formula fixture, no discovery-power inference"
+}

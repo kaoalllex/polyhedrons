@@ -2,8 +2,10 @@
 import gzip
 import json
 from pathlib import Path
+import platform
 import resource
 import subprocess
+import sys
 import time
 
 import prep
@@ -11,6 +13,11 @@ from prep import HERE, ROOT, pilot, tranche
 
 
 def run(args):
+    invocation_start = time.monotonic(); invocation_epoch = time.time()
+    def cpu():
+        a = resource.getrusage(resource.RUSAGE_SELF); b = resource.getrusage(resource.RUSAGE_CHILDREN)
+        return a.ru_utime+a.ru_stime+b.ru_utime+b.ru_stime
+    invocation_cpu = cpu()
     out = Path(args.results_dir).resolve(); root = out.parent
     shard, shards = args.shard, args.shards
     if args.workers != 1 or not 8 <= shards <= 10 or not 0 <= shard < shards or out.name != str(shard):
@@ -36,11 +43,9 @@ def run(args):
     tranche.BRIDGE = dict(submap=False, restarts=6)
     with tranche.locked(root / f'shard{shard}.lock', blocking=False):
         tranche.check_identity(root, identity)
-        start = time.monotonic(); epoch = time.time()
-        def cpu():
-            a = resource.getrusage(resource.RUSAGE_SELF); b = resource.getrusage(resource.RUSAGE_CHILDREN)
-            return a.ru_utime+a.ru_stime+b.ru_utime+b.ru_stime
-        initial = cpu()
+        start = invocation_start if queue.get('truncate_to_budget') else time.monotonic()
+        epoch = invocation_epoch if queue.get('truncate_to_budget') else time.time()
+        initial = invocation_cpu if queue.get('truncate_to_budget') else cpu()
         allowance = min(args.hours*3600, tranche.BUDGET_SECONDS/shards-tranche.shard_charged(root, shard))
         if allowance <= 0:
             return
@@ -54,6 +59,11 @@ def run(args):
             return command(argv, log, min(timeout, remaining), gate)
         pilot.command = bounded
         manifest = dict(commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+                        branch=subprocess.check_output(['git','branch','--show-current'],text=True).strip(),
+                        dirty=bool(subprocess.check_output(['git','status','--porcelain'],text=True)),
+                        python=sys.version, platform=platform.platform(), workers=1,
+                        started_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime(epoch)),
+                        solver_sha256=pilot.sha(Path(pilot.CADICAL)),
                         shard=shard, shards=shards, controls=provenance, allowance_seconds=allowance)
         try:
             for entry in queue['maps'][shard::shards]:

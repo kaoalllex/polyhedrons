@@ -56,3 +56,13 @@ Pre-registration, 2026-11-16; week item 1, exploit, jump 2. Commit before comput
   Day verdict and registered follow-up go in CONCLUSION and the ledger, not a family negative.
 
 ## Amendments
+
+### 2026-11-16: preparation record
+
+Census matches; its review digest serializes newline-joined sorted str(code), not JSON arrays.
+The initial comparison failed only on that serialization; rechecked hash-bound saved output,
+without rerunning the enumerator. Corrected probe.py; positive-control code is unchanged.
+Size controls PASS; inherited controls reused after source/environment hash checks.
+Actual ten-shard start/status/stop/start fixture PASS at 0.01 s; checkpoints unchanged.
+The hard budget includes validation, map loading, building, solving and bridging inside run().
+Production capped solves and all target follow-ups remain for the owner; prep is not a price sample.

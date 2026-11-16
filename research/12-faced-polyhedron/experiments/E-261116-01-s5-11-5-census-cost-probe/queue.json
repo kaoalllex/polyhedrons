@@ -1,0 +1,88 @@
+{
+  "target": "S5 (11,5)",
+  "case": [
+    11,
+    5
+  ],
+  "seed": 26111601,
+  "populations": {
+    "[1, 1, 1, 1]": 2474,
+    "[1, 1, 2]": 1478,
+    "[2, 2]": 34
+  },
+  "census_file": "experiments/E-261116-01-s5-11-5-census-cost-probe/results/census/maps_11_5.json.gz",
+  "truncate_to_budget": true,
+  "controls_file": "experiments/E-261116-01-s5-11-5-census-cost-probe/results/controls/summary.json",
+  "inputs_sha256": {
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/census/maps_11_5.json.gz": "a35cf8fb7f611e6f01c02ecc31ff97d74a3db3271d6b461d67e7dca1320d3604",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/census-check.json": "22fb1457ada723b3d66e2eaa72850f36e0c2851746ac97cb1c12f38f61dd4acb",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/results/controls/summary.json": "0094eaffa7a2d7f634290dbc5aa0d8fd1d07a07b306210592fc886479fbeffe8",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/probe.py": "d8bfbc575ba2eb00c1478ccf06f33c08bba834934c5481993c8852a2cf381c4f",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/run.sh": "8433b40d2a38d8f3b20babf6f229c15609e9ad70511acc0291e9beff7d976072",
+    "code/omsat.py": "22e12166bb0a8fce0470031dd819bce1c96a131edb01fcfcd95c1aad102dd8fc",
+    "experiments/E-261103-03-s5-exact-decision-8-2-9-3/pilot.py": "7f6f90a56146cd86e6e208ac1b13b3b99e79309dc3c85cf8de3fa958d2802984",
+    "experiments/E-261103-03-s5-exact-decision-8-2-9-3/tranche.py": "d0de5059acb2e9c0b34ffd2eafaddf2c699816a7e5424fa0411e788715b25450"
+  },
+  "maps": [
+    {
+      "index": 3725,
+      "pattern": "[1, 1, 1, 1]",
+      "solver_cap": 3600,
+      "canonical_sha256": "406a917a320f591b89b27fc2726156d802e2e5fd2fd1b18b35a3e1205838a7e5"
+    },
+    {
+      "index": 3972,
+      "pattern": "[1, 1, 1, 1]",
+      "solver_cap": 3600,
+      "canonical_sha256": "5cce5808728148bfb1ed743ad5942d733a883d554be61b2df6c3fcc594ffffc4"
+    },
+    {
+      "index": 3277,
+      "pattern": "[1, 1, 1, 1]",
+      "solver_cap": 3600,
+      "canonical_sha256": "26e76faf4670b392d205ee145f7258dcaf56049ec822a6ec3e9a39a4d5ba8a51"
+    },
+    {
+      "index": 3263,
+      "pattern": "[1, 1, 1, 1]",
+      "solver_cap": 3600,
+      "canonical_sha256": "d12667a8b27abb4f1b4e190948ba31e5354ceb2188229a24677e0888b5c6d650"
+    },
+    {
+      "index": 3565,
+      "pattern": "[1, 1, 1, 1]",
+      "solver_cap": 3600,
+      "canonical_sha256": "bf32a14848ac66ab193798c5e0c740061d3b3d2838525a1ef7970889594e4685"
+    },
+    {
+      "index": 247,
+      "pattern": "[1, 1, 2]",
+      "solver_cap": 3600,
+      "canonical_sha256": "d10ee7ed40cb076df390fb319d38b9ab051681483e10723b88399a4993df4d73"
+    },
+    {
+      "index": 1342,
+      "pattern": "[1, 1, 2]",
+      "solver_cap": 3600,
+      "canonical_sha256": "bea4e994a853b1573d1ef8e12ca26b31bd723a866a53c86970965ad3f79a5056"
+    },
+    {
+      "index": 1366,
+      "pattern": "[1, 1, 2]",
+      "solver_cap": 3600,
+      "canonical_sha256": "adae3cbd1d597b318ad4ef0d7531911b5a58bbcc65941af14cf8fb9552f51707"
+    },
+    {
+      "index": 1186,
+      "pattern": "[1, 1, 2]",
+      "solver_cap": 3600,
+      "canonical_sha256": "6a091db7bfb600f9d7a25ad7d63e0cebfe93f346569670493b38187a1819a5c3"
+    },
+    {
+      "index": 30,
+      "pattern": "[2, 2]",
+      "solver_cap": 3600,
+      "canonical_sha256": "e0ace76a7c25c282238af7f6280b0d402d5ff0335c72ede83d796278d76ffe39"
+    }
+  ]
+}

@@ -29,13 +29,16 @@ def load_census():
     return module
 
 
-def prepare():
+def prepare(reuse=False):
     dest = HERE / 'results/census'
     census = load_census()
-    data = census.run(11, 5, 540, dest)
+    data = json.loads((dest/'maps_11_5.json').read_text()) if reuse else census.run(11, 5, 540, dest)
+    if reuse:
+        manifest = json.loads((dest/'manifest.json').read_text())
+        assert manifest['files']['maps_11_5.json'] == pilot.sha(dest/'maps_11_5.json')
     reference = json.loads((ROOT / 'reviews/strategy-review-2026-11-16-census-11-5.json').read_text())
     rows = [r for r in data['maps'] if r['admissible']]
-    digest = hashlib.sha256(json.dumps(sorted(r['code'] for r in data['maps']), separators=(',', ':')).encode()).hexdigest()
+    digest = hashlib.sha256('\n'.join(sorted(str(r['code']) for r in data['maps'])).encode()).hexdigest()
     checks = dict(complete=data['complete'] and data['stop_reason'] == 'exhausted',
                   classes=data['classes'] == reference['classes'], admissible=len(rows) == reference['admissible'],
                   codes=digest == reference['codes_sha256'],
@@ -120,4 +123,4 @@ def queue():
 
 
 if __name__ == '__main__':
-    {'census':prepare, 'controls':size_controls, 'queue':queue}[sys.argv[1]]()
+    {'census':prepare, 'census-check':lambda:prepare(reuse=True), 'controls':size_controls, 'queue':queue}[sys.argv[1]]()

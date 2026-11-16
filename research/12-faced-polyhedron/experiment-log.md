@@ -1006,3 +1006,7 @@ I-261116-01..04 (planned, no PLAN); STRATEGY, ROADMAP, STATUS, handover updated.
 
 2026-11-16 — E-261116-01 week item 1 pre-registered: census comparison, ten stratified normalised (11,5) formulas,
 size controls and bounded launcher check; owner day budget <=10 core-h. No target run yet; see its PLAN.md.
+
+2026-11-16 — E-261116-01 preparation PASS: census matches the lead's code digest, new-size controls and actual
+launcher/resume check passed; inherited controls reused. Ready for owner day run; no production price sample.
+See `experiments/E-261116-01-s5-11-5-census-cost-probe/CONCLUSION.md`.

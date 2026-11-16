@@ -1498,7 +1498,7 @@ window.GRAPH = {
    "id": "E-261116-01",
    "kind": "experiment",
    "title": "(11, 5) census and cost probe - the last S5 rung below S0, ten normalised formulas at 12 elements",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-16",
    "concluded": "",
    "path": "experiments/E-261116-01-s5-11-5-census-cost-probe/README.md",
@@ -1507,8 +1507,8 @@ window.GRAPH = {
     "DR8"
    ],
    "verdict": "",
-   "preregistered": "false",
-   "conclusion": ""
+   "preregistered": "true",
+   "conclusion": "Verdict: READY, not a completed price probe. No new focus witness or geometric negative; H-261101-07 and S0 A/B/C unchanged. SPEC §4 instance scope, NUMERICAL startup/control timings; census coverage and encoder soundness retain their existing PROVED-1 status."
   },
   {
    "id": "E-261116-02",

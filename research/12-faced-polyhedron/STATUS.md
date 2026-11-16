@@ -424,6 +424,14 @@ NUMERICAL planning evidence, instance scope; UNSAT-SOLVER only, no geometric exc
 The core uses all face groups while circuits retain all eight planes; see
 `experiments/E-261114-04-immersion-core-8-2/CONCLUSION.md`. Hypotheses and A/B/C unchanged.
 
+## 3aq. E-261116-01 S5 (11,5) census and price preparation (2026-11-16)
+
+**READY for owner day run**; census and new-size controls PASS, saved control provenance reused.
+Census completeness uses the existing PROVED-1 enumeration argument; no new geometric claim.
+NUMERICAL startup timings; the tiny-cap fixture establishes dispatch/resume, not search power.
+No production price sample or new candidate; H-261101-07 and S0 credences unchanged.
+Counts, checks and next command: `experiments/E-261116-01-s5-11-5-census-cost-probe/CONCLUSION.md`.
+
 ## 4. What may and may not be claimed
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for
