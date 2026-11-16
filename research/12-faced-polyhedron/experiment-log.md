@@ -996,3 +996,7 @@ See `experiments/E-261110-06-s5-10-4-strata-ab-remainder/CONCLUSION.md`; item 5 
 
 2026-11-14 — E-261114-04 week item 5 completed; park the small face-group core route.
 See `experiments/E-261114-04-immersion-core-8-2/CONCLUSION.md`; controls and coverage audit PASS, no geometric negative.
+
+2026-11-16 — Lead review `reviews/strategy-review-2026-11-16.md` (session check: (11, 5) census, 3986 admissible maps).
+Owner approved items 1, 2, 4, 5; item 3 (proof replay of (10, 4)) parked as I-261116-02. Filed E-261116-01..04 and
+I-261116-01..04 (planned, no PLAN); STRATEGY, ROADMAP, STATUS, handover updated. No compute.

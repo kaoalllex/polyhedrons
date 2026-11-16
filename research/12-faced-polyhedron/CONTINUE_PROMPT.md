@@ -9,13 +9,12 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-14, week item 5 concluded)
+## Hand-over (2026-11-16, lead review applied)
 
-* Branch `lab/2026-11-14`; E-261114-04 PLAN pre-registration 444c7c67, completed; STATUS 3ap / CONCLUSION.
-* Nothing in flight. Item 5 parked under its kill rule; no small face-group lemma follow-up.
-* Verification: fresh controls, full-clause equivalence, Boolean SAT model checks, coverage/provenance audit PASS.
-* Invariance controls reused after hash checks; cached positive summary not reused (pilot.py changed).
-* No DRAT or geometry replay; no candidate or geometric negative. H hypotheses and A/B/C unchanged.
-* Next: lead review of the completed week; no lab run or owner launch action pending.
-* For the lead: S5 A+B proof replay and I-261114-03 remain proposals, not authorized.
-* For the lead: E-261114-03 chart speedup remains unresolved; S6 full run remains NO-DAY-RUN.
+* Branch `lab/2026-11-14`; week plan of `reviews/strategy-review-2026-11-16.md` in `ROADMAP.md` (owner-approved).
+* Nothing in flight. Next: week item 1, E-261116-01 ((11, 5) census and cost probe): PLAN first, then owner day run.
+* Then item 2 (E-261116-02, (10, 3) cube pilot), item 5 (E-261116-04, polar transfer) in any free slot.
+* Item 4 (E-261116-03, S0 price probe) only if item 1 gives a median <= 20 min; owner approval already given.
+* Item 3 parked by the owner: no (10, 4) proof replay (I-261116-02). (10, 4) is UNSAT-SOLVER, planning use only.
+* The review's credences are not applied. No proofs in any item.
+* Raw `results/run/0/map*/` dirs of E-261110-06 are untracked: move with `move_raw.py` before the next manifest.

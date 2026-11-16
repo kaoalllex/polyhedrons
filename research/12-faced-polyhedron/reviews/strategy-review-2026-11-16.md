@@ -145,3 +145,8 @@ cubes per type and E-261101-06 rank-3 SAT as filed. Other open ideas and hypothe
 
 1. Owner: approval 1 (week plan), and a yes / no on approval 2. 2. Lab (Opus, medium): item 1 prep, then the owner's
    day run. 3. Lab (Opus, medium): item 2 prep chained with item 5 (Sonnet, medium) in the same day run slot.
+
+## Owner's decisions (2026-11-16)
+
+Items 1, 2, 4, 5 approved (item 4 under its condition); item 3 not now, parked as I-261116-02 for a future note.
+Applied the same day; the credences of §7 are not applied (not asked).

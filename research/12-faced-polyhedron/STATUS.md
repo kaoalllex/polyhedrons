@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-14** (week item 5 concluded). The latest registered results are E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
+As of **2026-11-16** (owner's decisions on the lead review of 2026-11-16). The latest registered results are E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
 E-261113-04 (section 3aj), E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
 `experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -15,12 +15,18 @@ remain session checks, not new ledger evidence; the local S6 (10,2) witness work
 S6 at (10, 3) by the normalised formulas first (E-261114-01), S5 at (10, 4) second (E-261110-06, one night), nine faces
 third. The review's finding that the plain S5 / S6 formulas carry no reorientation or mirror units, and its 10-89x
 ratios on five known UNSAT formulas, are a session check (NUMERICAL, UNSAT-SOLVER), not ledger evidence.
+**(10, 4) S5 in total (2026-11-16):** with stratum C (section 3ad, plain formulas) and strata A + B (section 3ao,
+normalised), all 1117 admissible maps are UNSAT-SOLVER, no candidate (NUMERICAL, instance scope, no checked proof,
+census coverage PROVED-1). Usable for planning, not a negative result; the replay is parked (I-261116-02). Owner's
+decisions of 2026-11-16 (`reviews/strategy-review-2026-11-16.md`): (11, 5) census and cost probe first (E-261116-01;
+the review's census session check, 3986 admissible maps, is not ledger evidence), (10, 3) cube pilot then park
+(E-261116-02), a conditional S0 price probe (E-261116-03), polar transfer (E-261116-04). No credence change applied.
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-14 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: S6 at (10, 3)
-first, by the normalised formulas (E-261114-01); S5 at (10, 4) second, strata A + B in one night (E-261110-06); nine
-mutually adjacent faces (S1, genus free) third, Stage B parked after E-261113-03 (source map only, section 3ak). Run so far: ninth-plane Stage A (no candidate,
+**Focus since 2026-11-16 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: S5 at (11, 5)
+first, census and cost probe (E-261116-01); S6 at (10, 3) one cube pilot, then parked if undecided (E-261116-02); S5
+(10, 4) all admissible maps UNSAT-SOLVER (sections 3ad, 3ao); nine faces parked after E-261113-03 (section 3ak). Run so far: ninth-plane Stage A (no candidate,
 section 3ae), the S6 (10, 3) night (20/20 TIMEOUT, section 3af) and its symmetric runs (no candidate, section 3ag). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
 4, gated by a speed-up benchmark (E-261103-07: 10/10 TIMEOUT, section 3w); from 2026-11-03 to 2026-11-08 the focus was
 (9, 3), now decided at formula scope (below); its negative result is a side track towards a note marked as not
