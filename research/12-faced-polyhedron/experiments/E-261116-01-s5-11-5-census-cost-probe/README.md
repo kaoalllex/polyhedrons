@@ -2,16 +2,16 @@
 id: E-261116-01
 title: (11, 5) census and cost probe - the last S5 rung below S0, ten normalised formulas at 12 elements
 date: 2026-11-16
-status: planned
+status: running
 direction: [DR19, DR8]
 origin: [I-261114-03, E-261103-01, E-261110-06]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned, exploit, jump 2. Scores T D F G R: 2 2 2 2 2 | budget: one prep session + <= 10 core-h day run, 10 shards.
-> Before any compute: `PLAN.md` from `experiments/_template/` (skill `experiment-start`). No proofs.
+> Pre-registered in `PLAN.md`; preparation in progress. No proofs.
 
 ## Goal
 

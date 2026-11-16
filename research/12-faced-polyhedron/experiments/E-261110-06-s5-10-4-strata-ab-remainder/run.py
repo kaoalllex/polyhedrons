@@ -1,4 +1,5 @@
 """Normalised A+B night using the existing checkpoint, budget and solver primitives."""
+import gzip
 import json
 from pathlib import Path
 import resource
@@ -18,10 +19,19 @@ def run(args):
     queue_path = Path(args.s5_queue or HERE / 'queue.json')
     queue = json.loads(queue_path.read_text())
     provenance = prep.controls()
+    if queue.get('controls_file'):
+        assert json.loads((ROOT / queue['controls_file']).read_text())['PASS'], 'size controls failed'
     for name, digest in queue['inputs_sha256'].items():
         assert pilot.sha(ROOT / name) == digest, name
     identity = dict(queue=pilot.sha(queue_path), controls=provenance,
                     sources={p.name: pilot.sha(p) for p in (Path(__file__), HERE/'prep.py', HERE/'run.sh')})
+    case = queue.get('case', [10, 4])
+    if queue.get('census_file'):
+        path = ROOT / queue['census_file']
+        with (gzip.open(path, 'rt') if path.suffix == '.gz' else path.open()) as stream:
+            maps = json.load(stream)
+    else:
+        maps = pilot.census(*case)
     tranche.BUDGET_SECONDS = args.s5_budget_seconds
     tranche.BRIDGE = dict(submap=False, restarts=6)
     with tranche.locked(root / f'shard{shard}.lock', blocking=False):
@@ -53,13 +63,16 @@ def run(args):
                 records = [r for p in root.glob('[0-9]*/results.jsonl') for r in tranche.records(p)]
                 if any(r['map_index'] == index for r in records):
                     continue
-                if deadline-time.monotonic() < entry['solver_cap']+10:
+                if deadline-time.monotonic() < (1 if queue.get('truncate_to_budget') else entry['solver_cap']+10):
                     break
                 dest = out / f'map{index}'; dest.mkdir(exist_ok=True)
                 tranche.append_checkpoint(out/'progress.jsonl', dict(map_index=index, event='START'))
                 print(f'map {index} start', flush=True)
-                t = pilot.from_links(pilot.census(10,4)['maps'][index]['links'])
+                build_start = time.monotonic()
+                t = pilot.from_links(maps['maps'][index]['links'])
+                assert t.n == case[0]
                 c = pilot.CNF(t.n); pilot.build(c,t,dict(pilot.ALL_OPTS,symbreak=True,mirror=True))
+                build_seconds = time.monotonic()-build_start
                 rows = tranche.records(dest/'models.jsonl')
                 for seed in range(30):
                     if rows and rows[0]['status'] != 'SAT':
@@ -71,7 +84,10 @@ def run(args):
                     pilot.SOLVER_OPTS = [f'--seed={seed}']
                     name = f'map{index}_seed{seed}'
                     state = dest / (name + '.json')
-                    r = json.loads(state.read_text()) if state.exists() else dict(seed=seed, **pilot.solve(c,dest,name,entry['solver_cap']))
+                    cap = min(entry['solver_cap'], deadline-time.monotonic()-1) if queue.get('truncate_to_budget') else entry['solver_cap']
+                    if cap <= 0:
+                        break
+                    r = json.loads(state.read_text()) if state.exists() else dict(seed=seed, **pilot.solve(c,dest,name,cap))
                     tranche.atomic(state,r)
                     if r['status'] == 'SAT' and 'processing' not in r:
                         r.update(tranche.bridge(dest,name,c,t.link,'S5'))
@@ -88,6 +104,7 @@ def run(args):
                     break
                 result = dict(map_index=index, status=rows[0]['status'], models=rows,
                               seconds=sum(r['seconds'] for r in rows), pattern=entry['pattern'],
+                              build_seconds=build_seconds, price_seconds=build_seconds+rows[0]['seconds'],
                               bridge_complete=rows[0]['status'] != 'SAT' or sum(r['status']=='SAT' for r in rows)>=30)
                 tranche.append_checkpoint(out/'results.jsonl',result)
                 print(f"map {index} {result['status']}",flush=True)

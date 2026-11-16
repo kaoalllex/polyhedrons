@@ -1003,3 +1003,6 @@ I-261116-01..04 (planned, no PLAN); STRATEGY, ROADMAP, STATUS, handover updated.
 
 2026-11-16 — Owner's request: living paper plan `paper/OUTLINE.md` (contents, evidence levels, gaps); kept current by
 `experiment-conclude`. No compute.
+
+2026-11-16 — E-261116-01 week item 1 pre-registered: census comparison, ten stratified normalised (11,5) formulas,
+size controls and bounded launcher check; owner day budget <=10 core-h. No target run yet; see its PLAN.md.

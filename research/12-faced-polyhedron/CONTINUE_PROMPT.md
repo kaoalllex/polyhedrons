@@ -9,13 +9,10 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-16, lead review applied)
+## Hand-over (2026-11-16, item 1 preparation)
 
-* Branch `lab/2026-11-16` (from `main` after PR #12 merged `lab/2026-11-14`); week plan of
-  `reviews/strategy-review-2026-11-16.md` in `ROADMAP.md` (owner-approved).
-* Nothing in flight. Next: week item 1, E-261116-01 ((11, 5) census and cost probe): PLAN first, then owner day run.
-* Then item 2 (E-261116-02, (10, 3) cube pilot), item 5 (E-261116-04, polar transfer) in any free slot.
-* Item 4 (E-261116-03, S0 price probe) only if item 1 gives a median <= 20 min; owner approval already given.
-* Item 3 parked by the owner: no (10, 4) proof replay (I-261116-02). (10, 4) is UNSAT-SOLVER, planning use only.
-* The review's credences are not applied. No proofs in any item.
-* Raw per-map output of E-261110-06 is in `../polyhedrons-data` (`move_raw.py` now also covers `results/run/*/map*/`).
+* Branch `lab/2026-11-16`; owner-approved week plan in `ROADMAP.md`.
+* E-261116-01 pre-registered (`experiments/E-261116-01-s5-11-5-census-cost-probe/PLAN.md`).
+* No run in flight; finish census, new-size controls and bounded actual-launcher check before owner day run.
+* Then item 2; item 4 only if item 1 gives an uncensored median <=20 min (approval already given).
+* Item 3 proof replay remains parked. No proofs; review credences not applied.
