@@ -73,7 +73,7 @@ def run(args):
                 records = [r for p in root.glob('[0-9]*/results.jsonl') for r in tranche.records(p)]
                 if any(r['map_index'] == index for r in records):
                     continue
-                if deadline-time.monotonic() < (1 if queue.get('truncate_to_budget') else entry['solver_cap']+10):
+                if deadline-time.monotonic() < (1 if queue.get('truncate_to_budget') and not queue.get('full_cap') else entry['solver_cap']+10):
                     break
                 dest = out / f'map{index}'; dest.mkdir(exist_ok=True)
                 tranche.append_checkpoint(out/'progress.jsonl', dict(map_index=index, event='START'))
@@ -91,14 +91,20 @@ def run(args):
                         break
                     if any(r['seed'] == seed for r in rows):
                         continue
-                    pilot.SOLVER_OPTS = [f'--seed={seed}']
+                    pilot.SOLVER_OPTS = queue.get('solver_opts', []) + ([] if queue.get('stop_on_sat') else [f'--seed={seed}'])
                     name = f'map{index}_seed{seed}'
                     state = dest / (name + '.json')
                     cap = min(entry['solver_cap'], deadline-time.monotonic()-1) if queue.get('truncate_to_budget') else entry['solver_cap']
                     if cap <= 0:
                         break
-                    r = json.loads(state.read_text()) if state.exists() else dict(seed=seed, **pilot.solve(c,dest,name,cap))
+                    gate = dict(solver_gate=lambda: tranche.dispatch_gate(root)) if queue.get('stop_on_sat') else {}
+                    r = json.loads(state.read_text()) if state.exists() else dict(seed=seed, **pilot.solve(c,dest,name,cap,**gate))
+                    r['solver_opts'] = pilot.SOLVER_OPTS
                     tranche.atomic(state,r)
+                    if r['status'] == 'SAT' and queue.get('stop_on_sat'):
+                        tranche.latch_sat(root, dict(r, map_index=index, unit=str(dest.relative_to(ROOT))))
+                        tranche.append_checkpoint(dest/'models.jsonl',r); rows.append(r)
+                        break
                     if r['status'] == 'SAT' and 'processing' not in r:
                         r.update(tranche.bridge(dest,name,c,t.link,'S5'))
                         tranche.atomic(state,r)
@@ -118,6 +124,8 @@ def run(args):
                               bridge_complete=rows[0]['status'] != 'SAT' or sum(r['status']=='SAT' for r in rows)>=30)
                 tranche.append_checkpoint(out/'results.jsonl',result)
                 print(f"map {index} {result['status']}",flush=True)
+        except tranche.DispatchStopped:
+            manifest['dispatch_stopped'] = True
         except TimeoutError:
             manifest['deadline_stop'] = True
         except (KeyboardInterrupt, InterruptedError):

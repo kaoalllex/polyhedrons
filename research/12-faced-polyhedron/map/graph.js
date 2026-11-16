@@ -1558,6 +1558,22 @@ window.GRAPH = {
    "conclusion": ""
   },
   {
+   "id": "E-261116-05",
+   "kind": "experiment",
+   "title": "Normalised S6 (10,3) SAT-oriented owner night",
+   "status": "running",
+   "date": "2026-11-16",
+   "concluded": "",
+   "path": "experiments/E-261116-05-s6-10-3-sat-night/README.md",
+   "direction": [
+    "DR19",
+    "DR8"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -6190,6 +6206,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261114-01",
+   "to": "E-261116-05",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261114-01",
    "to": "H-261110-03",
    "kind": "tests"
   },
@@ -6235,6 +6256,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261116-02",
+   "to": "E-261116-05",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261116-02",
    "to": "H-261110-03",
    "kind": "tests"
   },
@@ -6250,6 +6276,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261116-04",
+   "to": "H-261110-03",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261116-05",
    "to": "H-261110-03",
    "kind": "tests"
   },

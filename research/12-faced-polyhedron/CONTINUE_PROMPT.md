@@ -9,15 +9,13 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-16, item 2 concluded)
+## Hand-over (2026-11-16, item 2 night pre-registration)
 
-* Branch `lab/2026-11-16`; E-261116-02 conclusion and evidence collected; nothing in flight.
-* BOTH-DECIDED-UNSAT-SOLVER; no candidate, proof or geometric negative (STATUS 3ar).
-* Fresh CNF/control/checkpoint/log/provenance/budget audit PASS: E-261116-02 `results/run-audit.json`.
-* Next: item 2 registered follow-up, prepare one owner night on all twenty normalised S6 maps.
-* Select monolithic `kissat --sat`; reuse Lutz #1/#2 decisions, do not rerun them.
-* Follow-up needs ROADMAP entry, committed PLAN, controls and checked launcher; <=80 core-h, no proofs.
-* Owner launch pending preparation; do not restart completed `16-02` pilot.
-* Item 5 follows that handoff; item 4 gate not met, item 3 replay parked.
-* Checks reused: prep quick PASS; no solver/proof/geometry replay. CPU/startup overhead unrecorded.
+* Branch `lab/2026-11-16`; E-261116-02 concluded (STATUS 3ar); nothing in flight.
+* E-261116-05 is the registered item 2 follow-up; PLAN and frozen queue prepared.
+* Method: normalised monolithic `kissat --sat`; reuse pilot #1/#2, do not rerun them.
+* Next: focused runner checks, control/provenance validation and bounded launcher stop/resume.
+* Owner night is NOT READY until those checks pass; do not start either pilot or night yet.
+* Budget/caps: E-261116-05 PLAN; no proofs, no candidate or geometric negative.
+* Item 5 follows the night handoff; item 4 gate not met, item 3 replay parked.
 * For the lead: none; H-261110-03 and S0 A/B/C unchanged.

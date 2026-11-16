@@ -1,0 +1,48 @@
+[
+  {
+    "row": {
+      "status": "UNSAT-SOLVER",
+      "seconds": 2175.816281499996,
+      "budget_seconds": 3600,
+      "budget_fraction": 0.6043934115277767,
+      "ended_by": "completed",
+      "variables": 11174,
+      "clauses": 151192,
+      "cnf_sha256": "06160506d39f0a4b139ec41042b659e1a9b48a199c6353eac915b48f18bedb6c",
+      "solver_children_maxrss": 400867328,
+      "task": "lutz1_mono",
+      "target": "S6 (10,3)",
+      "cube": null,
+      "map": "lutz1",
+      "solver_opts": [
+        "--sat"
+      ],
+      "unit": "experiments/E-261116-02-s6-10-3-cube-pilot/results/run/0/attempt_1794823579373845000",
+      "total_seconds": 2175.974503749996
+    },
+    "record_file": "experiments/E-261116-02-s6-10-3-cube-pilot/results/run/0/results.jsonl"
+  },
+  {
+    "row": {
+      "status": "UNSAT-SOLVER",
+      "seconds": 2525.5593849169964,
+      "budget_seconds": 3600,
+      "budget_fraction": 0.7015442735880545,
+      "ended_by": "completed",
+      "variables": 11174,
+      "clauses": 151192,
+      "cnf_sha256": "ef9de7ca9b5fbf363c4c69a7fef112103764820beb4f194d1f4386fbedcce368",
+      "solver_children_maxrss": 515014656,
+      "task": "lutz2_mono",
+      "target": "S6 (10,3)",
+      "cube": null,
+      "map": "lutz2",
+      "solver_opts": [
+        "--sat"
+      ],
+      "unit": "experiments/E-261116-02-s6-10-3-cube-pilot/results/run/1/attempt_1794823579374257000",
+      "total_seconds": 2525.7280148749996
+    },
+    "record_file": "experiments/E-261116-02-s6-10-3-cube-pilot/results/run/1/results.jsonl"
+  }
+]

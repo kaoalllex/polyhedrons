@@ -1,0 +1,142 @@
+{
+  "target": "S6 (10,3)",
+  "case": [
+    10,
+    3
+  ],
+  "census_file": "experiments/E-261110-02-face-minimal-10-3-decision/maps/maps_10_3.json",
+  "controls_file": "experiments/E-261116-02-s6-10-3-cube-pilot/results/prep/summary.json",
+  "truncate_to_budget": true,
+  "full_cap": true,
+  "stop_on_sat": true,
+  "solver_opts": [
+    "--sat"
+  ],
+  "inputs_sha256": {
+    "experiments/E-261116-05-s6-10-3-sat-night/run.sh": "f0768ec0bd5e4c5637f6a1648b8ab1d0f2e72dc01ca2c8f2504e9a121fe94333",
+    "experiments/E-261116-05-s6-10-3-sat-night/reused.json": "94950ef296cbb4c0699732fb8af6d996b406a828fc63489bd5d23fcc6280bdc8",
+    "code/omsat.py": "22e12166bb0a8fce0470031dd819bce1c96a131edb01fcfcd95c1aad102dd8fc",
+    "experiments/E-261103-03-s5-exact-decision-8-2-9-3/pilot.py": "7f6f90a56146cd86e6e208ac1b13b3b99e79309dc3c85cf8de3fa958d2802984",
+    "experiments/E-261103-03-s5-exact-decision-8-2-9-3/tranche.py": "d0de5059acb2e9c0b34ffd2eafaddf2c699816a7e5424fa0411e788715b25450",
+    "experiments/E-261110-06-s5-10-4-strata-ab-remainder/run.py": "535ac332e5f86d22e06edde0aa48b84f9f5734fb69e04301b606a3eb72875587",
+    "experiments/E-261110-06-s5-10-4-strata-ab-remainder/prep.py": "0c6c0d1f3e014e64423889f18d6cc45a73987982762587779879fa08879041a8",
+    "experiments/E-261114-01-normalised-s6-10-3/controls.py": "231226a848facbe3a5fb9fc3e0f8169f84f19eeae0f36aab35a6e9f27bb4a499",
+    "experiments/E-261110-02-face-minimal-10-3-decision/maps/maps_10_3.json": "d7a1d18ff54c52fe1b335dfd2041cf8c62e6131a494bc8e3d5086d89603e8f5b",
+    "experiments/E-261116-02-s6-10-3-cube-pilot/results/run-audit.json": "fb6b23b49bee0be82a690e057e04e2f1b83d4a628e09d3067973de3046d6bf31",
+    "experiments/E-261116-02-s6-10-3-cube-pilot/results/prep/summary.json": "a76ec013b409f42f34a9e52e0671bf7d9ec792bc7d76148352df16b567f68166",
+    "experiments/E-261116-02-s6-10-3-cube-pilot/results/sat-config/result.json": "69617852117cde2412235e96d5983f928910caa6bb7084071a81b39e624bb47f",
+    "experiments/E-261116-02-s6-10-3-cube-pilot/results/sat-config/control739.model.json": "126ff0c34ca8a5e2ff321126f6bfd36b79c65290f1091b5a4b444fdd7dc8ecbe",
+    "experiments/E-261116-02-s6-10-3-cube-pilot/results/run/0/results.jsonl": "f620c74c07a8ca9e64c2abbaa260b6e1f995e6f96dc2d667e52a0193770d0e74",
+    "experiments/E-261116-02-s6-10-3-cube-pilot/results/run/1/results.jsonl": "925b583b61ad5d71360e3e000f0e005dc0d5c5333a5a30cc82fc7bd9d0e2ee6c"
+  },
+  "maps": [
+    {
+      "index": 2,
+      "lutz": 3,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 3,
+      "lutz": 4,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 4,
+      "lutz": 5,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 5,
+      "lutz": 6,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 6,
+      "lutz": 7,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 7,
+      "lutz": 8,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 8,
+      "lutz": 9,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 9,
+      "lutz": 10,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 10,
+      "lutz": 11,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 11,
+      "lutz": 12,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 12,
+      "lutz": 13,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 13,
+      "lutz": 14,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 14,
+      "lutz": 15,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 15,
+      "lutz": 16,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 16,
+      "lutz": 17,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 17,
+      "lutz": 18,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 18,
+      "lutz": 19,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    },
+    {
+      "index": 19,
+      "lutz": 20,
+      "pattern": "single adjacency",
+      "solver_cap": 13800
+    }
+  ]
+}
