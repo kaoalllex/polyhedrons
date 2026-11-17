@@ -73,3 +73,15 @@ and its decision tree, Appendix A1). Supersedes the 16b ladder (not run).
   row done (or parked with the cause) and the tree's next step.
 
 ## Amendments
+
+### 2026-11-17: stage A passed, pilot recorded; no change
+
+* Stage A (`results/controls/`, 39 s wall on eight processes): all PASS. L0 240/240 K13 verdicts matched (17 OPTIMAL
+  and `EMBEDDED`); Roest-Vigh, Mizhaev, perturbed Szilassi OPTIMAL and `EMBEDDED`; raw Szilassi OUT-OF-DOMAIN; both
+  negatives INFEASIBLE; gauge reachability: Roest-Vigh and Mizhaev both land in cube 5, OPTIMAL. L1 (7, 21) OPTIMAL
+  in 8 s, GP-valid, K7 map; its bridge (hinge, 0.8 s) realized it and `--all-pairs` passed (a recovery, not new).
+* Pilot (`results/pilot/0/`, shard 0 at 60 s per unit, 0.08 core-h): five units ((8, 30) c00, c10; (9, 39) c04,
+  c14; L3 c08), build 0.3-0.9 s, every unit UNKNOWN at its 60 s cap; no model, so no bridge time.
+* Gate: the binding limit is the per-unit cap, as intended; P2-P5 all keep a real chance of failing; every outcome
+  is tied to a decision. Stage B runs as registered (caps 225 / 450 / 560 s); units ending at the cap are budget
+  stops, not results.
