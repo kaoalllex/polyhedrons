@@ -2,12 +2,12 @@
 id: E-261117-03
 title: Patchwork chirotopes probe - certificate test C0, coverage of the controls C1, Szilassi's map formula with P4 C2
 date: 2026-11-17
-status: planned
+status: running
 direction: [DR19]
 origin: [I-261029-10, E-261113-02, E-261114-02]
 tests: []
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned, explore, jump 0. Scores T D F G R: 1 2 1 2 2 | budget: one session, <= 1 core-h; the sampler <= 6 core-h

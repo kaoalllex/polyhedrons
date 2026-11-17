@@ -1672,7 +1672,7 @@ window.GRAPH = {
    "id": "E-261117-03",
    "kind": "experiment",
    "title": "Patchwork chirotopes probe - certificate test C0, coverage of the controls C1, Szilassi's map formula with P4 C2",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-17",
    "concluded": "",
    "path": "experiments/E-261117-03-patchwork-chirotope-probe/README.md",
@@ -1680,7 +1680,7 @@ window.GRAPH = {
     "DR19"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
