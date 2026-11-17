@@ -1672,16 +1672,16 @@ window.GRAPH = {
    "id": "E-261117-03",
    "kind": "experiment",
    "title": "Patchwork chirotopes probe - certificate test C0, coverage of the controls C1, Szilassi's map formula with P4 C2",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-17",
-   "concluded": "",
+   "concluded": "2026-11-17",
    "path": "experiments/E-261117-03-patchwork-chirotope-probe/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "OPEN at seven faces (Szilassi patchwork at K = 32, C2 S5 by construction); UNDERPOWERED@0.87 core-h at n >= 9",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction: OPEN at seven faces, UNDERPOWERED@0.87 core-h at nine and more elements: realization by construction works end to end on Szilassi's map, but this CP-SAT encoding does not decide the nine-element controls in 90 s and cannot find a planted n = 11 control in 120 s. Not parked: C2 is SAT, so the kill \"C2 UNSAT-SOLVER in the box\" did not fire."
   },
   {
    "id": "E-261117-04",

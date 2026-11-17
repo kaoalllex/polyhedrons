@@ -2,7 +2,9 @@
 id: E-261117-03
 title: Patchwork chirotopes probe - certificate test C0, coverage of the controls C1, Szilassi's map formula with P4 C2
 date: 2026-11-17
-status: running
+status: done
+concluded: 2026-11-17
+verdict: OPEN at seven faces (Szilassi patchwork at K = 32, C2 S5 by construction); UNDERPOWERED@0.87 core-h at n >= 9
 direction: [DR19]
 origin: [I-261029-10, E-261113-02, E-261114-02]
 tests: []
@@ -27,3 +29,9 @@ variants; these objects are C1 controls. C0: the potentials certificate (factor 
 uniquely optimal matrices. C1: Szilassi (perturbed), Roest-Vigh, Mizhaev, the 17 K13 solids, the 16 (10, 2)
 objects; coverage per K. C2: Szilassi's map formula AND P4. Kill: no control in the box K parks that box; C2
 UNSAT-SOLVER in the box. A finite K never refutes membership; "realized, not verifier-conditioned" is not a result.
+
+## Results
+
+Step 0: the 16 S6 (10, 2) files passed `candidate-check` (13 maps, `witnesses/s6_10_2_controls/`). C0 passed. Amended
+run (K = 32, n <= 9): Szilassi's chirotope is patchwork; C2 realized Szilassi's map by construction (S5 PASS);
+Roest-Vigh, Mizhaev and K13 UNKNOWN at 90 s. Details: `CONCLUSION.md`.

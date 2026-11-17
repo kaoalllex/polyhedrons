@@ -3,7 +3,7 @@
 **Focus since 2026-11-17** (`STRATEGY.md`, owner-approved `reviews/dialogue-2026-11-16-strategy.md`): nine mutually
 adjacent faces (S1, genus free) first; front checks N1 (Cayley census, E-261117-01) and N2 (plane-only symmetry in a
 moved chart, E-261117-02); P3 v2, the census-free formula, the main investment (E-261116-07; no model, parked, STATUS 3aw); the P4 patchwork probe
-(E-261117-03); one C3 night (E-261110-04 amended). (11, 5) only through N2, as a new registration (E-261116-06
+(E-261117-03; Szilassi's chirotope patchwork at K = 32 and Szilassi's map realized by construction, nine elements out of reach, STATUS 3ax); one C3 night (E-261110-04 amended). (11, 5) only through N2, as a new registration (E-261116-06
 withdrawn). S6 parked after (10, 3) (all 20 normalised formulas UNSAT-SOLVER), its replay priced for paper item D3
 (E-261116-08); one lemma session (E-261116-09). (10, 4): all 1117 admissible maps UNSAT-SOLVER, replay parked
 (I-261116-02). The S0 price probe is withdrawn. The significance filter excludes (11, 3); S6 (10,2) is a control, not a headline. The note is deferred.
@@ -131,6 +131,8 @@ Withdrawn from the 16b plan: E-261116-06 (free-action domain empty), the E-26111
      `witnesses/verify_s6_10_2.py`), then one witness per distinct accepted map, the rest archived as variants; they are
      also C1 controls. Then C0 (certificate vs all 24 costs), C1 (coverage of the controls per K), C2 (Szilassi's map
      formula AND P4). 1 session, <= 1 core-h; the sampler <= 6 core-h only after C1 passes.
+   * Done 2026-11-17 (amended to K = 32, n <= 9): C1 covers Szilassi only (1 of 20), C2 realizes Szilassi's map by
+     construction; nine-element controls UNKNOWN at 90 s; OPEN at seven faces, UNDERPOWERED@0.87 core-h (STATUS 3ax).
    * Kill: no control in the box K -> park that box; C2 UNSAT-SOLVER in the box -> park the probe at that K.
    * Follow-up: C1 shows the known objects patchwork at small K -> invert the P3 / P4 build split (lead); a sampler
      hit -> exact recompute, `--all-pairs`, `candidate-check`.
@@ -161,7 +163,7 @@ genus directly).
 | [E-261117-01](experiments/E-261117-01-cayley-census-9-4/) | done 2026-11-17: NO-ADMISSIBLE-CAYLEY-9-4 (STATUS 3au) | H-261101-07 | **Exploit, J 2.** N1: face-transitive cubic maps, order-8 rung at (8, 3), then Z9 and Z3 x Z3 at (9, 4), each map by the plain and free-C3 formulas | 2 2 2 1 2 | 1 session, <= 1 core-h joint cap, 10 shards | Roest-Vigh's map missing (bug), all maps recorded, first verified candidate or cap |
 | [E-261117-02](experiments/E-261117-02-moved-chart-plane-symmetry/) | done 2026-11-17: GATE PASSED (STATUS 3av) | - | **Explore, gate.** N2: plane-only symmetry in a moved chart; Szilassi control chain, then the seven-plane C2 3 x 2 + 1 rung | 2 2 2 2 2 | 1 session, <= 1 core-h | failed control (cause told apart), rung recovered or cap |
 | [E-261116-07](experiments/E-261116-07-census-free-s1-ladder/) | done 2026-11-17: UNDERPOWERED@5.5 core-h, no model, parked (STATUS 3aw) | H-261101-07 | **Explore, J 2.** P3 v2: census-free formula with validity-gated cells and eager connectivity; unit tests, L0-L3, bridge gate at eight faces | 2 2 1 2 2 | 2 sessions, <= 6 core-h, 10 shards | decision tree of the week item; first verified candidate or cap |
-| [E-261117-03](experiments/E-261117-03-patchwork-chirotope-probe/) | running (week item 4) | - | **Explore.** P4: step 0 candidate-check of the 16 S6 (10, 2) files; C0 certificate, C1 control coverage per K, C2 Szilassi's map formula AND P4 | 1 2 1 2 2 | 1 session, <= 1 core-h; sampler <= 6 core-h gated | no control in the box, C2 UNSAT-SOLVER in the box, or cap |
+| [E-261117-03](experiments/E-261117-03-patchwork-chirotope-probe/) | done 2026-11-17: Szilassi patchwork at K = 32, C2 S5 by construction; n >= 9 UNDERPOWERED@0.87 core-h (STATUS 3ax) | - | **Explore.** P4: step 0 candidate-check of the 16 S6 (10, 2) files; C0 certificate, C1 control coverage per K, C2 Szilassi's map formula AND P4 | 1 2 1 2 2 | 1 session, <= 1 core-h; sampler <= 6 core-h gated | no control in the box, C2 UNSAT-SOLVER in the box, or cap |
 | [E-261110-04](experiments/E-261110-04-genus-free-9-10-faces-sweep/) | planned (amended 2026-11-17; week item 5) | - | **Explore, J 2.** Owner-approved night: C3 3+3+3 at nine planes, E in {45, 51}; C2 4 x 2 + 1 arm (E-261117-02 passed); geometric-box arm | 1 2 1 1 2 | one owner night <= 80 core-h, 10 shards | first verified candidate, failed control or cap; zero verified hits parks that distribution and cap |
 | [E-261117-04](experiments/E-261117-04-equivelar-price-pilot/) | planned (queue) | H-261101-07 | **Explore.** P6 price pilot: equivelar slice, stage A at (8, 3), costs per stage | 1 2 1 1 2 | 1 session, 1 core-h; no night before a price | control map absent, pinned control UNSAT or cap |
 | [E-261116-08](experiments/E-261116-08-s6-10-3-replay-pricing/) | planned (queue; unchanged, proofs approved for paper item D3) | H-261110-03 | **Audit.** Proof size, check time and memory on two of the twenty S6 (10, 3) CNFs; gate of a one-night replay | 1 2 2 1 2 | 1 session, <= 2 core-h | both CNFs priced or a hash mismatch |

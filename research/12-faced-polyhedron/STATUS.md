@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
 As of **2026-11-17** (owner's approval of the dialogue synthesis `reviews/dialogue-2026-11-16-strategy.md`). The latest
-registered result is E-261116-07 (section 3aw); results are listed newest last in section 3, chronology in
+registered result is E-261117-03 (section 3ax); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -16,7 +16,7 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 
 **Focus since 2026-11-17 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
 mutually adjacent faces (S1, genus free) first, with front checks N1 (Cayley census, E-261117-01) and N2 (moved chart,
-E-261117-02), P3 v2 the main investment (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03) and one C3 night (E-261110-04);
+E-261117-02), P3 v2 the main investment (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04);
 (11, 5) only through N2, as a new registration (E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
 UNSAT-SOLVER, section 3as), its replay priced for the paper (E-261116-08); S5 (10, 4) all admissible maps UNSAT-SOLVER
 (sections 3ad, 3ao); the S0 price probe withdrawn. Run so far: ninth-plane Stage A (no candidate,
@@ -482,6 +482,16 @@ negatives INFEASIBLE, both known (8, 3) chirotopes reachable in the gauge, cube 
 known objects included: no UNSAT-SOLVER, no model, gate not passed (NUMERICAL, this host and caps). No claim on
 (8, 3) or (9, 4) existence; STATUS 3d untouched. Method parked, not refuted; a rerun must change the search.
 5.66 core-h. Counts: `experiments/E-261116-07-census-free-s1-ladder/CONCLUSION.md`.
+
+## 3ax. E-261117-03 P4 patchwork chirotopes, C0-C2 (2026-11-17)
+
+**OPEN AT SEVEN FACES, UNDERPOWERED AT NINE ELEMENTS (0.87 core-h)**: the per-minor matching certificate (potentials
+scaled by 4) agrees with brute force on 74,536 4 x 4 matrices (NUMERICAL; completeness PROVED-1). Amended to one box
+K = 32 and n <= 9: perturbed Szilassi's chirotope is coherent patchwork (EXACT, instance), and Szilassi's map formula
+AND P4 returns in 69 s a chirotope whose patchwork matrix, at t = 1/3 and charted to integers, passes `--target S5`
+(EXACT; the known Szilassi type, realized by construction without a bridge). Roest-Vigh, Mizhaev and the 17 K13 solids
+UNKNOWN at 90 s; the 16 S6 (10, 2) controls (committed after `candidate-check`, `witnesses/s6_10_2_controls/`) and
+K < 32 not run. No non-membership claim. Counts: `experiments/E-261117-03-patchwork-chirotope-probe/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 
