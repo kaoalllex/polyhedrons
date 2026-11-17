@@ -2,12 +2,12 @@
 id: E-261117-02
 title: Plane-only symmetry in a moved chart - Szilassi control chain, then the seven-plane C2 3 x 2 + 1 rung
 date: 2026-11-17
-status: planned
+status: running
 direction: [DR18, DR12]
 origin: [I-261117-02, I-261113-04, E-261103-02]
 tests: []
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned, explore, jump 0 (a gate of the C2 4 x 2 + 1 arm). Scores T D F G R: 2 2 2 2 2 | budget: one session,

@@ -532,7 +532,7 @@ class Predicates:
 # ----------------------------------------------------------------------------- instance
 
 DEFAULT_OPTS = dict(gp=True, triples=True, inconsist=False, reflex=False, reflexconsist=False,
-                    poc=False, symbreak=False, mirror=False, no_segment_disjoint=False)
+                    poc=False, symbreak=False, mirror=False, no_segment_disjoint=False, sym_planes_only=False)
 
 
 def build(B, T, opts=None, sym=None):
@@ -549,6 +549,8 @@ def build(B, T, opts=None, sym=None):
       symbreak      reorientation normalisation chi(0,1,k,INF)=chi(0,2,3,INF)=chi(1,2,3,INF)=+1
       mirror        chi(0,1,2,3) = +1  (only together with symbreak)
       no_segment_disjoint  drop SEGMENT_DISJOINT under triples (a relaxation, E-261110-05 V2)
+      sym_planes_only      symmetry clauses only on quadruples of planes; INF is a generic plane of a chart
+                           that the symmetry does not fix (E-261117-02)
     sym: optional list of (perm, detsign) - chi(perm(S)) = detsign * chi(S) for all S
     """
     o = dict(DEFAULT_OPTS)
@@ -616,7 +618,7 @@ def build(B, T, opts=None, sym=None):
                 X, Y = pair
                 assert {frozenset(perm[z] for z in s) for s in segs} == {
                     frozenset(s) for s in T.segments(perm[X], perm[Y])}, 'symmetry changes segment pairing'
-            for S in itertools.combinations(range(n + 1), 4):
+            for S in itertools.combinations(range(n if o['sym_planes_only'] else n + 1), 4):
                 img = tuple(perm[e] if e < n else INF for e in S)
                 a = B.chi_neg(S)
                 b = B.chi_neg(img)

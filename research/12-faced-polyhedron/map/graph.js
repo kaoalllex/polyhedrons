@@ -1656,7 +1656,7 @@ window.GRAPH = {
    "id": "E-261117-02",
    "kind": "experiment",
    "title": "Plane-only symmetry in a moved chart - Szilassi control chain, then the seven-plane C2 3 x 2 + 1 rung",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-17",
    "concluded": "",
    "path": "experiments/E-261117-02-moved-chart-plane-symmetry/README.md",
@@ -1665,7 +1665,7 @@ window.GRAPH = {
     "DR12"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
