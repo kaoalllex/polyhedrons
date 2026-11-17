@@ -257,13 +257,13 @@ def c0_chunk(args):
     elif kind == 'random':
         mats = ([[rng.randint(0, K) for _ in range(4)] for _ in range(4)] for _ in range(count))
     else:                                                       # planted ties: two matchings forced equal
-        def tied():
+        def tied_matrix():
             while True:
                 W = [[rng.randint(0, K) for _ in range(4)] for _ in range(4)]
                 c = brute(W, (0, 1, 2, 3))
                 if c[0][0] == c[1][0]:
                     return W
-        mats = (tied() for _ in range(count))
+        mats = (tied_matrix() for _ in range(count))
     unique = tied = bad = 0
     examples = []
     for W in mats:

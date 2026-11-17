@@ -66,3 +66,16 @@ Step 0 is done (commit `d4191846`: the 16 S6 (10, 2) files passed `candidate-che
   I-261029-10 gets the measurement.
 
 ## Amendments
+
+### 2026-11-17, pilot (`results/pilot/`, caps 3 s / 10 s, wall 110 s, ~0.25 core-h)
+
+* First pilot attempt crashed in C0 (a local name shadowed the tie generator; fixed in `p4.py`, no output kept).
+* C0 PASS: 18,934 unique and 55,602 tied matrices, 0 disagreements, embedded 2 x 2 case certified; 8 s.
+* C1: every unit UNKNOWN at 3 s, including both planted controls; the GP-flip negative was not SAT; no model, so no
+  exact check was exercised. Capacity (no signs): n = 8 SAT for K >= 4 (K = 2 UNKNOWN); n = 9 and 11 UNKNOWN at
+  every K. C2: UNKNOWN at every K in 10 s.
+* Development probes after the pilot (planted controls alone, K = 32 box): n = 8 (K 21) OPTIMAL in 57.9 s with one
+  worker (17.7 s with eight workers at K = 24); n = 11 (K 30) UNKNOWN at 120 s with one worker. About 0.09 core-h.
+* Reading: the registered 12 s cap cannot pass the planted positive control even at n = 8, and n = 11 (the 16
+  (10, 2) controls) is out of reach of this encoding within the session budget. The session run is not started;
+  escalated to the owner (about 0.34 core-h of the 1 core-h used).
