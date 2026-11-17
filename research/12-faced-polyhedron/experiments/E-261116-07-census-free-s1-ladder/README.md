@@ -2,12 +2,12 @@
 id: E-261116-07
 title: Census-free S1 formula v2 - one OM-SAT instance per (F, E) with validity-gated cells, eager connectivity, ladder L0-L3 and a bridge gate
 date: 2026-11-16
-status: planned
+status: running
 direction: [DR19, DR7, DR18]
 origin: [I-261103-02]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > **Amended 2026-11-17 to specification v2** (owner; `reviews/dialogue-2026-11-16-strategy.md` §2 row 3, §4, Appendix A1), week item 3, the main

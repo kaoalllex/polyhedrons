@@ -1592,7 +1592,7 @@ window.GRAPH = {
    "id": "E-261116-07",
    "kind": "experiment",
    "title": "Census-free S1 formula v2 - one OM-SAT instance per (F, E) with validity-gated cells, eager connectivity, ladder L0-L3 and a bridge gate",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-16",
    "concluded": "",
    "path": "experiments/E-261116-07-census-free-s1-ladder/README.md",
@@ -1602,7 +1602,7 @@ window.GRAPH = {
     "DR18"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
