@@ -88,3 +88,9 @@ instance solver answers do not exclude geometric realizations. Status and creden
 E-261116-01 (CONCLUSION / STATUS 3aq) completes the registered formula sample, with no SAT or candidate.
 NUMERICAL, instance scope: censored costs close the full-sweep gate; only I-261116-04 remains for this target.
 No geometric exclusion or measured discovery power; hypothesis status and credence remain unchanged.
+
+## 2026-11-17 census-free formula
+
+E-261116-07 (CONCLUSION / STATUS 3aw): the census-free formula decided (7, 21) but produced no model and no decision at
+(8, 30), (9, 39) or (8, 36) within 5.5 core-h (UNKNOWN at every cap). A budget stop: no geometric exclusion, no new
+object; status and credence remain unchanged.

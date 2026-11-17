@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
 As of **2026-11-17** (owner's approval of the dialogue synthesis `reviews/dialogue-2026-11-16-strategy.md`). The latest
-registered result is E-261117-02 (section 3av); results are listed newest last in section 3, chronology in
+registered result is E-261116-07 (section 3aw); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -16,7 +16,7 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 
 **Focus since 2026-11-17 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
 mutually adjacent faces (S1, genus free) first, with front checks N1 (Cayley census, E-261117-01) and N2 (moved chart,
-E-261117-02), P3 v2 the main investment (E-261116-07), the P4 probe (E-261117-03) and one C3 night (E-261110-04);
+E-261117-02), P3 v2 the main investment (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03) and one C3 night (E-261110-04);
 (11, 5) only through N2, as a new registration (E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
 UNSAT-SOLVER, section 3as), its replay priced for the paper (E-261116-08); S5 (10, 4) all admissible maps UNSAT-SOLVER
 (sections 3ad, 3ao); the S0 price probe withdrawn. Run so far: ninth-plane Stage A (no candidate,
@@ -471,6 +471,17 @@ Szilassi). Rung: C2 3 x 2 + 1 finds the Szilassi type in 37 of 13495 draws, the 
 (NUMERICAL, box [-8, 8], cap 10 s, E = 21; 40 recoveries EXACT, no new object). Not measured: nine planes,
 plane-only formulas at 12 elements ((11, 5) stays priced out), the perturbation step. Item 5's C2 4 x 2 + 1 arm is
 open. 0.94 core-h. Counts: `experiments/E-261117-02-moved-chart-plane-symmetry/CONCLUSION.md`.
+
+## 3aw. E-261116-07 Census-free formula P3 v2, ladder L0-L3 (2026-11-17)
+
+**NO MODEL, BUDGET STOP (UNDERPOWERED@5.5 core-h)**: the census-free CP-SAT formula (uniform, cubic, one disk face
+per plane) passed every stage-A control (L0 240/240 K13 verdicts, Roest-Vigh, Mizhaev and perturbed Szilassi EXACT,
+negatives INFEASIBLE, both known (8, 3) chirotopes reachable in the gauge, cube 5) and decided (7, 21) unpinned in
+8 s, realized to the Szilassi type with `--all-pairs` PASS (EXACT, a recovery). Stage B: all 16 cubes of (8, 30), of
+(9, 39) and of (8, 36) ended UNKNOWN at their caps (225 / 450 / 560 s, one seed, one worker), cube 5 with the two
+known objects included: no UNSAT-SOLVER, no model, gate not passed (NUMERICAL, this host and caps). No claim on
+(8, 3) or (9, 4) existence; STATUS 3d untouched. Method parked, not refuted; a rerun must change the search.
+5.66 core-h. Counts: `experiments/E-261116-07-census-free-s1-ladder/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

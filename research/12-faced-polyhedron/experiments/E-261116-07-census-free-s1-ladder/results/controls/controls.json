@@ -1,0 +1,177 @@
+{
+ "PASS": true,
+ "checks": {
+  "L0_k13": {
+   "units": 240,
+   "matched": 240,
+   "mismatched": []
+  },
+  "L0_roest_vigh": true,
+  "L0_mizhaev": true,
+  "L0_szilassi_perturbed": true,
+  "L0_szilassi_raw_rejected": true,
+  "neg_tetra_e7": true,
+  "neg_rv_flipped_sign": {
+   "quad": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "status": "INFEASIBLE",
+   "PASS": true
+  },
+  "gauge_roest_vigh": {
+   "cube": 5,
+   "status": "OPTIMAL",
+   "EMBEDDED": true,
+   "PASS": true
+  },
+  "gauge_mizhaev": {
+   "cube": 5,
+   "status": "OPTIMAL",
+   "EMBEDDED": true,
+   "PASS": true
+  },
+  "L1": {
+   "status": "OPTIMAL",
+   "seconds": 7.981,
+   "gp_ok": true,
+   "decode_ok": true,
+   "decode_reason": "",
+   "links": {
+    "0": [
+     1,
+     6,
+     2,
+     5,
+     4,
+     3
+    ],
+    "1": [
+     0,
+     6,
+     4,
+     2,
+     5,
+     3
+    ],
+    "2": [
+     0,
+     6,
+     3,
+     4,
+     1,
+     5
+    ],
+    "3": [
+     0,
+     4,
+     2,
+     6,
+     5,
+     1
+    ],
+    "4": [
+     0,
+     5,
+     6,
+     1,
+     2,
+     3
+    ],
+    "5": [
+     0,
+     4,
+     6,
+     3,
+     1,
+     2
+    ],
+    "6": [
+     0,
+     2,
+     3,
+     5,
+     4,
+     1
+    ]
+   },
+   "szilassi_map": true,
+   "bridge": {
+    "processing": {
+     "hinge": {
+      "wrong_signs": 0,
+      "signs_match": true,
+      "geometry": {
+       "corner_triples_distinct": true,
+       "all_pairs_adjacent": true,
+       "V_E_F_chi": [
+        14,
+        21,
+        7,
+        0
+       ],
+       "points_distinct": true,
+       "simple_faces": 7,
+       "nonsimple_faces": [],
+       "edges_consistent": true,
+       "bad_pairs": [],
+       "EMBEDDED": true
+      },
+      "planes": [
+       [
+        425972715,
+        428904940,
+        746930461,
+        -276645003
+       ],
+       [
+        -596255901,
+        -581767321,
+        552891630,
+        -16111488
+       ],
+       [
+        -529525161,
+        545850490,
+        487644532,
+        428777524
+       ],
+       [
+        672299183,
+        -553323404,
+        -27446215,
+        -490987007
+       ],
+       [
+        250921677,
+        -184899643,
+        -648641026,
+        694339855
+       ],
+       [
+        -518773053,
+        -367923010,
+        -180167338,
+        750326201
+       ],
+       [
+        -271760409,
+        -777494830,
+        174334530,
+        539667292
+       ]
+      ],
+      "seconds": 0.7530741250011488,
+      "budget_seconds": 90,
+      "ended_by": "completed"
+     }
+    },
+    "candidate": "L1.candidate.json",
+    "all_pairs_rc": 0,
+    "status_note": "REALIZED-ALL-PAIRS-PASS"
+   }
+  }
+ }
+}

@@ -1051,3 +1051,7 @@ six classes at (8, 3) with Roest-Vigh's; controls K7, K12, Roest-Vigh passed; no
 2026-11-17 — E-261117-02 (N2 moved chart): gate passed; Szilassi control chain and negatives passed, `symbreak` is the
 wrong gauge with symmetry clauses (orbit gauge is right); C2 3 x 2 + 1 recovers the Szilassi type in 37 / 13495
 draws, asymmetric baseline 3 / 13490; 0.94 core-h. See `experiments/E-261117-02-moved-chart-plane-symmetry/CONCLUSION.md`.
+
+2026-11-17 — E-261116-07 (P3 v2 census-free formula): stage A passed, L1 (7, 21) OPTIMAL in 8 s and realized; stage B
+48/48 cubes UNKNOWN at caps 225 / 450 / 560 s, no model (also in the cube with Roest-Vigh and Mizhaev); gate not
+passed, method parked; 5.66 core-h. See `experiments/E-261116-07-census-free-s1-ladder/CONCLUSION.md`.

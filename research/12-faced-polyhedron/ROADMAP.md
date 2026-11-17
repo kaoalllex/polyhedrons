@@ -2,7 +2,7 @@
 
 **Focus since 2026-11-17** (`STRATEGY.md`, owner-approved `reviews/dialogue-2026-11-16-strategy.md`): nine mutually
 adjacent faces (S1, genus free) first; front checks N1 (Cayley census, E-261117-01) and N2 (plane-only symmetry in a
-moved chart, E-261117-02); P3 v2, the census-free formula, the main investment (E-261116-07); the P4 patchwork probe
+moved chart, E-261117-02); P3 v2, the census-free formula, the main investment (E-261116-07; no model, parked, STATUS 3aw); the P4 patchwork probe
 (E-261117-03); one C3 night (E-261110-04 amended). (11, 5) only through N2, as a new registration (E-261116-06
 withdrawn). S6 parked after (10, 3) (all 20 normalised formulas UNSAT-SOLVER), its replay priced for paper item D3
 (E-261116-08); one lemma session (E-261116-09). (10, 4): all 1117 admissible maps UNSAT-SOLVER, replay parked
@@ -116,7 +116,7 @@ Withdrawn from the 16b plan: E-261116-06 (free-action domain empty), the E-26111
    * Follow-up: pass -> the C2 4 x 2 + 1 arm joins item 5. (11, 5) Aut+ = 2 maps only as a new registration through the
      lead. No speed-up at 12 elements -> (11, 5) stays priced out.
    * Lab: Opus, high / Codex gpt-6-astra, high (a gauge and soundness question).
-3. **P3 v2, census-free formula** ([E-261116-07](experiments/E-261116-07-census-free-s1-ladder/) amended, explore, J 2 via its tree; I-261103-02; A1). The main investment.
+3. **P3 v2, census-free formula** ([E-261116-07](experiments/E-261116-07-census-free-s1-ladder/) amended, explore, J 2 via its tree; I-261103-02; A1). The main investment. Done 2026-11-17: no model, budget stop; gate not passed, method parked (STATUS 3aw).
    * Unit tests (pinch, annulus, disk + annulus, ends, face cycles), then L0 regression, L1 (7, 21) SAT, L2 (8, 30) and
      (9, 39) UNSAT-SOLVER, L3 (8, 36) unpinned with <= 30 distinct chirotopes. 2 sessions, <= 6 core-h (L0 0.5, L1-L2
      3, L3 2.5), 10 shards for L2-L3.
@@ -160,7 +160,7 @@ genus directly).
 |---|---|---|---|---|---|---|
 | [E-261117-01](experiments/E-261117-01-cayley-census-9-4/) | done 2026-11-17: NO-ADMISSIBLE-CAYLEY-9-4 (STATUS 3au) | H-261101-07 | **Exploit, J 2.** N1: face-transitive cubic maps, order-8 rung at (8, 3), then Z9 and Z3 x Z3 at (9, 4), each map by the plain and free-C3 formulas | 2 2 2 1 2 | 1 session, <= 1 core-h joint cap, 10 shards | Roest-Vigh's map missing (bug), all maps recorded, first verified candidate or cap |
 | [E-261117-02](experiments/E-261117-02-moved-chart-plane-symmetry/) | done 2026-11-17: GATE PASSED (STATUS 3av) | - | **Explore, gate.** N2: plane-only symmetry in a moved chart; Szilassi control chain, then the seven-plane C2 3 x 2 + 1 rung | 2 2 2 2 2 | 1 session, <= 1 core-h | failed control (cause told apart), rung recovered or cap |
-| [E-261116-07](experiments/E-261116-07-census-free-s1-ladder/) | running (amended 2026-11-17 to v2; week item 3; PLAN committed) | H-261101-07 | **Explore, J 2.** P3 v2: census-free formula with validity-gated cells and eager connectivity; unit tests, L0-L3, bridge gate at eight faces | 2 2 1 2 2 | 2 sessions, <= 6 core-h, 10 shards | decision tree of the week item; first verified candidate or cap |
+| [E-261116-07](experiments/E-261116-07-census-free-s1-ladder/) | done 2026-11-17: UNDERPOWERED@5.5 core-h, no model, parked (STATUS 3aw) | H-261101-07 | **Explore, J 2.** P3 v2: census-free formula with validity-gated cells and eager connectivity; unit tests, L0-L3, bridge gate at eight faces | 2 2 1 2 2 | 2 sessions, <= 6 core-h, 10 shards | decision tree of the week item; first verified candidate or cap |
 | [E-261117-03](experiments/E-261117-03-patchwork-chirotope-probe/) | planned (week item 4) | - | **Explore.** P4: step 0 candidate-check of the 16 S6 (10, 2) files; C0 certificate, C1 control coverage per K, C2 Szilassi's map formula AND P4 | 1 2 1 2 2 | 1 session, <= 1 core-h; sampler <= 6 core-h gated | no control in the box, C2 UNSAT-SOLVER in the box, or cap |
 | [E-261110-04](experiments/E-261110-04-genus-free-9-10-faces-sweep/) | planned (amended 2026-11-17; week item 5) | - | **Explore, J 2.** Owner-approved night: C3 3+3+3 at nine planes, E in {45, 51}; C2 4 x 2 + 1 arm (E-261117-02 passed); geometric-box arm | 1 2 1 1 2 | one owner night <= 80 core-h, 10 shards | first verified candidate, failed control or cap; zero verified hits parks that distribution and cap |
 | [E-261117-04](experiments/E-261117-04-equivelar-price-pilot/) | planned (queue) | H-261101-07 | **Explore.** P6 price pilot: equivelar slice, stage A at (8, 3), costs per stage | 1 2 1 1 2 | 1 session, 1 core-h; no night before a price | control map absent, pinned control UNSAT or cap |
@@ -292,6 +292,7 @@ result, so it scores D = 0 and does not pass the gate.
 | Near-miss repair (DR5) | all 1005 near-misses in the wrong Gauss class (FD11) | a near-miss in the right class |
 | Gauss clauses as a SAT speed-up (DR16) | no speed-up observed | - |
 | Asymmetric immersion instances without cubing (DR8) | 8/8 timeouts at 2.2 h | cube-and-conquer (E-261101-15) |
+| Census-free formula P3 v2 (DR19; E-261116-07) | (7, 21) in 8 s; 48/48 eight- and nine-face cubes UNKNOWN at 225-560 s, no model even in the cube holding Roest-Vigh and Mizhaev | a changed search measured first on that cube (solution hint or partial pinning, more workers, a longer cap) and its time to a model |
 
 ## Decision point
 

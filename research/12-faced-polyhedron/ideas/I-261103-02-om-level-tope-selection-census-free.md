@@ -42,3 +42,10 @@ formulas at 10 elements take seconds. Ladder (7, 1), (8, 2), (8, 3) before (9, 4
 ## 2026-11-17 dialogue
 
 `reviews/dialogue-2026-11-16-strategy.md` §2 row 3, Appendix A1: specification v2 replaces the 16b ladder (no tope-circuit block, both directions at infinity, validity bits, no-pinch, Euler and eager connectivity, the (9, 39) pricing rung, the bridge gate); marks 2 2 3 1 / 2 1 3 1. The main investment: week item 3, E-261116-07 amended (2 sessions, <= 6 core-h, decision tree of review §2). Proof obligations go to E-261116-09.
+
+## 2026-11-17 result
+
+E-261116-07 (CONCLUSION / STATUS 3aw): the seven-plane cheapest test passed (Szilassi's type unpinned in 8 s, realized);
+the eight-plane rung found no model in 16 cubes x 560 s, also in the cube that contains both known (8, 3) chirotopes.
+Parked (ROADMAP "Parked methods"), not refuted; status stays open. A rerun must change the search and measure its time
+to a model on that cube first.

@@ -2,13 +2,21 @@
 id: E-261116-07
 title: Census-free S1 formula v2 - one OM-SAT instance per (F, E) with validity-gated cells, eager connectivity, ladder L0-L3 and a bridge gate
 date: 2026-11-16
-status: running
+status: done
+concluded: 2026-11-17
+verdict: UNDERPOWERED@5.5 core-h (48/48 cubes UNKNOWN at caps 225/450/560 s; no model; method parked)
 direction: [DR19, DR7, DR18]
 origin: [I-261103-02]
 tests: [H-261101-07]
 produces: []
 preregistered: true
 ---
+
+> Concluded: no model, budget stop (UNDERPOWERED@5.5 core-h). Stage A passed (L0 240/240, controls, gauge
+> reachability, L1 (7, 21) OPTIMAL in 8 s and realized); stage B: all 48 cubes UNKNOWN at their caps, (8, 30) and
+> (9, 39) undecided, no (8, 36) model, also in the cube that holds Roest-Vigh and Mizhaev. Gate not passed; method
+> parked with the cause (no model reached at eight faces). Two unit tests failed at pre-registration (gauge in the
+> test helper), fixed in the test only. 5.66 core-h. Evidence: [CONCLUSION.md](CONCLUSION.md).
 
 > **Amended 2026-11-17 to specification v2** (owner; `reviews/dialogue-2026-11-16-strategy.md` §2 row 3, §4, Appendix A1), week item 3, the main
 > investment. Planned, explore, jump 2 via its tree. Scores T D F G R: 2 2 1 2 2 | budget: 2 sessions, <= 6 core-h

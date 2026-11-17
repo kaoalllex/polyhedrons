@@ -55,7 +55,7 @@ def ring_planes(extra, seed=3):
 def pinned(rows, solid_of, **kw):
     F = len(rows); chi = chirotope_from_planes(rows)
     cells = {T for T in all_cells(chi, F) if solid_of(T, rows)}
-    f = p3.Formula(F, chi=chi, all_pairs=False, **kw)
+    f = p3.Formula(F, chi=chi, all_pairs=False, gauge=False, **kw)   # fixture planes are not reoriented into the gauge
     for T in range(1 << F):
         f.model.Add(f.x[T] == (1 if T in cells else 0))
     return f, cells
