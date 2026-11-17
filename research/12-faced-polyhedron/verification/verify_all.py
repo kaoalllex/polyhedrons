@@ -3,6 +3,7 @@ certificates. Run it before claiming anything and in CI (.github/workflows/verif
 
 Usage: python3 verify_all.py [--quick]     (--quick skips the 94-record archive re-check)
 Exit status 0 iff every check gives its expected outcome."""
+import glob
 import os
 import re
 import subprocess
@@ -60,6 +61,17 @@ def lutz_import_reproduces():
     rung = run(['make_queue.py', '--check'], os.path.join(ROOT, 'experiments', 'E-261113-02-s6-10-2-calibration-rung'),
                'seeded_formulas.json sha256')  # E-261113-02: the (10, 2) list re-imported, 50 maps redrawn
     return same and queues[0] and rung[0], '%s; identical %s; %s; E-261113-02 %s' % (msg, same, queues[1], rung[0])
+
+
+def s6_10_2_controls():
+    """Every committed control (witnesses and variants) passes --target S6 and the independent rational checker."""
+    paths = sorted(glob.glob('s6_10_2_controls/**/*.json', root_dir=os.path.join(ROOT, 'witnesses'), recursive=True))
+    reps = [r for p in paths for r in verify_file(os.path.join(ROOT, 'witnesses', p), target='S6')]
+    s6 = len(reps) == 16 and all(r['PASS'] for r in reps)
+    independent, _ = run(['verify_s6_10_2.py'] + paths, os.path.join(ROOT, 'witnesses'),
+                         lambda out: out.count('"verdict": "ACCEPT"') == 16)
+    return s6 and independent, '%d file(s), S6 PASS %d, independent ACCEPT %s' % (
+        len(paths), sum(r['PASS'] for r in reps), independent)
 
 
 def s0_rejects_roest_vigh():
@@ -133,6 +145,8 @@ CHECKS = [
      lambda: (lambda embedded, independent: (embedded[0] and independent[0], independent[1]))(
          files(True, 'witnesses/s6_10_2_polished.json', genus=2),
          run(['verify_s6_10_2.py', 's6_10_2_polished.json'], os.path.join(ROOT, 'witnesses'), '"verdict": "ACCEPT"'))),
+    ('witness: 16 S6 (10,2) controls of E-261113-02 (13 maps), --target S6 and independent rational check',
+     s6_10_2_controls),
     ('negative control: --target S0 and S5 reject Roest-Vigh (doubled adjacencies; not maximal)', s0_rejects_roest_vigh),
     ('positive control: --target S5 accepts Szilassi (7 faces, genus 1, maximal)',
      lambda: (lambda r: (all(x['PASS'] for x in r), '%d record(s), S5 PASS %s' % (len(r), [x['PASS'] for x in r])))(
