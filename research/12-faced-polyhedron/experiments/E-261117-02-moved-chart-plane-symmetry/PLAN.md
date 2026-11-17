@@ -72,3 +72,13 @@ Pre-registration, 2026-11-17. Week item 2 (`ROADMAP.md`; dialogue 2026-11-16-str
   State concluded; item 5's C2 arm marked open or not by the gate.
 
 ## Amendments
+
+### 2026-11-17: stage A and pilot, N raised before stage B
+
+Stage A (`results/controls/`, commit eb2c2feb): every control PASS, as in development; `symbreak` is not reachable
+by an equivariant gauge and its unpinned plane-only formula is UNSAT-SOLVER, so the correct gauge here is
+`build_sym`'s (orbit flips, mirror). Pilot (`results/pilot/0/`, 61 s wall, one core): 288 units per arm, all
+decided (0 UNKNOWN, max 0.21 s), redraws c2 53, asym 13; c2 1 hit (verified), asym 0. The pilot gate holds, but the
+binding limit would be N, not the deadline (5000 per arm in about 105 s per shard). Amended: N = 15000 per arm
+(about 315 s per shard at the pilot cost), deadline 330 s and cap 10 s unchanged, still <= 0.92 core-h. Stage B
+recomputes the pilot's units in shard 0; the pilot counts are not added to the stage-B tally.

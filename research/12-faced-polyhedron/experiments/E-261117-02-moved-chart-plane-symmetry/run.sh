@@ -29,5 +29,5 @@ fi
 grep -q '"PASS": true' "$HERE/results/controls/controls.json" 2>/dev/null || { echo "stage A missing or failed" >&2; exit 2; }
 OUT="$HERE/results/$SHARD"; mkdir -p "$OUT"; provenance "$OUT"
 # N units per arm, per-unit CP-SAT cap CAP s, shard wall DEADLINE s (10 x 330 s < 1 core-h).
-nice -n 10 "$PYTHON" n2.py sample "$SHARD" "$SHARDS" "${N:-5000}" "${CAP:-10}" "${DEADLINE:-330}" "$OUT"
+nice -n 10 "$PYTHON" n2.py sample "$SHARD" "$SHARDS" "${N:-15000}" "${CAP:-10}" "${DEADLINE:-330}" "$OUT"
 echo "finished_utc: $(date -u +%FT%TZ)" >> "$OUT/manifest.txt"
