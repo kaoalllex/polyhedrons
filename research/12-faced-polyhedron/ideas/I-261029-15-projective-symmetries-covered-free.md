@@ -17,3 +17,7 @@ Write the paragraph into the proof task.
 
 ## Source
 ideas/cross-field-ideas.md Y9
+
+## 2026-11-17 dialogue
+
+`reviews/dialogue-2026-11-16-strategy.md` §3 (B1, found in R4): keep through N2, marks 2 2 3 2 / 2 2 3 1. Moving infinity removes the forced zero of a fixed-face half-turn (I-261117-02); test: week item 2, E-261117-02.

@@ -21,3 +21,7 @@ seven-plane arrangements (three pairs and a fixed plane) against the Gaussian ra
 (NUMERICAL, session check). Untested proposal; deferred, no slot in the week plan of 2026-11-13.
 
 Source: `reviews/strategy-review-2026-11-13.md` §6 (N5).
+
+## 2026-11-17 dialogue
+
+`reviews/dialogue-2026-11-16-strategy.md` §3 (B1, found in R4) and Appendix A4: keep, marks 2 2 3 2 / 2 2 3 1. A far plane as infinity makes the fixed-face half-turn uniform (I-261117-02). This idea's test is the N2 rung: week item 2, E-261117-02 (Szilassi control chain, then seven-plane 3 x 2 + 1); a pass adds the C2 4 x 2 + 1 arm to the week-5 night (E-261110-04).

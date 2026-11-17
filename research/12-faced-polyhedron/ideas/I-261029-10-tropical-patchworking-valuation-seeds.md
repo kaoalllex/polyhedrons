@@ -17,3 +17,7 @@ Sample integer valuation matrices; CP-SAT cost vs random (23-39).
 
 ## Source
 ideas/cross-field-ideas.md Y4
+
+## 2026-11-17 dialogue
+
+Owner's B2-Q1 (patchwork chirotopes), `reviews/dialogue-2026-11-16-strategy.md` §3: keep, marks V N L F 2 1 3 1 / 2 1 3 1 (lead / critic). Made exact as the P4 probe (coherent weight matrices, potentials certificate, Appendix A2): week item 4, experiment E-261117-03 (C0, C1, C2; sampler gated).

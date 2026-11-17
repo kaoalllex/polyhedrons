@@ -17,3 +17,7 @@ Bound w_X from the geometry of one 11-gon and check the sum.
 
 ## Source
 ideas/cross-field-ideas.md round 2a, X2
+
+## 2026-11-17 dialogue
+
+Owner's B3-Q1 (curvature beyond FD7), `reviews/dialogue-2026-11-16-strategy.md` §3: park, marks 3 0 1 3 / 2 0 1 2; the known route returns "saddles >= 2g + 1", whether a new curvature condition is independent is open. No next step this week.

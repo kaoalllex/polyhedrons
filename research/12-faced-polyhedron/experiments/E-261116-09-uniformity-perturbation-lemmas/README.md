@@ -16,6 +16,8 @@ preregistered: false
 
 Week item 5 (`ROADMAP.md`). (a) Uniform position is no loss for cubic embedded objects (I-261116-07). (b) The
 perturbation lemma I-261108-09 by its universal local check. Output: PROVED-1 text or a counterexample.
+Extended 2026-11-17 (`reviews/dialogue-2026-11-16-strategy.md` §2): (c) the equivariant perturbation step of N2 (E-261117-02); (d) the P3 proof
+obligations of E-261116-07 (finite-vertex coverage at OM level, the disk and manifold argument). Queue, not this week.
 
 ## Next
 

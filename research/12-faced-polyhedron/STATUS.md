@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-16** (owner's decisions on the lead review `reviews/strategy-review-2026-11-16b.md`). The latest
+As of **2026-11-17** (owner's approval of the dialogue synthesis `reviews/dialogue-2026-11-16-strategy.md`). The latest
 registered result is E-261116-04 (section 3at); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
@@ -9,14 +9,15 @@ At a glance (2026-11-16): S5 (8, 2), (9, 3) decided at formula scope (section 3d
 UNSAT-SOLVER (3ad, 3ao; planning only, replay parked); (11, 5) priced out for a full sweep (3aq). S6 (10, 3): all 20
 normalised formulas UNSAT-SOLVER (3ar, 3as), symmetric formulas too and the T family empty (3ag), no embedded polar chart
 (3at); planning only, no checked proof. Ninth-plane Stage A without a candidate (3ae), Stage B parked (3ak). The lead
-review's (8, 3) census size check (`reviews/strategy-review-2026-11-16b-census-8-3.json`) is a session check, not
-ledger evidence. S0 parked; the note deferred. No credence change applied.
+review's (8, 3) census size check (`reviews/strategy-review-2026-11-16b-census-8-3.json`) and the dialogue's K13, K14
+and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session checks, not ledger evidence. S0 parked; the note deferred. No credence change applied.
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-16b (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
-mutually adjacent faces (S1, genus free) by map-free methods (census-free formula E-261116-07, scored plane families
-E-261110-03/04); the (11, 5) symmetric slice (E-261116-06); S6 parked after (10, 3) (all 20 normalised formulas
+**Focus since 2026-11-17 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
+mutually adjacent faces (S1, genus free) first, with front checks N1 (Cayley census, E-261117-01) and N2 (moved chart,
+E-261117-02), P3 v2 the main investment (E-261116-07), the P4 probe (E-261117-03) and one C3 night (E-261110-04);
+(11, 5) only through N2, as a new registration (E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
 UNSAT-SOLVER, section 3as), its replay priced for the paper (E-261116-08); S5 (10, 4) all admissible maps UNSAT-SOLVER
 (sections 3ad, 3ao); the S0 price probe withdrawn. Run so far: ninth-plane Stage A (no candidate,
 section 3ae), the S6 (10, 3) night (20/20 TIMEOUT, section 3af) and its symmetric runs (no candidate, section 3ag). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus

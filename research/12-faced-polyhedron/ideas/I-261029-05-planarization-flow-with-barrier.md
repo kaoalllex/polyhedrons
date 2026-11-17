@@ -17,3 +17,7 @@ Surface-Evolver-style local/global projection.
 
 ## Source
 ideas/cross-field-ideas.md round 2a, X5
+
+## 2026-11-17 dialogue
+
+Owner's B3-Q2 (flattening flow from a smooth surface), `reviews/dialogue-2026-11-16-strategy.md` §3: park, marks 2 0 1 1 / 2 0 1 1, until a changed set-up is named (E-261103-06 is the last run). No next step this week.

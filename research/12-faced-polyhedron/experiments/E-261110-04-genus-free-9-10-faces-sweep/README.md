@@ -2,7 +2,7 @@
 id: E-261110-04
 title: Genus-free sweep at 9 and 10 planes - every pair adjacent, multiple adjacencies allowed, E free
 date: 2026-11-10
-status: parked
+status: planned
 direction: [DR7, DR18, DR12]
 origin: [I-261110-03, I-261110-01, E-261107-01, E-261108-01, E-261110-03]
 tests: []
@@ -10,7 +10,16 @@ produces: []
 preregistered: false
 ---
 
-> **Reopened by the owner, 2026-11-16b, as the follow-up of E-261110-03 only** (week item 3): runs after a family
+> **Amended 2026-11-17, week item 5** (owner-approved night; `reviews/dialogue-2026-11-16-strategy.md` §2 row 5, Appendix A7). One owner night
+> <= 80 core-h, 10 shards, nine planes, E in {45, 51}, frozen engine of E-261103-05 (hard model, cap 20 s):
+> (1) C3 3+3+3, the rotation (x, y, z) -> (y, z, x), K13's integer box (unit cost: K14, 13.5 s median);
+> (2) C2 4 x 2 + 1 with a far plane as infinity, only if E-261117-02 passes; (3) the geometric-box arm (K13's D2
+> 2 x 4 sampler with coefficients +-q^w, q in {2, 3}, cap 15 s, E = 36, baseline the archived K13). Kill: a failed
+> control; zero verified hits parks that distribution and cap (299 units without a hit reject p >= 0.01 for that box
+> only). What differs from the parked run: no E-261110-03 gate, symmetric families with a measured unit cost (K14)
+> instead of "the 8-plane winner"; the PLAN states this and the power. Session checks: `reviews/dialogue-2026-11-16-strategy.md` §6.
+
+> Was: reopened by the owner, 2026-11-16b, as the follow-up of E-261110-03 only (week item 3): runs after a family
 > scores >= 10 positives at 8 planes; nine planes, E in {45, 51}; one owner night <= 80 core-h. Needs a new `PLAN.md`.
 
 > Parked by the owner, 2026-11-12; not run. Replaced by E-261112-01/02 (exact ninth-plane cells).

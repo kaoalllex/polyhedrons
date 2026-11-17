@@ -7,14 +7,18 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 
 * **Focus (owner, 2026-11-12): one constructive target at a time, each at least as significant as the 2026
   eight-face objects (owner's filter).**
-  * **First (owner, 2026-11-16b): S1, nine mutually adjacent faces with the genus free, by map-free methods
-    scored one rung below**: the census-free OM-SAT formula (I-261103-02, E-261116-07; ladder (7, 1), (8, 2),
-    (8, 3) before (9, 4), (9, 5)), then scored plane families (E-261110-03 reduced, E-261110-04 only after >= 10
-    positives at 8 planes). A map census at (8, 3) or (9, 4) is out of reach (session check, >= 34,402 classes
-    at 31 % of the patterns). Success is only `verify_candidate.py FILE --all-pairs` PASS with nine faces, then
-    `candidate-check`. Ninth-plane cells: Stage A done, Stage B parked (E-261113-03 found only the source map).
-  * **S5 at (11, 5): the symmetric slice only** (I-261116-04, E-261116-06); the asymmetric sweep is priced out
-    (>= 41 nights, E-261116-01). Success is only `verify_candidate.py FILE --target S5` PASS at (11, 5).
+  * **First (owner, 2026-11-16b, confirmed 2026-11-17): S1, nine mutually adjacent faces with the genus free**
+    (dialogue 2026-11-16-strategy). Front checks, one session each: N1, the Cayley census of the face-transitive
+    cubic (9, 4) maps (E-261117-01), and N2, plane-only symmetry in a moved chart (E-261117-02). **Main
+    investment: P3, the census-free formula, specification v2** (I-261103-02, E-261116-07; two sessions, a decision
+    tree, an eight-face bridge gate before any nine-face run); it does not wait for N1 or N2. Then the P4
+    patchwork probe (E-261117-03) and one C3 3+3+3 night (E-261110-04 amended). The D2 plane-family gate is
+    closed (E-261110-03: it tests nothing). Success is only `verify_candidate.py FILE --all-pairs` PASS with nine
+    faces, then `candidate-check`. Ninth-plane cells: Stage A done, Stage B parked (E-261113-03 found only the
+    source map).
+  * **S5 at (11, 5): only through N2, as a new registration.** The free-action slice E-261116-06 is withdrawn
+    (eleven faces admit no free C2 or C3); the asymmetric sweep is priced out (>= 41 nights, E-261116-01). Success
+    is only `verify_candidate.py FILE --target S5` PASS at (11, 5).
   * **S5 at (10, 4): all 1117 admissible maps UNSAT-SOLVER** (E-261109-06, E-261110-06; no candidate). The owner may
     rely on it in planning; it is no negative result. A checked replay only for a named claim (I-261116-02, parked).
   * **S6: parked after (10, 3)**: all twenty normalised formulas UNSAT-SOLVER (E-261116-02, -05), polar transfer
@@ -121,3 +125,7 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   slice only; S6 parked after (10, 3); the S0 price probe withdrawn; consolidation approved: S6 (10, 3) replay pricing
   for the paper item D3 and one lemma session (uniformity, perturbation); the note stays deferred. Stance and the
   side track unchanged; credences not applied.
+* 2026-11-17 (owner's approval of the dialogue synthesis `reviews/dialogue-2026-11-16-strategy.md`): nine faces
+  stay first; front checks N1 (Cayley census) and N2 (moved chart); P3 v2 the main investment; P4 probe; one C3
+  night; (11, 5) only through N2 (E-261116-06 withdrawn: free-action domain empty); the D2 family gate closed.
+  Targets, stance, S0 parking and the side track unchanged; credences not applied.

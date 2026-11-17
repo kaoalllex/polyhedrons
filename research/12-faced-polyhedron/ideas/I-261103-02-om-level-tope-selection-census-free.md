@@ -38,3 +38,7 @@ Strategy review 2026-11-03 (`reviews/strategy-review-2026-11-03.md` section 4, i
 Owner-approved week item 2 (`reviews/strategy-review-2026-11-16b.md`), experiment E-261116-07. Why now: a map census is
 out of reach at (8, 3) and (9, 4) (session check, >= 34,402 (8, 3) classes after 551 of 1806 patterns), while per-map
 formulas at 10 elements take seconds. Ladder (7, 1), (8, 2), (8, 3) before (9, 4), (9, 5); kill rule in `ROADMAP.md`.
+
+## 2026-11-17 dialogue
+
+`reviews/dialogue-2026-11-16-strategy.md` §2 row 3, Appendix A1: specification v2 replaces the 16b ladder (no tope-circuit block, both directions at infinity, validity bits, no-pinch, Euler and eager connectivity, the (9, 39) pricing rung, the bridge gate); marks 2 2 3 1 / 2 1 3 1. The main investment: week item 3, E-261116-07 amended (2 sessions, <= 6 core-h, decision tree of review §2). Proof obligations go to E-261116-09.

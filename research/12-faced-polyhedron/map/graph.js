@@ -1269,7 +1269,7 @@ window.GRAPH = {
    "id": "E-261110-03",
    "kind": "experiment",
    "title": "Arrangement-family scoring at the 8-plane rung with the wedge covariate - four families, all 28 pairs, E free",
-   "status": "planned",
+   "status": "parked",
    "date": "2026-11-10",
    "concluded": "",
    "path": "experiments/E-261110-03-arrangement-family-scoring-8-planes/README.md",
@@ -1286,7 +1286,7 @@ window.GRAPH = {
    "id": "E-261110-04",
    "kind": "experiment",
    "title": "Genus-free sweep at 9 and 10 planes - every pair adjacent, multiple adjacencies allowed, E free",
-   "status": "parked",
+   "status": "planned",
    "date": "2026-11-10",
    "concluded": "",
    "path": "experiments/E-261110-04-genus-free-9-10-faces-sweep/README.md",
@@ -1577,7 +1577,7 @@ window.GRAPH = {
    "id": "E-261116-06",
    "kind": "experiment",
    "title": "S5 (11, 5) symmetric slice - free-C2 and free-C3 uniform formulas of the 24 symmetric admissible maps",
-   "status": "planned",
+   "status": "parked",
    "date": "2026-11-16",
    "concluded": "",
    "path": "experiments/E-261116-06-s5-11-5-symmetric-slice/README.md",
@@ -1591,7 +1591,7 @@ window.GRAPH = {
   {
    "id": "E-261116-07",
    "kind": "experiment",
-   "title": "Census-free S1 formula - one OM-SAT instance per (F, g) with tope variables for the solid, ladder pilot",
+   "title": "Census-free S1 formula v2 - one OM-SAT instance per (F, E) with validity-gated cells, eager connectivity, ladder L0-L3 and a bridge gate",
    "status": "planned",
    "date": "2026-11-16",
    "concluded": "",
@@ -1632,6 +1632,67 @@ window.GRAPH = {
    "direction": [
     "DR19",
     "DR11"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261117-01",
+   "kind": "experiment",
+   "title": "Cayley census - face-transitive cubic maps, order-8 rung at (8, 3), then Z9 and Z3 x Z3 at (9, 4), each map decided",
+   "status": "planned",
+   "date": "2026-11-17",
+   "concluded": "",
+   "path": "experiments/E-261117-01-cayley-census-9-4/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261117-02",
+   "kind": "experiment",
+   "title": "Plane-only symmetry in a moved chart - Szilassi control chain, then the seven-plane C2 3 x 2 + 1 rung",
+   "status": "planned",
+   "date": "2026-11-17",
+   "concluded": "",
+   "path": "experiments/E-261117-02-moved-chart-plane-symmetry/README.md",
+   "direction": [
+    "DR18",
+    "DR12"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261117-03",
+   "kind": "experiment",
+   "title": "Patchwork chirotopes probe - certificate test C0, coverage of the controls C1, Szilassi's map formula with P4 C2",
+   "status": "planned",
+   "date": "2026-11-17",
+   "concluded": "",
+   "path": "experiments/E-261117-03-patchwork-chirotope-probe/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261117-04",
+   "kind": "experiment",
+   "title": "Equivelar price pilot - stage A at (8, 3) over the seven extra-edge patterns, costs per stage",
+   "status": "planned",
+   "date": "2026-11-17",
+   "concluded": "",
+   "path": "experiments/E-261117-04-equivelar-price-pilot/README.md",
+   "direction": [
+    "DR19"
    ],
    "verdict": "",
    "preregistered": "false",
@@ -4520,6 +4581,64 @@ window.GRAPH = {
    "preregistered": ""
   },
   {
+   "id": "I-261117-01",
+   "kind": "idea",
+   "title": "Cayley census - every face-transitive cubic (9, 4) map is a Cayley map of Z9 or Z3 x Z3; list them and decide each",
+   "status": "open",
+   "date": "2026-11-17",
+   "concluded": "",
+   "path": "ideas/I-261117-01-cayley-census-face-transitive-9-4.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261117-02",
+   "kind": "idea",
+   "title": "Move infinity, not the planes - plane-only symmetry clauses in a generic chart make fixed-face half-turn families uniform",
+   "status": "open",
+   "date": "2026-11-17",
+   "concluded": "",
+   "path": "ideas/I-261117-02-plane-only-symmetry-moved-chart.md",
+   "direction": [
+    "DR18",
+    "DR12"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261117-03",
+   "kind": "idea",
+   "title": "Ninth plane as one formula - the census-free formula with eight planes pinned, a linear program per sign vector of the ninth plane",
+   "status": "open",
+   "date": "2026-11-17",
+   "concluded": "",
+   "path": "ideas/I-261117-03-ninth-plane-one-formula-lp.md",
+   "direction": [
+    "DR19",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261117-04",
+   "kind": "idea",
+   "title": "One-orbit Z9 arrangements - the parameter-free cyclic plane orbits for Z9 Cayley maps, tested in every chart",
+   "status": "open",
+   "date": "2026-11-17",
+   "concluded": "",
+   "path": "ideas/I-261117-04-one-orbit-z9-arrangements.md",
+   "direction": [
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -5759,6 +5878,16 @@ window.GRAPH = {
   },
   {
    "from": "E-261103-01",
+   "to": "E-261117-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
+   "to": "E-261117-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -5780,6 +5909,11 @@ window.GRAPH = {
   {
    "from": "E-261103-01",
    "to": "I-261114-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
+   "to": "I-261117-01",
    "kind": "origin"
   },
   {
@@ -5805,6 +5939,11 @@ window.GRAPH = {
   {
    "from": "E-261103-02",
    "to": "E-261113-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-02",
+   "to": "E-261117-02",
    "kind": "origin"
   },
   {
@@ -6263,6 +6402,11 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
+   "from": "E-261112-02",
+   "to": "I-261117-03",
+   "kind": "origin"
+  },
+  {
    "from": "E-261113-01",
    "to": "H-261110-03",
    "kind": "tests"
@@ -6275,6 +6419,11 @@ window.GRAPH = {
   {
    "from": "E-261113-02",
    "to": "E-261114-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261113-02",
+   "to": "E-261117-03",
    "kind": "origin"
   },
   {
@@ -6330,6 +6479,11 @@ window.GRAPH = {
   {
    "from": "E-261114-01",
    "to": "I-261116-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261114-02",
+   "to": "E-261117-03",
    "kind": "origin"
   },
   {
@@ -6408,6 +6562,11 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
+   "from": "E-261116-04",
+   "to": "I-261117-04",
+   "kind": "origin"
+  },
+  {
    "from": "E-261116-05",
    "to": "E-261116-08",
    "kind": "origin"
@@ -6444,6 +6603,16 @@ window.GRAPH = {
   },
   {
    "from": "E-261116-09",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261117-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261117-04",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -6628,6 +6797,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261029-10",
+   "to": "E-261117-03",
+   "kind": "origin"
+  },
+  {
    "from": "I-261029-11",
    "to": "I-261101-18",
    "kind": "origin"
@@ -6640,6 +6814,11 @@ window.GRAPH = {
   {
    "from": "I-261029-13",
    "to": "E-261029-17",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261029-15",
+   "to": "I-261117-02",
    "kind": "origin"
   },
   {
@@ -6893,6 +7072,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261030-12",
+   "to": "I-261117-02",
+   "kind": "origin"
+  },
+  {
    "from": "I-261030-13",
    "to": "E-261030-09",
    "kind": "origin"
@@ -6909,7 +7093,17 @@ window.GRAPH = {
   },
   {
    "from": "I-261030-18",
+   "to": "E-261117-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-18",
    "to": "I-261103-06",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-18",
+   "to": "I-261117-01",
    "kind": "origin"
   },
   {
@@ -7153,6 +7347,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261101-08",
+   "to": "I-261117-04",
+   "kind": "origin"
+  },
+  {
    "from": "I-261101-09",
    "to": "E-261101-17",
    "kind": "origin"
@@ -7220,6 +7419,16 @@ window.GRAPH = {
   {
    "from": "I-261101-15",
    "to": "E-261101-22",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-15",
+   "to": "E-261117-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-15",
+   "to": "I-261117-01",
    "kind": "origin"
   },
   {
@@ -7340,6 +7549,11 @@ window.GRAPH = {
   {
    "from": "I-261103-02",
    "to": "E-261116-07",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261103-02",
+   "to": "I-261117-03",
    "kind": "origin"
   },
   {
@@ -7533,6 +7747,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261112-01",
+   "to": "I-261117-03",
+   "kind": "origin"
+  },
+  {
    "from": "I-261113-01",
    "to": "E-261113-01",
    "kind": "origin"
@@ -7550,6 +7769,16 @@ window.GRAPH = {
   {
    "from": "I-261113-03",
    "to": "E-261113-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261113-04",
+   "to": "E-261117-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261113-04",
+   "to": "I-261117-02",
    "kind": "origin"
   },
   {
@@ -7615,6 +7844,21 @@ window.GRAPH = {
   {
    "from": "I-261116-07",
    "to": "E-261116-09",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261117-01",
+   "to": "E-261117-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261117-01",
+   "to": "I-261117-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261117-02",
+   "to": "E-261117-02",
    "kind": "origin"
   },
   {
@@ -8335,6 +8579,11 @@ window.GRAPH = {
   {
    "from": "owner",
    "to": "I-261116-02",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261117-02",
    "kind": "origin"
   }
  ],

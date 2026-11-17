@@ -29,3 +29,7 @@ committed PLAN. Week item 2 is next; no new full-sweep budget is implied.
 
 Owner-approved week item 1 (`reviews/strategy-review-2026-11-16b.md`): experiment E-261116-06. Only maps with a free
 action are run; a fixed-face involution is outside uniform formulas and is recorded as not decidable here.
+
+## 2026-11-17 dialogue
+
+E-261116-06 withdrawn 2026-11-17: eleven faces admit no free C2 or C3 action (PROVED-1, astra #2), so the registered free-action domain is empty. The four Aut+ = 3 maps have no C3 realization: a face fixed by a rotation lies in a plane perpendicular to the axis, so two fixed faces would be parallel (PROVED-1, `reviews/dialogue-2026-11-16-strategy.md` Appendix A7). The 20 Aut+ = 2 maps whose involution fixes exactly one face return only through N2 (I-261117-02, E-261117-02), as a new registration; no speed-up at 12 elements keeps (11, 5) priced out.

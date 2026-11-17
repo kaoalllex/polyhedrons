@@ -94,11 +94,14 @@ manifold argument, the equivariant perturbation step of N2.
 
 ## 6. Computed in this thread, and not checked
 
+The scripts and outputs are copied to `reviews/dialogue-2026-11-16-strategy-checks/` (README with SHA-256); the paths
+below are relative to that folder. Session checks, not ledger evidence.
+
 | Check | Command | Numbers | Label |
 |---|---|---|---|
-| K13 (claude) | `work/claude/d2_rate.py 240 d2_rate.json` | D2 2 x 4, eight planes, engine of E-261103-05: 17 SOLID, 223 INFEASIBLE, 0 open; 7.1 % (Wilson 4.5-11.1); all EMBEDDED (24, 36, 8, -4), all with RV's neighbour lists up to per-face reversal; 37.5 s wall | EXACT per object, NUMERICAL rate |
-| K14 (claude) | `work/claude/c3_nine.py 80 45 20 c3_nine_e45.json` | C3 3+3+3, nine planes, E = 45: 70 INFEASIBLE, 10 UNKNOWN at 20 s, 0 SOLID; median 13.5 s | NUMERICAL, timing only |
-| Orbits (astra) | `work/astra/check_c3_orbits.py` | (012)(345)(678) has 72 orbits on the 210 four-subsets, three fixed | EXACT |
+| K13 (claude) | `d2_rate.py 240 d2_rate.json` | D2 2 x 4, eight planes, engine of E-261103-05: 17 SOLID, 223 INFEASIBLE, 0 open; 7.1 % (Wilson 4.5-11.1); all EMBEDDED (24, 36, 8, -4), all with RV's neighbour lists up to per-face reversal; 37.5 s wall | EXACT per object, NUMERICAL rate |
+| K14 (claude) | `c3_nine.py 80 45 20 c3_nine_e45.json` | C3 3+3+3, nine planes, E = 45: 70 INFEASIBLE, 10 UNKNOWN at 20 s, 0 SOLID; median 13.5 s | NUMERICAL, timing only |
+| Orbits (astra) | `check_c3_orbits.py` | (012)(345)(678) has 72 orbits on the 210 four-subsets, three fixed | EXACT |
 
 PROVED-1 in the thread, unreviewed: no free C2 or C3 on eleven faces; at most one face fixed by a rotation of an
 all-pairs object; P3 cell identification, gauge, edge ends, three runs at nine planes; the patchwork lift at t = 1/25

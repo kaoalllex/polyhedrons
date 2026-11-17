@@ -2,7 +2,7 @@
 id: E-261110-03
 title: Arrangement-family scoring at the 8-plane rung with the wedge covariate - four families, all 28 pairs, E free
 date: 2026-11-10
-status: planned
+status: parked
 direction: [DR7, DR18, DR12]
 origin: [I-261110-01, I-261110-03, E-261103-05, E-261110-01, I-261116-06]
 tests: []
@@ -10,7 +10,12 @@ produces: []
 preregistered: false
 ---
 
-> **Reopened by the owner, 2026-11-16b** (`reviews/strategy-review-2026-11-16b.md`, week item 3), reduced: families D2
+> **Closed as a gate, 2026-11-17** (owner; `reviews/dialogue-2026-11-16-strategy.md` §4): the D2 gate tests nothing. Session check K13 (D2 2 x 4,
+> eight planes, 240 units): 17 SOLID (7.1 %), all with Roest-Vigh's map, so ">= 10 of 200" passes by expectation;
+> "D2 4+4+1" has no invariant solid and is non-uniform. The nine-plane night is now week item 5 (E-261110-04 amended).
+> Not run; a new PLAN would have to say what it measures that K13 does not.
+
+> Was: **reopened by the owner, 2026-11-16b** (`reviews/strategy-review-2026-11-16b.md`, week item 3), reduced: families D2
 > 2x4, isotropic and two-planes-deleted (10, 2) S6 objects (I-261116-06); wedge arms dropped; E free; <= 3 core-h.
 > What is different from the 2026-11-12 parking: the ninth-plane cells that replaced it are done (Stage A) or parked
 > (Stage B), and the result now gates the nine-plane night with a measured rate. Needs a new `PLAN.md`.
