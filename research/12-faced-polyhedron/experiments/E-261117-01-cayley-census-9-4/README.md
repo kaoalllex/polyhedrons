@@ -2,12 +2,12 @@
 id: E-261117-01
 title: Cayley census - face-transitive cubic maps, order-8 rung at (8, 3), then Z9 and Z3 x Z3 at (9, 4), each map decided
 date: 2026-11-17
-status: planned
+status: running
 direction: [DR19]
 origin: [I-261117-01, I-261030-18, E-261103-01]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned, exploit, jump 2. Scores T D F G R: 2 2 2 1 2 | budget: one session, <= 1 core-h joint cap, 10 shards.
