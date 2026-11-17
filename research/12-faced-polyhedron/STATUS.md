@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
 As of **2026-11-17** (owner's approval of the dialogue synthesis `reviews/dialogue-2026-11-16-strategy.md`). The latest
-registered result is E-261117-01 (section 3au); results are listed newest last in section 3, chronology in
+registered result is E-261117-02 (section 3av); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -460,6 +460,17 @@ is the map of a nine-face polyhedron. EXACT computation (two enumerators agree; 
 reproduced by `verify_all`), coverage PROVED-1. Scope: cubic, genus 4, face-transitive; genus 7 and all other
 (9, 4) maps not covered; no formula ran. (8, 3): six classes (D4 5, Q8 1), Roest-Vigh's among them. H-261101-07
 unchanged. Counts: `experiments/E-261117-01-cayley-census-9-4/CONCLUSION.md`.
+
+## 3av. E-261117-02 Plane-only symmetry in a moved chart, seven-plane C2 rung (2026-11-17)
+
+**GATE PASSED**: with a far rational plane as infinity, Szilassi's fixed-face half-turn family is uniform for the
+encoder and the frozen engine of E-261103-05. Szilassi control chain EXACT (plane-only determinants, chart missing
+the solid, moved signs and embedding, planted recovery); the correct gauge with symmetry clauses is `build_sym`'s
+orbit gauge: `symbreak` is not equivariantly reachable and its plane-only formula is UNSAT-SOLVER (it would exclude
+Szilassi). Rung: C2 3 x 2 + 1 finds the Szilassi type in 37 of 13495 draws, the asymmetric baseline in 3 of 13490
+(NUMERICAL, box [-8, 8], cap 10 s, E = 21; 40 recoveries EXACT, no new object). Not measured: nine planes,
+plane-only formulas at 12 elements ((11, 5) stays priced out), the perturbation step. Item 5's C2 4 x 2 + 1 arm is
+open. 0.94 core-h. Counts: `experiments/E-261117-02-moved-chart-plane-symmetry/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

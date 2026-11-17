@@ -75,3 +75,5 @@ is a claim on its own: a line may state only what its source says at its label.
   no checked proof, geometric exclusion or construction (replay idea I-261116-05).
 * 2026-11-17: E-261117-01 adds B7 (face-transitive census at (8, 3), (9, 4)); no formula, construction or
   geometric negative.
+* 2026-11-17: E-261117-02 adds a caveat to D2: with symmetry clauses the `symbreak` normal form is not equivariantly
+  reachable (Szilassi, UNSAT-SOLVER); the orbit gauge of `build_sym` is the valid one. No new item.

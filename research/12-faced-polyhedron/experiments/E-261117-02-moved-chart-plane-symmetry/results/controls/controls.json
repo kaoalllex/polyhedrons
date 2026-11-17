@@ -1,0 +1,221 @@
+{
+  "target": "S1 control chain at seven faces; no target decided",
+  "K1_plane_only_determinants": {
+    "image_is_plane": true,
+    "plane_only_nonzero": 35,
+    "plane_only_total": 35,
+    "plane_only_symmetric": true,
+    "standard_chart_zeros": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        2,
+        3,
+        5
+      ],
+      [
+        4,
+        5,
+        6
+      ]
+    ],
+    "PASS": true
+  },
+  "K2_far_plane": {
+    "far_plane": [
+      -2,
+      -3,
+      -5,
+      11
+    ],
+    "vertices_positive": true,
+    "min_vertex_value": "13/5",
+    "triples_nonzero": 35,
+    "PASS": true
+  },
+  "K3_moved_chart": {
+    "planes": [
+      [
+        -12,
+        -238,
+        25,
+        -6
+      ],
+      [
+        -12,
+        202,
+        25,
+        -6
+      ],
+      [
+        592,
+        -487,
+        875,
+        21
+      ],
+      [
+        -508,
+        613,
+        875,
+        21
+      ],
+      [
+        -122,
+        -18,
+        -85,
+        -6
+      ],
+      [
+        -2,
+        -3,
+        50,
+        -1
+      ],
+      [
+        98,
+        -18,
+        -85,
+        -6
+      ]
+    ],
+    "uniform": true,
+    "signs": 70,
+    "plane_only_unchanged": true,
+    "incidence": true,
+    "EMBEDDED": true,
+    "all_pairs": true,
+    "V_E_F_chi": [
+      14,
+      21,
+      7,
+      0
+    ],
+    "verify_candidate": {
+      "returncode": 0,
+      "stdout": [
+        "1 record(s), target all-pairs: 1 PASS, 0 fail"
+      ]
+    },
+    "PASS": true
+  },
+  "K4_sat_controls": {
+    "pinned_no_gauge": {
+      "status": "SAT",
+      "seconds": 0.004
+    },
+    "gauge": {
+      "orbits": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5
+        ]
+      ],
+      "orbfix_quads": [
+        [
+          0,
+          1,
+          2,
+          7
+        ],
+        [
+          0,
+          1,
+          4,
+          7
+        ],
+        [
+          0,
+          1,
+          5,
+          7
+        ],
+        [
+          0,
+          2,
+          3,
+          7
+        ]
+      ],
+      "flipped": [
+        2,
+        3,
+        5
+      ]
+    },
+    "pinned_gauge": {
+      "status": "SAT",
+      "seconds": 0.004
+    },
+    "free_gauge": {
+      "status": "SAT",
+      "seconds": 0.033
+    },
+    "symbreak_reachable_equivariantly": false,
+    "free_symbreak": {
+      "status": "UNSAT",
+      "seconds": 0.012
+    },
+    "PASS": true
+  },
+  "negative_controls": {
+    "standard_chart_symmetry_uniform": {
+      "status": "UNSAT",
+      "seconds": 0.003
+    },
+    "pinned_wrong_involution": {
+      "status": "UNSAT",
+      "seconds": 0.003,
+      "involution": [
+        0,
+        3,
+        4,
+        1,
+        2,
+        6,
+        5
+      ],
+      "map_automorphisms": 42,
+      "involutions": 7
+    },
+    "engine_standard_chart": "REJECTED: nonuniform triple of normals",
+    "engine_tetra_E7": "INFEASIBLE",
+    "PASS": true
+  },
+  "K5_planted_engine": {
+    "status": "OPTIMAL",
+    "seconds": 0.186,
+    "bounded_cells": 20,
+    "EMBEDDED": true,
+    "V_E_F_chi": [
+      14,
+      21,
+      7,
+      0
+    ],
+    "all_pairs": true,
+    "same_links_as_szilassi": true,
+    "verify_candidate": {
+      "returncode": 0,
+      "stdout": [
+        "1 record(s), target all-pairs: 1 PASS, 0 fail"
+      ]
+    },
+    "PASS": true
+  },
+  "PASS": true,
+  "seconds": 0.432
+}

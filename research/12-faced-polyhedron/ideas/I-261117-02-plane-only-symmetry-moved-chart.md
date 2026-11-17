@@ -2,7 +2,7 @@
 id: I-261117-02
 title: Move infinity, not the planes - plane-only symmetry clauses in a generic chart make fixed-face half-turn families uniform
 date: 2026-11-17
-status: open
+status: tried
 direction: [DR18, DR12]
 origin: [I-261113-04, I-261030-12, I-261029-15, owner]
 ---
@@ -29,3 +29,6 @@ signs and embedding; the pinned SAT control with the correct gauge (`symbreak` n
 Then the seven-plane rung 3 x 2 + 1 must recover Szilassi (planted and unaided recovery apart). 1 core-h.
 
 Source: `reviews/dialogue-2026-11-16-strategy.md` §2 row 2, §3 (B1), Appendix A4 (N2). Nearest: I-261113-04.
+
+Tried 2026-11-17 (E-261117-02): gate passed at the seven-plane rung (Szilassi control chain, orbit gauge, C2
+3 x 2 + 1 unaided recovery above the asymmetric baseline); the C2 4 x 2 + 1 arm joins item 5. `STATUS.md` 3av.

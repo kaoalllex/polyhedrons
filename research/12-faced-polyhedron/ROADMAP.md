@@ -108,7 +108,7 @@ Withdrawn from the 16b plan: E-261116-06 (free-action domain empty), the E-26111
    * Follow-up: SAT -> bridge, `--all-pairs` nine faces, `candidate-check`, escalate. Empty list or all UNSAT-SOLVER
      -> slice closed for planning (never "no nine-face object"). Maps with a one-face involution -> item 2's route.
    * Lab: Opus, medium / Codex gpt-6.1-sol, high (enumeration and dedup are the risk); SAT: Opus, high / gpt-6-astra, high.
-2. **N2 plane-only symmetry in a moved chart** ([E-261117-02](experiments/E-261117-02-moved-chart-plane-symmetry/), explore, J 0; I-261117-02, I-261113-04; A4).
+2. **N2 plane-only symmetry in a moved chart** ([E-261117-02](experiments/E-261117-02-moved-chart-plane-symmetry/), explore, J 0; I-261117-02, I-261113-04; A4). Done 2026-11-17: gate passed, C2 4 x 2 + 1 arm open for item 5 (STATUS 3av).
    * Szilassi control chain (exact plane-only determinants; a rational chart missing the solid; exact transformed signs
      and embedding; pinned SAT with the correct gauge), then the seven-plane C2 3 x 2 + 1 rung on the frozen engine
      with a far plane as infinity, planted and unaided recovery apart. 1 session, <= 1 core-h.
@@ -136,7 +136,7 @@ Withdrawn from the 16b plan: E-261116-06 (free-action domain empty), the E-26111
      hit -> exact recompute, `--all-pairs`, `candidate-check`.
    * Lab: Opus, medium (candidate-check: high) / Codex gpt-6.1-sol, high (candidate-check: gpt-6-astra, high).
 5. **The owner-approved night** ([E-261110-04](experiments/E-261110-04-genus-free-9-10-faces-sweep/) amended, explore, J 2; A7).
-   * C3 3+3+3 at nine planes, E in {45, 51}, frozen engine, cap 20 s; the C2 4 x 2 + 1 arm only if item 2 passes; the
+   * C3 3+3+3 at nine planes, E in {45, 51}, frozen engine, cap 20 s; the C2 4 x 2 + 1 arm (item 2 passed); the
      geometric-box arm as in A7. One owner night <= 80 core-h, 10 shards. Its PLAN states what differs from the parked
      run and the power per arm (299 hitless units reject p >= 0.01 for that box only).
    * Kill: a failed control; zero verified hits parks that distribution and cap.
@@ -159,10 +159,10 @@ genus directly).
 | ID | State | Tests | Question | T D F G R | Budget | Stop rule |
 |---|---|---|---|---|---|---|
 | [E-261117-01](experiments/E-261117-01-cayley-census-9-4/) | done 2026-11-17: NO-ADMISSIBLE-CAYLEY-9-4 (STATUS 3au) | H-261101-07 | **Exploit, J 2.** N1: face-transitive cubic maps, order-8 rung at (8, 3), then Z9 and Z3 x Z3 at (9, 4), each map by the plain and free-C3 formulas | 2 2 2 1 2 | 1 session, <= 1 core-h joint cap, 10 shards | Roest-Vigh's map missing (bug), all maps recorded, first verified candidate or cap |
-| [E-261117-02](experiments/E-261117-02-moved-chart-plane-symmetry/) | running (week item 2; PLAN committed) | - | **Explore, gate.** N2: plane-only symmetry in a moved chart; Szilassi control chain, then the seven-plane C2 3 x 2 + 1 rung | 2 2 2 2 2 | 1 session, <= 1 core-h | failed control (cause told apart), rung recovered or cap |
+| [E-261117-02](experiments/E-261117-02-moved-chart-plane-symmetry/) | done 2026-11-17: GATE PASSED (STATUS 3av) | - | **Explore, gate.** N2: plane-only symmetry in a moved chart; Szilassi control chain, then the seven-plane C2 3 x 2 + 1 rung | 2 2 2 2 2 | 1 session, <= 1 core-h | failed control (cause told apart), rung recovered or cap |
 | [E-261116-07](experiments/E-261116-07-census-free-s1-ladder/) | planned (amended 2026-11-17 to v2; week item 3) | H-261101-07 | **Explore, J 2.** P3 v2: census-free formula with validity-gated cells and eager connectivity; unit tests, L0-L3, bridge gate at eight faces | 2 2 1 2 2 | 2 sessions, <= 6 core-h, 10 shards | decision tree of the week item; first verified candidate or cap |
 | [E-261117-03](experiments/E-261117-03-patchwork-chirotope-probe/) | planned (week item 4) | - | **Explore.** P4: step 0 candidate-check of the 16 S6 (10, 2) files; C0 certificate, C1 control coverage per K, C2 Szilassi's map formula AND P4 | 1 2 1 2 2 | 1 session, <= 1 core-h; sampler <= 6 core-h gated | no control in the box, C2 UNSAT-SOLVER in the box, or cap |
-| [E-261110-04](experiments/E-261110-04-genus-free-9-10-faces-sweep/) | planned (amended 2026-11-17; week item 5) | - | **Explore, J 2.** Owner-approved night: C3 3+3+3 at nine planes, E in {45, 51}; C2 4 x 2 + 1 arm only after E-261117-02 passes; geometric-box arm | 1 2 1 1 2 | one owner night <= 80 core-h, 10 shards | first verified candidate, failed control or cap; zero verified hits parks that distribution and cap |
+| [E-261110-04](experiments/E-261110-04-genus-free-9-10-faces-sweep/) | planned (amended 2026-11-17; week item 5) | - | **Explore, J 2.** Owner-approved night: C3 3+3+3 at nine planes, E in {45, 51}; C2 4 x 2 + 1 arm (E-261117-02 passed); geometric-box arm | 1 2 1 1 2 | one owner night <= 80 core-h, 10 shards | first verified candidate, failed control or cap; zero verified hits parks that distribution and cap |
 | [E-261117-04](experiments/E-261117-04-equivelar-price-pilot/) | planned (queue) | H-261101-07 | **Explore.** P6 price pilot: equivelar slice, stage A at (8, 3), costs per stage | 1 2 1 1 2 | 1 session, 1 core-h; no night before a price | control map absent, pinned control UNSAT or cap |
 | [E-261116-08](experiments/E-261116-08-s6-10-3-replay-pricing/) | planned (queue; unchanged, proofs approved for paper item D3) | H-261110-03 | **Audit.** Proof size, check time and memory on two of the twenty S6 (10, 3) CNFs; gate of a one-night replay | 1 2 2 1 2 | 1 session, <= 2 core-h | both CNFs priced or a hash mismatch |
 | [E-261116-09](experiments/E-261116-09-uniformity-perturbation-lemmas/) | planned (queue; extended 2026-11-17: N2 perturbation step, P3 proof obligations) | H-261101-07 | **Audit.** Uniformity lemma for cubic embedded objects; perturbation lemma I-261108-09 by its universal local check | 2 1 2 2 2 | 1 session | proof or counterexample |

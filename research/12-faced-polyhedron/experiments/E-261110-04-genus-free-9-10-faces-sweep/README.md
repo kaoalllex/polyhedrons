@@ -13,7 +13,8 @@ preregistered: false
 > **Amended 2026-11-17, week item 5** (owner-approved night; `reviews/dialogue-2026-11-16-strategy.md` §2 row 5, Appendix A7). One owner night
 > <= 80 core-h, 10 shards, nine planes, E in {45, 51}, frozen engine of E-261103-05 (hard model, cap 20 s):
 > (1) C3 3+3+3, the rotation (x, y, z) -> (y, z, x), K13's integer box (unit cost: K14, 13.5 s median);
-> (2) C2 4 x 2 + 1 with a far plane as infinity, only if E-261117-02 passes; (3) the geometric-box arm (K13's D2
+> (2) C2 4 x 2 + 1 with a far plane as infinity (E-261117-02 passed 2026-11-17, STATUS 3av; its seven-plane rate is a
+> rung-below number, not a nine-plane forecast; reuse `n2.draw` / `n2.chart`); (3) the geometric-box arm (K13's D2
 > 2 x 4 sampler with coefficients +-q^w, q in {2, 3}, cap 15 s, E = 36, baseline the archived K13). Kill: a failed
 > control; zero verified hits parks that distribution and cap (299 units without a hit reject p >= 0.01 for that box
 > only). What differs from the parked run: no E-261110-03 gate, symmetric families with a measured unit cost (K14)

@@ -1047,3 +1047,7 @@ E-261110-03 gate closed; P6 pilot E-261117-04 queued; ideas I-261117-01..04 file
 2026-11-17 — E-261117-01 (N1 Cayley census): no face-transitive cubic (9, 4) map is admissible (two pillow classes);
 six classes at (8, 3) with Roest-Vigh's; controls K7, K12, Roest-Vigh passed; no formula ran; 0.017 core-h. See
 `experiments/E-261117-01-cayley-census-9-4/CONCLUSION.md`.
+
+2026-11-17 — E-261117-02 (N2 moved chart): gate passed; Szilassi control chain and negatives passed, `symbreak` is the
+wrong gauge with symmetry clauses (orbit gauge is right); C2 3 x 2 + 1 recovers the Szilassi type in 37 / 13495
+draws, asymmetric baseline 3 / 13490; 0.94 core-h. See `experiments/E-261117-02-moved-chart-plane-symmetry/CONCLUSION.md`.

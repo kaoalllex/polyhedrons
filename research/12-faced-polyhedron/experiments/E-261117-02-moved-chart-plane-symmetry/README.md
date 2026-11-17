@@ -2,7 +2,9 @@
 id: E-261117-02
 title: Plane-only symmetry in a moved chart - Szilassi control chain, then the seven-plane C2 3 x 2 + 1 rung
 date: 2026-11-17
-status: running
+status: done
+concluded: 2026-11-17
+verdict: GATE-PASSED
 direction: [DR18, DR12]
 origin: [I-261117-02, I-261113-04, E-261103-02]
 tests: []
@@ -10,8 +12,10 @@ produces: []
 preregistered: true
 ---
 
-> Planned, explore, jump 0 (a gate of the C2 4 x 2 + 1 arm). Scores T D F G R: 2 2 2 2 2 | budget: one session,
-> <= 1 core-h. Before any compute: `PLAN.md` (skill `experiment-start`). No proofs.
+> Concluded: gate passed. A far plane as infinity makes Szilassi's fixed-face half-turn family uniform; control
+> chain and negatives passed; `build_sym`'s orbit gauge is correct, `symbreak` is not (with symmetry clauses). The
+> C2 3 x 2 + 1 sampler recovers the Szilassi type unaided, well above the asymmetric baseline; the C2 4 x 2 + 1 arm
+> of item 5 is open. 0.94 core-h. Evidence: [CONCLUSION.md](CONCLUSION.md).
 
 ## Goal
 
