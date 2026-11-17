@@ -42,7 +42,8 @@ from ortools.sat.python import cp_model  # noqa: E402
 from omsat import CNF, build, chirotope_from_planes, det4, perm_parity  # noqa: E402
 
 PERMS = list(itertools.permutations(range(4)))
-K_LADDER = (2, 4, 8, 16, 32)
+K_LADDER = tuple(int(k) for k in os.environ.get('P4_KS', '2,4,8,16,32').split(','))
+MAX_N = int(os.environ.get('P4_MAX_N', '11'))      # elements incl. INF; the 2026-11-17 amendment runs n <= 9
 C1_CAP = float(os.environ.get('P4_C1_CAP', '12'))
 C2_CAP = float(os.environ.get('P4_C2_CAP', '120'))
 SZ = ROOT / 'experiments/E-261103-02-s5-omsat-multi-adjacency-encoder/results/pilot/szilassi.input.json'
@@ -388,16 +389,18 @@ def c1(out, workers):
     t0 = time.monotonic()
     units = []
     for name, planes, links, tc in c1_controls():
+        if len(planes) + 1 > MAX_N:
+            continue
         chi = chirotope_from_planes(planes)
         assert all(chi.values()), name + ' not uniform'
         units.append((name, chi, {int(k): v for k, v in links.items()} if isinstance(links, dict) else
                       (dict(enumerate(links)) if links is not None else None), tc, K_LADDER, C1_CAP))
     planted_rows = {}
-    for n in (8, 11):
+    for n in [n for n in (8, 11) if n <= MAX_N]:
         pw, ps, pchi = planted(26111705 + n, n)
         planted_rows['planted_positive_n%d' % n] = dict(W=pw, s=ps, K=max(map(max, pw)))
         units.append(('planted_positive_n%d' % n, pchi, None, None, K_LADDER, C1_CAP))
-    cap_units = [(n, K, C1_CAP) for n in (8, 9, 11) for K in K_LADDER]
+    cap_units = [(n, K, C1_CAP) for n in (8, 9, 11) if n <= MAX_N for K in K_LADDER]
     sz_chi = chirotope_from_planes(json.loads(SZ.read_text())['planes'])
     fS, fchi = flipped(sz_chi)
     units.append(('negative_szilassi_gp_flip', fchi, None, None, K_LADDER, C1_CAP))
@@ -491,7 +494,7 @@ def manifest(out, t0):
     dump(out / 'manifest.json', dict(commit=git('rev-parse', 'HEAD'), dirty=git('status', '--porcelain'),
                                      python=sys.version, host=platform.platform(),
                                      ortools=__import__('ortools').__version__, wall_seconds=time.monotonic() - t0,
-                                     caps=dict(c1=C1_CAP, c2=C2_CAP), K_ladder=K_LADDER,
+                                     caps=dict(c1=C1_CAP, c2=C2_CAP), K_ladder=K_LADDER, max_n=MAX_N,
                                      sources_sha256={str(p.relative_to(ROOT)): sha(p)
                                                      for p in (Path(__file__).resolve(), SZ, K13)}))
 

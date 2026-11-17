@@ -79,3 +79,14 @@ Step 0 is done (commit `d4191846`: the 16 S6 (10, 2) files passed `candidate-che
 * Reading: the registered 12 s cap cannot pass the planted positive control even at n = 8, and n = 11 (the 16
   (10, 2) controls) is out of reach of this encoding within the session budget. The session run is not started;
   escalated to the owner (about 0.34 core-h of the 1 core-h used).
+
+### 2026-11-17, amendment after the pilot (owner's choice: narrow the scope, stay in the 1 core-h budget)
+
+* `bash run.sh amended` replaces the registered session: one box K = 32 (membership is monotone in K, so the ladder
+  below 32 is dropped; a hit's own max weight is reported as its upper bound on the least K), C1 cap 90 s, only
+  controls with n <= 9 elements (Szilassi perturbed, Roest-Vigh, Mizhaev, the 17 K13 solids), the planted n = 8
+  positive control and the GP-flip negative; capacity at n = 8, 9; C2 one unit at K = 32, cap 120 s. C0 as before.
+* Not run, recorded as such: the 16 S6 (10, 2) controls, the planted n = 11 control, capacity at n = 11, and every
+  K < 32. Coverage below 32 and at n = 11 stays unknown.
+* Worst case 0.65 core-h (24 C1 and capacity units x 90 s, C2 120 s, C0 ~60 core-s), about 1 core-h in total.
+* Pass conditions, predictions P1-P4 (P3 now over the 20 controls) and the stop rule unchanged; P5 is not tested.

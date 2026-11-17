@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 # Session run (eight processes, <= 1 core-h): bash run.sh pilot -> results/pilot/ (caps 3 s / 10 s);
-#   bash run.sh session -> results/session/ (caps 12 s / 120 s). C0, capacity, C1 and C2 in one call (PLAN.md).
+#   bash run.sh session -> results/session/ (caps 12 s / 120 s; superseded by the pilot amendment);
+#   bash run.sh amended -> results/amended/ (K = 32 only, n <= 9, caps 90 s / 120 s). C0, capacity, C1 and C2 in one call (PLAN.md).
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 PYTHON="${PYTHON:-${VIRTUAL_ENV:-$HOME/.venvs/polyhedra}/bin/python}"
-MODE="${1:?pilot or session}"
+MODE="${1:?pilot, session or amended}"
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 WORKERS=8
 case "$MODE" in
   pilot) export P4_C1_CAP=3 P4_C2_CAP=10 ;;
   session) export P4_C1_CAP=12 P4_C2_CAP=120 ;;
+  amended) export P4_C1_CAP=90 P4_C2_CAP=120 P4_KS=32 P4_MAX_N=9 ;;
   *) exit 2 ;;
 esac
 OUT="$HERE/results/$MODE"
