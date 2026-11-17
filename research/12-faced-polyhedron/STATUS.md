@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
 As of **2026-11-17** (owner's approval of the dialogue synthesis `reviews/dialogue-2026-11-16-strategy.md`). The latest
-registered result is E-261116-04 (section 3at); results are listed newest last in section 3, chronology in
+registered result is E-261117-01 (section 3au); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -451,6 +451,15 @@ map), every chart (56137, cells with margin >= 1e-7), give no EMBEDDED polyhedro
 NUMERICAL, SPEC §4 instance scope: these realizations only; not a non-existence statement. Controls: octahedron ->
 cube (9 of 52 EMBEDDED) and the Szilassi round trip (1 of 307, S6 PASS at (7,1)). I-261116-01 parked. H-261110-03 and
 S0 A/B/C unchanged. Counts and limits: `experiments/E-261116-04-polar-transfer-10-3/CONCLUSION.md`.
+
+## 3au. E-261117-01 Cayley census of face-transitive cubic (9, 4) maps (2026-11-17)
+
+**NO-ADMISSIBLE-CAYLEY-9-4**: every cubic (9, 4) map with all face pairs adjacent and Aut+ transitive on the faces
+(a Cayley map of Z9 or Z3 x Z3) is one of two classes, both with repeated vertex triples, so inadmissible; none
+is the map of a nine-face polyhedron. EXACT computation (two enumerators agree; K7, K12 and Roest-Vigh controls;
+reproduced by `verify_all`), coverage PROVED-1. Scope: cubic, genus 4, face-transitive; genus 7 and all other
+(9, 4) maps not covered; no formula ran. (8, 3): six classes (D4 5, Q8 1), Roest-Vigh's among them. H-261101-07
+unchanged. Counts: `experiments/E-261117-01-cayley-census-9-4/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

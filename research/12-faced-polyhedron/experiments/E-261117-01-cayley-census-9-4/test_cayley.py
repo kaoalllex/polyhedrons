@@ -69,5 +69,23 @@ class Symmetry(unittest.TestCase):
         self.assertEqual(with_c3, 8)   # STATUS.md section 3c: eight admissible maps with a free C3
 
 
+class Evidence(unittest.TestCase):
+    def test_saved_census_reproduces(self):
+        saved = cayley.HERE / 'results/census'
+        report = json.loads((saved / 'census.json').read_text())
+        self.assertTrue(report['PASS'])
+        self.assertTrue(all(st['methods_agree'] for st in report['stages'].values()))
+        for F, genus in ((8, 3), (9, 4)):
+            maps = json.loads((saved / f'maps_{F}_{genus}.json').read_text())['maps']
+            _, fresh = cayley.run(F, genus, 'by_phi', workers=2)
+            self.assertEqual([m['code'] for m in fresh], [m['code'] for m in maps])
+            self.assertEqual([m['admissible'] for m in fresh], [m['admissible'] for m in maps])
+        self.assertIn([list(p) for p in cayley.roest_vigh_code()],
+                      [m['code'] for m in json.loads((saved / 'maps_8_3.json').read_text())['maps']])
+        self.assertEqual(sum(m['admissible'] for m in json.loads((saved / 'maps_9_4.json').read_text())['maps']), 0)
+        controls = json.loads((saved / 'controls/formula_controls.json').read_text())
+        self.assertTrue(controls['PASS'])
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -164,7 +164,7 @@ def main():
         a.out.mkdir(parents=True, exist_ok=True)
         report = controls(a.out, 60)
         (a.out / 'formula_controls.json').write_text(json.dumps(report, indent=1) + '\n')
-        print(json.dumps({k: v if k == 'PASS' else v['status'] for k, v in report.items()}))
+        print(json.dumps({k: v['status'] if isinstance(v, dict) else v for k, v in report.items()}))
         sys.exit(0 if report['PASS'] else 1)
     shard(a.out, a.shard, a.shards, a.budget, a.cap)
 

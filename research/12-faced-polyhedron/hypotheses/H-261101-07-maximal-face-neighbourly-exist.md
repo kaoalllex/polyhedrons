@@ -24,6 +24,9 @@ object in print (CLAIMED). E-261103-01 has since exhausted the maximal-case map 
 (EXACT computation, coverage PROVED-1; `STATUS.md` section 3c). This supplies geometric inputs
 but does not move the existence hypothesis; its status remains open.
 
+2026-11-17, E-261117-01: no face-transitive cubic (9, 4) map is admissible (EXACT, coverage PROVED-1); the slice was
+empty before any geometry, so the status is unchanged (open). Genus 4 maps without face transitivity are untouched.
+
 ## What would move it
 
 E-261103-03 (exact decision per map): a realized model at (8, 2) or (9, 3) proves the case; all maps of a case

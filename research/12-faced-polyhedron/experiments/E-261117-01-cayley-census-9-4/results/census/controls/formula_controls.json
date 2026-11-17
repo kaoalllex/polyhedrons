@@ -1,0 +1,27 @@
+{
+ "roest_vigh_pinned": {
+  "status": "SAT",
+  "seconds": 0.02111791599963908,
+  "budget_seconds": 60,
+  "budget_fraction": 0.00035196526666065133,
+  "ended_by": "completed",
+  "variables": 4879,
+  "clauses": 38055,
+  "cnf_sha256": "09d32938585809462399c96c4596139da1d33ee539ff354fca305c07d1462a3e",
+  "solver_children_maxrss": 9420800,
+  "model_checked": true
+ },
+ "cross_map_pinned": {
+  "status": "UNSAT-SOLVER",
+  "seconds": 0.02089137499933713,
+  "budget_seconds": 60,
+  "budget_fraction": 0.00034818958332228554,
+  "ended_by": "completed",
+  "variables": 4891,
+  "clauses": 38103,
+  "cnf_sha256": "40fffebf43fc6c6ef9492c9e458138eddaeb3b08f9123a09fd9226fd39b1d020",
+  "solver_children_maxrss": 9420800
+ },
+ "PASS": true,
+ "note": "no admissible (9, 4) map: the target-side controls have no input"
+}

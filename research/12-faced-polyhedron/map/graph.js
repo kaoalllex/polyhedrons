@@ -1641,16 +1641,16 @@ window.GRAPH = {
    "id": "E-261117-01",
    "kind": "experiment",
    "title": "Cayley census - face-transitive cubic maps, order-8 rung at (8, 3), then Z9 and Z3 x Z3 at (9, 4), each map decided",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-17",
-   "concluded": "",
+   "concluded": "2026-11-17",
    "path": "experiments/E-261117-01-cayley-census-9-4/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "NO-ADMISSIBLE-CAYLEY-9-4",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction: the face-transitive (9, 4) slice is EMPTY (EXACT, coverage PROVED-1); closed for planning. Cost 0.017 core-h."
   },
   {
    "id": "E-261117-02",
@@ -4584,7 +4584,7 @@ window.GRAPH = {
    "id": "I-261117-01",
    "kind": "idea",
    "title": "Cayley census - every face-transitive cubic (9, 4) map is a Cayley map of Z9 or Z3 x Z3; list them and decide each",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-17",
    "concluded": "",
    "path": "ideas/I-261117-01-cayley-census-face-transitive-9-4.md",

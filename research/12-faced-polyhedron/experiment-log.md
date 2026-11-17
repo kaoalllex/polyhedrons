@@ -1043,3 +1043,7 @@ No compute. See `reviews/strategy-review-2026-11-16b.md`.
 2026-11-17 — Dialogue 2026-11-16-strategy applied (owner-approved): new week plan N1 (E-261117-01), N2 (E-261117-02),
 P3 v2 (E-261116-07 amended), P4 probe (E-261117-03), one C3 night (E-261110-04 amended); E-261116-06 withdrawn, the
 E-261110-03 gate closed; P6 pilot E-261117-04 queued; ideas I-261117-01..04 filed. No compute. See the review.
+
+2026-11-17 — E-261117-01 (N1 Cayley census): no face-transitive cubic (9, 4) map is admissible (two pillow classes);
+six classes at (8, 3) with Roest-Vigh's; controls K7, K12, Roest-Vigh passed; no formula ran; 0.017 core-h. See
+`experiments/E-261117-01-cayley-census-9-4/CONCLUSION.md`.

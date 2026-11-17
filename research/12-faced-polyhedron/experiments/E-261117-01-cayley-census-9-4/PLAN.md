@@ -65,3 +65,10 @@ Pre-registration, 2026-11-17. Week item 1 (`ROADMAP.md`; dialogue 2026-11-16-str
   S1 section); ROADMAP State concluded; a SAT goes to "For the lead".
 
 ## Amendments
+
+### 2026-11-17: stage A result (pilot), no stage B
+
+Stage A ran once (`results/census/`, 5.9 s wall, 10 workers); every control passed. (9, 4): two valid classes,
+both inadmissible (repeated vertex triples), zero admissible, so stage B has no unit and no owner launch is needed;
+the outcome "no admissible class" applies as written. The summary `print` of `formulas.py --controls` crashed after
+the report was saved; fixed, not rerun. Concluded in `CONCLUSION.md`.
