@@ -7,18 +7,17 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 
 * **Focus (owner, 2026-11-12): one constructive target at a time, each at least as significant as the 2026
   eight-face objects (owner's filter).**
-  * **First (owner, 2026-11-16b, confirmed 2026-11-17): S1, nine mutually adjacent faces with the genus free**
-    (dialogue 2026-11-16-strategy). Front checks, one session each: N1, the Cayley census of the face-transitive
-    cubic (9, 4) maps (E-261117-01), and N2, plane-only symmetry in a moved chart (E-261117-02). **Main
-    investment: P3, the census-free formula, specification v2** (I-261103-02, E-261116-07; two sessions, a decision
-    tree, an eight-face bridge gate before any nine-face run); it does not wait for N1 or N2. Then the P4
-    patchwork probe (E-261117-03) and one C3 3+3+3 night (E-261110-04 amended). The D2 plane-family gate is
-    closed (E-261110-03: it tests nothing). Success is only `verify_candidate.py FILE --all-pairs` PASS with nine
-    faces, then `candidate-check`. Ninth-plane cells: Stage A done, Stage B parked (E-261113-03 found only the
-    source map).
-  * **S5 at (11, 5): only through N2, as a new registration.** The free-action slice E-261116-06 is withdrawn
-    (eleven faces admit no free C2 or C3); the asymmetric sweep is priced out (>= 41 nights, E-261116-01). Success
-    is only `verify_candidate.py FILE --target S5` PASS at (11, 5).
+  * **First (owner, 2026-11-16b, confirmed 2026-11-17 and 2026-11-18): S1, nine mutually adjacent faces with the genus
+    free**, by complete formulas on symmetric quotients (lead review 2026-11-18): N1b (E-261118-01), then **P3-sym,
+    the census-free formula with a group action on the planes** (E-261118-02, the main investment), scored on the D2 /
+    S4 eight-face rung (Roest-Vigh's and Mizhaev's types must come out unaided) before C3 3+3+3 at nine faces, then
+    Cs 4 x 2 + 1. P6, the equivelar slice (E-261117-04), is the fallback. No nine-plane sampling night without a measured
+    rate one rung below (E-261110-04: no hit). Success is only `verify_candidate.py FILE --all-pairs` PASS with nine
+    faces, then `candidate-check`. Week 2026-11-17 done: N1 slice empty, N2 gate passed, P3 v2 and the P4 sampler
+    parked, the C3 night LOW-YIELD; the D2 plane-family gate closed; ninth-plane Stage B parked.
+  * **S5 at (11, 5): one plane-only price probe** (E-261118-03, two Aut+ = 2 maps): a 10x speed-up earns one night for
+    the 20 maps, otherwise (11, 5) closes for the laptop. The free-action slice E-261116-06 is withdrawn; the asymmetric
+    sweep is priced out (>= 41 nights, E-261116-01). Success is only `verify_candidate.py FILE --target S5` PASS at (11, 5).
   * **S5 at (10, 4): all 1117 admissible maps UNSAT-SOLVER** (E-261109-06, E-261110-06; no candidate). The owner may
     rely on it in planning; it is no negative result. A checked replay only for a named claim (I-261116-02, parked).
   * **S6: parked after (10, 3)**: all twenty normalised formulas UNSAT-SOLVER (E-261116-02, -05), polar transfer
@@ -129,3 +128,7 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   stay first; front checks N1 (Cayley census) and N2 (moved chart); P3 v2 the main investment; P4 probe; one C3
   night; (11, 5) only through N2 (E-261116-06 withdrawn: free-action domain empty); the D2 family gate closed.
   Targets, stance, S0 parking and the side track unchanged; credences not applied.
+* 2026-11-18 (owner's approval of lead review `reviews/strategy-review-2026-11-18.md`): nine faces stay first, by
+  complete formulas on symmetric quotients (P3-sym, D2 / S4 rung first), P6 the fallback, no nine-plane sampling night
+  without a rung-below rate; (11, 5) one plane-only price probe; nine-face credence 0.55 -> 0.45. The owner's ideas
+  (ETH preprints, Degen's identity) dropped. Stance, S0 parking and the side track unchanged.

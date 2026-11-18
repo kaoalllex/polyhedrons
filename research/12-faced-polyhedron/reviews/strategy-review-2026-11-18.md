@@ -96,7 +96,7 @@ Parked target only (S0): E-261101-06 rank-3 SAT (2 2 2 2 2, the cheapest if S0 r
 ## 5. New ideas (untested proposals, not evidence) and the owner's raw ideas
 
 * **N1. Equivariant census-free formula (P3-sym).** Add a group action on the planes to P3; decide all G-symmetric solids of one (F, E) in one
-  formula. Why: orbit counts (this session, EXACT, `itertools`): C3 on nine faces 72 of 210 quads, D2 and S4 on eight 36 and 34 of 126; P3
+  formula. Why: orbit counts (this session, EXACT, `strategy-review-2026-11-18-orbits.py`): C3 on nine faces 72 of 210 quads, D2 and S4 on eight 36 and 34 of 126; P3
   decided the 70-sign seven-face formula in 8 s, and cells shrink by the same factor (that presolve merges the equalities: CLAIMED). Test: item 2's rung.
 * **N2. Symmetric slices at nine faces (PROVED-1 sketch, this session).** (a) A symmetry fixing a face keeps its outward normal, so the face is
   perpendicular to a rotation axis or has its normal in a mirror; no inversion or rotoreflection fixes a face. (b) A rotation fixes at most one
@@ -144,3 +144,9 @@ Parked target only (S0): E-261101-06 rank-3 SAT (2 2 2 2 2, the cheapest if S0 r
 
 1. Owner: approvals 1-3. 2. Lab (Opus, medium / gpt-6.1-sol, medium): item 1, minutes. 3. Lab (Opus, high / gpt-6-astra, high): item 2's
 PLAN, the equivariant build and its controls; then the owner launches the rung (<= 6 core-h).
+
+## Owner's decisions (2026-11-18)
+
+Approvals 1-3 given ("ok"), the §5 triage of the owner's ideas accepted; applied the same day. New owner ideas (knot
+theory, one curved face): `ideas-triage-2026-11-18.md`.
+

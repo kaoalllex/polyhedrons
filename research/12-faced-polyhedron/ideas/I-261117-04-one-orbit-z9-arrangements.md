@@ -2,7 +2,7 @@
 id: I-261117-04
 title: One-orbit Z9 arrangements - the parameter-free cyclic plane orbits for Z9 Cayley maps, tested in every chart
 date: 2026-11-17
-status: open
+status: parked
 direction: [DR18]
 origin: [I-261117-01, I-261101-08, E-261116-04]
 ---
@@ -27,3 +27,5 @@ Seconds on stored planes: do the plane chirotopes of Szilassi and Roest-Vigh car
 reorientation? If not, park N4.
 
 Source: `reviews/dialogue-2026-11-16-strategy.md` §2 (reserve), thread #22 and #24 (N4). Nearest: I-261101-08.
+
+Parked 2026-11-18 (lead review 2026-11-18 §3, owner-approved): no Z9 Cayley map exists at (9, 4) (E-261117-01), so the input is empty at genus 4; genus 7 is not enumerated.

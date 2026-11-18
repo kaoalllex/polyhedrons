@@ -22,3 +22,5 @@ obligations of E-261116-07 (finite-vertex coverage at OM level, the disk and man
 ## Next
 
 Update paper items B2-B5 and D3 in `paper/OUTLINE.md`. A counterexample keeps "uniform" / "cubic" in every statement.
+
+Extended 2026-11-18 (`reviews/strategy-review-2026-11-18.md` §5): (e) the symmetric-slice lemma I-261118-02 (fixed faces, rotation orbits, C3 coverage, the C3 gauge).

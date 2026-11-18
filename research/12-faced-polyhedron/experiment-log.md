@@ -1061,5 +1061,10 @@ C0 passed; amended to K = 32, n <= 9: Szilassi's chirotope patchwork, C2 realize
 (S5 PASS); nine-element controls UNKNOWN; 0.87 core-h. See `experiments/E-261117-03-patchwork-chirotope-probe/CONCLUSION.md`.
 
 2026-11-18 — E-261110-04 (owner night, symmetric families at nine planes): controls passed; no nine-face hit in about
-3,830 arrangements per C3 / C2 cell at E = 45, 51 (p >= ~9e-4 rejected per cell); geo boxes 0 in 551 / 557 chirotopes
+3,830 arrangements per C3 / C2 cell at E = 45, 51 (p >= ~9e-4 rejected per decided arrangement); geo boxes 0 in 551 / 557 chirotopes
 at eight planes, below K13; LOW-YIELD, 63.8 core-h. See `experiments/E-261110-04-genus-free-9-10-faces-sweep/CONCLUSION.md`.
+
+2026-11-18 — Lead review 2026-11-18 approved by the owner (`reviews/strategy-review-2026-11-18.md`): new week plan
+(N1b E-261118-01, P3-sym E-261118-02, (11, 5) price probe E-261118-03, E-261116-08, P6 E-261117-04 as fallback); ideas
+I-261118-01..03 filed, N4 parked; nine-face credence 0.55 -> 0.45. Owner's ideas triaged (ETH, Degen: dropped; knot
+theory and one curved face: `reviews/ideas-triage-2026-11-18.md`). No compute beyond session checks.

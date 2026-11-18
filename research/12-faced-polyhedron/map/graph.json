@@ -1699,6 +1699,52 @@
    "conclusion": ""
   },
   {
+   "id": "E-261118-01",
+   "kind": "experiment",
+   "title": "N1b - the five unrealized face-transitive (8, 3) classes of E-261117-01 by the plain and normalised formulas",
+   "status": "planned",
+   "date": "2026-11-18",
+   "concluded": "",
+   "path": "experiments/E-261118-01-face-transitive-8-3-formulas/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261118-02",
+   "kind": "experiment",
+   "title": "P3-sym - the census-free formula on symmetric quotients, D2 / S4 eight-face rung before C3 3+3+3 at nine faces",
+   "status": "planned",
+   "date": "2026-11-18",
+   "concluded": "",
+   "path": "experiments/E-261118-02-equivariant-census-free-formula/README.md",
+   "direction": [
+    "DR19",
+    "DR7"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261118-03",
+   "kind": "experiment",
+   "title": "(11, 5) plane-only price probe - the moved-chart C2 formula on two Aut+ = 2 maps against the 12-element median",
+   "status": "planned",
+   "date": "2026-11-18",
+   "concluded": "",
+   "path": "experiments/E-261118-03-s5-11-5-plane-only-price-probe/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -4628,12 +4674,56 @@
    "id": "I-261117-04",
    "kind": "idea",
    "title": "One-orbit Z9 arrangements - the parameter-free cyclic plane orbits for Z9 Cayley maps, tested in every chart",
-   "status": "open",
+   "status": "parked",
    "date": "2026-11-17",
    "concluded": "",
    "path": "ideas/I-261117-04-one-orbit-z9-arrangements.md",
    "direction": [
     "DR18"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261118-01",
+   "kind": "idea",
+   "title": "Equivariant census-free formula - a group action on the planes of P3 decides all G-symmetric solids of one (F, E) in one formula",
+   "status": "open",
+   "date": "2026-11-18",
+   "concluded": "",
+   "path": "ideas/I-261118-01-equivariant-census-free-formula.md",
+   "direction": [
+    "DR19",
+    "DR7"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261118-02",
+   "kind": "idea",
+   "title": "Symmetric slices at nine faces - the eight-face groups cannot act, C3 3+3+3 covers every order-3 rotation, the uniform families listed",
+   "status": "open",
+   "date": "2026-11-18",
+   "concluded": "",
+   "path": "ideas/I-261118-02-symmetric-slices-nine-faces.md",
+   "direction": [
+    "DR19",
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261118-03",
+   "kind": "idea",
+   "title": "Mirror family Cs 4 x 2 + 1 at nine faces and its seven-face negative control from the chirality of Szilassi's map",
+   "status": "open",
+   "date": "2026-11-18",
+   "concluded": "",
+   "path": "ideas/I-261118-03-mirror-family-negative-control.md",
+   "direction": [
+    "DR19"
    ],
    "verdict": "",
    "preregistered": ""
@@ -6523,6 +6613,11 @@
   },
   {
    "from": "E-261116-01",
+   "to": "E-261118-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261116-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -6593,8 +6688,18 @@
   },
   {
    "from": "E-261116-07",
+   "to": "E-261118-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261116-07",
    "to": "H-261101-07",
    "kind": "tests"
+  },
+  {
+   "from": "E-261116-07",
+   "to": "I-261118-01",
+   "kind": "origin"
   },
   {
    "from": "E-261116-08",
@@ -6608,11 +6713,41 @@
   },
   {
    "from": "E-261117-01",
+   "to": "E-261118-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261117-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
   {
+   "from": "E-261117-01",
+   "to": "I-261118-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261117-02",
+   "to": "E-261118-03",
+   "kind": "origin"
+  },
+  {
    "from": "E-261117-04",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261118-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261118-02",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261118-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -7553,7 +7688,17 @@
   },
   {
    "from": "I-261103-02",
+   "to": "E-261118-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261103-02",
    "to": "I-261117-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261103-02",
+   "to": "I-261118-01",
    "kind": "origin"
   },
   {
@@ -7782,6 +7927,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261113-04",
+   "to": "I-261118-02",
+   "kind": "origin"
+  },
+  {
    "from": "I-261114-01",
    "to": "E-261114-01",
    "kind": "origin"
@@ -7832,6 +7982,11 @@
    "kind": "origin"
   },
   {
+   "from": "I-261116-04",
+   "to": "E-261118-03",
+   "kind": "origin"
+  },
+  {
    "from": "I-261116-05",
    "to": "E-261116-08",
    "kind": "origin"
@@ -7853,12 +8008,47 @@
   },
   {
    "from": "I-261117-01",
+   "to": "E-261118-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261117-01",
    "to": "I-261117-04",
    "kind": "origin"
   },
   {
    "from": "I-261117-02",
    "to": "E-261117-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261117-02",
+   "to": "E-261118-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261117-02",
+   "to": "I-261118-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261117-02",
+   "to": "I-261118-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261118-01",
+   "to": "E-261118-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261118-02",
+   "to": "E-261118-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261118-02",
+   "to": "I-261118-03",
    "kind": "origin"
   },
   {
