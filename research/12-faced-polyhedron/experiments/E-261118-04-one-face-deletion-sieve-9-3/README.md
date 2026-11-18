@@ -2,12 +2,12 @@
 id: E-261118-04
 title: (9, 3) one-face deletion sieve - each admissible map with the planarity of one face dropped, do quasi-polyhedra with one curved face exist?
 date: 2026-11-18
-status: planned
+status: running
 direction: [DR19, DR11]
 origin: [I-261118-04, I-261101-18, E-261103-03]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned, week item 1 (owner, 2026-11-18: "a separate first item"; `reviews/ideas-triage-2026-11-18.md` §2 Q1),
@@ -23,6 +23,10 @@ whose vertices lie on the lines of its neighbours. The PLAN names the code path 
 E-261101-23 applied to the S5 encoder of E-261103-02) and its controls: the full formula without deletion reproduces
 UNSAT on a few maps (STATUS 3d); the same deletion on Roest-Vigh's (8, 3) map is SAT with Roest-Vigh's own planes
 minus one pinned; a deleted formula is a relaxation of the full one (monotonicity on every map).
+
+Run formula (owner, 2026-11-18, `PLAN.md`): plane S kept, the own conditions of F_S dropped (a planar but possibly
+defective face S), since deleting plane S leaves almost only GP at (9, 3); the true curved face needs a new encoder
+("For the lead").
 
 ## Next
 
