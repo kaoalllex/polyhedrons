@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-18** (E-261118-04 concluded on its pilot; owner's approval of lead review `reviews/strategy-review-2026-11-18.md`, 2026-11-18). The latest
-registered result is E-261118-04 (section 3az); results are listed newest last in section 3, chronology in
+As of **2026-11-18** (E-261118-01 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-18.md`, 2026-11-18). The latest
+registered result is E-261118-01 (section 3ba); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -15,7 +15,7 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 ## 0. State in one paragraph
 
 **Focus since 2026-11-18 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
-mutually adjacent faces (S1, genus free) first, by complete formulas on symmetric quotients (after the owner's (9, 3) one-face deletion sieve E-261118-04: N1b E-261118-01, P3-sym
+mutually adjacent faces (S1, genus free) first, by complete formulas on symmetric quotients (after the owner's (9, 3) one-face deletion sieve E-261118-04: N1b E-261118-01 (done, section 3ba), P3-sym
 E-261118-02 with a D2 / S4 eight-face rung, P6 the fallback; no result yet). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
 E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
 (11, 5) one plane-only price probe (E-261118-03; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
@@ -511,6 +511,14 @@ kept (owner's choice; a planar but possibly defective S, not the curved face of 
 S = 5 and S = 8 SAT (EXACT, formula scope; both models unrealized by the bridge, no final polynomial), the other seven
 faces UNSAT-SOLVER; map 0: all nine TIMEOUT at 300 s. The full sieve projected to 40-150 core-h and was not run (owner).
 Nothing about curved faces, other maps, or realizability. Counts: `experiments/E-261118-04-one-face-deletion-sieve-9-3/CONCLUSION.md`.
+
+## 3ba. E-261118-01 N1b, the face-transitive (8, 3) classes by formula (2026-11-18)
+
+**COMPLETE-UNSAT-SOLVER@0.004 core-h (classes 1-5)**: the plain and normalised S1 formulas at 9 elements of the five
+face-transitive (8, 3) classes other than Roest-Vigh's (section 3au), with the mirror maps of the chiral ones: all 16
+UNSAT-SOLVER in seconds (instance scope, no proofs; ranking only). Controls passed; Roest-Vigh's class SAT in all four
+formulas and realized by the bridge (`--all-pairs` PASS, the known object). No new eight-face object; nothing about
+realizability of classes 1-5 or non-face-transitive maps. `experiments/E-261118-01-face-transitive-8-3-formulas/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

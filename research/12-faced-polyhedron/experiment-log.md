@@ -1075,3 +1075,7 @@ to items 2-6; knot theory dropped except its capping role; the Codex copy of `ov
 2026-11-18 — E-261118-04 (week item 1), concluded on the pilot by the owner: formula option (a) (plane S kept, own
 conditions of F_S dropped); map 29 faces 5 and 8 SAT (unrealized), map 0 all TIMEOUT; full sieve priced at 40-150
 core-h, not run. `experiments/E-261118-04-one-face-deletion-sieve-9-3/CONCLUSION.md`.
+
+2026-11-18 — E-261118-01 (week item 2, N1b): 20 formulas at 9 elements (six face-transitive (8, 3) classes, mirrors of
+the chiral ones), owner launch of seconds; classes 1-5 all UNSAT-SOLVER, Roest-Vigh's class SAT and realized.
+`experiments/E-261118-01-face-transitive-8-3-formulas/CONCLUSION.md`.

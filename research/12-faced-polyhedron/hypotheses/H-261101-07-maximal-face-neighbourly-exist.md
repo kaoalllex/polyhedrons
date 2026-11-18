@@ -99,3 +99,8 @@ object; status and credence remain unchanged.
 
 E-261118-04 (pilot only, STATUS 3az): on map 29 the refutation needs the own conditions of faces 5 and 8 (their deleted
 formulas are SAT, models unrealized). A relaxation result on one map: status and credence unchanged.
+
+## 2026-11-18 face-transitive (8, 3) formulas
+
+E-261118-01 (STATUS 3ba): of the six face-transitive (8, 3) classes only Roest-Vigh's has a SAT formula (the other five,
+both orientations, UNSAT-SOLVER at formula scope). No new eight-face object: status and credence unchanged.

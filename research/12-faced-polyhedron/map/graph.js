@@ -1702,16 +1702,16 @@ window.GRAPH = {
    "id": "E-261118-01",
    "kind": "experiment",
    "title": "N1b - the five unrealized face-transitive (8, 3) classes of E-261117-01 by the plain and normalised formulas",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-18",
-   "concluded": "",
+   "concluded": "2026-11-18",
    "path": "experiments/E-261118-01-face-transitive-8-3-formulas/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "\"COMPLETE-UNSAT-SOLVER@0.004 core-h: classes 1-5 all 16 formulas UNSAT-SOLVER; Roest-Vigh's class SAT and realized\"",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict for the direction: the face-transitive (8, 3) slice is closed for planning: Roest-Vigh's class is the only one with a SAT formula. COMPLETE-UNSAT-SOLVER@0.004 core-h. Side result: the bridge realizes his class from a random model in under 1 s, so it is a cheap rung control for E-261118-02."
   },
   {
    "id": "E-261118-02",
