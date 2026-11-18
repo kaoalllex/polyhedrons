@@ -30,7 +30,9 @@ Reference implementations: `research/12-faced-polyhedron/experiments/_template/r
    hand-over. Without it, idle sleep stops the night (night 4 lost 8 h).
 1. Keep the template's `HERE` (experiment directory) and `ROOT` (research directory), derived from the script's
    location. Use `python3` from an activated environment with `requirements.txt` installed; required solver
-   executables must be on `PATH`. Do not embed machine-specific environment or executable locations.
+   executables must be on `PATH`, except kissat: take it from `$SAT_SOLVER`, defaulting to `$HOME/bin/kissat`
+   (rel-4.0.4, SHA-256 `4bc06993...`; `~/bin` is not on `PATH`), and record its hash in the manifest. Do not embed
+   other machine-specific environment or executable locations.
 2. Keep the template's `[SHARD]` argument. Read the shard count from `SHARDS` for laptop launches; configure
    time and worker budgets explicitly in the plan and runner rather than adding positional arguments.
 3. Pin BLAS/numba to one thread per worker, otherwise N workers x M BLAS threads oversubscribe the cores:
