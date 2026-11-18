@@ -94,3 +94,8 @@ No geometric exclusion or measured discovery power; hypothesis status and creden
 E-261116-07 (CONCLUSION / STATUS 3aw): the census-free formula decided (7, 21) but produced no model and no decision at
 (8, 30), (9, 39) or (8, 36) within 5.5 core-h (UNKNOWN at every cap). A budget stop: no geometric exclusion, no new
 object; status and credence remain unchanged.
+
+## 2026-11-18 one-face deletion sieve
+
+E-261118-04 (pilot only, STATUS 3az): on map 29 the refutation needs the own conditions of faces 5 and 8 (their deleted
+formulas are SAT, models unrealized). A relaxation result on one map: status and credence unchanged.

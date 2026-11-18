@@ -2,7 +2,9 @@
 id: E-261118-04
 title: (9, 3) one-face deletion sieve - each admissible map with the planarity of one face dropped, do quasi-polyhedra with one curved face exist?
 date: 2026-11-18
-status: running
+status: done
+concluded: 2026-11-18
+verdict: "OPEN-LOW@1.1 core-h, 2 of 203 maps; map 29 faces 5 and 8 SAT (unrealized), concluded on the pilot (owner)"
 direction: [DR19, DR11]
 origin: [I-261118-04, I-261101-18, E-261103-03]
 tests: [H-261101-07]
@@ -35,3 +37,8 @@ quasi-polyhedron to straighten (planning only, no checked proof). SAT -> record 
 eight planes, then to the lead: building the skew face and checking its capping (an embedded spanning disk) is a new
 step; the non-straightening of such a model is already the UNSAT-VERIFIED full formula of its map. Lab: Opus, medium /
 Codex gpt-6.1-sol, medium (a SAT conclusion: Opus, high / gpt-6-astra, high).
+
+## Results
+
+Concluded on the pilot (owner, 2026-11-18; `CONCLUSION.md`): controls pass; map 0 all faces TIMEOUT; map 29 faces 5
+and 8 SAT (bridge: unrealized), the other seven UNSAT-SOLVER; the full sieve priced at 40-150 core-h and not run.

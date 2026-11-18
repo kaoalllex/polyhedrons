@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-18** (E-261110-04 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-18.md`, 2026-11-18). The latest
-registered result is E-261110-04 (section 3ay); results are listed newest last in section 3, chronology in
+As of **2026-11-18** (E-261118-04 concluded on its pilot; owner's approval of lead review `reviews/strategy-review-2026-11-18.md`, 2026-11-18). The latest
+registered result is E-261118-04 (section 3az); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -503,6 +503,14 @@ p >= ~9e-4 per decided arrangement for these families, box, cap and E only (NUME
 units, other boxes, caps, charts, E = 39 or ten planes. Geometric boxes +-q^w (q = 2, 3, w <= 3) at eight planes,
 E = 36: 0 solids in 551 / 557 distinct chirotopes (draws repeat), below K13's uniform-box 17 / 240; the geo arm is
 parked. Controls passed; no candidate. Counts: `experiments/E-261110-04-genus-free-9-10-faces-sweep/CONCLUSION.md`.
+
+## 3az. E-261118-04 (9, 3) one-face deletion sieve, pilot only (2026-11-18)
+
+**OPEN-LOW@1.1 core-h, 2 of 203 maps**: the (9, 3) map formula with the own conditions of one face S dropped and plane S
+kept (owner's choice; a planar but possibly defective S, not the curved face of I-261118-04). Controls passed. Map 29:
+S = 5 and S = 8 SAT (EXACT, formula scope; both models unrealized by the bridge, no final polynomial), the other seven
+faces UNSAT-SOLVER; map 0: all nine TIMEOUT at 300 s. The full sieve projected to 40-150 core-h and was not run (owner).
+Nothing about curved faces, other maps, or realizability. Counts: `experiments/E-261118-04-one-face-deletion-sieve-9-3/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

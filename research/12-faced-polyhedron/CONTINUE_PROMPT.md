@@ -9,12 +9,12 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-18, lead review 2026-11-18 approved; new week)
+## Hand-over (2026-11-18, week item 1 done)
 
-* Week branch `lab/2026-11-18` (created from `main` after the PR of `lab/2026-11-16`). Week plan: `ROADMAP.md` -> Week
-  plan (`reviews/strategy-review-2026-11-18.md` §1, owner-approved 2026-11-18).
-* Next: week item 1, the (9, 3) one-face deletion sieve (E-261118-04, owner's idea, <= 1 core-h); then item 2, N1b
-  (E-261118-01, minutes); then item 3, P3-sym (E-261118-02, the main investment: equivariant `p3.Formula`, D2 / S4
-  eight-face rung before C3 3+3+3 at nine faces). Each needs its `PLAN.md` first, with the unit tests run in that
-  commit; item 3's prep adds the dirty-tree refusal to `overnight/launch.sh`.
-* For the lead: nothing open.
+* Week branch `lab/2026-11-18`. Week plan: `ROADMAP.md` -> Week plan (`reviews/strategy-review-2026-11-18.md` §1).
+* Item 1 done: E-261118-04 concluded on its pilot by the owner (STATUS 3az, OPEN-LOW; formula option (a), plane S kept).
+* Next: item 2, N1b (E-261118-01, minutes); then item 3, P3-sym (E-261118-02; its prep adds the dirty-tree refusal to
+  `overnight/launch.sh`). Each needs its `PLAN.md` first, with the unit tests run in that commit.
+* For the lead: (1) the owner's curved face as stated (free vertices on the lines L_XY) needs a new, non-uniform encoder
+  with a soundness note: worth it? (2) Two unrealized SAT models of map 29 (faces 5, 8; 1 and 4 wrong signs): a
+  final-polynomial test or drop?

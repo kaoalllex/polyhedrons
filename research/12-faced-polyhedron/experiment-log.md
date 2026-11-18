@@ -1071,3 +1071,7 @@ theory and one curved face: `reviews/ideas-triage-2026-11-18.md`). No compute be
 
 2026-11-18 — Owner: the (9, 3) one-face deletion sieve (E-261118-04, I-261118-04) becomes week item 1, the others move
 to items 2-6; knot theory dropped except its capping role; the Codex copy of `overnight-run-script` synced.
+
+2026-11-18 — E-261118-04 (week item 1), concluded on the pilot by the owner: formula option (a) (plane S kept, own
+conditions of F_S dropped); map 29 faces 5 and 8 SAT (unrealized), map 0 all TIMEOUT; full sieve priced at 40-150
+core-h, not run. `experiments/E-261118-04-one-face-deletion-sieve-9-3/CONCLUSION.md`.
