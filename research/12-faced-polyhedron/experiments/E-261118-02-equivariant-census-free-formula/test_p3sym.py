@@ -1,8 +1,9 @@
-"""Unit tests of P3-sym: group bookkeeping, forced zeros (with an exact geometric check), normal forms, one pinned solve."""
+"""Unit tests of P3-sym: group bookkeeping, forced zeros (exact geometric check), normal forms, known types, a pinned solve."""
 import random
 import unittest
 
-from p3sym import C3, D2, S4, GROUP, ORDER, fixtures, forced_zeros, group, invariant, normal_form, pinned, quad_orbits
+from p3sym import (C3, D2, S4, GROUP, ORDER, fixtures, forced_zeros, group, invariant, known_type, normal_form, pinned,
+                   quad_orbits, relabel_links)
 from omsat import chirotope_from_planes, det4
 
 
@@ -41,6 +42,12 @@ class P3SymTests(unittest.TestCase):
             chi = chirotope_from_planes(h)
             self.assertTrue(invariant(chi, [], 8, GROUP[name]))
             self.assertFalse(invariant(chi, [], 8, S4 if name == 'roest_vigh' else D2))
+
+    def test_known_types(self):
+        fx = fixtures()
+        for name in ('roest_vigh', 'mizhaev'):
+            links = relabel_links(fx[name][1], ORDER['mizhaev'])
+            self.assertEqual(known_type({f: links[f][::-1] if f % 2 else links[f] for f in links}), name)
 
     def test_pinned_roest_vigh(self):
         h = normal_form(fixtures()['roest_vigh'][0], ORDER['roest_vigh'], D2)

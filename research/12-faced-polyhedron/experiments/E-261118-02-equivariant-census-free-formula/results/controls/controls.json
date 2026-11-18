@@ -1,0 +1,99 @@
+{
+ "PASS": true,
+ "checks": {
+  "quad_orbits": {
+   "D2": 36,
+   "S4": 34,
+   "C3": 72
+  },
+  "quad_orbits_PASS": true,
+  "forced_zeros": {
+   "C4_2x4": [
+    [
+     0,
+     1,
+     2,
+     3
+    ],
+    [
+     4,
+     5,
+     6,
+     7
+    ]
+   ],
+   "Cs_3x2+1": [
+    [
+     0,
+     1,
+     2,
+     3
+    ],
+    [
+     0,
+     1,
+     4,
+     5
+    ],
+    [
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "C2_3x2+1_standard_chart": [
+    [
+     0,
+     1,
+     6,
+     7
+    ],
+    [
+     2,
+     3,
+     6,
+     7
+    ],
+    [
+     4,
+     5,
+     6,
+     7
+    ]
+   ],
+   "Cs_4x2+1": [
+    [
+     0,
+     1,
+     2,
+     3
+    ],
+    [
+     0,
+     1,
+     4,
+     5
+    ],
+    [
+     0,
+     1,
+     6,
+     7
+    ]
+   ],
+   "in_domain": {
+    "D2": [],
+    "S4": [],
+    "C3": []
+   }
+  },
+  "forced_zeros_PASS": true,
+  "roest_vigh_normal_form": true,
+  "mizhaev_normal_form": true,
+  "roest_vigh_raw_orientation_gauge_off": true,
+  "roest_vigh_wrong_group": true,
+  "mizhaev_wrong_group": true,
+  "roest_vigh_orbit_flipped": true
+ }
+}

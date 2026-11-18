@@ -255,10 +255,16 @@ def controls(out):
     return report
 
 
-# Rung units (PLAN.md): unit -> (F, action or None, cube or None, workers, cap seconds)
-UNITS = {'D2_8_36': (8, D2, None, 5, 1800), 'S4_8_36': (8, S4, None, 5, 1800), 'plain_cube5_8_36': (8, None, 5, 8, 900)}
-RUN_BUDGET = 5.6 * 3600          # core-seconds of the owner run (6 core-h minus the session's controls and pilot)
-MAX_MODELS = 3
+# Units (PLAN.md and amendment 1): name -> F, E, action or None (then the plain cube of E-261116-07), workers, cap
+# seconds, models at most, units that must be recorded first (at most 10 cores at any time).
+U = lambda F, E, action, cube, workers, cap, models, after=(): dict(F=F, E=E, action=action, cube=cube, workers=workers,
+                                                                   cap=cap, models=models, after=after)
+UNITS = {'D2_8_36': U(8, 36, D2, None, 5, 1800, 3), 'S4_8_36': U(8, 36, S4, None, 5, 1800, 3),
+         'C3_9_45': U(9, 45, C3, None, 5, 3600, 20), 'C3_9_51': U(9, 51, C3, None, 5, 3600, 20),
+         'C3_9_57': U(9, 57, C3, None, 5, 3600, 20, after=('C3_9_45',)),
+         'plain_cube5_8_36': U(8, 36, None, 5, 8, 900, 3, after=('C3_9_45', 'C3_9_51', 'C3_9_57'))}
+RUN_BUDGET = 5.6 * 3600          # core-seconds of the rung units (6 core-h minus the session's controls and pilot)
+RUNG = ('D2_8_36', 'S4_8_36', 'plain_cube5_8_36')
 
 
 def records(results):
@@ -266,15 +272,37 @@ def records(results):
             if line.strip()]
 
 
+def map_codes(links):
+    """Census canonical codes (E-261103-01, minimised over orientation) of a map given by per-face links of arbitrary
+    direction: every choice of directions that the census accepts."""
+    sys.path.insert(0, str(ROOT / 'experiments/E-261103-01-s5-map-census'))
+    import census
+    L = [links[i] for i in range(len(links))]; out = set()
+    for flips in itertools.product((0, 1), repeat=len(L)):
+        try:
+            out.add(census.from_links([l[::-1] if f else l for l, f in zip(L, flips)]).canon()[0])
+        except (ValueError, AssertionError):
+            continue
+    return out
+
+
+def known_type(links):
+    """The known eight-face object whose map is the given one, or None (EXACT, census codes)."""
+    if len(links) != 8:
+        return None
+    codes = map_codes(links)
+    return next((name for name, (_, l) in fixtures().items() if codes & map_codes(l)), None)
+
+
 def run_unit(name, out, cap=None):
-    F, action, cube, workers, cap0 = UNITS[name]
-    cap = cap0 if cap is None else cap
+    u = UNITS[name]; F, workers = u['F'], u['workers']
+    cap = u['cap'] if cap is None else cap
     t0 = time.monotonic(); deadline = t0 + cap
-    f = SymFormula(F, action, edges=36) if action else p3.Formula(F, edges=36, cube=p3.cube(F, cube))
+    f = SymFormula(F, u['action'], edges=u['E']) if u['action'] else p3.Formula(F, edges=u['E'], cube=p3.cube(F, u['cube']))
     proto = f.model.Proto()
-    rec = dict(id=name, F=F, E=36, workers=workers, cap=round(cap, 1), build_seconds=round(time.monotonic() - t0, 2),
+    rec = dict(id=name, F=F, E=u['E'], workers=workers, cap=round(cap, 1), build_seconds=round(time.monotonic() - t0, 2),
                variables=len(proto.variables), constraints=len(proto.constraints), models=[], solves=[])
-    while len(rec['models']) < MAX_MODELS:
+    while len(rec['models']) < u['models']:
         left = deadline - time.monotonic()
         if left <= 1:
             rec['ended_by'] = 'cap'; break
@@ -287,6 +315,8 @@ def run_unit(name, out, cap=None):
         if m['decode_ok'] and m['gp_ok'] and m.get('invariant', True):
             left = deadline - time.monotonic()
             m['bridge'] = p3.bridge(out, mname, r['chi'], m['links'], tuple(max(1, min(c, left / 3)) for c in (90, 90, 60)))
+            if m['bridge'].get('status_note') == 'REALIZED-ALL-PAIRS-PASS':
+                m['known_type'] = known_type(m['links'])
         rec['models'].append({k2: v for k2, v in m.items() if k2 != 'links'})
         if (m.get('bridge') or {}).get('status_note') == 'REALIZED-ALL-PAIRS-PASS':
             rec['ended_by'] = 'realized'; break
@@ -299,21 +329,21 @@ def run_unit(name, out, cap=None):
 
 
 def unit(name, out):
-    """One rung unit into OUT/results.jsonl; the plain side unit waits for both rung units and fits the budget."""
+    """One unit into OUT/results.jsonl, after the units it waits for; the plain side unit fits the rung budget."""
     out.mkdir(parents=True, exist_ok=True)
     results = out.parent
     if name in {r['id'] for r in records(results)}:
         return
     man = p3.manifest_base(); man.update(unit=name)
     p3.dump(out / ('manifest-%d.json' % int(time.time())), man)
+    while not set(UNITS[name]['after']) <= {r['id'] for r in records(results)}:
+        if (results / 'stop.requested').exists():
+            return
+        time.sleep(30)
     cap = None
     if name == 'plain_cube5_8_36':
-        while not {'D2_8_36', 'S4_8_36'} <= {r['id'] for r in records(results)}:
-            if (results / 'stop.requested').exists():
-                return
-            time.sleep(30)
-        used = sum(r['core_seconds'] for r in records(results))
-        cap = min(UNITS[name][4], (RUN_BUDGET - used) / UNITS[name][3])
+        used = sum(r['core_seconds'] for r in records(results) if r['id'] in RUNG)
+        cap = min(UNITS[name]['cap'], (RUN_BUDGET - used) / UNITS[name]['workers'])
         if cap < 60:
             rec = dict(id=name, ended_by='skipped: budget', budget_core_seconds_left=round(RUN_BUDGET - used, 1),
                        wall_seconds=0, core_seconds=0, models=[])
@@ -321,7 +351,7 @@ def unit(name, out):
                 fh.write(json.dumps(rec) + '\n')
             return
     if os.environ.get('P3SYM_CAP'):                 # pilot: the unit cut to this cap
-        cap = min(cap or UNITS[name][4], float(os.environ['P3SYM_CAP']))
+        cap = min(cap or UNITS[name]['cap'], float(os.environ['P3SYM_CAP']))
     rec = run_unit(name, out, cap)
     with (out / 'results.jsonl').open('a') as fh:
         fh.write(json.dumps(rec, default=str) + '\n')
@@ -332,7 +362,8 @@ def summary(results):
     rep = {r['id']: {k: r.get(k) for k in ('ended_by', 'cap', 'wall_seconds', 'core_seconds', 'variables', 'constraints')}
            for r in rows}
     for r in rows:
-        rep[r['id']]['models'] = [{k: m.get(k) for k in ('status', 'seconds', 'gp_ok', 'decode_ok', 'invariant', 'V', 'E')}
+        rep[r['id']]['models'] = [{k: m.get(k) for k in ('status', 'seconds', 'gp_ok', 'decode_ok', 'invariant', 'V', 'E',
+                                                         'known_type')}
                                   | dict(bridge=(m.get('bridge') or {}).get('status_note')) for m in r['models']]
     rep['core_hours'] = round(sum(r.get('core_seconds', 0) for r in rows) / 3600, 2)
     print(json.dumps(rep, indent=1))
@@ -347,5 +378,9 @@ if __name__ == '__main__':
         unit(rest[0], Path(rest[1]))
     elif mode == 'summary':
         summary(rest[0])
+    elif mode == 'types':            # known type of every saved realized candidate under RESULTS
+        rows = {str(p.relative_to(rest[0])): known_type({int(k): v for k, v in json.loads(p.read_text())['links'].items()})
+                for p in sorted(Path(rest[0]).rglob('*.candidate.json'))}
+        print(json.dumps(rows, indent=1))
     else:
         raise SystemExit(__doc__)

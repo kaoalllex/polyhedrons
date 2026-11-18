@@ -77,3 +77,19 @@ Pre-registration (2026-11-18), at most 80 lines. Amendments at the end.
   and the corrected family list to I-261118-02 and the lead.
 
 ## Amendments
+
+### 2026-11-18: amendment 1, the rung passed in the pilot; the nine-face follow-up registered
+
+Controls (`results/controls/`, commit `5cbe026a`): all PASS (orbit counts 36 / 34 / 72; forced zeros as listed; both
+normal forms pinned OPTIMAL, EMBEDDED, invariant; three negatives INFEASIBLE). Rung pilot (`results/pilot/0`, `1`;
+shards 0, 1, cap 120 s, 5 workers each, about 0.02 core-h): D2 OPTIMAL in 2.3 s, S4 in 5.0 s; each first model
+GP-valid, decoded (V 24, E 36), invariant, realized by the bridge (hinge) with `--all-pairs` PASS. Census codes
+(`p3sym.py types`, EXACT): the D2 model is Roest-Vigh's map, the S4 model Mizhaev's. Known objects returned unaided:
+the rung passes (H1; P2-P4 held). The 30-min rung units are not rerun (their cap never bound; same seeds).
+Follow-up (the registered branch): C3 3+3+3 at nine faces, E = 45, 51, 57, cap max(3 x 5.0 s, 1 h) = 1 h, 5 workers
+as on the rung, at most 20 models per unit (each checked and bridged; stop at the first realized); E = 45 and 51
+together, then 57; then the side unit (plain cube 5, 8 workers, 15 min). <= 17 core-h, <= 2.3 h wall, one owner run
+(`launch.sh 261118-02 start`). Cs 4 x 2 + 1 dropped (deviation 1). C3 pilot first (session, shards 0-2, cap 60 s,
+`results/pilot-c3/`): gate = all three build and record at nine faces. Any realized nine-face model goes to
+`candidate-check` and the owner before anything else. Scope of an INFEASIBLE: UNSAT-SOLVER of that formula (uniform in
+the standard chart, cubic, one disk per plane, C3 with orbits 012 / 345 / 678), slice closed for planning only.
