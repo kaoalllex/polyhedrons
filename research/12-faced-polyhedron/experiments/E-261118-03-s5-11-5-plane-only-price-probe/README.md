@@ -10,7 +10,7 @@ produces: []
 preregistered: false
 ---
 
-> Planned, week item 3 (`reviews/strategy-review-2026-11-18.md` §1, owner-approved 2026-11-18), explore, jump 2.
+> Planned, week item 4 (`reviews/strategy-review-2026-11-18.md` §1, owner-approved 2026-11-18), explore, jump 2.
 > Scores T D F G R: 1 2 2 1 2 | budget: one session, <= 4 core-h, 8 shards. Before any compute: `PLAN.md` (skill
 > `experiment-start`). No proofs.
 

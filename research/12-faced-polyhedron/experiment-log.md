@@ -1068,3 +1068,6 @@ at eight planes, below K13; LOW-YIELD, 63.8 core-h. See `experiments/E-261110-04
 (N1b E-261118-01, P3-sym E-261118-02, (11, 5) price probe E-261118-03, E-261116-08, P6 E-261117-04 as fallback); ideas
 I-261118-01..03 filed, N4 parked; nine-face credence 0.55 -> 0.45. Owner's ideas triaged (ETH, Degen: dropped; knot
 theory and one curved face: `reviews/ideas-triage-2026-11-18.md`). No compute beyond session checks.
+
+2026-11-18 — Owner: the (9, 3) one-face deletion sieve (E-261118-04, I-261118-04) becomes week item 1, the others move
+to items 2-6; knot theory dropped except its capping role; the Codex copy of `overnight-run-script` synced.

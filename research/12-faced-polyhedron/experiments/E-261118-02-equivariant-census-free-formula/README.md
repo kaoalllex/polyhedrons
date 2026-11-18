@@ -10,7 +10,7 @@ produces: []
 preregistered: false
 ---
 
-> Planned, week item 2, the main investment (`reviews/strategy-review-2026-11-18.md` §1, owner-approved 2026-11-18),
+> Planned, week item 3, the main investment (`reviews/strategy-review-2026-11-18.md` §1, owner-approved 2026-11-18),
 > explore, jump 2. Scores T D F G R: 2 2 2 2 2 | budget: 2 sessions, <= 6 core-h before the nine-face run, which is
 > <= 40 core-h in one owner run. Before any compute: `PLAN.md` (skill `experiment-start`). No proofs. What differs from
 > the parked E-261116-07: an opt-in group action on the planes (the parked-methods rule).
@@ -26,7 +26,7 @@ with 8 workers, 15 min.
 
 ## Next
 
-Kill: a failed control -> repair or park; no rung model -> park with the cause, then week item 5 (E-261117-04). A rung
+Kill: a failed control -> repair or park; no rung model -> park with the cause, then week item 6 (E-261117-04). A rung
 model realized by the bridge with `--all-pairs` PASS -> C3 3+3+3 at nine faces, E = 45, 51, 57, cap max(3 x rung
 time, 1 h), <= 40 core-h, owner run; Cs 4 x 2 + 1 only if C3 decides at all three E. SAT -> bridge, `--all-pairs` nine
 faces, `candidate-check`, escalate; UNSAT-SOLVER -> slice closed for planning; UNKNOWN -> UNDERPOWERED, to the lead.

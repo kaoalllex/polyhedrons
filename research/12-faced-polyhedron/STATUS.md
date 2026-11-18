@@ -15,7 +15,7 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 ## 0. State in one paragraph
 
 **Focus since 2026-11-18 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
-mutually adjacent faces (S1, genus free) first, by complete formulas on symmetric quotients (N1b E-261118-01, P3-sym
+mutually adjacent faces (S1, genus free) first, by complete formulas on symmetric quotients (after the owner's (9, 3) one-face deletion sieve E-261118-04: N1b E-261118-01, P3-sym
 E-261118-02 with a D2 / S4 eight-face rung, P6 the fallback; no result yet). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
 E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
 (11, 5) one plane-only price probe (E-261118-03; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas

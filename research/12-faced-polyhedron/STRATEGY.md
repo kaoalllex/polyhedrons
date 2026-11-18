@@ -8,7 +8,8 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 * **Focus (owner, 2026-11-12): one constructive target at a time, each at least as significant as the 2026
   eight-face objects (owner's filter).**
   * **First (owner, 2026-11-16b, confirmed 2026-11-17 and 2026-11-18): S1, nine mutually adjacent faces with the genus
-    free**, by complete formulas on symmetric quotients (lead review 2026-11-18): N1b (E-261118-01), then **P3-sym,
+    free**, by complete formulas on symmetric quotients (lead review 2026-11-18), after the owner's first item, the (9, 3)
+    one-face deletion sieve (E-261118-04, quasi-polyhedra with one curved face): N1b (E-261118-01), then **P3-sym,
     the census-free formula with a group action on the planes** (E-261118-02, the main investment), scored on the D2 /
     S4 eight-face rung (Roest-Vigh's and Mizhaev's types must come out unaided) before C3 3+3+3 at nine faces, then
     Cs 4 x 2 + 1. P6, the equivelar slice (E-261117-04), is the fallback. No nine-plane sampling night without a measured
@@ -132,3 +133,5 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   complete formulas on symmetric quotients (P3-sym, D2 / S4 rung first), P6 the fallback, no nine-plane sampling night
   without a rung-below rate; (11, 5) one plane-only price probe; nine-face credence 0.55 -> 0.45. The owner's ideas
   (ETH preprints, Degen's identity) dropped. Stance, S0 parking and the side track unchanged.
+* 2026-11-18 (owner, later the same day): the (9, 3) one-face deletion sieve (E-261118-04, I-261118-04) becomes week
+  item 1; knot theory dropped except its capping role. Targets and stance unchanged.

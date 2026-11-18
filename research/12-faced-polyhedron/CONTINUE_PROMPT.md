@@ -13,9 +13,8 @@ Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the 
 
 * Week branch `lab/2026-11-18` (created from `main` after the PR of `lab/2026-11-16`). Week plan: `ROADMAP.md` -> Week
   plan (`reviews/strategy-review-2026-11-18.md` §1, owner-approved 2026-11-18).
-* Next: week item 1, N1b (E-261118-01, minutes); then item 2, P3-sym (E-261118-02, the main investment: equivariant
-  `p3.Formula`, D2 / S4 eight-face rung before C3 3+3+3 at nine faces). Each needs its `PLAN.md` first, with the unit
-  tests run in that commit; item 2's prep adds the dirty-tree refusal to `overnight/launch.sh`.
-* Owner's ideas of 2026-11-18 triaged in `reviews/ideas-triage-2026-11-18.md`: the (9, 3) one-face deletion sieve
-  (idea 2 Q1) waits for the owner's word; no row yet.
+* Next: week item 1, the (9, 3) one-face deletion sieve (E-261118-04, owner's idea, <= 1 core-h); then item 2, N1b
+  (E-261118-01, minutes); then item 3, P3-sym (E-261118-02, the main investment: equivariant `p3.Formula`, D2 / S4
+  eight-face rung before C3 3+3+3 at nine faces). Each needs its `PLAN.md` first, with the unit tests run in that
+  commit; item 3's prep adds the dirty-tree refusal to `overnight/launch.sh`.
 * For the lead: nothing open.

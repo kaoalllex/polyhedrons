@@ -5,7 +5,7 @@ This repository has two parts:
 - the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
   (`STRATEGY.md`, owner-approved 2026-11-18): one constructive target at a time on the owner's laptop, subject to
   the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) first, by complete formulas on symmetric
-  quotients: N1b (the face-transitive (8, 3) classes), then P3-sym (the census-free formula with a group action on the
+  quotients, after the owner's (9, 3) one-face deletion sieve: N1b (the face-transitive (8, 3) classes), then P3-sym (the census-free formula with a group action on the
   planes; D2 / S4 eight-face rung before C3 3+3+3 at nine faces) as the main investment, P6 (equivelar slice) the
   fallback; no nine-plane sampling night without a rung-below rate; (11, 5) one plane-only price probe; S6 parked
   after (10, 3) (all 20 formulas UNSAT-SOLVER, replay priced for the paper); the S0 price probe withdrawn. (8, 2) and

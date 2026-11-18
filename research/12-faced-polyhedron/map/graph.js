@@ -1745,6 +1745,22 @@ window.GRAPH = {
    "conclusion": ""
   },
   {
+   "id": "E-261118-04",
+   "kind": "experiment",
+   "title": "(9, 3) one-face deletion sieve - each admissible map with the planarity of one face dropped, do quasi-polyhedra with one curved face exist?",
+   "status": "planned",
+   "date": "2026-11-18",
+   "concluded": "",
+   "path": "experiments/E-261118-04-one-face-deletion-sieve-9-3/README.md",
+   "direction": [
+    "DR19",
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
    "id": "FD11",
    "kind": "foundation",
    "title": "All 1005 known near-misses (HackerPoet) fail the Gauss class (wrong degree, or failed covering for the 12 seeds with degree -5) and none is an immersion (every seed has >= 4 vertices with two reflex corners; min 4, median 14, max 22)",
@@ -4729,6 +4745,21 @@ window.GRAPH = {
    "preregistered": ""
   },
   {
+   "id": "I-261118-04",
+   "kind": "idea",
+   "title": "One curved face - quasi-polyhedra with F - 1 planar faces and one skew face, straightened or shown unstraightenable",
+   "status": "open",
+   "date": "2026-11-18",
+   "concluded": "",
+   "path": "ideas/I-261118-04-one-curved-face-quasi-polyhedra.md",
+   "direction": [
+    "DR19",
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -6093,6 +6124,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261103-03",
+   "to": "E-261118-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -6748,6 +6784,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261118-03",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261118-04",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -7598,12 +7639,22 @@ window.GRAPH = {
   },
   {
    "from": "I-261101-18",
+   "to": "E-261118-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-18",
    "to": "H-261101-15",
    "kind": "origin"
   },
   {
    "from": "I-261101-18",
    "to": "I-261101-21",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-18",
+   "to": "I-261118-04",
    "kind": "origin"
   },
   {
@@ -8049,6 +8100,11 @@ window.GRAPH = {
   {
    "from": "I-261118-02",
    "to": "I-261118-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261118-04",
+   "to": "E-261118-04",
    "kind": "origin"
   },
   {
@@ -8774,6 +8830,11 @@ window.GRAPH = {
   {
    "from": "owner",
    "to": "I-261117-02",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261118-04",
    "kind": "origin"
   }
  ],
