@@ -1,0 +1,71 @@
+{
+  "target": "controls only; no target decided",
+  "P1_planted_szilassi": {
+    "status": "OPTIMAL",
+    "V_E_F_chi": [
+      14,
+      21,
+      7,
+      0
+    ],
+    "verify_candidate": {
+      "returncode": 0,
+      "stdout": [
+        "1 record(s), target all-pairs: 1 PASS, 0 fail"
+      ]
+    },
+    "PASS": true
+  },
+  "N4_swapped_links": {
+    "verify_candidate": {
+      "returncode": 1,
+      "stdout": [
+        "1 record(s), target all-pairs: 0 PASS, 1 fail"
+      ]
+    },
+    "PASS": true
+  },
+  "P2_k13_seed4": {
+    "status": "OPTIMAL",
+    "V_E_F_chi": [
+      24,
+      36,
+      8,
+      -4
+    ],
+    "verify_candidate": {
+      "returncode": 0,
+      "stdout": [
+        "1 record(s), target all-pairs: 1 PASS, 0 fail"
+      ]
+    },
+    "PASS": true
+  },
+  "N1_N3_negatives": {
+    "k13_seeds_0_3": [
+      "INFEASIBLE",
+      "INFEASIBLE",
+      "INFEASIBLE",
+      "INFEASIBLE"
+    ],
+    "tetra_E7": "INFEASIBLE",
+    "tetra_E6": "OPTIMAL",
+    "c2_unmoved": {
+      "status": "REJECTED_BY_ENGINE",
+      "error": "nonuniform triple of normals"
+    },
+    "PASS": true
+  },
+  "D_draws": {
+    "c3_orbits_exact": true,
+    "c2_halfturn_exact": true,
+    "c2_moved_uniform": true,
+    "c2_plane_only_kept": true,
+    "c2_far_plane_misses_triples": true,
+    "geo2_box_exact": true,
+    "geo3_box_exact": true,
+    "PASS": true
+  },
+  "PASS": true,
+  "seconds": 7.054
+}

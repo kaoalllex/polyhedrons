@@ -71,3 +71,11 @@ Pre-registration. Do not edit after the run starts; add dated amendments at the 
 * **STATUS / ROADMAP**: a new STATUS section with the table per (arm, E); ROADMAP row done (or a SOLID escalation).
 
 ## Amendments
+
+* **2026-11-18, stage A and pilot** (no change to the plan). Stage A `results/controls/` PASS (P1, P2, N1-N4, D;
+  9 s). Pilot `results/pilot/` (one core, 330 s wall, 0.11 core-h): 28 units, no hit, no ENGINE_ERROR, no
+  REJECTED_BY_ENGINE. UNKNOWN fraction: c3 E = 45 0 / 5, E = 51 0 / 5; c2 E = 45 2 / 5, E = 51 1 / 5; median s:
+  c3 17.0 / 13.7, c2 18.4 / 16.3, geo2 1.1. Gate holds (deadline binds; UNKNOWN <= 0.5 in every nine-plane cell),
+  but c2 at E = 45 is close to the cap; Q1 and Q3 can still fail. Projection: about 70 core-s per index i over the
+  four nine-plane cells, so about 3,900 units per cell in the night (zero hits reject p >= ~8e-4 per decided units,
+  c2 with fewer decided units). Night: `overnight/launch.sh 10-04 start`.
