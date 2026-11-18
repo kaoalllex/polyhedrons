@@ -57,3 +57,12 @@ Pre-registration (2026-11-18), at most 80 lines. Amendments at the end.
   formulas, UNSAT-SOLVER); I-261118-04 keeps open status (the curved face is untested).
 
 ## Amendments
+
+* 2026-11-18 pilot (session, kissat 4.0.4, NO_PROOF, cap 300 s; `results/pilot-controls`, `results/pilot`,
+  `results/pilot29`). Controls pass: Roest-Vigh pinned SAT for all 8 deleted faces, shifted planes UNSAT-SOLVER for
+  all 8, full formulas of maps 29, 66, 20 UNSAT-SOLVER in 28 / 31 / 20 s. Map 0 (its full formula timed out at 60 s in
+  E-261103-03): all 9 deleted formulas TIMEOUT at 300 s. Map 29 (full 28 s): faces 5 and 8 SAT (2.9 s, 0.4 s), faces
+  0-4, 6, 7 UNSAT-SOLVER in 53-174 s. Bridge (two-stage, then hinge, 120 s, 6 restarts): neither model realized
+  (best 1 and 4 wrong signs, `map29_del{8,5}.bridge.json`). P1 held; P2 held (deleted formulas slower than full);
+  P3 held (SAT on the second map tried). **Pilot gate failed**: map 0 spends 2700 s and map 29 770 s, so the 1827
+  units project to 40-150 core-h, against <= 1 core-h. No long run without the owner's decision on the price.
