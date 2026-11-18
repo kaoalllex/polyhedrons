@@ -1,0 +1,22 @@
+=== 2026-11-16 16:36:18 launch.sh start, shard 8
+map 10 start
+Traceback (most recent call last):
+  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/overnight/run_overnight.py", line 1312, in <module>
+    main()
+    ~~~~^^
+  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/overnight/run_overnight.py", line 1307, in main
+    {'gnormals': job_gnormals, 'pdefect': job_pdefect, 'immersion': job_immersion, 'normals': job_normals, 'sym': job_sym, 'cube': job_cube, 'ils': job_ils, 'ladder': job_ladder, 'sdefect': job_sdefect, 'glad': job_glad, 'arch': job_arch, 'gate': job_gate, 'n5': job_n5, 's5': job_s5, 's5ab': job_s5ab, 's6cube': job_s6cube, 'status': job_status}[args.job](
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        args, committer)
+        ^^^^^^^^^^^^^^^^
+  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/overnight/run_overnight.py", line 1240, in job_s5ab
+    run.run(args)
+    ~~~~~~~^^^^^^
+  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/overnight/../experiments/E-261110-06-s5-10-4-strata-ab-remainder/run.py", line 82, in run
+    t = pilot.from_links(maps['maps'][index]['links'])
+  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261103-02-s5-omsat-multi-adjacency-encoder/test_encoder.py", line 42, in from_links
+    return Triangulation(len(links), tris, links)
+  File "/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/code/omsat.py", line 101, in __init__
+    assert len(self.partners) == n * (n - 1) // 2, "not neighborly"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: not neighborly

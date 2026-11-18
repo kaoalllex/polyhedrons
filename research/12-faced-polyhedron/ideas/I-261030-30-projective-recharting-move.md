@@ -22,3 +22,7 @@ One-plane moves cannot make it; it may move an arm into its Gauss class.
 ## Source
 
 review 2026-10-30 direction 7.
+
+## 2026-11-17 dialogue
+
+Owner's B1-Q2 (conditions on the plane chirotope without infinity), `reviews/dialogue-2026-11-16-strategy.md` §3: park, marks 3 0 1 2 / 3 0 1 2; a restatement of the formula. The moving-infinity part survives as N2 (I-261117-02, E-261117-02).

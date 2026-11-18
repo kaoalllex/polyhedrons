@@ -1,12 +1,15 @@
 # Roadmap: the experiment queue
 
-**Focus since 2026-11-16** (`STRATEGY.md`, owner's approved `reviews/strategy-review-2026-11-16.md`): S5 at
-(11, 5) first, census and a cost probe with the normalised formulas (E-261116-01); S6 at (10, 3) one cube pilot, then
-parked if undecided (E-261116-02); a one-run S0 price probe under the (11, 5) price condition (E-261116-03). (10, 4):
-all 1117 admissible maps UNSAT-SOLVER, the proof replay parked (I-261116-02). Nine faces parked. The significance
-filter excludes (11, 3) as a target; S6 (10,2) is a control, not a headline. The (8,2)/(9,3) note is deferred.
+**Focus since 2026-11-18** (`STRATEGY.md`, owner-approved `reviews/strategy-review-2026-11-18.md`): nine mutually
+adjacent faces (S1, genus free) first, by complete formulas on symmetric quotients: N1b (E-261118-01), then P3-sym
+(E-261118-02; D2 / S4 eight-face rung before C3 3+3+3 at nine faces), the main investment; P6 (E-261117-04) the
+fallback. No nine-plane sampling night without a measured rate one rung below (E-261110-04: no hit, STATUS 3ay). (11, 5):
+one plane-only price probe (E-261118-03), then a night or closed. S6 parked after (10, 3), its replay priced for paper
+item D3 (E-261116-08); one lemma session (E-261116-09). (10, 4): all 1117 admissible maps UNSAT-SOLVER, replay parked
+(I-261116-02). The S0 price probe is withdrawn. The significance filter excludes (11, 3); S6 (10,2) is a control, not a
+headline. The note is deferred.
 
-As of 2026-11-16. Compute is laptop-only, no Actions or rented compute. Prefer a certified finite cell list
+As of 2026-11-18. Compute is laptop-only, no Actions or rented compute. Prefer a certified finite cell list
 when enumeration and decisions fit the budget. Sampled misses need a measured discovery-power statement;
 solver answers without checked proofs are not family negatives. Current evidence: `STATUS.md`; run rules:
 `PROTOCOL.md`.
@@ -88,66 +91,76 @@ parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-mis
   push or a merge) is built only after two manual mornings went well. Already applied as wording on 2026-11-10: no
   night report, one commit per stage, the lead review's size and owner digest, chained lab items (`PROTOCOL.md` §8b).
 
-## Week plan (owner-approved lead review, 2026-11-16; replaces the 2026-11-14 plan)
+## Week plan (owner-approved lead review 2026-11-18; replaces the 2026-11-17 plan)
 
-Source: `reviews/strategy-review-2026-11-16.md` §1, approved by the owner on 2026-11-16 (items 1, 2, 4, 5; item 3
-parked). Lab sessions take items in order and may chain steps needing neither a night nor an approval. Outside-tree
-questions go to "For the lead". At most 10 cores, 10 shards per splittable run, laptop on AC under caffeinate; the
-owner launches every run. Each new experiment needs its `PLAN.md` committed before compute (skill
-`experiment-start`). No proofs in any item: every UNSAT is UNSAT-SOLVER.
+Source: `reviews/strategy-review-2026-11-18.md` §1, approved by the owner on 2026-11-18. Lab sessions take items in
+order and may chain steps needing neither a night nor an approval. Outside-tree questions go to "For the lead". At most
+10 cores, 8-10 shards per splittable run, laptop on AC under caffeinate; the owner launches every run. Each experiment
+needs its `PLAN.md` committed before compute (skill `experiment-start`), with its unit tests run in that commit (audit
+1). No proofs except item 4; every other UNSAT is UNSAT-SOLVER.
 
-Done under the 2026-11-14 plan (all five items, about 14.6 core-h, no candidate): E-261114-02 (STATUS 3al),
-E-261114-01 (3am, NO-DAY-RUN), E-261114-03 (3an, UNRESOLVED), E-261110-06 (3ao), E-261114-04 (3ap). With stratum C
-(3ad), all 1117 admissible (10, 4) maps are UNSAT-SOLVER.
+1. **N1b, the five unrealized face-transitive (8, 3) classes** ([E-261118-01](experiments/E-261118-01-face-transitive-8-3-formulas/), exploit, J 0).
+   * Plain and normalised formulas at 9 elements, kissat, cap 600 s, 10 shards, <= 0.2 core-h; controls: Roest-Vigh's
+     class SAT, its planes on another class UNSAT-SOLVER; the bridge on every SAT.
+   * Kill: Roest-Vigh's class not SAT -> repair. Follow-up: realized, `--all-pairs` (eight faces) PASS ->
+     `candidate-check`, escalate (a third eight-face object, a rung control for item 2). All UNSAT-SOLVER -> no follow-up.
+   * Lab: Opus, medium / Codex gpt-6.1-sol, medium; SAT: Opus, high / gpt-6-astra, high.
+2. **P3-sym, the census-free formula on symmetric quotients** ([E-261118-02](experiments/E-261118-02-equivariant-census-free-formula/), explore, J 2; I-261118-01, I-261118-02; the main investment).
+   * Opt-in plane action in `p3.Formula` (permutation, transported orientations, det sign on chi; cells and derived
+     variables follow); default and stage-A regression unchanged. Controls: Roest-Vigh (D2) and Mizhaev (S4, improper)
+     pinned SAT, one orbit flipped INFEASIBLE, gauge reachability; Cs 3 x 2 + 1 at (7, 21) INFEASIBLE if the census marks
+     (7, 1) chiral (I-261118-03). A dirty-tree refusal in `overnight/launch.sh` goes into the prep (audit 2).
+   * Rung (eight faces, E = 36): D2 2 x 4 and S4 2 x 4 unpinned, 5 workers each, cap 30 min; side unit: plain cube 5
+     with 8 workers, 15 min. <= 6 core-h, 2 sessions.
+   * Kill: a failed control -> repair or park; no rung model -> park with the cause, go to item 5.
+   * Follow-up: a rung model realized by the bridge with `--all-pairs` PASS -> C3 3+3+3 at nine faces, E = 45, 51, 57,
+     cap max(3 x rung time, 1 h), <= 40 core-h, one owner run; Cs 4 x 2 + 1 only if C3 decides at all three E. SAT ->
+     bridge, `--all-pairs` nine faces, `candidate-check`, escalate; UNSAT-SOLVER -> slice closed for planning (never "no
+     nine-face object"); UNKNOWN -> UNDERPOWERED, to the lead.
+   * Lab: Opus, high / Codex gpt-6-astra, high (equivariant soundness and the gauge are the result).
+3. **(11, 5) plane-only price probe** ([E-261118-03](experiments/E-261118-03-s5-11-5-plane-only-price-probe/), explore, J 2).
+   * Two of the 20 Aut+ = 2 maps (fixed faces listed; more than one is out of scope), `omsat.build(sym_planes_only=True)`
+     in a moved chart, 4 seeds per map, cap 1800 s, 8 shards, <= 4 core-h; baseline: the 12-element median of
+     E-261116-01 (>= 3597 s). Kill: the N2 Szilassi chain fails through the runner.
+   * Gate: both maps at median <= 360 s -> the 20 maps in one owner night (<= 80 core-h); SAT -> bridge, `--target S5`,
+     `candidate-check`. Otherwise (11, 5) closes for the laptop.
+   * Lab: Opus, medium / Codex gpt-6.1-sol, high (it prices a night); SAT: Opus, high / gpt-6-astra, high.
+4. **S6 (10, 3) replay pricing** ([E-261116-08](experiments/E-261116-08-s6-10-3-replay-pricing/), audit, J 0), as registered; proofs approved for paper item D3. Any free session; blocks nothing.
+   * Lab: Opus, medium / Codex gpt-6.1-sol, high (it prices a night).
+5. **P6 equivelar price pilot, stage A** ([E-261117-04](experiments/E-261117-04-equivelar-price-pilot/), explore, J 2), only if item 2's rung fails or overruns.
+   * Roest-Vigh's equivelar {9, 3} map must appear at (8, 3); costs per stage; no night before a price.
+   * Lab: Opus, medium / Codex gpt-6.1-sol, high.
 
-1. **(11, 5) census and cost probe** ([E-261116-01](experiments/E-261116-01-s5-11-5-census-cost-probe/), exploit, jump 2; I-261114-03).
-   * Census: rerun `E-261103-01/census.py 11 5` with its manifest (session check: 3986 admissible, 44 s;
-     `reviews/strategy-review-2026-11-16-census-11-5.json`); Euler and admissibility checks, S0 control unchanged.
-   * Controls: the E-261114-01 positive / negative sets plus convex f11 pinned and unpinned at 12 elements.
-   * Probe: 10 admissible maps by a frozen seed, stratified by doubled-pair pattern ([1,1,1,1] 5, [1,1,2] 4, [2,2] 1),
-     normalised formulas, kissat, cap 3600 s, 10 shards, <= 10 core-h; bridge and 30 models on any SAT.
-   * Output: censored price of the 3986 maps; median time against element count 9, 10, 11, 12 (existing records).
-   * Follow-up: price <= 1 night -> owner night, fastest pattern first; 1-4 nights -> lead; > 4 nights or >= 5 / 10
-     TIMEOUT -> no sweep, only the 24 symmetric maps (I-261116-04). SAT -> 30 models, `--target S5`,
-     `candidate-check`, escalate. Median <= 20 min -> item 4.
-   * Kill: census differs on rerun, a failed control. Lab: Opus, medium; conclusion high on SAT.
-2. **S6 (10, 3) cube pilot** ([E-261116-02](experiments/E-261116-02-s6-10-3-cube-pilot/), exploit, jump 2).
-   * Lutz #1, #2 normalised: march_cu cubes (built by the owner, untried) at a depth giving 100-500 cubes, cube cap
-     600 s; in the same day run `kissat --sat` on both at 3600 s. <= 8 core-h, 10 shards.
-   * Controls: cube cover (formula plus "no cube holds" is UNSAT-SOLVER); one SAT (10, 2) map through the same pipeline.
-   * Follow-up: a map decided -> one owner night on all 20 by that method, <= 80 core-h; SAT -> 30 models,
-     `--target S6`, `candidate-check`. Neither decided -> park S6 (10, 3) as solver-limited at laptop scale (OPEN, no
-     negative); no long-cap night unless the owner asks.
-   * Lab: Opus, medium.
-3. **(10, 4) proof pricing** (I-261116-02): **parked by the owner (2026-11-16)**, kept for a future note. Not run.
-4. **S0 price probe** ([E-261116-03](experiments/E-261116-03-s0-price-probe/), exploit, jump 2; I-261116-03; only if item 1 gives a median <= 20 min).
-   * The validated S0 embedding encoder with its units (FD4), asymmetric, 10 types with trivial automorphisms by a
-     frozen seed, kissat, cap 4 h, <= 40 core-h, no proofs. Owner's approval given for this one run.
-   * Follow-up: any type decided -> price the 59; the lead proposes a campaign with E-261101-09 first. SAT ->
-     realizability stage (I-261029-57) and `candidate-check`. All TIMEOUT -> S0 stays parked.
-   * Lab: Opus, high (a SAT model on S0 needs care).
-5. **Polar transfer** ([E-261116-04](experiments/E-261116-04-polar-transfer-10-3/), explore, jump 2; I-261116-01; one session, seconds).
-   * Polar planes of the 17 Hougardy-Lutz-Zelke (10, 3) realizations, every affine chart (exact LP), each through
-     `verify_candidate.py --target S6`. Control: cube -> octahedron. No coordinates -> Szilassi against Csaszar.
-   * Follow-up: PASS -> `candidate-check`, escalate; none -> park I-261116-01 with the count of charts.
-   * Lab: Sonnet, medium.
+Queue, not this week: the (9, 3) one-face deletion sieve (owner's idea, `reviews/ideas-triage-2026-11-18.md` §2 Q1;
+awaiting the owner's word, no row yet); E-261116-09 (extended by I-261118-02); I-261030-18 (fallback of item 2's C3
+slice). Deferred: P4 (host, sampler, coupled P3 + P4: only behind P3 models that fail the bridge), every nine-plane
+sampling arm, N3, Stage B (E-261112-02), adjacency-guided search, the (10, 4) replay, wedges, the full 865, S6 (11, 4),
+E-261101-08. Parked: N4 (I-261117-04). None is refuted. Previous plans and their results remain in the dated reviews and STATUS.
 
-Deferred: E-261114-03 as designed (10 s cubes could not pass), the (10, 3) long-cap night, I-261114-04, Stage B
-(E-261112-02), thin wedges (I-261110-01), I-261113-04, the full 865, the hitting-set pilot (I-261114-05),
-E-261110-03/04, E-261101-08, the note and its soundness chain, a launcher heartbeat (tooling). None is refuted.
-Previous plans and their results remain in the dated reviews and STATUS, not duplicated here.
-
-## Queue: constructive targets on the laptop (owner-approved 2026-11-12, reordered 2026-11-16)
+## Queue: constructive targets on the laptop (owner-approved 2026-11-12, reordered 2026-11-18)
 
 A queue row is not a launch: commit its PLAN and pass its gates before compute. "J" = jump (2 reaches the target
 genus directly).
 
 | ID | State | Tests | Question | T D F G R | Budget | Stop rule |
 |---|---|---|---|---|---|---|
-| [E-261116-01](experiments/E-261116-01-s5-11-5-census-cost-probe/) | planned (week item 1; no PLAN yet) | H-261101-07 | **Exploit, J 2.** (11, 5) census rerun with manifest, ten normalised formulas at 3600 s; price of the 3986 admissible maps and of S0 by the element curve | 2 2 2 2 2 | 1 prep session + <= 10 core-h, 10 shards | ten maps recorded, first verified candidate, failed control, census mismatch or cap |
-| [E-261116-02](experiments/E-261116-02-s6-10-3-cube-pilot/) | planned (week item 2; no PLAN yet) | H-261110-03 | **Exploit, J 2.** march_cu cubes and `kissat --sat` on normalised Lutz #1, #2 | 1 2 2 1 2 | 1 prep session + <= 8 core-h, 10 shards | both maps decided or all cubes / units recorded, failed cover control or cap; neither decided -> park S6 (10, 3) |
-| [E-261116-03](experiments/E-261116-03-s0-price-probe/) | planned (week item 4; conditional on E-261116-01) | H-261101-06, H-261101-01 | **Exploit, J 2.** Ten asymmetric S0 embedding formulas at 4 h | 2 2 2 2 2 | 1 prep session + <= 40 core-h, 10 shards | ten types recorded, failed control, first SAT (realizability stage) or cap |
-| [E-261116-04](experiments/E-261116-04-polar-transfer-10-3/) | planned (week item 5; no PLAN yet) | H-261110-03 | **Explore, J 2.** Polar planes of 17 vertex realizations in every affine chart, `--target S6` | 1 2 2 1 2 | 1 session, seconds | all charts tested, failed control or a PASS |
+| [E-261118-01](experiments/E-261118-01-face-transitive-8-3-formulas/) | planned (week item 1) | H-261101-07 | **Exploit, J 0.** N1b: the five unrealized face-transitive (8, 3) classes by the plain and normalised formulas at 9 elements | 2 1 2 1 2 | <= 0.2 core-h, 10 shards | Roest-Vigh's class not SAT (bug), all ten formulas recorded or first verified candidate |
+| [E-261118-02](experiments/E-261118-02-equivariant-census-free-formula/) | planned (week item 2, main) | H-261101-07 | **Explore, J 2.** P3-sym: equivariant census-free formula; D2 / S4 eight-face rung, then C3 3+3+3 at nine faces | 2 2 2 2 2 | 2 sessions, <= 6 core-h; nine faces <= 40 core-h owner run | failed control, no rung model at 30 min, first verified candidate or cap |
+| [E-261118-03](experiments/E-261118-03-s5-11-5-plane-only-price-probe/) | planned (week item 3) | H-261101-07 | **Explore, J 2.** (11, 5) plane-only C2 formula on two Aut+ = 2 maps against the 12-element median | 1 2 2 1 2 | 1 session, <= 4 core-h, 8 shards | failed N2 control, both maps priced, first verified candidate or cap |
+| [E-261117-01](experiments/E-261117-01-cayley-census-9-4/) | done 2026-11-17: NO-ADMISSIBLE-CAYLEY-9-4 (STATUS 3au) | H-261101-07 | **Exploit, J 2.** N1: face-transitive cubic maps, order-8 rung at (8, 3), then Z9 and Z3 x Z3 at (9, 4), each map by the plain and free-C3 formulas | 2 2 2 1 2 | 1 session, <= 1 core-h joint cap, 10 shards | Roest-Vigh's map missing (bug), all maps recorded, first verified candidate or cap |
+| [E-261117-02](experiments/E-261117-02-moved-chart-plane-symmetry/) | done 2026-11-17: GATE PASSED (STATUS 3av) | - | **Explore, gate.** N2: plane-only symmetry in a moved chart; Szilassi control chain, then the seven-plane C2 3 x 2 + 1 rung | 2 2 2 2 2 | 1 session, <= 1 core-h | failed control (cause told apart), rung recovered or cap |
+| [E-261116-07](experiments/E-261116-07-census-free-s1-ladder/) | done 2026-11-17: UNDERPOWERED@5.5 core-h, no model, parked (STATUS 3aw) | H-261101-07 | **Explore, J 2.** P3 v2: census-free formula with validity-gated cells and eager connectivity; unit tests, L0-L3, bridge gate at eight faces | 2 2 1 2 2 | 2 sessions, <= 6 core-h, 10 shards | decision tree of the week item; first verified candidate or cap |
+| [E-261117-03](experiments/E-261117-03-patchwork-chirotope-probe/) | done 2026-11-17: Szilassi patchwork at K = 32, C2 S5 by construction; n >= 9 UNDERPOWERED@0.87 core-h (STATUS 3ax) | - | **Explore.** P4: step 0 candidate-check of the 16 S6 (10, 2) files; C0 certificate, C1 control coverage per K, C2 Szilassi's map formula AND P4 | 1 2 1 2 2 | 1 session, <= 1 core-h; sampler <= 6 core-h gated | no control in the box, C2 UNSAT-SOLVER in the box, or cap |
+| [E-261110-04](experiments/E-261110-04-genus-free-9-10-faces-sweep/) | done (2026-11-18; LOW-YIELD@63.8 core-h, STATUS 3ay) | - | **Explore, J 2.** Owner-approved night: C3 3+3+3 at nine planes, E in {45, 51}; C2 4 x 2 + 1 arm (E-261117-02 passed); geometric-box arm | 1 2 1 1 2 | one owner night <= 80 core-h, 10 shards | first verified candidate, failed control or cap; zero verified hits parks that distribution and cap |
+| [E-261117-04](experiments/E-261117-04-equivelar-price-pilot/) | planned (week item 5, conditional) | H-261101-07 | **Explore.** P6 price pilot: equivelar slice, stage A at (8, 3), costs per stage | 1 2 1 1 2 | 1 session, 1 core-h; no night before a price | control map absent, pinned control UNSAT or cap |
+| [E-261116-08](experiments/E-261116-08-s6-10-3-replay-pricing/) | planned (week item 4; proofs approved for paper item D3) | H-261110-03 | **Audit.** Proof size, check time and memory on two of the twenty S6 (10, 3) CNFs; gate of a one-night replay | 1 2 2 1 2 | 1 session, <= 2 core-h | both CNFs priced or a hash mismatch |
+| [E-261116-09](experiments/E-261116-09-uniformity-perturbation-lemmas/) | planned (queue; extended 2026-11-17: N2 perturbation step, P3 proof obligations; 2026-11-18: I-261118-02) | H-261101-07 | **Audit.** Uniformity lemma for cubic embedded objects; perturbation lemma I-261108-09 by its universal local check | 2 1 2 2 2 | 1 session | proof or counterexample |
+| [E-261116-06](experiments/E-261116-06-s5-11-5-symmetric-slice/) | parked (withdrawn 2026-11-17: registered free-action domain empty; not run) | H-261101-07 | **Exploit, J 2.** Free-C2 / free-C3 uniform formulas of the 24 symmetric admissible (11, 5) maps | 1 2 2 1 2 | 1 session + <= 2 core-h, 10 shards | all formulas recorded, first verified candidate or failed control |
+| [E-261116-01](experiments/E-261116-01-s5-11-5-census-cost-probe/) | done (NO-SWEEP-SYMMETRIC-SLICE; STATUS 3aq) | H-261101-07 | **Exploit, J 2.** (11, 5) census rerun with manifest, ten normalised formulas at 3600 s; price of the 3986 admissible maps and of S0 by the element curve | 2 2 2 2 2 | 1 prep session + <= 10 core-h, 10 shards | ten maps recorded, first verified candidate, failed control, census mismatch or cap |
+| [E-261116-02](experiments/E-261116-02-s6-10-3-cube-pilot/) | done (STATUS 3ar; follow-up E-261116-05 done) | H-261110-03 | **Exploit, J 2.** march_cu cubes and `kissat --sat` on normalised Lutz #1, #2 | 1 2 2 1 2 | 1 prep session + <= 8 core-h, 10 shards | both maps decided or all cubes / units recorded, failed cover control or cap; neither decided -> park S6 (10, 3) |
+| [E-261116-05](experiments/E-261116-05-s6-10-3-sat-night/) | done (ALL-20-DECIDED-UNSAT-SOLVER; STATUS 3as) | H-261110-03 | **Exploit, J 2.** Normalised monolithic `kissat --sat` on remaining Lutz maps; pilot decisions reused | 1 2 2 1 2 | <=80 core-h, 10 shards, one owner night | first SAT, failed control, owner stop, all units or cap; SAT -> thirty-model bridge, otherwise park unresolved maps |
+| [E-261116-03](experiments/E-261116-03-s0-price-probe/) | parked (withdrawn 2026-11-16b: E-261116-01 median gate not met; not run) | H-261101-06, H-261101-01 | **Exploit, J 2.** Ten asymmetric S0 embedding formulas at 4 h | 2 2 2 2 2 | 1 prep session + <= 40 core-h, 10 shards | ten types recorded, failed control, first SAT (realizability stage) or cap |
+| [E-261116-04](experiments/E-261116-04-polar-transfer-10-3/) | done (NO-CHART-EMBEDDED, STATUS 3at) | H-261110-03 | **Explore, J 2.** Polar planes of 17 vertex realizations in every affine chart, `--target S6` | 1 2 2 1 2 | 1 session, seconds | all charts tested, failed control or a PASS |
 | [E-261114-01](experiments/E-261114-01-normalised-s6-10-3/) | done (NO-DAY-RUN; pilot gate failed, STATUS 3am) | H-261110-03 | **Exploit, J 2.** The twenty `submap=True` (10, 3) formulas with the reorientation and mirror units, behind the invariance test and re-gauged positive controls; no proofs | 2 2 2 2 2 | 1 prep session + <= 20 core-h day run, 10 shards | all twenty recorded, first verified candidate, failed control or cap; both pilot units TIMEOUT -> no day run |
 | [E-261114-02](experiments/E-261114-02-bridge-recovery-control/) | done (bridge ADEQUATE; CONCLUSION, STATUS 3al) | H-261110-03 | **Explore, control.** Does the frozen bridge recover the exact chirotopes of the 16 realized (10, 2) objects; 30 seeds on five unrealized maps | 1 2 2 2 2 | < 1 core-h, chained with the prep of E-261114-01 | all units recorded or cap |
 | [E-261114-03](experiments/E-261114-03-hull-vertex-chart-pilot/) | done (UNRESOLVED; small-pilot gate closed, STATUS 3an) | H-261101-06 | **Explore.** Chart normalisation at a hull vertex: lemma, exact re-charting controls, one cube per vertex on the two slowest normalised maps | 2 2 2 2 2 | 1 session + <= 3 core-h, 10 shards | failed control; summed cube time >= 0.7x monolithic on both maps; censored baseline -> unresolved (PLAN) |
@@ -162,8 +175,7 @@ genus directly).
 | [E-261113-04](experiments/E-261113-04-cube-and-conquer-pilot-10-4/) | done (2026-11-13: PARK, r >= 1.07 on 96 and >= 0.92 on 85, 0 SAT, 1.08 core-h; STATUS 3aj) | H-261101-06 | **Explore, gate of E-261110-06.** Segment-order cubes (9 order literals of the 3 doubled pairs, 512 cubes) on (10,4) maps 96 and 85 vs monolithic kissat; map 845 speed calibration | 1 2 2 2 2 | 1 prep session + <= 3 core-h, 10 shards | all units recorded, failed control, cube cap 0.1x or arm cap 0.7x monolithic |
 | [E-261110-06](experiments/E-261110-06-s5-10-4-strata-ab-remainder/) | done (COMPLETE-UNSAT-SOLVER; owner run concluded, STATUS 3ao) | H-261101-07 | **Exploit, J 2.** (10,4) strata A + B, 757 maps, formulas with the reorientation and mirror units after the controls of E-261114-01; priced on the 10 maps of E-261103-07; no proofs | 2 2 2 2 2 | 1 prep session + one owner night <= 80 core-h, 10 shards | all maps recorded, first verified candidate, failed control or cap; price above one night -> fastest patterns first, the rest to the lead |
 | [E-261110-01](experiments/E-261110-01-edge-types-wedge-census/) | deferred (PLAN retained; thin wedges only if needed) | - | **Calibration.** Edge types / wedge covariate; no longer a prerequisite for a random-family night | 1 2 2 1 2 | existing 1-session tool budget | all input/null rows or failed control |
-| [E-261110-03](experiments/E-261110-03-arrangement-family-scoring-8-planes/) | parked (replaced by E-261112-01/02; not run) | H-261110-02 | Historical random-family scoring plan; no adequately measured discovery power for the proposed sample | 2 2 2 1 2 | no new budget | reconsider only with a new power statement and PLAN |
-| [E-261110-04](experiments/E-261110-04-genus-free-9-10-faces-sweep/) | parked (replaced by E-261112-01/02; not run) | H-261110-02 | Historical genus-free random-family sweep | 2 2 2 1 2 | no new budget | owner/lead decision and new PLAN |
+| [E-261110-03](experiments/E-261110-03-arrangement-family-scoring-8-planes/) | parked (closed as a gate 2026-11-17: the D2 gate tests nothing, K13; not run) | - | **Explore, gate.** All-pairs solids at 8 planes, E free: D2 2x4, isotropic, (10, 2)-deleted-plane families; p per family | 2 2 2 1 2 | 1 prep session + <= 3 core-h, 10 shards | all units, failed control or cap |
 | [E-261101-08](experiments/E-261101-08-relaxed-s1-twelve-faces/) | deferred (outside this week) | H-261101-07 | Relaxed S1 at twelve faces; original plan retained, no active scoring gate or night | 2 2 2 2 2 | no current allocation | return through a future approved week plan |
 
 ## Queue: focus target S5 (approved 2026-11-03)
@@ -269,6 +281,8 @@ result, so it scores D = 0 and does not pass the gate.
 | Near-miss repair (DR5) | all 1005 near-misses in the wrong Gauss class (FD11) | a near-miss in the right class |
 | Gauss clauses as a SAT speed-up (DR16) | no speed-up observed | - |
 | Asymmetric immersion instances without cubing (DR8) | 8/8 timeouts at 2.2 h | cube-and-conquer (E-261101-15) |
+| Census-free formula P3 v2 (DR19; E-261116-07) | (7, 21) in 8 s; 48/48 eight- and nine-face cubes UNKNOWN at 225-560 s, no model even in the cube holding Roest-Vigh and Mizhaev | a changed search measured first on that cube (solution hint or partial pinning, more workers, a longer cap) and its time to a model |
+| Nine-plane symmetric sampling, frozen engine (E-261110-04) | 0 hits: C3 3+3+3 and C2 4 x 2 + 1, E = 45, 51, p >= ~9e-4 rejected per decided arrangement (10-19 % censored at 20 s); +-q^w boxes 0 / 551, 0 / 557 classes at eight planes | a family with a measured rate >= 1e-2 at a rung with a known answer and a stated transfer reason; keep the uniform box |
 
 ## Decision point
 
@@ -298,7 +312,7 @@ CONJECTURE: planning weights of one AI session, not evidence; moved by the "scen
 | Case | exists | Evidence in one line |
 |---|---|---|
 | (10, 3) face-minimal, single adjacencies (S6) | 0.25 | the vertex version is realizable at genus 3 (CLAIMED); the face version has no data; nothing run |
-| nine mutually adjacent faces, genus >= 4 (S1) | 0.55 | eight exist at genus 3 (Mizhaev, Roest-Vigh); (9, 3) excluded at formula scope; nothing run with E free |
+| nine mutually adjacent faces, genus >= 4 (S1) | 0.45 | 2026-11-18 (owner-approved lead review §7; was 0.55): zero hits in the C3 3+3+3 and C2 4 x 2 + 1 nine-plane families, the face-transitive (9, 4) slice empty (EXACT), Stage A 0 of 2004, the rung-below census only its source; none is a negative result. Eight exist at genus 3 (Mizhaev, Roest-Vigh); (9, 3) excluded at formula scope |
 | relaxed Szilassi-12, genus >= 7 (S1) | 0.40 | no data; the engine is calibrated at 8 planes only |
 | (10, 4) S5 | 0.10 (the row of the table above) | stratum C 360/360 UNSAT-SOLVER is weak evidence against; laptop-only compute raises "cannot tell" |
 | S0 | the S0 table above (A = 0.20) is unchanged (owner, 2026-11-10); the handoff session's weight was 0.05 | no S0 evidence since 2026-11-01 |

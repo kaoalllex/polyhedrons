@@ -3,11 +3,14 @@
 This repository has two parts:
 - the public 3D viewer: `index.html`, published by GitHub Pages from `main`, so every commit on `main` is live;
 - the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
-  (`STRATEGY.md`, owner-approved 2026-11-16): one constructive target at a time on the owner's laptop, subject to
-  the significance filter. S5 at (11, 5) first: census and a cost probe with the normalised formulas; S6 at (10, 3)
-  one cube pilot, then parked if undecided; a one-run S0 price probe if the (11, 5) price permits; nine mutually
-  adjacent faces (SPEC S1) parked. (8, 2) and (9, 3) are decided (conditional negative); all admissible (10, 4) maps
-  are UNSAT-SOLVER (planning only, replay parked); the note is deferred; the 12-face problem is parked, not abandoned.
+  (`STRATEGY.md`, owner-approved 2026-11-18): one constructive target at a time on the owner's laptop, subject to
+  the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) first, by complete formulas on symmetric
+  quotients: N1b (the face-transitive (8, 3) classes), then P3-sym (the census-free formula with a group action on the
+  planes; D2 / S4 eight-face rung before C3 3+3+3 at nine faces) as the main investment, P6 (equivelar slice) the
+  fallback; no nine-plane sampling night without a rung-below rate; (11, 5) one plane-only price probe; S6 parked
+  after (10, 3) (all 20 formulas UNSAT-SOLVER, replay priced for the paper); the S0 price probe withdrawn. (8, 2) and
+  (9, 3) are decided (conditional negative); all admissible (10, 4) maps are UNSAT-SOLVER (planning only, replay
+  parked); the note is deferred; the 12-face problem is parked, not abandoned.
 
 ## Implementation preferences
 

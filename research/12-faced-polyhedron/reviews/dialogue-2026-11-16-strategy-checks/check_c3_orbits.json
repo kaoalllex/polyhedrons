@@ -1,0 +1,55 @@
+{
+  "label": "EXACT session arithmetic, outside verify_all",
+  "workers": 8,
+  "rows": [
+    {
+      "size": 1,
+      "subsets": 10,
+      "fixed": 1,
+      "orbits": 4
+    },
+    {
+      "size": 2,
+      "subsets": 45,
+      "fixed": 0,
+      "orbits": 15
+    },
+    {
+      "size": 3,
+      "subsets": 120,
+      "fixed": 3,
+      "orbits": 42
+    },
+    {
+      "size": 4,
+      "subsets": 210,
+      "fixed": 3,
+      "orbits": 72
+    },
+    {
+      "size": 5,
+      "subsets": 252,
+      "fixed": 0,
+      "orbits": 84
+    },
+    {
+      "size": 6,
+      "subsets": 210,
+      "fixed": 3,
+      "orbits": 72
+    },
+    {
+      "size": 7,
+      "subsets": 120,
+      "fixed": 3,
+      "orbits": 42
+    },
+    {
+      "size": 8,
+      "subsets": 45,
+      "fixed": 0,
+      "orbits": 15
+    }
+  ],
+  "wall_seconds": 0.10364141699392349
+}

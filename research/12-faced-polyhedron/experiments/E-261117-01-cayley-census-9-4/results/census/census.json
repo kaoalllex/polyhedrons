@@ -1,0 +1,188 @@
+{
+ "stages": {
+  "8_3": {
+   "brute": {
+    "F": 8,
+    "genus": 3,
+    "valency": 9,
+    "method": "brute",
+    "workers": 10,
+    "groups": {
+     "Z8": {
+      "labellings": 10,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "rotations_tried": 403200,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "Z4xZ2": {
+      "labellings": 28,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "rotations_tried": 1128960,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "Z2xZ2xZ2": {
+      "labellings": 112,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "rotations_tried": 4515840,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "D4": {
+      "labellings": 62,
+      "raw": 352,
+      "valid": 352,
+      "admissible": 352,
+      "rotations_tried": 2499840,
+      "distinct_valid": 5,
+      "distinct_admissible": 5
+     },
+     "Q8": {
+      "labellings": 10,
+      "raw": 96,
+      "valid": 96,
+      "admissible": 96,
+      "rotations_tried": 403200,
+      "distinct_valid": 1,
+      "distinct_admissible": 1
+     }
+    },
+    "seconds": 0.8125170829989656,
+    "core_seconds_bound": 8.125170829989656,
+    "distinct_valid": 6,
+    "distinct_admissible": 6
+   },
+   "by_phi": {
+    "F": 8,
+    "genus": 3,
+    "valency": 9,
+    "method": "by_phi",
+    "workers": 10,
+    "groups": {
+     "Z8": {
+      "labellings": 10,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "Z4xZ2": {
+      "labellings": 28,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "Z2xZ2xZ2": {
+      "labellings": 112,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "D4": {
+      "labellings": 62,
+      "raw": 352,
+      "valid": 352,
+      "admissible": 352,
+      "distinct_valid": 5,
+      "distinct_admissible": 5
+     },
+     "Q8": {
+      "labellings": 10,
+      "raw": 96,
+      "valid": 96,
+      "admissible": 96,
+      "distinct_valid": 1,
+      "distinct_admissible": 1
+     }
+    },
+    "seconds": 0.35961274999863235,
+    "core_seconds_bound": 3.5961274999863235,
+    "distinct_valid": 6,
+    "distinct_admissible": 6
+   },
+   "methods_agree": true
+  },
+  "9_4": {
+   "brute": {
+    "F": 9,
+    "genus": 4,
+    "valency": 10,
+    "method": "brute",
+    "workers": 10,
+    "groups": {
+     "Z9": {
+      "labellings": 8,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "rotations_tried": 2903040,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "Z3xZ3": {
+      "labellings": 8,
+      "raw": 384,
+      "valid": 384,
+      "admissible": 0,
+      "rotations_tried": 2903040,
+      "distinct_valid": 2,
+      "distinct_admissible": 0
+     }
+    },
+    "seconds": 0.7668277919983666,
+    "core_seconds_bound": 7.668277919983666,
+    "distinct_valid": 2,
+    "distinct_admissible": 0
+   },
+   "by_phi": {
+    "F": 9,
+    "genus": 4,
+    "valency": 10,
+    "method": "by_phi",
+    "workers": 10,
+    "groups": {
+     "Z9": {
+      "labellings": 8,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "Z3xZ3": {
+      "labellings": 8,
+      "raw": 384,
+      "valid": 384,
+      "admissible": 0,
+      "distinct_valid": 2,
+      "distinct_admissible": 0
+     }
+    },
+    "seconds": 0.3447525840019807,
+    "core_seconds_bound": 3.447525840019807,
+    "distinct_valid": 2,
+    "distinct_admissible": 0
+   },
+   "methods_agree": true
+  }
+ },
+ "roest_vigh": {
+  "found": true,
+  "index": [
+   0
+  ]
+ },
+ "PASS": true
+}

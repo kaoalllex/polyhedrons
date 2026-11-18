@@ -24,6 +24,7 @@ stop.requested
 !**/attempt_*/controls/manifest.json
 !**/attempt_*/controls/summary.json
 !**/attempt_*/map*/result.json
+!research/12-faced-polyhedron/experiments/E-261116-02-s6-10-3-cube-pilot/results/run/*/attempt_*/result.json
 !**/attempt_*/**/*.model.json
 !**/attempt_*/**/*.checker.log
 !**/attempt_*/**/*.recheck.log
@@ -53,3 +54,12 @@ research/12-faced-polyhedron/experiments/E-261110-06-s5-10-4-strata-ab-remainder
 research/12-faced-polyhedron/experiments/E-261110-06-s5-10-4-strata-ab-remainder/results/**/night.log
 
 research/12-faced-polyhedron/experiments/E-261114-04-immersion-core-8-2/results/**/*.solver.log
+
+# E-261116-01: compressed census is archived; raw enumeration and solver logs stay local.
+research/12-faced-polyhedron/experiments/E-261116-01-s5-11-5-census-cost-probe/results/census/enum_multi
+research/12-faced-polyhedron/experiments/E-261116-01-s5-11-5-census-cost-probe/results/census/raw.jsonl
+research/12-faced-polyhedron/experiments/E-261116-01-s5-11-5-census-cost-probe/results/census/maps_11_5.json
+research/12-faced-polyhedron/experiments/E-261116-01-s5-11-5-census-cost-probe/results/**/*.solver.log
+
+# Raw solver logs of the S6 owner-night preparation and production units.
+research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/**/*.solver.log

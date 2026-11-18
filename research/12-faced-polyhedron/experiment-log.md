@@ -1003,3 +1003,68 @@ I-261116-01..04 (planned, no PLAN); STRATEGY, ROADMAP, STATUS, handover updated.
 
 2026-11-16 — Owner's request: living paper plan `paper/OUTLINE.md` (contents, evidence levels, gaps); kept current by
 `experiment-conclude`. No compute.
+
+2026-11-16 — E-261116-01 week item 1 pre-registered: census comparison, ten stratified normalised (11,5) formulas,
+size controls and bounded launcher check; owner day budget <=10 core-h. No target run yet; see its PLAN.md.
+
+2026-11-16 — E-261116-01 preparation PASS: census matches the lead's code digest, new-size controls and actual
+launcher/resume check passed; inherited controls reused. Ready for owner day run; no production price sample.
+See `experiments/E-261116-01-s5-11-5-census-cost-probe/CONCLUSION.md`.
+
+2026-11-16 — E-261116-01 owner run concluded NO-SWEEP-SYMMETRIC-SLICE; provenance/coverage audit and pricing tests PASS.
+NUMERICAL, instance scope; no candidate or geometric negative, S0 probe gate not met; week item 2 next.
+See `experiments/E-261116-01-s5-11-5-census-cost-probe/CONCLUSION.md`.
+
+## 2026-11-16 — E-261116-02 preparation
+
+PLAN registered in `46784cbc`; cube-cover and SAT pipeline gates PASS; bounded launcher reached ten shards.
+Owner day launch pending; no target solve or candidate. Evidence: experiment README and `results/`.
+
+2026-11-16 — E-261116-02 owner run: BOTH-DECIDED-UNSAT-SOLVER; formula/control/provenance audit PASS.
+Registered owner-night gate passed, monolithic `kissat --sat` selected; preparation next, no geometric negative.
+See `experiments/E-261116-02-s6-10-3-cube-pilot/CONCLUSION.md`.
+
+2026-11-16 — E-261116-05, item 2 registered owner-night follow-up, PLAN `da9a862a`; preparation READY.
+Queue/reuse/control gates, active launcher stop/resume, focused tests and integrated quick PASS; owner launch pending.
+See `experiments/E-261116-05-s6-10-3-sat-night/CONCLUSION.md`; no production solve or geometric claim.
+
+2026-11-16 — E-261116-05 owner run: ALL-20-DECIDED-UNSAT-SOLVER (18 fresh, #1/#2 reused); audit PASS.
+No candidate, proof or geometric negative; replay idea I-261116-05; week item 5 next.
+See `experiments/E-261116-05-s6-10-3-sat-night/CONCLUSION.md`.
+
+2026-11-16 — E-261116-04 polar transfer: NO-CHART-EMBEDDED (20 HLZ realizations, 56137 charts, 0 EMBEDDED); Szilassi round-trip control passes.
+I-261116-01 parked; week item 5 done. See `experiments/E-261116-04-polar-transfer-10-3/CONCLUSION.md`.
+
+2026-11-16 — Lead review 2026-11-16b applied (owner approved all three): nine faces (S1, genus free) first by map-free
+methods (E-261116-07, E-261110-03 reopened, E-261110-04 gated); (11, 5) symmetric slice E-261116-06; S6 parked after
+(10, 3), replay pricing E-261116-08 (proofs for paper item D3); lemma session E-261116-09; E-261116-03 withdrawn.
+No compute. See `reviews/strategy-review-2026-11-16b.md`.
+
+2026-11-17 — Dialogue 2026-11-16-strategy applied (owner-approved): new week plan N1 (E-261117-01), N2 (E-261117-02),
+P3 v2 (E-261116-07 amended), P4 probe (E-261117-03), one C3 night (E-261110-04 amended); E-261116-06 withdrawn, the
+E-261110-03 gate closed; P6 pilot E-261117-04 queued; ideas I-261117-01..04 filed. No compute. See the review.
+
+2026-11-17 — E-261117-01 (N1 Cayley census): no face-transitive cubic (9, 4) map is admissible (two pillow classes);
+six classes at (8, 3) with Roest-Vigh's; controls K7, K12, Roest-Vigh passed; no formula ran; 0.017 core-h. See
+`experiments/E-261117-01-cayley-census-9-4/CONCLUSION.md`.
+
+2026-11-17 — E-261117-02 (N2 moved chart): gate passed; Szilassi control chain and negatives passed, `symbreak` is the
+wrong gauge with symmetry clauses (orbit gauge is right); C2 3 x 2 + 1 recovers the Szilassi type in 37 / 13495
+draws, asymmetric baseline 3 / 13490; 0.94 core-h. See `experiments/E-261117-02-moved-chart-plane-symmetry/CONCLUSION.md`.
+
+2026-11-17 — E-261116-07 (P3 v2 census-free formula): stage A passed, L1 (7, 21) OPTIMAL in 8 s and realized; stage B
+48/48 cubes UNKNOWN at caps 225 / 450 / 560 s, no model (also in the cube with Roest-Vigh and Mizhaev); gate not
+passed, method parked; 5.66 core-h. See `experiments/E-261116-07-census-free-s1-ladder/CONCLUSION.md`.
+
+2026-11-17 — E-261117-03 (P4 patchwork probe): step 0 candidate-check of the 16 S6 (10, 2) files (all pass, 13 maps);
+C0 passed; amended to K = 32, n <= 9: Szilassi's chirotope patchwork, C2 realizes Szilassi's map by construction
+(S5 PASS); nine-element controls UNKNOWN; 0.87 core-h. See `experiments/E-261117-03-patchwork-chirotope-probe/CONCLUSION.md`.
+
+2026-11-18 — E-261110-04 (owner night, symmetric families at nine planes): controls passed; no nine-face hit in about
+3,830 arrangements per C3 / C2 cell at E = 45, 51 (p >= ~9e-4 rejected per decided arrangement); geo boxes 0 in 551 / 557 chirotopes
+at eight planes, below K13; LOW-YIELD, 63.8 core-h. See `experiments/E-261110-04-genus-free-9-10-faces-sweep/CONCLUSION.md`.
+
+2026-11-18 — Lead review 2026-11-18 approved by the owner (`reviews/strategy-review-2026-11-18.md`): new week plan
+(N1b E-261118-01, P3-sym E-261118-02, (11, 5) price probe E-261118-03, E-261116-08, P6 E-261117-04 as fallback); ideas
+I-261118-01..03 filed, N4 parked; nine-face credence 0.55 -> 0.45. Owner's ideas triaged (ETH, Degen: dropped; knot
+theory and one curved face: `reviews/ideas-triage-2026-11-18.md`). No compute beyond session checks.

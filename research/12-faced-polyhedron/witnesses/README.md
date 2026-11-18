@@ -36,6 +36,20 @@ The independent algorithm's justification is PROVED-1; AI checks are not human r
 This establishes an object in the S6 class, not a new minimality theorem or literature novelty.
 It does not settle S6 (10,3), S1 with nine faces, or S0; there is no claimed geometric continuation to them.
 
+## S6 (10,2) controls of E-261113-02 (`s6_10_2_controls/`)
+
+The 16 realized SAT models of the E-261113-02 calibration rung (`submap=True` (10, 2) formulas, frozen bridge),
+copied verbatim from the raw candidate files with their provenance (unit, seed, map hash, raw file sha256).
+`candidate-check` on 2026-11-17: all 16 pass `verify_candidate.py --target S6` and `verify_s6_10_2.py` (ACCEPT; V=24,
+E=36, F=10, genus 2, 36 adjacent pairs, no unintended intersections). Planes are integers, so every check is exact;
+there is no rounding margin to re-check. They lie on 13 distinct maps (canonical map hashes), the drawn Lutz maps listed in the E-261113-02 conclusion,
+none of them #739, the map of `s6_10_2.json`: one
+witness per map, named by the map's canonical hash prefix, and the three second models as `variants/*_b.json` (the
+witness of each pair is the one with the longer shortest edge). The shortest edge is small on some files (squared
+length 7.8e-8 on `7a8cea998e09`, 1.4e-10 on the variant `10ff5482cc2b_b`) but exactly positive.
+Evidence label EXACT (reproduced by `verify_all.py`). They are control objects for E-261117-03 (C1), not site
+models, not a headline, never S0 or S5 objects; literature novelty is not examined.
+
 ## Rules
 
 * **Who adds an entry.** The `candidate-check` skill, after `verify_candidate.py` passes and the object is in a

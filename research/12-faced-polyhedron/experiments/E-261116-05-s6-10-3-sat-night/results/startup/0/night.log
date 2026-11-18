@@ -1,0 +1,2 @@
+=== 2026-11-16 16:34:47 launch.sh start, shard 0
+/Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/run.sh: line 15: 37344 Killed: 9               nice -n 10 "$PYTHON" "$ROOT/overnight/run_overnight.py" s5ab --workers 1 --shard "$SHARD" --shards "$SHARDS" --results-dir "$OUT" --s5-queue "${S5AB_QUEUE:-$HERE/queue.json}" --s5-budget-seconds "${BUDGET:-284400}" --hours "${HOURS:-8}"

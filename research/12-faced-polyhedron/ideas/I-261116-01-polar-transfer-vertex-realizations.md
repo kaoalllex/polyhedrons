@@ -2,7 +2,7 @@
 id: I-261116-01
 title: Polar transfer - the polar planes of the vertex realizations of the (10, 3) maps, tested in every affine chart
 date: 2026-11-16
-status: open
+status: parked
 direction: [DR5, DR19]
 origin: [L:hlz2010, I-261110-02]
 ---

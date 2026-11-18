@@ -24,6 +24,9 @@ object in print (CLAIMED). E-261103-01 has since exhausted the maximal-case map 
 (EXACT computation, coverage PROVED-1; `STATUS.md` section 3c). This supplies geometric inputs
 but does not move the existence hypothesis; its status remains open.
 
+2026-11-17, E-261117-01: no face-transitive cubic (9, 4) map is admissible (EXACT, coverage PROVED-1); the slice was
+empty before any geometry, so the status is unchanged (open). Genus 4 maps without face transitivity are untouched.
+
 ## What would move it
 
 E-261103-03 (exact decision per map): a realized model at (8, 2) or (9, 3) proves the case; all maps of a case
@@ -79,3 +82,15 @@ untested. Status stays open.
 E-261110-06 completes the normalized A+B queue (CONCLUSION / STATUS 3ao): UNSAT-SOLVER only,
 no checked proofs, no candidate. NUMERICAL timing evidence supports the one-night cost gate;
 instance solver answers do not exclude geometric realizations. Status and credence remain unchanged.
+
+## 2026-11-16 (11,5) cost probe
+
+E-261116-01 (CONCLUSION / STATUS 3aq) completes the registered formula sample, with no SAT or candidate.
+NUMERICAL, instance scope: censored costs close the full-sweep gate; only I-261116-04 remains for this target.
+No geometric exclusion or measured discovery power; hypothesis status and credence remain unchanged.
+
+## 2026-11-17 census-free formula
+
+E-261116-07 (CONCLUSION / STATUS 3aw): the census-free formula decided (7, 21) but produced no model and no decision at
+(8, 30), (9, 39) or (8, 36) within 5.5 core-h (UNKNOWN at every cap). A budget stop: no geometric exclusion, no new
+object; status and credence remain unchanged.

@@ -18,3 +18,7 @@ Let kdrift cross the wall on the type-0 genus-4 arm, then search a chart where t
 
 ## Source
 ideas/cross-field-ideas.md Round 3, P1 (projective ladder)
+
+## 2026-11-17 dialogue
+
+Owner's B1-Q1 (a surface in RP^3 contained in no affine chart), `reviews/dialogue-2026-11-16-strategy.md` §3: park, marks 2 2 2 2 / 2 1 1 1; it needs a new auxiliary target and a face model. Next step: none scheduled; the chart move itself is used only in N2 (I-261117-02).

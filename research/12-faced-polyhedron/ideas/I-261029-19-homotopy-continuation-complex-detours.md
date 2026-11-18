@@ -18,3 +18,7 @@ Boundary configurations (some inequalities made equalities), all complex solutio
 
 ## Source
 ideas/cross-field-ideas.md round 2c, Z2; ideas/search-algorithms.md item 12; round 2f #3
+
+## 2026-11-17 dialogue
+
+Owner's B2-Q3 (complex varieties), `reviews/dialogue-2026-11-16-strategy.md` §3: drop for that question, marks 3 0 0 1 / 2 0 1 1; no route to real sign conditions was specified. Status unchanged; no next step.

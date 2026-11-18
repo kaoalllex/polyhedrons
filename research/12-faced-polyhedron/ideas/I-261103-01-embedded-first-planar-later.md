@@ -43,3 +43,7 @@ ravine between genus 3 and 4.
 
 Planned as the pilot E-261103-06 with S5 rungs (R1 Szilassi from a torus, then an (8, 3) object from a smooth genus-3
 surface); I-261103-05 proposes the starting surface.
+
+## 2026-11-17 dialogue
+
+Owner's B3-Q2 (flattening flow from a smooth surface), `reviews/dialogue-2026-11-16-strategy.md` §3: park, marks 2 0 1 1 / 2 0 1 1, until a changed set-up is named (E-261103-06 is the last run). No next step this week.

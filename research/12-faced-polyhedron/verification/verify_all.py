@@ -3,6 +3,7 @@ certificates. Run it before claiming anything and in CI (.github/workflows/verif
 
 Usage: python3 verify_all.py [--quick]     (--quick skips the 94-record archive re-check)
 Exit status 0 iff every check gives its expected outcome."""
+import glob
 import os
 import re
 import subprocess
@@ -62,6 +63,17 @@ def lutz_import_reproduces():
     return same and queues[0] and rung[0], '%s; identical %s; %s; E-261113-02 %s' % (msg, same, queues[1], rung[0])
 
 
+def s6_10_2_controls():
+    """Every committed control (witnesses and variants) passes --target S6 and the independent rational checker."""
+    paths = sorted(glob.glob('s6_10_2_controls/**/*.json', root_dir=os.path.join(ROOT, 'witnesses'), recursive=True))
+    reps = [r for p in paths for r in verify_file(os.path.join(ROOT, 'witnesses', p), target='S6')]
+    s6 = len(reps) == 16 and all(r['PASS'] for r in reps)
+    independent, _ = run(['verify_s6_10_2.py'] + paths, os.path.join(ROOT, 'witnesses'),
+                         lambda out: out.count('"verdict": "ACCEPT"') == 16)
+    return s6 and independent, '%d file(s), S6 PASS %d, independent ACCEPT %s' % (
+        len(paths), sum(r['PASS'] for r in reps), independent)
+
+
 def s0_rejects_roest_vigh():
     """The strict target must reject an embedded all-pairs object with doubled adjacencies."""
     sys.path.insert(0, CODE)
@@ -86,6 +98,15 @@ CHECKS = [
     ('combinatorics: S5 census, saved maps, sampler and K12 controls, C3 cross-check',
      lambda: run(['test_census.py'], os.path.join(ROOT, 'experiments', 'E-261103-01-s5-map-census'),
                  lambda out: '\nOK' in out)),
+    ('combinatorics: Cayley census (8,3)/(9,4), K7/K12/Roest-Vigh controls, saved maps reproduce',
+     lambda: run(['test_cayley.py'], os.path.join(ROOT, 'experiments', 'E-261117-01-cayley-census-9-4'),
+                 lambda out: '\nOK' in out and 'skipped=' not in out)),
+    ('moved chart: Szilassi plane-only C2 control chain, gauge check, saved C2 / asym rung hits',
+     lambda: run(['test_n2.py'], os.path.join(ROOT, 'experiments', 'E-261117-02-moved-chart-plane-symmetry'),
+                 lambda out: '\nOK' in out and 'skipped=' not in out)),
+    ('census-free P3 v2: pinch, ends, annulus, disk + annulus, Roest-Vigh face cycles',
+     lambda: run(['test_p3.py'], os.path.join(ROOT, 'experiments', 'E-261116-07-census-free-s1-ladder'),
+                 lambda out: '\nOK' in out and 'skipped=' not in out)),
     ('OM-SAT: multiple adjacencies, pinned controls, saved evidence and S0 regression',
      lambda: run(['test_encoder.py'], os.path.join(ROOT, 'experiments', 'E-261103-02-s5-omsat-multi-adjacency-encoder'),
                  lambda out: '\nOK' in out and 'skipped=' not in out)),
@@ -124,6 +145,8 @@ CHECKS = [
      lambda: (lambda embedded, independent: (embedded[0] and independent[0], independent[1]))(
          files(True, 'witnesses/s6_10_2_polished.json', genus=2),
          run(['verify_s6_10_2.py', 's6_10_2_polished.json'], os.path.join(ROOT, 'witnesses'), '"verdict": "ACCEPT"'))),
+    ('witness: 16 S6 (10,2) controls of E-261113-02 (13 maps), --target S6 and independent rational check',
+     s6_10_2_controls),
     ('negative control: --target S0 and S5 reject Roest-Vigh (doubled adjacencies; not maximal)', s0_rejects_roest_vigh),
     ('positive control: --target S5 accepts Szilassi (7 faces, genus 1, maximal)',
      lambda: (lambda r: (all(x['PASS'] for x in r), '%d record(s), S5 PASS %s' % (len(r), [x['PASS'] for x in r])))(

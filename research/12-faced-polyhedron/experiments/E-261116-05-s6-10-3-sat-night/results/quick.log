@@ -1,0 +1,27 @@
+PASS  repository: English only (no Cyrillic in tracked files)                   24.2s  0 tracked file(s) with Cyrillic
+PASS  research graph: ideas, hypotheses, experiments; links resolve; map/graph.json in sync   0.1s  graph in sync; 337 nodes (certificate 3, experiment 99, foundation 9, hypothesis 41, idea 162, owner 1, source
+PASS  combinatorics: 59 types, independent checker + relabelling selftest        1.8s  chiral (no orientation-reversing automorphism): 53 of 59
+PASS  combinatorics: S5 census, saved maps, sampler and K12 controls, C3 cross-check  24.1s  OK
+PASS  OM-SAT: multiple adjacencies, pinned controls, saved evidence and S0 regression   5.4s  OK
+PASS  OM-SAT: S5 (8,2)/(9,3) saved formulas, proofs and controls                 3.1s  OK
+PASS  OM-SAT: bounded S5 coverage scheduling, resume and process cleanup         2.9s  OK
+PASS  solid-first: multirun disk model, known controls, random D2 recovery, independent checker  16.0s  OK
+PASS  ninth-plane Stage A: frozen cell list, lower-bound model, budget and runner branches   3.0s  OK
+PASS  Lemma 5.1 on perturbed Szilassi planes (n = 7, 0 mismatches)               4.1s  1/10 {'trials': 40, 'zero_viol': 18, 'zero_viol_embedded': 18, 'zero_viol_NOT_embedded': 0, 'pos_viol': 22, 'p
+PASS  positive control: Roest-Vigh 8 faces, doubled adjacencies, Gauss degree -2   1.5s  corners coherent: True | own degree -2 target -2 | turning [1, 1, 1, 1, 1, 1, 1, 1] | own gauge admissible (22
+PASS  positive control: Szilassi found without a map (solid-first)               0.4s  1 record(s), EMBEDDED [True], genus [1]
+PASS  witness: type-0 genus-3 extendable realizations (5 files)                  0.4s  5 record(s), EMBEDDED [True], genus [3]
+PASS  witness: solid-first genus-3 (other map)                                   0.9s  2 record(s), EMBEDDED [True], genus [3]
+PASS  witness: solid-first genus-2                                               0.4s  1 record(s), EMBEDDED [True], genus [2]
+PASS  witness: S6 (10,2), embedded and independent rational geometry/topology check   0.1s  {"file": "s6_10_2.json", "sha256": "08a0758e8c087fe2e40411d06aa285c4da6adca35b94def13ee968fdcffe12fc", "verdic
+PASS  witness: S6 (10,2) polished (site copy), embedded and independent rational check   0.1s  {"file": "s6_10_2_polished.json", "sha256": "caee06d1bed969051d322ec3d4aad5b292c81cb4962aea437e9046eb3c3d7f97"
+PASS  negative control: --target S0 and S5 reject Roest-Vigh (doubled adjacencies; not maximal)   0.0s  Roest-Vigh: all-pairs True, S0 False, S5 False (8 faces at genus 3, maximum 9)
+PASS  positive control: --target S5 accepts Szilassi (7 faces, genus 1, maximal)   0.4s  1 record(s), S5 PASS [True]
+PASS  controls: --target S6 accepts the (10,2) witness and Szilassi, rejects the 12-face genus-3 witness   0.5s  S6 PASS [True, True, False]
+PASS  E-261110-02 / E-261113-02 inputs: the Lutz imports reproduce the map files; queues match make_queue.py   3.2s  20 maps, pairwise non-isomorphic, source sha256 28700a9307f44335f7778ed322379aeb82cfd9919d7945eb1cb5168e87d4d8; identical True; queue_pilot.json sha256 0eedf970679efb72474a3c77e12dfba07e609e1a6ba841ae005383159d92d601 maps 2 per shard [1, ; E-261113-02 True
+PASS  site: lab models in index.html = exactly re-verified witnesses/witnesses.json   0.9s  index.html lab models in sync
+PASS  negative control: genus-4 attempts are NOT embedded                        0.2s  2 record(s), EMBEDDED [False], genus [4]
+PASS  certificate: type-0 handle completion genus 3 -> 6 (combinatorial)         0.1s  PASS: combinatorial completion certificate verified; no genus-4/5/6 geometry is asserted
+PASS  certificate: three biquadratic final polynomials (k-face SAT models of types 0, 53, 57), independent checker   0.1s  ALL PASS
+SKIP  archive: every genus-3 realization (nights 3-5)
+ALL PASS

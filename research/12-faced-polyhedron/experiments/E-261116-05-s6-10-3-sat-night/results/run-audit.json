@@ -1,0 +1,242 @@
+{
+  "PASS": true,
+  "records": 18,
+  "status_counts": {
+    "UNSAT-SOLVER": 18
+  },
+  "reused": {
+    "lutz1": "UNSAT-SOLVER",
+    "lutz2": "UNSAT-SOLVER"
+  },
+  "worker_hours": 7.26907759423666,
+  "reserved_spent_hours": 7.26907759423666,
+  "cpu_hours": 7.238669422777777,
+  "solver_seconds": {
+    "total": 26154.914634872985,
+    "min": 762.8530096659961,
+    "median": 1276.96131122949,
+    "max": 2734.0502172920096
+  },
+  "accounting_note": "Production manifests only; preparation in preparation-cost.json. No continuous sleep audit.",
+  "maps": [
+    {
+      "lutz": 3,
+      "shard": 0,
+      "seconds": 1747.8201903330046,
+      "cnf_sha256": "fafcad242a3ebb49cd1969c1b2e149c44f23f1d56b76c60289d54475c8b1f25e"
+    },
+    {
+      "lutz": 4,
+      "shard": 1,
+      "seconds": 2514.298721540981,
+      "cnf_sha256": "79c492ab801ca61cd6a30859b63eff713a5ef972120ba4e47c03f38298c120d4"
+    },
+    {
+      "lutz": 5,
+      "shard": 2,
+      "seconds": 2734.0502172920096,
+      "cnf_sha256": "d54631ae0b73d6186ded298209187097b9f309f38a7c4a1236ef817f0eb81369"
+    },
+    {
+      "lutz": 6,
+      "shard": 3,
+      "seconds": 1046.9147377920162,
+      "cnf_sha256": "3e2aa1b8ebd7dd953a1db90764e643dbce09feea3e1456d8a4788010662d0e6a"
+    },
+    {
+      "lutz": 7,
+      "shard": 4,
+      "seconds": 1275.239320666995,
+      "cnf_sha256": "52890741077e966d40826b99a768a60aebc73162e4d2fb0a61f03772befd9551"
+    },
+    {
+      "lutz": 8,
+      "shard": 5,
+      "seconds": 2288.9856098330056,
+      "cnf_sha256": "6b89ddd93719059bb91ac62c87763d24db05038c36d492bceb33a4ae670dfe7f"
+    },
+    {
+      "lutz": 9,
+      "shard": 6,
+      "seconds": 1287.6270707079966,
+      "cnf_sha256": "6d0ceda46bcd5977c6fa6a09f0e7a7f6afe3d40ef6868853d22a9be7b8d3b50e"
+    },
+    {
+      "lutz": 10,
+      "shard": 7,
+      "seconds": 1071.1288239170099,
+      "cnf_sha256": "a4d041ba8a940edf4c5780dc4bd14d6cb9e5b38ba9e131696e7a7555d971a766"
+    },
+    {
+      "lutz": 11,
+      "shard": 8,
+      "seconds": 2526.801469583006,
+      "cnf_sha256": "9520e05a6546729bbd143760291420f90a1348dd9f0029cfba654af888a46bef"
+    },
+    {
+      "lutz": 12,
+      "shard": 9,
+      "seconds": 1278.6833017919853,
+      "cnf_sha256": "728820541fd19c35ac694af5691ba10157591460ca5e7bf1bbbb931f5f1fe21f"
+    },
+    {
+      "lutz": 13,
+      "shard": 0,
+      "seconds": 848.2342089579906,
+      "cnf_sha256": "a8c523dca2e21c89f4325c26403250d0b7e7362cc76e9c25660b53bda13f79d5"
+    },
+    {
+      "lutz": 14,
+      "shard": 1,
+      "seconds": 1204.7584373329883,
+      "cnf_sha256": "64ba8faafb0953c1b706a259c26898ccafcc5890b17a5e235069ebb7f392aab9"
+    },
+    {
+      "lutz": 15,
+      "shard": 2,
+      "seconds": 813.5069764170039,
+      "cnf_sha256": "1df3e30a8b50f411001eebba084958cac06e54a1bc545fff6d740d192bdd2c41"
+    },
+    {
+      "lutz": 16,
+      "shard": 3,
+      "seconds": 1403.8357839160017,
+      "cnf_sha256": "710aaf8ce1d2912c53e2044f1b2f0132ed88ef448a8b086a04dbbd3a0d7f04e3"
+    },
+    {
+      "lutz": 17,
+      "shard": 4,
+      "seconds": 1675.8759511249955,
+      "cnf_sha256": "8ea7e75e948f25847195f98d74342ba0f04452ef1c4946621dad450e7d016402"
+    },
+    {
+      "lutz": 18,
+      "shard": 5,
+      "seconds": 762.8530096659961,
+      "cnf_sha256": "9b18572af5064a2cb6f3f168d83810b5957782ff50e1279cc538868e4dbdaacc"
+    },
+    {
+      "lutz": 19,
+      "shard": 6,
+      "seconds": 853.7458636670199,
+      "cnf_sha256": "3afc9ac7366f68d8aae583eb33e8ce9f0d3ab099999791c7155b597294060e38"
+    },
+    {
+      "lutz": 20,
+      "shard": 7,
+      "seconds": 820.5549403329787,
+      "cnf_sha256": "a5a718bdcf5040ddd79c8c7b749840b025daaec08685e9fc45e16e49179bec4a"
+    }
+  ],
+  "checks": [
+    {
+      "shard": 0,
+      "rows": 2,
+      "wall_seconds": 2597.471512499993,
+      "cpu_seconds": 2586.092789,
+      "manifest_sha256": "3ab7be395321fafe9576c9dbb1865499bc0194e4a1d45dfbacb6bf6dca5aabfc",
+      "log_sha256": {
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/0/map2/map2_seed0.solver.log": "2d40cd527416b3b3363fe580fcf5cf2f5c0953914851951bbd255ad1e142f8c8",
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/0/map12/map12_seed0.solver.log": "af4f1508c5eb695a7ba82b1a5ec0ba18b0bc1ccc1688da5980583de801843379"
+      }
+    },
+    {
+      "shard": 1,
+      "rows": 2,
+      "wall_seconds": 3720.4540639590123,
+      "cpu_seconds": 3708.5796379999997,
+      "manifest_sha256": "4690ceccbd8b45ee888d7e1e16ba0d9fc7961a99c388cdfe4aad67f4f4a1392d",
+      "log_sha256": {
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/1/map3/map3_seed0.solver.log": "dbd5cda42f91ab4b49b1328af729aea88daa4786ffddb791e0f4e064d77a71ba",
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/1/map13/map13_seed0.solver.log": "1dc8f2c69b8b800df91b1f8e9cd0d95cdcd149ffda2152d5c0f381625b42235a"
+      }
+    },
+    {
+      "shard": 2,
+      "rows": 2,
+      "wall_seconds": 3548.974994500022,
+      "cpu_seconds": 3537.533956,
+      "manifest_sha256": "02f7e5d2040b55d3c5f09e556c4160d29e94f62dfe0d6a028778039c2be9908a",
+      "log_sha256": {
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/2/map4/map4_seed0.solver.log": "4754aa7fea3de2fced893377a13b2acbb576320a9dd2184b65155368bd11723a",
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/2/map14/map14_seed0.solver.log": "2c2bd8d7068076b2b33b63d6ced215dc55b562ce538bfc994077ecc5b91b880d"
+      }
+    },
+    {
+      "shard": 3,
+      "rows": 2,
+      "wall_seconds": 2452.170915541996,
+      "cpu_seconds": 2441.2840509999996,
+      "manifest_sha256": "b44dea9cfbf72e617ddf2480d290a101ece8076795beee9c18084e5f184d71fa",
+      "log_sha256": {
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/3/map5/map5_seed0.solver.log": "462c41ac853be92f5ad8d74138501e58e0d09dcbff476a6b03f96b26a66f1c0b",
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/3/map15/map15_seed0.solver.log": "179e5c1b17c3572523adbf1be5179a249b5d96ddffac0ca2ceb3eafd00db6bf9"
+      }
+    },
+    {
+      "shard": 4,
+      "rows": 2,
+      "wall_seconds": 2952.5264694999787,
+      "cpu_seconds": 2941.00146,
+      "manifest_sha256": "a34fadeacfa7943e55bec9845dede678461340fc36b1f274b8e1e64f3fa340ee",
+      "log_sha256": {
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/4/map6/map6_seed0.solver.log": "4b79cd3ec24bf4b6ad248e5069c918cb29b084e3bd95459f019ccae5783870b9",
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/4/map16/map16_seed0.solver.log": "8ea124f469a3cc93e1021a92a8b9ba6a2210ba6ab150807a6a78539f59088cc2"
+      }
+    },
+    {
+      "shard": 5,
+      "rows": 2,
+      "wall_seconds": 3053.2789848749817,
+      "cpu_seconds": 3041.734343,
+      "manifest_sha256": "9303759d506b76211b40ae95cb25fe86b62aa9a49193218fa16c9a992517f39e",
+      "log_sha256": {
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/5/map7/map7_seed0.solver.log": "3ac5f5d2db54ff3de877dbec63c0ab90aebc0e7974502350423abdcdef951308",
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/5/map17/map17_seed0.solver.log": "e7cacd00732aed8987e6193e8bd89692cf497b71e0e7a7bba5954b139e684137"
+      }
+    },
+    {
+      "shard": 6,
+      "rows": 2,
+      "wall_seconds": 2142.7887270420033,
+      "cpu_seconds": 2132.1866769999997,
+      "manifest_sha256": "53ea23091ed5c81abc0d3425fb227b4b4b1f57938af3afa5d89e14263cd30746",
+      "log_sha256": {
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/6/map8/map8_seed0.solver.log": "e55a45f21b94617df77b33a7597de64fa592d17cb295f65edfc9879ea079e33b",
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/6/map18/map18_seed0.solver.log": "049f4e6bae50ce05e7ed71d079244feed12b70110f04e5e7a221a18a1ff4be95"
+      }
+    },
+    {
+      "shard": 7,
+      "rows": 2,
+      "wall_seconds": 1893.0857704590017,
+      "cpu_seconds": 1882.80103,
+      "manifest_sha256": "f9e6bc7b1220ff181ff42f9fe58681cec3766616eed166d65dbf98e7196a5a2f",
+      "log_sha256": {
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/7/map9/map9_seed0.solver.log": "688632c206264dede46147239d0b2dc0bd8cc4a5e42466a36981f53fa59d39fd",
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/7/map19/map19_seed0.solver.log": "b7065c5bb190838fd63f362578eb4c620d8562826ce521d2a26e6b1e7bab939f"
+      }
+    },
+    {
+      "shard": 8,
+      "rows": 1,
+      "wall_seconds": 2528.020480542007,
+      "cpu_seconds": 2516.9922340000003,
+      "manifest_sha256": "258ca4d21dd60680077e6cf087cd080cd4061577a29c3e429f0a2d2d2fa115cb",
+      "log_sha256": {
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/8/map10/map10_seed0.solver.log": "bd4d03453ffe81bdf6a8ec36d51d6dfa6d135ad902552a9ba4610939cd777e4e"
+      }
+    },
+    {
+      "shard": 9,
+      "rows": 1,
+      "wall_seconds": 1279.90742033298,
+      "cpu_seconds": 1271.0037439999999,
+      "manifest_sha256": "0e4d95a635742c14616c874b73b61dcc70a67038f9c01805aa01ec8aa154debc",
+      "log_sha256": {
+        "research/12-faced-polyhedron/experiments/E-261116-05-s6-10-3-sat-night/results/run/9/map11/map11_seed0.solver.log": "39245927dd7b4d3dbdcf7cf4a8e1b6ff0aad545d62e275172a394fd1b16a10db"
+      }
+    }
+  ],
+  "verification": "Fresh CNF hash rebuild of all 18 production formulas, solver-log exit 20, checkpoint/coverage/provenance/budget audit; 20 distinct CNF hashes with the reused pilot rows. No solve or proof replay."
+}

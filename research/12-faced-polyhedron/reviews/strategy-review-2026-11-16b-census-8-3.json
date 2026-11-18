@@ -1,0 +1,28 @@
+{
+  "purpose": "lead review 2026-11-16b session check: size of the (8,3) map family (census.py 8 3), not ledger evidence",
+  "command": "python3 experiments/E-261103-01-s5-map-census/census.py 8 3 --seconds 400 --out <scratch>",
+  "commit": "6ce3c6730ec43657b78a5dc24a80f231383407bd",
+  "dirty": false,
+  "wall_seconds": 617.050696750026,
+  "exit_status": 0,
+  "enumerator_summary": {
+    "summary": true,
+    "complete": false,
+    "stop_reason": "time_limit",
+    "graphs_done": 551,
+    "graphs_total": 1806,
+    "roots": 803508344,
+    "nodes": 157613358,
+    "leaves": 2892528,
+    "classes": 34402,
+    "seconds": 400.000121
+  },
+  "last_progress_line": "pattern 552/1806 complete=0 nodes=157613358 classes=34402 seconds=400.000",
+  "patterns_total": 1806,
+  "sources": {
+    "enum_multi.c": "62201da075d44f074b6c429f60fee503e0f02bcfa0af44de38519ec3ff294004",
+    "census.py": "4a588ecd65c0db398347f75b28b2115c64a924f796ae7d5fd4881d96c36c8003",
+    "strategy-review-2026-11-03-flipwalk.py": "776929dd795c25811b46996f55151051b92c96586e70cf10f90b42a62d548c27"
+  },
+  "label": "NUMERICAL, incomplete enumeration (complete=0); a lower bound on classes only"
+}

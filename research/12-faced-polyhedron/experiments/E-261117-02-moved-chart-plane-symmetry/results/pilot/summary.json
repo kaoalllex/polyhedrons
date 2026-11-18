@@ -1,0 +1,47 @@
+{
+  "asym": {
+    "units": 288,
+    "distinct_units": 288,
+    "status": {
+      "INFEASIBLE": 288
+    },
+    "hits": 0,
+    "hits_verified": 0,
+    "checked": [],
+    "core_seconds": 28.8,
+    "median_seconds": 0.099,
+    "max_seconds": 0.165,
+    "rejected_draws": 13
+  },
+  "c2": {
+    "units": 288,
+    "distinct_units": 288,
+    "status": {
+      "INFEASIBLE": 287,
+      "OPTIMAL": 1
+    },
+    "hits": 1,
+    "hits_verified": 1,
+    "checked": [
+      {
+        "i": 1410,
+        "V_E_F_chi": [
+          14,
+          21,
+          7,
+          0
+        ],
+        "verify_candidate": {
+          "returncode": 0,
+          "stdout": [
+            "1 record(s), target all-pairs: 1 PASS, 0 fail"
+          ]
+        }
+      }
+    ],
+    "core_seconds": 31.3,
+    "median_seconds": 0.107,
+    "max_seconds": 0.207,
+    "rejected_draws": 53
+  }
+}

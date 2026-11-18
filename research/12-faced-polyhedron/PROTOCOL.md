@@ -200,7 +200,8 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
   models, medium effort) execute week-plan items; the owner launches nights and calls the lead when needed.
 * **Week plan** = the "Week plan" block at the top of the `ROADMAP.md` S5 queue: at most five items, each with its
   question, budget, kill rule, **follow-up tree** (the conditional next steps allowed without the lead) and the lab
-  model and effort it needs. A lab session works only on week-plan items, in order.
+  model and effort it needs, with the Codex alternative model and effort always named next to the Claude one (owner,
+  2026-11-16). A lab session works only on week-plan items, in order.
 * **One item at a time.** Lab sessions run sequentially on the week branch (section 7), taking the first unfinished
   item unless the owner names one in the prompt. Two sessions in one checkout at once only if the owner asks. A lab
   session may take consecutive week items in one session when none of them needs a night or an owner approval (owner,

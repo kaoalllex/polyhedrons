@@ -1,32 +1,26 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-16** (owner's decisions on the lead review of 2026-11-16). The latest registered results are E-261114-04 (section 3ap), E-261110-06 (section 3ao), E-261114-03 (section 3an), E-261114-01 (section 3am), E-261114-02 (section 3al) and E-261113-03 (section 3ak), after
-E-261113-04 (section 3aj), E-261113-02 and E-261110-05 (sections 3ah, 3ai), E-261113-01, E-261110-02, E-261112-01 and the preceding entries below. Definitions and labels: `SPEC.md`; chronology:
-`experiment-log.md`; current target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
+As of **2026-11-18** (E-261110-04 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-18.md`, 2026-11-18). The latest
+registered result is E-261110-04 (section 3ay); results are listed newest last in section 3, chronology in
+`experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
+target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
-Ninth-plane Stage A is exhausted with no candidate: all near-copy cells UNSAT-SOLVER at instance scope, no family
-negative (section 3ae). S6 (10,3): the night left all 20 formulas undecided at 3600 s, controls pass; solver-limited,
-escalated (section 3af); the symmetric C3 / free C2 formulas are all UNSAT-SOLVER and the T family of Lutz #15 has no
-embedded member (section 3ag). Owner's decisions of 2026-11-13 (`reviews/strategy-review-2026-11-13.md`): S6 at (10, 3) is
-the first target, symmetric realizations first (E-261113-01); Stage B was gated by the rung-below census
-E-261113-03, which found only the source map, so Stage B is parked at this budget (section 3ak). The dialogue's checks
-remain session checks, not new ledger evidence; the local S6 (10,2) witness work is separate. S0 stays parked and the
-(8,2)/(9,3) note deferred. No credence change. Owner's decisions of 2026-11-14 (`reviews/strategy-review-2026-11-14.md`):
-S6 at (10, 3) by the normalised formulas first (E-261114-01), S5 at (10, 4) second (E-261110-06, one night), nine faces
-third. The review's finding that the plain S5 / S6 formulas carry no reorientation or mirror units, and its 10-89x
-ratios on five known UNSAT formulas, are a session check (NUMERICAL, UNSAT-SOLVER), not ledger evidence.
-**(10, 4) S5 in total (2026-11-16):** with stratum C (section 3ad, plain formulas) and strata A + B (section 3ao,
-normalised), all 1117 admissible maps are UNSAT-SOLVER, no candidate (NUMERICAL, instance scope, no checked proof,
-census coverage PROVED-1). Usable for planning, not a negative result; the replay is parked (I-261116-02). Owner's
-decisions of 2026-11-16 (`reviews/strategy-review-2026-11-16.md`): (11, 5) census and cost probe first (E-261116-01;
-the review's census session check, 3986 admissible maps, is not ledger evidence), (10, 3) cube pilot then park
-(E-261116-02), a conditional S0 price probe (E-261116-03), polar transfer (E-261116-04). No credence change applied.
+At a glance (2026-11-16): S5 (8, 2), (9, 3) decided at formula scope (section 3d); (10, 4) all 1117 admissible maps
+UNSAT-SOLVER (3ad, 3ao; planning only, replay parked); (11, 5) priced out for a full sweep (3aq). S6 (10, 3): all 20
+normalised formulas UNSAT-SOLVER (3ar, 3as), symmetric formulas too and the T family empty (3ag), no embedded polar chart
+(3at); planning only, no checked proof. Ninth-plane Stage A without a candidate (3ae), Stage B parked (3ak). The lead
+review's (8, 3) census size check (`reviews/strategy-review-2026-11-16b-census-8-3.json`) and the dialogue's K13, K14
+and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session checks, not ledger evidence. S0 parked; the note deferred. No credence change applied.
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-16 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: S5 at (11, 5)
-first, census and cost probe (E-261116-01); S6 at (10, 3) one cube pilot, then parked if undecided (E-261116-02); S5
-(10, 4) all admissible maps UNSAT-SOLVER (sections 3ad, 3ao); nine faces parked after E-261113-03 (section 3ak). Run so far: ninth-plane Stage A (no candidate,
+**Focus since 2026-11-18 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
+mutually adjacent faces (S1, genus free) first, by complete formulas on symmetric quotients (N1b E-261118-01, P3-sym
+E-261118-02 with a D2 / S4 eight-face rung, P6 the fallback; no result yet). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
+E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
+(11, 5) one plane-only price probe (E-261118-03; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
+UNSAT-SOLVER, section 3as), its replay priced for the paper (E-261116-08); S5 (10, 4) all admissible maps UNSAT-SOLVER
+(sections 3ad, 3ao); the S0 price probe withdrawn. Run so far: ninth-plane Stage A (no candidate,
 section 3ae), the S6 (10, 3) night (20/20 TIMEOUT, section 3af) and its symmetric runs (no candidate, section 3ag). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
 4, gated by a speed-up benchmark (E-261103-07: 10/10 TIMEOUT, section 3w); from 2026-11-03 to 2026-11-08 the focus was
 (9, 3), now decided at formula scope (below); its negative result is a side track towards a note marked as not
@@ -423,6 +417,92 @@ controls and provenance/coverage audit PASS, checked Boolean SAT assignments.
 NUMERICAL planning evidence, instance scope; UNSAT-SOLVER only, no geometric exclusion.
 The core uses all face groups while circuits retain all eight planes; see
 `experiments/E-261114-04-immersion-core-8-2/CONCLUSION.md`. Hypotheses and A/B/C unchanged.
+
+## 3aq. E-261116-01 S5 (11,5) census and cost probe (2026-11-16)
+
+**NO-SWEEP-SYMMETRIC-SLICE**; completed owner probe, no SAT or candidate.
+NUMERICAL, SPEC §4 instance scope; censored pricing closes the full-sweep and S0-probe gates.
+Census coverage retains its existing PROVED-1 argument; controls reused, provenance audit PASS.
+No geometric exclusion, discovery-power claim or change to H-261101-07 / S0 credences.
+Registered (11,5) follow-up: I-261116-04; next week item: E-261116-02.
+Counts, costs and checks: `experiments/E-261116-01-s5-11-5-census-cost-probe/CONCLUSION.md`.
+
+## 3ar. E-261116-02 S6 (10,3) cube pilot (2026-11-16)
+
+**BOTH-DECIDED-UNSAT-SOLVER**; the registered owner-night gate passes.
+NUMERICAL, SPEC §4 instance scope; both pilot methods agree, no checked proof or geometric negative.
+Fresh formula-hash, control, provenance, coverage, log and budget audit PASS; no candidate.
+Select monolithic `kissat --sat` for the follow-up; prepare its PLAN and launcher, reusing pilot decisions.
+H-261110-03 and S0 A/B/C unchanged; other asymmetric maps not run with these settings.
+Counts, costs and accounting limits: `experiments/E-261116-02-s6-10-3-cube-pilot/CONCLUSION.md`.
+
+## 3as. E-261116-05 S6 (10,3) SAT-oriented owner run (2026-11-16)
+
+**ALL-20-DECIDED-UNSAT-SOLVER**: Lutz #3-#20 decided by monolithic `kissat --sat`, #1/#2 reused (3ar).
+NUMERICAL, SPEC §4 instance scope, the twenty normalised uniform formulas only; no candidate, no checked
+proof, no geometric negative. Fresh CNF-hash, log, provenance, coverage and budget audit PASS.
+Usable for planning (S6 (10,3) by these formulas exhausted at solver level), not an exclusion; a checked
+replay is idea I-261116-05 (owner's word needed). H-261110-03 and S0 A/B/C unchanged.
+Counts, costs, controls and limits: `experiments/E-261116-05-s6-10-3-sat-night/CONCLUSION.md`.
+
+## 3at. E-261116-04 polar transfer of the HLZ (10,3) realizations (2026-11-16)
+
+**NO-CHART-EMBEDDED**: the polar planes of the 20 EG-Models 2006.02.001 realizations (one per vertex-minimal (10,3)
+map), every chart (56137, cells with margin >= 1e-7), give no EMBEDDED polyhedron and no `--target S6` PASS.
+NUMERICAL, SPEC §4 instance scope: these realizations only; not a non-existence statement. Controls: octahedron ->
+cube (9 of 52 EMBEDDED) and the Szilassi round trip (1 of 307, S6 PASS at (7,1)). I-261116-01 parked. H-261110-03 and
+S0 A/B/C unchanged. Counts and limits: `experiments/E-261116-04-polar-transfer-10-3/CONCLUSION.md`.
+
+## 3au. E-261117-01 Cayley census of face-transitive cubic (9, 4) maps (2026-11-17)
+
+**NO-ADMISSIBLE-CAYLEY-9-4**: every cubic (9, 4) map with all face pairs adjacent and Aut+ transitive on the faces
+(a Cayley map of Z9 or Z3 x Z3) is one of two classes, both with repeated vertex triples, so inadmissible; none
+is the map of a nine-face polyhedron. EXACT computation (two enumerators agree; K7, K12 and Roest-Vigh controls;
+reproduced by `verify_all`), coverage PROVED-1. Scope: cubic, genus 4, face-transitive; genus 7 and all other
+(9, 4) maps not covered; no formula ran. (8, 3): six classes (D4 5, Q8 1), Roest-Vigh's among them. H-261101-07
+unchanged. Counts: `experiments/E-261117-01-cayley-census-9-4/CONCLUSION.md`.
+
+## 3av. E-261117-02 Plane-only symmetry in a moved chart, seven-plane C2 rung (2026-11-17)
+
+**GATE PASSED**: with a far rational plane as infinity, Szilassi's fixed-face half-turn family is uniform for the
+encoder and the frozen engine of E-261103-05. Szilassi control chain EXACT (plane-only determinants, chart missing
+the solid, moved signs and embedding, planted recovery); the correct gauge with symmetry clauses is `build_sym`'s
+orbit gauge: `symbreak` is not equivariantly reachable and its plane-only formula is UNSAT-SOLVER (it would exclude
+Szilassi). Rung: C2 3 x 2 + 1 finds the Szilassi type in 37 of 13495 draws, the asymmetric baseline in 3 of 13490
+(NUMERICAL, box [-8, 8], cap 10 s, E = 21; 40 recoveries EXACT, no new object). Not measured: nine planes,
+plane-only formulas at 12 elements ((11, 5) stays priced out), the perturbation step. Item 5's C2 4 x 2 + 1 arm is
+open. 0.94 core-h. Counts: `experiments/E-261117-02-moved-chart-plane-symmetry/CONCLUSION.md`.
+
+## 3aw. E-261116-07 Census-free formula P3 v2, ladder L0-L3 (2026-11-17)
+
+**NO MODEL, BUDGET STOP (UNDERPOWERED@5.5 core-h)**: the census-free CP-SAT formula (uniform, cubic, one disk face
+per plane) passed every stage-A control (L0 240/240 K13 verdicts, Roest-Vigh, Mizhaev and perturbed Szilassi EXACT,
+negatives INFEASIBLE, both known (8, 3) chirotopes reachable in the gauge, cube 5) and decided (7, 21) unpinned in
+8 s, realized to the Szilassi type with `--all-pairs` PASS (EXACT, a recovery). Stage B: all 16 cubes of (8, 30), of
+(9, 39) and of (8, 36) ended UNKNOWN at their caps (225 / 450 / 560 s, one seed, one worker), cube 5 with the two
+known objects included: no UNSAT-SOLVER, no model, gate not passed (NUMERICAL, this host and caps). No claim on
+(8, 3) or (9, 4) existence; STATUS 3d untouched. Method parked, not refuted; a rerun must change the search.
+5.66 core-h. Counts: `experiments/E-261116-07-census-free-s1-ladder/CONCLUSION.md`.
+
+## 3ax. E-261117-03 P4 patchwork chirotopes, C0-C2 (2026-11-17)
+
+**OPEN AT SEVEN FACES, UNDERPOWERED AT NINE ELEMENTS (0.87 core-h)**: the per-minor matching certificate (potentials
+scaled by 4) agrees with brute force on 74,536 4 x 4 matrices (NUMERICAL; completeness PROVED-1). Amended to one box
+K = 32 and n <= 9: perturbed Szilassi's chirotope is coherent patchwork (EXACT, instance), and Szilassi's map formula
+AND P4 returns in 69 s a chirotope whose patchwork matrix, at t = 1/3 and charted to integers, passes `--target S5`
+(EXACT; the known Szilassi type, realized by construction without a bridge). Roest-Vigh, Mizhaev and the 17 K13 solids
+UNKNOWN at 90 s; the 16 S6 (10, 2) controls (committed after `candidate-check`, `witnesses/s6_10_2_controls/`) and
+K < 32 not run. No non-membership claim. Counts: `experiments/E-261117-03-patchwork-chirotope-probe/CONCLUSION.md`.
+
+## 3ay. E-261110-04 symmetric families at nine planes, owner night (2026-11-18)
+
+**LOW-YIELD (63.8 core-h)**: no nine-face all-pairs solid. Frozen engine of E-261103-05, cap 20 s: C3 3+3+3 in the
+[-8, 8] box (standard chart) and C2 4 x 2 + 1 in a moved chart, each at E = 45 and 51, about 3,830 arrangements per
+cell, 10-19 % UNKNOWN at the cap; the rest INFEASIBLE (`UNSAT-SOLVER` level, no proofs). Zero hits reject a hit rate
+p >= ~9e-4 per decided arrangement for these families, box, cap and E only (NUMERICAL, sampling); nothing about UNKNOWN
+units, other boxes, caps, charts, E = 39 or ten planes. Geometric boxes +-q^w (q = 2, 3, w <= 3) at eight planes,
+E = 36: 0 solids in 551 / 557 distinct chirotopes (draws repeat), below K13's uniform-box 17 / 240; the geo arm is
+parked. Controls passed; no candidate. Counts: `experiments/E-261110-04-genus-free-9-10-faces-sweep/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

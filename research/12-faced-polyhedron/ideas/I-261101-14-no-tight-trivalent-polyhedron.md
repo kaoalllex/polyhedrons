@@ -34,3 +34,7 @@ lemma); and a look at Kuehnel 1995 for a prior statement.
 
 Strategy review 2026-11-01, follow-up work by the reviewer (cross-field: tight polyhedral surfaces, Banchoff;
 Kuehnel).
+
+## 2026-11-17 dialogue
+
+Owner's B3-Q1 (curvature beyond FD7), `reviews/dialogue-2026-11-16-strategy.md` §3: park, marks 3 0 1 3 / 2 0 1 2; the known route returns "saddles >= 2g + 1", whether a new curvature condition is independent is open. No next step this week.

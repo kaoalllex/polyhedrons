@@ -9,12 +9,13 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-16, lead review applied)
+## Hand-over (2026-11-18, lead review 2026-11-18 approved; new week)
 
-* Branch `lab/2026-11-14`; week plan of `reviews/strategy-review-2026-11-16.md` in `ROADMAP.md` (owner-approved).
-* Nothing in flight. Next: week item 1, E-261116-01 ((11, 5) census and cost probe): PLAN first, then owner day run.
-* Then item 2 (E-261116-02, (10, 3) cube pilot), item 5 (E-261116-04, polar transfer) in any free slot.
-* Item 4 (E-261116-03, S0 price probe) only if item 1 gives a median <= 20 min; owner approval already given.
-* Item 3 parked by the owner: no (10, 4) proof replay (I-261116-02). (10, 4) is UNSAT-SOLVER, planning use only.
-* The review's credences are not applied. No proofs in any item.
-* Raw per-map output of E-261110-06 is in `../polyhedrons-data` (`move_raw.py` now also covers `results/run/*/map*/`).
+* Week branch `lab/2026-11-18` (created from `main` after the PR of `lab/2026-11-16`). Week plan: `ROADMAP.md` -> Week
+  plan (`reviews/strategy-review-2026-11-18.md` §1, owner-approved 2026-11-18).
+* Next: week item 1, N1b (E-261118-01, minutes); then item 2, P3-sym (E-261118-02, the main investment: equivariant
+  `p3.Formula`, D2 / S4 eight-face rung before C3 3+3+3 at nine faces). Each needs its `PLAN.md` first, with the unit
+  tests run in that commit; item 2's prep adds the dirty-tree refusal to `overnight/launch.sh`.
+* Owner's ideas of 2026-11-18 triaged in `reviews/ideas-triage-2026-11-18.md`: the (9, 3) one-face deletion sieve
+  (idea 2 Q1) waits for the owner's word; no row yet.
+* For the lead: nothing open.

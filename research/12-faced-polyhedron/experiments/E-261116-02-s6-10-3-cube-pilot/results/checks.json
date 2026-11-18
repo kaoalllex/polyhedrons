@@ -1,0 +1,12 @@
+{
+  "quick": {
+    "command": "python verification/verify_all.py --quick",
+    "outcome": "ALL PASS; archive skipped by quick mode"
+  },
+  "trace": "0 errors",
+  "diff_check": "PASS",
+  "limitations": [
+    "Solver-unit stop/resume not exercised",
+    "No target conquer or geometry verification"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "PASS": true,
+  "preregistration_commit": "d4175c8606415336a6729911136de099398e30dc",
+  "checks": {
+    "census": "PASS, canonical code digest matches lead; saved output rechecked after serialization fix",
+    "control_functions_unchanged_after_census_fix": true,
+    "queue_inputs": "all hashes match",
+    "runner_tests": "3 PASS after budget/provenance changes",
+    "pricing_tests": "6 PASS after UNKNOWN rejection",
+    "element_curve": "existing normalised sample counts 2, 203, 757; INCOMPLETE pre-day summary generated",
+    "actual_launcher": "PASS, ten-shard capped fixture, repeated start preserves results",
+    "quick": "ALL PASS, archive SKIP; final shared-runner changes checked separately by focused tests and actual launcher"
+  },
+  "sources_sha256": {
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/probe.py": "d8bfbc575ba2eb00c1478ccf06f33c08bba834934c5481993c8852a2cf381c4f",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/summary.py": "0f14610051d453caa565a1202d4044bb38144eb0625fad7d650b0ca22c42c64c",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/run.sh": "8433b40d2a38d8f3b20babf6f229c15609e9ad70511acc0291e9beff7d976072",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/progress.sh": "5034fe1d93e235c90e67705b61b4aab52289012184304c956854156b600aa18f",
+    "experiments/E-261116-01-s5-11-5-census-cost-probe/test_summary.py": "40531c1a01b4591d435ee71f2d728f98b464f397e8f7c25a9823b83306c6c490",
+    "experiments/E-261110-06-s5-10-4-strata-ab-remainder/run.py": "d1e959309aa88a483c6b514e835e6b9f5dcf3ec3a8bbc836529bbdc715b8f85e",
+    "experiments/E-261110-06-s5-10-4-strata-ab-remainder/test_run.py": "323ad18991389fd8ef1d9f8508b677efae481dad2a032cecfaf97db4153dc03b"
+  },
+  "outputs_sha256": {
+    "queue.json": "a77c3b6c7515fa991777545f211dd4de4d84436946027de29ffeeea97b831fb4",
+    "results/census-check.json": "22fb1457ada723b3d66e2eaa72850f36e0c2851746ac97cb1c12f38f61dd4acb",
+    "results/census/maps_11_5.json.gz": "a35cf8fb7f611e6f01c02ecc31ff97d74a3db3271d6b461d67e7dca1320d3604",
+    "results/census/manifest.json": "190fb6279ac32ecbd70aa8d11b1f53aa4b60d54c2c5433d9029e242d6646a59e",
+    "results/controls/summary.json": "0094eaffa7a2d7f634290dbc5aa0d8fd1d07a07b306210592fc886479fbeffe8",
+    "results/startup.json": "03db2f39f4d8a4912feee72541fc78caed513d19e7f9fa54fe7303dc0bd50b72",
+    "results/quick.log": "53d321bd87c1e8b9966632f6337d3c5cb6ce05c4d3f0a43ef6f604aed21bfe77"
+  },
+  "limitations": [
+    "No production price run",
+    "No geometric witness or negative claim",
+    "No DRAT",
+    "Size-control CPU time not recorded"
+  ],
+  "resolved_failures": [
+    "Initial census digest serialization mismatch; lead format recovered exactly",
+    "Initial pricing fixture exceeded four-night threshold; corrected fixture, final test PASS"
+  ]
+}

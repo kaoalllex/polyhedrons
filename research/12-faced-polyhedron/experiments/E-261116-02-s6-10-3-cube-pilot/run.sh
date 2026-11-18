@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+HERE="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$HERE/../.." && pwd)"
+PYTHON="${PYTHON:-${VIRTUAL_ENV:-$HOME/.venvs/polyhedra}/bin/python}"
+SHARDS="${SHARDS:-10}"
+SHARD="${1:?numeric shard required}"
+[[ "$SHARDS" =~ ^(8|9|10)$ && "$SHARD" =~ ^[0-9]$ && "$SHARD" -lt "$SHARDS" ]] || exit 2
+OUT="${S6CUBE_OUT:-$HERE/results/run}/$SHARD"
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMBA_NUM_THREADS=1
+export NO_PROOF=1
+nice -n 10 "$PYTHON" "$ROOT/overnight/run_overnight.py" s6cube --workers 1 \
+  --shard "$SHARD" --shards "$SHARDS" --results-dir "$OUT" --hours 2
+"$PYTHON" "$ROOT/overnight/run_overnight.py" status --results-dir "$OUT"

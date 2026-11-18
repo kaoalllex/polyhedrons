@@ -28,3 +28,7 @@ One literature session on the three sources, primary texts only, with exact stat
 ## Source
 
 Strategy review 2026-11-01, section 5.6 follow-up.
+
+## 2026-11-17 dialogue
+
+`reviews/dialogue-2026-11-16-strategy.md` §2 row 6, Appendix A6: the equivelar slice E = F (F + 1) / 2 = 3 (F + 2g - 2) is (8, 3), (9, 4), (12, 8) for 7 <= F <= 12; marks 2 1 2 1 / 2 1 1 1. Queued as the P6 price pilot E-261117-04 (stage A at (8, 3), costs per stage), not this week; patterns 9 and 3+3+3 are covered by the Cayley census E-261117-01.

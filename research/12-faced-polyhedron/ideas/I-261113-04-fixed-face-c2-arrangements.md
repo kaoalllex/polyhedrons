@@ -2,7 +2,7 @@
 id: I-261113-04
 title: Fixed-face C2 realizations of (10, 3) maps by symmetric plane arrangements
 date: 2026-11-13
-status: open
+status: tried
 direction: [DR18, DR7]
 origin: [I-261113-01, E-261103-05]
 ---
@@ -21,3 +21,10 @@ seven-plane arrangements (three pairs and a fixed plane) against the Gaussian ra
 (NUMERICAL, session check). Untested proposal; deferred, no slot in the week plan of 2026-11-13.
 
 Source: `reviews/strategy-review-2026-11-13.md` §6 (N5).
+
+## 2026-11-17 dialogue
+
+`reviews/dialogue-2026-11-16-strategy.md` §3 (B1, found in R4) and Appendix A4: keep, marks 2 2 3 2 / 2 2 3 1. A far plane as infinity makes the fixed-face half-turn uniform (I-261117-02). This idea's test is the N2 rung: week item 2, E-261117-02 (Szilassi control chain, then seven-plane 3 x 2 + 1); a pass adds the C2 4 x 2 + 1 arm to the week-5 night (E-261110-04).
+
+Tried 2026-11-17 (E-261117-02): gate passed at the seven-plane rung (Szilassi control chain, orbit gauge, C2
+3 x 2 + 1 unaided recovery above the asymmetric baseline); the C2 4 x 2 + 1 arm joins item 5. `STATUS.md` 3av.
