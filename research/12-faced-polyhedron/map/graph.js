@@ -1286,7 +1286,7 @@ window.GRAPH = {
    "id": "E-261110-04",
    "kind": "experiment",
    "title": "Genus-free sweep at 9 and 10 planes - every pair adjacent, multiple adjacencies allowed, E free",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-10",
    "concluded": "",
    "path": "experiments/E-261110-04-genus-free-9-10-faces-sweep/README.md",
@@ -1296,7 +1296,7 @@ window.GRAPH = {
     "DR12"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {

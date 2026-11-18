@@ -2,12 +2,12 @@
 id: E-261110-04
 title: Genus-free sweep at 9 and 10 planes - every pair adjacent, multiple adjacencies allowed, E free
 date: 2026-11-10
-status: planned
+status: running
 direction: [DR7, DR18, DR12]
 origin: [I-261110-03, I-261110-01, E-261107-01, E-261108-01, E-261110-03]
 tests: []
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > **Amended 2026-11-17, week item 5** (owner-approved night; `reviews/dialogue-2026-11-16-strategy.md` §2 row 5, Appendix A7). One owner night
