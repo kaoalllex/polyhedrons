@@ -1702,7 +1702,7 @@ window.GRAPH = {
    "id": "E-261118-01",
    "kind": "experiment",
    "title": "N1b - the five unrealized face-transitive (8, 3) classes of E-261117-01 by the plain and normalised formulas",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-18",
    "concluded": "",
    "path": "experiments/E-261118-01-face-transitive-8-3-formulas/README.md",
@@ -1710,7 +1710,7 @@ window.GRAPH = {
     "DR19"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {

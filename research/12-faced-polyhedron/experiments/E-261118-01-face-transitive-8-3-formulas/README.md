@@ -2,15 +2,15 @@
 id: E-261118-01
 title: N1b - the five unrealized face-transitive (8, 3) classes of E-261117-01 by the plain and normalised formulas
 date: 2026-11-18
-status: planned
+status: running
 direction: [DR19]
 origin: [E-261117-01, I-261117-01]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned, week item 2 (`reviews/strategy-review-2026-11-18.md` §1, owner-approved 2026-11-18), exploit, jump 0.
+> Running (pre-registered in `PLAN.md`), week item 2 (`reviews/strategy-review-2026-11-18.md` §1, owner-approved 2026-11-18), exploit, jump 0.
 > Scores T D F G R: 2 1 2 1 2 | budget: <= 0.2 core-h, 10 shards. Before any compute: `PLAN.md` (skill
 > `experiment-start`). No proofs.
 
