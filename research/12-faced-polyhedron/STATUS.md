@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-17** (owner's approval of the dialogue synthesis `reviews/dialogue-2026-11-16-strategy.md`). The latest
-registered result is E-261117-03 (section 3ax); results are listed newest last in section 3, chronology in
+As of **2026-11-18** (E-261110-04 concluded; owner's approval of the dialogue synthesis `reviews/dialogue-2026-11-16-strategy.md`, 2026-11-17). The latest
+registered result is E-261110-04 (section 3ay); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -16,7 +16,7 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 
 **Focus since 2026-11-17 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
 mutually adjacent faces (S1, genus free) first, with front checks N1 (Cayley census, E-261117-01) and N2 (moved chart,
-E-261117-02), P3 v2 the main investment (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04);
+E-261117-02), P3 v2 the main investment (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
 (11, 5) only through N2, as a new registration (E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
 UNSAT-SOLVER, section 3as), its replay priced for the paper (E-261116-08); S5 (10, 4) all admissible maps UNSAT-SOLVER
 (sections 3ad, 3ao); the S0 price probe withdrawn. Run so far: ninth-plane Stage A (no candidate,
@@ -492,6 +492,16 @@ AND P4 returns in 69 s a chirotope whose patchwork matrix, at t = 1/3 and charte
 (EXACT; the known Szilassi type, realized by construction without a bridge). Roest-Vigh, Mizhaev and the 17 K13 solids
 UNKNOWN at 90 s; the 16 S6 (10, 2) controls (committed after `candidate-check`, `witnesses/s6_10_2_controls/`) and
 K < 32 not run. No non-membership claim. Counts: `experiments/E-261117-03-patchwork-chirotope-probe/CONCLUSION.md`.
+
+## 3ay. E-261110-04 symmetric families at nine planes, owner night (2026-11-18)
+
+**LOW-YIELD (63.8 core-h)**: no nine-face all-pairs solid. Frozen engine of E-261103-05, cap 20 s: C3 3+3+3 in the
+[-8, 8] box (standard chart) and C2 4 x 2 + 1 in a moved chart, each at E = 45 and 51, about 3,830 arrangements per
+cell, 10-19 % UNKNOWN at the cap; the rest INFEASIBLE (`UNSAT-SOLVER` level, no proofs). Zero hits reject a hit rate
+p >= ~9e-4 per decided arrangement for these families, box, cap and E only (NUMERICAL, sampling); nothing about UNKNOWN
+units, other boxes, caps, charts, E = 39 or ten planes. Geometric boxes +-q^w (q = 2, 3, w <= 3) at eight planes,
+E = 36: 0 solids in 551 / 557 distinct chirotopes (draws repeat), below K13's uniform-box 17 / 240; the geo arm is
+parked. Controls passed; no candidate. Counts: `experiments/E-261110-04-genus-free-9-10-faces-sweep/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

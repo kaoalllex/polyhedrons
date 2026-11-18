@@ -1059,3 +1059,7 @@ passed, method parked; 5.66 core-h. See `experiments/E-261116-07-census-free-s1-
 2026-11-17 — E-261117-03 (P4 patchwork probe): step 0 candidate-check of the 16 S6 (10, 2) files (all pass, 13 maps);
 C0 passed; amended to K = 32, n <= 9: Szilassi's chirotope patchwork, C2 realizes Szilassi's map by construction
 (S5 PASS); nine-element controls UNKNOWN; 0.87 core-h. See `experiments/E-261117-03-patchwork-chirotope-probe/CONCLUSION.md`.
+
+2026-11-18 — E-261110-04 (owner night, symmetric families at nine planes): controls passed; no nine-face hit in about
+3,830 arrangements per C3 / C2 cell at E = 45, 51 (p >= ~9e-4 rejected per cell); geo boxes 0 in 551 / 557 chirotopes
+at eight planes, below K13; LOW-YIELD, 63.8 core-h. See `experiments/E-261110-04-genus-free-9-10-faces-sweep/CONCLUSION.md`.

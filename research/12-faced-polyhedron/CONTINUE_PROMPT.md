@@ -9,14 +9,15 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-18, week item 5 prepared; the owner night is next)
+## Hand-over (2026-11-18, week item 5 concluded; the week plan is done)
 
-* Branch `lab/2026-11-16`. Week item 5, E-261110-04, pre-registered (`PLAN.md`, `night.py`, `run.sh`, `progress.sh`):
-  c3 (C3 3+3+3) and c2 (C2 4 x 2 + 1, moved chart) at nine planes, E = 45 and 51, cap 20 s; geo2 / geo3 (D2 2 x 4,
-  coefficients +-q^w, w <= 3) at E = 36, cap 15 s, 3000 draws per q. Stage A PASS; pilot 0.11 core-h, gate holds
-  (c2 E = 45 UNKNOWN 2 of 5, close to the cap). A verified nine-face hit touches `results/stop.requested`.
-* Owner: `bash research/12-faced-polyhedron/overnight/launch.sh 10-04 start` on AC (10 shards x 27000 s = 75 core-h).
-* Next: after the night, `python3 night.py summary results`, then `experiment-conclude` (a hit: `candidate-check`
-  first, Opus high). The night's results are not in git until then.
-* For the lead (unchanged from 2026-11-17): a faster P4 host at nine elements; whether a P3 rerun earns a row (cube 5
-  first); plane-only formulas for the (11, 5) Aut+ = 2 and (9, 4) one-face-involution maps only as a new registration.
+* Branch `lab/2026-11-16`. E-261110-04 concluded (`CONCLUSION.md`, STATUS 3ay): owner night 63.8 core-h, controls
+  passed, no nine-face hit. C3 3+3+3 and C2 4 x 2 + 1 at E = 45, 51: about 3,830 arrangements per cell, p >= ~9e-4
+  rejected per cell (this box, cap 20 s); geo boxes +-q^w at eight planes: 0 in 551 / 557 distinct chirotopes, below
+  K13's 17 / 240. LOW-YIELD; c3, c2 and geo cells parked. Raw output moved by `overnight/move_raw.py`.
+* Next: the weekly lead review (`strategy-review`, separate session, strongest model), with the owner's raw ideas
+  (root `TODO.md` 0.1). PR into `main` only on the owner's word.
+* For the lead: whether any nine-face arm earns a new row (the night only bounds p below ~1e-3; nothing predicts p);
+  samplers should keep the uniform box (powers of q are near-sterile at eight planes); a faster P4 host at nine
+  elements; whether a P3 rerun earns a row (cube 5 first); plane-only formulas for the (11, 5) Aut+ = 2 and (9, 4)
+  one-face-involution maps only as a new registration.

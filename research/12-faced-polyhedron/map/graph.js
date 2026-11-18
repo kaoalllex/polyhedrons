@@ -1286,18 +1286,18 @@ window.GRAPH = {
    "id": "E-261110-04",
    "kind": "experiment",
    "title": "Genus-free sweep at 9 and 10 planes - every pair adjacent, multiple adjacencies allowed, E free",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-10",
-   "concluded": "",
+   "concluded": "2026-11-18",
    "path": "experiments/E-261110-04-genus-free-9-10-faces-sweep/README.md",
    "direction": [
     "DR7",
     "DR18",
     "DR12"
    ],
-   "verdict": "",
+   "verdict": "LOW-YIELD@63.8 core-h (no nine-face hit; C3 / C2 cells p >= ~9e-4 rejected each; geo arm below K13)",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: LOW-YIELD@63.8 core-h (one night, 8-10 shards): no nine-face hit; the C3 and C2 nine-plane cells at this box and cap are parked with their p bounds; the geo arm is parked (rate below K13's interval, a note for the lead). E-261101-08 is not opened."
   },
   {
    "id": "E-261110-05",

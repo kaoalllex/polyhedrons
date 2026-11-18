@@ -2,13 +2,20 @@
 id: E-261110-04
 title: Genus-free sweep at 9 and 10 planes - every pair adjacent, multiple adjacencies allowed, E free
 date: 2026-11-10
-status: running
+status: done
+concluded: 2026-11-18
+verdict: LOW-YIELD@63.8 core-h (no nine-face hit; C3 / C2 cells p >= ~9e-4 rejected each; geo arm below K13)
 direction: [DR7, DR18, DR12]
 origin: [I-261110-03, I-261110-01, E-261107-01, E-261108-01, E-261110-03]
 tests: []
 produces: []
 preregistered: true
 ---
+
+> **Done 2026-11-18** (`CONCLUSION.md`, STATUS 3ay). Owner night, 63.8 core-h, controls passed. C3 3+3+3 and C2
+> 4 x 2 + 1 at nine planes, E = 45 and 51: no hit in about 3,830 arrangements per cell (10-19 % UNKNOWN at the cap),
+> so p >= ~9e-4 is rejected per cell for these families, box and cap only. Geometric boxes at eight planes: no solid in
+> 551 / 557 distinct chirotopes, below K13's uniform box; parked. No candidate; E-261101-08 not opened.
 
 > **Amended 2026-11-17, week item 5** (owner-approved night; `reviews/dialogue-2026-11-16-strategy.md` §2 row 5, Appendix A7). One owner night
 > <= 80 core-h, 10 shards, nine planes, E in {45, 51}, frozen engine of E-261103-05 (hard model, cap 20 s):
