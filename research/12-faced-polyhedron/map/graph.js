@@ -1717,7 +1717,7 @@ window.GRAPH = {
    "id": "E-261118-02",
    "kind": "experiment",
    "title": "P3-sym - the census-free formula on symmetric quotients, D2 / S4 eight-face rung before C3 3+3+3 at nine faces",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-18",
    "concluded": "",
    "path": "experiments/E-261118-02-equivariant-census-free-formula/README.md",
@@ -1726,7 +1726,7 @@ window.GRAPH = {
     "DR7"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
