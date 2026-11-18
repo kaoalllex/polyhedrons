@@ -62,3 +62,14 @@ Pre-registration (2026-11-18), at most 80 lines. Amendments at the end.
   outline gets the six-class formula statuses.
 
 ## Amendments
+
+### 2026-11-18: pilot (session), gate passed
+
+Controls (`results/pilot-controls/`, kissat 4.0.4, 6.7 s wall): all 7 as expected (Roest-Vigh pinned SAT on his plain
+and, in the gauge, normalised formula; his planes on classes 1-5 UNSAT-SOLVER). Shard 0 (`results/0/`, commit
+`0667a897`, `dirty_files: 1` = the untracked results directory): class 0 map plain SAT in 0.1 s, the bridge (hinge,
+first stage) realized the model with 0 wrong signs, `verify_candidate.py --all-pairs` PASS (V, E, F, chi =
+24, 36, 8, -4): the positive in-run control and the bridge calibration hold. It is Roest-Vigh's class, a known object,
+not a new result. Class 2 mirror plain UNSAT-SOLVER in 0.7 s. Projection for the other 18 units: seconds each, far
+below 0.2 core-h. No plan change; the remaining shards go to the owner (`launch.sh 261118-01 start`; recorded units
+are skipped).
