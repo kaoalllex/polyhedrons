@@ -10,7 +10,8 @@ set -uo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(cd "$HERE/../.." && pwd)"
 PYTHON="${PYTHON:-${VIRTUAL_ENV:-$HOME/.venvs/polyhedra}/bin/python}"
-Q="${QUEUE:-$HERE/queue.json}"
+# Amendment 2: the default queue is the other 18 maps (queue_rest.json, results/rest); the probe was queue.json.
+Q="${QUEUE:-$HERE/queue_rest.json}"
 SHARDS="${SHARDS:-10}"
 SHARD="${1:-}"
 WANT="$("$PYTHON" -c 'import json, sys; print(json.load(open(sys.argv[1]))["shards"])' "$Q")"

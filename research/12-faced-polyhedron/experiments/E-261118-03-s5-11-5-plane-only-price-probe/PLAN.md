@@ -79,3 +79,17 @@ Pre-registration, 2026-11-19 (lab session, week item 4 of the owner-approved pla
 * **Projection**: 8 units x about 30-40 s plus controls, about 0.15 core-h, a few minutes wall; the cap does not
   bind. The run is therefore made in this session by the owner's launcher (`overnight/launch.sh 18-03 start`), not
   as an owner night; budget, units, caps and readings unchanged.
+
+### 2026-11-19: amendment 2, the NIGHT follow-up (lab session)
+
+* **Run** (`results/run`, `launch.sh 18-03 start`, 10 shards, controls pass): 8 of 8 units UNSAT-SOLVER, map 3634
+  36.6-49.4 s (median 40.2 s), map 4096 40.4-48.4 s (median 41.7 s); 0.094 solver core-h. `summary.py`: NIGHT.
+* **Follow-up, as registered**: the other 18 Aut+ = 2 maps x kissat seeds 0-3 (72 units), same formula, caps,
+  controls and bridge; only the queue is rebuilt (`make_queue.py` -> `maps/formulas_rest.json`, `queue_rest.json`,
+  sha256 a0469036...5734; the probe's queues are unchanged). `run.sh` now defaults to `queue_rest.json`, results in
+  `results/rest`. Kissat takes the last `--seed` when the runner accumulates them in a shard (checked).
+* **Projection**: 72 x about 45 s, about 0.9 core-h, under 10 min wall on 10 shards, far below the registered
+  80 core-h; made in this session by the owner's launcher, as amendment 1 argued.
+* **Readings**: per map and seed SAT / UNSAT-SOLVER / TIMEOUT. All 20 maps UNSAT-SOLVER on every seed -> the
+  plane-only C2 slice of (11, 5) is UNSAT-SOLVER for planning (no proof, never "no symmetric (11, 5) object");
+  any SAT -> bridge, `--target S5`, `candidate-check`; TIMEOUTs are reported per map, no information.

@@ -9,6 +9,7 @@ queue.json           10 shards: convex f11 pinned controls on every shard, one (
                      cap 1800 s, the checker cap (unused without proofs) carries the three 120 s bridge stages
 queue_control.json   10 shards, one Szilassi record each, cap 60 s
 queue_pilot.json     queue.json with a 120 s solver cap (the pilot runs shards 0 and 4: both maps, seed 0)
+maps/formulas_rest.json, queue_rest.json   amendment 2 (the NIGHT follow-up): the other 18 maps, same records and caps
 Usage: python3 make_queue.py [--check]"""
 import gzip
 import hashlib
@@ -30,6 +31,7 @@ CENSUS = ROOT / 'experiments/E-261116-01-s5-11-5-census-cost-probe/results/censu
 CENSUS_SHA256 = 'a35cf8fb7f611e6f01c02ecc31ff97d74a3db3271d6b461d67e7dca1320d3604'
 CONTROL_F11 = '../E-261116-01-s5-11-5-census-cost-probe/control_f11.json'
 FORMULAS, CONTROL = HERE / 'maps/formulas.json', HERE / 'maps/control.json'
+REST = HERE / 'maps/formulas_rest.json'
 DRAW_SEED, N_MAPS, SEEDS = 2611180301, 2, (0, 1, 2, 3)
 SOLVER_CAP, BRIDGE_CAP, SHARDS = 1800, 360, 10
 GROUP = 'C2 (half-turn fixing one face), plane-only, moved chart'
@@ -78,7 +80,7 @@ def rotations(links):
     return sorted(out)
 
 
-def formulas():
+def formulas(rest=False):
     assert sha(CENSUS) == CENSUS_SHA256, 'census changed'
     with gzip.open(CENSUS, 'rt') as stream:
         maps = json.load(stream)['maps']
@@ -95,7 +97,8 @@ def formulas():
     out = [dict(census_index=i, links=maps[i]['links'], canonical_sha256=code_sha(maps[i]['code']),
                 extra_pattern=maps[i]['extra_pattern'], sym_generator=p['involution'], fixed_faces=p['fixed_faces'],
                 sym_planes_only=True, sym_group=GROUP, seed=s)
-           for i in drawn for p in pool if p['census_index'] == i for s in SEEDS]
+           for i in (sorted(set(p['census_index'] for p in pool) - set(drawn)) if rest else drawn)
+           for p in pool if p['census_index'] == i for s in SEEDS]
     return dict(census=str(CENSUS.relative_to(ROOT)), census_sha256=CENSUS_SHA256, draw_seed=DRAW_SEED,
                 pool=pool, drawn=drawn, note='E-261118-03 PLAN.md: plane-only C2 formulas, kissat seeds 0-3', maps=out)
 
@@ -129,18 +132,21 @@ def queue(records_file, records, case, target, solver_cap, controls):
 
 def main():
     check = '--check' in sys.argv
-    for path, data in [(FORMULAS, formulas()), (CONTROL, control())]:
+    for path, data in [(FORMULAS, formulas()), (CONTROL, control()), (REST, formulas(rest=True))]:
         text = json.dumps(data, indent=1) + '\n'
         if check:
             assert path.read_text() == text, path
         else:
             path.parent.mkdir(exist_ok=True); path.write_text(text)
     recs, ctrl = json.loads(FORMULAS.read_text())['maps'], json.loads(CONTROL.read_text())['maps']
+    rest = json.loads(REST.read_text())['maps']
     built = {'queue.json': queue(FORMULAS, recs, (11, 5), 'S5 (11,5) E-261118-03 plane-only price probe, kissat seeds '
                                  '0-3, no proof', SOLVER_CAP, True),
              'queue_control.json': queue(CONTROL, ctrl, (7, 1), 'E-261118-03 N2 Szilassi chain through the runner',
                                          60, False),
-             'queue_pilot.json': queue(FORMULAS, recs, (11, 5), 'E-261118-03 pilot, solver cap 120 s', 120, True)}
+             'queue_pilot.json': queue(FORMULAS, recs, (11, 5), 'E-261118-03 pilot, solver cap 120 s', 120, True),
+             'queue_rest.json': queue(REST, rest, (11, 5), 'S5 (11,5) E-261118-03 amendment 2: the other 18 Aut+ = 2 '
+                                      'maps, kissat seeds 0-3, no proof', SOLVER_CAP, True)}
     for name, data in built.items():
         path, out = HERE / name, json.dumps(data, indent=1) + '\n'
         if check:
