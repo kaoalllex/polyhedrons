@@ -21,6 +21,13 @@ class LadderTests(unittest.TestCase):
         g = L.C2[0][0]
         self.assertTrue(all(tuple(n[g[n.index(i)]] for i in range(8)) == g for n in self.N))   # n g n^-1 = g
 
+    def test_invariant_copies(self):
+        for name, want in (('roest_vigh', 240), ('mizhaev', 96)):
+            R = self.obj[name]['runs']
+            copies = {L.image(R, p) for p in L.copy_perms(R, 8, L.C2)}
+            self.assertEqual(len(copies), want, name)
+            self.assertLessEqual({L.image(R, n) for n in self.N}, copies)
+
     def test_image(self):
         runs = frozenset({(0, 1, 2, 3), (4, 6, 5, 7)})
         n = (1, 0, 2, 3, 4, 5, 6, 7)
@@ -37,7 +44,7 @@ class LadderTests(unittest.TestCase):
         rv, mz = self.obj['roest_vigh'], self.obj['mizhaev']
         for blocked, want in ((rv, 'INFEASIBLE'), (mz, 'OPTIMAL')):
             f = L.BlockFormula(8, L.C2, edges=36, chi=rv['chi'])
-            f.block_map(blocked['runs'], self.N)
+            f.block_map(blocked['runs'], L.copy_perms(blocked['runs'], 8, L.C2))
             self.assertEqual(f.solve(120)['status'], want)
 
     def test_same_end_triples_other_pairing(self):

@@ -6,9 +6,11 @@ A run is an edge of the solid: the segment of the line L_jk = plane j ^ plane k 
 where ed(t, toward P) is the edge bit of the half-line at t on the side of plane a that holds P (that side is
 sigma_a(jkb), the formula's s bit), and m separates the two points iff sigma_m(jka) != sigma_m(jkb); the edge passes a
 vertex without an end unchanged, so the run started at jka reaches jkb and stops there. A map is blocked by the
-negated conjunction of its E run predicates and of every image under the normaliser of the action (the relabellings
-n with n G n^-1 = G that keep each element's determinant): such a relabelling of an invariant solid is invariant under
-the same action, and runs do not depend on plane orientation or on the reflection fixed by the gauge and the mirror.
+negated conjunction of its E run predicates and of every relabelling of them that is invariant under the action's
+permutations: each is a labelled copy of the same map, and the map of every model is invariant (amendment 1; the images
+under the normaliser of the action, n G n^-1 = G with determinants kept, are among them but need not be all of them:
+Roest-Vigh's map has 240 free-C2-invariant copies and 96 normaliser images). Runs do not depend on plane orientation
+or on the reflection fixed by the gauge and the mirror.
 
 Usage: ladder.py controls OUT | ladder.py unit NAME OUT | ladder.py summary RESULTS
 """
@@ -47,6 +49,12 @@ def normaliser(F, gens):
         if all(G.get(tuple(n[g[inv[i]]] for i in range(F))) == d for g, d in G.items()):
             out.append(n)
     return out
+
+
+def copy_perms(runs, F, action):
+    """Relabellings p with p(runs) invariant under every generator of the action (amendment 1)."""
+    return [p for p in itertools.permutations(range(F))
+            if all(image(img, g) == img for img in [image(runs, p)] for g, _ in action)]
 
 
 def runs_of(decoded_runs):
@@ -232,7 +240,7 @@ def controls(out):
     c['normaliser_sizes'] = [len(normaliser(8, g)) for g in (C2, D2, S4)]
     c['normaliser_PASS'] = c['normaliser_sizes'][0] == 384
     c['C2_forced_zeros_PASS'] = p3sym.forced_zeros(8, C2) == []
-    N = normaliser(8, C2); runs = {}; rows = []
+    runs = {}; rows = []
     for name in ('roest_vigh', 'mizhaev'):
         h = known(name, C2)
         rec, chi, cells, R = pinned_model(h, C2)
@@ -243,11 +251,15 @@ def controls(out):
                                   and list(g['V_E_F_chi']) == [24, 36, 8, -4]
                                   and p3sym.known_type(rec['links']) == name)
         c[name + '_predicate_equals_decode'] = R is not None and predicate_runs(chi, cells, 8) == R
-        runs[name] = dict(R=R, chi=chi, cells=cells)
+        runs[name] = dict(R=R, chi=chi, cells=cells, P=copy_perms(R, 8, C2))
+    N = normaliser(8, C2)
+    c['copies'] = {k: len({image(v['R'], p) for p in v['P']}) for k, v in runs.items()}
+    c['copies_PASS'] = (c['copies'] == dict(roest_vigh=240, mizhaev=96)
+                        and all({image(v['R'], n) for n in N} <= {image(v['R'], p) for p in v['P']} for v in runs.values()))
     for name in ('roest_vigh', 'mizhaev'):
         other = 'mizhaev' if name == 'roest_vigh' else 'roest_vigh'
         for blocked, want in ((name, 'INFEASIBLE'), (other, 'OPTIMAL')):
-            f = BlockFormula(8, C2, edges=36, chi=runs[name]['chi']); n = f.block_map(runs[blocked]['R'], N)
+            f = BlockFormula(8, C2, edges=36, chi=runs[name]['chi']); n = f.block_map(runs[blocked]['R'], runs[blocked]['P'])
             r = f.solve(120); key = '%s_pinned_%s_blocked' % (name, blocked)
             rows.append(dict(name=key, status=r['status'], seconds=r['seconds'], clauses=n))
             c[key] = r['status'] == want
@@ -301,7 +313,7 @@ UNITS = {'D2_8_36_block': U(8, 36, D2, 900, 40, block=True),
          'C2_8_36_pre_rv': U(8, 36, C2, 600, 1, block=True, pre=('roest_vigh',)),
          'C2_8_36_pre_mz': U(8, 36, C2, 600, 1, block=True, pre=('mizhaev',))}
 ORDER_RUN = ('D2_8_36_block', 'S4_8_36_block', 'C2_8_36_block', 'C2_8_30', 'C3_9_39')
-RUN_BUDGET = 19.0 * 3600        # core-seconds of the owner run (20 core-h minus at most 1.0 in the session)
+RUN_BUDGET = 18.4 * 3600        # core-seconds of the owner run (20 core-h minus at most 1.6 in the session, amendment 1)
 LAST = 'C3_9_39'                # its cap shrinks to what the budget leaves (PLAN.md)
 
 
@@ -314,13 +326,13 @@ def run_unit(name, out, cap):
     u = UNITS[name]; F, workers = u['F'], u['workers']
     t0 = time.monotonic(); deadline = t0 + cap
     f = BlockFormula(F, u['action'], edges=u['E'])
-    N = normaliser(F, u['action']) if u['block'] else None
     for name0 in u['pre']:
-        f.block_map(known_runs()[name0], N)
+        R0 = known_runs()[name0]
+        f.block_map(R0, copy_perms(R0, F, u['action']))
     proto = f.model.Proto()
     rec = dict(id=name, F=F, E=u['E'], workers=workers, cap=round(cap, 1), build_seconds=round(time.monotonic() - t0, 2),
                variables=len(proto.variables), constraints=len(proto.constraints), pre=list(u['pre']),
-               normaliser=len(N) if N else None, models=[], blocked_maps=[], solves=[])
+               models=[], blocked_maps=[], solves=[])
     while len(rec['models']) < u['models']:
         left = deadline - time.monotonic()
         if left <= 1:
@@ -348,7 +360,7 @@ def run_unit(name, out, cap):
             rec['ended_by'] = 'new map realized: stop (candidate-check)'
             (out.parent / 'stop.candidate').write_text(mname + '\n'); break
         if u['block'] and R is not None and m.get('invariant') and (note == 'REALIZED-ALL-PAIRS-PASS' or m.get('known_type')):
-            rec['blocked_maps'].append(dict(model=mname, code=m['code'], clauses=f.block_map(R, N)))
+            rec['blocked_maps'].append(dict(model=mname, code=m['code'], clauses=f.block_map(R, copy_perms(R, F, u['action']))))
         else:
             f.block(r['chi'])              # the map stays open (bridge failed, unknown type): this chirotope only
     else:

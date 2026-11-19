@@ -72,3 +72,19 @@ Pre-registration (2026-11-19), at most 80 lines. Amendments at the end.
   (3) the unpinned blocking controls run as pilot units (300 s), not as instant session checks.
 
 ## Amendments
+
+### 2026-11-19: amendment 1, the unpinned blocking control failed; blocking repaired to all invariant copies
+
+Controls at `c6313628` (`results/controls-normaliser/`): all PASS. Unpinned blocking controls (`results/blockctl-normaliser/`,
+300 s, 5 workers each, 0.38 core-h): with Roest-Vigh's map blocked the formula returned Roest-Vigh's map again (171 s,
+realized, `--all-pairs` PASS) in a labelling outside the 96 blocked normaliser images; the reverse returned Roest-Vigh's
+(101 s; passes). Cause (EXACT, brute force over S8): Roest-Vigh's run set has 8 plane automorphisms, 5 of them free
+involutions in 3 classes, so it has 240 free-C2-invariant labelled copies, of which the normaliser reaches 96 (Mizhaev:
+4, 1, 96, 96). The blocks were sound but incomplete; the row's "images under the normaliser" do not block a map whose
+automorphisms hold non-conjugate free involutions. Repair (allowed once by the pilot gate): block every relabelling of
+the run set invariant under the action's permutations (`copy_perms`; each is a copy of the same map, and every model's
+map is invariant, so only that map is excluded; a superset of the normaliser images). Unit tests 6 OK (new: 240 / 96
+copies, normaliser images inside). Session budget raised to <= 1.6 core-h (blockctl rerun), the owner run to <= 18.4
+core-h (`RUN_BUDGET`); U3's cap is what that leaves (deviation 2). Next: controls and blockctl rerun, then the run pilot
+on shards 0, 1, 3, 4 at 60 s (U1's formula and blocking path are exercised by blockctl). To the lead: the normaliser
+rule under-blocks (Roest-Vigh 96 of 240), relevant to E-261119-02's per-map blocking if it uses it.

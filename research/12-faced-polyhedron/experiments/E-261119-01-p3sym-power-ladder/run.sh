@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # E-261119-01 (PLAN.md). Controls (session): bash run.sh controls -> results/controls/.
-# Owner run (<= 19.0 core-h, about 2.3 h wall): bash research/12-faced-polyhedron/overnight/launch.sh 261119-01 start
+# Owner run (<= 18.4 core-h, about 2.3 h wall): bash research/12-faced-polyhedron/overnight/launch.sh 261119-01 start
 #   shards 0, 1: D2 and S4 at (8, 36) with map blocking (5 workers, 15 min each, together); then shard 2: free C2 at
 #   (8, 36) with blocking (1.5 h) and shard 3: free C2 at (8, 30) (1 h) together; shard 4: C3 3+3+3 at (9, 39) after
 #   shard 3 (<= 1 h, what the budget leaves); other shards idle. Then: python3 ladder.py summary results
