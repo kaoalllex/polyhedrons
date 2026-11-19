@@ -1,5 +1,5 @@
 """Amendment 1 control: the plane-only symmetry clauses and the build_sym gauge at 12 elements, on the exact
-involution of each drawn (11, 5) map.
+involution of each of the 20 (11, 5) Aut+ = 2 maps (the two drawn ones and, amendment 2, the other 18).
 
 For each map: random integer planes symmetric under the half-turn (x, y, z) -> (-x, -y, z) acting as the map's
 involution (the fixed face gets a plane z = d, each swapped pair (a, g a) gets h and its image), a far plane as
@@ -42,7 +42,7 @@ def symmetric_planes(g, rng):
 
 
 def main(out):
-    recs = json.loads((HERE / 'maps/formulas.json').read_text())['maps']
+    recs = [r for f in ('formulas.json', 'formulas_rest.json') for r in json.loads((HERE / 'maps' / f).read_text())['maps']]
     report = {}
     for rec in [r for r in recs if r['seed'] == 0]:
         links = dict(enumerate(rec['links'])); n = len(links)
