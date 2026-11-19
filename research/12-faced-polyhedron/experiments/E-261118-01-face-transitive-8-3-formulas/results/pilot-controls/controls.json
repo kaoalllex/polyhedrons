@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "solver": "kissat",
+  "cap": 600.0,
+  "controls": {
+    "rv_own_map_pinned_plain": {
+      "status": "SAT",
+      "seconds": 0.021768582999357022,
+      "budget_seconds": 600.0,
+      "budget_fraction": 3.6280971665595035e-05,
+      "ended_by": "completed",
+      "variables": 4879,
+      "clauses": 38055,
+      "cnf_sha256": "b91e7bfe270b9bd83c4f3a3a553339bb38bb82dcb0fe5b4cce916b790bd7e23e",
+      "solver_children_maxrss": 9453568,
+      "model_checked": true,
+      "expected": "SAT",
+      "passed": true
+    },
+    "rv_own_map_pinned_normalised": {
+      "status": "SAT",
+      "seconds": 0.040807208002661355,
+      "budget_seconds": 600.0,
+      "budget_fraction": 6.801201333776893e-05,
+      "ended_by": "completed",
+      "variables": 4879,
+      "clauses": 38064,
+      "cnf_sha256": "275b132b3ae27a32dbc3176d832d3b6b51ed4b7dbe5e45d72a796f206a9fe412",
+      "solver_children_maxrss": 9453568,
+      "model_checked": true,
+      "expected": "SAT",
+      "passed": true
+    },
+    "rv_planes_on_class1": {
+      "status": "UNSAT-SOLVER",
+      "seconds": 0.020495791992289014,
+      "budget_seconds": 600.0,
+      "budget_fraction": 3.415965332048169e-05,
+      "ended_by": "completed",
+      "variables": 4799,
+      "clauses": 37791,
+      "cnf_sha256": "a7c56226ac0f7d1d3dd9aa7597295bccf5ec3c007e7bb52de50322e50759377f",
+      "solver_children_maxrss": 9453568,
+      "expected": "UNSAT-SOLVER",
+      "passed": true
+    },
+    "rv_planes_on_class2": {
+      "status": "UNSAT-SOLVER",
+      "seconds": 0.010603125003399327,
+      "budget_seconds": 600.0,
+      "budget_fraction": 1.7671875005665547e-05,
+      "ended_by": "completed",
+      "variables": 4799,
+      "clauses": 37791,
+      "cnf_sha256": "18c02bbb71662b100b344f445974b0b3a7d9c87069b15fe420334c9bf98f6d0f",
+      "solver_children_maxrss": 9453568,
+      "expected": "UNSAT-SOLVER",
+      "passed": true
+    },
+    "rv_planes_on_class3": {
+      "status": "UNSAT-SOLVER",
+      "seconds": 0.020630750004784204,
+      "budget_seconds": 600.0,
+      "budget_fraction": 3.438458334130701e-05,
+      "ended_by": "completed",
+      "variables": 4887,
+      "clauses": 38087,
+      "cnf_sha256": "75899741fbf68aedd4a2abce8b2fe69d090cde13b3a8a93b9744ca1755f36821",
+      "solver_children_maxrss": 9453568,
+      "expected": "UNSAT-SOLVER",
+      "passed": true
+    },
+    "rv_planes_on_class4": {
+      "status": "UNSAT-SOLVER",
+      "seconds": 0.010858749999897555,
+      "budget_seconds": 600.0,
+      "budget_fraction": 1.8097916666495923e-05,
+      "ended_by": "completed",
+      "variables": 4891,
+      "clauses": 38103,
+      "cnf_sha256": "d56828ead2ae49fbd3befa46ddf04349d1c710e44d3e6459c05810989211ea2e",
+      "solver_children_maxrss": 9453568,
+      "expected": "UNSAT-SOLVER",
+      "passed": true
+    },
+    "rv_planes_on_class5": {
+      "status": "UNSAT-SOLVER",
+      "seconds": 0.02041612500033807,
+      "budget_seconds": 600.0,
+      "budget_fraction": 3.402687500056345e-05,
+      "ended_by": "completed",
+      "variables": 4893,
+      "clauses": 38111,
+      "cnf_sha256": "35534da275ef32c97f69b7378d7665c70108a34ab5a62256564ef9e0ae31034c",
+      "solver_children_maxrss": 9453568,
+      "expected": "UNSAT-SOLVER",
+      "passed": true
+    }
+  }
+}

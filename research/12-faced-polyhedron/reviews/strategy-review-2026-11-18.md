@@ -148,5 +148,5 @@ PLAN, the equivariant build and its controls; then the owner launches the rung (
 ## Owner's decisions (2026-11-18)
 
 Approvals 1-3 given ("ok"), the §5 triage of the owner's ideas accepted; applied the same day. New owner ideas (knot
-theory, one curved face): `ideas-triage-2026-11-18.md`.
-
+theory, one curved face): `ideas-triage-2026-11-18.md`. Later the same day the owner added the (9, 3) one-face deletion sieve (E-261118-04) as week item 1; `ROADMAP.md` numbers the
+items of §1 as 2-6.

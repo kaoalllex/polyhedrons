@@ -51,3 +51,8 @@ not read here; no decision rests on them. The DR4 / DR5 summaries are from `ROAD
 
 Keep: idea 2 Q1 in the queue (one lab session, <= 1 core-h). Drop: idea 1 except its capping role in idea 2.
 Nothing changes this week's order. Filing is a later lead session after your approval.
+
+## Owner's decisions (2026-11-18)
+
+Idea 1 dropped, except its capping role in idea 2. Idea 2 Q1 filed as I-261118-04 and run as week item 1, E-261118-04
+(not "queue" as proposed); Q2 and Q3 stay parked.

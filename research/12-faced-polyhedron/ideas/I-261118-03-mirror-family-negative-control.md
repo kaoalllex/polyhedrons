@@ -2,7 +2,7 @@
 id: I-261118-03
 title: Mirror family Cs 4 x 2 + 1 at nine faces and its seven-face negative control from the chirality of Szilassi's map
 date: 2026-11-18
-status: open
+status: tried
 direction: [DR19]
 origin: [I-261118-02]
 ---
@@ -24,3 +24,10 @@ Cs on nine faces has 110 quad orbits (about the unsolved eight-face size), so it
 Read the reflexibility flag of the (7, 1) census class (E-261103-01), then the (7, 21) Cs formula inside E-261118-02.
 
 Source: `reviews/strategy-review-2026-11-18.md` §5 N3.
+
+## 2026-11-19 E-261118-02, lead review 2026-11-19
+
+Closed as moot: a mirror with two or more free 2-orbits, or four fixed planes, forces a zero chirotope sign (E-261118-02
+deviation 1, PROVED-1), so Cs 4 x 2 + 1 at nine faces and the Cs 3 x 2 + 1 control at (7, 21) are both outside every
+uniform formula. Every mirror class forces 3-330 zero signs at 8, 9 and 11 planes (EXACT counts,
+`reviews/strategy-review-2026-11-19-orbits.py`). A mirror family needs a non-uniform encoder; none is planned.

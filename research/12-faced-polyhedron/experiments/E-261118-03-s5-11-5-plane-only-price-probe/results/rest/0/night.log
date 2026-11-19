@@ -1,0 +1,23 @@
+=== 2026-11-19 09:02:13 launch.sh start, shard 0
+controls start 0
+map control-f11-s0 start, solver 60s checker 120s
+map control-f11-s0 SAT
+map control-f11-neg-s0 start, solver 60s checker 120s
+map control-f11-neg-s0 UNSAT-SOLVER
+map 0 start, solver 1800s checker 360s
+map 0 UNSAT-SOLVER
+map 10 start, solver 1800s checker 360s
+map 10 UNSAT-SOLVER
+map 20 start, solver 1800s checker 360s
+map 20 UNSAT-SOLVER
+map 30 start, solver 1800s checker 360s
+map 30 UNSAT-SOLVER
+map 40 start, solver 1800s checker 360s
+map 40 UNSAT-SOLVER
+map 50 start, solver 1800s checker 360s
+map 50 UNSAT-SOLVER
+map 60 start, solver 1800s checker 360s
+map 60 UNSAT-SOLVER
+map 70 start, solver 1800s checker 360s
+map 70 UNSAT-SOLVER
+SHARD-COMPLETE wall_seconds 343.028

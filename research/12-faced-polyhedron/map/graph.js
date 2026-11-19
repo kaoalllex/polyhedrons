@@ -1702,43 +1702,105 @@ window.GRAPH = {
    "id": "E-261118-01",
    "kind": "experiment",
    "title": "N1b - the five unrealized face-transitive (8, 3) classes of E-261117-01 by the plain and normalised formulas",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-18",
-   "concluded": "",
+   "concluded": "2026-11-18",
    "path": "experiments/E-261118-01-face-transitive-8-3-formulas/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
-   "preregistered": "false",
-   "conclusion": ""
+   "verdict": "\"COMPLETE-UNSAT-SOLVER@0.004 core-h: classes 1-5 all 16 formulas UNSAT-SOLVER; Roest-Vigh's class SAT and realized\"",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: the face-transitive (8, 3) slice is closed for planning: Roest-Vigh's class is the only one with a SAT formula. COMPLETE-UNSAT-SOLVER@0.004 core-h. Side result: the bridge realizes his class from a random model in under 1 s, so it is a cheap rung control for E-261118-02."
   },
   {
    "id": "E-261118-02",
    "kind": "experiment",
    "title": "P3-sym - the census-free formula on symmetric quotients, D2 / S4 eight-face rung before C3 3+3+3 at nine faces",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-18",
-   "concluded": "",
+   "concluded": "2026-11-19",
    "path": "experiments/E-261118-02-equivariant-census-free-formula/README.md",
    "direction": [
     "DR19",
     "DR7"
+   ],
+   "verdict": "\"Rung PASS (D2, S4 known maps unaided in seconds, realized); nine faces UNDERPOWERED@17.0 core-h: C3 3+3+3 at E = 45, 51, 57 UNKNOWN at 1 h\"",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: rung PASS (method, known objects); nine faces UNDERPOWERED@17.0 core-h (three C3 3+3+3 formulas, 1 h on 5 workers, one seed). The step from eight to nine faces costs more than a factor 700 in time to the first model or decision on this host (a lower bound only: it compares time to SAT on instances with known models against censored runs of unknown answer, not the price of one face; lead..."
+  },
+  {
+   "id": "E-261118-03",
+   "kind": "experiment",
+   "title": "(11, 5) plane-only price probe - the moved-chart C2 formula on two Aut+ = 2 maps against the 12-element median",
+   "status": "done",
+   "date": "2026-11-18",
+   "concluded": "2026-11-19",
+   "path": "experiments/E-261118-03-s5-11-5-plane-only-price-probe/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "\"Gate NIGHT; proper half-turn slice UNSAT-SOLVER@1.0 core-h: all 20 Aut+ = 2 maps x 4 kissat seeds; (11, 5) closed for the laptop\"",
+   "preregistered": "true",
+   "conclusion": "Verdict: (11, 5) proper half-turn slice UNSAT-SOLVER@1.0 core-h, 20 of 20 maps x 4 seeds. The registered route ends: (11, 5) closes for the laptop (no further (11, 5) item without the lead)."
+  },
+  {
+   "id": "E-261118-04",
+   "kind": "experiment",
+   "title": "(9, 3) one-face deletion sieve - each admissible map with the planarity of one face dropped, do quasi-polyhedra with one curved face exist?",
+   "status": "done",
+   "date": "2026-11-18",
+   "concluded": "2026-11-18",
+   "path": "experiments/E-261118-04-one-face-deletion-sieve-9-3/README.md",
+   "direction": [
+    "DR19",
+    "DR11"
+   ],
+   "verdict": "\"OPEN-LOW@1.1 core-h, 2 of 203 maps; map 29 faces 5 and 8 SAT (unrealized), concluded on the pilot (owner)\"",
+   "preregistered": "true",
+   "conclusion": "Verdict: OPEN-LOW@1.1 core-h, 2 maps of 203 (map 0 undecided): the obstruction of map 29 depends on single faces; a full sieve costs 40-150 core-h."
+  },
+  {
+   "id": "E-261119-01",
+   "kind": "experiment",
+   "title": "P3-sym power ladder - discovery and refutation on known answers at the nine-face orbit size, and the symmetric (8, 3) slice by map blocking",
+   "status": "planned",
+   "date": "2026-11-19",
+   "concluded": "",
+   "path": "experiments/E-261119-01-p3sym-power-ladder/README.md",
+   "direction": [
+    "DR19"
    ],
    "verdict": "",
    "preregistered": "false",
    "conclusion": ""
   },
   {
-   "id": "E-261118-03",
+   "id": "E-261119-02",
    "kind": "experiment",
-   "title": "(11, 5) plane-only price probe - the moved-chart C2 formula on two Aut+ = 2 maps against the 12-element median",
+   "title": "Symmetric nine-face census - C3 3+3+3 and C2 4 x 2 + 1 maps by lifting the C3 exact cover, then per-map symmetric formulas",
    "status": "planned",
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "concluded": "",
-   "path": "experiments/E-261118-03-s5-11-5-plane-only-price-probe/README.md",
+   "path": "experiments/E-261119-02-symmetric-nine-face-census/README.md",
    "direction": [
-    "DR19"
+    "DR19",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261119-03",
+   "kind": "experiment",
+   "title": "Face-transitive nine-face maps at genus 7 - Cayley maps of Z9 and Z3 x Z3 at valence 14, plain formula on admissible classes",
+   "status": "planned",
+   "date": "2026-11-19",
+   "concluded": "",
+   "path": "experiments/E-261119-03-cayley-nine-faces-genus-7/README.md",
+   "direction": [
+    "DR18"
    ],
    "verdict": "",
    "preregistered": "false",
@@ -4572,7 +4634,7 @@ window.GRAPH = {
    "id": "I-261116-04",
    "kind": "idea",
    "title": "Symmetric (11, 5) slice - the 24 admissible maps with Aut+ 2 or 3 by symmetric formulas",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-16",
    "concluded": "",
    "path": "ideas/I-261116-04-symmetric-11-5-slice.md",
@@ -4688,7 +4750,7 @@ window.GRAPH = {
    "id": "I-261118-01",
    "kind": "idea",
    "title": "Equivariant census-free formula - a group action on the planes of P3 decides all G-symmetric solids of one (F, E) in one formula",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-18",
    "concluded": "",
    "path": "ideas/I-261118-01-equivariant-census-free-formula.md",
@@ -4718,12 +4780,70 @@ window.GRAPH = {
    "id": "I-261118-03",
    "kind": "idea",
    "title": "Mirror family Cs 4 x 2 + 1 at nine faces and its seven-face negative control from the chirality of Szilassi's map",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-18",
    "concluded": "",
    "path": "ideas/I-261118-03-mirror-family-negative-control.md",
    "direction": [
     "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261118-04",
+   "kind": "idea",
+   "title": "One curved face - quasi-polyhedra with F - 1 planar faces and one skew face, straightened or shown unstraightenable",
+   "status": "parked",
+   "date": "2026-11-18",
+   "concluded": "",
+   "path": "ideas/I-261118-04-one-curved-face-quasi-polyhedra.md",
+   "direction": [
+    "DR19",
+    "DR11"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261119-01",
+   "kind": "idea",
+   "title": "Plane-only fixed-face slices wherever a map census has involutions fixing faces",
+   "status": "open",
+   "date": "2026-11-19",
+   "concluded": "",
+   "path": "ideas/I-261119-01-plane-only-fixed-face-slices.md",
+   "direction": [
+    "DR19",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261119-02",
+   "kind": "idea",
+   "title": "Known-answer power ladder - decided negatives as refutation rungs and the free-C2 eight-face formula as the discovery rung of P3-sym",
+   "status": "open",
+   "date": "2026-11-19",
+   "concluded": "",
+   "path": "ideas/I-261119-02-known-answer-power-ladder.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261119-03",
+   "kind": "idea",
+   "title": "Face-transitive nine-face maps at genus 7 - Cayley maps of Z9 and Z3 x Z3 at valence 14",
+   "status": "open",
+   "date": "2026-11-19",
+   "concluded": "",
+   "path": "ideas/I-261119-03-cayley-nine-faces-genus-7.md",
+   "direction": [
+    "DR18"
    ],
    "verdict": "",
    "preregistered": ""
@@ -5978,6 +6098,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261103-01",
+   "to": "E-261119-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -6093,6 +6218,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261103-03",
+   "to": "E-261118-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -6134,6 +6264,11 @@ window.GRAPH = {
   {
    "from": "E-261103-03",
    "to": "I-261110-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "I-261119-02",
    "kind": "origin"
   },
   {
@@ -6718,12 +6853,22 @@ window.GRAPH = {
   },
   {
    "from": "E-261117-01",
+   "to": "E-261119-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261117-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
   {
    "from": "E-261117-01",
    "to": "I-261118-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261117-01",
+   "to": "I-261119-03",
    "kind": "origin"
   },
   {
@@ -6743,11 +6888,51 @@ window.GRAPH = {
   },
   {
    "from": "E-261118-02",
+   "to": "E-261119-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261118-02",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261118-02",
+   "to": "I-261119-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261118-03",
+   "to": "E-261119-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261118-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
   {
    "from": "E-261118-03",
+   "to": "I-261119-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261118-04",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261119-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261119-02",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261119-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -7233,6 +7418,11 @@ window.GRAPH = {
   },
   {
    "from": "I-261030-18",
+   "to": "E-261119-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-18",
    "to": "I-261103-06",
    "kind": "origin"
   },
@@ -7598,12 +7788,22 @@ window.GRAPH = {
   },
   {
    "from": "I-261101-18",
+   "to": "E-261118-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-18",
    "to": "H-261101-15",
    "kind": "origin"
   },
   {
    "from": "I-261101-18",
    "to": "I-261101-21",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261101-18",
+   "to": "I-261118-04",
    "kind": "origin"
   },
   {
@@ -8017,6 +8217,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261117-01",
+   "to": "I-261119-03",
+   "kind": "origin"
+  },
+  {
    "from": "I-261117-02",
    "to": "E-261117-02",
    "kind": "origin"
@@ -8037,18 +8242,63 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261117-02",
+   "to": "I-261119-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261117-04",
+   "to": "I-261119-03",
+   "kind": "origin"
+  },
+  {
    "from": "I-261118-01",
    "to": "E-261118-02",
    "kind": "origin"
   },
   {
+   "from": "I-261118-01",
+   "to": "E-261119-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261118-01",
+   "to": "I-261119-02",
+   "kind": "origin"
+  },
+  {
    "from": "I-261118-02",
    "to": "E-261118-02",
    "kind": "origin"
   },
   {
    "from": "I-261118-02",
+   "to": "E-261119-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261118-02",
    "to": "I-261118-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261118-04",
+   "to": "E-261118-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261119-01",
+   "to": "E-261119-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261119-02",
+   "to": "E-261119-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261119-03",
+   "to": "E-261119-03",
    "kind": "origin"
   },
   {
@@ -8774,6 +9024,16 @@ window.GRAPH = {
   {
    "from": "owner",
    "to": "I-261117-02",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261118-04",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261119-03",
    "kind": "origin"
   }
  ],

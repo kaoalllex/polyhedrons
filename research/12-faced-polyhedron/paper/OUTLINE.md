@@ -29,8 +29,8 @@ is a claim on its own: a line may state only what its source says at its label.
 | B3 | Same at (9, 3), all 203 admissible maps | as B2; second encoder agrees on six maps | STATUS 3d, 3aa | as B2; second encoder on more maps |
 | B4 | Same at (10, 4), all 1117 admissible maps | UNSAT-SOLVER (no checked proof) | STATUS 3ad, 3ao | checked replay (I-261116-02, parked by the owner); normalisation soundness write-up (E-261114-01 `SOUNDNESS.md`) |
 | B5 | Scope: cubic only; non-cubic objects with every pair adjacent are not covered at (8, 2), (9, 3) | stated in STATUS §4 | STATUS §4; I-261108-09 | perturbation lemma, or keep "cubic" in every statement |
-| B7 | Face-transitive cubic maps: (8, 3) six classes (Roest-Vigh's among them); (9, 4) none admissible (two classes with repeated vertex triples) | EXACT; coverage PROVED-1 | STATUS 3au; E-261117-01 | written Sylow / parametrisation argument; human review |
-| B6 | (11, 5): sampled cost probe complete, no SAT or candidate; full sweep gate closed | NUMERICAL, instance scope; UNSAT-SOLVER only, no geometric negative | STATUS 3aq; E-261116-01 CONCLUSION | registered symmetric slice I-261116-04; existence open |
+| B7 | Face-transitive cubic maps: (8, 3) six classes (Roest-Vigh's among them; the other five UNSAT-SOLVER at formula scope, plain and normalised, both orientations); (9, 4) none admissible (two classes with repeated vertex triples) | EXACT; coverage PROVED-1; formulas UNSAT-SOLVER (no proof) | STATUS 3au, 3ba; E-261117-01, E-261118-01 | written Sylow / parametrisation argument; human review |
+| B6 | (11, 5): sampled cost probe complete, no SAT or candidate; full sweep gate closed; the 20 proper half-turn maps' plane-only C2 formulas UNSAT-SOLVER | NUMERICAL, instance scope; UNSAT-SOLVER only, no geometric negative | STATUS 3aq, 3bc; E-261116-01, E-261118-03 CONCLUSION | improper symmetries and asymmetric maps not run; existence open |
 | C1 | A 10-face genus-2 polyhedron with single adjacencies (36 of 45 pairs), exact coordinates | EXACT witness | `witnesses/` `lab_s6_10_genus2`; FD10 | literature novelty check; minimality statement only if proved |
 | C2 | Realized (10, 2) face-minimal objects from the SAT-to-coordinates bridge (16 objects, then 5 more maps) | EXACT per object | E-261113-02, E-261114-02 | decide whether a dataset table belongs in the paper |
 | C3 | 12-face genus-3 objects with 48 of 66 pairs adjacent; one map completable to a target map by 3 handles | EXACT witnesses + certificate | `witnesses/` `lab_type0_genus3`, `lab_solid_genus3`; E-261101-03 | dossier (I-261031-04): second verifier, canonical map form, novelty search |
@@ -77,3 +77,7 @@ is a claim on its own: a line may state only what its source says at its label.
   geometric negative.
 * 2026-11-17: E-261117-02 adds a caveat to D2: with symmetry clauses the `symbreak` normal form is not equivariantly
   reachable (Szilassi, UNSAT-SOLVER); the orbit gauge of `build_sym` is the valid one. No new item.
+* 2026-11-18: E-261118-01 strengthens B7: the five non-Roest-Vigh (8, 3) classes are UNSAT-SOLVER (planning only; a
+  claim in the note needs a checked proof replay of those 16 formulas).
+* 2026-11-19: E-261118-03 extends B6: the plane-only C2 slice of the 20 (11, 5) Aut+ = 2 maps UNSAT-SOLVER; no proof,
+  no geometric exclusion or construction.

@@ -94,3 +94,23 @@ No geometric exclusion or measured discovery power; hypothesis status and creden
 E-261116-07 (CONCLUSION / STATUS 3aw): the census-free formula decided (7, 21) but produced no model and no decision at
 (8, 30), (9, 39) or (8, 36) within 5.5 core-h (UNKNOWN at every cap). A budget stop: no geometric exclusion, no new
 object; status and credence remain unchanged.
+
+## 2026-11-18 one-face deletion sieve
+
+E-261118-04 (pilot only, STATUS 3az): on map 29 the refutation needs the own conditions of faces 5 and 8 (their deleted
+formulas are SAT, models unrealized). A relaxation result on one map: status and credence unchanged.
+
+## 2026-11-18 face-transitive (8, 3) formulas
+
+E-261118-01 (STATUS 3ba): of the six face-transitive (8, 3) classes only Roest-Vigh's has a SAT formula (the other five,
+both orientations, UNSAT-SOLVER at formula scope). No new eight-face object: status and credence unchanged.
+
+## 2026-11-19 equivariant census-free formula
+
+E-261118-02 (STATUS 3bb): the D2 / S4 formulas return the two known eight-face objects unaided; C3 3+3+3 at nine faces
+UNKNOWN at 1 h per E (UNDERPOWERED). No new object: status and credence unchanged.
+
+## 2026-11-19 (11, 5) plane-only C2 slice
+
+E-261118-03 (STATUS 3bc): the plane-only C2 formulas of all 20 (11, 5) Aut+ = 2 maps UNSAT-SOLVER (planning only, no
+proof). No object: status and credence unchanged.

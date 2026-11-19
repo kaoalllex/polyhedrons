@@ -3,7 +3,8 @@
 # runs), log appended to <experiment>/results/<shard>/night.log.
 #   bash overnight/launch.sh CODE [CODE ...] start [CORES]   CORES processes (default 10), one core each. Several codes
 #       form a queue on the same cores: shard s of the next experiment starts when shard s of the previous one ends.
-#       Refused if one of them is running, or if all launches together would use more than MAX_CORES (default 10).
+#       Refused if one of them is running, if all launches together would use more than MAX_CORES (default 10), or if
+#       the working tree has uncommitted changes outside experiments/*/results/.
 #       run.sh gets SHARDS=CORES and splits its units into that many shards, so any CORES covers every unit.
 #   bash overnight/launch.sh CODE [CODE ...] status   per shard: state, records, minutes since the last output; then the
 #       experiment's own progress (done / left / time left) if experiments/<ID>/progress.sh exists
@@ -88,6 +89,15 @@ start)
       echo "$(basename "$e") is already running ($(running_count "$e") shards); see its status" >&2; exit 1
     fi
   done
+  # Every run must match a commit: refuse a working tree with changes outside the experiments' results directories.
+  prefix=$(git -C "$HERE/.." rev-parse --show-prefix)
+  dirty=$(git -C "$HERE/.." status --porcelain --untracked-files=all |
+    grep -Ev "^.. ${prefix}experiments/[^/]+/results/" || true)
+  if [ -n "$dirty" ]; then
+    echo "refused: uncommitted changes outside experiments/*/results/; commit them first:" >&2
+    echo "$dirty" | head -20 >&2
+    exit 1
+  fi
   busy=$(all_running)
   if [ $((busy + N)) -gt "$MAX_CORES" ]; then
     echo "refused: $busy processes already run and $N more exceed MAX_CORES=$MAX_CORES; stop one, start fewer, or put the experiments in one queue" >&2

@@ -3,14 +3,14 @@
 This repository has two parts:
 - the public 3D viewer: `index.html`, published by GitHub Pages from `main`, so every commit on `main` is live;
 - the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
-  (`STRATEGY.md`, owner-approved 2026-11-18): one constructive target at a time on the owner's laptop, subject to
-  the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) first, by complete formulas on symmetric
-  quotients: N1b (the face-transitive (8, 3) classes), then P3-sym (the census-free formula with a group action on the
-  planes; D2 / S4 eight-face rung before C3 3+3+3 at nine faces) as the main investment, P6 (equivelar slice) the
-  fallback; no nine-plane sampling night without a rung-below rate; (11, 5) one plane-only price probe; S6 parked
-  after (10, 3) (all 20 formulas UNSAT-SOLVER, replay priced for the paper); the S0 price probe withdrawn. (8, 2) and
-  (9, 3) are decided (conditional negative); all admissible (10, 4) maps are UNSAT-SOLVER (planning only, replay
-  parked); the note is deferred; the 12-face problem is parked, not abandoned.
+  (`STRATEGY.md`, owner-approved 2026-11-19): one constructive target at a time on the owner's laptop, subject to
+  the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) first, on the two uniform symmetric
+  families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (with the symmetric (8, 3) slice)
+  first, a symmetric nine-face census with per-map formulas as the main investment, P6 (equivelar slice) the
+  fallback; no nine-plane sampling night without a rung-below rate; mirror families out of domain; (11, 5) closed for
+  the laptop; S6 parked after (10, 3) (all 20 formulas UNSAT-SOLVER, replay deferred with the note); the S0 price
+  probe withdrawn. (8, 2) and (9, 3) are decided (conditional negative); all admissible (10, 4) maps are
+  UNSAT-SOLVER (planning only, replay parked); the note is deferred; the 12-face problem is parked, not abandoned.
 
 ## Implementation preferences
 

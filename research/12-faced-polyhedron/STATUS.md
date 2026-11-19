@@ -1,12 +1,12 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-18** (E-261110-04 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-18.md`, 2026-11-18). The latest
-registered result is E-261110-04 (section 3ay); results are listed newest last in section 3, chronology in
+As of **2026-11-19** (E-261118-03 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
+registered result is E-261118-03 (section 3bc); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
 At a glance (2026-11-16): S5 (8, 2), (9, 3) decided at formula scope (section 3d); (10, 4) all 1117 admissible maps
-UNSAT-SOLVER (3ad, 3ao; planning only, replay parked); (11, 5) priced out for a full sweep (3aq). S6 (10, 3): all 20
+UNSAT-SOLVER (3ad, 3ao; planning only, replay parked); (11, 5) priced out for a full sweep (3aq), the half-turn formulas of its 20 Aut+ = 2 maps UNSAT-SOLVER (3bc). S6 (10, 3): all 20
 normalised formulas UNSAT-SOLVER (3ar, 3as), symmetric formulas too and the T family empty (3ag), no embedded polar chart
 (3at); planning only, no checked proof. Ninth-plane Stage A without a candidate (3ae), Stage B parked (3ak). The lead
 review's (8, 3) census size check (`reviews/strategy-review-2026-11-16b-census-8-3.json`) and the dialogue's K13, K14
@@ -14,11 +14,11 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-18 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
-mutually adjacent faces (S1, genus free) first, by complete formulas on symmetric quotients (N1b E-261118-01, P3-sym
-E-261118-02 with a D2 / S4 eight-face rung, P6 the fallback; no result yet). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
+**Focus since 2026-11-19 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
+mutually adjacent faces (S1, genus free) first, on the two uniform symmetric families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (E-261119-01) and a symmetric nine-face census with per-map formulas (E-261119-02, the main investment), P6 the fallback; no result yet. The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
+E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
 E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
-(11, 5) one plane-only price probe (E-261118-03; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
+(11, 5) one plane-only price probe (E-261118-03: all 20 Aut+ = 2 maps UNSAT-SOLVER, closed for the laptop, section 3bc; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
 UNSAT-SOLVER, section 3as), its replay priced for the paper (E-261116-08); S5 (10, 4) all admissible maps UNSAT-SOLVER
 (sections 3ad, 3ao); the S0 price probe withdrawn. Run so far: ninth-plane Stage A (no candidate,
 section 3ae), the S6 (10, 3) night (20/20 TIMEOUT, section 3af) and its symmetric runs (no candidate, section 3ag). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
@@ -503,6 +503,39 @@ p >= ~9e-4 per decided arrangement for these families, box, cap and E only (NUME
 units, other boxes, caps, charts, E = 39 or ten planes. Geometric boxes +-q^w (q = 2, 3, w <= 3) at eight planes,
 E = 36: 0 solids in 551 / 557 distinct chirotopes (draws repeat), below K13's uniform-box 17 / 240; the geo arm is
 parked. Controls passed; no candidate. Counts: `experiments/E-261110-04-genus-free-9-10-faces-sweep/CONCLUSION.md`.
+
+## 3az. E-261118-04 (9, 3) one-face deletion sieve, pilot only (2026-11-18)
+
+**OPEN-LOW@1.1 core-h, 2 of 203 maps**: the (9, 3) map formula with the own conditions of one face S dropped and plane S
+kept (owner's choice; a planar but possibly defective S, not the curved face of I-261118-04). Controls passed. Map 29:
+S = 5 and S = 8 SAT (EXACT, formula scope; both models unrealized by the bridge, no final polynomial), the other seven
+faces UNSAT-SOLVER; map 0: all nine TIMEOUT at 300 s. The full sieve projected to 40-150 core-h and was not run (owner).
+Nothing about curved faces, other maps, or realizability. Counts: `experiments/E-261118-04-one-face-deletion-sieve-9-3/CONCLUSION.md`.
+
+## 3ba. E-261118-01 N1b, the face-transitive (8, 3) classes by formula (2026-11-18)
+
+**COMPLETE-UNSAT-SOLVER@0.004 core-h (classes 1-5)**: the plain and normalised S1 formulas at 9 elements of the five
+face-transitive (8, 3) classes other than Roest-Vigh's (section 3au), with the mirror maps of the chiral ones: all 16
+UNSAT-SOLVER in seconds (instance scope, no proofs; ranking only). Controls passed; Roest-Vigh's class SAT in all four
+formulas and realized by the bridge (`--all-pairs` PASS, the known object). No new eight-face object; nothing about
+realizability of classes 1-5 or non-face-transitive maps. `experiments/E-261118-01-face-transitive-8-3-formulas/CONCLUSION.md`.
+
+## 3bb. E-261118-02 P3-sym, the equivariant census-free formula (2026-11-19)
+
+**Rung PASS; nine faces UNDERPOWERED@17.0 core-h**: the P3 formula with a group action on the planes (soundness
+PROVED-1) returned Roest-Vigh's (D2) and Mizhaev's (S4) eight-face maps unaided in seconds, both realized
+(`--all-pairs` PASS, known objects). C3 3+3+3 at nine faces, E = 45, 51, 57: UNKNOWN at 1 h on 5 workers each, one
+seed; the plain cube 5 UNKNOWN at 15 min on 8 workers. No nine-face model; nothing about existence. Cs 4 x 2 + 1 and
+Cs 3 x 2 + 3 are outside the formula's uniform domain (forced zero sign, PROVED-1). `experiments/E-261118-02-equivariant-census-free-formula/CONCLUSION.md`.
+
+## 3bc. E-261118-03 (11, 5) plane-only C2 slice (2026-11-19)
+
+**Proper half-turn slice UNSAT-SOLVER@1.0 core-h**: the plane-only C2 formula in a moved chart (E-261117-02) of each
+of the 20 admissible (11, 5) maps with Aut+ = 2 (one involution, one fixed face each) is UNSAT-SOLVER on kissat seeds
+0-3, 80 of 80 units, map medians 17-90 s (the plain 12-element median was censored at 3600 s, 3aq). Controls pass,
+including symmetric 12-element configurations pinned under the symmetry and gauge clauses (100 of 100 SAT). No SAT,
+no candidate, no proof: planning only. Not run: improper symmetries (no uniform formula exists for them: lead review 2026-11-19, PROVED-1 sketch) and the
+3962 asymmetric maps; (11, 5) closes for the laptop. `experiments/E-261118-03-s5-11-5-plane-only-price-probe/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

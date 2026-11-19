@@ -1068,3 +1068,29 @@ at eight planes, below K13; LOW-YIELD, 63.8 core-h. See `experiments/E-261110-04
 (N1b E-261118-01, P3-sym E-261118-02, (11, 5) price probe E-261118-03, E-261116-08, P6 E-261117-04 as fallback); ideas
 I-261118-01..03 filed, N4 parked; nine-face credence 0.55 -> 0.45. Owner's ideas triaged (ETH, Degen: dropped; knot
 theory and one curved face: `reviews/ideas-triage-2026-11-18.md`). No compute beyond session checks.
+
+2026-11-18 — Owner: the (9, 3) one-face deletion sieve (E-261118-04, I-261118-04) becomes week item 1, the others move
+to items 2-6; knot theory dropped except its capping role; the Codex copy of `overnight-run-script` synced.
+
+2026-11-18 — E-261118-04 (week item 1), concluded on the pilot by the owner: formula option (a) (plane S kept, own
+conditions of F_S dropped); map 29 faces 5 and 8 SAT (unrealized), map 0 all TIMEOUT; full sieve priced at 40-150
+core-h, not run. `experiments/E-261118-04-one-face-deletion-sieve-9-3/CONCLUSION.md`.
+
+2026-11-18 — E-261118-01 (week item 2, N1b): 20 formulas at 9 elements (six face-transitive (8, 3) classes, mirrors of
+the chiral ones), owner launch of seconds; classes 1-5 all UNSAT-SOLVER, Roest-Vigh's class SAT and realized.
+`experiments/E-261118-01-face-transitive-8-3-formulas/CONCLUSION.md`.
+
+2026-11-19 — E-261118-02 (week item 3, P3-sym): rung passed in the pilot (D2, S4 known maps unaided, realized); owner run
+of 17 core-h: C3 3+3+3 at nine faces, E = 45, 51, 57, all UNKNOWN at 1 h; UNDERPOWERED, to the lead.
+`experiments/E-261118-02-equivariant-census-free-formula/CONCLUSION.md`.
+
+2026-11-19 — E-261118-03 (week item 4, (11, 5) plane-only price probe): gate NIGHT (medians about 41 s); the follow-up
+ran all 20 Aut+ = 2 maps x 4 kissat seeds in the session: 80 of 80 UNSAT-SOLVER @1.0 core-h; (11, 5) closed for the
+laptop. `experiments/E-261118-03-s5-11-5-plane-only-price-probe/CONCLUSION.md`.
+
+2026-11-19 — Lead review 2026-11-19 approved by the owner (`reviews/strategy-review-2026-11-19.md`): new week plan
+(E-261119-01 P3-sym power ladder with the symmetric (8, 3) slice; E-261119-02 symmetric nine-face census with per-map
+formulas, the main investment; E-261117-04 P6 if its census gate fails; E-261116-09 lemmas; E-261119-03 optional);
+ideas I-261119-02, I-261119-03 filed; I-261118-03 closed (mirror families outside every uniform formula), I-261118-04
+parked; (11, 5) closed for the laptop; STATUS section 4 heading restored. Owner's numbering idea triaged (Q1 kept as
+E-261119-03; Q2, Q3 dropped). No compute beyond session checks.
