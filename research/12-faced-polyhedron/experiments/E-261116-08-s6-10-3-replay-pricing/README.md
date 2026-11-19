@@ -11,6 +11,8 @@ preregistered: false
 ---
 
 > Planned, audit, jump 0. Scores T D F G R: 1 2 2 1 2 | budget: one session, <= 2 core-h.
+> Deferred whole by the owner 2026-11-19 (week item 5 of 2026-11-18): no constructive value, the note is deferred; the
+> registered budget is too small for both CNFs x both pipelines (estimate 5-8 core-h). No PLAN, no compute.
 > Owner-approved proofs (2026-11-16b) for the named claim: paper item D3, formula-scope exclusion of the twenty formulas.
 
 ## Goal

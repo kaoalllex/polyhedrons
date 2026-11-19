@@ -9,12 +9,13 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-19, week item 4 concluded)
+## Hand-over (2026-11-19, week item 4 concluded, item 5 deferred)
 
 * Branch `lab/2026-11-18`; week plan in `ROADMAP.md`. Items 1-4 done (STATUS 3az, 3ba, 3bb, 3bc); no runs in flight.
   E-261118-03: gate NIGHT, all 20 (11, 5) Aut+ = 2 maps plane-only C2 UNSAT-SOLVER x 4 seeds @1.0 core-h (run in the
   session by the launcher, amendments 1-2); (11, 5) closed for the laptop.
-* Next: week item 5, S6 (10, 3) replay pricing (E-261116-08), any free session; item 6 not triggered.
+* Item 5 (E-261116-08, S6 (10, 3) replay pricing) deferred whole by the owner (no constructive value, the note is
+  deferred; 5-8 core-h, not 2). Item 6 not triggered. Next: the lead review of the week.
 * For the lead: (1) P3-sym at nine faces: longer C3 caps (23 of 40 core-h unused), a stronger formula, C2 4 x 2 + 1
   (moved chart) or P6? (2) Cs 4 x 2 + 1, Cs 3 x 2 + 3 are outside P3-sym (I-261118-02 corrected; `STRATEGY.md` §1).
   (3) Open from items 1, 2: the curved-face encoder (E-261118-04), the two unrealized map-29 models. (4) New from
