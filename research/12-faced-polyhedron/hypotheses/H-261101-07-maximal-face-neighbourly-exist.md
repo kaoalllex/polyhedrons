@@ -109,3 +109,8 @@ both orientations, UNSAT-SOLVER at formula scope). No new eight-face object: sta
 
 E-261118-02 (STATUS 3bb): the D2 / S4 formulas return the two known eight-face objects unaided; C3 3+3+3 at nine faces
 UNKNOWN at 1 h per E (UNDERPOWERED). No new object: status and credence unchanged.
+
+## 2026-11-19 (11, 5) plane-only C2 slice
+
+E-261118-03 (STATUS 3bc): the plane-only C2 formulas of all 20 (11, 5) Aut+ = 2 maps UNSAT-SOLVER (planning only, no
+proof). No object: status and credence unchanged.

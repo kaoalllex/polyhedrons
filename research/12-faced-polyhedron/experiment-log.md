@@ -1083,3 +1083,7 @@ the chiral ones), owner launch of seconds; classes 1-5 all UNSAT-SOLVER, Roest-V
 2026-11-19 — E-261118-02 (week item 3, P3-sym): rung passed in the pilot (D2, S4 known maps unaided, realized); owner run
 of 17 core-h: C3 3+3+3 at nine faces, E = 45, 51, 57, all UNKNOWN at 1 h; UNDERPOWERED, to the lead.
 `experiments/E-261118-02-equivariant-census-free-formula/CONCLUSION.md`.
+
+2026-11-19 — E-261118-03 (week item 4, (11, 5) plane-only price probe): gate NIGHT (medians about 41 s); the follow-up
+ran all 20 Aut+ = 2 maps x 4 kissat seeds in the session: 80 of 80 UNSAT-SOLVER @1.0 core-h; (11, 5) closed for the
+laptop. `experiments/E-261118-03-s5-11-5-plane-only-price-probe/CONCLUSION.md`.

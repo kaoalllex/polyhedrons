@@ -1,12 +1,12 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-19** (E-261118-02 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-18.md`, 2026-11-18). The latest
-registered result is E-261118-02 (section 3bb); results are listed newest last in section 3, chronology in
+As of **2026-11-19** (E-261118-03 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-18.md`, 2026-11-18). The latest
+registered result is E-261118-03 (section 3bc); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
 At a glance (2026-11-16): S5 (8, 2), (9, 3) decided at formula scope (section 3d); (10, 4) all 1117 admissible maps
-UNSAT-SOLVER (3ad, 3ao; planning only, replay parked); (11, 5) priced out for a full sweep (3aq). S6 (10, 3): all 20
+UNSAT-SOLVER (3ad, 3ao; planning only, replay parked); (11, 5) priced out for a full sweep (3aq), its 20 proper half-turn maps UNSAT-SOLVER (3bc). S6 (10, 3): all 20
 normalised formulas UNSAT-SOLVER (3ar, 3as), symmetric formulas too and the T family empty (3ag), no embedded polar chart
 (3at); planning only, no checked proof. Ninth-plane Stage A without a candidate (3ae), Stage B parked (3ak). The lead
 review's (8, 3) census size check (`reviews/strategy-review-2026-11-16b-census-8-3.json`) and the dialogue's K13, K14
@@ -18,7 +18,7 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 mutually adjacent faces (S1, genus free) first, by complete formulas on symmetric quotients (after the owner's (9, 3) one-face deletion sieve E-261118-04: N1b E-261118-01 (done, section 3ba), P3-sym
 E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb; to the lead), P6 the fallback). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
 E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
-(11, 5) one plane-only price probe (E-261118-03; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
+(11, 5) one plane-only price probe (E-261118-03: all 20 Aut+ = 2 maps UNSAT-SOLVER, closed for the laptop, section 3bc; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
 UNSAT-SOLVER, section 3as), its replay priced for the paper (E-261116-08); S5 (10, 4) all admissible maps UNSAT-SOLVER
 (sections 3ad, 3ao); the S0 price probe withdrawn. Run so far: ninth-plane Stage A (no candidate,
 section 3ae), the S6 (10, 3) night (20/20 TIMEOUT, section 3af) and its symmetric runs (no candidate, section 3ag). **From 2026-11-08 to 2026-11-10 the focus was S5 at (10, 4)**, a maximal face-neighbourly polyhedron with 10 faces and genus
@@ -542,6 +542,15 @@ May not (scope, owner's question 2026-11-08): that the (8, 2) or (9, 3) negative
 every pair adjacent and some vertices of degree >= 4 (e.g. (9, 3) with V = 23, E = 36, three 4-valent vertices); no
 formula covers them. At (12, 6) there is no slack (E = 66 pairs), so S0 is unaffected. The (8, 2) / (9, 3) note must say "cubic"
 unless the perturbation lemma I-261108-09 (untested) reduces these objects to the cubic case.
+
+## 3bc. E-261118-03 (11, 5) plane-only C2 slice (2026-11-19)
+
+**Proper half-turn slice UNSAT-SOLVER@1.0 core-h**: the plane-only C2 formula in a moved chart (E-261117-02) of each
+of the 20 admissible (11, 5) maps with Aut+ = 2 (one involution, one fixed face each) is UNSAT-SOLVER on kissat seeds
+0-3, 80 of 80 units, map medians 17-90 s (the plain 12-element median was censored at 3600 s, 3aq). Controls pass,
+including symmetric 12-element configurations pinned under the symmetry and gauge clauses (100 of 100 SAT). No SAT,
+no candidate, no proof: planning only. Not run: improper symmetries and the 3962 asymmetric maps; (11, 5) closes for
+the laptop. `experiments/E-261118-03-s5-11-5-plane-only-price-probe/CONCLUSION.md`.
 
 ## 5. Results worth sharing (ranked, with prerequisites)
 

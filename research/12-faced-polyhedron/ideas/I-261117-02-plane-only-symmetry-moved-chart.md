@@ -32,3 +32,5 @@ Source: `reviews/dialogue-2026-11-16-strategy.md` §2 row 2, §3 (B1), Appendix 
 
 Tried 2026-11-17 (E-261117-02): gate passed at the seven-plane rung (Szilassi control chain, orbit gauge, C2
 3 x 2 + 1 unaided recovery above the asymmetric baseline); the C2 4 x 2 + 1 arm joins item 5. `STATUS.md` 3av.
+
+2026-11-19 (E-261118-03): the 20 (11, 5) Aut+ = 2 maps, 80 of 80 units UNSAT-SOLVER in 17-90 s medians (STATUS 3bc).

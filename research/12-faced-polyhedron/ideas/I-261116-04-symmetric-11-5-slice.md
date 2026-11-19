@@ -2,7 +2,7 @@
 id: I-261116-04
 title: Symmetric (11, 5) slice - the 24 admissible maps with Aut+ 2 or 3 by symmetric formulas
 date: 2026-11-16
-status: open
+status: tried
 direction: [DR19]
 origin: [I-261114-03, E-261113-01, E-261116-01]
 ---
@@ -33,3 +33,6 @@ action are run; a fixed-face involution is outside uniform formulas and is recor
 ## 2026-11-17 dialogue
 
 E-261116-06 withdrawn 2026-11-17: eleven faces admit no free C2 or C3 action (PROVED-1, astra #2), so the registered free-action domain is empty. The four Aut+ = 3 maps have no C3 realization: a face fixed by a rotation lies in a plane perpendicular to the axis, so two fixed faces would be parallel (PROVED-1, `reviews/dialogue-2026-11-16-strategy.md` Appendix A7). The 20 Aut+ = 2 maps whose involution fixes exactly one face return only through N2 (I-261117-02, E-261117-02), as a new registration; no speed-up at 12 elements keeps (11, 5) priced out.
+
+Tried 2026-11-19 (E-261118-03, STATUS 3bc): the 20 Aut+ = 2 maps by plane-only C2 formulas in a moved chart, all
+UNSAT-SOLVER (4 seeds each); improper symmetries not run.

@@ -1733,16 +1733,16 @@ window.GRAPH = {
    "id": "E-261118-03",
    "kind": "experiment",
    "title": "(11, 5) plane-only price probe - the moved-chart C2 formula on two Aut+ = 2 maps against the 12-element median",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-18",
-   "concluded": "",
+   "concluded": "2026-11-19",
    "path": "experiments/E-261118-03-s5-11-5-plane-only-price-probe/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "\"Gate NIGHT; proper half-turn slice UNSAT-SOLVER@1.0 core-h: all 20 Aut+ = 2 maps x 4 kissat seeds; (11, 5) closed for the laptop\"",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: (11, 5) proper half-turn slice UNSAT-SOLVER@1.0 core-h, 20 of 20 maps x 4 seeds. The registered route ends: (11, 5) closes for the laptop (no further (11, 5) item without the lead)."
   },
   {
    "id": "E-261118-04",
@@ -4588,7 +4588,7 @@ window.GRAPH = {
    "id": "I-261116-04",
    "kind": "idea",
    "title": "Symmetric (11, 5) slice - the 24 admissible maps with Aut+ 2 or 3 by symmetric formulas",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-16",
    "concluded": "",
    "path": "ideas/I-261116-04-symmetric-11-5-slice.md",
@@ -4755,6 +4755,21 @@ window.GRAPH = {
    "direction": [
     "DR19",
     "DR11"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261119-01",
+   "kind": "idea",
+   "title": "Plane-only fixed-face slices wherever a map census has involutions fixing faces",
+   "status": "open",
+   "date": "2026-11-19",
+   "concluded": "",
+   "path": "ideas/I-261119-01-plane-only-fixed-face-slices.md",
+   "direction": [
+    "DR19",
+    "DR18"
    ],
    "verdict": "",
    "preregistered": ""
@@ -6788,6 +6803,11 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
+   "from": "E-261118-03",
+   "to": "I-261119-01",
+   "kind": "origin"
+  },
+  {
    "from": "E-261118-04",
    "to": "H-261101-07",
    "kind": "tests"
@@ -8085,6 +8105,11 @@ window.GRAPH = {
   {
    "from": "I-261117-02",
    "to": "I-261118-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261117-02",
+   "to": "I-261119-01",
    "kind": "origin"
   },
   {
