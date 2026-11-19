@@ -104,3 +104,8 @@ formulas are SAT, models unrealized). A relaxation result on one map: status and
 
 E-261118-01 (STATUS 3ba): of the six face-transitive (8, 3) classes only Roest-Vigh's has a SAT formula (the other five,
 both orientations, UNSAT-SOLVER at formula scope). No new eight-face object: status and credence unchanged.
+
+## 2026-11-19 equivariant census-free formula
+
+E-261118-02 (STATUS 3bb): the D2 / S4 formulas return the two known eight-face objects unaided; C3 3+3+3 at nine faces
+UNKNOWN at 1 h per E (UNDERPOWERED). No new object: status and credence unchanged.

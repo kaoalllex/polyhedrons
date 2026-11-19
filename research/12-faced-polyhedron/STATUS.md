@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-18** (E-261118-01 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-18.md`, 2026-11-18). The latest
-registered result is E-261118-01 (section 3ba); results are listed newest last in section 3, chronology in
+As of **2026-11-19** (E-261118-02 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-18.md`, 2026-11-18). The latest
+registered result is E-261118-02 (section 3bb); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -16,7 +16,7 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 
 **Focus since 2026-11-18 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
 mutually adjacent faces (S1, genus free) first, by complete formulas on symmetric quotients (after the owner's (9, 3) one-face deletion sieve E-261118-04: N1b E-261118-01 (done, section 3ba), P3-sym
-E-261118-02 with a D2 / S4 eight-face rung, P6 the fallback; no result yet). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
+E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb; to the lead), P6 the fallback). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
 E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
 (11, 5) one plane-only price probe (E-261118-03; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
 UNSAT-SOLVER, section 3as), its replay priced for the paper (E-261116-08); S5 (10, 4) all admissible maps UNSAT-SOLVER
@@ -520,7 +520,15 @@ UNSAT-SOLVER in seconds (instance scope, no proofs; ranking only). Controls pass
 formulas and realized by the bridge (`--all-pairs` PASS, the known object). No new eight-face object; nothing about
 realizability of classes 1-5 or non-face-transitive maps. `experiments/E-261118-01-face-transitive-8-3-formulas/CONCLUSION.md`.
 
-## 4. What may and may not be claimed
+## 3bb. E-261118-02 P3-sym, the equivariant census-free formula (2026-11-19)
+
+**Rung PASS; nine faces UNDERPOWERED@17.0 core-h**: the P3 formula with a group action on the planes (soundness
+PROVED-1) returned Roest-Vigh's (D2) and Mizhaev's (S4) eight-face maps unaided in seconds, both realized
+(`--all-pairs` PASS, known objects). C3 3+3+3 at nine faces, E = 45, 51, 57: UNKNOWN at 1 h on 5 workers each, one
+seed; the plain cube 5 UNKNOWN at 15 min on 8 workers. No nine-face model; nothing about existence. Cs 4 x 2 + 1 and
+Cs 3 x 2 + 3 are outside the formula's uniform domain (forced zero sign, PROVED-1). `experiments/E-261118-02-equivariant-census-free-formula/CONCLUSION.md`.
+P3-sym
+E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb; to the lead), P6 the fallback).
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for
 four types, one on a map combinatorially completable to a target map".

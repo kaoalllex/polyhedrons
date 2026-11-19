@@ -27,3 +27,10 @@ It lists every symmetric family worth a formula at nine faces, so E-261118-02 ru
 A written proof in the lemma session E-261116-09; checks on the known objects; E-261118-02's gauge reachability control.
 
 Source: `reviews/strategy-review-2026-11-18.md` §5 N2.
+
+## 2026-11-19 correction (E-261118-02, deviation 1)
+
+Cs 4 x 2 + 1 and Cs 3 x 2 + 3 are not uniform: a mirror swapping two pairs of planes makes the four planes concurrent
+(A = diag(R, 1), det A = -1, so det(Ah, h, Ak, k) = -D = D; PROVED-1, exact check in `test_p3sym.py`), so chi of those
+four is 0 in every chart. Uniform families left at nine faces: C3 3+3+3 (standard chart; E-261118-02, UNKNOWN at 1 h)
+and C2 4 x 2 + 1 (moved chart; not run). `STRATEGY.md` §1's family list: to the lead.

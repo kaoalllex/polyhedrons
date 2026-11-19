@@ -1079,3 +1079,7 @@ core-h, not run. `experiments/E-261118-04-one-face-deletion-sieve-9-3/CONCLUSION
 2026-11-18 — E-261118-01 (week item 2, N1b): 20 formulas at 9 elements (six face-transitive (8, 3) classes, mirrors of
 the chiral ones), owner launch of seconds; classes 1-5 all UNSAT-SOLVER, Roest-Vigh's class SAT and realized.
 `experiments/E-261118-01-face-transitive-8-3-formulas/CONCLUSION.md`.
+
+2026-11-19 — E-261118-02 (week item 3, P3-sym): rung passed in the pilot (D2, S4 known maps unaided, realized); owner run
+of 17 core-h: C3 3+3+3 at nine faces, E = 45, 51, 57, all UNKNOWN at 1 h; UNDERPOWERED, to the lead.
+`experiments/E-261118-02-equivariant-census-free-formula/CONCLUSION.md`.

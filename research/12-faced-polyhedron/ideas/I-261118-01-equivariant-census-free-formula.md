@@ -2,7 +2,7 @@
 id: I-261118-01
 title: Equivariant census-free formula - a group action on the planes of P3 decides all G-symmetric solids of one (F, E) in one formula
 date: 2026-11-18
-status: open
+status: tried
 direction: [DR19, DR7]
 origin: [I-261103-02, E-261116-07, I-261117-02]
 ---
@@ -25,3 +25,9 @@ group, and Szilassi a half-turn. That CP-SAT presolve merges the equalities is C
 E-261118-02's rung: D2 and S4 at eight faces, E = 36, must return Roest-Vigh's and Mizhaev's types unaided in 30 min.
 
 Source: `reviews/strategy-review-2026-11-18.md` §5 N1.
+
+## 2026-11-19 E-261118-02
+
+Rung passed: the D2 and S4 formulas returned Roest-Vigh's and Mizhaev's maps unaided in seconds, both realized (STATUS
+3bb). Nine faces: C3 3+3+3 at E = 45, 51, 57 UNKNOWN at 1 h on 5 workers (UNDERPOWERED). The method works one rung
+below; whether it reaches nine faces is open (to the lead).
