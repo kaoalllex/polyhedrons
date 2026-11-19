@@ -9,9 +9,10 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   eight-face objects (owner's filter).**
   * **First (owner, 2026-11-16b, confirmed 2026-11-17, 2026-11-18 and 2026-11-19): S1, nine mutually adjacent faces
     with the genus free**, on the two uniform symmetric families C3 3+3+3 and C2 4 x 2 + 1 (lead review 2026-11-19):
-    P3-sym (E-261118-02, rung passed) for C3 once its power is measured at the nine-face size on known answers
-    (E-261119-01, with the symmetric (8, 3) slice), and per map from a symmetric nine-face census for both families
-    (E-261119-02, the main investment). P6, the equivelar slice (E-261117-04), is the fallback. Mirror families are
+    P3-sym (E-261118-02, rung passed) calibrated on known answers (E-261119-01: discovery at eight faces, refutation
+    at nine, the symmetric (8, 3) slice; a C3 nine-face night needs a changed discovery test and the owner's word), and
+    per map from a symmetric nine-face census for both families (E-261119-02, the main investment). P6, the equivelar
+    slice (E-261117-04), is the fallback if neither census family advances. Mirror families are
     outside every uniform formula (forced zero signs). No nine-plane sampling night without a measured rate one rung
     below (E-261110-04: no hit). Success is only `verify_candidate.py FILE --all-pairs` PASS with nine faces, then
     `candidate-check`. Week 2026-11-18 done: the deletion sieve OPEN-LOW, N1b classes 1-5 UNSAT-SOLVER, P3-sym rung
@@ -140,3 +141,6 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   a symmetric nine-face census with per-map formulas (E-261119-02) the main investment, P6 the fallback; Cs dropped
   (outside every uniform formula); (11, 5) closed for the laptop; I-261118-04 parked. Credences unchanged. Stance, S0
   parking and the side track unchanged.
+* 2026-11-19 (owner's approval of `reviews/strategy-review-2026-11-19-reconcile.md`, the Codex second opinion): no
+  automatic C3 night from E-261119-01 (a new one needs a changed nine-plane discovery test); map blocking by paired
+  runs; census gates per family, P6 only if neither family advances. Order, credences and stance unchanged.

@@ -1094,3 +1094,9 @@ formulas, the main investment; E-261117-04 P6 if its census gate fails; E-261116
 ideas I-261119-02, I-261119-03 filed; I-261118-03 closed (mirror families outside every uniform formula), I-261118-04
 parked; (11, 5) closed for the laptop; STATUS section 4 heading restored. Owner's numbering idea triaged (Q1 kept as
 E-261119-03; Q2, Q3 dropped). No compute beyond session checks.
+
+2026-11-19 — Codex second opinion reconciled and approved by the owner (`reviews/strategy-review-2026-11-19-reconcile.md`):
+E-261119-01 loses its automatic C3 night (a new one needs a changed nine-plane discovery test), blocks maps by complete
+paired runs, treats U2 and U3 as predictions, D 2 -> 1; E-261119-02 enumerates 0 or 3 fixed triangles with pair
+multiplicity <= 3 (18 C3 demand classes, session check 0.14 s), gates C3 and C2 separately, prices one map per stratum
+and adds stage B controls; P6 only if neither family advances. No compute beyond the session check.
