@@ -58,3 +58,24 @@ Pre-registration, 2026-11-19 (lab session, week item 4 of the owner-approved pla
   reading goes to the strategy line ((11, 5) one probe, then a night or closed).
 
 ## Amendments
+
+### 2026-11-19: amendment 1, pilot (lab session)
+
+* **Control chain** (`prep/control`, `queue_control.json` through `run.sh`, 10 shards, about 10 s each): Szilassi
+  plane-only seeds 0-3 SAT (0.04-0.06 s), every model realized by the bridge, `--target S5` PASS, (14, 21, 7, 0)
+  (the known Szilassi type, a control object); standard chart seeds 0-5 UNSAT-SOLVER. The seed reaches kissat.
+  Shard controls (convex f11 pinned SAT, wrong map UNSAT-SOLVER) pass. Gate met; kill rule not triggered.
+* **Pilot** (`prep/pilot`, `queue_pilot.json`, shards 0 and 4, cap 120 s): map 3634 seed 0 UNSAT-SOLVER in 35.9 s,
+  map 4096 seed 0 UNSAT-SOLVER in 28.7 s (formula build under 1 s; shards 44 s and 37 s wall). Ended by completion,
+  not by the cap.
+* **Added control** (fast UNSATs of a new encoding are suspect): `controls_12.py`, for each drawn map 5 random
+  integer plane sets symmetric under the half-turn acting as the map's involution, moved by `n2.chart`, brought to
+  the `build_sym` gauge and pinned into the map's formula with only GP + symmetry + gauge clauses: must be SAT, and
+  the unpinned formula SAT. Result (`prep/controls_12.json`): 10 of 10 pinned SAT, both unpinned SAT. So the
+  symmetry and gauge clauses at 12 elements admit genuine symmetric configurations; the UNSATs come from the
+  embedding clauses. Not covered: a positive control with a fixed-face involution on a map with doubled pairs
+  (no such object is known); the mirror normalisation is inherited from `omsat_sym` (E-261103-02), not re-checked.
+  `controls_12.py` reruns in the full run's session before the reading.
+* **Projection**: 8 units x about 30-40 s plus controls, about 0.15 core-h, a few minutes wall; the cap does not
+  bind. The run is therefore made in this session by the owner's launcher (`overnight/launch.sh 18-03 start`), not
+  as an owner night; budget, units, caps and readings unchanged.
