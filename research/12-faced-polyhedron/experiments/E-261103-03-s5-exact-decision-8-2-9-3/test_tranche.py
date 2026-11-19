@@ -126,6 +126,21 @@ class TrancheTests(unittest.TestCase):
                     patch.object(t, 'MAPS_FILE', None), self.assertRaisesRegex(ValueError, 'imported map identity'):
                 t.load_queue(custom=True)
 
+    def test_plane_only_flag_reaches_the_symmetric_formula(self):
+        t = self.module()
+        rec = json.loads((pilot.ROOT / 'experiments/E-261118-03-s5-11-5-plane-only-price-probe/maps/control.json')
+                         .read_text())['maps'][0]
+        links = dict(enumerate(rec['links']))
+        plane_only = t.submap_formula(7, links, rec['sym_generator'], True)
+        standard = t.submap_formula(7, links, rec['sym_generator'])
+        expected = pilot.build_sym(pilot.Triangulation(7, sorted({tuple(sorted((x, a, b))) for x, link in links.items()
+                                   for a, b in zip(link, link[1:] + link[:1])}), links=links, submap=True),
+                                   sorted(pilot.closure([tuple(rec['sym_generator'])], 7)),
+                                   {g: 1 for g in pilot.closure([tuple(rec['sym_generator'])], 7)},
+                                   dict(pilot.ALL_OPTS, sym_planes_only=True))[0]
+        self.assertEqual(plane_only.clauses, expected.clauses)
+        self.assertLess(len(plane_only.clauses), len(standard.clauses))
+
     def test_shard_budget_share_survives_restarts(self):
         t = self.module()
         with tempfile.TemporaryDirectory() as tmp, patch.object(t, 'BUDGET_SECONDS', 300):

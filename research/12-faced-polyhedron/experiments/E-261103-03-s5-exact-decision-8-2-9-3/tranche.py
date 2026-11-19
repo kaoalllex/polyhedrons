@@ -144,16 +144,18 @@ def imported_maps(path):
     return json.loads((ROOT / path).read_text())['maps']
 
 
-def submap_formula(faces, links, generator=None):
+def submap_formula(faces, links, generator=None, planes_only=False):
     """With a generator: the uniform symmetric formula of the cyclic group it generates (rotations, det rho = +1;
-    omsat_sym.build_sym with its orbit-flip and mirror normalisation)."""
+    omsat_sym.build_sym with its orbit-flip and mirror normalisation). planes_only: symmetry clauses only on
+    quadruples of planes, INF a generic plane of a moved chart (E-261117-02), for actions that fix a face."""
     tris = sorted({tuple(sorted((x, a, b))) for x, link in links.items() for a, b in zip(link, link[1:] + link[:1])})
     t = pilot.Triangulation(faces, tris, links=links, submap=True)
     if generator is None:
         c = pilot.CNF(faces); pilot.build(c, t, pilot.ALL_OPTS)
         return c
     group = sorted(pilot.closure([tuple(generator)], faces))
-    return pilot.build_sym(t, group, {g: 1 for g in group}, pilot.ALL_OPTS)[0]
+    opts = dict(pilot.ALL_OPTS, sym_planes_only=True) if planes_only else pilot.ALL_OPTS
+    return pilot.build_sym(t, group, {g: 1 for g in group}, opts)[0]
 
 
 def bridge(out, name, c, links, target):
@@ -301,7 +303,7 @@ def unit(spec):
         rec = imported_maps(spec['maps_file'])[index]
         pilot.dump(out / 'map.json', rec)
         links = dict(enumerate(rec['links']))
-        c = submap_formula(faces, links, rec.get('sym_generator'))
+        c = submap_formula(faces, links, rec.get('sym_generator'), rec.get('sym_planes_only', False))
         if 'seed' in rec:  # a seeded formula record (E-261113-02): the same CNF under another solver seed
             pilot.SOLVER_OPTS = [*pilot.SOLVER_OPTS, f'--seed={rec["seed"]}']
         on_sat = None
@@ -319,7 +321,7 @@ def unit(spec):
     if spec.get('maps_file') and not spec.get('control') and r['status'] == 'SAT':
         r.update(bridge(out, name, c, links, spec['target']))
     r.update(task=name, map_index=index, scope=f'{spec["control"]} control: submap formula, planes pinned' if spec.get('control')
-             else 'sub-map embedding formula (submap=True)' + (f', uniform symmetric {rec["sym_group"]}' if rec.get('sym_generator') else '')
+             else 'sub-map embedding formula (submap=True)' + (f', {"plane-only" if rec.get("sym_planes_only") else "uniform"} symmetric {rec["sym_group"]}' if rec.get('sym_generator') else '')
              if spec.get('maps_file') else 'plain uniform embedding formula',
              canonical_sha256=spec.get('canonical_sha256', spec.get('control_sha256')), unit=recorded(out),
              formula_sha256=hashlib.sha256(json.dumps([c.nv, c.clauses], separators=(',', ':')).encode()).hexdigest())

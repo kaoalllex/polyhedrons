@@ -2,15 +2,15 @@
 id: E-261118-03
 title: (11, 5) plane-only price probe - the moved-chart C2 formula on two Aut+ = 2 maps against the 12-element median
 date: 2026-11-18
-status: planned
+status: running
 direction: [DR19]
 origin: [I-261117-02, I-261116-04, E-261117-02, E-261116-01]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned, week item 4 (`reviews/strategy-review-2026-11-18.md` §1, owner-approved 2026-11-18), explore, jump 2.
+> Running since 2026-11-19 (`PLAN.md`; maps 3634 and 4096 drawn). Planned, week item 4 (`reviews/strategy-review-2026-11-18.md` §1, owner-approved 2026-11-18), explore, jump 2.
 > Scores T D F G R: 1 2 2 1 2 | budget: one session, <= 4 core-h, 8 shards. Before any compute: `PLAN.md` (skill
 > `experiment-start`). No proofs.
 
