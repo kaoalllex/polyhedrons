@@ -306,13 +306,13 @@ U = lambda F, E, action, cap, models, block=False, pre=(), after=(), stop_on_mod
     stop_on_model=stop_on_model)
 UNITS = {'D2_8_36_block': U(8, 36, D2, 900, 40, block=True),
          'S4_8_36_block': U(8, 36, S4, 900, 40, block=True),
-         'C2_8_36_block': U(8, 36, C2, 5400, 80, block=True, after=('D2_8_36_block', 'S4_8_36_block')),
-         'C2_8_30': U(8, 30, C2, 3600, 1, after=('D2_8_36_block', 'S4_8_36_block'), stop_on_model=True),
+         'C2_8_36_block': U(8, 36, C2, 5400, 80, block=True),           # U4 decided in the pilot (amendment 2)
+         'C2_8_30': U(8, 30, C2, 3600, 1, stop_on_model=True),
          'C3_9_39': U(9, 39, C3, 3600, 1, after=('C2_8_30',), stop_on_model=True),
          # session blocking controls (pilot): one known map blocked from the start, the other must come back
          'C2_8_36_pre_rv': U(8, 36, C2, 600, 1, block=True, pre=('roest_vigh',)),
          'C2_8_36_pre_mz': U(8, 36, C2, 600, 1, block=True, pre=('mizhaev',))}
-ORDER_RUN = ('D2_8_36_block', 'S4_8_36_block', 'C2_8_36_block', 'C2_8_30', 'C3_9_39')
+ORDER_RUN = ('C2_8_36_block', 'C2_8_30', 'C3_9_39')
 RUN_BUDGET = 18.4 * 3600        # core-seconds of the owner run (20 core-h minus at most 1.6 in the session, amendment 1)
 LAST = 'C3_9_39'                # its cap shrinks to what the budget leaves (PLAN.md)
 

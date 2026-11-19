@@ -1,0 +1,29 @@
+{
+ "PASS": true,
+ "checks": {
+  "p3sym_controls_PASS": true,
+  "normaliser_sizes": [
+   384,
+   192,
+   64
+  ],
+  "normaliser_PASS": true,
+  "C2_forced_zeros_PASS": true,
+  "roest_vigh_C2_pinned": true,
+  "roest_vigh_predicate_equals_decode": true,
+  "mizhaev_C2_pinned": true,
+  "mizhaev_predicate_equals_decode": true,
+  "copies": {
+   "roest_vigh": 240,
+   "mizhaev": 96
+  },
+  "copies_PASS": true,
+  "roest_vigh_pinned_roest_vigh_blocked": true,
+  "roest_vigh_pinned_mizhaev_blocked": true,
+  "mizhaev_pinned_mizhaev_blocked": true,
+  "mizhaev_pinned_roest_vigh_blocked": true,
+  "synthetic_pairing_own": true,
+  "synthetic_pairing_alt0": true,
+  "synthetic_pairing_alt1": true
+ }
+}

@@ -88,3 +88,18 @@ copies, normaliser images inside). Session budget raised to <= 1.6 core-h (block
 core-h (`RUN_BUDGET`); U3's cap is what that leaves (deviation 2). Next: controls and blockctl rerun, then the run pilot
 on shards 0, 1, 3, 4 at 60 s (U1's formula and blocking path are exercised by blockctl). To the lead: the normaliser
 rule under-blocks (Roest-Vigh 96 of 240), relevant to E-261119-02's per-map blocking if it uses it.
+
+### 2026-11-19: amendment 2, controls and blocking controls pass; U4 decided in the pilot; the owner run is U1, U2, U3
+
+At `0cfcf241`: controls PASS (`results/controls/`; invariant copies 240 / 96, normaliser images inside). Blocking
+controls (`results/blockctl/`, 0.11 core-h): Roest-Vigh's map blocked -> Mizhaev's in 33 s, Mizhaev's blocked ->
+Roest-Vigh's in 41 s, both realized, `--all-pairs` PASS, predicate = decode (P2 held). Run pilot (`results/pilot/`, cap
+60 s, shards in the pre-amendment numbering 0, 1, 3, 4; 0.23 core-h): U4 D2 returned Roest-Vigh's map in 2.3 s (realized,
+`--all-pairs` PASS), blocked by 48 copies, then INFEASIBLE, 22.4 s in all; S4 returned Mizhaev's in 2.4 s, 16 copies
+blocked, then INFEASIBLE, 21.8 s. U2 (8, 30) and U3 (9, 39) built (21 150 / 51 283 variables), solved and recorded
+UNKNOWN at 60 s (expected). Every unit exit 0. U4 is decided below its 15-min cap, so it is not rerun (as E-261118-02
+amendment 1; same seeds): "the P3-sym D2 (S4) formula at (8, 36) with Roest-Vigh's (Mizhaev's) map blocked is
+INFEASIBLE", UNSAT-SOLVER (planning); P3 held. Owner run (`UNITSET` unset): shard 0 U1 (1.5 h) and shard 1 U2 (1 h)
+together, shard 2 U3 after U2, cap min(1 h, 18.4 core-h - used - U1 reserved) = 1 h; <= 17.5 core-h, about 2.0 h wall;
+session total about 0.74 core-h; all <= 18.3 core-h. Gate passed (controls, blocking controls, every unit records; not
+every pilot unit ended by its cap).
