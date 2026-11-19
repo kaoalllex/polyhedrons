@@ -113,6 +113,9 @@ CHECKS = [
     ('P3-sym map blocking: free-C2 normaliser, run predicate = decode, pinned blocking, same ends other pairing',
      lambda: run(['test_ladder.py'], os.path.join(ROOT, 'experiments', 'E-261119-01-p3sym-power-ladder'),
                  lambda out: '\nOK' in out and 'skipped=' not in out)),
+    ('symmetric census: normalisers, 18 C3 demand classes, (7, 1) Szilassi and free-C2 (8, 2) exact, action check',
+     lambda: run(['test_symcensus.py'], os.path.join(ROOT, 'experiments', 'E-261119-02-symmetric-nine-face-census'),
+                 lambda out: '\nOK' in out and 'skipped=' not in out)),
     ('(11, 5) plane-only probe: 20 Aut+ = 2 involutions recomputed, draw and queues reproduce, gate selftest',
      lambda: run(['make_queue.py', '--check'], os.path.join(ROOT, 'experiments', 'E-261118-03-s5-11-5-plane-only-price-probe'),
                  'drawn [3634, 4096]') if run(['summary.py', '--selftest'], os.path.join(

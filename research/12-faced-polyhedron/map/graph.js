@@ -1779,7 +1779,7 @@ window.GRAPH = {
    "id": "E-261119-02",
    "kind": "experiment",
    "title": "Symmetric nine-face census - C3 3+3+3 and C2 4 x 2 + 1 maps by lifting the C3 exact cover, then per-map symmetric formulas",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-19",
    "concluded": "",
    "path": "experiments/E-261119-02-symmetric-nine-face-census/README.md",
@@ -1788,7 +1788,7 @@ window.GRAPH = {
     "DR18"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {

@@ -2,12 +2,12 @@
 id: E-261119-02
 title: Symmetric nine-face census - C3 3+3+3 and C2 4 x 2 + 1 maps by lifting the C3 exact cover, then per-map symmetric formulas
 date: 2026-11-19
-status: planned
+status: running
 direction: [DR19, DR18]
 origin: [I-261030-18, I-261119-01, I-261118-02, E-261103-01, E-261118-03]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned, week item 2, the main investment (`reviews/strategy-review-2026-11-19.md` §1, owner-approved 2026-11-19;
