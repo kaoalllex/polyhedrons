@@ -2,12 +2,12 @@
 id: E-261119-01
 title: P3-sym power ladder - discovery and refutation on known answers at the nine-face orbit size, and the symmetric (8, 3) slice by map blocking
 date: 2026-11-19
-status: planned
+status: running
 direction: [DR19]
 origin: [I-261119-02, E-261118-02, I-261118-01]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned, week item 1 (`reviews/strategy-review-2026-11-19.md` §1, owner-approved 2026-11-19; reconciled with the

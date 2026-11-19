@@ -110,6 +110,9 @@ CHECKS = [
     ('P3-sym: orbit counts, forced zeros, normal forms, Roest-Vigh pinned under D2',
      lambda: run(['test_p3sym.py'], os.path.join(ROOT, 'experiments', 'E-261118-02-equivariant-census-free-formula'),
                  lambda out: '\nOK' in out and 'skipped=' not in out)),
+    ('P3-sym map blocking: free-C2 normaliser, run predicate = decode, pinned blocking, same ends other pairing',
+     lambda: run(['test_ladder.py'], os.path.join(ROOT, 'experiments', 'E-261119-01-p3sym-power-ladder'),
+                 lambda out: '\nOK' in out and 'skipped=' not in out)),
     ('(11, 5) plane-only probe: 20 Aut+ = 2 involutions recomputed, draw and queues reproduce, gate selftest',
      lambda: run(['make_queue.py', '--check'], os.path.join(ROOT, 'experiments', 'E-261118-03-s5-11-5-plane-only-price-probe'),
                  'drawn [3634, 4096]') if run(['summary.py', '--selftest'], os.path.join(
