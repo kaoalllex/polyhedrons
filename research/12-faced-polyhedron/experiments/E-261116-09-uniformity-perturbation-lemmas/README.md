@@ -24,3 +24,8 @@ obligations of E-261116-07 (finite-vertex coverage at OM level, the disk and man
 Update paper items B2-B5 and D3 in `paper/OUTLINE.md`. A counterexample keeps "uniform" / "cubic" in every statement.
 
 Extended 2026-11-18 (`reviews/strategy-review-2026-11-18.md` §5): (e) the symmetric-slice lemma I-261118-02 (fixed faces, rotation orbits, C3 coverage, the C3 gauge).
+
+Extended 2026-11-19 (`reviews/strategy-review-2026-11-19.md` §2, week item 4): (f) a uniform symmetry group of an
+eight-face solid contains a free half-turn (the scope of E-261119-01's symmetric (8, 3) slice); (g) on an (11, 5) map
+with Aut+ = 2 the only possible improper symmetries are mirrors, and every mirror class forces zero signs (the (11, 5)
+closure). These lemmas carry the scope sentences of E-261119-01 and E-261119-02.

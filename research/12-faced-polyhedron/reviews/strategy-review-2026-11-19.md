@@ -148,3 +148,10 @@ S0 (E-261101-06, 2 2 2 2 2; the rest as filed). Other open ideas and hypotheses:
 1. Owner: approvals 1-3, plus the triage verdicts (Q1 keep as item 5; Q2 and Q3 drop).
 2. Lab (Opus, high / gpt-6-astra, high): item 1's PLAN (units, blocking with its control, both refutation rungs), then the owner's evening run.
 3. Lab (Opus, high / gpt-6-astra, high): item 2 stage A (census lift and its (9, 3), (7, 1), (8, 3) controls) while item 1 runs.
+
+## Owner's decisions (2026-11-19)
+
+Approvals 1-3 given ("ok"), the §5 triage of the owner's idea accepted (Q1 kept as E-261119-03, Q2 and Q3 dropped);
+applied the same day: `STRATEGY.md` §1 and log, the `ROADMAP.md` week plan and queue rows (E-261119-01..03), `STATUS.md`
+(header, focus, the §4 heading restored, 3bc moved), the audit wordings in the E-261118-02 and E-261118-03 conclusions,
+ideas I-261119-02, I-261119-03 filed, I-261118-03 closed, I-261118-04 parked.

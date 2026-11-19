@@ -2,7 +2,7 @@
 id: I-261118-04
 title: One curved face - quasi-polyhedra with F - 1 planar faces and one skew face, straightened or shown unstraightenable
 date: 2026-11-18
-status: open
+status: parked
 direction: [DR19, DR11]
 origin: [owner, I-261101-18]
 ---
@@ -30,3 +30,8 @@ E-261118-04, the (9, 3) one-face deletion sieve (<= 1 core-h). A straightening r
 of Roest-Vigh's object, repair with the planes free) only after a SAT there.
 
 Source: `reviews/ideas-triage-2026-11-18.md` §2 (owner-approved as week item 1, 2026-11-18).
+
+Parked 2026-11-19 (lead review 2026-11-19 §2, owner-approved): the pilot E-261118-04 tested the planar-defect reading
+(STATUS 3az); the curved-face reading is untested. Neither a curved-face encoder nor a final-polynomial test of the two
+map-29 models changes a decision: straightening is the full formula, UNSAT-VERIFIED for all 203 (9, 3) maps (STATUS 3d),
+and nine faces at genus >= 4 has no census to sieve. The owner may reopen it.

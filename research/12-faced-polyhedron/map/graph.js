@@ -1727,7 +1727,7 @@ window.GRAPH = {
    ],
    "verdict": "\"Rung PASS (D2, S4 known maps unaided in seconds, realized); nine faces UNDERPOWERED@17.0 core-h: C3 3+3+3 at E = 45, 51, 57 UNKNOWN at 1 h\"",
    "preregistered": "true",
-   "conclusion": "Verdict for the direction: rung PASS (method, known objects); nine faces UNDERPOWERED@17.0 core-h (three C3 3+3+3 formulas, 1 h on 5 workers, one seed). The step from eight to nine faces costs more than a factor 700 in time to the first model or decision on this host."
+   "conclusion": "Verdict for the direction: rung PASS (method, known objects); nine faces UNDERPOWERED@17.0 core-h (three C3 3+3+3 formulas, 1 h on 5 workers, one seed). The step from eight to nine faces costs more than a factor 700 in time to the first model or decision on this host (a lower bound only: it compares time to SAT on instances with known models against censored runs of unknown answer, not the price of one face; lead..."
   },
   {
    "id": "E-261118-03",
@@ -1759,6 +1759,52 @@ window.GRAPH = {
    "verdict": "\"OPEN-LOW@1.1 core-h, 2 of 203 maps; map 29 faces 5 and 8 SAT (unrealized), concluded on the pilot (owner)\"",
    "preregistered": "true",
    "conclusion": "Verdict: OPEN-LOW@1.1 core-h, 2 maps of 203 (map 0 undecided): the obstruction of map 29 depends on single faces; a full sieve costs 40-150 core-h."
+  },
+  {
+   "id": "E-261119-01",
+   "kind": "experiment",
+   "title": "P3-sym power ladder - discovery and refutation on known answers at the nine-face orbit size, and the symmetric (8, 3) slice by map blocking",
+   "status": "planned",
+   "date": "2026-11-19",
+   "concluded": "",
+   "path": "experiments/E-261119-01-p3sym-power-ladder/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261119-02",
+   "kind": "experiment",
+   "title": "Symmetric nine-face census - C3 3+3+3 and C2 4 x 2 + 1 maps by lifting the C3 exact cover, then per-map symmetric formulas",
+   "status": "planned",
+   "date": "2026-11-19",
+   "concluded": "",
+   "path": "experiments/E-261119-02-symmetric-nine-face-census/README.md",
+   "direction": [
+    "DR19",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261119-03",
+   "kind": "experiment",
+   "title": "Face-transitive nine-face maps at genus 7 - Cayley maps of Z9 and Z3 x Z3 at valence 14, plain formula on admissible classes",
+   "status": "planned",
+   "date": "2026-11-19",
+   "concluded": "",
+   "path": "experiments/E-261119-03-cayley-nine-faces-genus-7/README.md",
+   "direction": [
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": "false",
+   "conclusion": ""
   },
   {
    "id": "FD11",
@@ -4734,7 +4780,7 @@ window.GRAPH = {
    "id": "I-261118-03",
    "kind": "idea",
    "title": "Mirror family Cs 4 x 2 + 1 at nine faces and its seven-face negative control from the chirality of Szilassi's map",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-18",
    "concluded": "",
    "path": "ideas/I-261118-03-mirror-family-negative-control.md",
@@ -4748,7 +4794,7 @@ window.GRAPH = {
    "id": "I-261118-04",
    "kind": "idea",
    "title": "One curved face - quasi-polyhedra with F - 1 planar faces and one skew face, straightened or shown unstraightenable",
-   "status": "open",
+   "status": "parked",
    "date": "2026-11-18",
    "concluded": "",
    "path": "ideas/I-261118-04-one-curved-face-quasi-polyhedra.md",
@@ -4769,6 +4815,34 @@ window.GRAPH = {
    "path": "ideas/I-261119-01-plane-only-fixed-face-slices.md",
    "direction": [
     "DR19",
+    "DR18"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261119-02",
+   "kind": "idea",
+   "title": "Known-answer power ladder - decided negatives as refutation rungs and the free-C2 eight-face formula as the discovery rung of P3-sym",
+   "status": "open",
+   "date": "2026-11-19",
+   "concluded": "",
+   "path": "ideas/I-261119-02-known-answer-power-ladder.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261119-03",
+   "kind": "idea",
+   "title": "Face-transitive nine-face maps at genus 7 - Cayley maps of Z9 and Z3 x Z3 at valence 14",
+   "status": "open",
+   "date": "2026-11-19",
+   "concluded": "",
+   "path": "ideas/I-261119-03-cayley-nine-faces-genus-7.md",
+   "direction": [
     "DR18"
    ],
    "verdict": "",
@@ -6024,6 +6098,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261103-01",
+   "to": "E-261119-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -6185,6 +6264,11 @@ window.GRAPH = {
   {
    "from": "E-261103-03",
    "to": "I-261110-04",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-03",
+   "to": "I-261119-02",
    "kind": "origin"
   },
   {
@@ -6769,12 +6853,22 @@ window.GRAPH = {
   },
   {
    "from": "E-261117-01",
+   "to": "E-261119-03",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261117-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
   {
    "from": "E-261117-01",
    "to": "I-261118-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261117-01",
+   "to": "I-261119-03",
    "kind": "origin"
   },
   {
@@ -6794,8 +6888,23 @@ window.GRAPH = {
   },
   {
    "from": "E-261118-02",
+   "to": "E-261119-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261118-02",
    "to": "H-261101-07",
    "kind": "tests"
+  },
+  {
+   "from": "E-261118-02",
+   "to": "I-261119-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261118-03",
+   "to": "E-261119-02",
+   "kind": "origin"
   },
   {
    "from": "E-261118-03",
@@ -6809,6 +6918,21 @@ window.GRAPH = {
   },
   {
    "from": "E-261118-04",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261119-01",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261119-02",
+   "to": "H-261101-07",
+   "kind": "tests"
+  },
+  {
+   "from": "E-261119-03",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -7290,6 +7414,11 @@ window.GRAPH = {
   {
    "from": "I-261030-18",
    "to": "E-261117-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261030-18",
+   "to": "E-261119-02",
    "kind": "origin"
   },
   {
@@ -8088,6 +8217,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261117-01",
+   "to": "I-261119-03",
+   "kind": "origin"
+  },
+  {
    "from": "I-261117-02",
    "to": "E-261117-02",
    "kind": "origin"
@@ -8113,13 +8247,33 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261117-04",
+   "to": "I-261119-03",
+   "kind": "origin"
+  },
+  {
    "from": "I-261118-01",
    "to": "E-261118-02",
    "kind": "origin"
   },
   {
+   "from": "I-261118-01",
+   "to": "E-261119-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261118-01",
+   "to": "I-261119-02",
+   "kind": "origin"
+  },
+  {
    "from": "I-261118-02",
    "to": "E-261118-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261118-02",
+   "to": "E-261119-02",
    "kind": "origin"
   },
   {
@@ -8130,6 +8284,21 @@ window.GRAPH = {
   {
    "from": "I-261118-04",
    "to": "E-261118-04",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261119-01",
+   "to": "E-261119-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261119-02",
+   "to": "E-261119-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261119-03",
+   "to": "E-261119-03",
    "kind": "origin"
   },
   {
@@ -8860,6 +9029,11 @@ window.GRAPH = {
   {
    "from": "owner",
    "to": "I-261118-04",
+   "kind": "origin"
+  },
+  {
+   "from": "owner",
+   "to": "I-261119-03",
    "kind": "origin"
   }
  ],

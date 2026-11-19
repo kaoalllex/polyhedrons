@@ -29,8 +29,9 @@ Planning only: no checked proof, no geometric negative.
   UNSAT record keeps its formula and CNF SHA-256 (`results.jsonl`); no proofs (owner, 2026-11-13).
 * **What may be claimed**: for each of the 20 admissible (11, 5) maps with Aut+ = 2, the plane-only C2 formula of
   its involution (`omsat` `ALL_OPTS`, `build_sym` orbit-flip and mirror gauge, INF a generic plane) is
-  UNSAT-SOLVER for kissat seeds 0-3 (SPEC §4, formula scope). Read for planning: no (11, 5) S5 object whose map
-  automorphism group contains a proper half-turn, within this encoder, is expected. The speed (two orders of
+  UNSAT-SOLVER for kissat seeds 0-3 (SPEC §4, formula scope). Read for planning: no (11, 5) S5 object with a half-turn
+  symmetry fixing a face is expected within this encoder (the formulas impose a geometric half-turn; asymmetric
+  realizations of these 20 maps are untouched; wording corrected by lead review 2026-11-19, audit 2). The speed (two orders of
   magnitude below the plain 12-element median) is NUMERICAL, these 20 formulas.
 * **What may NOT be claimed**: any (11, 5) non-existence, even symmetric (no checked proof; mirror gauge soundness
   inherited from `omsat_sym`, not re-proved; no positive control with a fixed-face involution on a map with

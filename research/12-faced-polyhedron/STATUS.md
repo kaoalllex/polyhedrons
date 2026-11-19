@@ -1,12 +1,12 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-19** (E-261118-03 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-18.md`, 2026-11-18). The latest
+As of **2026-11-19** (E-261118-03 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
 registered result is E-261118-03 (section 3bc); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
 At a glance (2026-11-16): S5 (8, 2), (9, 3) decided at formula scope (section 3d); (10, 4) all 1117 admissible maps
-UNSAT-SOLVER (3ad, 3ao; planning only, replay parked); (11, 5) priced out for a full sweep (3aq), its 20 proper half-turn maps UNSAT-SOLVER (3bc). S6 (10, 3): all 20
+UNSAT-SOLVER (3ad, 3ao; planning only, replay parked); (11, 5) priced out for a full sweep (3aq), the half-turn formulas of its 20 Aut+ = 2 maps UNSAT-SOLVER (3bc). S6 (10, 3): all 20
 normalised formulas UNSAT-SOLVER (3ar, 3as), symmetric formulas too and the T family empty (3ag), no embedded polar chart
 (3at); planning only, no checked proof. Ninth-plane Stage A without a candidate (3ae), Stage B parked (3ak). The lead
 review's (8, 3) census size check (`reviews/strategy-review-2026-11-16b-census-8-3.json`) and the dialogue's K13, K14
@@ -14,9 +14,9 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-18 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
-mutually adjacent faces (S1, genus free) first, by complete formulas on symmetric quotients (after the owner's (9, 3) one-face deletion sieve E-261118-04: N1b E-261118-01 (done, section 3ba), P3-sym
-E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb; to the lead), P6 the fallback). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
+**Focus since 2026-11-19 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
+mutually adjacent faces (S1, genus free) first, on the two uniform symmetric families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (E-261119-01) and a symmetric nine-face census with per-map formulas (E-261119-02, the main investment), P6 the fallback; no result yet. The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
+E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
 E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
 (11, 5) one plane-only price probe (E-261118-03: all 20 Aut+ = 2 maps UNSAT-SOLVER, closed for the laptop, section 3bc; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
 UNSAT-SOLVER, section 3as), its replay priced for the paper (E-261116-08); S5 (10, 4) all admissible maps UNSAT-SOLVER
@@ -527,8 +527,17 @@ PROVED-1) returned Roest-Vigh's (D2) and Mizhaev's (S4) eight-face maps unaided 
 (`--all-pairs` PASS, known objects). C3 3+3+3 at nine faces, E = 45, 51, 57: UNKNOWN at 1 h on 5 workers each, one
 seed; the plain cube 5 UNKNOWN at 15 min on 8 workers. No nine-face model; nothing about existence. Cs 4 x 2 + 1 and
 Cs 3 x 2 + 3 are outside the formula's uniform domain (forced zero sign, PROVED-1). `experiments/E-261118-02-equivariant-census-free-formula/CONCLUSION.md`.
-P3-sym
-E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb; to the lead), P6 the fallback).
+
+## 3bc. E-261118-03 (11, 5) plane-only C2 slice (2026-11-19)
+
+**Proper half-turn slice UNSAT-SOLVER@1.0 core-h**: the plane-only C2 formula in a moved chart (E-261117-02) of each
+of the 20 admissible (11, 5) maps with Aut+ = 2 (one involution, one fixed face each) is UNSAT-SOLVER on kissat seeds
+0-3, 80 of 80 units, map medians 17-90 s (the plain 12-element median was censored at 3600 s, 3aq). Controls pass,
+including symmetric 12-element configurations pinned under the symmetry and gauge clauses (100 of 100 SAT). No SAT,
+no candidate, no proof: planning only. Not run: improper symmetries (no uniform formula exists for them: lead review 2026-11-19, PROVED-1 sketch) and the
+3962 asymmetric maps; (11, 5) closes for the laptop. `experiments/E-261118-03-s5-11-5-plane-only-price-probe/CONCLUSION.md`.
+
+## 4. What may and may not be claimed
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for
 four types, one on a map combinatorially completable to a target map".
@@ -542,15 +551,6 @@ May not (scope, owner's question 2026-11-08): that the (8, 2) or (9, 3) negative
 every pair adjacent and some vertices of degree >= 4 (e.g. (9, 3) with V = 23, E = 36, three 4-valent vertices); no
 formula covers them. At (12, 6) there is no slack (E = 66 pairs), so S0 is unaffected. The (8, 2) / (9, 3) note must say "cubic"
 unless the perturbation lemma I-261108-09 (untested) reduces these objects to the cubic case.
-
-## 3bc. E-261118-03 (11, 5) plane-only C2 slice (2026-11-19)
-
-**Proper half-turn slice UNSAT-SOLVER@1.0 core-h**: the plane-only C2 formula in a moved chart (E-261117-02) of each
-of the 20 admissible (11, 5) maps with Aut+ = 2 (one involution, one fixed face each) is UNSAT-SOLVER on kissat seeds
-0-3, 80 of 80 units, map medians 17-90 s (the plain 12-element median was censored at 3600 s, 3aq). Controls pass,
-including symmetric 12-element configurations pinned under the symmetry and gauge clauses (100 of 100 SAT). No SAT,
-no candidate, no proof: planning only. Not run: improper symmetries and the 3962 asymmetric maps; (11, 5) closes for
-the laptop. `experiments/E-261118-03-s5-11-5-plane-only-price-probe/CONCLUSION.md`.
 
 ## 5. Results worth sharing (ranked, with prerequisites)
 

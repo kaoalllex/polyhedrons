@@ -40,7 +40,8 @@ the three C3 3+3+3 nine-face formulas ended UNKNOWN at their 1 h caps. No nine-f
   its uniform families left are C3 3+3+3 (standard chart, run here) and C2 4 x 2 + 1 (moved chart, not run).
 * **Verdict for the direction**: rung PASS (method, known objects); nine faces UNDERPOWERED@17.0 core-h (three C3
   3+3+3 formulas, 1 h on 5 workers, one seed). The step from eight to nine faces costs more than a factor 700 in time
-  to the first model or decision on this host.
+  to the first model or decision on this host (a lower bound only: it compares time to SAT on instances with known
+  models against censored runs of unknown answer, not the price of one face; lead review 2026-11-19, audit 3).
 * **Next step**: the follow-up tree routes UNKNOWN to the lead: whether a longer C3 run (the registered nine-face
   budget was <= 40 core-h, 17 used), a stronger formula, or P6 (item 6) takes this slot is a strategy decision, not
   a lab improvisation. Week plan: item 4 (E-261118-03). The Cs exclusion and the corrected family list go to the

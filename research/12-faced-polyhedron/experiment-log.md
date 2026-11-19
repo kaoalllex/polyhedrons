@@ -1087,3 +1087,10 @@ of 17 core-h: C3 3+3+3 at nine faces, E = 45, 51, 57, all UNKNOWN at 1 h; UNDERP
 2026-11-19 — E-261118-03 (week item 4, (11, 5) plane-only price probe): gate NIGHT (medians about 41 s); the follow-up
 ran all 20 Aut+ = 2 maps x 4 kissat seeds in the session: 80 of 80 UNSAT-SOLVER @1.0 core-h; (11, 5) closed for the
 laptop. `experiments/E-261118-03-s5-11-5-plane-only-price-probe/CONCLUSION.md`.
+
+2026-11-19 — Lead review 2026-11-19 approved by the owner (`reviews/strategy-review-2026-11-19.md`): new week plan
+(E-261119-01 P3-sym power ladder with the symmetric (8, 3) slice; E-261119-02 symmetric nine-face census with per-map
+formulas, the main investment; E-261117-04 P6 if its census gate fails; E-261116-09 lemmas; E-261119-03 optional);
+ideas I-261119-02, I-261119-03 filed; I-261118-03 closed (mirror families outside every uniform formula), I-261118-04
+parked; (11, 5) closed for the laptop; STATUS section 4 heading restored. Owner's numbering idea triaged (Q1 kept as
+E-261119-03; Q2, Q3 dropped). No compute beyond session checks.

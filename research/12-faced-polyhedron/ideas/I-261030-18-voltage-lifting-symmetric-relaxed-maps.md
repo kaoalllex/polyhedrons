@@ -18,3 +18,9 @@ Generate and count all such maps; feed each into the symmetric plane search.
 
 ## Source
 ideas/brainstorm-2026-10-30-analysis.md section 3, B2
+
+## 2026-11-19 lead review 2026-11-19
+
+Nine-face part taken up by E-261119-02 (week item 2, the main investment): a symmetric nine-face census (C3 3+3+3 and
+C2 4 x 2 + 1, lifting the C3 exact cover of E-261103-01) with per-map symmetric formulas (C3 clauses in the standard
+chart, plane-only C2 in a moved chart).

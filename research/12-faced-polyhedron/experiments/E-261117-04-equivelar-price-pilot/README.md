@@ -10,7 +10,8 @@ produces: []
 preregistered: false
 ---
 
-> Planned (queue, not this week), explore. Scores T D F G R: 1 2 1 1 2 | budget: one session, 1 core-h; stage B
+> Planned, week item 3 of 2026-11-19, only if E-261119-02's census gate fails (`reviews/strategy-review-2026-11-19.md`
+> §1, owner-approved), explore. Scores T D F G R: 1 2 1 1 2 | budget: one session, 1 core-h; stage B
 > has no night before a price. Before any compute: `PLAN.md` (skill `experiment-start`). No proofs.
 
 ## Goal

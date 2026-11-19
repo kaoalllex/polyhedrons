@@ -7,18 +7,18 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 
 * **Focus (owner, 2026-11-12): one constructive target at a time, each at least as significant as the 2026
   eight-face objects (owner's filter).**
-  * **First (owner, 2026-11-16b, confirmed 2026-11-17 and 2026-11-18): S1, nine mutually adjacent faces with the genus
-    free**, by complete formulas on symmetric quotients (lead review 2026-11-18), after the owner's first item, the (9, 3)
-    one-face deletion sieve (E-261118-04, quasi-polyhedra with one curved face): N1b (E-261118-01), then **P3-sym,
-    the census-free formula with a group action on the planes** (E-261118-02, the main investment), scored on the D2 /
-    S4 eight-face rung (Roest-Vigh's and Mizhaev's types must come out unaided) before C3 3+3+3 at nine faces, then
-    Cs 4 x 2 + 1. P6, the equivelar slice (E-261117-04), is the fallback. No nine-plane sampling night without a measured
-    rate one rung below (E-261110-04: no hit). Success is only `verify_candidate.py FILE --all-pairs` PASS with nine
-    faces, then `candidate-check`. Week 2026-11-17 done: N1 slice empty, N2 gate passed, P3 v2 and the P4 sampler
-    parked, the C3 night LOW-YIELD; the D2 plane-family gate closed; ninth-plane Stage B parked.
-  * **S5 at (11, 5): one plane-only price probe** (E-261118-03, two Aut+ = 2 maps): a 10x speed-up earns one night for
-    the 20 maps, otherwise (11, 5) closes for the laptop. The free-action slice E-261116-06 is withdrawn; the asymmetric
-    sweep is priced out (>= 41 nights, E-261116-01). Success is only `verify_candidate.py FILE --target S5` PASS at (11, 5).
+  * **First (owner, 2026-11-16b, confirmed 2026-11-17, 2026-11-18 and 2026-11-19): S1, nine mutually adjacent faces
+    with the genus free**, on the two uniform symmetric families C3 3+3+3 and C2 4 x 2 + 1 (lead review 2026-11-19):
+    P3-sym (E-261118-02, rung passed) for C3 once its power is measured at the nine-face size on known answers
+    (E-261119-01, with the symmetric (8, 3) slice), and per map from a symmetric nine-face census for both families
+    (E-261119-02, the main investment). P6, the equivelar slice (E-261117-04), is the fallback. Mirror families are
+    outside every uniform formula (forced zero signs). No nine-plane sampling night without a measured rate one rung
+    below (E-261110-04: no hit). Success is only `verify_candidate.py FILE --all-pairs` PASS with nine faces, then
+    `candidate-check`. Week 2026-11-18 done: the deletion sieve OPEN-LOW, N1b classes 1-5 UNSAT-SOLVER, P3-sym rung
+    PASS and nine faces UNDERPOWERED, (11, 5) closed.
+  * **S5 at (11, 5): closed for the laptop** (E-261118-03): all 20 Aut+ = 2 maps UNSAT-SOLVER under their half-turn
+    (planning only); the improper slice has no uniform formula (lead review 2026-11-19, PROVED-1 sketch); the asymmetric
+    sweep is priced out (>= 41 nights, E-261116-01). Success would be only `verify_candidate.py FILE --target S5` PASS.
   * **S5 at (10, 4): all 1117 admissible maps UNSAT-SOLVER** (E-261109-06, E-261110-06; no candidate). The owner may
     rely on it in planning; it is no negative result. A checked replay only for a named claim (I-261116-02, parked).
   * **S6: parked after (10, 3)**: all twenty normalised formulas UNSAT-SOLVER (E-261116-02, -05), polar transfer
@@ -135,3 +135,8 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   (ETH preprints, Degen's identity) dropped. Stance, S0 parking and the side track unchanged.
 * 2026-11-18 (owner, later the same day): the (9, 3) one-face deletion sieve (E-261118-04, I-261118-04) becomes week
   item 1; knot theory dropped except its capping role. Targets and stance unchanged.
+* 2026-11-19 (owner's approval of lead review `reviews/strategy-review-2026-11-19.md`): nine faces stay first, on the
+  two uniform symmetric families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (E-261119-01) first,
+  a symmetric nine-face census with per-map formulas (E-261119-02) the main investment, P6 the fallback; Cs dropped
+  (outside every uniform formula); (11, 5) closed for the laptop; I-261118-04 parked. Credences unchanged. Stance, S0
+  parking and the side track unchanged.
