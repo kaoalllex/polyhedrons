@@ -169,8 +169,9 @@ def bridge(out, name, c, links, target):
         if result.get('geometry', {}).get('EMBEDDED'):
             candidate = out / (name + '.candidate.json')
             pilot.dump(candidate, dict(planes=result['planes'], links=links))
-            rc = pilot.command([sys.executable, str(ROOT / 'verification/verify_candidate.py'), str(candidate),
-                                '--target', target], out / (name + '.candidate.log'), 60)
+            check = ['--all-pairs'] if target == 'all-pairs' else ['--target', target]  # S1: --all-pairs (STRATEGY §1)
+            rc = pilot.command([sys.executable, str(ROOT / 'verification/verify_candidate.py'), str(candidate), *check],
+                               out / (name + '.candidate.log'), 60)
             return dict(processing=processing, candidate=recorded(candidate), candidate_verify_rc=rc,
                         status_note='CANDIDATE-NEEDS-REVIEW' if rc == 0 else 'EMBEDDED-BUT-TARGET-FAIL')
     return dict(processing=processing, candidate=None, status_note='SAT-NOT-REALIZED')
