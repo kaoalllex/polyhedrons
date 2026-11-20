@@ -64,3 +64,11 @@ and the per-stratum pricing (week plan item 2). Amendments at the end.
   E-261119-01 holds all 10 cores while this is registered (the owner launches stage A, 2026-11-19).
 
 ## Amendments
+
+**Amendment 1 (2026-11-20, launch defect, no data).** The owner launch of 2026-11-20 09:24Z ran no census unit: `run.sh`
+read its cap as `${SECONDS:-360}`, and `SECONDS` is bash's built-in seconds-since-start counter (always set, 0 at
+start), so every shard got a 0 s budget (manifests: `seconds 0`, empty `claims/`, no `results.jsonl`); only the unit
+tests ran (6 OK, 8 s). Repair: the cap is now `BUDGET` (the name other runners use); nothing else changed. Smoke on
+shard 0 with `BUDGET=25` (single core, pilot folder, deleted): the manifest records 25 s and 201 units ran before the
+deadline. Note for the gate: building the 808-unit list takes about 9 s of each shard's budget. The defective
+launch stays in `results/stageA-defective-0s/` (raw, not committed); stage A is relaunched unchanged by the owner.
