@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-20** (E-261119-01 concluded; E-261119-02 stage A recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
-registered result is E-261119-02 stage A (section 3be); results are listed newest last in section 3, chronology in
+As of **2026-11-20** (E-261119-01 concluded; E-261119-02 stage A and stage-B pass 1 recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
+registered result is E-261119-02 stage B pass 1 (section 3bf); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -15,7 +15,7 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 ## 0. State in one paragraph
 
 **Focus since 2026-11-19 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
-mutually adjacent faces (S1, genus free) first, on the two uniform symmetric families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (E-261119-01: discovery passed, refutation undecided, section 3bd) and a symmetric nine-face census with per-map formulas (E-261119-02, the main investment; stage A lists both families, section 3be), P6 the fallback; no constructive result yet. The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
+mutually adjacent faces (S1, genus free) first, on the two uniform symmetric families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (E-261119-01: discovery passed, refutation undecided, section 3bd) and a symmetric nine-face census with per-map formulas (E-261119-02, the main investment; stage A lists both families, section 3be; every per-map uniform symmetric formula UNSAT-SOLVER, section 3bf), P6 the fallback; no constructive result yet. The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
 E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
 E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
 (11, 5) one plane-only price probe (E-261118-03: all 20 Aut+ = 2 maps UNSAT-SOLVER, closed for the laptop, section 3bc; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
@@ -555,6 +555,16 @@ orbits, so the nine-face UNKNOWNs of 3bb carry no information. Method scope: one
 classes and holds both known maps. 807 of 807 units complete in 88 s wall, 0.24 core-h. Stage B (per-map symmetric
 formulas) is not run; no existence or non-existence statement for nine faces follows.
 `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+## 3bf. E-261119-02 stage B pass 1: per-map symmetric formulas at (9, 4) (2026-11-20)
+
+**Both families: every uniform symmetric (9, 4) formula UNSAT-SOLVER (planning only, no proof)**: all 12562 records of the
+3be lists (C3 3+3+3 118 in the standard chart, C2 4 x 2 + 1 12444 plane-only in a moved chart; one rotation group each)
+decided UNSAT-SOLVER by kissat within the 30 s cap (max 0.63 s, 2096 solver-s); no SAT, no UNKNOWN, so no pass 2. Controls:
+the pinned f9 pair and the runner's controls passed on all 10 shards; the 33 pricing records replicated (same status and
+formula hash); the rung of amendment 2 and the formula controls of `controls_b.py` hold (README). 1.83 core-h, 11 min wall.
+Scope: these exact formulas only; nothing about non-symmetric realizations of these maps, mirrors, C2 3 x 2 + 3, or other
+genera, and no negative claim without a checked replay. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
 
 ## 4. What may and may not be claimed
 

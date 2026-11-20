@@ -42,6 +42,10 @@ research/12-faced-polyhedron/experiments/E-261113-02-s6-10-2-calibration-rung/**
 # ../polyhedrons-data; git keeps each shard's results.jsonl, manifests and results/night-summary.json (no SAT model).
 research/12-faced-polyhedron/experiments/E-261110-06-s5-10-4-strata-ab-remainder/results/run/*/map*/**
 
+# E-261119-02 pass 1 (owner, 2026-11-20): the 12562 per-map result.json files live in ../polyhedrons-data; git keeps
+# each shard's results.jsonl (the same records), manifests, the f9 control units and the runner's control summaries.
+research/12-faced-polyhedron/experiments/E-261119-02-symmetric-nine-face-census/results/stageB-pass1/*/attempt_*/map[0-9]*/**
+
 # Raw logs and stage payloads of the normalized-formula prep and bridge controls.
 research/12-faced-polyhedron/experiments/E-261114-01-normalised-s6-10-3/results/**/*.solver.log
 research/12-faced-polyhedron/experiments/E-261114-03-hull-vertex-chart-pilot/results/**/*.solver.log

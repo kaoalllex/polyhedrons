@@ -55,10 +55,22 @@ the 32 (9, 3) symmetric classes UNSAT-SOLVER (agrees with 3d); Roest-Vigh's map 
 Mizhaev's SAT under its 1, all three realized, `--all-pairs` PASS. Pricing: 33 of 33 records UNSAT-SOLVER in <= 0.29 s
 (12 C3, 21 C2f, all 11 strata; decided fraction 1.0 by 30 s everywhere). Added formula controls (`controls_b.py`,
 `results/controls_b.json`): on every pricing record, generic symmetric planes pinned SAT 165 of 165, planes of a wrong
-action UNSAT 165 of 165. Pass 1 (amendment 3): all 12562 records at 30 s, projected ~1.8 core-h, ~11 min wall (smoke
-0.51 s per unit). Label: UNSAT-SOLVER per exact formula; no negative claim.
+action UNSAT 165 of 165. Pass 1 (amendment 3; owner launch 2026-11-20 13:53Z, `results/stageB-pass1/`): 10 shards complete, 11 min wall
+(649-663 s per shard, no gap), 1.83 core-h by the budget ledger (6598 core-s), against a projection of ~1.8. Every shard
+passed the pinned f9 pair and the runner's controls (`CONTROLS-PASS`). All 12562 records UNSAT-SOLVER within the 30 s
+cap, every one `completed`: C3 118 (max 0.46 s, 16.6 solver-s), C2f 12444 (max 0.63 s, 2079.9 solver-s), every stratum of
+both lists; no SAT, no UNKNOWN, so no pass 2. Replication: the 33 pricing records, matched by canonical code, group and
+generator, give the same status and formula hash. Prediction vs outcome: R1 (all decide within 30 s), R2 (no SAT), R3
+(<= 3 core-h) held. Reading per the tree: in both families every uniform symmetric (9, 4) formula is UNSAT-SOLVER.
+Stage B used < 2 of its 10 core-h. Caveat: one status across all 12562 records; it rests on controls of both signs at
+formula level (`controls_b.py`), the (8, 3) rung (map-level SAT, standard chart) and the (7, 1) Szilassi chain (moved
+chart, E-261118-03); no realizable nine-face map exists to serve as a map-level positive in the moved chart. Per-map
+`result.json` files are in `../polyhedrons-data` (owner, 2026-11-20); git keeps each shard's `results.jsonl` (indexed by
+`map_index` into `maps/pass1.json`, rebuilt by `stageb.py`). Label: UNSAT-SOLVER per exact formula (STATUS 3bf); no
+negative claim.
 
 ## Next
 
-SAT -> bridge, `--all-pairs` nine faces, `candidate-check`, escalate. A complete family all UNSAT-SOLVER -> genus 5
-(E = 51) for that family, priced the same way. Neither family advances -> E-261117-04 (P6). A control failure -> repair. Lab: Opus, high / Codex gpt-6-astra, high.
+Both families are all UNSAT-SOLVER at (9, 4), so per the tree: genus 5 (E = 51) for both, priced the same way (stage-A
+census at (9, 5), then per-stratum pricing; an amendment before any run). SAT -> bridge, `--all-pairs` nine faces,
+`candidate-check`, escalate. Neither family advances -> E-261117-04 (P6). A control failure -> repair. Lab: Opus, high / Codex gpt-6-astra, high.

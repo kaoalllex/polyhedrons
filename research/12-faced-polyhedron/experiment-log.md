@@ -1108,3 +1108,7 @@ recorded plus 8.5 in a discarded first launch. `experiments/E-261119-01-p3sym-po
 2026-11-20 — E-261119-02 stage A (week item 2): symmetric (9, 4) census complete for both families, every control
 exact (C3 3+3+3 118 classes, C2 4 x 2 + 1 12444; 0.24 core-h); stage B after per-stratum pricing. STATUS 3be;
 `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+2026-11-20 — E-261119-02 stage B pass 1 (week item 2): all 12562 (9, 4) records (C3 118, C2 4 x 2 + 1 12444)
+UNSAT-SOLVER at 30 s (max 0.63 s), every control passed, the 33 pricing records replicated; 1.83 core-h, 11 min wall;
+no pass 2. Next: genus 5 per the tree. STATUS 3bf; `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
