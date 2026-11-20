@@ -9,21 +9,14 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-19, E-261119-01 running; E-261119-02 stage A pre-registered, owner launch pending)
+## Hand-over (2026-11-20, E-261119-01 concluded; E-261119-02 stage A pre-registered, owner launch pending)
 
 * Branch `lab/2026-11-19`; week plan in `ROADMAP.md` (owner-approved lead review 2026-11-19 and its reconcile).
-* E-261119-01 (week item 1): PLAN `c6313628`, amendments 1 (`0cfcf241`) and 2 (`0de9a2f8`). The unpinned blocking control
-  failed with the row's normaliser images (Roest-Vigh's map has 240 free-C2-invariant labellings, the normaliser reaches
-  96) and was repaired once: every action-invariant relabelling of the run set is blocked; controls and both blocking
-  controls pass. U4 decided in the pilot (D2 -> Roest-Vigh's map, S4 -> Mizhaev's, each then INFEASIBLE, UNSAT-SOLVER).
-* Next: the owner runs `bash research/12-faced-polyhedron/overnight/launch.sh 261119-01 start` (U1 free C2 (8, 36) with
-  blocking 1.5 h, U2 (8, 30) 1 h, U3 (9, 39) after U2; <= 17.5 core-h, about 2 h); then `experiment-conclude` with
-  `python3 ladder.py summary results`. Launched by the owner 2026-11-19 19:10 UTC.
-* E-261119-02 stage A pre-registered (`d62213ef`): `symcensus.py`, controls and unit tests not yet run (the unit tests run
-  in shard 0 of the launch). The owner launches it after E-261119-01 ends: `launch.sh 261119-02 start` (10 x 360 s,
-  <= 1 core-h). Then `python3 symcensus.py summary results/stageA`: per-family gate (C3, C2), lists, strata; pricing
-  one map per multiplicity stratum and the stage-B amendment follow.
-* Watch: a model in U2 or U3 stops the run (`stop.candidate`) and goes to the clause-level diagnostic, never a result; a
-  new realized (8, 3) map stops U1 and goes to `candidate-check`. Mirror (Cs) families are out of domain.
-* For the lead: the normaliser rule under-blocks maps whose automorphisms hold non-conjugate free involutions
-  (amendment 1); E-261119-02's per-map blocking should use invariant copies.
+* E-261119-01 (week item 1) done, STATUS 3bd: discovery PASS (free C2 (8, 36) returned both known maps, realized), then
+  UNKNOWN at 1.5 h; (8, 30) and C3 (9, 39) UNKNOWN at 1 h (no refutation power); symmetric (8, 3) slice OPEN.
+* Next (item 2): the owner runs `bash research/12-faced-polyhedron/overnight/launch.sh 261119-02 start` (10 x 360 s,
+  <= 1 core-h; the unit tests run in shard 0); then `python3 symcensus.py summary results/stageA`: per-family gate (C3,
+  C2), lists, strata; pricing one map per multiplicity stratum and the stage-B amendment follow.
+* For the lead: a P3-sym UNKNOWN at nine faces carries no information until a refutation rung decides (3bd).
+* For the lead: E-261119-01 overran its hard 20 core-h by 6.8 (a first launch stopped and killed with no record, 8.5
+  core-h discarded); the normaliser rule under-blocks (amendment 1), so E-261119-02's per-map blocking uses invariant copies.

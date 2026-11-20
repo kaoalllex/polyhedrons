@@ -2,7 +2,9 @@
 id: E-261119-01
 title: P3-sym power ladder - discovery and refutation on known answers at the nine-face orbit size, and the symmetric (8, 3) slice by map blocking
 date: 2026-11-19
-status: running
+status: done
+concluded: 2026-11-20
+verdict: "Discovery PASS (free C2 (8, 36): Mizhaev's and Roest-Vigh's maps in 59 s / 81 s, realized); refutation UNDERPOWERED@10.0 core-h ((8, 30), (9, 39) UNKNOWN at 1 h); symmetric (8, 3) slice OPEN, UNKNOWN@7.5 core-h after two known maps"
 direction: [DR19]
 origin: [I-261119-02, E-261118-02, I-261118-01]
 tests: [H-261101-07]
@@ -38,3 +40,10 @@ night from this experiment: one needs a changed nine-plane discovery test (e.g. 
 §5) and the owner's word. A new (8, 3) map realized, `--all-pairs` PASS -> `candidate-check`, escalate (meets
 E-261112-02's reopening condition). Blocking ends INFEASIBLE -> "this P3-sym free-C2 formula with these blocks is
 INFEASIBLE", UNSAT-SOLVER (planning); no claim on maps whose bridge failed. Lab: Opus, high / Codex gpt-6-astra, high.
+
+## Results
+
+Concluded 2026-11-20 (`CONCLUSION.md`): controls and blocking controls pass; U4 decided in the pilot. Owner run: U1
+returned both known maps, realized, then UNKNOWN at 1.5 h; U2 (8, 30) and U3 (9, 39) UNKNOWN at 1 h. No new map, no
+model in a refutation unit. P3-sym can discover at 66 orbits but showed no refutation power at 66 or 72 orbits, so its
+nine-face UNKNOWNs carry no information. A discarded first launch overran the 20 core-h budget (`CONCLUSION.md`, Runs).

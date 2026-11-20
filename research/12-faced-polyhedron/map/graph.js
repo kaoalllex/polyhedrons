@@ -1764,16 +1764,16 @@ window.GRAPH = {
    "id": "E-261119-01",
    "kind": "experiment",
    "title": "P3-sym power ladder - discovery and refutation on known answers at the nine-face orbit size, and the symmetric (8, 3) slice by map blocking",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-19",
-   "concluded": "",
+   "concluded": "2026-11-20",
    "path": "experiments/E-261119-01-p3sym-power-ladder/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "\"Discovery PASS (free C2 (8, 36): Mizhaev's and Roest-Vigh's maps in 59 s / 81 s, realized); refutation UNDERPOWERED@10.0 core-h ((8, 30), (9, 39) UNKNOWN at 1 h); symmetric (8, 3) slice OPEN, UNKNOWN@7.5 core-h after two known maps\"",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: discovery rung PASS; refutation rungs UNDERPOWERED@10.0 core-h (1 h each, 5 workers, one seed); the symmetric (8, 3) slice OPEN, UNKNOWN@7.5 core-h after two known maps."
   },
   {
    "id": "E-261119-02",
@@ -4824,7 +4824,7 @@ window.GRAPH = {
    "id": "I-261119-02",
    "kind": "idea",
    "title": "Known-answer power ladder - decided negatives as refutation rungs and the free-C2 eight-face formula as the discovery rung of P3-sym",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-19",
    "concluded": "",
    "path": "ideas/I-261119-02-known-answer-power-ladder.md",
