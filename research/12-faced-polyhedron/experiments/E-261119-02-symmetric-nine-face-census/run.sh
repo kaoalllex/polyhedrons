@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-# E-261119-02 (PLAN.md). Default (amendment 2): stage-B rung and pricing, the three stageb.py queues in turn through
-#   run_b.sh -> results/stageB-<queue>/<s>/; launch log in results/stageB/<s>/night.log (launch.results).
+# E-261119-02 (PLAN.md). Default (amendment 3): stage-B pass 1, queue_pass1.json (every (9, 4) map, cap 30 s, BUDGET
+#   36000 s = 10 core-h over 10 shards) through run_b.sh -> results/stageB-pass1/<s>/ with night.log (launch.results).
+#   maps/pass1.json is not committed: `python stageb.py` rebuilds it; the runner checks it against the queue's SHA-256.
 #   Owner launch: bash research/12-faced-polyhedron/overnight/launch.sh 261119-02 start
+# STAGE=B: amendment 2, the rung (9, 3), the rung (8, 3) and the pricing in turn -> results/stageB-<queue>/<s>/, launch
+#   log in results/stageB/<s>/night.log (launch.results back to results/stageB).
 # STAGE=A: stage A, one shard of the symmetric census; shards claim units in order (C3 first) until BUDGET seconds.
 #   Rerun: STAGE=A with launch.results set back to results/stageA (10 shards x 360 s = 1 core-h)
 #   -> results/stageA/<s>/results.jsonl (launch.results). Shard 0 first runs test_symcensus.py (single process, the other
@@ -17,7 +20,12 @@ BUDGET="${BUDGET:-360}"
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
 [[ "$SHARD" =~ ^[0-9]+$ && "$SHARD" -lt "$SHARDS" ]] || exit 2
 cd "$HERE"
-if [[ "${STAGE:-B}" == B ]]; then   # amendment 2: the rung (9, 3), the rung (8, 3), then the pricing, in turn per shard
+if [[ "${STAGE:-B1}" == B1 ]]; then   # amendment 3: pass 1
+  [[ -f "$HERE/maps/pass1.json" ]] || { echo "maps/pass1.json missing: run python stageb.py first" >&2; exit 2; }
+  BUDGET=36000 QUEUE="$HERE/queue_pass1.json" RESULTS="$HERE/results/stageB-pass1" bash "$HERE/run_b.sh" "$SHARD"
+  exit $?
+fi
+if [[ "${STAGE}" == B ]]; then   # amendment 2: the rung (9, 3), the rung (8, 3), then the pricing, in turn per shard
   rc=0
   for q in rung_9_3 rung_8_3 pricing; do
     [[ -f "$HERE/results/stageB/stop.requested" ]] && break

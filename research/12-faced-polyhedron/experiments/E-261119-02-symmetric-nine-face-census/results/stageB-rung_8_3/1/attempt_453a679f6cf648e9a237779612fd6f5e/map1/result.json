@@ -1,0 +1,97 @@
+{
+  "status": "SAT",
+  "seconds": 0.07869341599871404,
+  "budget_seconds": 600,
+  "budget_fraction": 0.00013115569333119008,
+  "ended_by": "completed",
+  "variables": 4889,
+  "clauses": 38226,
+  "cnf_sha256": "3caece21b28f60ff97ed3430023c18d707dfcb48ce5edda3eadb3bec7a77cdc5",
+  "solver_children_maxrss": 12189696,
+  "model_checked": true,
+  "processing": {
+    "hinge": {
+      "wrong_signs": 0,
+      "signs_match": true,
+      "geometry": {
+        "corner_triples_distinct": true,
+        "all_pairs_adjacent": true,
+        "V_E_F_chi": [
+          24,
+          36,
+          8,
+          -4
+        ],
+        "points_distinct": true,
+        "simple_faces": 8,
+        "nonsimple_faces": [],
+        "edges_consistent": true,
+        "bad_pairs": [],
+        "EMBEDDED": true
+      },
+      "planes": [
+        [
+          715758761,
+          -462732261,
+          -38868441,
+          -521565184
+        ],
+        [
+          -623723887,
+          -542265403,
+          -505507449,
+          -247705480
+        ],
+        [
+          -155314930,
+          -341661317,
+          -768589814,
+          -518073100
+        ],
+        [
+          964534181,
+          43419858,
+          9567615,
+          -260146665
+        ],
+        [
+          131784434,
+          -69070160,
+          -839014931,
+          523368560
+        ],
+        [
+          400042289,
+          426662310,
+          -769420536,
+          256741069
+        ],
+        [
+          433544453,
+          -737334312,
+          35014248,
+          516805606
+        ],
+        [
+          -48854994,
+          -926253447,
+          272800306,
+          255480838
+        ]
+      ],
+      "seconds": 0.7443494999897666,
+      "budget_seconds": 120,
+      "ended_by": "completed"
+    }
+  },
+  "candidate": "research/12-faced-polyhedron/experiments/E-261119-02-symmetric-nine-face-census/results/stageB-rung_8_3/1/attempt_453a679f6cf648e9a237779612fd6f5e/map1/map1_plain.candidate.json",
+  "candidate_verify_rc": 0,
+  "status_note": "CANDIDATE-NEEDS-REVIEW",
+  "task": "map1_plain",
+  "map_index": 1,
+  "scope": "sub-map embedding formula (submap=True), uniform symmetric C2 free, uniform, standard chart",
+  "canonical_sha256": "85d9a1c202af4973a9869b868d5bf9d875edcfd1de0e555af632b216ed42fdf0",
+  "unit": "research/12-faced-polyhedron/experiments/E-261119-02-symmetric-nine-face-census/results/stageB-rung_8_3/1/attempt_453a679f6cf648e9a237779612fd6f5e/map1",
+  "formula_sha256": "e9ba367ec2946069f22529ae84fbc3fda3e06a1c3ae3c7f8caa08a8fdc2ad94f",
+  "seed": 0
+}

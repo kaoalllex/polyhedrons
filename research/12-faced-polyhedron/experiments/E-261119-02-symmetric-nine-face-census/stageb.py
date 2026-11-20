@@ -8,6 +8,8 @@ moved chart (tranche.submap_formula). One record per map and rotation group (a m
 maps/pricing.json, queue_pricing.json   (9, 4): up to PRICE_PER_STRATUM maps per stratum and family, frozen draw
 maps/rung_9_3.json, queue_rung_9_3.json  (9, 3): the 8 C3 and 24 C2 4 x 2 + 1 classes (decided UNSAT, STATUS 3d)
 maps/rung_8_3.json, queue_rung_8_3.json  (8, 3): Roest-Vigh's and Mizhaev's maps under every free C2 they carry
+maps/pass1.json, queue_pass1.json        (9, 4), amendment 3: every map of both lists, cap PASS1_CAP; the maps file
+                                         (16 MB) is not committed: this script rebuilds it, the queue pins its SHA-256
 Usage: stageb.py [--check]"""
 from collections import defaultdict
 import hashlib
@@ -25,7 +27,7 @@ STAGE_A = HERE / 'results/stageA'
 RUNNER = ROOT / 'experiments/E-261103-03-s5-exact-decision-8-2-9-3'
 CONTROL_F9 = 'control_f9.json'
 DRAW_SEED, PRICE_PER_STRATUM, SHARDS = 2611200201, 3, 10
-SOLVER_CAP, BRIDGE_CAP = 600, 360
+SOLVER_CAP, BRIDGE_CAP, PASS1_CAP = 600, 360, 30
 CHART = {'C3': (False, 'C3 3+3+3, uniform, standard chart'), 'C2f': (True, 'C2 4 x 2 + 1, plane-only, moved chart'),
          'C2': (False, 'C2 free, uniform, standard chart')}
 
@@ -107,6 +109,11 @@ def rung_9_3():
                 maps=records_for('C3_9_3', sorted(maps_of('C3_9_3'))) + records_for('C2f_9_3', sorted(maps_of('C2f_9_3'))))
 
 
+def pass1():
+    recs = [r for name in ('C3_9_4', 'C2f_9_4') for r in records_for(name, sorted(maps_of(name)))]
+    return dict(note='E-261119-02 amendment 3: pass 1, every (9, 4) map of both lists', maps=recs)
+
+
 def rung_8_3():
     known = {v: {'known': k} for k, v in S.known_8_3_codes().items()}
     return dict(note='E-261119-02 amendment 2: (8, 3) rung, the two known maps under every free C2 (expected SAT)',
@@ -131,16 +138,17 @@ def queue(records_file, records, case, solver_cap, controls):
 
 def main():
     check = '--check' in sys.argv
-    built = [('pricing', pricing(), (9, 4), True), ('rung_9_3', rung_9_3(), (9, 3), True),
-             ('rung_8_3', rung_8_3(), (8, 3), False)]
-    for stem, data, case, controls in built:
-        path = HERE / 'maps' / (stem + '.json'); text = json.dumps(data, indent=1) + '\n'
-        qpath = HERE / ('queue_%s.json' % stem)
-        if check:
+    built = [('pricing', pricing(), (9, 4), True, SOLVER_CAP), ('rung_9_3', rung_9_3(), (9, 3), True, SOLVER_CAP),
+             ('rung_8_3', rung_8_3(), (8, 3), False, SOLVER_CAP), ('pass1', pass1(), (9, 4), True, PASS1_CAP)]
+    for stem, data, case, controls, cap in built:
+        path = HERE / 'maps' / (stem + '.json'); qpath = HERE / ('queue_%s.json' % stem)
+        indent = None if stem == 'pass1' else 1  # compact: 12562 records
+        text = json.dumps(data, indent=indent) + '\n'
+        if check and stem != 'pass1':  # the uncommitted pass-1 maps file is rebuilt; its queue pins the hash
             assert path.read_text() == text, path
         else:
             path.parent.mkdir(exist_ok=True); path.write_text(text)
-        q = json.dumps(queue(path, data['maps'], case, SOLVER_CAP, controls), indent=1) + '\n'
+        q = json.dumps(queue(path, data['maps'], case, cap, controls), indent=indent) + '\n'
         if check:
             assert qpath.read_text() == q, qpath
         else:

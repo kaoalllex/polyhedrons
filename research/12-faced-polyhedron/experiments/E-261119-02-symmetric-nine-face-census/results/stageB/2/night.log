@@ -1,0 +1,34 @@
+=== 2026-11-20 15:12:50 launch.sh start, shard 2
+=== 2026-11-20T12:12:50Z shard 2 queue rung_9_3
+controls start 2
+map control-f9-s2 start, solver 60s checker 120s
+map control-f9-s2 SAT
+map control-f9-neg-s2 start, solver 60s checker 120s
+map control-f9-neg-s2 UNSAT-SOLVER
+map 2 start, solver 600s checker 360s
+map 2 UNSAT-SOLVER
+map 12 start, solver 600s checker 360s
+map 12 UNSAT-SOLVER
+map 22 start, solver 600s checker 360s
+map 22 UNSAT-SOLVER
+SHARD-COMPLETE wall_seconds 11.35
+=== 2026-11-20T12:13:01Z shard 2 queue rung_8_3
+controls start 2
+map 2 start, solver 600s checker 360s
+map 2 SAT
+SHARD-COMPLETE wall_seconds 10.197
+=== 2026-11-20T12:13:12Z shard 2 queue pricing
+controls start 2
+map control-f9-s2 start, solver 60s checker 120s
+map control-f9-s2 SAT
+map control-f9-neg-s2 start, solver 60s checker 120s
+map control-f9-neg-s2 UNSAT-SOLVER
+map 2 start, solver 600s checker 360s
+map 2 UNSAT-SOLVER
+map 12 start, solver 600s checker 360s
+map 12 UNSAT-SOLVER
+map 22 start, solver 600s checker 360s
+map 22 UNSAT-SOLVER
+map 32 start, solver 600s checker 360s
+map 32 UNSAT-SOLVER
+SHARD-COMPLETE wall_seconds 9.176

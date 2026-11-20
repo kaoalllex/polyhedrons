@@ -99,3 +99,41 @@ The owner chose a two-pass stage B (2026-11-20): pass 1 every map of both lists 
 * **Stop / tree**: a (9, 3) SAT, a failed pinned control or no SAT on a known (8, 3) map -> stop, repair before stage B.
   A (9, 4) SAT -> bridge, `--all-pairs`, `candidate-check`, escalate. Otherwise amendment 3 (pass 1 cap, budget,
   controls) to the owner.
+
+**Amendment 3 (2026-11-20, before any pass-1 run): pass 1 of the two-pass stage B.** Amendment 2's owner launch
+(2026-11-20 12:12Z, 31 s wall, < 0.1 core-h): every pilot and pinned f9 control passed on every shard. The rung held (Q1):
+the 32 (9, 3) classes were UNSAT-SOLVER (<= 1.3 s); Roest-Vigh's map was SAT under 2 of its 3 groups and Mizhaev's under its
+1, all three realized with `--all-pairs` PASS. Pricing: 33 of 33 UNSAT-SOLVER in <= 0.29 s; the fraction decided by
+30, 60, 120 and 600 s is 1.0 in all 11 strata (Q2, Q3 held; Q4 holds so far). README "Stage B".
+* **Controls added** (all 33 pricing records C2f decide UNSAT in under 0.3 s, and no nine-face positive exists for the
+  moved-chart path: suspect until controlled): `controls_b.py` (the `E-261118-03/controls_12.py` pattern). The record's
+  formula with only the GP, symmetry and gauge clauses (mirror and orbit-flip gauge as stage B). Per record, 5 draws:
+  random integer planes symmetric under the record's rotation (C2f: half-turn, moved chart; C3: standard chart) gauged and
+  pinned, must be SAT; planes symmetric under a conjugate t g t != g instead, must be UNSAT; the unpinned formula SAT.
+  Result on this commit (`results/controls_b.json`, 8 s): 165 of 165 SAT, 165 of 165 UNSAT, 33 of 33 SAT, PASS. Formula
+  level, the same code builds every pass-1 formula, so it is not repeated per shard. Every shard keeps the pinned f9
+  controls and the runner's pilot controls.
+* **Pass 1**: `queue_pass1.json`, every (9, 4) map of both lists: 12562 records (118 C3, 12444 C2f; one group each), in
+  stage-A order (C3 first). Kissat seed 0, cap 30 s (100 x the priced maximum), bridge 360 s on a SAT, no proofs, 10
+  shards, `BUDGET` 36000 s (the row's 10 core-h as a hard ceiling; pass 1 + pass 2 stay within it unless the owner
+  extends). `maps/pass1.json` (7.7 MB, SHA-256 `82faa3402b1d64a4eb1249604060629e1e4d4612e03f3a5419eeb99121be58a7`) is not committed: `stageb.py` rebuilds it
+  deterministically (two builds agree), and the runner refuses a file whose hash differs from the queue's. The 33 pricing
+  records are re-run inside pass 1: any status change stops the reading (replication check).
+* **Projection**: the pricing sum over strata gives ~2260 solver-s, ~1.4 core-h with the unit overhead. Smoke on this
+  commit (10 shards, 50 s, then stop; folder deleted): 821 records, all UNSAT-SOLVER, max 0.45 s, 0.51 s wall per unit
+  under full load, so ~1.8 core-h, ~11 min wall. About 0.5 GB of raw output goes to `../polyhedrons-data` (`move_raw.py`).
+  Tail risk: with 3 maps per stratum the pooled 95% upper bound on the undecided share is ~9% (33 of 33 decided), up to +9 core-h
+  at 30 s, which the ceiling cuts. Units not dispatched stay pending (resumable).
+* **Run**: owner launch `launch.sh 261119-02 start` (`run.sh` now defaults to pass 1, `STAGE=B` keeps amendment 2) ->
+  `results/stageB-pass1/<s>/`.
+* **Predictions**: (R1) every pass-1 record decides within 30 s (0.85); (R2) no (9, 4) SAT (0.9); (R3) pass 1 <= 3 core-h
+  (0.9).
+* **Readings / tree**: a failed control or a replication mismatch -> stop, repair. A SAT -> bridge, `--all-pairs`,
+  `candidate-check`, escalate. UNKNOWNs -> pass 2 at 600 s: owner launch inside the row's remaining budget if <= 5% (628
+  records), else the pass-2 price goes to the owner first. A family with every record UNSAT-SOLVER -> that family's
+  uniform symmetric (9, 4) formulas are UNSAT-SOLVER; per the tree, genus 5 for it, priced the same way.
+* **Power / scope**: an UNSAT-SOLVER holds for its exact formula (uniform symmetric, C3 standard chart, C2f plane-only
+  moved chart) and is never a negative result without a checked replay. Nothing about non-symmetric realizations of these
+  maps, other actions (mirrors, C2 3 x 2 + 3), or other genera.
+* **Deviations**: a 30 s pass-1 cap instead of the row's 600 s (two-pass, owner 2026-11-20); 3 priced maps per stratum
+  instead of 1 (amendment 2).

@@ -48,6 +48,16 @@ For stage B: at the row's 10 core-h the C2 list leaves under 3 s per map (12444 
 (118) fits. Pricing one map per stratum (four C3, seven C2) decides the stage-B amendment; a C2 subset or a larger
 budget goes to the owner.
 
+## Stage B (2026-11-20)
+
+Amendment 2 (owner launch 12:12Z, 31 s wall, < 0.1 core-h; `results/stageB-*`): all controls pass on every shard. Rung:
+the 32 (9, 3) symmetric classes UNSAT-SOLVER (agrees with 3d); Roest-Vigh's map SAT under 2 of its 3 free-C2 groups,
+Mizhaev's SAT under its 1, all three realized, `--all-pairs` PASS. Pricing: 33 of 33 records UNSAT-SOLVER in <= 0.29 s
+(12 C3, 21 C2f, all 11 strata; decided fraction 1.0 by 30 s everywhere). Added formula controls (`controls_b.py`,
+`results/controls_b.json`): on every pricing record, generic symmetric planes pinned SAT 165 of 165, planes of a wrong
+action UNSAT 165 of 165. Pass 1 (amendment 3): all 12562 records at 30 s, projected ~1.8 core-h, ~11 min wall (smoke
+0.51 s per unit). Label: UNSAT-SOLVER per exact formula; no negative claim.
+
 ## Next
 
 SAT -> bridge, `--all-pairs` nine faces, `candidate-check`, escalate. A complete family all UNSAT-SOLVER -> genus 5
