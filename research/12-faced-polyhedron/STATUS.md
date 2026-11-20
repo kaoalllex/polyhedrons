@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-20** (E-261119-01 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
-registered result is E-261119-01 (section 3bd); results are listed newest last in section 3, chronology in
+As of **2026-11-20** (E-261119-01 concluded; E-261119-02 stage A recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
+registered result is E-261119-02 stage A (section 3be); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -15,7 +15,7 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 ## 0. State in one paragraph
 
 **Focus since 2026-11-19 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
-mutually adjacent faces (S1, genus free) first, on the two uniform symmetric families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (E-261119-01: discovery passed, refutation undecided, section 3bd) and a symmetric nine-face census with per-map formulas (E-261119-02, the main investment), P6 the fallback; no result yet. The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
+mutually adjacent faces (S1, genus free) first, on the two uniform symmetric families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (E-261119-01: discovery passed, refutation undecided, section 3bd) and a symmetric nine-face census with per-map formulas (E-261119-02, the main investment; stage A lists both families, section 3be), P6 the fallback; no constructive result yet. The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
 E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
 E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
 (11, 5) one plane-only price probe (E-261118-03: all 20 Aut+ = 2 maps UNSAT-SOLVER, closed for the laptop, section 3bc; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
@@ -545,6 +545,16 @@ no candidate, no proof: planning only. Not run: improper symmetries (no uniform 
 Free C2 at (8, 30) and C3 3+3+3 at (9, 39), decided negatives (3d), UNKNOWN at 1 h: no refutation power at 66 / 72
 orbits, so the nine-face UNKNOWNs of 3bb carry no information. Method scope: one host, one seed, 5 workers.
 `experiments/E-261119-01-p3sym-power-ladder/CONCLUSION.md`.
+
+## 3be. E-261119-02 stage A: symmetric nine-face census (2026-11-20)
+
+**Both families complete and pass their gates (EXACT; coverage PROVED-1; maps, not polyhedra)**: C3 3+3+3 at (9, 4) has
+118 admissible map classes (18 demand classes, 162 units; 86 with no fixed triangle, 32 with three); C2 4 x 2 + 1 at
+(9, 4) has 12444 (497 units); 23 classes carry both actions. Every control exact (C3 (9, 3) = the census's 8; C2 4 x 2 + 1
+(9, 3) = the census's 24; free C2 (8, 2) = 2; (7, 1) = Szilassi), every action checks; the free-C2 (8, 3) list has 790
+classes and holds both known maps. 807 of 807 units complete in 88 s wall, 0.24 core-h. Stage B (per-map symmetric
+formulas) is not run; no existence or non-existence statement for nine faces follows.
+`experiments/E-261119-02-symmetric-nine-face-census/README.md`.
 
 ## 4. What may and may not be claimed
 

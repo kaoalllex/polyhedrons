@@ -31,6 +31,23 @@ with 3d); controls: generic moved nine-plane signs pinned on the symmetry + gaug
 fixed-face positive, a wrong pairing, a wrong action. E-261119-01's U1 is compared with this rung only on common
 decoded maps.
 
+## Stage A results (2026-11-20)
+
+Owner launch 2026-11-20 10:01Z on `1b80fe52` (after the 0 s defective launch, PLAN amendment 1): unit tests OK in shard 0,
+then all 807 units complete (the unit list has 807, not the 808 that amendment 1 states) in 88 s wall, 0.24 core-h by the
+manifests (655.8 core-s inside units); with the defective launch 0.30 core-h of the 1 core-h cap. Gate: C3 and C2 both pass,
+every control exact (`results/stageA/summary-brief.json`). The lists: STATUS 3be. Prediction vs outcome: P1-P4 held; P3
+(C2 completes, 0.45) held with room (617 core-s); P5 held as maps only (the free-C2 (8, 3) list has 788 classes besides the
+two known ones; maps are not polyhedra). Session re-check: every (9, 4) and free-C2 (8, 3) class rebuilt from its
+canonical code passes `review.check`, `census.admissible` and re-canonicalises to itself; per stratum: C3 b0 m222 76,
+b0 m32 10, b3 m222 27, b3 m32 5; C2 m22222 6152, m32222 2224, m222222 1848, m3222 1524, m3322 344, m322222 176, m33222 176.
+Raw claims markers, the full `summary.json` (25 MB, rebuilt by `symcensus.py summary results/stageA`) and the defective
+launch are in `../polyhedrons-data/<same path>`. Label: EXACT computation, coverage PROVED-1; no realization is claimed.
+
+For stage B: at the row's 10 core-h the C2 list leaves under 3 s per map (12444 maps), against a 600 s cap; the C3 list
+(118) fits. Pricing one map per stratum (four C3, seven C2) decides the stage-B amendment; a C2 subset or a larger
+budget goes to the owner.
+
 ## Next
 
 SAT -> bridge, `--all-pairs` nine faces, `candidate-check`, escalate. A complete family all UNSAT-SOLVER -> genus 5

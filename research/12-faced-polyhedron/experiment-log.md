@@ -1104,3 +1104,7 @@ and adds stage B controls; P6 only if neither family advances. No compute beyond
 2026-11-20 — E-261119-01 (week item 1, P3-sym power ladder): free C2 (8, 36) returned both known maps (59 s, 81 s,
 realized), then UNKNOWN at 1.5 h; (8, 30) and C3 (9, 39) UNKNOWN at 1 h: discovery PASS, no refutation power; 17.5 core-h
 recorded plus 8.5 in a discarded first launch. `experiments/E-261119-01-p3sym-power-ladder/CONCLUSION.md`.
+
+2026-11-20 — E-261119-02 stage A (week item 2): symmetric (9, 4) census complete for both families, every control
+exact (C3 3+3+3 118 classes, C2 4 x 2 + 1 12444; 0.24 core-h); stage B after per-stratum pricing. STATUS 3be;
+`experiments/E-261119-02-symmetric-nine-face-census/README.md`.

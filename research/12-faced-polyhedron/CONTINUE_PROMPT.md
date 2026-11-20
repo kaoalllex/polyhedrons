@@ -9,15 +9,17 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-20, E-261119-01 concluded; E-261119-02 stage A pre-registered, owner launch pending)
+## Hand-over (2026-11-20, E-261119-02 stage A done; pricing and the stage-B amendment next)
 
 * Branch `lab/2026-11-19`; week plan in `ROADMAP.md` (owner-approved lead review 2026-11-19 and its reconcile).
-* E-261119-01 (week item 1) done, STATUS 3bd: discovery PASS (free C2 (8, 36) returned both known maps, realized), then
-  UNKNOWN at 1.5 h; (8, 30) and C3 (9, 39) UNKNOWN at 1 h (no refutation power); symmetric (8, 3) slice OPEN.
-* 2026-11-20: the first stage-A launch ran no unit (bash `SECONDS` gave a 0 s cap); repaired to `BUDGET` (PLAN amendment 1).
-* Next (item 2): the owner re-runs `bash research/12-faced-polyhedron/overnight/launch.sh 261119-02 start` (10 x 360 s,
-  <= 1 core-h; the unit tests run in shard 0); then `python3 symcensus.py summary results/stageA`: per-family gate (C3,
-  C2), lists, strata; pricing one map per multiplicity stratum and the stage-B amendment follow.
+* Item 1 (E-261119-01) done, STATUS 3bd. Item 2 stage A done, STATUS 3be: both families complete, every control exact
+  (C3 3+3+3 (9, 4) 118 classes, C2 4 x 2 + 1 (9, 4) 12444; 0.24 core-h). No run in flight.
+* Next (item 2): price one map per multiplicity stratum (four C3, seven C2; README "Stage A results") with the stage-B
+  formulas (C3 omsat C3 clauses, standard chart; C2 plane-only moved chart, `build_sym` gauge), then the stage-B
+  amendment to `PLAN.md` with its rung and controls; the owner launches stage B (<= 10 core-h, 10 shards).
+* Maps per stratum: `symcensus.py summary results/stageA` rebuilds the full `summary.json` (codes, actions) from the
+  committed `results.jsonl` (run it with `~/.venvs/polyhedra/bin/python`).
+* For the lead: 12444 C2 maps leave < 3 s per map in stage B's 10 core-h against a 600 s cap; after pricing, either a
+  C2 subset rule or a larger budget is needed (owner decision).
 * For the lead: a P3-sym UNKNOWN at nine faces carries no information until a refutation rung decides (3bd).
-* For the lead: E-261119-01 overran its hard 20 core-h by 6.8 (a first launch stopped and killed with no record, 8.5
-  core-h discarded); the normaliser rule under-blocks (amendment 1), so E-261119-02's per-map blocking uses invariant copies.
+* For the lead: E-261119-01 overran its hard 20 core-h by 6.8 (a discarded first launch); its normaliser rule under-blocks.
