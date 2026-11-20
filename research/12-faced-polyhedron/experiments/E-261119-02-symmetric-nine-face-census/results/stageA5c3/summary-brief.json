@@ -1,0 +1,95 @@
+{
+ "note": "Brief form of `symcensus.py summary results/stageA5c3 A5c3` (the printed report); the full summary.json (per-map codes) is rebuilt from the committed results.jsonl by the same command.",
+ "stage": "A5c3",
+ "controls": {
+  "C3_demand_classes_burnside": true,
+  "C3_9_3_equals_census": true,
+  "actions_ok_C3": true
+ },
+ "gate": {
+  "C3": true
+ },
+ "truth_sizes": {
+  "C3_9_3": 8,
+  "C3_9_3_crosscheck": 8,
+  "C2f_9_3": 24,
+  "C2_8_2": 2,
+  "C2f_7_1": 1,
+  "all_7_1": 1
+ },
+ "core_seconds": 7.4,
+ "configs": {
+  "C3_9_3": {
+   "role": "control",
+   "family": "C3",
+   "F": 9,
+   "genus": 3,
+   "units_planned": 24,
+   "units_recorded": 24,
+   "complete": true,
+   "demand_classes": 2,
+   "normaliser": 324,
+   "fixed_choices": 12,
+   "rows": 54,
+   "columns": 24,
+   "classes": 8,
+   "seconds": 1.28,
+   "strata": {
+    "b2 m2": {
+     "covers": 348,
+     "gluings": 696,
+     "map_hits": 264,
+     "nodes": 5349,
+     "seconds": 1.28,
+     "units": 24,
+     "complete": 24
+    }
+   }
+  },
+  "C3_9_5": {
+   "role": "target",
+   "family": "C3",
+   "F": 9,
+   "genus": 5,
+   "units_planned": 498,
+   "units_recorded": 498,
+   "complete": true,
+   "demand_classes": 83,
+   "normaliser": 324,
+   "fixed_choices": 6,
+   "rows": 54,
+   "columns": 24,
+   "classes": 0,
+   "seconds": 6.16,
+   "strata": {
+    "b1 m22222": {
+     "covers": 0,
+     "gluings": 0,
+     "map_hits": 0,
+     "nodes": 111425,
+     "seconds": 2.1,
+     "units": 132,
+     "complete": 132
+    },
+    "b1 m3222": {
+     "covers": 0,
+     "gluings": 0,
+     "map_hits": 0,
+     "nodes": 148867,
+     "seconds": 2.93,
+     "units": 246,
+     "complete": 246
+    },
+    "b1 m332": {
+     "covers": 0,
+     "gluings": 0,
+     "map_hits": 0,
+     "nodes": 59333,
+     "seconds": 1.12,
+     "units": 120,
+     "complete": 120
+    }
+   }
+  }
+ }
+}

@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-20** (E-261119-01 concluded; E-261119-02 stage A and stage-B pass 1 recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
+As of **2026-11-20** (E-261119-01 concluded; E-261119-02 stage A, stage-B pass 1 and the C3 (9, 5) census recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
 registered result is E-261119-02 stage B pass 1 (section 3bf); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
@@ -565,6 +565,14 @@ the pinned f9 pair and the runner's controls passed on all 10 shards; the 33 pri
 formula hash); the rung of amendment 2 and the formula controls of `controls_b.py` hold (README). 1.83 core-h, 11 min wall.
 Scope: these exact formulas only; nothing about non-symmetric realizations of these maps, mirrors, C2 3 x 2 + 3, or other
 genera, and no negative claim without a checked replay. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+## 3bg. E-261119-02 amendment 4: C3 3+3+3 census at (9, 5) (2026-11-20)
+
+**No admissible C3 3+3+3 map at (9, 5) (EXACT; coverage PROVED-1)**: all 498 units (83 demand classes, Burnside-checked,
+one fixed triangle forced) complete with no exact cover; the C3 (9, 3) control is exact. Consistent with the Z3
+fixed-point argument (one fixed point is impossible, PROVED-1). Scope: dual maps of cubic solids (admissible
+triangular maps) only. Not run: the C2 4 x 2 + 1 (9, 5) census (owner night, amendment 4); nothing about mirrors, other
+actions or genera. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
 
 ## 4. What may and may not be claimed
 

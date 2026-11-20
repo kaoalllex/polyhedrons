@@ -69,6 +69,18 @@ chart, E-261118-03); no realizable nine-face map exists to serve as a map-level 
 `map_index` into `maps/pass1.json`, rebuilt by `stageb.py`). Label: UNSAT-SOLVER per exact formula (STATUS 3bf); no
 negative claim.
 
+## Genus 5 (amendment 4, 2026-11-20)
+
+C3 3+3+3 at (9, 5), stage A5c3, session run on `8b5bc10e` (10 shards, 13 s wall, ~0.04 core-h; 7.4 core-s inside units):
+unit tests OK, the C3 (9, 3) control exact (8 classes), 83 demand classes = the Burnside count, all 498 units complete,
+**no exact cover in any unit, so no map** (`results/stageA5c3/summary-brief.json`). Gate passes; the list is empty (G2
+held). Consistent with a standard argument (PROVED-1): b = 1 is forced (34 - b = 0 mod 3), and b counts the fixed points
+of the rotation on the surface (it fixes no vertex, and an order-3 map cannot fix an edge), but the rotation numbers at
+the fixed points of an orientation-preserving Z3 action sum to 0 mod 3, so exactly one fixed point is impossible. Label:
+EXACT computation, coverage PROVED-1: no admissible C3 3+3+3 (9, 5) map, so stage B is void for C3 at genus 5. The
+claim markers and the full `summary.json` are in `../polyhedrons-data/<same path>`. The C2 4 x 2 + 1 census (A5c2) is the
+owner night of amendment 4.
+
 ## Next
 
 Both families are all UNSAT-SOLVER at (9, 4), so per the tree: genus 5 (E = 51) for both, priced the same way (stage-A

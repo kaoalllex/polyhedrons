@@ -1112,3 +1112,7 @@ exact (C3 3+3+3 118 classes, C2 4 x 2 + 1 12444; 0.24 core-h); stage B after per
 2026-11-20 — E-261119-02 stage B pass 1 (week item 2): all 12562 (9, 4) records (C3 118, C2 4 x 2 + 1 12444)
 UNSAT-SOLVER at 30 s (max 0.63 s), every control passed, the 33 pricing records replicated; 1.83 core-h, 11 min wall;
 no pass 2. Next: genus 5 per the tree. STATUS 3bf; `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+2026-11-20 — E-261119-02 amendment 4 (genus 5): the C3 3+3+3 census at (9, 5) is complete and empty (498 units, no exact
+cover; C3 (9, 3) control exact; consistent with the Z3 one-fixed-point argument). The C2 4 x 2 + 1 (9, 5) census (priced
+~12 core-h, 40 core-h cap) is the owner night. STATUS 3bg; `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
