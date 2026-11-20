@@ -72,5 +72,6 @@ negative claim.
 ## Next
 
 Both families are all UNSAT-SOLVER at (9, 4), so per the tree: genus 5 (E = 51) for both, priced the same way (stage-A
-census at (9, 5), then per-stratum pricing; an amendment before any run). SAT -> bridge, `--all-pairs` nine faces,
+census at (9, 5), then per-stratum pricing; an amendment before any run). Amendment 4 (2026-11-20): C3 (9, 5) census
+(498 units) in the session, C2 4 x 2 + 1 (9, 5) census (12288 units, priced ~12 core-h) as an owner night, 40 core-h cap. SAT -> bridge, `--all-pairs` nine faces,
 `candidate-check`, escalate. Neither family advances -> E-261117-04 (P6). A control failure -> repair. Lab: Opus, high / Codex gpt-6-astra, high.

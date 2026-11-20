@@ -35,6 +35,16 @@ class SymCensusTests(unittest.TestCase):
         self.assertEqual(s.fixed, [])
         self.assertTrue(all(len(o) == 2 for o in s.rows))
 
+    def test_genus_five_bookkeeping(self):
+        c3, c2 = S.setup('C3_9_5'), S.setup('C2f_9_5')
+        self.assertEqual((c3.k, c3.V, len(c3.excess_vectors()), len(c3.reps)), (15, 34, 3432, 83))
+        self.assertEqual(sorted(len(f) for f in c3.fchoices), [1] * 6)    # b = 1: 3 face orbits x 2 orientations
+        self.assertEqual((len(c2.reps), len(c2.fchoices), c2.fixed), (12288, 1, []))
+        for name in ('C3_9_4', 'C2f_9_4', 'C3_9_5', 'C2f_9_5'):
+            self.assertEqual(len(S.setup(name).reps), S.burnside_classes(S.setup(name)))
+        self.assertEqual(len(S.units('A')), 807)                          # stage A's recorded unit list
+        self.assertEqual((len(S.units('A5c3')), len(S.units('A5c2'))), (24 + 498, 1 + 3 + 6 + 114 + 12288))
+
     def test_szilassi(self):
         t = S.census_truth()
         self.assertEqual(codes('C2f_7_1'), t['C2f_7_1'])

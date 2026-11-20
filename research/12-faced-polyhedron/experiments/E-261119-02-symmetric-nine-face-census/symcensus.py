@@ -10,7 +10,8 @@ commutes with the dart action. So the search covers, per excess vector of the pa
 <rho>, which maps rho-maps to rho-maps), per choice of fixed triangles: every exact cover of the directed-pair orbit
 demands by rows, then every equivariant gluing, then the vertex-link check (one cycle per vertex) and census.review.check.
 
-Usage: symcensus.py shard SHARD SHARDS OUT SECONDS | symcensus.py summary OUT | symcensus.py units
+Usage: symcensus.py shard SHARD SHARDS OUT SECONDS [STAGE] | symcensus.py summary OUT [STAGE] | symcensus.py units [STAGE]
+STAGE: A (genus 4 targets, default), A5c3 or A5c2 (genus 5, C3 or C2 family, PLAN amendment 4)
 """
 from collections import Counter
 import functools
@@ -35,13 +36,16 @@ C3_9 = (1, 2, 0, 4, 5, 3, 7, 8, 6)                  # 3 + 3 + 3
 C2F_9 = (1, 0, 3, 2, 5, 4, 7, 6, 8)                 # 4 x 2 + 1 (one fixed face)
 C2F_7 = (1, 0, 3, 2, 5, 4, 6)                       # 3 x 2 + 1 (Szilassi's family)
 C2_8 = (1, 0, 3, 2, 5, 4, 7, 6)                     # 4 x 2, free
-# name -> (F, genus, rho, role); targets C3_9_4 and C2f_9_4, the rest are controls (PLAN.md); C3 before C2
+# name -> (F, genus, rho, role); C3 before C2 within a stage (PLAN.md). Stage A: targets C3_9_4 and C2f_9_4, the rest
+# are controls; amendment 4 (genus 5): stage A5c3 (C3_9_5 with the C3 control), stage A5c2 (C2f_9_5 with the C2 ones)
 CONFIGS = {'C3_9_3': (9, 3, C3_9, 'control'), 'C3_9_4': (9, 4, C3_9, 'target'),
            'C2f_7_1': (7, 1, C2F_7, 'control'), 'C2_8_2': (8, 2, C2_8, 'control'),
            'C2f_9_3': (9, 3, C2F_9, 'control'), 'C2_8_3': (8, 3, C2_8, 'control'),
-           'C2f_9_4': (9, 4, C2F_9, 'target')}
-FAMILY = {'C3_9_3': 'C3', 'C3_9_4': 'C3', 'C2f_7_1': 'C2', 'C2_8_2': 'C2', 'C2f_9_3': 'C2', 'C2_8_3': 'C2',
-          'C2f_9_4': 'C2'}
+           'C2f_9_4': (9, 4, C2F_9, 'target'), 'C3_9_5': (9, 5, C3_9, 'target'), 'C2f_9_5': (9, 5, C2F_9, 'target')}
+FAMILY = {n: 'C3' if n.startswith('C3') else 'C2' for n in CONFIGS}
+STAGES = {'A': ['C3_9_3', 'C3_9_4', 'C2f_7_1', 'C2_8_2', 'C2f_9_3', 'C2_8_3', 'C2f_9_4'],
+          'A5c3': ['C3_9_3', 'C3_9_5'], 'A5c2': ['C2f_7_1', 'C2_8_2', 'C2f_9_3', 'C2_8_3', 'C2f_9_5']}
+TARGETS = {'A': {'C3': 'C3_9_4', 'C2': 'C2f_9_4'}, 'A5c3': {'C3': 'C3_9_5'}, 'A5c2': {'C2': 'C2f_9_5'}}
 MAX_MULT = 3
 
 
@@ -122,10 +126,20 @@ class Setup:
         perm = []
         for s in N:
             perm.append([self.porb[tuple(sorted((s[a], s[b])))] for a, b in (o[0] for o in self.pair_orbits)])
-        reps = {}
+        # one pass per orbit: the first enumerated member is the representative, keyed by the orbit's least sorted
+        # (orbit, excess) list
+        reps = {}; seen = set()
         for e in self.excess_vectors():
-            key = min(tuple(sorted((P[i], x) for i, x in enumerate(e) if x)) for P in perm)
-            reps.setdefault(key, e)
+            if e in seen:
+                continue
+            images = set()
+            for P in perm:
+                img = [0] * len(e)
+                for i, x in enumerate(e):
+                    img[P[i]] = x
+                images.add(tuple(img))
+            seen |= images
+            reps[min(tuple((j, x) for j, x in enumerate(img) if x) for img in images)] = e
         return [reps[k] for k in sorted(reps)], len(N)
 
     def fixed_choices(self):
@@ -272,12 +286,32 @@ def check_action(code, action, p, fixed_vertices):
     return k == p and fixed == fixed_vertices
 
 
+def burnside_classes(s):
+    """Number of excess-vector classes by Burnside's lemma (a count independent of demand_reps): the mean over the
+    normaliser of the vectors constant on the cycles of its action on the pair orbits."""
+    sizes = [len(o) for o in s.pair_orbits]; N = normaliser(s.rho); total = 0
+    for g in N:
+        P = [s.porb[tuple(sorted((g[a], g[b])))] for a, b in (o[0] for o in s.pair_orbits)]
+        seen = [False] * len(P); ways = Counter({0: 1})
+        for i in range(len(P)):
+            if seen[i]:
+                continue
+            L = 0; j = i
+            while not seen[j]:
+                seen[j] = True; j = P[j]; L += 1
+            ways = sum((Counter({t + e * sizes[i] * L: w}) for t, w in ways.items() for e in range(MAX_MULT)
+                        if t + e * sizes[i] * L <= s.k), Counter())
+        total += ways[s.k]
+    assert total % len(N) == 0
+    return total // len(N)
+
+
 # ----------------------------------------------------------------------------- units, shards, summary
 
-def units():
-    """Deterministic unit list: (config, demand index, fixed-choice index), C3 configs first."""
+def units(stage='A'):
+    """Deterministic unit list of a stage: (config, demand index, fixed-choice index), C3 configs first."""
     out = []
-    for name in CONFIGS:
+    for name in STAGES[stage]:
         s = setup(name)
         out += [(name, di, fi) for di in range(len(s.reps)) for fi in range(len(s.fchoices))]
     return out
@@ -323,14 +357,15 @@ def manifest():
                                           ROOT / 'reviews/strategy-review-2026-11-03-flipwalk.py')})
 
 
-def shard(sh, shards, out, seconds):
+def shard(sh, shards, out, seconds, stage='A'):
     """Claim units in order (O_EXCL claim files shared by all shards) until the deadline; one record per unit."""
     deadline = time.monotonic() + seconds
     out = Path(out); claims = out / 'claims'; claims.mkdir(parents=True, exist_ok=True)
     mine = out / str(sh); mine.mkdir(parents=True, exist_ok=True)
     (mine / ('manifest-%d.json' % int(time.time()))).write_text(json.dumps(dict(manifest(), shard=sh, shards=shards,
-                                                                               seconds=seconds), indent=1) + '\n')
-    for name, di, fi in units():
+                                                                               seconds=seconds, stage=stage),
+                                                                          indent=1) + '\n')
+    for name, di, fi in units(stage):
         if time.monotonic() > deadline or (out / 'stop.requested').exists():
             break
         try:
@@ -373,10 +408,11 @@ def known_8_3_codes():
     return out
 
 
-def summary(out, write=True):
-    rows = records(out); U = units()
+def summary(out, write=True, stage='A'):
+    rows = records(out); U = units(stage); T = TARGETS[stage]
     rep = {}
-    for name, (F, g, rho, role) in CONFIGS.items():
+    for name in STAGES[stage]:
+        F, g, rho, role = CONFIGS[name]
         rs = [r for r in rows if r['config'] == name]
         planned = sum(1 for u in U if u[0] == name)
         codes = {}
@@ -407,22 +443,29 @@ def summary(out, write=True):
                          per_map=[dict(code=k, b=sorted(v['b']), fixed_edges=sorted(v['fixed_edges']),
                                        actions=len(v['actions']), strata=sorted(v['strata']), action_ok=v['action_ok'])
                                   for k, v in sorted(codes.items())])
-    truth = census_truth(); k83 = known_8_3_codes(); c = {}
+    truth = census_truth(); c = {}
     got = lambda n: rep[n]['codes'] if rep[n]['complete'] else None
-    c['C3_demand_classes_18'] = rep['C3_9_4']['demand_classes'] == 18
-    c['C3_9_3_equals_census'] = got('C3_9_3') == truth['C3_9_3'] == truth['C3_9_3_crosscheck'] and len(truth['C3_9_3']) == 8
-    c['C2f_9_3_equals_census'] = got('C2f_9_3') == truth['C2f_9_3']
-    c['C2_8_2_equals_census'] = got('C2_8_2') == truth['C2_8_2']
-    c['C2f_7_1_is_szilassi'] = got('C2f_7_1') == truth['C2f_7_1'] == truth['all_7_1']
-    for fam in ('C3', 'C2'):
+    if stage == 'A':
+        c['C3_demand_classes_18'] = rep['C3_9_4']['demand_classes'] == 18
+    else:
+        for fam, name in T.items():
+            c[fam + '_demand_classes_burnside'] = rep[name]['demand_classes'] == burnside_classes(setup(name))
+    if 'C3' in T:
+        c['C3_9_3_equals_census'] = (got('C3_9_3') == truth['C3_9_3'] == truth['C3_9_3_crosscheck']
+                                     and len(truth['C3_9_3']) == 8)
+    if 'C2' in T:
+        k83 = known_8_3_codes()
+        c['C2f_9_3_equals_census'] = got('C2f_9_3') == truth['C2f_9_3']
+        c['C2_8_2_equals_census'] = got('C2_8_2') == truth['C2_8_2']
+        c['C2f_7_1_is_szilassi'] = got('C2f_7_1') == truth['C2f_7_1'] == truth['all_7_1']
+        c['C2_8_3_holds_both_known'] = rep['C2_8_3']['complete'] and set(k83.values()) <= set(rep['C2_8_3']['codes'])
+    for fam in T:
         c['actions_ok_' + fam] = all(p['action_ok'] for r in rep.values() if r['family'] == fam for p in r['per_map'])
-    c['C2_8_3_holds_both_known'] = rep['C2_8_3']['complete'] and set(k83.values()) <= set(rep['C2_8_3']['codes'])
-    gate = dict(C3=c['C3_9_3_equals_census'] and c['C3_demand_classes_18'] and c['actions_ok_C3']
-                and rep['C3_9_4']['complete'],
-                C2=all(c[k] for k in ('C2f_9_3_equals_census', 'C2_8_2_equals_census', 'C2f_7_1_is_szilassi',
-                                      'C2_8_3_holds_both_known', 'actions_ok_C2'))
-                and rep['C2f_9_4']['complete'])
-    res = dict(controls=c, gate=gate, truth_sizes={k: len(v) for k, v in truth.items()}, configs=rep,
+    fam_controls = dict(C3=('C3_9_3_equals_census',), C2=('C2f_9_3_equals_census', 'C2_8_2_equals_census',
+                                                          'C2f_7_1_is_szilassi', 'C2_8_3_holds_both_known'))
+    gate = {fam: all(c[k] for k in fam_controls[fam] + ('actions_ok_' + fam,)) and rep[name]['complete']
+            and all(v for k, v in c.items() if k.startswith(fam + '_demand_classes')) for fam, name in T.items()}
+    res = dict(stage=stage, controls=c, gate=gate, truth_sizes={k: len(v) for k, v in truth.items()}, configs=rep,
                core_seconds=round(sum(r['seconds'] for r in rows), 1))
     if write:
         (Path(out) / 'summary.json').write_text(json.dumps(res, indent=1) + '\n')
@@ -435,10 +478,10 @@ def summary(out, write=True):
 if __name__ == '__main__':
     mode, *rest = sys.argv[1:]
     if mode == 'shard':
-        shard(int(rest[0]), int(rest[1]), rest[2], float(rest[3]))
+        shard(int(rest[0]), int(rest[1]), rest[2], float(rest[3]), *rest[4:])
     elif mode == 'summary':
-        summary(rest[0])
+        summary(rest[0], stage=(rest[1:] or ['A'])[0])
     elif mode == 'units':
-        print(Counter(u[0] for u in units()))
+        print(Counter(u[0] for u in units(*rest)))
     else:
         raise SystemExit(__doc__)

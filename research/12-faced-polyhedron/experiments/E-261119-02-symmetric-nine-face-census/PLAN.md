@@ -137,3 +137,42 @@ the 32 (9, 3) classes were UNSAT-SOLVER (<= 1.3 s); Roest-Vigh's map was SAT und
   maps, other actions (mirrors, C2 3 x 2 + 3), or other genera.
 * **Deviations**: a 30 s pass-1 cap instead of the row's 600 s (two-pass, owner 2026-11-20); 3 priced maps per stratum
   instead of 1 (amendment 2).
+
+**Amendment 4 (2026-11-20, before any genus-5 run): the census at (9, 5).** Pass 1 left both families all UNSAT-SOLVER at
+(9, 4) (STATUS 3bf), so per the tree genus 5 (E = 51) for both, priced the same way. Owner choice (2026-11-20, after the
+price below): the C3 census now in the session, the C2 census as one owner night with a 40 core-h hard cap; stage B at
+genus 5 goes to amendment 5 after the gate.
+* **Bookkeeping** (EXACT, session): V = 34 triangles, k = 15 extra edges; multiplicity <= 3 still holds (2m distinct
+  corner triples on a pair out of 7). C3: 12 pair orbits, 3432 excess vectors, 83 classes; 34 - b = 0 mod 3 forces b = 1
+  (one fixed triangle, on one of the 3 face orbits, 2 orientations): 6 fixed choices, 498 units. C2 4 x 2 + 1: 20 pair
+  orbits (4 of size 1), 1330768 vectors, 12288 classes, no fixed triangle: 12288 units. Every class count, the recorded
+  (9, 3), (8, 3) and (9, 4) ones included, equals an independent Burnside count over the normaliser (`burnside_classes`).
+* **Code** (`symcensus.py`, `run.sh`, `test_symcensus.py` 7 OK): `demand_reps` makes one pass per normaliser orbit (the
+  old loop is 384 x 1.3M at (9, 5)); same representatives in the same order: `summary results/stageA` rebuilt with the new
+  code equals the committed `summary-brief.json`. New configs C3_9_5, C2f_9_5; stages A5c3 (C3 (9, 3) control + C3_9_5)
+  and A5c2 (the four C2 controls + C2f_9_5), each gated alone; `run.sh` takes `STAGE`, default A5c2, results in
+  `results/stage<STAGE>/`. The enumerator itself (covers, gluings, checks) is unchanged.
+* **Price** (session pilot, 10 processes, frozen sample seed 2611200401): 60 C3 units all complete in <= 0.03 s, no map;
+  300 C2 units mean 3.53 s (5 cut at 30 s, rerun to completion in <= 67 s), max 135 s over the first 10 demand classes
+  (the heaviest cluster at low indices, which the claim order runs first). Projection: C2 census 12.1 core-h (bootstrap
+  95% 9.2-15.3), ~1.1M map classes (+-0.3M), ~1.6 GB of records. The pilots (price, tail, a 10-shard 40 s smoke of the
+  A5c2 path, folders deleted) used ~0.85 core-h, booked to the A5c2 budget.
+* **Run**: A5c3 in the session after this commit (`STAGE=A5c3 BUDGET=300`, 10 shards, seconds). A5c2: owner launch
+  `launch.sh 261119-02 start` (`launch.results` -> `results/stageA5c2`), 10 shards x 14400 s = 40 core-h hard cap,
+  ~1.3 h wall projected; shard 0 runs the unit tests first. Then `symcensus.py summary results/stageA5c2 A5c2`. The
+  per-unit records are not committed (size): they go to `../polyhedrons-data` (`move_raw.py`); git keeps the brief
+  summary, per-stratum counts and the SHA-256 of every shard's `results.jsonl`.
+* **Gate per family**: C3 passes if the C3 (9, 3) control is exact, its classes equal the Burnside count, every action
+  checks and all 498 units complete; C2 passes if its four controls hold, the Burnside count matches, every action checks
+  and all 12288 units complete.
+* **Predictions**: (G1) every control holds (0.9); (G2) the C3 (9, 5) list is empty (0.6); (G3) the C2 census completes
+  within 40 core-h (0.9); (G4) the C2 list has 0.8M-1.4M classes (0.6).
+* **Readings / tree**: a control failure -> repair once. An empty complete C3 list -> no C3 3+3+3 (9, 5) map (EXACT,
+  coverage PROVED-1): stage B void for C3. A non-empty one or a complete C2 list -> amendment 5: per-stratum pricing
+  (3 maps per stratum, as amendment 2) and the pass-1 price to the owner (at the (9, 4) per-record cost ~1.1M C2 records
+  are ~170 core-h and ~45 GB raw: no subset by a guessed predictor without the owner). C2 timeout -> UNDERPOWERED@40
+  core-h, to the owner.
+* **Power / scope**: a complete list is exhaustive for its family at (9, 5); maps are not polyhedra; nothing about
+  mirrors, C2 3 x 2 + 3 or other genera.
+* **Deviations**: the C2 census budget exceeds the row's stage-A 1 core-h (owner, 2026-11-20: 40 core-h cap); stages
+  split by family; per-unit records kept out of git.
