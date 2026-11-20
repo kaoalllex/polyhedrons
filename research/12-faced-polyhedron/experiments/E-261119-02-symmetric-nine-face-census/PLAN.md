@@ -86,7 +86,8 @@ The owner chose a two-pass stage B (2026-11-20): pass 1 every map of both lists 
   `--all-pairs` PASS).
 * **Run**: `run_b.sh` (the E-261103-03 runner, imported-map mode), kissat seed 0, cap 600 s, bridge 360 s on a SAT, no
   proofs, 10 shards each, the three queues in turn: rung (9, 3), rung (8, 3), pricing; pinned convex f9 controls on
-  every shard of the nine-face queues, the runner's pilot controls on every shard. Session run, <= 1.5 h wall; solver
+  every shard of the nine-face queues, the runner's pilot controls on every shard. Owner launch (`launch.sh 261119-02
+  start`; `run.sh` now defaults to these queues, stage A is `STAGE=A`), <= 1.5 h wall; solver
   <= 11.5 core-h only if every unit times out. One code change: `tranche.bridge` calls `verify_candidate.py --all-pairs`
   for the target `all-pairs` (STRATEGY §1), otherwise unchanged (`test_tranche` 28 OK).
 * **Controls not run here**: the moved-chart plane-only path is the E-261118-03 Szilassi chain (recorded pass, same
