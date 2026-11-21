@@ -53,15 +53,15 @@ Use `python3` from an activated environment with `requirements.txt` installed.
    - **Experiment `README.md`:** `status: done` (or `killed`), `concluded: YYYY-MM-DD`, `verdict`, `produces` (FD / W: / C: it established),
      and a short results / conclusions summary.
    - **New ideas or hypotheses** that came out of it: one file each, with this experiment in their `origin`.
-   - Run `verification/trace.py` so the map is up to date.
+   - Run `verification/trace.py` once, after the last ledger edit.
 
    Do not restate numbers anywhere else. `results.md` is frozen. Change `SPEC.md` only through its change log.
-6. **Close.** Reuse applicable successful checks from the run/session; conclusion and ledger wording edits
-   alone do not trigger tests. For relevant code/evidence changes, run only affected checks not already
-   covered; run `python3 verification/verify_all.py --quick` once if an integration concern remains. State
-   the reason before repeating any check; reuse the result at handover. Follow `PROTOCOL.md` section 8.
-   Run the full suite only when explicitly requested. Propose a PR into `main`, and open it only when the
-   owner says so. Report in Russian: outcomes, verification scope, STATUS changes and next ROADMAP item.
+6. **Close.** Conclusion and ledger edits alone trigger no checks. If code or evidence changed, run only the
+   affected checks not already run this session, and `python3 verification/verify_all.py --quick` at most
+   once, only if an integration concern remains. Never repeat a check whose inputs did not change; reuse its
+   result at handover. Full suite only on explicit request. Follow `PROTOCOL.md` section 8. Propose a PR into
+   `main`; open it only when the owner says so. Report in Russian: outcomes, verification scope, STATUS
+   changes and next ROADMAP item.
 
 Labels: an AI-written proof is at most PROVED-1. CERTIFIED needs a checked certificate, a written soundness
 argument and recorded hashes.
