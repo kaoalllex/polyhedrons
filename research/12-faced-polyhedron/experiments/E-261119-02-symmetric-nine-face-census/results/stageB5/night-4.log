@@ -1,0 +1,27 @@
+ln: /Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261119-02-symmetric-nine-face-census/results/stageB5-pricing_lean/stop.requested: File exists
+controls start 4
+map control-f9-s4 start, solver 60s checker 120s
+map control-f9-s4 SAT
+map control-f9-neg-s4 start, solver 60s checker 120s
+map control-f9-neg-s4 UNSAT-SOLVER
+map 4 start, solver 600s checker 360s
+map 4 UNSAT-SOLVER
+map 14 start, solver 600s checker 360s
+map 14 UNSAT-SOLVER
+map 24 start, solver 600s checker 360s
+map 24 UNSAT-SOLVER
+SHARD-COMPLETE wall_seconds 12.605
+controls start 4
+map control-f9-s4 start, solver 60s checker 120s
+map control-f9-s4 SAT
+map control-f9-neg-s4 start, solver 60s checker 120s
+map control-f9-neg-s4 UNSAT-SOLVER
+map 4 start, solver 600s checker 360s
+map 4 UNSAT-SOLVER
+map 14 start, solver 600s checker 360s
+map 14 UNSAT-SOLVER
+map 24 start, solver 600s checker 360s
+map 24 UNSAT-SOLVER
+map 34 start, solver 600s checker 360s
+map 34 UNSAT-SOLVER
+SHARD-COMPLETE wall_seconds 10.463

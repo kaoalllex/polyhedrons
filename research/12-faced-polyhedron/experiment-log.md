@@ -1120,3 +1120,8 @@ cover; C3 (9, 3) control exact; consistent with the Z3 one-fixed-point argument)
 2026-11-22 — E-261119-02 amendment 4 (genus 5): the C2 4 x 2 + 1 census at (9, 5) is complete (owner night 2026-11-21,
 two launches, 12288 units; every control holds; 978228 map classes; ~12.4 of 40 core-h). Next: amendment 5 (per-stratum
 pricing, the pass-1 price to the owner). STATUS 3bh; `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+2026-11-22 — E-261119-02 amendment 5: lean runner mode (a non-control UNSAT-SOLVER unit keeps only its results line;
+the (9, 4) pricing replicated exactly in it, 53 of 53 statuses and hashes), brief-only streaming census summary, and the
+(9, 5) C2 4 x 2 + 1 pricing: 36 of 36 records UNSAT-SOLVER in <= 0.23 s, formula controls 180 + 180 + 36 pass. Pass 1
+(978228 records) priced at ~143 core-h, ~14 h wall, ~1 GB; to the owner. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.

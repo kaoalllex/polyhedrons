@@ -1,0 +1,24 @@
+controls start 8
+map control-f9-s8 start, solver 60s checker 120s
+map control-f9-s8 SAT
+map control-f9-neg-s8 start, solver 60s checker 120s
+map control-f9-neg-s8 UNSAT-SOLVER
+map 8 start, solver 600s checker 360s
+map 8 UNSAT-SOLVER
+map 18 start, solver 600s checker 360s
+map 18 UNSAT-SOLVER
+map 28 start, solver 600s checker 360s
+map 28 UNSAT-SOLVER
+SHARD-COMPLETE wall_seconds 12.238
+controls start 8
+map control-f9-s8 start, solver 60s checker 120s
+map control-f9-s8 SAT
+map control-f9-neg-s8 start, solver 60s checker 120s
+map control-f9-neg-s8 UNSAT-SOLVER
+map 8 start, solver 600s checker 360s
+map 8 UNSAT-SOLVER
+map 18 start, solver 600s checker 360s
+map 18 UNSAT-SOLVER
+map 28 start, solver 600s checker 360s
+map 28 UNSAT-SOLVER
+SHARD-COMPLETE wall_seconds 9.736

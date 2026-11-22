@@ -91,15 +91,38 @@ the ~0.85 core-h pilots: ~12.4 of the 40 core-h cap). Unit tests OK; the four C2
 per-stratum counts in `results/stageA5c2/summary-brief.json`. Gate passes (G1, G3, G4 held). Label: EXACT computation,
 coverage PROVED-1, maps only. The per-unit records (1.4 GB, the stage-B input) are in `../polyhedrons-data/<same path>`,
 SHA-256 in `results/stageA5c2/SHA256SUMS`. The full `summary.json` (2.2 GB, derived; peak 21 GB RSS, 109 s) and the claim
-markers were deleted (owner, 2026-11-22): `symcensus.py summary` rebuilds the file, its hash in `SHA256SUMS` checks the
-rebuild.
+markers were deleted (owner, 2026-11-22); its hash stays in `SHA256SUMS` for the record. Since amendment 5 `symcensus.py
+summary` streams the records and writes only the brief (rebuilt from the data copy: equal to the committed one, 85 s,
+0.75 GB RSS).
+
+## Stage B at genus 5: pricing (amendment 5, 2026-11-22)
+
+Session run on `813c75dc` (`STAGE=B5`, 10 shards, 24 s wall, < 0.03 core-h; `results/stageB5-*`). Every shard's pilot and
+pinned f9 controls pass. Lean replication (`queue_pricing_lean.json`, the (9, 4) pricing in the lean mode): 53 of 53
+units equal the committed `results/stageB-pricing` records in status, `cnf_sha256`, `formula_sha256`, variables and
+clauses; no folder is left for the 33 UNSAT-SOLVER records, the 20 controls keep theirs (S2 held). Formula controls on the
+36 (9, 5) records (`results/controls_b_9_5.json`): 180 of 180 symmetric pinned SAT, 180 of 180 wrong-action UNSAT, 36 of
+36 unpinned SAT, PASS (S1 held). Pricing (`maps/pricing_9_5.json`, 3 maps in each of the 12 strata, drawn from the
+hash-checked data copy): **36 of 36 UNSAT-SOLVER**, max 0.23 s, mean 0.13 s (9.5k variables, 85k clauses; (9, 4): 0.29 s,
+0.14 s); the fraction decided by 30, 60, 120 and 600 s is 1.0 in every stratum (S3 held, S4 holds so far). A lean unit
+leaves ~1 KB (its `results.jsonl` and `progress.jsonl` lines). Label: UNSAT-SOLVER per exact formula; a price, not a
+result about any stratum.
+
+**Pass-1 price** (amendment 6 registers it with the owner's choice): 978228 records. The (9, 4) pass 1 ran at 0.525 core-s
+per record under full load (6598 core-s, 12562 records) with the same solver time per record (0.13-0.14 s mean), so
+~515k core-s = **~143 core-h, ~14.3 h wall on 10 shards** (two owner nights, resumable). Disk: ~1 GB of lean lines instead
+of ~5M files and 20-45 GB. Tail: 36 of 36 decided gives a 95% upper bound of ~8% undecided; a cap of 5 s (20 x the priced
+maximum) bounds that tail at ~110 core-h, 30 s at ~650 core-h, so the cap matters only if the bound is approached (at
+(9, 4) all 12562 decided < 1 s). Work for amendment 6: one maps file would be ~0.63 GB (647 B per record) and the runner
+loads it in every unit, so the maps go in ~100 chunk files and queues, built by streaming; `run_b.sh` invocations last at
+most `--hours 2`, so the launch must resume until done.
 
 ## Next
 
 Both families are all UNSAT-SOLVER at (9, 4), so per the tree: genus 5 (E = 51) for both, priced the same way (stage-A
 census at (9, 5), then per-stratum pricing; an amendment before any run). Amendment 4 (2026-11-20): C3 (9, 5) census
 (498 units) in the session, C2 4 x 2 + 1 (9, 5) census (12288 units, priced ~12 core-h) as an owner night, 40 core-h cap.
-C3 is void at (9, 5); the C2 list is complete (978228 classes), so amendment 5: per-stratum pricing (3 maps per stratum,
-as amendment 2) and the pass-1 price to the owner (~150 core-h at the (9, 4) per-record rate; no subset by a guessed
-predictor without the owner). SAT -> bridge, `--all-pairs` nine faces,
+C3 is void at (9, 5); the C2 list is complete (978228 classes). Amendment 5 priced it: 36 of 36 UNSAT-SOLVER in <= 0.23 s;
+pass 1 ~143 core-h, ~14 h wall, ~1 GB lean. Next: the owner's choice (pass 1 as amendment 6, its cap and budget; no subset
+by a guessed predictor without the owner), or first a lemma for the common (9, 4) obstruction (week item 4). SAT -> bridge, `--all-pairs` nine faces,
 `candidate-check`, escalate. Neither family advances -> E-261117-04 (P6). A control failure -> repair. Lab: Opus, high / Codex gpt-6-astra, high.
