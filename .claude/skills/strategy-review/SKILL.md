@@ -48,6 +48,28 @@ status and links (read the files themselves only for the candidates you rank).
    (STRATEGY.md §2 follow-up rule), with file:line.
 6. **Scenario credences**: propose new values with one line of evidence each, or say why they stay.
 
+## The strategy cycle (owner, 2026-11-22)
+
+A new strategy and week plan come out of three steps, each in its own session; nothing is applied before step 3's approval.
+
+1. **Draft** (Claude lead, strongest model, this skill): reads the week's results and writes
+   `reviews/strategy-review-YYYY-MM-DD.md` (sections below). The owner discusses it in the same session; the session revises the
+   draft and records the owner's corrections and decisions in a closing "Owner's decisions" section. Commit, no push.
+2. **Cross-review** (Codex, gpt-6-astra, high): reads the draft and the files it cites and checks it instead of restating it:
+   verdict, week plan, lemmas, scores, audit. Every major objection is tested against code or data by a check of <= 10 min
+   (<= 8 processes) where one can be written (objections rerun on the data overturn conclusions far more often than text-only
+   review: `reviews/strategy-review-2026-11-22.md` §5 N4); an untested objection is marked "unresolved". Output:
+   `reviews/strategy-review-YYYY-MM-DD-codex.md`, at most 120 lines, a 10-line owner digest first, then a proposed diff to the
+   week plan only where it disagrees. Commit, no push; tell the owner in Russian in at most 8 lines.
+3. **Final** (Claude lead, a new session or the draft session): reads the cross-review and only the files it cites; per point
+   accept / reject / unresolved with one line of evidence (file:line, `SPEC.md` §5 label), a dispute settled by a <= 10 min check
+   when one can. Output: `reviews/strategy-review-YYYY-MM-DD-final.md`, at most 80 lines: the point table, the final week plan
+   ready to paste into `ROADMAP.md`, the final `STRATEGY.md` diff and credences. Agree it with the owner; after the owner's
+   approval the same session applies it (`ROADMAP.md`, `STATUS.md`, `STRATEGY.md` with a log line, idea files) and updates the
+   root `TODO.md` and the handover. No second round of cross-review.
+
+If the owner starts the cycle with Codex, the roles swap: Claude writes the cross-review.
+
 ## Output
 
 `reviews/strategy-review-YYYY-MM-DD.md`, at most 150 lines (owner, 2026-11-10; `PROTOCOL.md` §8b). It opens with a
@@ -55,10 +77,11 @@ status and links (read the files themselves only for the candidates you rank).
 week plan, ready to paste into `ROADMAP.md`; the answers above; the scored table; the proposed queue; new ideas; audit
 findings; the 3 things to do first. Label factual claims with `SPEC.md` §5 evidence levels;
 identify untested hypotheses and recommendations separately. Commit the report on the current branch; do not push. Then tell the owner, in
-Russian, the verdict and the proposed first item; the owner decides, and a working session applies the approved
-changes to `ROADMAP.md`, `STATUS.md` and the idea files.
-Once the owner approves, the same session or the working session also updates the owner's root `TODO.md`
+Russian, the verdict and the proposed first item; the owner corrects it, then the cycle above continues (steps 2 and 3);
+the session of step 3 applies the approved changes to `ROADMAP.md`, `STATUS.md`, `STRATEGY.md` and the idea files.
+Once the owner approves, that session also updates the owner's root `TODO.md`
 (local, untracked, in Russian: week plan, rules, next step); never commit it. `TODO.md` opens, right under its
 title, with a short table of the week's lab work: item number, one-line task, one **Model** column (Claude model
 and effort, then the Codex alternative, with conditions such as "medium (SAT conclusion: high)"; Codex never
-omitted, owner 2026-11-16), who launches it.
+omitted, owner 2026-11-16), a **Status** column (done / running / waiting for X / not started) and a **Depends on**
+column, then who launches it.

@@ -64,7 +64,9 @@ Hard rules:
   a phenomenon (`reviews/strategy-review-2026-11-01.md` §5.1). Every negative statement names its scope (`SPEC.md` §4)
   and what was not run.
 - Long runs go to the owner's laptop only (under `caffeinate -dimsu`, on AC power; no GitHub Actions, no rented
-  compute: owner, 2026-11-10). Never start a multi-hour run from a session.
+  compute: owner, 2026-11-10). Never start a multi-hour run from a session. A job of at most 50 min wall the session runs
+  itself after a one-line permission from the owner (cores, minutes) instead of asking the owner to launch it (owner,
+  2026-11-22).
 - Ask the owner before large subagent tasks and before long runs. **No DRAT by default** (owner, 2026-11-13; search
   runs since 2026-11-08): produce and check proofs only when the plan names the negative claim they are for (a note,
   an exclusion in `STATUS.md`) or the owner asks. An UNSAT without a checked proof is `UNSAT-SOLVER`, which may skip

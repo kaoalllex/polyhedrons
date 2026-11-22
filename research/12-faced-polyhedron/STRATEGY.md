@@ -82,7 +82,8 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   is skipped while no new work exists, and is called early after any result that moves a scenario by 0.1 or more:
   `.claude/skills/strategy-review` in a separate session with the strongest model at high effort; it writes
   `reviews/strategy-review-YYYY-MM-DD.md` and a proposed `ROADMAP.md` order, and changes nothing else without the
-  owner's approval.
+  owner's approval. Since 2026-11-22 (owner) the review is a three-step cycle: draft with the owner's corrections, Codex
+  cross-review, final version approved by the owner (`PROTOCOL.md` §8b).
 
 ## Log
 
@@ -144,3 +145,6 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 * 2026-11-19 (owner's approval of `reviews/strategy-review-2026-11-19-reconcile.md`, the Codex second opinion): no
   automatic C3 night from E-261119-01 (a new one needs a changed nine-plane discovery test); map blocking by paired
   runs; census gates per family, P6 only if neither family advances. Order, credences and stance unchanged.
+* 2026-11-22 (owner): the weekly review becomes a three-step cycle (Claude draft with the owner's corrections, Codex
+  cross-review, Claude final version approved by the owner); lab jobs of at most 50 min wall are launched by the lab after a
+  one-line permission (`PROTOCOL.md` §8b). Targets, stance and credences unchanged.
