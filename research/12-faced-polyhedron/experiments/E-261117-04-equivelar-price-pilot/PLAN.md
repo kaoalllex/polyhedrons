@@ -94,3 +94,38 @@ Pre-registration (2026-11-22), at most 80 lines; stages B and C (week items 3, 4
   core-h, rest <= 50 min on 10 workers -> lab-run; longer -> owner day run; > 12 core-h -> lead. A timeout: one 1800 s
   `--retry`, then the lead. Stop: error, failed control, 12 core-h.
 * **Predictions**: (P6) controls pass (0.85); (P7) all units complete at 600 s (0.7); (P8) <= 8 core-h (0.75).
+
+**Amendment 2 (2026-11-22, week item 4, before any stage-C compute): stage C, the plain (9, 4) pass** (J 2).
+* **Question**: is the plain formula of any admissible equivelar (9, 4) class SAT, and is it realized (S1, nine faces,
+  genus 4, (V, E, F, chi) = (30, 45, 9, -6))?
+* **Records** (`p6.py build-c`): 1071, one per admissible class of `results/census_9_4/maps_9_4.json` (canonical codes
+  merge mirror images; the stage-A orientation argument applies), `tranche.submap_formula` without a generator at 10
+  elements, kissat 4.0.4 seed 0, cap 60 s, lean, 10 shards (`run.sh`, `Q=stageC_c0|stageC_c1`); each SAT: the bridge,
+  then `--all-pairs`.
+* **Chunks**: chunk 0 (91): the ten K2 maps (the lowest-SHA-256 code per pattern of the 111 symmetric equivelar codes,
+  then pricing records 2 and 4), then a frozen draw (seed 2611220402) of up to 12 others per pattern (3+3+3, 3+2+2+2
+  whole). Chunk 1 (980): the rest, patterns by descending trivial-Aut+ share (9, 5+4, 4+3+2, 6+3, 5+2+2, 7+2).
+* **Controls (stop on failure)**: build: census complete with its controls, K2 distinct and admissible, the chunks
+  partition the admissible set, every pattern in chunk 0, f9 violations 0 / > 0; run: the f9 pinned pair (positive SAT,
+  negative UNSAT-SOLVER) and the convex controls in every shard of both queues. Consistency: the ten K2 maps
+  UNSAT-SOLVER again (a SAT: bridge, then the lead; a TIMEOUT: the 600 s pass).
+* **Price, gate** (`p6.py price`, NUMERICAL, planning only): chunk 1 = per pattern mean solver-s of chunk 0 (TIMEOUT at
+  its cap) x count, scaled by ledger / solver-s; wall = core-s / 10 x 1.5. Chunk 1 is lab-run under the same one-line
+  permission if chunk 0's controls pass, no ERROR, every unit ended by its own status and the wall is <= 50 min; else
+  an owner night (`BUDGET` from the price, hard cap 80 core-h; above 2 h per shard the runner needs a relaunch, so the
+  night script comes from `overnight-run-script`). Expected from K2 (8.1 s mean): ~2.4 core-h, ~20 min wall.
+* **Follow-ups**: TIMEOUT -> one 600 s pass (`p6.py followup --stage stageC`, `Q=stageC_retry`), lab-run if <= 50 min,
+  else in the night; SAT not realized -> 30 seeded models (`Q=stageC_models`), then the lead.
+* **Tree** (week plan): realized and `--all-pairs` PASS with nine faces -> `candidate-check`, escalate. UNKNOWN after
+  600 s -> open, listed. Cut by price -> completed patterns are reported, the rest to the lead (a miss is scoped to its
+  patterns). All UNSAT-SOLVER -> "every admissible equivelar (9, 4) map has an UNSAT-SOLVER plain formula in its
+  code's orientation" (formula scope, planning only); the lead re-plans, no automatic credence move.
+* **Unit tests** (`test_p6.py`, 21 OK, 5 new): the K2 codes, a reproducible build (`build-c --check`) and its chunks,
+  queue layout and controls, the 10-element formula, price / summary / retry on a synthetic result. Stage A
+  `build --check` unchanged.
+* **Predictions**: (P9) every control passes and the ten K2 maps are UNSAT-SOLVER (0.9); (P10) every unit decided
+  within 60 s (0.8); (P11) no SAT among the 1071 (0.85); (P12) <= 5 core-h and a lab run (0.75).
+* **Budget, stop**: hard cap 80 core-h; the lab part <= 50 min wall on 10 cores (chunk 0, chunk 1, retries;
+  `stop.requested`). Stop: all 1071 units and follow-ups recorded, ERROR, a failed control after one repair, the cap.
+* **Power**: what kissat decides in 60 s (600 s on retry), the code's orientation, one model per SAT first. Nothing
+  about non-realizability or about non-equivelar (9, 4) maps. No proofs; every UNSAT is UNSAT-SOLVER.

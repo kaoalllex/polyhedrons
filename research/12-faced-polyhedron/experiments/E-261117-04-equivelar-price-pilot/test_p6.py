@@ -1,4 +1,4 @@
-"""Unit tests of p6.py (PLAN.md, stage A and amendment 1, stage B), run before the census and the formulas:
+"""Unit tests of p6.py (PLAN.md, stage A; amendment 1, stage B; amendment 2, stage C), run before compute:
 python3 -m unittest test_p6"""
 from collections import Counter
 import json
@@ -176,6 +176,87 @@ class StageBTests(unittest.TestCase):
                 self.assertEqual(p6.census_b(8, 3, wall=0)['stop_reason'], 'wall')
             finally:
                 p6.census_dir = census_dir
+
+
+
+class StageCTests(unittest.TestCase):
+    """Amendment 2: the plain (9, 4) pass on the admissible classes."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.recs = json.loads(p6.MAPS_C.read_text())['maps']
+
+    def test_k2_codes(self):
+        k2 = p6.k2_codes()
+        self.assertEqual(len(set(k2)), 10)
+        pats = [p6.pattern(p6.links_of(t, 9)) for t in k2]
+        self.assertEqual(pats[:8], ['+'.join(map(str, q)) for q in p6.partitions(9)])
+        self.assertEqual(pats[8:], ['9', '3+2+2+2'])
+        shas = [p6.B.code_sha(json.loads(t)) for t in k2]
+        self.assertEqual(shas[8][:12], '2ecc586672c5'); self.assertEqual(shas[9][:12], '205d0f6d2d57')
+
+    def test_build_is_reproducible_and_chunked(self):
+        controls, counts, recs = p6.build_c(check=True)  # asserts the committed maps file and both queues
+        self.assertTrue(all(controls.values()))
+        self.assertEqual((counts['records'], counts['chunk0'], counts['symmetric']), (1071, 91, 111))
+        self.assertEqual([r['k2'] for r in recs[:10]], list(range(10)))
+        self.assertTrue(all(r['chunk'] == 0 for r in recs[:91]) and all(r['chunk'] == 1 for r in recs[91:]))
+        self.assertEqual(len({r['canonical_sha256'] for r in recs}), 1071)
+        order = [r['pattern'] for r in recs[91:]]
+        self.assertEqual(order, sorted(order, key=counts['chunk1_order'].index))
+
+    def test_queues(self):
+        q0 = json.loads((p6.HERE / 'queue_stageC_c0.json').read_text())
+        q1 = json.loads((p6.HERE / 'queue_stageC_c1.json').read_text())
+        for q, n, first in ((q0, 91, 0), (q1, 980, 91)):
+            self.assertEqual((q['case'], q['control_file'], q['shards'], q['lean_unsat']), ([9, 4], 'control_f9.json',
+                                                                                          10, True))
+            self.assertEqual(q['maps_sha256'], p6.B.sha(p6.MAPS_C))
+            ctrl = [r for r in q['maps'] if r.get('control')]
+            self.assertEqual(sorted(r['index'] for r in ctrl),
+                             sorted(f'control-f9{neg}-s{s}' for neg in ('', '-neg') for s in range(10)))
+            self.assertTrue(all(r['control_sha256'] == p6.B.sha(p6.F9) for r in ctrl))
+            units = [r for r in q['maps'] if not r.get('control')]
+            self.assertEqual([r['index'] for r in units], list(range(first, first + n)))
+            self.assertTrue(all(r['solver_cap'] == 60 and r['seed'] == 0 for r in units))
+            self.assertTrue(all(r['canonical_sha256'] == self.recs[r['index']]['canonical_sha256'] for r in units))
+            for s in range(10):
+                self.assertEqual([r.get('control') for r in q['maps'][s::10][:2]], ['positive', 'negative'])
+
+    def test_plain_record_builds_the_10_element_formula(self):
+        c = tranche.submap_formula(9, dict(enumerate(self.recs[0]['links'])))
+        self.assertEqual(len(c.qvar), 210)  # 4-subsets of 10 elements: 9 planes and the plane at infinity
+
+    def test_price_summary_and_retry(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp) / 'stageC_c0'; (d / '0').mkdir(parents=True)
+            rows = [dict(map_index='control-f9-s0', status='SAT', seconds=0.1),
+                    dict(map_index='control-f9-neg-s0', status='UNSAT-SOLVER', seconds=0.1)]
+            for i, r in enumerate(self.recs[:91]):
+                rows.append(dict(map_index=i, status='TIMEOUT' if i == 0 else 'UNSAT-SOLVER', budget_seconds=60,
+                                 seconds=60.0 if i == 0 else 2.0))
+            (d / '0/results.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in rows))
+            solver = 60 + 90 * 2.0
+            (d / 'budget.json').write_text(json.dumps({'0:x': 2 * solver}))
+            out = p6.price([d])
+            todo = Counter(r['pattern'] for r in self.recs if r['chunk'] == 1)
+            mean = {p: (2.0 if p != '9' else (60 + 13 * 2.0) / 14) for p in todo}
+            want = 2 * sum(n * mean[p] for p, n in todo.items())
+            self.assertEqual(out['projected_core_s'], round(want))
+            self.assertEqual(out['projected_wall_s'], round(want / 10 * 1.5))
+            self.assertEqual((out['units'], out['sampled'], out['unpriced_patterns']), (980, 91, []))
+            s = p6.summary([d], p6.MAPS_C)
+            self.assertTrue(s['controls_pass']); self.assertEqual(s['controls'], 2)
+            self.assertEqual(s['k2'], {0: 'TIMEOUT', **{k: 'UNSAT-SOLVER' for k in range(1, 10)}})
+            written = {}
+            write, p6.write = p6.write, lambda path, text, check: written.update({path.name: json.loads(text)})
+            try:
+                p6.followup([d], 'stageC')
+            finally:
+                p6.write = write
+            q = written['queue_stageC_retry.json']
+            self.assertEqual([r['index'] for r in q['maps'] if not r.get('control')], [0])
+            self.assertEqual(q['maps'][-1]['solver_cap'], 600); self.assertEqual(q['case'], [9, 4])
 
 
 if __name__ == '__main__':

@@ -61,8 +61,8 @@ realized, completion flags. It cannot show that Roest-Vigh and Mizhaev are alone
 
 ## Next
 
-Stages A and B done (above). Next: stage C (week item 4), the plain (9, 4) pass on the 1071 admissible classes, as
-a PLAN amendment. Coverage: the 2-regular extra-edge multigraphs are disjoint cycles
+Stages A and B done (above). Next: stage C (week item 4), the plain (9, 4) pass on the 1071 admissible classes,
+pre-registered as PLAN amendment 2 (`p6.py build-c`, `maps/stageC.json`, `queue_stageC_c0|c1.json`, `p6.py price`). Coverage: the 2-regular extra-edge multigraphs are disjoint cycles
 (a 2-cycle is a pair of multiplicity 3), one input per partition of F into parts >= 2: seven at (8, 3), eight at (9, 4),
 fed to `enum_multi.c` directly (not `extra_graphs`, not symcensus with the trivial group). (9, 4) needs the guards
 `census.py:154` and `enum_multi.c:186` raised to 9 and a re-read of the coverage argument. Session checks of the

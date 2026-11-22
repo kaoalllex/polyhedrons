@@ -15,15 +15,24 @@ the equivelar (9, 4) census in root-stride units (PLAN.md and its amendment 1).
   p6.py merge F G [--prune]    the units -> census_dir(F, G)/maps_F_G.json (one record per class, a completion flag
                                per pattern), the stage-B census controls -> stdout and census.json; --prune deletes
                                the per-unit codes and records once every pattern is complete
+  p6.py build-c [--check]      stage C (amendment 2): maps/stageC.json (every admissible (9, 4) class), queue_stageC_c0
+                               (the stratified first chunk) and queue_stageC_c1 (the rest), pinned f9 controls; the
+                               build controls -> stdout
+  p6.py price RESULTS...       stage C: chunk 1's projected core-s and wall from chunk 0's results -> stdout (JSON)
+  p6.py followup [--stage stageC] RESULTS...
+  p6.py summary [--stage stageC] [--models] RESULTS...
+                               as for stage A, on the stage-C records and queues
 
-Records: every admissible census class and every free-C2 (8, 3) map of E-261119-02 stage A that is not equivelar, in
-the code's orientation, no generator (the plain sub-map formula of tranche.submap_formula), kissat seed 0."""
+Records: stage A, every admissible census class and every free-C2 (8, 3) map of E-261119-02 stage A that is not
+equivelar; stage C, every admissible equivelar (9, 4) class; in the code's orientation, no generator (the plain
+sub-map formula of tranche.submap_formula), kissat seed 0."""
 from collections import Counter, defaultdict
 import hashlib
 import itertools
 import json
 import os
 from pathlib import Path
+import random
 import re
 import sys
 
@@ -44,6 +53,9 @@ FT = ROOT / 'experiments/E-261117-01-cayley-census-9-4/results/census/maps_8_3.j
 MAPS, MODELS, CONTROL = HERE / 'maps/stageA.json', HERE / 'maps/stageA_models.json', HERE / 'control_rv8.json'
 SHARDS, SOLVER_CAP, CHECKER_CAP, RETRY_CAP, CENSUS_SECONDS = 10, 60, 360, 600, 600
 MODEL_SEEDS = range(1, 31)
+MAPS_C, F9 = HERE / 'maps/stageC.json', B.RUNNER / B.CONTROL_F9
+STAGES = {'stageA': dict(maps=MAPS, case=(F, G), control=CONTROL, label='stage A', index_key='stage_a_index'),
+          'stageC': dict(maps=MAPS_C, case=(9, 4), control=F9, label='stage C', index_key='stage_c_index')}
 
 
 def partitions(n, largest=None):
@@ -193,25 +205,29 @@ def write(path, text, check):
         path.parent.mkdir(exist_ok=True); path.write_text(text)
 
 
-def queue(maps_file, indices, recs, cap):
-    c = dict(control_sha256=B.sha(CONTROL), solver_cap=60, checker_cap=120)
-    rows = [dict(index=f'control-rv8{neg}-s{s}', control=kind, **c)
+def queue(maps_file, indices, recs, cap, stage='stageA'):
+    case, control, label = STAGES[stage]['case'], STAGES[stage]['control'], STAGES[stage]['label']
+    c = dict(control_sha256=B.sha(control), solver_cap=60, checker_cap=120)
+    tag = control.stem.split('_')[1]
+    rows = [dict(index=f'control-{tag}{neg}-s{s}', control=kind, **c)
             for neg, kind in [('', 'positive'), ('-neg', 'negative')] for s in range(SHARDS)]
     rows += [dict(index=i, seed=recs[i]['seed'], solver_cap=cap, checker_cap=CHECKER_CAP,
                   canonical_sha256=recs[i]['canonical_sha256']) for i in indices]
-    return dict(target=f'E-261117-04 stage A {maps_file.stem}, kissat, no proof', target_check='all-pairs',
-                case=[F, G], maps_file=str(maps_file.relative_to(ROOT)), maps_sha256=B.sha(maps_file), shards=SHARDS,
-                control_file=os.path.relpath(CONTROL, B.RUNNER), lean_unsat=True, maps=rows)
+    return dict(target=f'E-261117-04 {label} {maps_file.stem}, kissat, no proof', target_check='all-pairs',
+                case=list(case), maps_file=str(maps_file.relative_to(ROOT)), maps_sha256=B.sha(maps_file),
+                shards=SHARDS, control_file=os.path.relpath(control, B.RUNNER), lean_unsat=True, maps=rows)
 
 
 def results(dirs):
-    """map_index -> the last recorded result over the shards of these result directories."""
+    """map_index -> the last recorded result over the shards of these result directories; a control (a non-integer
+    index, repeated in every queue) is keyed '<directory name>/<index>'."""
     out = {}
     for d in dirs:
         for path in sorted(Path(d).glob('[0-9]*/results.jsonl')):
             for line in path.read_text().splitlines():
                 r = json.loads(line)
-                out[r['map_index']] = r
+                k = r['map_index']
+                out[k if isinstance(k, int) else f'{Path(d).name}/{k}'] = r
     return out
 
 
@@ -219,18 +235,22 @@ def realized(r):
     return r.get('status') == 'SAT' and r.get('candidate_verify_rc') == 0
 
 
-def followup(dirs):
-    recs = json.loads(MAPS.read_text())['maps']; res = results(dirs)
+def followup(dirs, stage='stageA'):
+    maps_file, label = STAGES[stage]['maps'], STAGES[stage]['label']
+    models_file = HERE / 'maps' / f'{stage}_models.json'
+    recs = json.loads(maps_file.read_text())['maps']; res = results(dirs)
     retry = sorted(i for i, r in res.items() if isinstance(i, int) and r['status'] == 'TIMEOUT')
     open_sat = sorted(i for i, r in res.items() if isinstance(i, int) and r['status'] == 'SAT' and not realized(r))
     if retry:
-        write(HERE / 'queue_stageA_retry.json', json.dumps(queue(MAPS, retry, recs, RETRY_CAP), indent=1) + '\n', False)
+        write(HERE / f'queue_{stage}_retry.json',
+              json.dumps(queue(maps_file, retry, recs, RETRY_CAP, stage), indent=1) + '\n', False)
     if open_sat:
-        models = [dict(recs[i], seed=s, stage_a_index=i) for i in open_sat for s in MODEL_SEEDS]
-        write(MODELS, json.dumps(dict(note='E-261117-04 stage A: SAT units not realized, kissat seeds 1-30',
-                                      maps=models), indent=1) + '\n', False)
-        write(HERE / 'queue_stageA_models.json',
-              json.dumps(queue(MODELS, range(len(models)), models, SOLVER_CAP), indent=1) + '\n', False)
+        models = [dict(recs[i], seed=s, **{STAGES[stage]['index_key']: i})
+                  for i in open_sat for s in MODEL_SEEDS]
+        write(models_file, json.dumps(dict(note=f'E-261117-04 {label}: SAT units not realized, kissat seeds 1-30',
+                                           maps=models), indent=1) + '\n', False)
+        write(HERE / f'queue_{stage}_models.json',
+              json.dumps(queue(models_file, range(len(models)), models, SOLVER_CAP, stage), indent=1) + '\n', False)
     print(json.dumps(dict(retry=retry, sat_not_realized=open_sat)))
 
 
@@ -248,14 +268,22 @@ def summary(dirs, maps_file=MAPS):
     for i, r in units.items():
         by['equivelar' if recs[i]['equivelar'] else 'not_equivelar'][r['status']] += 1
     sat = [dict(index=i, sha=recs[i]['canonical_sha256'][:12], equivelar=recs[i]['equivelar'],
-                pattern=recs[i]['pattern'], known=recs[i]['known'], free_c2=recs[i]['free_c2'],
+                pattern=recs[i]['pattern'], known=recs[i].get('known'), free_c2=recs[i].get('free_c2'),
                 status_note=r.get('status_note'), realized=realized(r), V_E_F_chi=vefc(r) if realized(r) else None)
            for i, r in sorted(units.items()) if r['status'] == 'SAT']
-    ft = {recs[i]['face_transitive']: units[i]['status'] for i in units if recs[i]['face_transitive'] is not None}
+    ft = {recs[i]['face_transitive']: units[i]['status'] for i in units if recs[i].get('face_transitive') is not None}
+    pats = defaultdict(Counter)
+    for i, r in units.items():
+        pats[recs[i]['pattern']][r['status']] += 1
     out = dict(units=len(units), of=len(recs), statuses=dict(by), sat=sat,
                controls_pass=all(s == ('SAT' if '-neg' not in k else 'UNSAT-SOLVER') for k, s in ctrl.items()),
                controls=len(ctrl), face_transitive=dict(sorted(ft.items())),
-               known={recs[i]['known']: units[i]['status'] for i in units if recs[i]['known']})
+               known={recs[i]['known']: units[i]['status'] for i in units if recs[i].get('known')},
+               patterns={p: dict(c) for p, c in sorted(pats.items())},
+               solver_seconds=dict(total=round(sum(r['seconds'] for r in units.values()), 1),
+                                   max=round(max((r['seconds'] for r in units.values()), default=0), 1)))
+    if any('k2' in r for r in recs):
+        out['k2'] = {recs[i]['k2']: units[i]['status'] for i in sorted(units) if recs[i]['k2'] is not None}
     print(json.dumps(out, indent=1))
     return out
 
@@ -439,17 +467,124 @@ def has_rotation(rec, order, fixed_faces):
     return any(k == order and f == fixed_faces for k, f, *_ in rec['autos'])
 
 
+CHUNK0_SEED, CHUNK0_PER_PATTERN, PRICE_MARGIN, LAB_WALL_S = 2611220402, 12, 1.5, 50 * 60
+
+
+def k2_codes():
+    """The ten maps of K2 (final lead review 2026-11-22): the lowest-SHA-256 code of each pattern among the 111
+    equivelar codes of the symmetric (9, 4) lists (partition order), then the maps of pricing records 2 and 4."""
+    sym = {B.code_sha(json.loads(t)): t for f in ('C3_9_4', 'C2f_9_4') for t in B.maps_of(f)
+           if equivelar(links_of(t, 9))}
+    by = defaultdict(list)
+    for h, t in sym.items():
+        by[pattern(links_of(t, 9))].append(h)
+    pricing = json.loads((E2 / 'maps/pricing.json').read_text())['maps']
+    hashes = [min(by['+'.join(map(str, parts))]) for parts in partitions(9)]
+    return [sym[h] for h in hashes + [pricing[2]['canonical_sha256'], pricing[4]['canonical_sha256']]]
+
+
+def chunks_c(adm, k2):
+    """Chunk 0: the K2 maps, then per pattern up to CHUNK0_PER_PATTERN other classes (a frozen draw over the sorted
+    canonical SHA-256s); chunk 1: the rest, patterns by descending share of trivial Aut+ (ties: partition order), each
+    in canonical-SHA-256 order."""
+    rng, by = random.Random(CHUNK0_SEED), defaultdict(list)
+    for t in sorted(adm, key=lambda t: B.code_sha(json.loads(t))):
+        if t not in k2:
+            by[pattern(links_of(t, 9))].append(t)
+    pats = ['+'.join(map(str, parts)) for parts in partitions(9)]
+    first = list(k2)
+    for p in pats:
+        first += rng.sample(by[p], min(CHUNK0_PER_PATTERN, len(by[p])))
+    share = {p: sum(adm[t]['aut_plus'] == 1 for t in adm if pattern(links_of(t, 9)) == p)
+             / sum(pattern(links_of(t, 9)) == p for t in adm) for p in pats}
+    rest = [t for p in sorted(pats, key=lambda p: (-share[p], pats.index(p))) for t in by[p] if t not in first]
+    return first, rest, share
+
+
+def build_c(check=False):
+    """Amendment 2: one plain record per admissible (9, 4) class, chunk 0 then chunk 1, and their queues with the
+    pinned f9 pair in every shard; the build controls -> stdout."""
+    census = json.loads((census_dir(9, 4) / 'census.json').read_text())
+    res = json.loads((census_dir(9, 4) / 'maps_9_4.json').read_text())
+    adm = {json.dumps(m['code']): m for m in res['maps'] if m['admissible']}
+    sym = {t for f in ('C3_9_4', 'C2f_9_4') for t in B.maps_of(f)}
+    ft = [json.dumps(m['code']) for m in json.loads(FT_9_4.read_text())['maps']]
+    k2 = k2_codes()
+    first, rest, share = chunks_c(adm, k2)
+    f9 = json.loads(F9.read_text())
+    controls = dict(census_complete=res['complete'] and census['complete'],
+                    census_controls_pass=all(v is True for v in census['controls'].values()),
+                    k2_distinct_admissible=len(set(k2)) == 10 and set(k2) <= set(adm),
+                    chunks_partition_admissible=sorted(first + rest) == sorted(adm) and len(set(first + rest)) == len(adm),
+                    chunk0_every_pattern=Counter(pattern(links_of(t, 9)) for t in first).keys()
+                    == {'+'.join(map(str, p)) for p in partitions(9)},
+                    face_transitive_absent=not set(ft) & set(first + rest),
+                    all_equivelar=all(equivelar(links_of(t, 9)) for t in adm),
+                    pinned_positive_violations_zero=violations(f9['planes'], {int(k): v for k, v in f9['links'].items()}) == 0,
+                    pinned_negative_violations_positive=violations(
+                        f9['planes'], {int(k): v for k, v in f9['negative_links'].items()}) > 0)
+
+    def record(t, chunk):
+        links = links_of(t, 9)
+        return dict(config='P6_9_4', links=links, canonical_sha256=B.code_sha(json.loads(t)), equivelar=True,
+                    pattern=pattern(links), aut_plus=adm[t]['aut_plus'], symmetric=t in sym,
+                    k2=k2.index(t) if t in k2 else None, chunk=chunk, seed=0)
+    recs = [record(t, 0) for t in first] + [record(t, 1) for t in rest]
+    counts = dict(records=len(recs), chunk0=len(first), chunk1=len(rest), symmetric=sum(r['symmetric'] for r in recs),
+                  chunk0_patterns=dict(Counter(r['pattern'] for r in recs[:len(first)])),
+                  trivial_aut_share={p: round(v, 3) for p, v in share.items()},
+                  chunk1_order=list(dict.fromkeys(r['pattern'] for r in recs[len(first):])))
+    write(MAPS_C, json.dumps(dict(note='E-261117-04 stage C: every admissible equivelar (9, 4) class, chunk 0 (the ten '
+                                       'K2 maps, then a frozen per-pattern draw) then chunk 1; plain sub-map formula, '
+                                       'seed 0', maps=recs), separators=(',', ':')) + '\n', check)
+    for k, idx in ((0, range(len(first))), (1, range(len(first), len(recs)))):
+        write(HERE / f'queue_stageC_c{k}.json',
+              json.dumps(queue(MAPS_C, idx, recs, SOLVER_CAP, 'stageC'), indent=1) + '\n', check)
+    print(json.dumps(dict(controls=controls, counts=counts), indent=1))
+    return controls, counts, recs
+
+
+def price(dirs, chunk=1):
+    """Chunk `chunk`'s projection from the stage-C results in `dirs`: per pattern the mean solver seconds (a TIMEOUT
+    at its cap) times its count in the chunk, scaled by ledger / solver seconds (the shards' budget.json: formula
+    build, bridges and runner overhead), then wall = core-s / SHARDS x PRICE_MARGIN."""
+    recs = json.loads(MAPS_C.read_text())['maps']; res = results(dirs)
+    sec = defaultdict(list)
+    for i, r in res.items():
+        if isinstance(i, int):
+            sec[recs[i]['pattern']].append(r['budget_seconds'] if r['status'] == 'TIMEOUT' else r['seconds'])
+    ledger = sum(sum(json.loads(p.read_text()).values()) for d in dirs for p in [Path(d) / 'budget.json'] if p.exists())
+    solver = sum(map(sum, sec.values()))
+    todo = Counter(r['pattern'] for r in recs if r['chunk'] == chunk)
+    mean = {p: sum(v) / len(v) for p, v in sec.items()}
+    core_s = sum(n * mean[p] for p, n in todo.items()) * (ledger / solver if solver else 1)
+    wall = core_s / SHARDS * PRICE_MARGIN
+    out = dict(chunk=chunk, units=sum(todo.values()), sampled=sum(map(len, sec.values())),
+               mean_solver_s={p: round(v, 2) for p, v in sorted(mean.items())}, ledger_core_s=round(ledger, 1),
+               solver_s=round(solver, 1), projected_core_s=round(core_s), projected_wall_s=round(wall),
+               lab_run=wall <= LAB_WALL_S, unpriced_patterns=sorted(set(todo) - set(mean)))
+    print(json.dumps(out, indent=1))
+    return out
+
+
 if __name__ == '__main__':
     cmd = sys.argv[1] if len(sys.argv) > 1 else ''
     if cmd == 'census':
         r = census_run(); print(json.dumps({k: v for k, v in r.items() if k != 'maps'}))
     elif cmd == 'build':
         build('--check' in sys.argv)
-    elif cmd == 'followup':
-        followup(sys.argv[2:])
-    elif cmd == 'summary':
-        models = '--models' in sys.argv
-        summary([a for a in sys.argv[2:] if a != '--models'], MODELS if models else MAPS)
+    elif cmd in ('followup', 'summary'):
+        a = sys.argv[2:]
+        stage = a[a.index('--stage') + 1] if '--stage' in a else 'stageA'
+        dirs = [x for x in a if x not in ('--models', '--stage', stage)]
+        if cmd == 'followup':
+            followup(dirs, stage)
+        else:
+            summary(dirs, HERE / 'maps' / f'{stage}_models.json' if '--models' in a else STAGES[stage]['maps'])
+    elif cmd == 'build-c':
+        build_c('--check' in sys.argv)
+    elif cmd == 'price':
+        price(sys.argv[2:])
     elif cmd == 'unit':
         n, g, pat, o, sec = sys.argv[2:7]
         run_unit(int(n), int(g), tuple(map(int, pat.split('+'))), int(o), float(sec), '--retry' in sys.argv)
