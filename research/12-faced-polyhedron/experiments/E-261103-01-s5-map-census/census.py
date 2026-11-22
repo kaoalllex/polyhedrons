@@ -149,7 +149,8 @@ def sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def run(n, genus, seconds, out):
+def run(n, genus, seconds, out, graphs=None):
+    """graphs: explicit extra-edge inputs (endpoint pairs, k each) in place of extra_graphs(n, k)."""
     k = 3 * (n + 2 * genus - 2) - n * (n - 1) // 2
     if not 3 <= n <= 12 or not 0 <= k <= 8 or seconds < 0:
         raise ValueError("requires 3..12 vertices, 0..8 extra edges and nonnegative seconds")
@@ -170,7 +171,9 @@ def run(n, genus, seconds, out):
     with (out / "pip-freeze.txt").open("w") as f:
         subprocess.run([sys.executable, "-m", "pip", "--no-cache-dir", "freeze"], stdout=f, check=True)
     try:
-        graphs = extra_graphs(n, k)
+        graphs = extra_graphs(n, k) if graphs is None else graphs
+        if any(len(edges) != k for edges in graphs):
+            raise ValueError(f"every extra-edge input needs {k} edges")
         input_path = out / "graphs.txt"
         input_path.write_text(f"{n} {genus} {k} {len(graphs)}\n" + "".join(
             " ".join(str(v) for e in edges for v in e) + "\n" for edges in graphs))

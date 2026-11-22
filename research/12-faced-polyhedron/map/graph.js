@@ -1687,7 +1687,7 @@ window.GRAPH = {
    "id": "E-261117-04",
    "kind": "experiment",
    "title": "P6, the equivelar slice by plain per-map formulas - (8, 3) rung with an enrichment control, (9, 4) census and plain pass",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-17",
    "concluded": "",
    "path": "experiments/E-261117-04-equivelar-price-pilot/README.md",
@@ -1695,7 +1695,7 @@ window.GRAPH = {
     "DR19"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {

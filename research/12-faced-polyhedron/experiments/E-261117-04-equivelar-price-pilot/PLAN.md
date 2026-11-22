@@ -1,0 +1,80 @@
+# E-261117-04: P6 stage A, the equivelar (8, 3) rung and the enrichment control
+
+Pre-registration (2026-11-22), at most 80 lines; stages B and C (week items 3, 4) come as amendments at the end.
+
+* **ROADMAP row / scores**: T 2 D 2 F 2 G 1 R 2 (T + D = 4); week item 1, explore, J 0 (lead review 2026-11-22 §3).
+* **Question**: does the plain per-map formula pipeline recover both known eight-face solids unaided from the complete
+  equivelar (8, 3) census, and do SAT maps cluster in the equivelar slice or also appear among non-equivelar maps?
+* **Hypotheses moved**: H-261101-07. Only the known maps SAT and realized: the rung passes, P6 proceeds (item 3).
+  A non-equivelar map realized: P6's premise "realizable means equivelar" fails at (8, 3). A new equivelar object: a
+  third eight-face S1 object (owner decision O4). **H1**: SAT maps lie only in the equivelar slice. **H0**: some of
+  the 745 non-equivelar maps are SAT (formula scope) or realized.
+* **Why**: both known (8, 3) solids are equivelar (Roest-Vigh 4+4, Mizhaev 8, not face-transitive: 3au); equivelar
+  (E = F (F + 1) / 2) fixes the extra-edge multigraph to 2-regular, a small slice (expected 97 classes, 51 admissible).
+* **Coverage (PROVED-1)**: at (8, 3) E = 36 = 28 + 8, so every face is a 9-gon iff each face has 2 extra edge-ends,
+  i.e. the extra-edge multigraph (multiplicity - 1 per face pair, loopless) is 2-regular on 8 vertices: a disjoint
+  union of cycles covering all vertices, a 2-cycle being one pair of multiplicity 3. Isomorphism types = partitions
+  of 8 into parts >= 2 (seven). `enum_multi.c` is exhaustive for one labelled input (E-261103-01, PROVED-1) and the
+  face labels are interchangeable, so one cycle-union input per partition (`p6.cycle_union`) covers every equivelar
+  map; canonical codes (up to reflection) merge duplicates. Not `extra_graphs`, not symcensus with the trivial group.
+* **Method**: `p6.py census` (`census.run` with explicit inputs; the only census change is that optional argument,
+  `test_census` 9 OK), `p6.py build` (records, queue, pinned control, census controls), `run.sh SHARD` (10 shards;
+  E-261119-02 `run_b.sh`: E-261103-03 runner, imported-map mode, kissat 4.0.4 seed 0, `NO_PROOF=1`, lean UNSATs).
+  Formula: `tranche.submap_formula` without a generator, 9 elements (8 planes + infinity), on the 51 admissible census
+  classes and the 745 non-equivelar maps of the 790 free-C2 (8, 3) list (E-261119-02 stage A; the 45 equivelar ones
+  are census classes): 796 units, cap 60 s. One orientation per class (the code's): a realization of the mirror map
+  is the reflection of one of the map, and the formula is sound for every realization of its map, so either formula
+  is SAT if the class is realizable; UNSAT-SOLVER statements name that orientation. Each SAT model: the bridge
+  (hinge, two_stage, fp; 120 s each), EMBEDDED -> `verify_candidate.py --all-pairs`. Target S1, eight faces, genus 3
+  (never S5 or S0). Counters (SPEC §4): status per unit, solver seconds, bridge outcome, V_E_F_chi.
+* **Census controls (stop on failure)**: all seven inputs complete; every class equivelar; both known codes, the six
+  face-transitive (8, 3) classes of 3au (E-261117-01) and the 45 equivelar free-C2 codes present; every admissible
+  class with a free half-turn (order-2 Aut+ element fixing no face) in the 790. Counts 97 / 51 expected, a session
+  check, not a control truth: a different count is recorded, then the lead before any formula.
+* **Formula controls**: positive: Roest-Vigh's planes pinned on his links SAT; negative: his planes pinned on another
+  admissible census class of his pattern relabelled onto his doubled face pairs (same multiplicities, other map)
+  UNSAT-SOLVER; both in every shard, plus the runner's convex controls. Deviation from the week plan ("a wrong
+  pairing"): no relinking by one transposition in each link of a doubled pair is an admissible (8, 3) map other
+  than his (0 of 10368, session prototype), so the same-multigraph map replaces it. In-run positive: both known maps
+  SAT unaided and realized, (V, E, F, chi) = (24, 36, 8, -4). Consistency: E-261118-01 classes 1-5 UNSAT-SOLVER
+  (another build of the plain formula; a SAT is recorded and goes to the lead, no stop).
+* **Unit tests** (`test_p6.py`, 9 OK before this commit): partitions, the 2-regular inputs, census input-size guard,
+  known patterns {4+4, 8}, 790 / 45 free-C2 maps, free half-turn flag, pinned calibration, queue layout, plain formula.
+* **Counter calibration**: no float diagnostic in the verdict. Eval violation counts are integers, both sides in the
+  tests (0 on Roest-Vigh's own links, > 0 on the negative); bridge `wrong_signs` is an integer and a failed bridge
+  decides nothing.
+* **Pilot**: the census (seconds), then shard 0 alone (its pinned pair, ~80 units). Exposes: a census path fault, a
+  control-file path fault, plain records read as symmetric, bridge or verifier crashes.
+* **Pilot gate**: controls pass, no ERROR, every unit ended by its own status; shards 1-9 only if the projection of
+  the rest is <= 1 core-h minus the used time and <= 50 min wall.
+* **Predictions**: (P1) census controls pass and 97 / 51 reproduced (0.9); (P2) both known maps SAT (0.85), each
+  realized by its first model (0.5; else the 30-model step); (P3) no SAT among the 745 non-equivelar maps (0.6);
+  (P4) no SAT among the 49 other equivelar classes (0.7); (P5) every unit decided within 60 s (0.9).
+* **Grid**: one cap; the outcome depends on the map only.
+* **Budget**: <= 1 core-h including census, bridges and follow-ups; <= 50 min wall; 10 shards; laptop, session-run
+  after a one-line owner permission (10 cores, 50 min). Expected ~0.3 core-h (3ba: ~1 s per (8, 3) formula).
+* **Power**: decides what kissat decides in 60 s (600 s on retry); one model per SAT first. Nothing about
+  non-realizability, nor that the two known solids are alone (README); the 745-map control covers only maps with a
+  free half-turn, so the non-equivelar SAT rate is that slice's rate.
+* **Proofs**: none. Every UNSAT is UNSAT-SOLVER (ranking, planning); no negative claim.
+* **Scenario move**: S0 credences A / B / C unchanged in every outcome (S0 parked). Nine-face credence 0.35: no
+  automatic move; a realized non-equivelar map or a new object goes to the lead.
+* **Outcomes**:
+  * SAT: an OM model of that formula, not a polyhedron; realized and `--all-pairs` PASS -> `candidate-check` before
+    any claim. Not realized: SAT-NOT-REALIZED, open.
+  * UNSAT-SOLVER: that formula, that orientation; not an exclusion.
+  * TIMEOUT: no information; one 600 s pass (`p6.py followup`, `Q=stageA_retry`).
+  * near-miss: not applicable (exact statuses only).
+* **Follow-up tree** (week plan): a failed control -> one repair, then the lead. A SAT not realized -> 30 seeded
+  models (`Q=stageA_models`, seeds 1-30, inside the 1 core-h; models not reached are priced for the lead). Only the
+  known maps SAT -> record both rates (SAT of 51 equivelar, of 745 others; formula scope), go to item 3. A
+  non-equivelar map realized -> `candidate-check`, escalate; the lead re-plans. A new equivelar object ->
+  `candidate-check`, escalate (O4); item 3 continues. More than two maps SAT but unrealized -> bridge pricing to the
+  lead before stage C. Maps of the 790 left UNKNOWN or SAT-unrealized -> week item 2.
+* **Stop rule**: all 796 units and the follow-ups recorded; a failed census control or count mismatch; a failed
+  formula control after one repair; or 1 core-h (the session writes `results/<Q>/stop.requested` at 6 min wall with
+  10 shards running; recorded units kept, the rest pending).
+* **STATUS / ROADMAP**: a new STATUS section with the census counts (EXACT, coverage PROVED-1), both rates (formula
+  scope) and the realized objects; the ROADMAP row to done (stage A) or blocked (failed control); item 2's input list.
+
+## Amendments
