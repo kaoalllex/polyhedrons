@@ -15,7 +15,12 @@ maps/pricing_9_5.json, queue_pricing_9_5.json
                                          frozen draw, streamed from the A5c2 records in the data copy (../polyhedrons-data
                                          or $POLYHEDRONS_DATA), each file checked against SHA256SUMS; lean queue (a
                                          non-control UNSAT-SOLVER unit keeps only its results.jsonl line)
-Usage: stageb.py [--check] [--g5]"""
+maps/pass1_9_5/c<k>.json, queue_c<k>.json
+                                         (9, 5), amendment 6 (--g5-pass1 [--chunks A-B], default 0-9): every map in one
+                                         frozen random order, cut into PASS1_9_5_CHUNKS chunks (chunks 0-9 = the random
+                                         10%), cap PASS1_9_5_CAP, lean; not committed (~6 MB each): rebuilt here, every
+                                         chunk's SHA-256 pinned in pass1_9_5.json
+Usage: stageb.py [--check] [--g5 | --g5-pass1 [--chunks A-B]]"""
 from collections import defaultdict
 import hashlib
 import json
@@ -35,6 +40,8 @@ STAGE_A5C2 = (Path(os.environ.get('POLYHEDRONS_DATA', REPO.parent / 'polyhedrons
               / HERE.relative_to(REPO) / 'results/stageA5c2')
 SUMS_A5C2 = HERE / 'results/stageA5c2/SHA256SUMS'
 DRAW_SEED_9_5 = 2611220501
+PASS1_9_5_SEED, PASS1_9_5_CHUNKS, PASS1_9_5_CAP = 2611220601, 100, 5
+PASS1_9_5 = HERE / 'pass1_9_5.json'
 RUNNER = ROOT / 'experiments/E-261103-03-s5-exact-decision-8-2-9-3'
 CONTROL_F9 = 'control_f9.json'
 DRAW_SEED, PRICE_PER_STRATUM, SHARDS = 2611200201, 3, 10
@@ -175,6 +182,43 @@ def pricing_9_5():
                 strata={st: len(by[st]) for st in sorted(by)}, maps=recs)
 
 
+def pass1_9_5(chunks, check):
+    """Amendment 6: the frozen random order of every (9, 5) map (sorted canonical SHA-256, shuffled), cut into
+    PASS1_9_5_CHUNKS contiguous chunks; builds the chunk files in `chunks` and pins them in pass1_9_5.json."""
+    order = sorted({code_sha(mp['code']) for r in a5c2_records() for mp in r['maps']})
+    random.Random(PASS1_9_5_SEED).shuffle(order)
+    size = -(-len(order) // PASS1_9_5_CHUNKS)
+    want = {h: k for k in chunks for h in order[k * size:(k + 1) * size]}
+    data = defaultdict(lambda: (set(), set()))
+    for r in a5c2_records():
+        for mp in r['maps']:
+            if code_sha(mp['code']) in want:
+                st, acts = data[json.dumps(mp['code'])]
+                st.add('b%d m%s' % (r['b'], ''.join(map(str, r['mult_pattern'])))); acts.add(tuple(mp['action']))
+    by_sha = {code_sha(json.loads(k)): k for k in data}
+    pinned = json.loads(PASS1_9_5.read_text()) if PASS1_9_5.exists() else {}
+    man = dict(note='E-261119-02 amendment 6: pass 1 at (9, 5), C2 4 x 2 + 1; random order seed %d, %d chunks of %d'
+                    ' maps, cap %d s, lean' % (PASS1_9_5_SEED, PASS1_9_5_CHUNKS, size, PASS1_9_5_CAP),
+               maps=len(order), order_sha256=hashlib.sha256('\n'.join(order).encode()).hexdigest(),
+               chunks=dict(pinned.get('chunks', {})))
+    assert pinned.get('order_sha256', man['order_sha256']) == man['order_sha256'], 'pass-1 order changed'
+    (HERE / 'maps/pass1_9_5').mkdir(parents=True, exist_ok=True)
+    for k in chunks:
+        path = HERE / 'maps/pass1_9_5' / ('c%03d.json' % k); qpath = path.with_name('queue_c%03d.json' % k)
+        recs = records_for('C2f_9_5', [by_sha[h] for h in order[k * size:(k + 1) * size]], data=data)
+        path.write_text(json.dumps(dict(note=man['note'] + '; chunk %d' % k, maps=recs)) + '\n')
+        qpath.write_text(json.dumps(queue(path, recs, (9, 5), PASS1_9_5_CAP, True, True)) + '\n')
+        row = dict(maps=size if k < PASS1_9_5_CHUNKS - 1 else len(order) - k * size, records=len(recs),
+                   maps_sha256=sha(path), queue_sha256=sha(qpath))
+        if check:
+            assert man['chunks'][str(k)] == row, 'chunk %d differs from pass1_9_5.json' % k
+        man['chunks'][str(k)] = row
+        print('chunk', k, row)
+    if not check:
+        man['chunks'] = dict(sorted(man['chunks'].items(), key=lambda kv: int(kv[0])))
+        PASS1_9_5.write_text(json.dumps(man, indent=1) + '\n')
+
+
 def queue(records_file, records, case, solver_cap, controls, lean=False):
     rows = []
     if controls:
@@ -198,7 +242,11 @@ def main():
     if '--g5' in sys.argv:  # amendment 5: reads the 1.4 GB A5c2 records from the data copy; the lean replication
         # queue re-runs the (9, 4) pricing records (same maps file) in the lean mode
         built = [('pricing', pricing(), (9, 4), True, SOLVER_CAP, True, 'pricing_lean'),
-                 ('pricing_9_5', pricing_9_5(), (9, 5), True, SOLVER_CAP, True)]
+                 ('pricing_9_5', pricing_9_5(), (9, 5), True, SOLVER_CAP, True),
+                 ('rung_8_3', rung_8_3(), (8, 3), False, SOLVER_CAP, True, 'rung_8_3_lean')]  # amendment 6: SATs
+    elif '--g5-pass1' in sys.argv:
+        a, b = (sys.argv[sys.argv.index('--chunks') + 1] if '--chunks' in sys.argv else '0-9').split('-')
+        return pass1_9_5(range(int(a), int(b) + 1), check)
     else:
         built = [('pricing', pricing(), (9, 4), True, SOLVER_CAP), ('rung_9_3', rung_9_3(), (9, 3), True, SOLVER_CAP),
                  ('rung_8_3', rung_8_3(), (8, 3), False, SOLVER_CAP), ('pass1', pass1(), (9, 4), True, PASS1_CAP)]

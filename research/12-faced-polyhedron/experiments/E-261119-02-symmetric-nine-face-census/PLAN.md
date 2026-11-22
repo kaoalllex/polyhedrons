@@ -216,3 +216,32 @@ Per the tree: per-stratum pricing as amendment 2, then the pass-1 price to the o
 * **Power / scope**: a price, not a result about any stratum; an UNSAT-SOLVER holds for its exact formula only and is
   never a negative result. Nothing about non-symmetric realizations, mirrors, C2 3 x 2 + 3 or other genera.
 * **Deviations**: the draw by sorted hashes; the lean mode and the brief-only summary (owner); the replication queue.
+
+**Amendment 6 (2026-11-22, before any pass-1 run at (9, 5)): pass 1 on a random 10% first.** Amendment 5 passed (README
+"Stage B at genus 5"): lean replication exact, formula controls pass, 36 of 36 priced records UNSAT-SOLVER in <= 0.23 s;
+pass 1 priced ~143 core-h. Owner choice (2026-11-22): first a uniformly random 10% of the 978228 maps, then decide between
+the other 90% and a lemma for the common obstruction (item 4).
+* **Order and chunks** (`stageb.py --g5-pass1`, streamed from the hash-checked data copy): the sorted canonical SHA-256
+  of every map, shuffled with the frozen seed 2611220601, cut into 100 contiguous chunks of 9783 maps (the last 9651);
+  chunks 0-9 (97830 maps, one rotation group each) are the 10%. A random order, not a predictor: the rest is chunks 10-99
+  of the same order. Chunk maps files and queues (~6 MB each, `maps/pass1_9_5/`) are not committed; `pass1_9_5.json`
+  pins the order hash and every chunk's maps and queue SHA-256 (two builds agree; the runner refuses a changed file).
+* **Run**: per chunk the amendment-5 runner (`run_b.sh`, lean, kissat seed 0, no proofs), cap 5 s (20 x the priced
+  maximum; owner), bridge 360 s on a SAT; every shard keeps the pilot and pinned f9 controls per chunk. `STAGE=B5p1`
+  (`run.sh` default): the chunks in turn per shard, each chunk ledger 18000 s; a shard stops at a chunk that ends other
+  than SHARD-COMPLETE, and before a chunk once the ledgers hold 20 core-h (hard cap; projected ~14.3 core-h, ~1.5 h wall).
+  Owner launch `launch.sh 261119-02 start` (`launch.results` -> `results/stageB5-pass1`), `stop` at any time, resumable.
+* **Checks before the launch** (session, recorded in README): (a) SAT units in the lean mode: `queue_rung_8_3_lean.json`
+  (the amendment-2 (8, 3) rung with the flag; `STAGE=B5`) must repeat the recorded statuses and hashes of
+  `results/stageB-rung_8_3`, every SAT unit keeping its folder with the model and the bridge's `--all-pairs` PASS;
+  (b) a 10-shard smoke of the B5p1 path on chunk 0 (`PILOT_DIR`, ~60 s, then stop, folder deleted): per-unit wall under
+  full load, statuses, no folder left for UNSAT-SOLVER units.
+* **Predictions**: (T1) every one of the 97830 records decides within 5 s (0.85); (T2) no SAT (0.9); (T3) the 10% stays
+  within 20 core-h (0.9).
+* **Readings / tree**: a failed control -> stop, repair. A SAT -> bridge, `--all-pairs`, `candidate-check`, escalate.
+  TIMEOUTs -> pass 2 at 600 s on them after the 10% (priced first if > 5% of it). All UNSAT-SOLVER -> the 10% read as a
+  price and as a sample (with 0 of 97830 undecided, the 95% upper bound on the undecided share is ~3e-5); the owner
+  decides between chunks 10-99 (~129 core-h) and the lemma.
+* **Power / scope**: an UNSAT-SOLVER holds for its exact formula only and is never a negative result; the 10% says
+  nothing about the 90% beyond the sampling bound. Nothing about non-symmetric realizations, mirrors, other genera.
+* **Deviations**: a 10% stage before the full pass (owner); cap 5 s instead of amendment 3's 30 s (owner).
