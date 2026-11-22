@@ -1,4 +1,5 @@
-"""E-261117-04 (P6) stage A: the equivelar (8, 3) census, the plain-formula records and the pinned control (PLAN.md).
+"""E-261117-04 (P6): stage A, the equivelar (8, 3) census, the plain-formula records and the pinned control; stage B,
+the equivelar (9, 4) census in root-stride units (PLAN.md and its amendment 1).
 
   p6.py census                 the seven cycle-union inputs (partitions of 8 into parts >= 2) through enum_multi.c
                                (E-261103-01 census.run) -> results/census_8_3/
@@ -7,10 +8,18 @@
                                maps/stageA_models.json + queue_stageA_models.json (SAT units not realized, seeds 1-30)
   p6.py summary [--models] RESULTS...
                                statuses, the two SAT rates, controls and realized objects -> stdout (JSON)
+  p6.py census-b F G [--offsets A-B] [--retry] [--budget CORE_S] [--wall S] [--workers W]
+                               stage B: the units (partition of F, root offset mod STRIDES[F, G]) not yet run, W at a
+                               time, each through census.run with UNIT_SECONDS (RETRY_SECONDS with --retry, on the
+                               units that timed out) -> census_dir(F, G)/u/<pattern>-o<offset>[-r]/, run.jsonl
+  p6.py merge F G [--prune]    the units -> census_dir(F, G)/maps_F_G.json (one record per class, a completion flag
+                               per pattern), the stage-B census controls -> stdout and census.json; --prune deletes
+                               the per-unit codes and records once every pattern is complete
 
 Records: every admissible census class and every free-C2 (8, 3) map of E-261119-02 stage A that is not equivelar, in
 the code's orientation, no generator (the plain sub-map formula of tranche.submap_formula), kissat seed 0."""
 from collections import Counter, defaultdict
+import hashlib
 import itertools
 import json
 import os
@@ -83,8 +92,8 @@ def equivelar(links):
     return all(len(link) == len(links) + 1 for link in links)
 
 
-def links_of(text):
-    return B.links_and_groups(json.loads(text), [], F)[0]
+def links_of(text, n=F):
+    return B.links_and_groups(json.loads(text), [], n)[0]
 
 
 def free_half_turn(rec):
@@ -251,6 +260,185 @@ def summary(dirs, maps_file=MAPS):
     return out
 
 
+STRIDES = {(8, 3): 3, (9, 4): 30}
+UNIT_SECONDS, RETRY_SECONDS, WORKERS = 600, 1800, 10
+FT_9_4 = ROOT / 'experiments/E-261117-01-cayley-census-9-4/results/census/maps_9_4.json'
+
+
+def census_dir(n, g):
+    return HERE / ('results/census_9_4' if (n, g) == (9, 4) else f'results/census_{n}_{g}_strided')
+
+
+def units(n, g):
+    """(parts, offset) in offset-major order: offset 0 of every pattern first (the probe)."""
+    return [(parts, o) for o in range(STRIDES[n, g]) for parts in partitions(n)]
+
+
+def unit_dir(n, g, parts, offset, retry=False):
+    return census_dir(n, g) / 'u' / ('%s-o%02d%s' % ('+'.join(map(str, parts)), offset, '-r' if retry else ''))
+
+
+def unit_state(d):
+    """None (not run), 'error', 'complete' or 'timeout' from a unit's census manifest and result."""
+    m = d / 'manifest.json'
+    if not m.exists():
+        return None
+    if json.loads(m.read_text()).get('exit_status') != 0:
+        return 'error'
+    res = next(d.glob('maps_*.json'), None)
+    if res is None:
+        return 'pruned'
+    return 'complete' if json.loads(res.read_text())['complete'] else 'timeout'
+
+
+def run_unit(n, g, parts, offset, seconds, retry=False):
+    S.census.run(n, g, seconds, unit_dir(n, g, parts, offset, retry), graphs=[cycle_union(parts)],
+                 stride=STRIDES[n, g], offset=offset)
+
+
+def census_b(n, g, offsets=None, retry=False, budget=12 * 3600, wall=50 * 60, workers=WORKERS):
+    """Dispatch the units not yet run (with retry: those that timed out). A unit starts only while the finished units'
+    wall seconds (all runs, restarts included) plus one cap per running unit and its own cap stay within the core-s
+    budget, its cap fits the wall left, and census_dir/stop.requested is absent. One line per call in run.jsonl."""
+    import subprocess
+    import time
+    cap = RETRY_SECONDS if retry else UNIT_SECONDS
+    root = census_dir(n, g); (root / 'u').mkdir(parents=True, exist_ok=True)
+    todo = [(p, o) for p, o in units(n, g) if offsets is None or o in offsets]
+    if retry:
+        todo = [(p, o) for p, o in todo if unit_state(unit_dir(n, g, p, o)) == 'timeout'
+                and unit_state(unit_dir(n, g, p, o, True)) is None]
+    else:
+        todo = [(p, o) for p, o in todo if unit_state(unit_dir(n, g, p, o)) is None]
+
+    def used():
+        return sum(json.loads(m.read_text()).get('wall_seconds', 0) for m in (root / 'u').glob('*/manifest.json')
+                   if json.loads(m.read_text()).get('finished_utc'))
+    start, running, stop, errors = time.monotonic(), {}, None, []
+    while todo or running:
+        for key, proc in list(running.items()):
+            if proc.poll() is not None:
+                del running[key]
+                if proc.returncode:
+                    errors.append('%s-o%02d' % ('+'.join(map(str, key[0])), key[1]))
+        if not todo or stop:
+            pass
+        elif errors:
+            stop = 'error'
+        elif (root / 'stop.requested').exists():
+            stop = 'stop.requested'
+        elif time.monotonic() - start + cap > wall:
+            stop = 'wall'
+        elif not running and used() + cap > budget:
+            stop = 'budget'
+        if stop:
+            todo = []
+        while todo and len(running) < workers and used() + cap * (len(running) + 1) <= budget:
+            parts, o = todo.pop(0)
+            running[parts, o] = subprocess.Popen([sys.executable, __file__, 'unit', str(n), str(g), '+'.join(
+                map(str, parts)), str(o), str(cap)] + (['--retry'] if retry else []), stdout=subprocess.DEVNULL)
+        time.sleep(1)
+    line = dict(n=n, genus=g, offsets=sorted(offsets) if offsets else 'all', retry=retry, unit_cap=cap,
+                budget_core_s=budget, wall_cap_s=wall, workers=workers, wall_s=round(time.monotonic() - start, 1),
+                aggregate_core_s=round(used(), 1), stop_reason=stop or 'done', errors=errors,
+                pending=sum(unit_state(unit_dir(n, g, p, o)) is None for p, o in units(n, g)))
+    with (root / 'run.jsonl').open('a') as f:
+        f.write(json.dumps(line) + '\n')
+    print(json.dumps(line))
+    return line
+
+
+def merge(n, g, prune=False):
+    """One record per class over the units (a duplicate must be identical), the completion flag per pattern (every
+    offset complete, from the first run or its retry), the unit table, and the census controls."""
+    root, recs, table, mismatch, wrong_pattern = census_dir(n, g), {}, [], [], []
+    for parts, o in units(n, g):
+        pat = '+'.join(map(str, parts))
+        for retry in (False, True):
+            d = unit_dir(n, g, parts, o, retry)
+            state = unit_state(d)
+            if state is None:
+                continue
+            if state == 'pruned':
+                raise SystemExit(f'{d} is pruned: {root}/maps_{n}_{g}.json is final')
+            row = dict(pattern=pat, offset=o, retry=retry, state=state)
+            res = next(d.glob('maps_*.json'), None)
+            if res is not None:
+                r = json.loads(res.read_text())
+                row.update(classes=r['classes'], roots=r['roots'], seeded=r['seeded'], seconds=r['seconds'],
+                           codes_sha256=hashlib.sha256('\n'.join(sorted(json.dumps(m['code']) for m in r['maps']))
+                                                       .encode()).hexdigest())
+                for m in r['maps']:
+                    t = json.dumps(m['code'])
+                    if t in recs and recs[t] != m:
+                        mismatch.append(t)
+                    recs.setdefault(t, m)
+                    if pattern(m['links']) != pat:
+                        wrong_pattern.append(t)
+            table.append(row)
+    done = {(r['pattern'], r['offset']) for r in table if r['state'] == 'complete'}
+    per = {}
+    for parts in partitions(n):
+        pat = '+'.join(map(str, parts))
+        mine = [m for m in recs.values() if pattern(m['links']) == pat]
+        per[pat] = dict(complete=all((pat, o) in done for o in range(STRIDES[n, g])),
+                        offsets_complete=sum((pat, o) in done for o in range(STRIDES[n, g])),
+                        classes=len(mine), admissible=sum(m['admissible'] for m in mine),
+                        core_s=round(sum(r.get('seconds', 0) for r in table if r['pattern'] == pat), 1))
+    maps = [recs[t] for t in sorted(recs)]
+    out = dict(n=n, genus=g, complete=all(v['complete'] for v in per.values()), stride=STRIDES[n, g],
+               classes=len(maps), admissible=sum(m['admissible'] for m in maps), patterns=per)
+    controls, counts = census_controls(n, g, maps, per)
+    out.update(counts)
+    controls.update(no_record_mismatch=not mismatch, every_class_in_its_pattern=not wrong_pattern,
+                    no_unit_error=all(r['state'] != 'error' for r in table))
+    write(root / f'maps_{n}_{g}.json', json.dumps(dict(out, maps=maps), separators=(',', ':')) + '\n', False)
+    write(root / 'census.json', json.dumps(dict(out, controls=controls, units=table), indent=1) + '\n', False)
+    if prune and out['complete'] and all(v is True for v in controls.values()):
+        for row in table:
+            d = unit_dir(n, g, tuple(map(int, row['pattern'].split('+'))), row['offset'], row['retry'])
+            for name in ('raw.jsonl', f'maps_{n}_{g}.json', 'pip-freeze.txt', 'enum_multi'):
+                (d / name).unlink(missing_ok=True)
+    print(json.dumps(dict(out, controls=controls), indent=1))
+    return out, controls, maps
+
+
+def census_controls(n, g, maps, per):
+    """(8, 3): the strided census equals stage A's census record for record. (9, 4): every class equivelar; both
+    face-transitive classes of 3au present and inadmissible; the 111 equivelar codes of the symmetric lists present
+    (a code of an incomplete pattern is unresolved, not failed), each with its family's automorphism; every admissible
+    class with a C3 3+3+3 (order 3, no fixed face) or a C2 4 x 2 + 1 (order 2, one fixed face) rotation listed."""
+    texts = {json.dumps(m['code']): m for m in maps}
+    c, counts = dict(all_equivelar=all(equivelar(m['links']) for m in maps)), {}
+    if (n, g) == (8, 3):
+        ref = json.loads((CENSUS / 'maps_8_3.json').read_text())
+        c['stage_a_census_reproduced'] = texts == {json.dumps(m['code']): m for m in ref['maps']}
+        return c, counts
+    ft = [json.dumps(m['code']) for m in json.loads(FT_9_4.read_text())['maps']]
+    c['face_transitive_present_inadmissible'] = all(t in texts and not texts[t]['admissible'] for t in ft)
+    lists = {f: set(B.maps_of(f)) for f in ('C3_9_4', 'C2f_9_4')}
+    for name, family, k, fixed in (('c3', 'C3_9_4', 3, 0), ('c2f', 'C2f_9_4', 2, 1)):
+        listed = lists[family]
+        eq = {t for t in listed if equivelar(links_of(t, n))}
+        missing = [t for t in eq if t not in texts]
+        unresolved = [t for t in missing if not per[pattern(links_of(t, n))]['complete']]
+        counts[f'{name}_listed_equivelar'] = len(eq)
+        counts[f'{name}_listed_unresolved'] = len(unresolved)
+        c[f'{name}_listed_present'] = len(missing) == len(unresolved)
+        c[f'{name}_listed_have_rotation'] = all(has_rotation(texts[t], k, fixed) for t in eq if t in texts)
+        c[f'{name}_census_rotation_listed'] = all(t in listed for t, m in texts.items()
+                                                  if m['admissible'] and has_rotation(m, k, fixed))
+    counts['symmetric_equivelar_codes'] = len({t for t in lists['C3_9_4'] | lists['C2f_9_4']
+                                               if equivelar(links_of(t, n))})
+    c['symmetric_lists_complete'] = all(r['complete'] for r in S.records(B.STAGE_A)
+                                        if r['config'] in ('C3_9_4', 'C2f_9_4'))
+    return c, counts
+
+
+def has_rotation(rec, order, fixed_faces):
+    return any(k == order and f == fixed_faces for k, f, *_ in rec['autos'])
+
+
 if __name__ == '__main__':
     cmd = sys.argv[1] if len(sys.argv) > 1 else ''
     if cmd == 'census':
@@ -262,5 +450,17 @@ if __name__ == '__main__':
     elif cmd == 'summary':
         models = '--models' in sys.argv
         summary([a for a in sys.argv[2:] if a != '--models'], MODELS if models else MAPS)
+    elif cmd == 'unit':
+        n, g, pat, o, sec = sys.argv[2:7]
+        run_unit(int(n), int(g), tuple(map(int, pat.split('+'))), int(o), float(sec), '--retry' in sys.argv)
+    elif cmd == 'census-b':
+        a = sys.argv[4:]
+        opt = lambda k, d: a[a.index(k) + 1] if k in a else d
+        offs = opt('--offsets', None)
+        census_b(int(sys.argv[2]), int(sys.argv[3]),
+                 range(int(offs.split('-')[0]), int(offs.split('-')[-1]) + 1) if offs else None, '--retry' in a,
+                 float(opt('--budget', 12 * 3600)), float(opt('--wall', 50 * 60)), int(opt('--workers', WORKERS)))
+    elif cmd == 'merge':
+        merge(int(sys.argv[2]), int(sys.argv[3]), '--prune' in sys.argv)
     else:
         sys.exit(__doc__)

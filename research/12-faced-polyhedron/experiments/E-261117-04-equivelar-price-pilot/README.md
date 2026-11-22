@@ -44,7 +44,8 @@ realized, completion flags. It cannot show that Roest-Vigh and Mizhaev are alone
 
 ## Next
 
-Stage A done (above). Next: stage B, the (9, 4) census (week item 3), as a PLAN amendment. Coverage: the 2-regular extra-edge multigraphs are disjoint cycles
+Stage A done (above). Stage B, the (9, 4) census (week item 3): PLAN amendment 1 (root-stride units, 30 per
+pattern; `p6.py census-b`, `merge`). Coverage: the 2-regular extra-edge multigraphs are disjoint cycles
 (a 2-cycle is a pair of multiplicity 3), one input per partition of F into parts >= 2: seven at (8, 3), eight at (9, 4),
 fed to `enum_multi.c` directly (not `extra_graphs`, not symcensus with the trivial group). (9, 4) needs the guards
 `census.py:154` and `enum_multi.c:186` raised to 9 and a re-read of the coverage argument. Session checks of the

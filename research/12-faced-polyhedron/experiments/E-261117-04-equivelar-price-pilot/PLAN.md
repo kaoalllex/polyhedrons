@@ -78,3 +78,19 @@ Pre-registration (2026-11-22), at most 80 lines; stages B and C (week items 3, 4
   scope) and the realized objects; the ROADMAP row to done (stage A) or blocked (failed control); item 2's input list.
 
 ## Amendments
+
+**Amendment 1 (2026-11-22, week item 3, before any (9, 4) compute): stage B, the equivelar (9, 4) census** (J 2).
+* **Coverage (PROVED-1)**: E = 45 = 36 + 9: 2-regular extra edges, eight partitions of 9, one `cycle_union` each; guards
+  raised to 9 (90 darts <= MAXD, multiplicity <= 10 < MAXN). Unit (pattern, offset 0-29) seeds the roots numbered offset
+  mod 30; each root's search undoes itself, so the union by canonical code is the unsplit census.
+* **Method**: `p6.py census-b 9 4` (10 workers, 600 s per unit, aggregate core-s budget with one cap reserved per
+  running unit, wall, `stop.requested`; `run.jsonl`), `p6.py merge 9 4 [--prune]` -> `maps_9_4.json`, `census.json`.
+* **Controls (stop on failure)**: `census-b 8 3` (stride 3) equals `results/census_8_3` record for record; at (9, 4)
+  every class equivelar and in its unit's pattern, duplicates identical; both 3au classes present, inadmissible; the 111
+  symmetric equivelar codes present (in a timed-out pattern: unresolved) with their rotation; every admissible class
+  with a C3 3+3+3 or C2 4 x 2 + 1 rotation in that list.
+* **Probe, gate**: offset 0 of each pattern (`--offsets 0-0`, <= 10 min), projection 30 x its core-s (D3 session check:
+  ~15000 core-s; 3+2+2+2 has 11 classes; no pattern below D3's partial count, else the lead). No error or timeout, <= 12
+  core-h, rest <= 50 min on 10 workers -> lab-run; longer -> owner day run; > 12 core-h -> lead. A timeout: one 1800 s
+  `--retry`, then the lead. Stop: error, failed control, 12 core-h.
+* **Predictions**: (P6) controls pass (0.85); (P7) all units complete at 600 s (0.7); (P8) <= 8 core-h (0.75).

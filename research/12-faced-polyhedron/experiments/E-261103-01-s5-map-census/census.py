@@ -149,11 +149,13 @@ def sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def run(n, genus, seconds, out, graphs=None):
-    """graphs: explicit extra-edge inputs (endpoint pairs, k each) in place of extra_graphs(n, k)."""
+def run(n, genus, seconds, out, graphs=None, stride=1, offset=0):
+    """graphs: explicit extra-edge inputs (endpoint pairs, k each) in place of extra_graphs(n, k). stride, offset:
+    seed only the root rotations numbered offset mod stride in each input (enum_multi.c); the runs with
+    offset = 0..stride-1 together cover the unsplit run."""
     k = 3 * (n + 2 * genus - 2) - n * (n - 1) // 2
-    if not 3 <= n <= 12 or not 0 <= k <= 8 or seconds < 0:
-        raise ValueError("requires 3..12 vertices, 0..8 extra edges and nonnegative seconds")
+    if not 3 <= n <= 12 or not 0 <= k <= 9 or seconds < 0 or not 0 <= offset < stride:
+        raise ValueError("requires 3..12 vertices, 0..9 extra edges, nonnegative seconds and 0 <= offset < stride")
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     if any(out.iterdir()):
@@ -164,7 +166,7 @@ def run(n, genus, seconds, out, graphs=None):
                     branch=subprocess.check_output(["git", "branch", "--show-current"], cwd=ROOT, text=True).strip(),
                     dirty=bool(subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT)),
                     host=platform.platform(), cpu_count=os.cpu_count(), python=sys.version,
-                    workers=1, n=n, genus=genus, seconds=seconds,
+                    workers=1, n=n, genus=genus, seconds=seconds, stride=stride, offset=offset,
                     sources={p.name: sha256(p) for p in (HERE / "enum_multi.c", Path(__file__),
                               ROOT / "reviews/strategy-review-2026-11-03-flipwalk.py")})
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
@@ -183,7 +185,7 @@ def run(n, genus, seconds, out, graphs=None):
         subprocess.run([cc, "-O3", "-std=c11", "-Wall", "-Wextra", "-Werror",
                         str(HERE / "enum_multi.c"), "-o", str(binary)], check=True)
         with (out / "raw.jsonl").open("w") as f, (out / "progress.txt").open("w") as log:
-            subprocess.run([str(binary.resolve()), str(input_path.resolve()), str(seconds)],
+            subprocess.run([str(binary.resolve()), str(input_path.resolve()), str(seconds), str(stride), str(offset)],
                            stdout=f, stderr=log, timeout=seconds + 15, check=True)
         rows = [json.loads(s) for s in (out / "raw.jsonl").read_text().splitlines()]
         result = rows.pop()

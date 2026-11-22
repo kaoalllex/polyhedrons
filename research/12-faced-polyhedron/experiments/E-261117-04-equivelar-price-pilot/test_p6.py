@@ -1,4 +1,5 @@
-"""Unit tests of p6.py (PLAN.md, stage A), run before the census and the formulas: python3 -m unittest test_p6"""
+"""Unit tests of p6.py (PLAN.md, stage A and amendment 1, stage B), run before the census and the formulas:
+python3 -m unittest test_p6"""
 from collections import Counter
 import json
 from pathlib import Path
@@ -30,16 +31,18 @@ class P6Tests(unittest.TestCase):
 
     def test_partitions(self):
         self.assertEqual(list(p6.partitions(8)), [(8,), (6, 2), (5, 3), (4, 4), (4, 2, 2), (3, 3, 2), (2, 2, 2, 2)])
-        self.assertEqual(len(list(p6.partitions(9))), 8)
+        self.assertEqual(list(p6.partitions(9)), [(9,), (7, 2), (6, 3), (5, 4), (5, 2, 2), (4, 3, 2), (3, 3, 3),
+                                                  (3, 2, 2, 2)])
 
     def test_cycle_unions_are_the_2_regular_patterns(self):
-        for parts in p6.partitions(8):
-            edges = p6.cycle_union(parts)
-            self.assertEqual(len(edges), 8)
-            self.assertTrue(all(a != b for a, b in edges))
-            deg = Counter(v for e in edges for v in e)
-            self.assertEqual(sorted(deg.values()), [2] * 8)
-            self.assertEqual(components(edges, 8), sorted(parts, reverse=True))
+        for n in (8, 9):
+            for parts in p6.partitions(n):
+                edges = p6.cycle_union(parts)
+                self.assertEqual(len(edges), n)
+                self.assertTrue(all(a != b for a, b in edges))
+                deg = Counter(v for e in edges for v in e)
+                self.assertEqual(sorted(deg.values()), [2] * n)
+                self.assertEqual(components(edges, n), sorted(parts, reverse=True))
 
     def test_census_rejects_a_wrong_input_size(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -94,6 +97,85 @@ class P6Tests(unittest.TestCase):
         c = tranche.submap_formula(8, dict(enumerate(links)))
         self.assertEqual(len(c.qvar), 126)  # 4-subsets of 9 elements: 8 planes and the plane at infinity
         self.assertGreater(len(c.clauses), 0)
+
+
+class StageBTests(unittest.TestCase):
+    """Amendment 1: the (9, 4) census in root-stride units."""
+
+    def test_census_guards(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            r = p6.S.census.run(9, 4, 0, Path(tmp) / 'a', graphs=[p6.cycle_union((9,))], stride=30, offset=29)
+            self.assertFalse(r['complete'])  # nine extra edges accepted; a zero time limit is a partial run
+            self.assertEqual((r['stride'], r['offset']), (30, 29))
+            with self.assertRaises(ValueError):  # twelve extra edges
+                p6.S.census.run(7, 3, 0, Path(tmp) / 'b')
+            with self.assertRaises(ValueError):
+                p6.S.census.run(8, 3, 0, Path(tmp) / 'c', graphs=[p6.cycle_union((8,))], stride=3, offset=3)
+
+    def test_root_stride_split_covers_the_unsplit_run(self):
+        g = [p6.cycle_union((4, 2, 2))]
+        with tempfile.TemporaryDirectory() as tmp:
+            whole = p6.S.census.run(8, 3, 60, Path(tmp) / 'w', graphs=g)
+            parts = [p6.S.census.run(8, 3, 60, Path(tmp) / str(o), graphs=g, stride=3, offset=o) for o in range(3)]
+        self.assertTrue(whole['complete'] and all(r['complete'] for r in parts))
+        self.assertEqual(whole['seeded'], whole['roots'])
+        self.assertTrue(all(r['roots'] == whole['roots'] for r in parts))
+        self.assertEqual(sum(r['seeded'] for r in parts), whole['roots'])
+        codes = lambda r: {json.dumps(m['code']) for m in r['maps']}
+        self.assertEqual(set().union(*map(codes, parts)), codes(whole))
+        self.assertEqual(len(codes(whole)), 6)  # 4+2+2 in stage A: 6 classes
+
+    def test_units(self):
+        u = p6.units(9, 4)
+        self.assertEqual(len(u), 8 * 30)
+        self.assertEqual(u[:8], [(parts, 0) for parts in p6.partitions(9)])
+        self.assertEqual(len({p6.unit_dir(9, 4, p, o) for p, o in u}), 240)
+        self.assertEqual(p6.unit_dir(9, 4, (3, 3, 3), 7, True).name, '3+3+3-o07-r')
+        self.assertEqual(len(p6.units(8, 3)), 7 * 3)
+
+    def test_symmetric_lists(self):
+        eq = {f: {t for t in p6.B.maps_of(f) if p6.equivelar(p6.links_of(t, 9))} for f in ('C3_9_4', 'C2f_9_4')}
+        both = eq['C3_9_4'] | eq['C2f_9_4']
+        self.assertEqual(len(both), 111)  # K2 of the final lead review 2026-11-22
+        self.assertEqual(Counter(p6.pattern(p6.links_of(t, 9)) for t in both),
+                         Counter({'9': 50, '7+2': 16, '5+4': 16, '6+3': 8, '5+2+2': 8, '3+2+2+2': 8, '4+3+2': 4,
+                                  '3+3+3': 1}))
+
+    def test_face_transitive_9_4(self):
+        ft = json.loads(p6.FT_9_4.read_text())['maps']
+        self.assertEqual(len(ft), 2)
+        self.assertTrue(all(p6.equivelar(m['links']) and not m['admissible'] for m in ft))
+
+    def test_has_rotation(self):
+        rec = {'autos': [(2, 1, 1, 0), (3, 0, 0, 0)]}
+        self.assertTrue(p6.has_rotation(rec, 3, 0) and p6.has_rotation(rec, 2, 1))
+        self.assertFalse(p6.has_rotation(rec, 2, 0) or p6.has_rotation(rec, 3, 3))
+
+    def test_merge_flags_incomplete_patterns_and_mismatches(self):
+        ref = json.loads((p6.CENSUS / 'maps_8_3.json').read_text())['maps']
+        mine = [m for m in ref if p6.pattern(m['links']) == '4+2+2']
+        with tempfile.TemporaryDirectory() as tmp:
+            census_dir, p6.census_dir = p6.census_dir, lambda n, g: Path(tmp)
+            try:
+                for o, maps in ((0, mine), (1, [dict(mine[0], aut_plus=-1)])):
+                    d = p6.unit_dir(8, 3, (4, 2, 2), o); d.mkdir(parents=True)
+                    (d / 'manifest.json').write_text(json.dumps(dict(exit_status=0, wall_seconds=1,
+                                                                     finished_utc='x')))
+                    (d / 'maps_8_3.json').write_text(json.dumps(dict(complete=True, classes=len(maps), roots=9,
+                                                                     seeded=3, seconds=1, maps=maps)))
+                out, controls, maps = p6.merge(8, 3, prune=True)
+                self.assertFalse(out['complete'])
+                self.assertEqual(out['patterns']['4+2+2']['offsets_complete'], 2)
+                self.assertFalse(out['patterns']['4+2+2']['complete'])
+                self.assertEqual(len(maps), 6)
+                self.assertFalse(controls['no_record_mismatch'])
+                self.assertFalse(controls['stage_a_census_reproduced'])
+                self.assertTrue((d / 'maps_8_3.json').exists())  # nothing pruned while incomplete
+                line = p6.census_b(8, 3, budget=0)
+                self.assertEqual((line['stop_reason'], line['pending']), ('budget', 19))
+                self.assertEqual(p6.census_b(8, 3, wall=0)['stop_reason'], 'wall')
+            finally:
+                p6.census_dir = census_dir
 
 
 if __name__ == '__main__':
