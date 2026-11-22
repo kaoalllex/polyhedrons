@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-20** (E-261119-01 concluded; E-261119-02 stage A, stage-B pass 1 and the C3 (9, 5) census recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
-registered result is E-261119-02 stage B pass 1 (section 3bf); results are listed newest last in section 3, chronology in
+As of **2026-11-22** (E-261119-01 concluded; E-261119-02 stage A, stage-B pass 1 and both (9, 5) censuses recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
+registered result is the E-261119-02 C2 (9, 5) census (section 3bh); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -573,6 +573,14 @@ one fixed triangle forced) complete with no exact cover; the C3 (9, 3) control i
 fixed-point argument (one fixed point is impossible, PROVED-1). Scope: dual maps of cubic solids (admissible
 triangular maps) only. Not run: the C2 4 x 2 + 1 (9, 5) census (owner night, amendment 4); nothing about mirrors, other
 actions or genera. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+## 3bh. E-261119-02 amendment 4: C2 4 x 2 + 1 census at (9, 5) (2026-11-22)
+
+**978228 admissible C2 4 x 2 + 1 map classes at (9, 5) (EXACT; coverage PROVED-1)**: all 12288 units (demand classes,
+Burnside-checked) complete, in 12 of 16 multiplicity strata; the four C2 controls hold and every action checks. Owner
+night 2026-11-21 (two launches, resumed by claim files), ~12.4 of the 40 core-h cap with the pilots. Maps only: no
+formula run at genus 5 yet. Scope: dual maps of cubic solids (admissible triangular maps) with this action; nothing about
+mirrors, other actions or genera. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
 
 ## 4. What may and may not be claimed
 

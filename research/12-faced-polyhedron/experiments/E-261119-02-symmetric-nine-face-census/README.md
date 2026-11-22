@@ -81,9 +81,23 @@ EXACT computation, coverage PROVED-1: no admissible C3 3+3+3 (9, 5) map, so stag
 claim markers and the full `summary.json` are in `../polyhedrons-data/<same path>`. The C2 4 x 2 + 1 census (A5c2) is the
 owner night of amendment 4.
 
+C2 4 x 2 + 1 at (9, 5), stage A5c2, owner launch on `cc0cdac3` (10 shards; the first launch, 2026-11-21 09:06Z, stopped
+after 41.6 min with 2586 units recorded, the relaunch at 20:56Z claimed the remaining 9826 in 27.7 min; 12412 claims =
+12412 records, no unit repeated or lost; every manifest exit 0; 11.56 core-h shard wall, 11.47 core-h inside units, plus
+the ~0.85 core-h pilots: ~12.4 of the 40 core-h cap). Unit tests OK; the four C2 controls hold ((9, 3) 24 classes and
+(8, 2) 2 equal the census, (7, 1) is Szilassi's map, (8, 3) holds both known maps among its 790 classes, as in stage A);
+12288 demand classes = the Burnside count; every action checks; all 12288 units complete. **978228 admissible C2 4 x 2 + 1
+(9, 5) map classes** in 12 of the 16 multiplicity strata (the four with four or more multiplicity-3 pairs have no cover);
+per-stratum counts in `results/stageA5c2/summary-brief.json`. Gate passes (G1, G3, G4 held). Label: EXACT computation,
+coverage PROVED-1, maps only. The per-unit records and the full `summary.json` (2.2 GB, peak 21 GB RSS, 109 s) are in
+`../polyhedrons-data/<same path>`, SHA-256 in `results/stageA5c2/SHA256SUMS`.
+
 ## Next
 
 Both families are all UNSAT-SOLVER at (9, 4), so per the tree: genus 5 (E = 51) for both, priced the same way (stage-A
 census at (9, 5), then per-stratum pricing; an amendment before any run). Amendment 4 (2026-11-20): C3 (9, 5) census
-(498 units) in the session, C2 4 x 2 + 1 (9, 5) census (12288 units, priced ~12 core-h) as an owner night, 40 core-h cap. SAT -> bridge, `--all-pairs` nine faces,
+(498 units) in the session, C2 4 x 2 + 1 (9, 5) census (12288 units, priced ~12 core-h) as an owner night, 40 core-h cap.
+C3 is void at (9, 5); the C2 list is complete (978228 classes), so amendment 5: per-stratum pricing (3 maps per stratum,
+as amendment 2) and the pass-1 price to the owner (~150 core-h at the (9, 4) per-record rate; no subset by a guessed
+predictor without the owner). SAT -> bridge, `--all-pairs` nine faces,
 `candidate-check`, escalate. Neither family advances -> E-261117-04 (P6). A control failure -> repair. Lab: Opus, high / Codex gpt-6-astra, high.

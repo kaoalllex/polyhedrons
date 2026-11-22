@@ -1116,3 +1116,7 @@ no pass 2. Next: genus 5 per the tree. STATUS 3bf; `experiments/E-261119-02-symm
 2026-11-20 — E-261119-02 amendment 4 (genus 5): the C3 3+3+3 census at (9, 5) is complete and empty (498 units, no exact
 cover; C3 (9, 3) control exact; consistent with the Z3 one-fixed-point argument). The C2 4 x 2 + 1 (9, 5) census (priced
 ~12 core-h, 40 core-h cap) is the owner night. STATUS 3bg; `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+2026-11-22 — E-261119-02 amendment 4 (genus 5): the C2 4 x 2 + 1 census at (9, 5) is complete (owner night 2026-11-21,
+two launches, 12288 units; every control holds; 978228 map classes; ~12.4 of 40 core-h). Next: amendment 5 (per-stratum
+pricing, the pass-1 price to the owner). STATUS 3bh; `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
