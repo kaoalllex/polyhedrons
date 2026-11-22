@@ -1133,3 +1133,6 @@ with SAT folders kept and `--all-pairs` PASS, smoke 0.50 core-s per unit. Owner 
 2026-11-22 — E-261116-09 concluded: lemmas L1-L5 PROVED-1, L6 (perturbation, degree <= 4) PROVED-1 with an exact local
 check; part B (owner): no common clause-family set, SYM not needed for the priced stage-B UNSATs, GF(2) parity Lemma P
 excludes 3 + 17 records exactly. `experiments/E-261116-09-uniformity-perturbation-lemmas/CONCLUSION.md`.
+2026-11-22 — E-261119-03 concluded (owner exception to T + D >= 3): no face-transitive cubic (9, 7) map is
+admissible (Z9 48768, Z3 x Z3 522240 valid rotations, all with repeated vertex triples); the slice is empty at genus 4
+and 7. `experiments/E-261119-03-cayley-nine-faces-genus-7/CONCLUSION.md`.

@@ -2,7 +2,7 @@
 id: I-261119-03
 title: Face-transitive nine-face maps at genus 7 - Cayley maps of Z9 and Z3 x Z3 at valence 14
 date: 2026-11-19
-status: open
+status: tried
 direction: [DR18]
 origin: [owner, I-261117-01, E-261117-01, I-261117-04]
 ---
@@ -28,3 +28,8 @@ E-261119-03 (week item 5, optional): N1's two enumerators at valence 14, the pla
 <= 1 session. Kill: no admissible class.
 
 Source: `reviews/strategy-review-2026-11-19.md` §5 (owner's raw idea, Q1 kept; Q2 and Q3 dropped; owner-approved 2026-11-19).
+
+## Result (2026-11-22)
+
+Tried in E-261119-03 (STATUS 3bj): no face-transitive cubic (9, 7) map is admissible; with E-261117-01 the slice is
+empty at genus 4 and 7 (EXACT, coverage PROVED-1). Genus 10 and beyond not enumerated.

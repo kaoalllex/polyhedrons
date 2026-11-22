@@ -1,0 +1,160 @@
+{
+ "rung": {
+  "8_3": {
+   "rho_dfs": {
+    "F": 8,
+    "genus": 3,
+    "valency": 9,
+    "method": "rho_dfs",
+    "workers": 9,
+    "groups": {
+     "Z8": {
+      "labellings": 10,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "Z4xZ2": {
+      "labellings": 28,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "Z2xZ2xZ2": {
+      "labellings": 112,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "D4": {
+      "labellings": 62,
+      "raw": 352,
+      "valid": 352,
+      "admissible": 352,
+      "distinct_valid": 5,
+      "distinct_admissible": 5
+     },
+     "Q8": {
+      "labellings": 10,
+      "raw": 96,
+      "valid": 96,
+      "admissible": 96,
+      "distinct_valid": 1,
+      "distinct_admissible": 1
+     }
+    },
+    "classes_of": "all valid maps",
+    "seconds": 0.33226004098833073,
+    "core_seconds_bound": 2.9903403688949766,
+    "distinct_valid": 6,
+    "distinct_admissible": 6
+   },
+   "agrees_with_saved_brute": true
+  },
+  "9_4": {
+   "rho_dfs": {
+    "F": 9,
+    "genus": 4,
+    "valency": 10,
+    "method": "rho_dfs",
+    "workers": 9,
+    "groups": {
+     "Z9": {
+      "labellings": 8,
+      "raw": 0,
+      "valid": 0,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "Z3xZ3": {
+      "labellings": 8,
+      "raw": 384,
+      "valid": 384,
+      "admissible": 0,
+      "distinct_valid": 2,
+      "distinct_admissible": 0
+     }
+    },
+    "classes_of": "all valid maps",
+    "seconds": 0.3788223330047913,
+    "core_seconds_bound": 3.4094009970431216,
+    "distinct_valid": 2,
+    "distinct_admissible": 0
+   },
+   "agrees_with_saved_brute": true
+  }
+ },
+ "stages": {
+  "9_7": {
+   "by_phi": {
+    "F": 9,
+    "genus": 7,
+    "valency": 14,
+    "method": "by_phi",
+    "workers": 9,
+    "groups": {
+     "Z9": {
+      "labellings": 272,
+      "raw": 48768,
+      "valid": 48768,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "Z3xZ3": {
+      "labellings": 272,
+      "raw": 522240,
+      "valid": 522240,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     }
+    },
+    "classes_of": "admissible maps only",
+    "seconds": 13.181672709004488,
+    "core_seconds_bound": 118.63505438104039,
+    "distinct_valid": 0,
+    "distinct_admissible": 0
+   },
+   "rho_dfs": {
+    "F": 9,
+    "genus": 7,
+    "valency": 14,
+    "method": "rho_dfs",
+    "workers": 9,
+    "groups": {
+     "Z9": {
+      "labellings": 272,
+      "raw": 48768,
+      "valid": 48768,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     },
+     "Z3xZ3": {
+      "labellings": 272,
+      "raw": 522240,
+      "valid": 522240,
+      "admissible": 0,
+      "distinct_valid": 0,
+      "distinct_admissible": 0
+     }
+    },
+    "classes_of": "admissible maps only",
+    "seconds": 88.98234112499631,
+    "core_seconds_bound": 800.8410701249668,
+    "distinct_valid": 0,
+    "distinct_admissible": 0
+   },
+   "methods_agree": true
+  }
+ },
+ "PASS": true
+}

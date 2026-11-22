@@ -53,6 +53,17 @@ class RhoDfs(unittest.TestCase):
                 self.assertEqual([s[c] for c in ('raw', 'valid', 'admissible')],
                                  [part_stats['groups'][g][c] for c in ('raw', 'valid', 'admissible')])
 
+    def test_saved_census(self):
+        report = json.loads((cayley7.HERE / 'results/census/census.json').read_text())
+        self.assertTrue(report['PASS'])
+        self.assertTrue(all(r['agrees_with_saved_brute'] for r in report['rung'].values()))
+        st = report['stages']['9_7']
+        self.assertTrue(st['methods_agree'])
+        for m in ('by_phi', 'rho_dfs'):
+            self.assertEqual({g: (s['raw'], s['valid'], s['admissible']) for g, s in st[m]['groups'].items()},
+                             {'Z9': (48768, 48768, 0), 'Z3xZ3': (522240, 522240, 0)})
+        self.assertEqual(json.loads((cayley7.HERE / 'results/census/maps_9_7.json').read_text())['maps'], [])
+
     def test_valency_genus_7(self):
         self.assertEqual(cayley.valency(9, 7), 14)
         self.assertIsNone(cayley.valency(9, 5))

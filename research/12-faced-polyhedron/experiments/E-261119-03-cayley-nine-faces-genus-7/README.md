@@ -2,7 +2,9 @@
 id: E-261119-03
 title: Face-transitive nine-face maps at genus 7 - Cayley maps of Z9 and Z3 x Z3 at valence 14, plain formula on admissible classes
 date: 2026-11-19
-status: running
+status: done
+concluded: 2026-11-22
+verdict: NO-ADMISSIBLE-CAYLEY-9-7
 direction: [DR18]
 origin: [I-261119-03, E-261117-01]
 tests: [H-261101-07]
@@ -10,9 +12,10 @@ produces: []
 preregistered: true
 ---
 
-> Planned, week item 5, optional (`reviews/strategy-review-2026-11-19.md` §1, owner-approved 2026-11-19; the owner's
-> numbering idea), explore, jump 2. Scores T D F G R: 1 1 2 1 2 | budget: <= 1 session. Before any compute: `PLAN.md`
-> (skill `experiment-start`). No proofs.
+> Concluded: no face-transitive cubic (9, 7) map is admissible (Z9 48768, Z3 x Z3 522240 valid rotations, every
+> one with a repeated vertex triple); with E-261117-01 the slice is empty at genus 4 and 7. EXACT, coverage PROVED-1;
+> no formula ran; ~2.0 core-h (1.7 in an aborted launch). Run on an owner exception to T + D >= 3 (scores 1 1 2 1 2).
+> Evidence: [CONCLUSION.md](CONCLUSION.md).
 
 ## Goal
 

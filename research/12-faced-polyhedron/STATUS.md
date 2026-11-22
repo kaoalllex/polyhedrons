@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-22** (E-261119-01 and E-261116-09 concluded; E-261119-02 stage A, stage-B pass 1 and both (9, 5) censuses recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
-registered result is E-261116-09 (lemmas, ablation, parity; section 3bi); results are listed newest last in section 3, chronology in
+As of **2026-11-22** (E-261119-01, E-261116-09 and E-261119-03 concluded; E-261119-02 stage A, stage-B pass 1 and both (9, 5) censuses recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
+registered result is E-261119-03 (face-transitive (9, 7) census empty; section 3bj); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -589,6 +589,16 @@ mirrors, other actions or genera. `experiments/E-261119-02-symmetric-nine-face-c
 * **Ablation (UNSAT-SOLVER)**: no common small family set; dropping SYM keeps all 69 priced stage-B formulas UNSAT; the plain formula is UNSAT-SOLVER on 36 of 36 priced (9, 5) and 23 of 33 (9, 4) records (rest UNKNOWN at 5 s), on none of the (9, 3) rung.
 * **Lemma P, collinear-segment parity (certificates EXACT, reading PROVED-1)**: a GF(2)-inconsistent SEGMENT_DISJOINT system excludes 3 of 36 priced (9, 5) maps outright (any symmetry); with SYM, 17 (map, action) pairs of 69 under their action. Scope: these records; controls pass (SAT (8, 3) units consistent).
 `experiments/E-261116-09-uniformity-perturbation-lemmas/CONCLUSION.md`.
+
+## 3bj. E-261119-03 Cayley census of face-transitive cubic (9, 7) maps (2026-11-22)
+
+**NO-ADMISSIBLE-CAYLEY-9-7**: every cubic (9, 7) map with all face pairs adjacent and Aut+ transitive on the faces
+(a Cayley map of Z9 or Z3 x Z3, valency 14) has a repeated vertex triple, so none is the map of a nine-face
+polyhedron. EXACT computation (two enumerators agree on every count; rung reproduces section 3au's brute counts;
+K7, K12 controls), coverage PROVED-1. With 3au the face-transitive nine-face slice is empty at genus 4 and 7.
+Scope: cubic, face-transitive; genus >= 10 and non-face-transitive maps not covered; no formula ran (owner
+exception to T + D >= 3; ~2.0 core-h, 1.7 of them an aborted launch). H-261101-07 unchanged.
+`experiments/E-261119-03-cayley-nine-faces-genus-7/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 
