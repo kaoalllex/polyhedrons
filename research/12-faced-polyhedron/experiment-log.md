@@ -1158,3 +1158,7 @@ Mizhaev's maps, both realized unaided; the rest UNSAT-SOLVER; 0.18 core-h. Week 
 97830 UNSAT-SOLVER (max 2.01 s, 14.32 core-h); both power lines (< 3.1e-5 per map; at most 28 SAT formulas in the
 978228 at 95 %), the 862-action note, the parity scope correction, `tests:` links removed.
 `experiments/E-261119-02-symmetric-nine-face-census/CONCLUSION.md`.
+
+2026-11-22 — E-261117-04 concluded (week item 4, STATUS 3bn): P6 stage C, the plain formulas of all 1071 admissible
+equivelar (9, 4) classes UNSAT-SOLVER (0 SAT, 0 TIMEOUT, max 54.9 s, 3.43 core-h, lab run); controls pass.
+`experiments/E-261117-04-equivelar-price-pilot/CONCLUSION.md`.

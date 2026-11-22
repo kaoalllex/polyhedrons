@@ -1687,16 +1687,16 @@ window.GRAPH = {
    "id": "E-261117-04",
    "kind": "experiment",
    "title": "P6, the equivelar slice by plain per-map formulas - (8, 3) rung with an enrichment control, (9, 4) census and plain pass",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-17",
-   "concluded": "",
+   "concluded": "2026-11-22",
    "path": "experiments/E-261117-04-equivelar-price-pilot/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
+   "verdict": "EQUIVELAR-9-4-PLAIN-ALL-UNSAT-SOLVER",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: UNSAT-SOLVER on 1071 of 1071, 0 SAT@3.43 core-h (stage C; the experiment as a whole 6.7 core-h: A 0.18, B 3.1, C 3.43). Not LOW-YIELD: a complete pass over its slice at formula scope, every unit decided."
   },
   {
    "id": "E-261118-01",

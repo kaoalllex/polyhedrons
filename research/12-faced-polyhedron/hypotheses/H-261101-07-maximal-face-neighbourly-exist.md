@@ -136,3 +136,9 @@ STATUS 3bm: the random 10 % of the C2 4 x 2 + 1 (9, 5) list, 97830 of 97830 unif
 has no SAT formula at genus 4 and on this sample at genus 5. Weakened at genus 2-3 at formula scope (the maximal
 (8, 2) and (9, 3) cases are decided, STATUS 3d, 3i); genus 4-5 open. Status stays open. The `tests:` links of
 E-261119-02 and E-261119-03 are removed; the hypothesis is still open at genus 4 and 5 outside the symmetric slice.
+
+## 2026-11-22 equivelar (9, 4) plain pass
+
+E-261117-04 stage C (STATUS 3bn): the plain sub-map formula of every admissible equivelar (9, 4) class (1071) is
+UNSAT-SOLVER (planning only, no proof). No object on the equivelar slice at genus 4; non-equivelar (9, 4) maps not
+run. Status stays open, credence unchanged (the lead re-plans).

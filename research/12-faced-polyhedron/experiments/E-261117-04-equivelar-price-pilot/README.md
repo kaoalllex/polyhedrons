@@ -2,7 +2,9 @@
 id: E-261117-04
 title: P6, the equivelar slice by plain per-map formulas - (8, 3) rung with an enrichment control, (9, 4) census and plain pass
 date: 2026-11-17
-status: running
+status: done
+concluded: 2026-11-22
+verdict: EQUIVELAR-9-4-PLAIN-ALL-UNSAT-SOLVER
 direction: [DR19]
 origin: [I-261101-15, E-261103-01]
 tests: [H-261101-07]
@@ -59,14 +61,19 @@ realized, completion flags. It cannot show that Roest-Vigh and Mizhaev are alone
   the merge; `census.json` keeps each unit's code-set SHA-256.
 * **Scope**: an enumeration of the equivelar (9, 4) maps; nothing about realizability.
 
+## Stage C results (2026-11-22, PLAN amendment 2; STATUS 3bn; `CONCLUSION.md`)
+
+* **Formulas** (`maps/stageC.json`, `queue_stageC_c0|c1.json`, `results/stageC_c0|c1/`): the plain sub-map formula
+  (10 elements, kissat seed 0, cap 60 s, lean, 10 shards) on all 1071 admissible equivelar (9, 4) classes: 1071
+  UNSAT-SOLVER, 0 SAT, 0 TIMEOUT (mean 11.0 s, max 54.9 s). The ten K2 maps UNSAT-SOLVER again.
+* **Controls**: build controls, the pinned f9 pair in every shard of both queues and the runner's convex controls
+  passed.
+* **Cost**: chunk 0 (91 maps) 887 core-s priced chunk 1 (980) at 13753 core-s, actual 11479: 3.43 core-h, ~23.5 min
+  wall, lab-run.
+* **Scope**: formula scope, the code's orientation, UNSAT-SOLVER (planning only, no proof). Nothing about
+  non-equivelar (9, 4) maps or non-realizability.
+
 ## Next
 
-Stages A and B done (above). Next: stage C (week item 4), the plain (9, 4) pass on the 1071 admissible classes,
-pre-registered as PLAN amendment 2 (`p6.py build-c`, `maps/stageC.json`, `queue_stageC_c0|c1.json`, `p6.py price`). Coverage: the 2-regular extra-edge multigraphs are disjoint cycles
-(a 2-cycle is a pair of multiplicity 3), one input per partition of F into parts >= 2: seven at (8, 3), eight at (9, 4),
-fed to `enum_multi.c` directly (not `extra_graphs`, not symcensus with the trivial group). (9, 4) needs the guards
-`census.py:154` and `enum_multi.c:186` raised to 9 and a re-read of the coverage argument. Session checks of the
-reviews (not ledger): (8, 3) 97 classes, 51 admissible, both known maps in patterns 8 and 4+4; 45 of the 790 free-C2
-(8, 3) maps and 111 symmetric (9, 4) codes are equivelar; the plain (9, 4) formula took 1.4-23.4 s on 10 of them
-(all UNSAT-SOLVER). Kill: control map absent or pinned control UNSAT after one repair; an unaided recovery timeout is
-a bridge diagnosis.
+None from this experiment: the all-UNSAT-SOLVER outcome goes to the lead review, which re-plans the nine-face line
+(week plan item 4 tree). A negative claim about these maps would need a replay with checked proofs.
