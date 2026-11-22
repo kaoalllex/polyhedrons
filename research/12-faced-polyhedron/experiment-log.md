@@ -1125,3 +1125,8 @@ pricing, the pass-1 price to the owner). STATUS 3bh; `experiments/E-261119-02-sy
 the (9, 4) pricing replicated exactly in it, 53 of 53 statuses and hashes), brief-only streaming census summary, and the
 (9, 5) C2 4 x 2 + 1 pricing: 36 of 36 records UNSAT-SOLVER in <= 0.23 s, formula controls 180 + 180 + 36 pass. Pass 1
 (978228 records) priced at ~143 core-h, ~14 h wall, ~1 GB; to the owner. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+2026-11-22 — E-261119-02 amendment 6 (owner: a random 10% first): (9, 5) pass-1 order frozen (seed 2611220601, 100
+chunks), chunks 0-9 built and hash-pinned, cap 5 s, lean, 20 core-h cap; checks: the lean (8, 3) rung repeats its record
+with SAT folders kept and `--all-pairs` PASS, smoke 0.50 core-s per unit. Owner launch next.
+`experiments/E-261119-02-symmetric-nine-face-census/README.md`.
