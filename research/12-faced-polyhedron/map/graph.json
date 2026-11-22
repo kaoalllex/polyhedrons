@@ -1779,17 +1779,17 @@
    "id": "E-261119-02",
    "kind": "experiment",
    "title": "Symmetric nine-face census - C3 3+3+3 and C2 4 x 2 + 1 maps by lifting the C3 exact cover, then per-map symmetric formulas",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-19",
-   "concluded": "",
+   "concluded": "2026-11-22",
    "path": "experiments/E-261119-02-symmetric-nine-face-census/README.md",
    "direction": [
     "DR19",
     "DR18"
    ],
-   "verdict": "",
+   "verdict": "SYMMETRIC-ROUTE-ENDS-AT-GENUS-4-UNSAT-SOLVER",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: UNSAT-SOLVER on 97830 of 97830 (random 10 %), 0 SAT@14.32 core-h (symmetric route closed for the laptop at genus 4; the C2 (9, 5) remainder postponed, parity pass with the paper). Not LOW-YIELD: this is a price and a sample, the underlying SAT rate being < 3.1e-5 per sampled map."
   },
   {
    "id": "E-261119-03",
@@ -6923,16 +6923,6 @@
   },
   {
    "from": "E-261119-01",
-   "to": "H-261101-07",
-   "kind": "tests"
-  },
-  {
-   "from": "E-261119-02",
-   "to": "H-261101-07",
-   "kind": "tests"
-  },
-  {
-   "from": "E-261119-03",
    "to": "H-261101-07",
    "kind": "tests"
   },

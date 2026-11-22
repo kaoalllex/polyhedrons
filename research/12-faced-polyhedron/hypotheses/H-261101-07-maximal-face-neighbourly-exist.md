@@ -128,3 +128,11 @@ maps are excluded exactly by collinear-segment parity (STATUS 3bi). Status uncha
 E-261117-04 stage A (STATUS 3bk): the plain sub-map formula recovers both known eight-face solids unaided from the
 complete equivelar (8, 3) census and is UNSAT-SOLVER on the other 49 admissible classes and on 745 non-equivelar
 free-C2 maps (planning only, no proof). A pipeline rung, no new object: status and credence unchanged.
+
+## 2026-11-22 E-261119-02 concluded
+
+STATUS 3bm: the random 10 % of the C2 4 x 2 + 1 (9, 5) list, 97830 of 97830 uniform symmetric formulas UNSAT-SOLVER
+(planning only, no proof); with 3bf the symmetric nine-face route (every symmetric S1 nine-face object but Cs, L3)
+has no SAT formula at genus 4 and on this sample at genus 5. Weakened at genus 2-3 at formula scope (the maximal
+(8, 2) and (9, 3) cases are decided, STATUS 3d, 3i); genus 4-5 open. Status stays open. The `tests:` links of
+E-261119-02 and E-261119-03 are removed; the hypothesis is still open at genus 4 and 5 outside the symmetric slice.

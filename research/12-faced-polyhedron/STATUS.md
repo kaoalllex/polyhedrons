@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-22** (E-261119-01, E-261116-09 and E-261119-03 concluded; E-261119-02 stage A, stage-B pass 1 and both (9, 5) censuses recorded; owner's approval of the final lead review `reviews/strategy-review-2026-11-22-final.md`, 2026-11-22; E-261117-04 stages A and B recorded). The latest
+As of **2026-11-22** (E-261119-01, E-261116-09, E-261119-03 and E-261119-02 concluded; owner's approval of the final lead review `reviews/strategy-review-2026-11-22-final.md`, 2026-11-22; E-261117-04 stages A and B recorded). The latest
 registered result is E-261117-04 stage B (the equivelar (9, 4) census: 4118 classes, 1071 admissible; section 3bl); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
@@ -15,7 +15,7 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 ## 0. State in one paragraph
 
 **Focus since 2026-11-22 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
-mutually adjacent faces (S1, genus free) first. The symmetric route (C3 3+3+3, C2 4 x 2 + 1) ended at genus 4 on the laptop: every per-map uniform symmetric formula at (9, 4) UNSAT-SOLVER (section 3bf), no C3 map at (9, 5) (3bg), the C2 (9, 5) random 10 % UNSAT-SOLVER (not yet concluded; remainder postponed by the owner). Main line since 2026-11-22: P6, the equivelar slice by plain per-map formulas (E-261117-04: the (8, 3) rung with an enrichment control, then the (9, 4) census and plain pass; the (8, 3) rung passed, only the known maps SAT, 3bk; the (9, 4) census has 1071 admissible classes, 3bl); no constructive result yet. The week of 2026-11-19: P3-sym power ladder (E-261119-01: discovery passed, refutation undecided, section 3bd), the symmetric nine-face census (E-261119-02, sections 3be-3bh), lemmas (E-261116-09, 3bi), face-transitive genus 7 (E-261119-03, 3bj). The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
+mutually adjacent faces (S1, genus free) first. The symmetric route (C3 3+3+3, C2 4 x 2 + 1) ended at genus 4 on the laptop: every per-map uniform symmetric formula at (9, 4) UNSAT-SOLVER (section 3bf), no C3 map at (9, 5) (3bg), the C2 (9, 5) random 10 % UNSAT-SOLVER (3bm; remainder postponed by the owner). Main line since 2026-11-22: P6, the equivelar slice by plain per-map formulas (E-261117-04: the (8, 3) rung with an enrichment control, then the (9, 4) census and plain pass; the (8, 3) rung passed, only the known maps SAT, 3bk; the (9, 4) census has 1071 admissible classes, 3bl); no constructive result yet. The week of 2026-11-19: P3-sym power ladder (E-261119-01: discovery passed, refutation undecided, section 3bd), the symmetric nine-face census (E-261119-02, sections 3be-3bh), lemmas (E-261116-09, 3bi), face-transitive genus 7 (E-261119-03, 3bj). The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
 E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
 E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
 (11, 5) one plane-only price probe (E-261118-03: all 20 Aut+ = 2 maps UNSAT-SOLVER, closed for the laptop, section 3bc; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
@@ -619,6 +619,20 @@ PROVED-1). Every control passed: the (8, 3) census reproduced through the change
 classes present (inadmissible), the 111 symmetric equivelar codes present, and every admissible class with a C3 3+3+3
 or C2 4 x 2 + 1 rotation in the E-261119-02 lists. 3.1 core-h. Scope: an enumeration only, nothing about
 realizability. No hypothesis moves. `experiments/E-261117-04-equivelar-price-pilot/README.md`.
+
+## 3bm. E-261119-02 concluded: the random 10 % of the C2 4 x 2 + 1 (9, 5) list (2026-11-22)
+
+**97830 of 97830 uniform symmetric formulas UNSAT-SOLVER (no proof; planning only)**: chunks 0-9 of the frozen random
+order (seed 2611220601) of the 978228 maps of 3bh, one rotation group each, kissat cap 5 s (max 2.01 s, mean 0.158 s),
+no SAT, no UNKNOWN, no TIMEOUT; controls pass on every shard-chunk; 14.32 core-h, ~1.4 h wall (owner launch, one stop
+and resume; the 5 in-flight units rerun). Power (formula scope): per-map SAT rate < 3.1e-5 on the sample (rule of
+three, 95 %); a single SAT formula escapes the 10 % with probability 0.90; at most 28 SAT formulas among the 978228 at
+95 % (hypergeometric). Nothing about chunks 10-99 (postponed by the owner), non-symmetric realizations, mirrors, other
+genera. The symmetric route is closed for the laptop at genus 4 (not refuted). Records: the free half-turn inventory
+of the 790 free-C2 (8, 3) maps is 862 labelled actions, not the 822 of stage A (the 40 missing were not run:
+amendment 7 skipped); the 42 % parity rate of 3bi is pooled by triple-pair count (single strata reach 16 of 33 and
+2 of 4, NUMERICAL); the C3 axis-alternation lemma is a paper item only (OUTLINE B8). H-261101-07 stays open, links
+removed. `experiments/E-261119-02-symmetric-nine-face-census/CONCLUSION.md`.
 
 ## 4. What may and may not be claimed
 

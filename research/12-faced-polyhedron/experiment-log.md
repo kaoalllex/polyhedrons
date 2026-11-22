@@ -1153,3 +1153,8 @@ Mizhaev's maps, both realized unaided; the rest UNSAT-SOLVER; 0.18 core-h. Week 
 2026-11-22 — E-261117-04 stage B (week item 3, STATUS 3bl): the equivelar (9, 4) census in 240 root-stride units
 (guards raised to 9 extra edges): 4118 classes, 1071 admissible, all controls pass; 3.1 core-h.
 `experiments/E-261117-04-equivelar-price-pilot/README.md`.
+
+2026-11-22 — E-261119-02 concluded (week item 5, STATUS 3bm): the random 10 % of the C2 4 x 2 + 1 (9, 5) list, 97830 of
+97830 UNSAT-SOLVER (max 2.01 s, 14.32 core-h); both power lines (< 3.1e-5 per map; at most 28 SAT formulas in the
+978228 at 95 %), the 862-action note, the parity scope correction, `tests:` links removed.
+`experiments/E-261119-02-symmetric-nine-face-census/CONCLUSION.md`.
