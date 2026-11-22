@@ -42,10 +42,27 @@ realized, completion flags. It cannot show that Roest-Vigh and Mizhaev are alone
   that the two known solids are the only (8, 3) ones; anything about non-equivelar maps without a free half-turn or
   about the mirror orientation's formulas. Week item 2 has no input (no map of the 790 UNKNOWN or SAT-unrealized).
 
+## Stage B results (2026-11-22, PLAN amendment 1; STATUS 3bl)
+
+* **Census (EXACT computation, coverage PROVED-1)**: `results/census_9_4/` (`maps_9_4.json`, `census.json`,
+  `run.jsonl`): the eight cycle-union inputs in 240 root-stride units (30 per pattern), all complete at the 600 s cap
+  (max 180 s): 4118 classes, all equivelar, 1071 admissible. Classes / admissible per pattern 9: 2110 / 624; 7+2:
+  324 / 108; 6+3: 729 / 65; 5+4: 458 / 168; 5+2+2: 188 / 58; 4+3+2: 143 / 36; 3+3+3: 155 / 2; 3+2+2+2: 11 / 10.
+  Admissible |Aut+| 1 / 2 / 3 / 6: 960 / 96 / 7 / 8; none reflexible.
+* **Controls**: all passed. The (8, 3) census through the changed path (stride 3, `results/census_8_3_strided/`)
+  equals stage A's record for record; at (9, 4) both 3au classes present and inadmissible; the symmetric lists
+  complete and their 111 equivelar codes present with their rotation; every admissible class with a C3 3+3+3 or a
+  C2 4 x 2 + 1 rotation is in that list; duplicate records identical, every class in its unit's pattern. D3's
+  expectations held (3+2+2+2: 11 classes; no pattern below D3's partial count).
+* **Cost**: probe 547 core-s (2.7 min wall) + 10634 core-s (18.5 min wall, 10 workers) + 58 core-s (8, 3) control
+  = 3.1 core-h (`run.jsonl`, stop reason `done`). Predictions P6-P8 held. Per-unit codes and records pruned after
+  the merge; `census.json` keeps each unit's code-set SHA-256.
+* **Scope**: an enumeration of the equivelar (9, 4) maps; nothing about realizability.
+
 ## Next
 
-Stage A done (above). Stage B, the (9, 4) census (week item 3): PLAN amendment 1 (root-stride units, 30 per
-pattern; `p6.py census-b`, `merge`). Coverage: the 2-regular extra-edge multigraphs are disjoint cycles
+Stages A and B done (above). Next: stage C (week item 4), the plain (9, 4) pass on the 1071 admissible classes, as
+a PLAN amendment. Coverage: the 2-regular extra-edge multigraphs are disjoint cycles
 (a 2-cycle is a pair of multiplicity 3), one input per partition of F into parts >= 2: seven at (8, 3), eight at (9, 4),
 fed to `enum_multi.c` directly (not `extra_graphs`, not symcensus with the trivial group). (9, 4) needs the guards
 `census.py:154` and `enum_multi.c:186` raised to 9 and a re-read of the coverage argument. Session checks of the

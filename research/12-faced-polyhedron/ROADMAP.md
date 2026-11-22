@@ -132,7 +132,7 @@ The previous week (2026-11-19) is done: STATUS 3bd-3bj; the E-261119-02 close-ou
      maps" (formula scope, not a classification); another SAT -> bridge, `--all-pairs`, `candidate-check`, escalate
      (reopens E-261112-02); SAT not realized -> the map stays open; UNKNOWN -> 600 s inside 1 core-h.
    * Budget <= 0.3 core-h, lab-run. Lab: as item 1.
-3. **Pre-registered 2026-11-22 (PLAN amendment 1: root-stride units, 30 per pattern).** **P6 stage B: the (9, 4) equivelar census** (E-261117-04; explore, J 2).
+3. **Done 2026-11-22 (STATUS 3bl): 4118 classes, 1071 admissible, all controls pass; 3.1 core-h.** **P6 stage B: the (9, 4) equivelar census** (E-261117-04; explore, J 2).
    * Guards `census.py`:154 and `enum_multi.c`:186 raised to 9 extra edges, the coverage argument re-read; the eight
      partitions of 9 as explicit inputs (not `extra_graphs(9, 9)`, not symcensus with the trivial group); root-stride
      shards if a 10-min probe projects more than 50 min wall.

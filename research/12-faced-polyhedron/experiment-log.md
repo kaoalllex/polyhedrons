@@ -1149,3 +1149,7 @@ remainder stays postponed and parity stays with the paper. Session checks only (
 the plain sub-map formula on the 51 and on the 745 non-equivelar free-C2 (8, 3) maps: SAT only on Roest-Vigh's and
 Mizhaev's maps, both realized unaided; the rest UNSAT-SOLVER; 0.18 core-h. Week item 2 has no input.
 `experiments/E-261117-04-equivelar-price-pilot/README.md`.
+
+2026-11-22 — E-261117-04 stage B (week item 3, STATUS 3bl): the equivelar (9, 4) census in 240 root-stride units
+(guards raised to 9 extra edges): 4118 classes, 1071 admissible, all controls pass; 3.1 core-h.
+`experiments/E-261117-04-equivelar-price-pilot/README.md`.
