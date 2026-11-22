@@ -222,7 +222,7 @@ Per the tree: per-stratum pricing as amendment 2, then the pass-1 price to the o
 pass 1 priced ~143 core-h. Owner choice (2026-11-22): first a uniformly random 10% of the 978228 maps, then decide between
 the other 90% and a lemma for the common obstruction (item 4).
 * **Order and chunks** (`stageb.py --g5-pass1`, streamed from the hash-checked data copy): the sorted canonical SHA-256
-  of every map, shuffled with the frozen seed 2611220601, cut into 100 contiguous chunks of 9783 maps (the last 9651);
+  of every map, shuffled with the frozen seed 2611220601, cut into 100 contiguous chunks of 9783 maps (the last 9711);
   chunks 0-9 (97830 maps, one rotation group each) are the 10%. A random order, not a predictor: the rest is chunks 10-99
   of the same order. Chunk maps files and queues (~6 MB each, `maps/pass1_9_5/`) are not committed; `pass1_9_5.json`
   pins the order hash and every chunk's maps and queue SHA-256 (two builds agree; the runner refuses a changed file).

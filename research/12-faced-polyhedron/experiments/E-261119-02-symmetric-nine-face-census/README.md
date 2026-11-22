@@ -117,6 +117,15 @@ maximum) bounds that tail at ~110 core-h, 30 s at ~650 core-h, so the cap matter
 loads it in every unit, so the maps go in ~100 chunk files and queues, built by streaming; `run_b.sh` invocations last at
 most `--hours 2`, so the launch must resume until done.
 
+**Amendment 6 checks** (session, on `1441f778`): (a) the lean (8, 3) rung (`STAGE=B5`, 11 s wall): 4 of 4 units repeat
+the recorded `results/stageB-rung_8_3` statuses, `cnf_sha256`, `formula_sha256` and sizes; the 3 SAT units (Roest-Vigh
+under 2 groups, Mizhaev) keep their whole folders (model, hinge stages, candidate) with `--all-pairs` PASS; the
+UNSAT-SOLVER unit leaves no folder. (b) Smoke of `STAGE=B5p1` on chunk 0 (10 shards, 90 s, then stop; folders deleted):
+1621 records UNSAT-SOLVER (max 0.79 s, mean 0.15 s), 1204 units per 60 s on 10 shards = 0.50 core-s per unit under
+full load; the 6 units in flight at the stop are SKIPPED-STOP, keep their folders and rerun on the next start; the chunk
+loop stops the shard on STOP-REQUESTED. Projection for the 10%: ~14 core-h, ~1.4 h wall; for the rest ~122 core-h.
+Owner launch next: `launch.sh 261119-02 start` (`STAGE=B5p1`, chunks 0-9).
+
 ## Next
 
 Both families are all UNSAT-SOLVER at (9, 4), so per the tree: genus 5 (E = 51) for both, priced the same way (stage-A
