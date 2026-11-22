@@ -44,6 +44,15 @@ class RhoDfs(unittest.TestCase):
             self.assertEqual({tuple(map(tuple, m['code'])) for m in maps if m['admissible']},
                              census_codes(F, genus, keep))
 
+    def test_admissible_only_classification(self):
+        for F, genus in ((8, 3), (9, 4)):
+            full_stats, full = cayley7.run(F, genus, 'rho_dfs', workers=2)
+            part_stats, part = cayley7.run(F, genus, 'rho_dfs', workers=2, canon_all=False)
+            self.assertEqual([m['code'] for m in part], [m['code'] for m in full if m['admissible']])
+            for g, s in full_stats['groups'].items():
+                self.assertEqual([s[c] for c in ('raw', 'valid', 'admissible')],
+                                 [part_stats['groups'][g][c] for c in ('raw', 'valid', 'admissible')])
+
     def test_valency_genus_7(self):
         self.assertEqual(cayley.valency(9, 7), 14)
         self.assertIsNone(cayley.valency(9, 5))

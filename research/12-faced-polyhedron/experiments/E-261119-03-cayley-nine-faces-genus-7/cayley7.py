@@ -81,7 +81,7 @@ METHODS = dict(brute=cayley.brute, by_phi=cayley.by_phi, rho_dfs=rho_dfs)
 
 
 def job(args):
-    F, genus, method, gi, w, W = args
+    F, genus, method, gi, w, W, canon_all = args
     G = cayley.GROUPS[F]()[gi]; k = cayley.valency(F, genus)
     s = dict(labellings=0, raw=0, valid=0, admissible=0)
     classes = {}
@@ -98,6 +98,8 @@ def job(args):
                 continue
             s['valid'] += 1
             ok = census.admissible(M); s['admissible'] += ok
+            if not (ok or canon_all):
+                continue
             code = M.canon()[0]
             if code not in classes:
                 classes[code] = dict(admissible=ok, witness=dict(
@@ -106,13 +108,15 @@ def job(args):
     return G.name, s, classes
 
 
-def run(F, genus, method, workers=1):
-    """As cayley.run, with the method table above."""
+def run(F, genus, method, workers=1, canon_all=True):
+    """As cayley.run, with the method table above; canon_all=False classifies only the admissible maps (the
+    canonical code costs ~11 ms per map at valency 14)."""
     k = cayley.valency(F, genus)
-    stats = dict(F=F, genus=genus, valency=k, method=method, workers=workers, groups={})
+    stats = dict(F=F, genus=genus, valency=k, method=method, workers=workers, groups={},
+                 classes_of='all valid maps' if canon_all else 'admissible maps only')
     started = time.monotonic()
     names = [G.name for G in cayley.GROUPS[F]()] if k else []
-    jobs = [(F, genus, method, gi, w, workers) for gi in range(len(names)) for w in range(workers)]
+    jobs = [(F, genus, method, gi, w, workers, canon_all) for gi in range(len(names)) for w in range(workers)]
     with ProcessPoolExecutor(workers) as pool:
         results = list(pool.map(job, jobs)) if jobs else []
     classes = {}
@@ -159,10 +163,11 @@ def stage_a(out, workers):
         if not agree:
             report['KILL'] = f'({F}, {genus}): rho_dfs disagrees with the saved brute run'
     if 'KILL' not in report:
-        runs = {m: run(9, 7, m, workers) for m in ('by_phi', 'rho_dfs')}
+        runs = {m: run(9, 7, m, workers, canon_all=False) for m in ('by_phi', 'rho_dfs')}
         (a_stats, a_maps), (b_stats, b_maps) = runs['by_phi'], runs['rho_dfs']
         agree = [m['code'] for m in a_maps] == [m['code'] for m in b_maps] and all(
-            a_stats['groups'][g]['raw'] == b_stats['groups'][g]['raw'] for g in a_stats['groups'])
+            a_stats['groups'][g][c] == b_stats['groups'][g][c] for g in a_stats['groups']
+            for c in ('raw', 'valid', 'admissible'))
         report['stages']['9_7'] = dict(by_phi=a_stats, rho_dfs=b_stats, methods_agree=agree)
         (out / 'maps_9_7.json').write_text(json.dumps(dict(stats=a_stats, maps=a_maps), separators=(',', ':')) + '\n')
         if not agree:

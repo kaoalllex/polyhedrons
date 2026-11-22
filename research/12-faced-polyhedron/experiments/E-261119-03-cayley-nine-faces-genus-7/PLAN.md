@@ -62,3 +62,16 @@ the owner's idea, I-261119-03).
   ROADMAP State done; I-261119-03 status; a SAT goes to "For the lead".
 
 ## Amendments
+
+### 2026-11-22, amendment 1: stage A classifies only admissible maps at (9, 7)
+
+The first stage-A launch (commit 968deb68, `results/aborted-1/manifest.txt`) was stopped by the session after
+~10 min wall on 10 workers (~1.7 core-h, over the 0.2 core-h line); it wrote no result. Cause (single-core probe):
+both enumerations are cheap (`rho_dfs` ~1.6 s per Z3 x Z3 labelling, 2304 raw rotations each, 0.4 s per Z9
+labelling), but the census canonical code costs ~11 ms per map at valency 14, about 2 core-h per method over
+~6e5 raw rotations. Change: at (9, 7) the canonical code is computed only for admissible maps (`canon_all=False`);
+the two enumerations must agree on raw, valid and admissible counts per group and on the admissible class list.
+The rung at (8, 3) and (9, 4) keeps the full class lists. Lost: the number of distinct valid but inadmissible
+(9, 7) classes (not used by the verdict). New test: on (8, 3) and (9, 4) the admissible-only lists and counts equal
+the full ones. Budget: stage A rerun <= 0.5 core-h on 9 workers (an unrelated orphan process holds one core);
+item total ~2.2 core-h instead of <= 0.9, recorded as an overrun.
