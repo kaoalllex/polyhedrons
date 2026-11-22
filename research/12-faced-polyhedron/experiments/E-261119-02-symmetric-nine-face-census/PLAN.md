@@ -176,3 +176,43 @@ genus 5 goes to amendment 5 after the gate.
   mirrors, C2 3 x 2 + 3 or other genera.
 * **Deviations**: the C2 census budget exceeds the row's stage-A 1 core-h (owner, 2026-11-20: 40 core-h cap); stages
   split by family; per-unit records kept out of git.
+
+**Amendment 5 (2026-11-22, before any genus-5 solver run): lean runner, (9, 5) pricing.** Amendment 4's gate passed:
+C3 3+3+3 (9, 5) is empty (STATUS 3bg; stage B void for C3); C2 4 x 2 + 1 (9, 5) has 978228 map classes in 12 strata (3bh).
+Per the tree: per-stratum pricing as amendment 2, then the pass-1 price to the owner; pass 1 is amendment 6.
+* **Inputs** (`stageb.py --g5`): the A5c2 records are read by streaming from `../polyhedrons-data/<same path>`, every
+  shard file checked first against `results/stageA5c2/SHA256SUMS`. Two passes: the stratum of every map by its canonical
+  SHA-256 (one stratum per map, asserted), then the drawn maps. 3 per stratum, frozen seed 2611220501, drawn from the
+  sorted canonical SHA-256 of the stratum (deviation from amendment 2's sorted codes: the first pass keeps no codes):
+  36 records, one rotation group each (`maps/pricing_9_5.json`, `queue_pricing_9_5.json`). Formula as at (9, 4) for C2f:
+  uniform symmetric, plane-only, moved chart (`tranche.submap_formula`).
+* **Lean runner** (owner, 2026-11-22: no raw data nobody needs): a queue flag `lean_unsat` in `tranche.py`; a non-control
+  UNSAT-SOLVER unit keeps only its fsync'ed `results.jsonl` line (status, seconds, variables, clauses, `cnf_sha256`,
+  `formula_sha256`, scope, canonical SHA-256) and its unit folder is removed once that line is written; SAT, TIMEOUT,
+  errors and controls keep everything; resume reads only the line (`test_tranche` 28 OK, the flag test extended).
+  At (9, 4) a unit folder held 5 files (239 MB on disk for pass 1); at (9, 5) that would be ~5M files.
+* **Summary** (owner, same day): `symcensus.py summary` streams the records and writes only `summary-brief.json`
+  (controls, gate, per-config counts and strata), no code list; the claim markers are removed once every planned unit is
+  recorded. Check on this commit: the stage A and A5c3 briefs equal the old code's text; the A5c2 brief rebuilt from the
+  data copy equals the committed one (85 s, 0.75 GB RSS; the old code peaked at 21 GB). `test_symcensus` 7 OK.
+* **Controls**: (a) the amendment-3 formula controls on the 36 records (`controls_b.py results/controls_b_9_5.json
+  maps/pricing_9_5.json`, 5 draws each): every positive SAT, every wrong-action UNSAT, every unpinned SAT. (b) Lean
+  replication: `queue_pricing_lean.json`, the committed (9, 4) pricing queue with the flag (same maps file); every one of
+  its 53 units must match the committed `results/stageB-pricing` records in status, `cnf_sha256` and `formula_sha256`, no
+  folder may remain for an UNSAT-SOLVER record and every control keeps its folder. (c) Every shard keeps the pinned f9 and
+  the runner's pilot controls.
+* **Run** (session, seconds, < 0.1 core-h): `STAGE=B5 bash run.sh s` for the 10 shards: (b) then the (9, 5) pricing,
+  kissat seed 0, cap 600 s, bridge 360 s on a SAT, no proofs -> `results/stageB5-<queue>/`; (a) single process.
+* **Recorded**: per record status, solver seconds, unit wall, formula size; per stratum the fraction decided by 30, 60,
+  120, 600 s; bytes left per lean unit. **Projection** for pass 1: as amendment 3 (sum over strata of size x mean
+  min(t, cap) plus the measured per-unit overhead), with disk. Known cost to price: one 978228-record maps file is ~0.6 GB
+  and `tranche.imported_maps` loads it in every unit, so pass 1 needs chunked maps files and queues (amendment 6).
+* **Predictions**: (S1) the formula controls pass (0.9); (S2) the replication is exact (0.95); (S3) every (9, 5) pricing
+  record decides within 30 s (0.8); (S4) no (9, 5) SAT (0.9).
+* **Readings / tree**: a failed control or a replication mismatch -> stop, repair. A SAT -> bridge, `--all-pairs`,
+  `candidate-check`, escalate. Otherwise the pass-1 price (core-h, wall, disk) goes to the owner; pass 1 needs amendment 6
+  and the owner's budget (the row's 10 core-h stage-B cap does not cover it); no subset by a guessed predictor without
+  the owner.
+* **Power / scope**: a price, not a result about any stratum; an UNSAT-SOLVER holds for its exact formula only and is
+  never a negative result. Nothing about non-symmetric realizations, mirrors, C2 3 x 2 + 3 or other genera.
+* **Deviations**: the draw by sorted hashes; the lean mode and the brief-only summary (owner); the replication queue.

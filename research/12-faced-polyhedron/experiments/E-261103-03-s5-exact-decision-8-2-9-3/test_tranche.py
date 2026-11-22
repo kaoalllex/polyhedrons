@@ -125,6 +125,13 @@ class TrancheTests(unittest.TestCase):
             with patch.object(t, 'QUEUE', path), patch.object(t, 'CASE', t.CASE), patch.object(t, 'CONTROL', t.CONTROL), \
                     patch.object(t, 'MAPS_FILE', None), self.assertRaisesRegex(ValueError, 'imported map identity'):
                 t.load_queue(custom=True)
+            lean = json.loads(night.read_text()); lean['lean_unsat'] = True; path.write_text(json.dumps(lean))
+            for queue_path, expected in ((night, False), (path, True)):
+                with patch.object(t, 'QUEUE', queue_path), patch.object(t, 'CASE', t.CASE), \
+                        patch.object(t, 'CONTROL', t.CONTROL), patch.object(t, 'MAPS_FILE', None), \
+                        patch.object(t, 'LEAN_UNSAT', None):
+                    t.load_queue(custom=True)
+                    self.assertIs(t.LEAN_UNSAT, expected)
 
     def test_plane_only_flag_reaches_the_symmetric_formula(self):
         t = self.module()

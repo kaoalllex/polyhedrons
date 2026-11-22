@@ -3,6 +3,9 @@
 #   10 shards x BUDGET 14400 s (40 core-h hard cap) -> results/stageA5c2/<s>/ with night.log (launch.results).
 #   Owner launch: bash research/12-faced-polyhedron/overnight/launch.sh 261119-02 start
 #   Then: python3 symcensus.py summary results/stageA5c2 A5c2
+# STAGE=B5: amendment 5 (session, seconds): per shard in turn the lean replication of the (9, 4) pricing
+#   (queue_pricing_lean.json) and the (9, 5) C2 4 x 2 + 1 pricing (queue_pricing_9_5.json), both lean, through run_b.sh
+#   -> results/stageB5-<queue>/<s>/; `python stageb.py --g5` builds both queues from the data copy.
 # STAGE=A5c3: the C3 3+3+3 census at (9, 5) with the C3 (9, 3) control (session, BUDGET=300) -> results/stageA5c3/<s>/.
 # STAGE=B1: amendment 3, stage-B pass 1, queue_pass1.json (every (9, 4) map, cap 30 s, BUDGET 36000 s) through run_b.sh
 #   -> results/stageB-pass1/<s>/ (launch.results back to results/stageB-pass1). maps/pass1.json is not committed:
@@ -31,6 +34,16 @@ if [[ "$STAGE" == B1 ]]; then   # amendment 3: pass 1
   [[ -f "$HERE/maps/pass1.json" ]] || { echo "maps/pass1.json missing: run python stageb.py first" >&2; exit 2; }
   BUDGET=36000 QUEUE="$HERE/queue_pass1.json" RESULTS="$HERE/results/stageB-pass1" bash "$HERE/run_b.sh" "$SHARD"
   exit $?
+fi
+if [[ "$STAGE" == B5 ]]; then   # amendment 5: lean replication, then the (9, 5) pricing, in turn per shard
+  rc=0
+  for q in pricing_lean pricing_9_5; do
+    [[ -f "$HERE/results/stageB5/stop.requested" ]] && break
+    mkdir -p "$HERE/results/stageB5-$q" "$HERE/results/stageB5"
+    ln -sfn ../stageB5/stop.requested "$HERE/results/stageB5-$q/stop.requested"
+    BUDGET=72000 QUEUE="$HERE/queue_$q.json" RESULTS="$HERE/results/stageB5-$q" bash "$HERE/run_b.sh" "$SHARD" || rc=$?
+  done
+  exit $rc
 fi
 if [[ "${STAGE}" == B ]]; then   # amendment 2: the rung (9, 3), the rung (8, 3), then the pricing, in turn per shard
   rc=0

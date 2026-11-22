@@ -10,10 +10,16 @@ maps/rung_9_3.json, queue_rung_9_3.json  (9, 3): the 8 C3 and 24 C2 4 x 2 + 1 cl
 maps/rung_8_3.json, queue_rung_8_3.json  (8, 3): Roest-Vigh's and Mizhaev's maps under every free C2 they carry
 maps/pass1.json, queue_pass1.json        (9, 4), amendment 3: every map of both lists, cap PASS1_CAP; the maps file
                                          (16 MB) is not committed: this script rebuilds it, the queue pins its SHA-256
-Usage: stageb.py [--check]"""
+maps/pricing_9_5.json, queue_pricing_9_5.json
+                                         (9, 5), amendment 5 (--g5): C2 4 x 2 + 1, PRICE_PER_STRATUM maps per stratum,
+                                         frozen draw, streamed from the A5c2 records in the data copy (../polyhedrons-data
+                                         or $POLYHEDRONS_DATA), each file checked against SHA256SUMS; lean queue (a
+                                         non-control UNSAT-SOLVER unit keeps only its results.jsonl line)
+Usage: stageb.py [--check] [--g5]"""
 from collections import defaultdict
 import hashlib
 import json
+import os
 from pathlib import Path
 import random
 import sys
@@ -24,6 +30,11 @@ import symcensus as S  # noqa: E402
 
 ROOT = S.ROOT
 STAGE_A = HERE / 'results/stageA'
+REPO = ROOT.parents[1]
+STAGE_A5C2 = (Path(os.environ.get('POLYHEDRONS_DATA', REPO.parent / 'polyhedrons-data'))
+              / HERE.relative_to(REPO) / 'results/stageA5c2')
+SUMS_A5C2 = HERE / 'results/stageA5c2/SHA256SUMS'
+DRAW_SEED_9_5 = 2611220501
 RUNNER = ROOT / 'experiments/E-261103-03-s5-exact-decision-8-2-9-3'
 CONTROL_F9 = 'control_f9.json'
 DRAW_SEED, PRICE_PER_STRATUM, SHARDS = 2611200201, 3, 10
@@ -77,9 +88,9 @@ def links_and_groups(code, actions, F):
     return links, [groups[k] for k in sorted(groups, key=lambda k: sorted(k))]
 
 
-def records_for(name, codes, extra=None):
+def records_for(name, codes, extra=None, data=None):
     F = S.CONFIGS[name][0]; planes_only, group = CHART[kind(name)]
-    data = maps_of(name); out = []
+    data = data or maps_of(name); out = []
     for k in codes:
         strata, actions = data[k]
         code = json.loads(k)
@@ -120,7 +131,51 @@ def rung_8_3():
                 maps=records_for('C2_8_3', sorted(known), known))
 
 
-def queue(records_file, records, case, solver_cap, controls):
+def sha_stream(path):
+    h = hashlib.sha256()
+    with path.open('rb') as fh:
+        for block in iter(lambda: fh.read(1 << 20), b''):
+            h.update(block)
+    return h.hexdigest()
+
+
+def a5c2_records():
+    """Stream the C2f_9_5 records of the A5c2 census (data copy), after checking every shard file against SHA256SUMS."""
+    sums = dict(l.split()[::-1] for l in SUMS_A5C2.read_text().splitlines() if l.endswith('/results.jsonl'))
+    assert len(sums) == 10 and sorted(p.relative_to(STAGE_A5C2).as_posix()
+                                      for p in STAGE_A5C2.glob('*/results.jsonl')) == sorted(sums), 'A5c2 file set'
+    for name, digest in sums.items():
+        assert sha_stream(STAGE_A5C2 / name) == digest, 'A5c2 records changed: ' + name
+    return (r for r in S.records(STAGE_A5C2) if r['config'] == 'C2f_9_5')
+
+
+def pricing_9_5():
+    """Two streaming passes: the stratum of each map (by canonical SHA-256, one per map), then the drawn maps."""
+    stratum_of = {}
+    for r in a5c2_records():
+        st = sys.intern('b%d m%s' % (r['b'], ''.join(map(str, r['mult_pattern']))))
+        for mp in r['maps']:
+            assert stratum_of.setdefault(code_sha(mp['code']), st) == st, 'a (9, 5) map in one stratum'
+    by = defaultdict(list)
+    for h, st in stratum_of.items():
+        by[st].append(h)
+    rng = random.Random(DRAW_SEED_9_5)
+    drawn = {st: sorted(rng.sample(sorted(by[st]), min(PRICE_PER_STRATUM, len(by[st])))) for st in sorted(by)}
+    want = {h for hs in drawn.values() for h in hs}
+    data = defaultdict(lambda: (set(), set()))
+    for r in a5c2_records():
+        for mp in r['maps']:
+            if code_sha(mp['code']) in want:
+                st, acts = data[json.dumps(mp['code'])]
+                st.add('b%d m%s' % (r['b'], ''.join(map(str, r['mult_pattern'])))); acts.add(tuple(mp['action']))
+    by_sha = {code_sha(json.loads(k)): k for k in data}
+    recs = [rec for st in sorted(drawn) for rec in records_for('C2f_9_5', [by_sha[h] for h in drawn[st]], data=data)]
+    return dict(note='E-261119-02 amendment 5: (9, 5) C2 4 x 2 + 1 pricing draw, %d per stratum, seed %d; %d map'
+                     ' classes in %d strata' % (PRICE_PER_STRATUM, DRAW_SEED_9_5, len(stratum_of), len(by)),
+                strata={st: len(by[st]) for st in sorted(by)}, maps=recs)
+
+
+def queue(records_file, records, case, solver_cap, controls, lean=False):
     rows = []
     if controls:
         c = dict(control_sha256=sha(RUNNER / CONTROL_F9), solver_cap=60, checker_cap=120)
@@ -133,27 +188,35 @@ def queue(records_file, records, case, solver_cap, controls):
                 shards=SHARDS, maps=rows)
     if controls:
         data['control_file'] = CONTROL_F9
+    if lean:
+        data['lean_unsat'] = True
     return data
 
 
 def main():
     check = '--check' in sys.argv
-    built = [('pricing', pricing(), (9, 4), True, SOLVER_CAP), ('rung_9_3', rung_9_3(), (9, 3), True, SOLVER_CAP),
-             ('rung_8_3', rung_8_3(), (8, 3), False, SOLVER_CAP), ('pass1', pass1(), (9, 4), True, PASS1_CAP)]
-    for stem, data, case, controls, cap in built:
-        path = HERE / 'maps' / (stem + '.json'); qpath = HERE / ('queue_%s.json' % stem)
+    if '--g5' in sys.argv:  # amendment 5: reads the 1.4 GB A5c2 records from the data copy; the lean replication
+        # queue re-runs the (9, 4) pricing records (same maps file) in the lean mode
+        built = [('pricing', pricing(), (9, 4), True, SOLVER_CAP, True, 'pricing_lean'),
+                 ('pricing_9_5', pricing_9_5(), (9, 5), True, SOLVER_CAP, True)]
+    else:
+        built = [('pricing', pricing(), (9, 4), True, SOLVER_CAP), ('rung_9_3', rung_9_3(), (9, 3), True, SOLVER_CAP),
+                 ('rung_8_3', rung_8_3(), (8, 3), False, SOLVER_CAP), ('pass1', pass1(), (9, 4), True, PASS1_CAP)]
+    for stem, data, case, controls, cap, *opt in built:
+        lean = opt[:1]; qstem = opt[1] if len(opt) > 1 else stem
+        path = HERE / 'maps' / (stem + '.json'); qpath = HERE / ('queue_%s.json' % qstem)
         indent = None if stem == 'pass1' else 1  # compact: 12562 records
         text = json.dumps(data, indent=indent) + '\n'
         if check and stem != 'pass1':  # the uncommitted pass-1 maps file is rebuilt; its queue pins the hash
             assert path.read_text() == text, path
         else:
             path.parent.mkdir(exist_ok=True); path.write_text(text)
-        q = json.dumps(queue(path, data['maps'], case, cap, controls), indent=indent) + '\n'
+        q = json.dumps(queue(path, data['maps'], case, cap, controls, *lean), indent=indent) + '\n'
         if check:
             assert qpath.read_text() == q, qpath
         else:
             qpath.write_text(q)
-        print(stem, 'records', len(data['maps']), 'maps sha256', sha(path), 'queue sha256', sha(qpath))
+        print(qstem, 'records', len(data['maps']), 'maps sha256', sha(path), 'queue sha256', sha(qpath))
 
 
 if __name__ == '__main__':

@@ -1,5 +1,6 @@
 """E-261119-02 amendment 3 controls: the stage-B symmetric formulas on generic symmetric planes, on every pricing
-record (maps/pricing.json: every stratum of both (9, 4) families).
+record (maps/pricing.json: every stratum of both (9, 4) families; amendment 5: maps/pricing_9_5.json, C2 4 x 2 + 1 at
+(9, 5)).
 
 Formula: the record's build_sym formula as stage B builds it (tranche.submap_formula: mirror and orbit-flip gauge on,
 sym_planes_only as recorded) with only the Grassmann-Pluecker, symmetry and gauge clauses (`triples` and the corner
@@ -12,7 +13,7 @@ families off), so generic planes, which realize no map, can satisfy it.
   t g t != g; not a map automorphism), gauged for and pinned into the record's formula. Must be UNSAT: the symmetry
   clauses must reject planes that lack the record's symmetry.
 * unpinned: the positive formula alone, SAT.
-Usage: python3 controls_b.py OUT_JSON"""
+Usage: python3 controls_b.py OUT_JSON [MAPS_JSON]   (default maps/pricing.json)"""
 import json
 from pathlib import Path
 import random
@@ -59,8 +60,8 @@ def wrong(g, rng):
             return h
 
 
-def main(out):
-    recs = json.loads((HERE / 'maps/pricing.json').read_text())['maps']
+def main(out, maps='maps/pricing.json'):
+    recs = json.loads((HERE / maps).read_text())['maps']
     report = {}
     for i, rec in enumerate(recs):
         links = dict(enumerate(rec['links'])); n = len(links); g = rec['sym_generator']; po = rec['sym_planes_only']
@@ -87,4 +88,4 @@ def main(out):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1])
+    main(*sys.argv[1:3])

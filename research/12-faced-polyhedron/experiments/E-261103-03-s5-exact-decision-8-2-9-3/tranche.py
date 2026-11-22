@@ -34,6 +34,9 @@ CASE, CONTROL = (9, 3), 'control_f9.json'  # a custom queue may name another cen
 # A custom queue may instead name an imported map file (E-261110-02, S6): sub-map formulas, every SAT model processed
 # in its own unit by the bridge below, no first-SAT stop, and an unchecked proof recorded instead of stopping.
 MAPS_FILE = None
+# A custom queue with lean_unsat (E-261119-02 amendment 5): a non-control UNSAT-SOLVER unit keeps only its
+# results.jsonl line (status, seconds, sizes, CNF and formula hashes); its unit folder is removed once that line is written.
+LEAN_UNSAT = False
 BRIDGE = dict(submap=True, restarts=6)
 
 
@@ -92,8 +95,9 @@ def load_queue(custom=False):
     data = json.loads(QUEUE.read_text())
     if custom:  # explicit map list (long-cap units): census identity and per-map canonical hashes only
         global CASE, CONTROL
-        global MAPS_FILE
+        global MAPS_FILE, LEAN_UNSAT
         CASE = tuple(data.get('case', CASE)); CONTROL = data.get('control_file', CONTROL)
+        LEAN_UNSAT = bool(data.get('lean_unsat'))
         MAPS_FILE = data.get('maps_file')
         if MAPS_FILE:
             if sha(ROOT / MAPS_FILE) != data['maps_sha256']:
@@ -504,6 +508,8 @@ def run(args):
                     raise RuntimeError(f'control {index} expected {expected}, got {result["status"]}')
                 if result['status'] not in ('SAT', pilot.UNSAT_OK, 'TIMEOUT', 'SKIPPED-STOP') + (('UNSAT-UNCHECKED',) if MAPS_FILE else ()):
                     raise RuntimeError(f'map {index}: {result["status"]}')
+                if LEAN_UNSAT and not entry.get('control') and result['status'] == 'UNSAT-SOLVER':
+                    shutil.rmtree(work)
             process_first_sat(root, remaining)
             manifest['status'] = ('FIRST-SAT-STOP' if (root / 'first_sat.json').exists() else
                                   'DEADLINE-STOP' if deadline_cut else

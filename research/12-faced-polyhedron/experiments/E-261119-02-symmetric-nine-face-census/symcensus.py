@@ -15,12 +15,14 @@ STAGE: A (genus 4 targets, default), A5c3 or A5c2 (genus 5, C3 or C2 family, PLA
 """
 from collections import Counter
 import functools
+import hashlib
 import importlib.util
 import itertools
 import json
 import os
 from pathlib import Path
 import platform
+import shutil
 import subprocess
 import sys
 import time
@@ -379,7 +381,12 @@ def shard(sh, shards, out, seconds, stage='A'):
 
 
 def records(out):
-    return [json.loads(l) for p in sorted(Path(out).glob('*/results.jsonl')) for l in p.read_text().splitlines() if l]
+    """Stream the unit records of a run (the (9, 5) records are 1.4 GB)."""
+    for p in sorted(Path(out).glob('*/results.jsonl')):
+        with p.open() as fh:
+            for line in fh:
+                if line.strip():
+                    yield json.loads(line)
 
 
 def census_truth():
@@ -409,42 +416,43 @@ def known_8_3_codes():
 
 
 def summary(out, write=True, stage='A'):
-    rows = records(out); U = units(stage); T = TARGETS[stage]
+    """One streaming pass over the records -> summary-brief.json (controls, gate, per-config counts and strata). The
+    code list is not written (it is in the records). Once every planned unit is recorded, the claim markers go."""
+    U = units(stage); T = TARGETS[stage]
+    acc = {name: dict(units=0, complete=True, seconds=[], strata={}, codes={}, texts=set()) for name in STAGES[stage]}
+    core = []  # sum() at the end, as the per-record list sums before (compensated float sum)
+    for r in records(out):
+        core.append(r['seconds']); a = acc.get(r['config'])
+        if a is None:
+            continue
+        name = r['config']; F, g, rho, role = CONFIGS[name]
+        a['units'] += 1; a['complete'] &= r['complete']; a['seconds'].append(r['seconds'])
+        stratum = 'b%d m%s' % (r['b'], ''.join(map(str, r['mult_pattern'])))
+        st = a['strata'].setdefault(stratum, Counter())
+        for k in ('covers', 'gluings', 'map_hits', 'nodes', 'seconds'):
+            st[k] += r[k]
+        st['units'] += 1; st['complete'] += r['complete']
+        for mp in r['maps']:
+            k = json.dumps(mp['code'])
+            if role == 'control':
+                a['texts'].add(k)
+            c = a['codes'].setdefault(hashlib.sha256(k.encode()).digest(), [True])
+            c[0] &= check_action(mp['code'], mp['action'], len(setup(name).G),
+                                 sum(1 for v in range(F) if rho[v] == v))
     rep = {}
-    for name in STAGES[stage]:
+    for name, a in acc.items():
         F, g, rho, role = CONFIGS[name]
-        rs = [r for r in rows if r['config'] == name]
         planned = sum(1 for u in U if u[0] == name)
-        codes = {}
-        for r in rs:
-            for mp in r['maps']:
-                k = json.dumps(mp['code'])
-                c = codes.setdefault(k, dict(b=set(), fixed_edges=set(), actions=set(), strata=set()))
-                c['b'].add(mp['b']); c['fixed_edges'].add(mp['fixed_edges']); c['actions'].add(tuple(mp['action']))
-                c['strata'].add('b%d m%s' % (r['b'], ''.join(map(str, r['mult_pattern']))))
-                c.setdefault('action_ok', True)
-                c['action_ok'] &= check_action(mp['code'], mp['action'], len(setup(name).G), sum(
-                    1 for v in range(F) if rho[v] == v))
-        strata = {}
-        for r in rs:
-            st = strata.setdefault('b%d m%s' % (r['b'], ''.join(map(str, r['mult_pattern']))), Counter())
-            for k in ('covers', 'gluings', 'map_hits', 'nodes', 'seconds'):
-                st[k] += r[k]
-            st['units'] += 1; st['complete'] += r['complete']
-        for st in strata.values():
+        for st in a['strata'].values():
             st['seconds'] = round(st['seconds'], 2)
         s = setup(name)
-        rep[name] = dict(role=role, family=FAMILY[name], F=F, genus=g, units_planned=planned, units_recorded=len(rs),
-                         complete=len(rs) == planned and all(r['complete'] for r in rs),
+        rep[name] = dict(role=role, family=FAMILY[name], F=F, genus=g, units_planned=planned, units_recorded=a['units'],
+                         complete=a['units'] == planned and a['complete'],
                          demand_classes=len(s.reps), normaliser=s.nnorm, fixed_choices=len(s.fchoices),
-                         rows=len(s.rows), columns=len(s.columns), classes=len(codes),
-                         seconds=round(sum(r['seconds'] for r in rs), 2), strata={k: dict(v) for k, v in strata.items()},
-                         codes=sorted(codes),
-                         per_map=[dict(code=k, b=sorted(v['b']), fixed_edges=sorted(v['fixed_edges']),
-                                       actions=len(v['actions']), strata=sorted(v['strata']), action_ok=v['action_ok'])
-                                  for k, v in sorted(codes.items())])
+                         rows=len(s.rows), columns=len(s.columns), classes=len(a['codes']),
+                         seconds=round(sum(a['seconds']), 2), strata={k: dict(v) for k, v in a['strata'].items()})
     truth = census_truth(); c = {}
-    got = lambda n: rep[n]['codes'] if rep[n]['complete'] else None
+    got = lambda n: sorted(acc[n]['texts']) if rep[n]['complete'] else None
     if stage == 'A':
         c['C3_demand_classes_18'] = rep['C3_9_4']['demand_classes'] == 18
     else:
@@ -458,22 +466,22 @@ def summary(out, write=True, stage='A'):
         c['C2f_9_3_equals_census'] = got('C2f_9_3') == truth['C2f_9_3']
         c['C2_8_2_equals_census'] = got('C2_8_2') == truth['C2_8_2']
         c['C2f_7_1_is_szilassi'] = got('C2f_7_1') == truth['C2f_7_1'] == truth['all_7_1']
-        c['C2_8_3_holds_both_known'] = rep['C2_8_3']['complete'] and set(k83.values()) <= set(rep['C2_8_3']['codes'])
+        c['C2_8_3_holds_both_known'] = rep['C2_8_3']['complete'] and set(k83.values()) <= acc['C2_8_3']['texts']
     for fam in T:
-        c['actions_ok_' + fam] = all(p['action_ok'] for r in rep.values() if r['family'] == fam for p in r['per_map'])
+        c['actions_ok_' + fam] = all(ok for n, a in acc.items() if FAMILY[n] == fam for ok, in a['codes'].values())
     fam_controls = dict(C3=('C3_9_3_equals_census',), C2=('C2f_9_3_equals_census', 'C2_8_2_equals_census',
                                                           'C2f_7_1_is_szilassi', 'C2_8_3_holds_both_known'))
     gate = {fam: all(c[k] for k in fam_controls[fam] + ('actions_ok_' + fam,)) and rep[name]['complete']
             and all(v for k, v in c.items() if k.startswith(fam + '_demand_classes')) for fam, name in T.items()}
-    res = dict(stage=stage, controls=c, gate=gate, truth_sizes={k: len(v) for k, v in truth.items()}, configs=rep,
-               core_seconds=round(sum(r['seconds'] for r in rows), 1))
+    brief = dict(stage=stage, controls=c, gate=gate, truth_sizes={k: len(v) for k, v in truth.items()},
+                 core_seconds=round(sum(core), 1), configs=rep)
+    text = json.dumps(brief, indent=1)
     if write:
-        (Path(out) / 'summary.json').write_text(json.dumps(res, indent=1) + '\n')
-    brief = {k: v for k, v in res.items() if k != 'configs'}
-    brief['configs'] = {n: {k: v for k, v in r.items() if k not in ('codes', 'per_map')} for n, r in rep.items()}
-    print(json.dumps(brief, indent=1))
-    return res
-
+        (Path(out) / 'summary-brief.json').write_text(text + '\n')
+        if all(r['units_recorded'] == r['units_planned'] for r in rep.values()):
+            shutil.rmtree(Path(out) / 'claims', ignore_errors=True)
+    print(text)
+    return brief
 
 if __name__ == '__main__':
     mode, *rest = sys.argv[1:]
