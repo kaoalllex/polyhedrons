@@ -135,3 +135,10 @@ C3 is void at (9, 5); the C2 list is complete (978228 classes). Amendment 5 pric
 pass 1 ~143 core-h, ~14 h wall, ~1 GB lean. Next: the owner's choice (pass 1 as amendment 6, its cap and budget; no subset
 by a guessed predictor without the owner), or first a lemma for the common (9, 4) obstruction (week item 4). SAT -> bridge, `--all-pairs` nine faces,
 `candidate-check`, escalate. Neither family advances -> E-261117-04 (P6). A control failure -> repair. Lab: Opus, high / Codex gpt-6-astra, high.
+
+Lead review 2026-11-22, final (owner-approved): the symmetric route ends at genus 4; P6 (E-261117-04) is the main line.
+Amendment 6 (the random 10 % of (9, 5) pass 1) finished, 97830 of 97830 UNSAT-SOLVER (owner launch; untracked
+`results/stageB5-pass1*`): its conclusion is week item 5; chunks 10-99 postponed by the owner. Amendment 7 (week item 2,
+conditional on item 1): the free-C2 (8, 3) symmetric pass on maps item 1 leaves open, with all 862 free half-turns
+derived from Aut+ (stage A kept the first action per unit, `symcensus.py`:344: the 822 records miss 40 actions on 23
+maps, 14 on 13 maps not conjugate to a tested one; final review K1).

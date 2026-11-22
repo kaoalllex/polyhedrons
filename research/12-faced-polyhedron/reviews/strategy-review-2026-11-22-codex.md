@@ -1,6 +1,6 @@
 # Cross-review for the owner · 2026-11-22
 
-1. Keep nine-face S1 first. Price P6 next after the cheap eight-face pass. The symmetric route has exhausted its current priority, with feasible cases still open.
+1. Keep nine-face S1 as the approved target. Compare P6 with the full portfolio before choosing the main investment for the week.
 2. Change item 1 before running it. Stage A covers 790 maps at (8,3). Its output drops free half-turns when two hits have the same map code.
 3. Use 862 labelled actions. The proposed 822 miss 40 on 23 maps, including an actual half-turn of Roest-Vigh's solid. On 13 maps even relabelling leaves a gap.
 4. The genus-four nine-face verdict survives this check. All omitted half-turns there are conjugate to tested ones.
@@ -9,13 +9,21 @@
 7. The parity totals reproduce by a second calculation. SEG alone can exclude a cubic map outright. The draft understates the highest observed stratum rate.
 8. The C3 axis lemma holds for embedded cubic solids, including non-uniform ones. At genus six its fixed-vertex count is already enforced by the census.
 9. Retain both deferrals. I would use 0.40 for nine-face existence. The genus-five sample would miss a unique successful map about nine times in ten.
-10. At step 3 the owner decides the corrected first pass, the P6 pilot and ceilings, and the planning credence. The existing launch permission rule applies.
+10. At C3, use the two fresh portfolio reviews and this cross-review to choose the week. The owner approves the route, budget and planning credence.
 
 Paths below start at the research root. Experiment IDs denote the matching directory under `experiments/`. “Draft” denotes `reviews/strategy-review-2026-11-22.md`. Integer cross-checks below are session evidence. SPEC §5 reserves ledger EXACT for results reproduced by the verification suite (`SPEC.md:98`).
 
 ## 1. Verdict
 
 **NUMERICAL, planning.** The pivot is supported by 12,562 decided genus-four formulas, the empty genus-five C3 census, the cost of genus-five C2 and the failed P3 refutation rung. The 23 maps common to both genus-four lists give 12,539 distinct maps. No geometric negative follows from UNSAT-SOLVER. The ~800 core-h for genus-six C2 extrapolates one growth ratio. The ~122 core-h remainder is feasible on this laptop and postponed. A symmetric witness, a selective test with measured discovery power, or a cheap complete new stratum would change the ranking. A failed P6 rung or high price returns the route choice to the owner. (`STATUS.md:542,551,561,569,577`, `E-261119-02/README.md:126`, `STRATEGY.md:58`.)
+
+### Owner follow-up · what deserves the next week?
+
+The cross-review establishes how to repair the eight-face pass and how to price P6. Its comparison covered the routes in the draft. The broader question is which route we would fund today, given everything learned so far. No new verified object meeting the significance filter emerged this week. Recovery of the two known objects and enumeration of symmetric maps are real gains, but neither measures the chance of finding a new one. (`STRATEGY.md:8`, `STATUS.md:542,551,561`.)
+
+An inventory count from `map/graph.json` at commit `1310847b` gives 117 open ideas and 28 open hypotheses. The November 19 review carried forward scores for other open candidates; the November 22 table again groups distinct routes under their previous scores. An untried route can acquire a better *relative* position when its competitor underperforms, even if its own evidence stays the same. (`reviews/strategy-review-2026-11-19.md:96`, draft:90.)
+
+**Recommendation.** Keep the corrected 862-action pass available as a cheap, bounded answer to the owner's eight-face question. Defer naming the main investment until C2-a and C2-b independently compare the full portfolio, including tried and parked ideas with a materially changed test. P6 has positive controls and two unresolved plain equivelar price records (§3). Constructive plane configurations and adjacency-guided search are examples with written tests worth comparing; the choice remains open. C3 should name one first decision-changing test and the strongest alternative it displaces. The item-level diff below is conditional on retaining those items. (`reviews/dialogue-2026-11-16-strategy.md:160,231`.)
 
 ## 2. Item 1 · map coverage and action coverage have different answers
 

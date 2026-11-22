@@ -1136,3 +1136,11 @@ excludes 3 + 17 records exactly. `experiments/E-261116-09-uniformity-perturbatio
 2026-11-22 — E-261119-03 concluded (owner exception to T + D >= 3): no face-transitive cubic (9, 7) map is
 admissible (Z9 48768, Z3 x Z3 522240 valid rotations, all with repeated vertex triples); the slice is empty at genus 4
 and 7. `experiments/E-261119-03-cayley-nine-faces-genus-7/CONCLUSION.md`.
+
+2026-11-22 — Lead review 2026-11-22 approved by the owner after the three-step cycle with two blind portfolio reviews
+(`reviews/strategy-review-2026-11-22-final.md`, with `-codex.md`, `portfolio-review-2026-11-22-claude.md` and
+`-codex.md`): the symmetric nine-face route ends at genus 4; P6 (E-261117-04) is the main line: the (8, 3) rung with an
+enrichment control on the 790 free-C2 (8, 3) maps first, then the (9, 4) census and its plain pass; the free-C2 (8, 3)
+symmetric pass becomes conditional, with 862 actions (not 822); nine-face credence 0.45 -> 0.35; the C2 (9, 5)
+remainder stays postponed and parity stays with the paper. Session checks only (~0.03 core-h). New week branch
+`lab/2026-11-22`.

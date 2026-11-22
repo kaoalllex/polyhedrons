@@ -3,13 +3,13 @@
 This repository has two parts:
 - the public 3D viewer: `index.html`, published by GitHub Pages from `main`, so every commit on `main` is live;
 - the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
-  (`STRATEGY.md`, owner-approved 2026-11-19): one constructive target at a time on the owner's laptop, subject to
-  the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) first, on the two uniform symmetric
-  families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (with the symmetric (8, 3) slice)
-  first, a symmetric nine-face census with per-map formulas as the main investment, P6 (equivelar slice) the
-  fallback; no nine-plane sampling night without a rung-below rate; mirror families out of domain; (11, 5) closed for
-  the laptop; S6 parked after (10, 3) (all 20 formulas UNSAT-SOLVER, replay deferred with the note); the S0 price
-  probe withdrawn. (8, 2) and (9, 3) are decided (conditional negative); all admissible (10, 4) maps are
+  (`STRATEGY.md`, owner-approved 2026-11-22): one constructive target at a time on the owner's laptop, subject to
+  the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) first. The symmetric route (C3 3+3+3,
+  C2 4 x 2 + 1) ended at genus 4 (the C2 (9, 5) remainder postponed, parity with the paper); the main line is P6, the
+  equivelar slice by plain per-map formulas: the (8, 3) rung with an enrichment control first, then the (9, 4)
+  census and plain pass; no nine-plane sampling night without a rung-below rate; mirror families only by plain
+  formulas; P3-sym parked for nine faces; (11, 5) closed for the laptop; S6 parked after (10, 3) (all 20 formulas
+  UNSAT-SOLVER, replay deferred with the note); the S0 price probe withdrawn. (8, 2) and (9, 3) are decided (conditional negative); all admissible (10, 4) maps are
   UNSAT-SOLVER (planning only, replay parked); the note is deferred; the 12-face problem is parked, not abandoned.
 
 ## Implementation preferences

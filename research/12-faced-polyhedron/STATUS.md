@@ -1,6 +1,6 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-22** (E-261119-01, E-261116-09 and E-261119-03 concluded; E-261119-02 stage A, stage-B pass 1 and both (9, 5) censuses recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
+As of **2026-11-22** (E-261119-01, E-261116-09 and E-261119-03 concluded; E-261119-02 stage A, stage-B pass 1 and both (9, 5) censuses recorded; owner's approval of the final lead review `reviews/strategy-review-2026-11-22-final.md`, 2026-11-22). The latest
 registered result is E-261119-03 (face-transitive (9, 7) census empty; section 3bj); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
@@ -14,8 +14,8 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-19 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
-mutually adjacent faces (S1, genus free) first, on the two uniform symmetric families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (E-261119-01: discovery passed, refutation undecided, section 3bd) and a symmetric nine-face census with per-map formulas (E-261119-02, the main investment; stage A lists both families, section 3be; every per-map uniform symmetric formula UNSAT-SOLVER, section 3bf), P6 the fallback; no constructive result yet. The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
+**Focus since 2026-11-22 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
+mutually adjacent faces (S1, genus free) first. The symmetric route (C3 3+3+3, C2 4 x 2 + 1) ended at genus 4 on the laptop: every per-map uniform symmetric formula at (9, 4) UNSAT-SOLVER (section 3bf), no C3 map at (9, 5) (3bg), the C2 (9, 5) random 10 % UNSAT-SOLVER (not yet concluded; remainder postponed by the owner). Main line since 2026-11-22: P6, the equivelar slice by plain per-map formulas (E-261117-04: the (8, 3) rung with an enrichment control, then the (9, 4) census and plain pass); no constructive result yet. The week of 2026-11-19: P3-sym power ladder (E-261119-01: discovery passed, refutation undecided, section 3bd), the symmetric nine-face census (E-261119-02, sections 3be-3bh), lemmas (E-261116-09, 3bi), face-transitive genus 7 (E-261119-03, 3bj). The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
 E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
 E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
 (11, 5) one plane-only price probe (E-261118-03: all 20 Aut+ = 2 maps UNSAT-SOLVER, closed for the laptop, section 3bc; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
