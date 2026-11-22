@@ -71,3 +71,17 @@ Not started while `bash overnight/launch.sh 261119-02 status` shows the launch a
   and the diagnostic), log, handover.
 
 ## Amendments
+
+### Amendment 1 (2026-11-22, after the part-B pilot; owner stopped the E-261119-02 launch for this run)
+
+Pilot (session, 4 workers, one record per arm, 400 s wall, output discarded): hashes match, controls pass (5 SAT, 5 wrong
+action UNSAT per record). Two defects of the registered design: (1) `n2.sat`'s interrupt does not fire while CaDiCaL holds
+the GIL (one formula 223 s on a 10 s cap); (2) at nine faces many small sets are SAT but hard (UNKNOWN at 10 s), so the
+size <= 4 enumeration costs ~400 core-s per record, ~12 core-h for all, over the 2 core-h cap. Signal: on the (9, 5)
+record dropping SYM leaves it UNSAT and {GP, SEGMENT_DISJOINT, TRIPLE} is a minimal UNSAT set (no symmetry clause).
+Changes: solver kissat (the stage-B solver) in a child process killed at the cap; stage 1 (every record, cap 5 s):
+full, drop-one, the plain formula (SYM, SB_ORBFLIP, SB_MIRROR off) and the candidate {GP, SEGMENT_DISJOINT, TRIPLE} with
+its 2-subsets; stage 2 (first record of every stratum, cap 2 s): every set of size <= 3; no greedy step. Wall 720 s on 10
+workers (2 core-h), stage 1 first; sets past the deadline are SKIPPED. Positive control added: the plain formula and the
+candidate must be SAT on the three SAT (8, 3) rung units (implied by their full SAT). Reading as registered; a plain or
+candidate UNSAT is UNSAT-SOLVER for that subformula and says nothing about symmetry.
