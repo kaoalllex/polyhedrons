@@ -2,12 +2,12 @@
 id: E-261119-03
 title: Face-transitive nine-face maps at genus 7 - Cayley maps of Z9 and Z3 x Z3 at valence 14, plain formula on admissible classes
 date: 2026-11-19
-status: planned
+status: running
 direction: [DR18]
 origin: [I-261119-03, E-261117-01]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned, week item 5, optional (`reviews/strategy-review-2026-11-19.md` §1, owner-approved 2026-11-19; the owner's
