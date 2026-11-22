@@ -89,8 +89,10 @@ the ~0.85 core-h pilots: ~12.4 of the 40 core-h cap). Unit tests OK; the four C2
 12288 demand classes = the Burnside count; every action checks; all 12288 units complete. **978228 admissible C2 4 x 2 + 1
 (9, 5) map classes** in 12 of the 16 multiplicity strata (the four with four or more multiplicity-3 pairs have no cover);
 per-stratum counts in `results/stageA5c2/summary-brief.json`. Gate passes (G1, G3, G4 held). Label: EXACT computation,
-coverage PROVED-1, maps only. The per-unit records and the full `summary.json` (2.2 GB, peak 21 GB RSS, 109 s) are in
-`../polyhedrons-data/<same path>`, SHA-256 in `results/stageA5c2/SHA256SUMS`.
+coverage PROVED-1, maps only. The per-unit records (1.4 GB, the stage-B input) are in `../polyhedrons-data/<same path>`,
+SHA-256 in `results/stageA5c2/SHA256SUMS`. The full `summary.json` (2.2 GB, derived; peak 21 GB RSS, 109 s) and the claim
+markers were deleted (owner, 2026-11-22): `symcensus.py summary` rebuilds the file, its hash in `SHA256SUMS` checks the
+rebuild.
 
 ## Next
 
