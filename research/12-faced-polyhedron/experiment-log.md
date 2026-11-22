@@ -1144,3 +1144,8 @@ enrichment control on the 790 free-C2 (8, 3) maps first, then the (9, 4) census 
 symmetric pass becomes conditional, with 862 actions (not 822); nine-face credence 0.45 -> 0.35; the C2 (9, 5)
 remainder stays postponed and parity stays with the paper. Session checks only (~0.03 core-h). New week branch
 `lab/2026-11-22`.
+
+2026-11-22 — E-261117-04 stage A (week item 1, STATUS 3bk): the equivelar (8, 3) census (97 classes, 51 admissible) and
+the plain sub-map formula on the 51 and on the 745 non-equivelar free-C2 (8, 3) maps: SAT only on Roest-Vigh's and
+Mizhaev's maps, both realized unaided; the rest UNSAT-SOLVER; 0.18 core-h. Week item 2 has no input.
+`experiments/E-261117-04-equivelar-price-pilot/README.md`.

@@ -9,13 +9,14 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-22, lead review approved and applied; new week starts)
+## Hand-over (2026-11-22, week item 1 done, item 2 skipped)
 
-* Branch `lab/2026-11-22` (from `main` after the `lab/2026-11-19` PR). Week plan: `ROADMAP.md` "Week plan" (source
-  `reviews/strategy-review-2026-11-22-final.md`, owner-approved). Next: **item 1, P6 stage A** (E-261117-04): write
-  and commit `PLAN.md` (skill `experiment-start`; stages A-C, coverage argument, controls), then the (8, 3) rung and the
-  enrichment control on the 790 free-C2 (8, 3) maps after a one-line permission (<= 1 core-h, <= 50 min wall).
-* Item 2 (E-261119-02 amendment 7, 862 actions) runs only on maps item 1 leaves UNKNOWN or SAT-unrealized.
-  Item 5 (close-out of the random 10 %, 97830 of 97830 UNSAT-SOLVER in untracked `results/stageB5-pass1*`) needs no compute.
-* Session checks of the final review (K1-K3, scratch, not ledger) give the expected counts for the PLAN: 862 free
-  half-turns on 790 maps; 45 equivelar (8, 3) and 111 equivelar (9, 4) symmetric codes; plain (9, 4) 1.4-23.4 s per map.
+* Branch `lab/2026-11-22`. Week plan: `ROADMAP.md` "Week plan". Item 1 (E-261117-04 stage A, STATUS 3bk) done: the
+  (8, 3) rung passed, only the two known maps SAT and realized; item 2 has no input (skipped).
+* Next: **item 3, P6 stage B** (the (9, 4) equivelar census): a PLAN amendment in E-261117-04 with its unit tests
+  first; raise the guards (`census.py` `run`: k <= 8, `enum_multi.c` `main`: extras > 8) to 9 and re-read the coverage
+  argument; eight partitions of 9 through `p6.cycle_union` (`p6.py` is (8, 3)-specific: generalise F, G and the census
+  directory); controls as in the week plan (111 symmetric equivelar codes, both 3au (9, 4) classes, a completion flag
+  per pattern); 10-min probe, root-stride shards if it projects > 50 min wall; lab-run after a one-line permission.
+* Item 5 (E-261119-02 close-out, untracked `results/stageB5-pass1*`) needs no compute; any order.
+* Stage-A tooling to reuse: `run.sh` (`Q=` queue), `p6.py summary|followup`; the pinned control file `control_rv8.json`.

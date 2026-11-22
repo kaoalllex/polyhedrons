@@ -122,3 +122,9 @@ E-261119-02 stage B pass 1 (STATUS 3bf): the uniform symmetric formulas of every
 
 2026-11-22 (E-261116-09): scope only; the priced nine-face stage-B UNSATs do not need the symmetry, and 3 (9, 5)
 maps are excluded exactly by collinear-segment parity (STATUS 3bi). Status unchanged.
+
+## 2026-11-22 equivelar (8, 3) rung
+
+E-261117-04 stage A (STATUS 3bk): the plain sub-map formula recovers both known eight-face solids unaided from the
+complete equivelar (8, 3) census and is UNSAT-SOLVER on the other 49 admissible classes and on 745 non-equivelar
+free-C2 maps (planning only, no proof). A pipeline rung, no new object: status and credence unchanged.
