@@ -2,15 +2,15 @@
 id: E-261116-09
 title: Uniformity and perturbation lemmas - which scope words of the small-case results can be removed
 date: 2026-11-16
-status: planned
+status: running
 direction: [DR19, DR11]
 origin: [I-261116-07, I-261108-09]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned, audit, jump 0. Scores T D F G R: 2 1 2 2 2 | budget: one session, exact local checks only.
+> Running (PLAN.md, 2026-11-22), audit, jump 0. Scores T D F G R: 2 1 2 2 2 | budget: one session, exact local checks only.
 
 ## Goal
 
@@ -29,3 +29,6 @@ Extended 2026-11-19 (`reviews/strategy-review-2026-11-19.md` §2, week item 4): 
 eight-face solid contains a free half-turn (the scope of E-261119-01's symmetric (8, 3) slice); (g) on an (11, 5) map
 with Aut+ = 2 the only possible improper symmetries are mirrors, and every mirror class forces zero signs (the (11, 5)
 closure). These lemmas carry the scope sentences of E-261119-01 and E-261119-02.
+
+Extended 2026-11-22 (owner): part B of `PLAN.md`, the family-ablation diagnostic of the E-261119-02 stage-B formulas
+(a stated deviation from "no compute").
