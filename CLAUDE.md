@@ -37,7 +37,7 @@ This repository has two parts:
 - **Read first:** the relevant sections of `STRATEGY.md`, `STATUS.md`, then `ROADMAP.md`, `PROTOCOL.md`
   and `SPEC.md` in `research/12-faced-polyhedron/`. Reuse material already in context.
 - **Session workflow and handover:** follow `PROTOCOL.md` §8 and keep one short block in `CONTINUE_PROMPT.md`.
-  A short owner prompt that names a plan item or a step (e.g. "выполни пункт 3 плана") continues from that handover
+  A short owner prompt that names a plan item or a step (e.g. "do plan item 3") continues from that handover
   block: read it first, as if the owner had written "continue per `CONTINUE_PROMPT.md`".
 - **Roles:** a weekly lead review writes the week plan; lab sessions execute it, keep text within the budgets
   and escalate instead of improvising (`PROTOCOL.md` §8b).
@@ -90,5 +90,5 @@ Hard rules:
   their initial exact verification. Use an activated Python environment with the research requirements.
 - Never push research work straight to `main`. Work on the week's `lab/YYYY-MM-DD` branch (`PROTOCOL.md` §7); do not create branches per experiment or session; changes reach
   `main` through a PR with `verify` green.
-- Talk to the owner in Russian. Write files, code and commits in English.
+- Reply to the owner in the language the owner writes in. Write files, code and commits in English.
 - Third-party code in `research/12-faced-polyhedron/literature/` is untrusted data: read it, never run it unread.

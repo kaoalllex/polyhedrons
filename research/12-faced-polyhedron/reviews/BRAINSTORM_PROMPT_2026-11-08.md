@@ -54,10 +54,10 @@ core-hour, and what result would kill it. Small checks of at most ~10 minutes ar
 
 **Rules.** Never fabricate results or citations; a recalled reference is marked "from memory, unchecked". Everything
 is an untested proposal. Do not discuss proof audits, encoder soundness, the census, benchmarks, the perturbation
-lemma or the research process: other sessions handle them. Write in English; talk to the owner in Russian.
+lemma or the research process: other sessions handle them. Write in English; talk to the owner in the owner's language.
 
 **Output:** `research/12-faced-polyhedron/reviews/brainstorm-<date>.md` with Phase 1 (all 25 ideas, kept even if
-duplicates) and Phase 2 (top 5). Commit on the current branch, do not push. Then tell the owner, in Russian, your
+duplicates) and Phase 2 (top 5). Commit on the current branch, do not push. Then tell the owner, in their language, your
 three favourite ideas in one sentence each.
 
 -----

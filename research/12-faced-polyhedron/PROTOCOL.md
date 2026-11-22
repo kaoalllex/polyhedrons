@@ -265,5 +265,5 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 * Keep one short handover block in `CONTINUE_PROMPT.md`: branch or commit, in-flight state, next action and
   exact command if needed, and verification scope. Link to the plan, ledger, and artifacts for details.
 * Ask the owner before launching large subagent tasks (usage limits). Agents: `.claude/agents/` (7 roles).
-* Report to the owner in Russian; write repository files in English. Never weaken the requirements, never
+* Report to the owner in the language the owner writes in; write repository files in English. Never weaken the requirements, never
   fabricate results, report failures with their output.

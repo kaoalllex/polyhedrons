@@ -13,7 +13,7 @@ with `requirements.txt` installed.
      stage they close (pre-registration or conclusion); make a handover-only commit only when the session ends with
      no stage commit to carry them (`PROTOCOL.md` §8b, owner 2026-11-10).
    - Never commit the owner's untracked notes (the root `TODO.md`).
-   - Update the owner's root `TODO.md` (local, untracked, in Russian) whenever the session changed the week plan,
+   - Update the owner's root `TODO.md` (local, untracked, in the owner's language) whenever the session changed the week plan,
      the rules, the branch, the next step or the owner's own tasks; keep it short and current.
    - Never push to `main`. Push the session branch only when the owner says so.
 2. **Log.** Add a dated entry to `experiment-log.md`: what was done, the commits, the outcomes, with pointers to
@@ -33,6 +33,6 @@ with `requirements.txt` installed.
    outcomes and scope. Handover or wording-only edits do not trigger a test run. Run only affected checks
    if relevant code/inputs/environment changed or an unresolved concern remains; state why. Do not repeat
    a suite already covered by another check. See `PROTOCOL.md` section 8.
-6. **Tell the owner,** in Russian:
+6. **Tell the owner,** in the owner's language:
    - the exact commands left for them (push, merge, launch with `caffeinate -dimsu`);
    - what was not checked.

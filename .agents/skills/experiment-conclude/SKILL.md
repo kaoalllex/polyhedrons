@@ -60,7 +60,7 @@ Use `python3` from an activated environment with `requirements.txt` installed.
    affected checks not already run this session, and `python3 verification/verify_all.py --quick` at most
    once, only if an integration concern remains. Never repeat a check whose inputs did not change; reuse its
    result at handover. Full suite only on explicit request. Follow `PROTOCOL.md` section 8. Propose a PR into
-   `main`; open it only when the owner says so. Report in Russian: outcomes, verification scope, STATUS
+   `main`; open it only when the owner says so. Report in the owner's language: outcomes, verification scope, STATUS
    changes and next ROADMAP item.
 
 Labels: an AI-written proof is at most PROVED-1. CERTIFIED needs a checked certificate, a written soundness

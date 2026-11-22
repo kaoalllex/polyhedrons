@@ -4,7 +4,7 @@ Pre-registration, 2026-11-22. Week item 5, optional (`ROADMAP.md`; `reviews/stra
 the owner's idea, I-261119-03).
 
 * **ROADMAP row / scores**: T 1 D 1 F 2 G 1 R 2 (T + D = 2 < 3). **Owner exception, 2026-11-22**: asked about the
-  failed gate, the owner answered "для пункта 5 - исключение. выполняй" (an exception for item 5, run it). Explore, jump 2.
+  failed gate, the owner answered "an exception for item 5, run it". Explore, jump 2.
 * **Question**: which cubic (9, 7) maps with every face pair adjacent have Aut+ transitive on the faces, and is the
   plain formula (10 elements) of any admissible one SAT?
 * **Hypotheses moved**: H-261101-07. A verified nine-face S1 object of genus 7 is outside its genus 2-5 range but

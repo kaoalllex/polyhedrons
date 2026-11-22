@@ -60,7 +60,7 @@ A new strategy and week plan come out of three steps, each in its own session; n
    (<= 8 processes) where one can be written (objections rerun on the data overturn conclusions far more often than text-only
    review: `reviews/strategy-review-2026-11-22.md` §5 N4); an untested objection is marked "unresolved". Output:
    `reviews/strategy-review-YYYY-MM-DD-codex.md`, at most 120 lines, a 10-line owner digest first, then a proposed diff to the
-   week plan only where it disagrees. Commit, no push; tell the owner in Russian in at most 8 lines.
+   week plan only where it disagrees. Commit, no push; tell the owner in their language in at most 8 lines.
 3. **Final** (Claude lead, a new session or the draft session): reads the cross-review and only the files it cites; per point
    accept / reject / unresolved with one line of evidence (file:line, `SPEC.md` §5 label), a dispute settled by a <= 10 min check
    when one can. Output: `reviews/strategy-review-YYYY-MM-DD-final.md`, at most 80 lines: the point table, the final week plan
@@ -77,10 +77,10 @@ If the owner starts the cycle with Codex, the roles swap: Claude writes the cros
 week plan, ready to paste into `ROADMAP.md`; the answers above; the scored table; the proposed queue; new ideas; audit
 findings; the 3 things to do first. Label factual claims with `SPEC.md` §5 evidence levels;
 identify untested hypotheses and recommendations separately. Commit the report on the current branch; do not push. Then tell the owner, in
-Russian, the verdict and the proposed first item; the owner corrects it, then the cycle above continues (steps 2 and 3);
+their language, the verdict and the proposed first item; the owner corrects it, then the cycle above continues (steps 2 and 3);
 the session of step 3 applies the approved changes to `ROADMAP.md`, `STATUS.md`, `STRATEGY.md` and the idea files.
 Once the owner approves, that session also updates the owner's root `TODO.md`
-(local, untracked, in Russian: week plan, rules, next step); never commit it. `TODO.md` opens, right under its
+(local, untracked, in the owner's language: week plan, rules, next step); never commit it. `TODO.md` opens, right under its
 title, with a short table of the week's lab work: item number, one-line task, one **Model** column (Claude model
 and effort, then the Codex alternative, with conditions such as "medium (SAT conclusion: high)"; Codex never
 omitted, owner 2026-11-16), a **Status** column (done / running / waiting for X / not started) and a **Depends on**

@@ -22,4 +22,4 @@ Work alone. Both sessions use the project evidence at 1310847b, plus the existin
 
 ## Deliverable
 
-Open with a ten-line owner digest. Give the inventory coverage, finalist comparison and a one-week plan of at most five items. Name the **first action**, its control, budget, success check, stop condition, and next branch after a positive, negative or inconclusive outcome. Identify the owner decision, if any. Separate planning judgments from evidence. The report should let C3 challenge your recommendation without reconstructing your search. After saving the English report, identify it to the owner in a short Russian chat reply.
+Open with a ten-line owner digest. Give the inventory coverage, finalist comparison and a one-week plan of at most five items. Name the **first action**, its control, budget, success check, stop condition, and next branch after a positive, negative or inconclusive outcome. Identify the owner decision, if any. Separate planning judgments from evidence. The report should let C3 challenge your recommendation without reconstructing your search. After saving the English report, identify it to the owner in a short chat reply.
