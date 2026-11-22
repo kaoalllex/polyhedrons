@@ -1625,17 +1625,17 @@ window.GRAPH = {
    "id": "E-261116-09",
    "kind": "experiment",
    "title": "Uniformity and perturbation lemmas - which scope words of the small-case results can be removed",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-16",
-   "concluded": "",
+   "concluded": "2026-11-22",
    "path": "experiments/E-261116-09-uniformity-perturbation-lemmas/README.md",
    "direction": [
     "DR19",
     "DR11"
    ],
-   "verdict": "",
-   "preregistered": "false",
-   "conclusion": ""
+   "verdict": "FOUNDATION (L1-L5 PROVED-1; L6 at k = 4); part B no common family set, Lemma P parity on 3 + 17 records",
+   "preregistered": "true",
+   "conclusion": "Verdict: FOUNDATION (scope lemmas, PROVED-1) for L1-L5; L6 partial (k = 4)."
   },
   {
    "id": "E-261117-01",
@@ -1686,7 +1686,7 @@ window.GRAPH = {
   {
    "id": "E-261117-04",
    "kind": "experiment",
-   "title": "Equivelar price pilot - stage A at (8, 3) over the seven extra-edge patterns, costs per stage",
+   "title": "P6, the equivelar slice by plain per-map formulas - (8, 3) rung with an enrichment control, (9, 4) census and plain pass",
    "status": "planned",
    "date": "2026-11-17",
    "concluded": "",
@@ -1764,22 +1764,22 @@ window.GRAPH = {
    "id": "E-261119-01",
    "kind": "experiment",
    "title": "P3-sym power ladder - discovery and refutation on known answers at the nine-face orbit size, and the symmetric (8, 3) slice by map blocking",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-19",
-   "concluded": "",
+   "concluded": "2026-11-20",
    "path": "experiments/E-261119-01-p3sym-power-ladder/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
-   "preregistered": "false",
-   "conclusion": ""
+   "verdict": "\"Discovery PASS (free C2 (8, 36): Mizhaev's and Roest-Vigh's maps in 59 s / 81 s, realized); refutation UNDERPOWERED@10.0 core-h ((8, 30), (9, 39) UNKNOWN at 1 h); symmetric (8, 3) slice OPEN, UNKNOWN@7.5 core-h after two known maps\"",
+   "preregistered": "true",
+   "conclusion": "Verdict: discovery rung PASS; refutation rungs UNDERPOWERED@10.0 core-h (1 h each, 5 workers, one seed); the symmetric (8, 3) slice OPEN, UNKNOWN@7.5 core-h after two known maps."
   },
   {
    "id": "E-261119-02",
    "kind": "experiment",
    "title": "Symmetric nine-face census - C3 3+3+3 and C2 4 x 2 + 1 maps by lifting the C3 exact cover, then per-map symmetric formulas",
-   "status": "planned",
+   "status": "running",
    "date": "2026-11-19",
    "concluded": "",
    "path": "experiments/E-261119-02-symmetric-nine-face-census/README.md",
@@ -1788,23 +1788,23 @@ window.GRAPH = {
     "DR18"
    ],
    "verdict": "",
-   "preregistered": "false",
+   "preregistered": "true",
    "conclusion": ""
   },
   {
    "id": "E-261119-03",
    "kind": "experiment",
    "title": "Face-transitive nine-face maps at genus 7 - Cayley maps of Z9 and Z3 x Z3 at valence 14, plain formula on admissible classes",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-19",
-   "concluded": "",
+   "concluded": "2026-11-22",
    "path": "experiments/E-261119-03-cayley-nine-faces-genus-7/README.md",
    "direction": [
     "DR18"
    ],
-   "verdict": "",
-   "preregistered": "false",
-   "conclusion": ""
+   "verdict": "NO-ADMISSIBLE-CAYLEY-9-7",
+   "preregistered": "true",
+   "conclusion": "Verdict for the direction: the face-transitive nine-face slice is EMPTY at genus 4 and 7 (EXACT, coverage PROVED-1); closed for planning."
   },
   {
    "id": "FD11",
@@ -4286,7 +4286,7 @@ window.GRAPH = {
    "id": "I-261108-09",
    "kind": "idea",
    "title": "Perturbation lemma - vertices of degree >= 4 resolve into cubic vertices, so the cubic (8, 2) / (9, 3) negative would cover non-cubic objects",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-08",
    "concluded": "",
    "path": "ideas/I-261108-09-perturbation-lemma-non-cubic-vertices.md",
@@ -4678,7 +4678,7 @@ window.GRAPH = {
    "id": "I-261116-07",
    "kind": "idea",
    "title": "Uniformity lemma - a cubic embedded polyhedron survives a generic perturbation of its planes, so uniform formulas lose no cubic object",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-16",
    "concluded": "",
    "path": "ideas/I-261116-07-uniformity-lemma-cubic.md",
@@ -4765,7 +4765,7 @@ window.GRAPH = {
    "id": "I-261118-02",
    "kind": "idea",
    "title": "Symmetric slices at nine faces - the eight-face groups cannot act, C3 3+3+3 covers every order-3 rotation, the uniform families listed",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-18",
    "concluded": "",
    "path": "ideas/I-261118-02-symmetric-slices-nine-faces.md",
@@ -4824,7 +4824,7 @@ window.GRAPH = {
    "id": "I-261119-02",
    "kind": "idea",
    "title": "Known-answer power ladder - decided negatives as refutation rungs and the free-C2 eight-face formula as the discovery rung of P3-sym",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-19",
    "concluded": "",
    "path": "ideas/I-261119-02-known-answer-power-ladder.md",
@@ -4838,7 +4838,7 @@ window.GRAPH = {
    "id": "I-261119-03",
    "kind": "idea",
    "title": "Face-transitive nine-face maps at genus 7 - Cayley maps of Z9 and Z3 x Z3 at valence 14",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-19",
    "concluded": "",
    "path": "ideas/I-261119-03-cayley-nine-faces-genus-7.md",

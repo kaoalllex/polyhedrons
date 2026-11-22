@@ -2,7 +2,7 @@
 id: I-261118-02
 title: Symmetric slices at nine faces - the eight-face groups cannot act, C3 3+3+3 covers every order-3 rotation, the uniform families listed
 date: 2026-11-18
-status: open
+status: tried
 direction: [DR19, DR11]
 origin: [I-261117-02, I-261113-04, E-261117-01]
 ---
@@ -34,3 +34,7 @@ Cs 4 x 2 + 1 and Cs 3 x 2 + 3 are not uniform: a mirror swapping two pairs of pl
 (A = diag(R, 1), det A = -1, so det(Ah, h, Ak, k) = -D = D; PROVED-1, exact check in `test_p3sym.py`), so chi of those
 four is 0 in every chart. Uniform families left at nine faces: C3 3+3+3 (standard chart; E-261118-02, UNKNOWN at 1 h)
 and C2 4 x 2 + 1 (moved chart; not run). `STRATEGY.md` §1's family list: to the lead.
+
+## 2026-11-22 (E-261116-09)
+
+Written as L3 (coverage up to Cs; the gauge by orbit flips), PROVED-1: `experiments/E-261116-09-uniformity-perturbation-lemmas/LEMMAS.md`.

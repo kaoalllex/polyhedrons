@@ -2,7 +2,7 @@
 id: I-261108-09
 title: Perturbation lemma - vertices of degree >= 4 resolve into cubic vertices, so the cubic (8, 2) / (9, 3) negative would cover non-cubic objects
 date: 2026-11-08
-status: open
+status: tried
 direction: [DR19]
 origin: [owner, E-261103-03]
 ---
@@ -61,3 +61,7 @@ session; question 3 of `reviews/REVIEW_PROMPT_2026-11-08.md`. Planned for the no
 
 Owner-approved week item 5 (`reviews/strategy-review-2026-11-16b.md`), together with the uniformity lemma I-261116-07:
 experiment E-261116-09, one session, PROVED-1 text or a counterexample.
+
+## 2026-11-22 (E-261116-09)
+
+Written as L6 at k = 4 (universal local check EXACT; k = 5, 6 not run), PROVED-1: `experiments/E-261116-09-uniformity-perturbation-lemmas/LEMMAS.md`.

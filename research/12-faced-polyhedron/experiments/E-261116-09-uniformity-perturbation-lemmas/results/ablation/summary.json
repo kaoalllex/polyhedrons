@@ -1,0 +1,2689 @@
+{
+ "records": 105,
+ "enum_records": 27,
+ "controls_pass": true,
+ "hashes_match": true,
+ "rung_8_3": [
+  {
+   "index": 0,
+   "full": "UNSAT",
+   "model": {
+    "status": "UNSAT",
+    "model_satisfies_all": false
+   }
+  },
+  {
+   "index": 1,
+   "full": "SAT",
+   "model": {
+    "status": "SAT",
+    "model_satisfies_all": true
+   }
+  },
+  {
+   "index": 2,
+   "full": "SAT",
+   "model": {
+    "status": "SAT",
+    "model_satisfies_all": true
+   }
+  },
+  {
+   "index": 3,
+   "full": "SAT",
+   "model": {
+    "status": "SAT",
+    "model_satisfies_all": true
+   }
+  }
+ ],
+ "arm": {
+  "pricing_9_4 C2f_9_4": {
+   "records": 21,
+   "full": {
+    "UNSAT": 21
+   },
+   "plain": {
+    "UNKNOWN": 5,
+    "UNSAT": 16
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 21
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 21
+    },
+    "GP TRIPLE": {
+     "SAT": 21
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 21
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 21
+    },
+    "INCONS": {
+     "UNSAT": 21
+    },
+    "POC": {
+     "UNSAT": 21
+    },
+    "REFLEX1": {
+     "UNSAT": 21
+    },
+    "RFCONS": {
+     "UNSAT": 21
+    },
+    "SB_MIRROR": {
+     "UNSAT": 21
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 21
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 21
+    },
+    "SYM": {
+     "UNSAT": 21
+    },
+    "TRIPLE": {
+     "UNSAT": 21
+    }
+   }
+  },
+  "pricing_9_4 C3_9_4": {
+   "records": 12,
+   "full": {
+    "UNSAT": 12
+   },
+   "plain": {
+    "UNKNOWN": 5,
+    "UNSAT": 7
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 9,
+     "UNSAT": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 12
+    },
+    "GP TRIPLE": {
+     "SAT": 12
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 12
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 12
+    },
+    "INCONS": {
+     "UNSAT": 12
+    },
+    "POC": {
+     "UNSAT": 12
+    },
+    "REFLEX1": {
+     "UNSAT": 12
+    },
+    "RFCONS": {
+     "UNSAT": 12
+    },
+    "SB_MIRROR": {
+     "UNSAT": 12
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 12
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 12
+    },
+    "SYM": {
+     "UNSAT": 12
+    },
+    "TRIPLE": {
+     "UNSAT": 12
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5": {
+   "records": 36,
+   "full": {
+    "UNSAT": 36
+   },
+   "plain": {
+    "UNSAT": 36
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 2,
+     "UNSAT": 34
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 33,
+     "UNSAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 36
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 21,
+     "UNSAT": 15
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 36
+    },
+    "INCONS": {
+     "UNSAT": 36
+    },
+    "POC": {
+     "UNSAT": 36
+    },
+    "REFLEX1": {
+     "UNSAT": 36
+    },
+    "RFCONS": {
+     "UNSAT": 36
+    },
+    "SB_MIRROR": {
+     "UNSAT": 36
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 36
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 36
+    },
+    "SYM": {
+     "UNSAT": 36
+    },
+    "TRIPLE": {
+     "UNSAT": 36
+    }
+   }
+  },
+  "rung_8_3 C2_8_3": {
+   "records": 4,
+   "full": {
+    "SAT": 3,
+    "UNSAT": 1
+   },
+   "plain": {
+    "SAT*": 4
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "SAT*": 4
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT*": 4
+    },
+    "GP TRIPLE": {
+     "SAT*": 4
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT*": 4
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "INCONS": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "POC": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "REFLEX1": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "RFCONS": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "SB_MIRROR": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "SB_ORBFLIP": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "SEGMENT_DISJOINT": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "SYM": {
+     "SAT": 1,
+     "SAT*": 3
+    },
+    "TRIPLE": {
+     "SAT*": 3,
+     "UNSAT": 1
+    }
+   }
+  },
+  "rung_9_3 C2f_9_3": {
+   "records": 24,
+   "full": {
+    "UNSAT": 24
+   },
+   "plain": {
+    "UNKNOWN": 24
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "SAT*": 2,
+     "UNKNOWN": 22
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 10,
+     "SAT*": 14
+    },
+    "GP TRIPLE": {
+     "SAT": 20,
+     "SAT*": 2,
+     "UNKNOWN": 2
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 14,
+     "SAT*": 10
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "SAT": 8,
+     "UNKNOWN": 3,
+     "UNSAT": 13
+    },
+    "INCONS": {
+     "UNSAT": 24
+    },
+    "POC": {
+     "UNSAT": 24
+    },
+    "REFLEX1": {
+     "SAT": 2,
+     "UNSAT": 22
+    },
+    "RFCONS": {
+     "UNSAT": 24
+    },
+    "SB_MIRROR": {
+     "UNSAT": 24
+    },
+    "SB_ORBFLIP": {
+     "UNKNOWN": 7,
+     "UNSAT": 17
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 24
+    },
+    "SYM": {
+     "UNKNOWN": 22,
+     "UNSAT": 2
+    },
+    "TRIPLE": {
+     "SAT": 14,
+     "UNKNOWN": 1,
+     "UNSAT": 9
+    }
+   }
+  },
+  "rung_9_3 C3_9_3": {
+   "records": 8,
+   "full": {
+    "UNSAT": 8
+   },
+   "plain": {
+    "UNKNOWN": 8
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "SAT*": 1,
+     "UNKNOWN": 7
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 7,
+     "SAT*": 1
+    },
+    "GP TRIPLE": {
+     "SAT": 5,
+     "SAT*": 1,
+     "UNKNOWN": 2
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 7,
+     "SAT*": 1
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 8
+    },
+    "INCONS": {
+     "UNSAT": 8
+    },
+    "POC": {
+     "UNSAT": 8
+    },
+    "REFLEX1": {
+     "SAT": 1,
+     "UNSAT": 7
+    },
+    "RFCONS": {
+     "UNSAT": 8
+    },
+    "SB_MIRROR": {
+     "UNSAT": 8
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 8
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 8
+    },
+    "SYM": {
+     "UNKNOWN": 8
+    },
+    "TRIPLE": {
+     "UNSAT": 8
+    }
+   }
+  }
+ },
+ "stratum": {
+  "pricing_9_4 C2f_9_4 b0 m22222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNKNOWN": 2,
+    "UNSAT": 1
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_4 C2f_9_4 b0 m222222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNKNOWN": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_4 C2f_9_4 b0 m3222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_4 C2f_9_4 b0 m32222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_4 C2f_9_4 b0 m322222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_4 C2f_9_4 b0 m3322": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_4 C2f_9_4 b0 m33222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_4 C3_9_4 b0 m222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNKNOWN": 2,
+    "UNSAT": 1
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_4 C3_9_4 b0 m32": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNKNOWN": 1,
+    "UNSAT": 2
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 2,
+     "UNSAT": 1
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_4 C3_9_4 b3 m222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNKNOWN": 2,
+    "UNSAT": 1
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_4 C3_9_4 b3 m32": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 1,
+     "UNSAT": 2
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m22222222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 1,
+     "UNSAT": 2
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m222222222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m3222222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 1,
+     "UNSAT": 2
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m32222222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 2,
+     "UNSAT": 1
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 2,
+     "UNSAT": 1
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m322222222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 2,
+     "UNSAT": 1
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m332222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m3322222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 1,
+     "UNSAT": 2
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m33222222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 2,
+     "UNSAT": 1
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 2,
+     "UNSAT": 1
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m33322": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m333222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 2,
+     "UNSAT": 1
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m3332222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 2,
+     "UNSAT": 1
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "pricing_9_5 C2f_9_5 b0 m33322222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNSAT": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNSAT": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNSAT": 3
+    },
+    "TRIPLE": {
+     "UNSAT": 3
+    }
+   }
+  },
+  "rung_8_3 C2_8_3 b0 m2222": {
+   "records": 4,
+   "full": {
+    "SAT": 3,
+    "UNSAT": 1
+   },
+   "plain": {
+    "SAT*": 4
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "SAT*": 4
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT*": 4
+    },
+    "GP TRIPLE": {
+     "SAT*": 4
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT*": 4
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "INCONS": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "POC": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "REFLEX1": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "RFCONS": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "SB_MIRROR": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "SB_ORBFLIP": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "SEGMENT_DISJOINT": {
+     "SAT*": 3,
+     "UNSAT": 1
+    },
+    "SYM": {
+     "SAT": 1,
+     "SAT*": 3
+    },
+    "TRIPLE": {
+     "SAT*": 3,
+     "UNSAT": 1
+    }
+   }
+  },
+  "rung_9_3 C2f_9_3 b0 m22": {
+   "records": 17,
+   "full": {
+    "UNSAT": 17
+   },
+   "plain": {
+    "UNKNOWN": 17
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "SAT*": 2,
+     "UNKNOWN": 15
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 4,
+     "SAT*": 13
+    },
+    "GP TRIPLE": {
+     "SAT": 13,
+     "SAT*": 2,
+     "UNKNOWN": 2
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 9,
+     "SAT*": 8
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "SAT": 6,
+     "UNKNOWN": 3,
+     "UNSAT": 8
+    },
+    "INCONS": {
+     "UNSAT": 17
+    },
+    "POC": {
+     "UNSAT": 17
+    },
+    "REFLEX1": {
+     "SAT": 2,
+     "UNSAT": 15
+    },
+    "RFCONS": {
+     "UNSAT": 17
+    },
+    "SB_MIRROR": {
+     "UNSAT": 17
+    },
+    "SB_ORBFLIP": {
+     "UNKNOWN": 7,
+     "UNSAT": 10
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 17
+    },
+    "SYM": {
+     "UNKNOWN": 15,
+     "UNSAT": 2
+    },
+    "TRIPLE": {
+     "SAT": 13,
+     "UNSAT": 4
+    }
+   }
+  },
+  "rung_9_3 C2f_9_3 b0 m222": {
+   "records": 3,
+   "full": {
+    "UNSAT": 3
+   },
+   "plain": {
+    "UNKNOWN": 3
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 3
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3
+    },
+    "GP TRIPLE": {
+     "SAT": 3
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 3
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 3
+    },
+    "INCONS": {
+     "UNSAT": 3
+    },
+    "POC": {
+     "UNSAT": 3
+    },
+    "REFLEX1": {
+     "UNSAT": 3
+    },
+    "RFCONS": {
+     "UNSAT": 3
+    },
+    "SB_MIRROR": {
+     "UNSAT": 3
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 3
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 3
+    },
+    "SYM": {
+     "UNKNOWN": 3
+    },
+    "TRIPLE": {
+     "UNKNOWN": 1,
+     "UNSAT": 2
+    }
+   }
+  },
+  "rung_9_3 C2f_9_3 b0 m32": {
+   "records": 4,
+   "full": {
+    "UNSAT": 4
+   },
+   "plain": {
+    "UNKNOWN": 4
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "UNKNOWN": 4
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 3,
+     "SAT*": 1
+    },
+    "GP TRIPLE": {
+     "SAT": 4
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 2,
+     "SAT*": 2
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "SAT": 2,
+     "UNSAT": 2
+    },
+    "INCONS": {
+     "UNSAT": 4
+    },
+    "POC": {
+     "UNSAT": 4
+    },
+    "REFLEX1": {
+     "UNSAT": 4
+    },
+    "RFCONS": {
+     "UNSAT": 4
+    },
+    "SB_MIRROR": {
+     "UNSAT": 4
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 4
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 4
+    },
+    "SYM": {
+     "UNKNOWN": 4
+    },
+    "TRIPLE": {
+     "SAT": 1,
+     "UNSAT": 3
+    }
+   }
+  },
+  "rung_9_3 C3_9_3 b2 m2": {
+   "records": 8,
+   "full": {
+    "UNSAT": 8
+   },
+   "plain": {
+    "UNKNOWN": 8
+   },
+   "candidate": {
+    "GP SEGMENT_DISJOINT TRIPLE": {
+     "SAT*": 1,
+     "UNKNOWN": 7
+    },
+    "GP SEGMENT_DISJOINT": {
+     "SAT": 7,
+     "SAT*": 1
+    },
+    "GP TRIPLE": {
+     "SAT": 5,
+     "SAT*": 1,
+     "UNKNOWN": 2
+    },
+    "SEGMENT_DISJOINT TRIPLE": {
+     "SAT": 7,
+     "SAT*": 1
+    }
+   },
+   "drop_one": {
+    "GP": {
+     "UNSAT": 8
+    },
+    "INCONS": {
+     "UNSAT": 8
+    },
+    "POC": {
+     "UNSAT": 8
+    },
+    "REFLEX1": {
+     "SAT": 1,
+     "UNSAT": 7
+    },
+    "RFCONS": {
+     "UNSAT": 8
+    },
+    "SB_MIRROR": {
+     "UNSAT": 8
+    },
+    "SB_ORBFLIP": {
+     "UNSAT": 8
+    },
+    "SEGMENT_DISJOINT": {
+     "UNSAT": 8
+    },
+    "SYM": {
+     "UNKNOWN": 8
+    },
+    "TRIPLE": {
+     "UNSAT": 8
+    }
+   }
+  }
+ },
+ "enum": {
+  "pricing_9_4 C3_9_4 b0 m32": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "POC",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "POC",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 110.956,
+   "max_seconds": 2.072
+  },
+  "pricing_9_4 C3_9_4 b0 m222": {
+   "full": "UNSAT",
+   "minimal_sets": [],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 121.02,
+   "max_seconds": 2.077
+  },
+  "pricing_9_4 C3_9_4 b3 m32": {
+   "full": "UNSAT",
+   "minimal_sets": [],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 117.509,
+   "max_seconds": 2.078
+  },
+  "pricing_9_4 C3_9_4 b3 m222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "GP",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 130.553,
+   "max_seconds": 2.076
+  },
+  "pricing_9_4 C2f_9_4 b0 m3222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "RFCONS",
+     "SYM",
+     "TRIPLE"
+    ],
+    [
+     "SEGMENT_DISJOINT",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "RFCONS",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 129.918,
+   "max_seconds": 2.071
+  },
+  "pricing_9_4 C2f_9_4 b0 m22222": {
+   "full": "UNSAT",
+   "minimal_sets": [],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 141.35,
+   "max_seconds": 2.087
+  },
+  "pricing_9_4 C2f_9_4 b0 m3322": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 129.069,
+   "max_seconds": 2.068
+  },
+  "pricing_9_4 C2f_9_4 b0 m32222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "SEGMENT_DISJOINT",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 132.998,
+   "max_seconds": 2.083
+  },
+  "pricing_9_4 C2f_9_4 b0 m222222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "SEGMENT_DISJOINT",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 149.336,
+   "max_seconds": 2.12
+  },
+  "pricing_9_4 C2f_9_4 b0 m322222": {
+   "full": "UNSAT",
+   "minimal_sets": [],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 141.93,
+   "max_seconds": 2.078
+  },
+  "pricing_9_4 C2f_9_4 b0 m33222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ],
+    [
+     "SEGMENT_DISJOINT",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 136.545,
+   "max_seconds": 2.077
+  },
+  "pricing_9_5 C2f_9_5 b0 m32222222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "REFLEX1",
+     "RFCONS"
+    ],
+    [
+     "SEGMENT_DISJOINT"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "REFLEX1",
+     "RFCONS"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 124,
+   "solver_seconds": 108.009,
+   "max_seconds": 2.074
+  },
+  "pricing_9_5 C2f_9_5 b0 m3222222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "GP",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 144.151,
+   "max_seconds": 2.077
+  },
+  "pricing_9_5 C2f_9_5 b0 m22222222": {
+   "full": "UNSAT",
+   "minimal_sets": [],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 161.238,
+   "max_seconds": 2.079
+  },
+  "pricing_9_5 C2f_9_5 b0 m222222222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "SEGMENT_DISJOINT",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 160.089,
+   "max_seconds": 2.068
+  },
+  "pricing_9_5 C2f_9_5 b0 m322222222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "POC",
+     "REFLEX1",
+     "RFCONS"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "SYM"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ],
+    [
+     "SEGMENT_DISJOINT",
+     "SYM"
+    ],
+    [
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "POC",
+     "REFLEX1",
+     "RFCONS"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "SYM"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 161,
+   "solver_seconds": 137.792,
+   "max_seconds": 2.096
+  },
+  "pricing_9_5 C2f_9_5 b0 m332222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "POC",
+     "REFLEX1",
+     "RFCONS"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ],
+    [
+     "RFCONS",
+     "SYM",
+     "TRIPLE"
+    ],
+    [
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "POC",
+     "REFLEX1",
+     "RFCONS"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ],
+    [
+     "RFCONS",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 168,
+   "solver_seconds": 133.928,
+   "max_seconds": 2.121
+  },
+  "pricing_9_5 C2f_9_5 b0 m33322": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "GP",
+     "POC",
+     "SEGMENT_DISJOINT"
+    ],
+    [
+     "POC",
+     "REFLEX1",
+     "RFCONS"
+    ],
+    [
+     "POC",
+     "REFLEX1",
+     "SEGMENT_DISJOINT"
+    ],
+    [
+     "POC",
+     "RFCONS",
+     "SEGMENT_DISJOINT"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "SYM"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ],
+    [
+     "SEGMENT_DISJOINT",
+     "SYM"
+    ],
+    [
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "GP",
+     "POC",
+     "SEGMENT_DISJOINT"
+    ],
+    [
+     "POC",
+     "REFLEX1",
+     "RFCONS"
+    ],
+    [
+     "POC",
+     "RFCONS",
+     "SEGMENT_DISJOINT"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "SYM"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 161,
+   "solver_seconds": 125.769,
+   "max_seconds": 2.079
+  },
+  "pricing_9_5 C2f_9_5 b0 m3322222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "REFLEX1",
+     "RFCONS",
+     "SYM"
+    ],
+    [
+     "SEGMENT_DISJOINT",
+     "SYM"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "REFLEX1",
+     "RFCONS",
+     "SYM"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 168,
+   "solver_seconds": 150.841,
+   "max_seconds": 2.075
+  },
+  "pricing_9_5 C2f_9_5 b0 m33222222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "GP",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "POC",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "POC",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 158.373,
+   "max_seconds": 2.081
+  },
+  "pricing_9_5 C2f_9_5 b0 m333222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "GP",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "INCONS",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "POC",
+     "REFLEX1",
+     "RFCONS"
+    ],
+    [
+     "POC",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "SYM"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ],
+    [
+     "REFLEX1",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "RFCONS",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "SEGMENT_DISJOINT",
+     "SYM"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "POC",
+     "REFLEX1",
+     "RFCONS"
+    ],
+    [
+     "POC",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "SYM"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ],
+    [
+     "RFCONS",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 168,
+   "solver_seconds": 130.999,
+   "max_seconds": 2.069
+  },
+  "rung_9_3 C3_9_3 b2 m2": {
+   "full": "UNSAT",
+   "minimal_sets": [],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 108.765,
+   "max_seconds": 2.065
+  },
+  "pricing_9_5 C2f_9_5 b0 m3332222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "GP",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "INCONS",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "POC",
+     "REFLEX1",
+     "RFCONS"
+    ],
+    [
+     "POC",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ],
+    [
+     "REFLEX1",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "RFCONS",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "SEGMENT_DISJOINT",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "POC",
+     "REFLEX1",
+     "RFCONS"
+    ],
+    [
+     "POC",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ],
+    [
+     "RFCONS",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 137.75,
+   "max_seconds": 2.069
+  },
+  "rung_9_3 C2f_9_3 b0 m32": {
+   "full": "UNSAT",
+   "minimal_sets": [],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 115.563,
+   "max_seconds": 2.064
+  },
+  "rung_9_3 C2f_9_3 b0 m22": {
+   "full": "UNSAT",
+   "minimal_sets": [],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 126.099,
+   "max_seconds": 2.069
+  },
+  "pricing_9_5 C2f_9_5 b0 m33322222": {
+   "full": "UNSAT",
+   "minimal_sets": [
+    [
+     "POC",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ],
+    [
+     "SEGMENT_DISJOINT",
+     "SYM",
+     "TRIPLE"
+    ]
+   ],
+   "minimal_uncertain": [
+    [
+     "POC",
+     "SEGMENT_DISJOINT",
+     "TRIPLE"
+    ],
+    [
+     "REFLEX1",
+     "RFCONS",
+     "TRIPLE"
+    ]
+   ],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 140.225,
+   "max_seconds": 2.065
+  },
+  "rung_9_3 C2f_9_3 b0 m222": {
+   "full": "UNSAT",
+   "minimal_sets": [],
+   "minimal_uncertain": [],
+   "skipped": 0,
+   "solved": 176,
+   "solver_seconds": 126.047,
+   "max_seconds": 2.062
+  }
+ }
+}

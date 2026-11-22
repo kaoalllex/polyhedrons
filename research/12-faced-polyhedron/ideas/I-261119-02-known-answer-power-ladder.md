@@ -2,7 +2,7 @@
 id: I-261119-02
 title: Known-answer power ladder - decided negatives as refutation rungs and the free-C2 eight-face formula as the discovery rung of P3-sym
 date: 2026-11-19
-status: open
+status: tried
 direction: [DR19]
 origin: [I-261118-01, E-261118-02, E-261103-03]
 ---
@@ -30,3 +30,9 @@ and answers the owner's question 5 (unknown symmetric (8, 3) objects). Orbit cou
 E-261119-01 (week item 1): one owner evening, <= 20 core-h.
 
 Source: `reviews/strategy-review-2026-11-19.md` §5 N1 (owner-approved 2026-11-19).
+
+## 2026-11-20 E-261119-01
+
+Discovery rung passed: free C2 at (8, 36) returned Mizhaev's and Roest-Vigh's maps in 59 s and 81 s, realized; then
+UNKNOWN at 1.5 h (no third map found or excluded). Refutation rungs undecided: (8, 30) and C3 (9, 39) UNKNOWN at 1 h on
+5 workers, so P3-sym's nine-face UNKNOWN is not read as evidence (STATUS 3bd).

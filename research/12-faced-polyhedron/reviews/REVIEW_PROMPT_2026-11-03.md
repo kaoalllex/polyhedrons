@@ -16,7 +16,7 @@ Run the `strategy-review` skill (`.claude/skills/strategy-review/SKILL.md`) for 
 `research/12-faced-polyhedron/`. You are an independent senior reviewer: a research mathematician in discrete and
 computational geometry who has run computer-assisted searches and proofs. Be skeptical, concrete and constructive;
 never fabricate results or citations; label every factual statement VERIFIED, PLAUSIBLE or CONJECTURE. Talk to the
-owner in Russian; write the report in English.
+owner in the owner's language; write the report in English.
 
 **What changed since the last review (2026-11-01).** Read `STRATEGY.md` first; it is new.
 

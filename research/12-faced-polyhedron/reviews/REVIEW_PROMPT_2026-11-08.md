@@ -31,7 +31,7 @@ first kill) only the items you propose to add, move or drop. Small checks are fi
 no edits outside `reviews/`. Hard rules from the root `CLAUDE.md` apply: never fabricate results or citations, label
 factual claims with `SPEC.md` §5 levels, mark recommendations and untested proposals, scope every negative statement.
 Compute is one laptop (at most 10 cores, every splittable run in 8-10 shards) and a GitHub Actions trial. Talk to the
-owner in Russian; write the report in English.
+owner in the owner's language; write the report in English.
 
 **Read first:** `STRATEGY.md`; `STATUS.md` §0, 3c, 3d, 3w and §4 (including the new non-cubic scope entry); the week
 plan in `ROADMAP.md`; `reviews/strategy-review-2026-11-08d.md` (the plan under review); the `CONCLUSION.md` of
@@ -98,6 +98,6 @@ maximal.
 **Output:** the report in the skill's format, trimmed to this prompt: a 10-line verdict; answers to questions 1-6; the
 changes you propose to `STRATEGY.md` and `ROADMAP.md` (proposals, not applied; scored as above); the new ideas; the
 three things to do first. Aim for at most 250 lines; cut before you add. Commit it on the current branch, do not push.
-Then tell the owner, in Russian: your verdict, the single most important change you would make, and your best new idea.
+Then tell the owner, in their language: your verdict, the single most important change you would make, and your best new idea.
 
 -----

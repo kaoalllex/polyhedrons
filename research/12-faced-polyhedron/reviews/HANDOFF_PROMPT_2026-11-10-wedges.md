@@ -29,7 +29,7 @@ went well). **Still to be approved by the owner, ask in your final message:** th
 scoped negatives, IDs `<K>-YYMMDD-NN` with today's date, one file per idea/hypothesis/experiment with the header of
 `PROTOCOL.md` §4, PLAN before compute, T + D >= 3 to enter the queue, text budgets of §8b. `STRATEGY.md` is changed only
 by the owner: write the proposed §1/§2 text and a dated log entry, and ask the owner to approve it in your final
-message (Russian). Files, code and commits in English. Check `map/graph.json` titles before creating an idea file;
+message (in the owner's language). Files, code and commits in English. Check `map/graph.json` titles before creating an idea file;
 where an existing idea covers part of a proposal, extend that file (a dated section) instead of duplicating it, and
 make the new file's `origin` point to it. Run `python3 verification/trace.py` (or `verify_all.py --quick` if it is the
 only way) after the graph edits.
@@ -270,7 +270,7 @@ Commits on the current branch: idea/hypothesis files, planned experiment folders
 E-B only), the week plan block in `ROADMAP.md`, the approved harness items as §11 says, the proposed `STRATEGY.md` text in a review file
 `reviews/strategy-review-2026-11-10.md` (10-line verdict, the plan, the credences, what the owner must approve), the
 `SPEC.md` S6 proposal in that review (not in SPEC until the owner approves), `CONTINUE_PROMPT.md` handover, the
-owner's local `TODO.md` (Russian, untracked). `trace.py` 0 errors. Then tell the owner in Russian: what was filed, the
+owner's local `TODO.md` (untracked). `trace.py` 0 errors. Then tell the owner in their language: what was filed, the
 three approvals you need (STRATEGY text, SPEC S6, the E-B night), and the first lab step.
 
 -----

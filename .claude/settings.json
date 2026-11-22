@@ -2,5 +2,18 @@
   "enabledPlugins": {
     "ponytail@ponytail": false,
     "superpowers@claude-plugins-official": false
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Research handover (loaded at session start; a short owner prompt such as a plan item continues from it):\"; cat \"$CLAUDE_PROJECT_DIR/research/12-faced-polyhedron/CONTINUE_PROMPT.md\""
+          }
+        ]
+      }
+    ]
   }
 }

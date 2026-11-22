@@ -2,34 +2,48 @@
 id: E-261119-01
 title: P3-sym power ladder - discovery and refutation on known answers at the nine-face orbit size, and the symmetric (8, 3) slice by map blocking
 date: 2026-11-19
-status: planned
+status: done
+concluded: 2026-11-20
+verdict: "Discovery PASS (free C2 (8, 36): Mizhaev's and Roest-Vigh's maps in 59 s / 81 s, realized); refutation UNDERPOWERED@10.0 core-h ((8, 30), (9, 39) UNKNOWN at 1 h); symmetric (8, 3) slice OPEN, UNKNOWN@7.5 core-h after two known maps"
 direction: [DR19]
 origin: [I-261119-02, E-261118-02, I-261118-01]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
-> Planned, week item 1 (`reviews/strategy-review-2026-11-19.md` §1, owner-approved 2026-11-19), explore, jump 0 (its
-> pass branch earns a jump-2 night). Scores T D F G R: 2 2 2 1 2 | budget: 1 session + <= 20 core-h, one owner evening.
+> Planned, week item 1 (`reviews/strategy-review-2026-11-19.md` §1, owner-approved 2026-11-19; reconciled with the
+> Codex second opinion, `reviews/strategy-review-2026-11-19-reconcile.md`, owner-approved the same day), explore,
+> jump 0. Scores T D F G R: 2 1 2 1 2 | budget: 1 session + hard <= 20 core-h incl. controls and bridges, one owner evening.
 > Before any compute: `PLAN.md` (skill `experiment-start`) with its unit tests run in that commit. No proofs. What differs
 > from E-261118-02: known-answer units at the target's orbit size (the parked-methods rule; a longer cap alone scores D = 0).
 
 ## Goal
 
 P3-sym (E-261118-02) unpinned, 5 workers, one seed. U1 free C2 4 x 2 at (8, 36), cap 1.5 h: 66 quad orbits, both known
-objects inside; on each model decode, census code, bridge, `--all-pairs`, then block that map (a clause over the
-variables that fix its dual map, with all images under the normaliser of the action) and continue. U2 free C2 at
-(8, 30), cap 1 h, expected INFEASIBLE ((8, 2) negative, STATUS 3d). U3 C3 3+3+3 at (9, 39), cap 1 h, expected
-INFEASIBLE ((9, 3) negative, 3d). U4 D2 and S4 at (8, 36) with blocking, 15 min each, first. Controls: those of
-E-261118-02, both known objects pinned under free C2 (orbit-size-2 gauge reachable); blocking control: with
-Roest-Vigh's map blocked U1 still returns Mizhaev's, and the reverse.
+objects inside; on each model decode, census code, bridge, `--all-pairs`, then block that map by its complete paired
+runs (one predicate per run on line ij with end triples ijk, ijl; the negated conjunction of its E runs and every image
+under the normaliser of the action, 384 for free C2) and continue; a map whose bridge fails stays open. U2 free C2 at
+(8, 30), cap 1 h, predicted INFEASIBLE ((8, 2) negative, STATUS 3d). U3 C3 3+3+3 at (9, 39), cap 1 h, predicted
+INFEASIBLE ((9, 3) negative, 3d); 3d's checked proofs are for the map CNFs, not for P3. U4 D2 and S4 at (8, 36) with
+blocking, 15 min each, first. Controls: those of E-261118-02, both known objects pinned under free C2 (orbit-size-2
+gauge reachable); blocking controls: a synthetic unit test (same end triples, different pairing); each known object
+pinned with its own map blocked INFEASIBLE, with the other map blocked SAT; unpinned, with Roest-Vigh's map blocked U1
+still returns Mizhaev's, and the reverse.
 
 ## Next
 
-A failed control -> repair. U2 or U3 SAT -> stop, bridge: a PASS contradicts 3d (`candidate-check`, escalate), no PASS
-means P3 and omsat disagree (lead). U1 model and U2, U3 INFEASIBLE within their caps -> one owner night: C3 3+3+3 at
-E = 45, 51, 57, cap max(4 h, 10 x the slowest of these times), <= 60 core-h. U1 model, U3 UNKNOWN -> no C3 night, C3 to
-E-261119-02. U1 UNKNOWN -> P3-sym parked for nine faces. A new (8, 3) map realized, `--all-pairs` PASS ->
-`candidate-check`, escalate (meets E-261112-02's reopening condition). Blocking ends INFEASIBLE -> "the symmetric
-uniform (8, 3) solids have only the known maps", UNSAT-SOLVER (planning). Lab: Opus, high / Codex gpt-6-astra, high.
+A failed control -> repair. U2 or U3 SAT -> stop: decode, GP, Euler, darts, census code, action; transport chi into the
+3d map CNF and evaluate its clause families; bridge; a PASS -> `--target S5`, `candidate-check`, escalate. U1 UNKNOWN ->
+P3-sym parked for nine faces. Otherwise record each unit and go to E-261119-02 (C3 at nine faces per map there). No C3
+night from this experiment: one needs a changed nine-plane discovery test (e.g. the planted control of the Codex review
+§5) and the owner's word. A new (8, 3) map realized, `--all-pairs` PASS -> `candidate-check`, escalate (meets
+E-261112-02's reopening condition). Blocking ends INFEASIBLE -> "this P3-sym free-C2 formula with these blocks is
+INFEASIBLE", UNSAT-SOLVER (planning); no claim on maps whose bridge failed. Lab: Opus, high / Codex gpt-6-astra, high.
+
+## Results
+
+Concluded 2026-11-20 (`CONCLUSION.md`): controls and blocking controls pass; U4 decided in the pilot. Owner run: U1
+returned both known maps, realized, then UNKNOWN at 1.5 h; U2 (8, 30) and U3 (9, 39) UNKNOWN at 1 h. No new map, no
+model in a refutation unit. P3-sym can discover at 66 orbits but showed no refutation power at 66 or 72 orbits, so its
+nine-face UNKNOWNs carry no information. A discarded first launch overran the 20 core-h budget (`CONCLUSION.md`, Runs).

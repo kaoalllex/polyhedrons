@@ -3,13 +3,13 @@
 This repository has two parts:
 - the public 3D viewer: `index.html`, published by GitHub Pages from `main`, so every commit on `main` is live;
 - the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
-  (`STRATEGY.md`, owner-approved 2026-11-19): one constructive target at a time on the owner's laptop, subject to
-  the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) first, on the two uniform symmetric
-  families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (with the symmetric (8, 3) slice)
-  first, a symmetric nine-face census with per-map formulas as the main investment, P6 (equivelar slice) the
-  fallback; no nine-plane sampling night without a rung-below rate; mirror families out of domain; (11, 5) closed for
-  the laptop; S6 parked after (10, 3) (all 20 formulas UNSAT-SOLVER, replay deferred with the note); the S0 price
-  probe withdrawn. (8, 2) and (9, 3) are decided (conditional negative); all admissible (10, 4) maps are
+  (`STRATEGY.md`, owner-approved 2026-11-22): one constructive target at a time on the owner's laptop, subject to
+  the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) first. The symmetric route (C3 3+3+3,
+  C2 4 x 2 + 1) ended at genus 4 (the C2 (9, 5) remainder postponed, parity with the paper); the main line is P6, the
+  equivelar slice by plain per-map formulas: the (8, 3) rung with an enrichment control first, then the (9, 4)
+  census and plain pass; no nine-plane sampling night without a rung-below rate; mirror families only by plain
+  formulas; P3-sym parked for nine faces; (11, 5) closed for the laptop; S6 parked after (10, 3) (all 20 formulas
+  UNSAT-SOLVER, replay deferred with the note); the S0 price probe withdrawn. (8, 2) and (9, 3) are decided (conditional negative); all admissible (10, 4) maps are
   UNSAT-SOLVER (planning only, replay parked); the note is deferred; the 12-face problem is parked, not abandoned.
 
 ## Implementation preferences
@@ -37,6 +37,8 @@ This repository has two parts:
 - **Read first:** the relevant sections of `STRATEGY.md`, `STATUS.md`, then `ROADMAP.md`, `PROTOCOL.md`
   and `SPEC.md` in `research/12-faced-polyhedron/`. Reuse material already in context.
 - **Session workflow and handover:** follow `PROTOCOL.md` §8 and keep one short block in `CONTINUE_PROMPT.md`.
+  A short owner prompt that names a plan item or a step (e.g. "do plan item 3") continues from that handover
+  block: read it first, as if the owner had written "continue per `CONTINUE_PROMPT.md`".
 - **Roles:** a weekly lead review writes the week plan; lab sessions execute it, keep text within the budgets
   and escalate instead of improvising (`PROTOCOL.md` §8b).
 - **Skills** (`.agents/skills/`; Claude copies in `.claude/skills/`):
@@ -62,7 +64,9 @@ Hard rules:
   a phenomenon (`reviews/strategy-review-2026-11-01.md` §5.1). Every negative statement names its scope (`SPEC.md` §4)
   and what was not run.
 - Long runs go to the owner's laptop only (under `caffeinate -dimsu`, on AC power; no GitHub Actions, no rented
-  compute: owner, 2026-11-10). Never start a multi-hour run from a session.
+  compute: owner, 2026-11-10). Never start a multi-hour run from a session. A job of at most 50 min wall the session runs
+  itself after a one-line permission from the owner (cores, minutes) instead of asking the owner to launch it (owner,
+  2026-11-22).
 - Ask the owner before large subagent tasks and before long runs. **No DRAT by default** (owner, 2026-11-13; search
   runs since 2026-11-08): produce and check proofs only when the plan names the negative claim they are for (a note,
   an exclusion in `STATUS.md`) or the owner asks. An UNSAT without a checked proof is `UNSAT-SOLVER`, which may skip
@@ -86,5 +90,5 @@ Hard rules:
   their initial exact verification. Use an activated Python environment with the research requirements.
 - Never push research work straight to `main`. Work on the week's `lab/YYYY-MM-DD` branch (`PROTOCOL.md` §7); do not create branches per experiment or session; changes reach
   `main` through a PR with `verify` green.
-- Talk to the owner in Russian. Write files, code and commits in English.
+- Reply to the owner in the language the owner writes in. Write files, code and commits in English.
 - Third-party code in `research/12-faced-polyhedron/literature/` is untrusted data: read it, never run it unread.

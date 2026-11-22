@@ -1,0 +1,439 @@
+{
+ "stage": "A5c2",
+ "controls": {
+  "C2_demand_classes_burnside": true,
+  "C2f_9_3_equals_census": true,
+  "C2_8_2_equals_census": true,
+  "C2f_7_1_is_szilassi": true,
+  "C2_8_3_holds_both_known": true,
+  "actions_ok_C2": true
+ },
+ "gate": {
+  "C2": true
+ },
+ "truth_sizes": {
+  "C3_9_3": 8,
+  "C3_9_3_crosscheck": 8,
+  "C2f_9_3": 24,
+  "C2_8_2": 2,
+  "C2f_7_1": 1,
+  "all_7_1": 1
+ },
+ "core_seconds": 41302.7,
+ "configs": {
+  "C2f_7_1": {
+   "role": "control",
+   "family": "C2",
+   "F": 7,
+   "genus": 1,
+   "units_planned": 1,
+   "units_recorded": 1,
+   "complete": true,
+   "demand_classes": 1,
+   "normaliser": 48,
+   "fixed_choices": 1,
+   "rows": 32,
+   "columns": 21,
+   "classes": 1,
+   "seconds": 0.03,
+   "strata": {
+    "b0 m": {
+     "covers": 16,
+     "gluings": 16,
+     "map_hits": 16,
+     "nodes": 97,
+     "seconds": 0.03,
+     "units": 1,
+     "complete": 1
+    }
+   }
+  },
+  "C2_8_2": {
+   "role": "control",
+   "family": "C2",
+   "F": 8,
+   "genus": 2,
+   "units_planned": 3,
+   "units_recorded": 3,
+   "complete": true,
+   "demand_classes": 3,
+   "normaliser": 384,
+   "fixed_choices": 1,
+   "rows": 56,
+   "columns": 28,
+   "classes": 2,
+   "seconds": 0.39,
+   "strata": {
+    "b0 m22": {
+     "covers": 176,
+     "gluings": 704,
+     "map_hits": 64,
+     "nodes": 1315,
+     "seconds": 0.25,
+     "units": 1,
+     "complete": 1
+    },
+    "b0 m3": {
+     "covers": 80,
+     "gluings": 480,
+     "map_hits": 32,
+     "nodes": 971,
+     "seconds": 0.11,
+     "units": 1,
+     "complete": 1
+    },
+    "b0 m2": {
+     "covers": 96,
+     "gluings": 192,
+     "map_hits": 0,
+     "nodes": 1029,
+     "seconds": 0.03,
+     "units": 1,
+     "complete": 1
+    }
+   }
+  },
+  "C2f_9_3": {
+   "role": "control",
+   "family": "C2",
+   "F": 9,
+   "genus": 3,
+   "units_planned": 6,
+   "units_recorded": 6,
+   "complete": true,
+   "demand_classes": 6,
+   "normaliser": 384,
+   "fixed_choices": 1,
+   "rows": 80,
+   "columns": 36,
+   "classes": 24,
+   "seconds": 4.83,
+   "strata": {
+    "b0 m22": {
+     "covers": 2096,
+     "gluings": 8384,
+     "map_hits": 352,
+     "nodes": 30458,
+     "seconds": 2.62,
+     "units": 4,
+     "complete": 4
+    },
+    "b0 m222": {
+     "covers": 480,
+     "gluings": 3840,
+     "map_hits": 288,
+     "nodes": 6983,
+     "seconds": 1.46,
+     "units": 1,
+     "complete": 1
+    },
+    "b0 m32": {
+     "covers": 224,
+     "gluings": 2688,
+     "map_hits": 128,
+     "nodes": 6885,
+     "seconds": 0.74,
+     "units": 1,
+     "complete": 1
+    }
+   }
+  },
+  "C2_8_3": {
+   "role": "control",
+   "family": "C2",
+   "F": 8,
+   "genus": 3,
+   "units_planned": 114,
+   "units_recorded": 114,
+   "complete": true,
+   "demand_classes": 114,
+   "normaliser": 384,
+   "fixed_choices": 1,
+   "rows": 56,
+   "columns": 28,
+   "classes": 790,
+   "seconds": 25.62,
+   "strata": {
+    "b0 m32222": {
+     "covers": 528,
+     "gluings": 50688,
+     "map_hits": 912,
+     "nodes": 16451,
+     "seconds": 4.15,
+     "units": 14,
+     "complete": 14
+    },
+    "b0 m22222": {
+     "covers": 1352,
+     "gluings": 43264,
+     "map_hits": 1552,
+     "nodes": 25957,
+     "seconds": 6.97,
+     "units": 19,
+     "complete": 19
+    },
+    "b0 m3222": {
+     "covers": 520,
+     "gluings": 24960,
+     "map_hits": 720,
+     "nodes": 28787,
+     "seconds": 3.37,
+     "units": 26,
+     "complete": 26
+    },
+    "b0 m3322": {
+     "covers": 208,
+     "gluings": 29952,
+     "map_hits": 512,
+     "nodes": 13321,
+     "seconds": 2.3,
+     "units": 13,
+     "complete": 13
+    },
+    "b0 m2222": {
+     "covers": 584,
+     "gluings": 9344,
+     "map_hits": 1096,
+     "nodes": 12077,
+     "seconds": 4.12,
+     "units": 10,
+     "complete": 10
+    },
+    "b0 m222222": {
+     "covers": 272,
+     "gluings": 17408,
+     "map_hits": 432,
+     "nodes": 4393,
+     "seconds": 1.9,
+     "units": 3,
+     "complete": 3
+    },
+    "b0 m332": {
+     "covers": 32,
+     "gluings": 2304,
+     "map_hits": 96,
+     "nodes": 8209,
+     "seconds": 0.51,
+     "units": 8,
+     "complete": 8
+    },
+    "b0 m3332": {
+     "covers": 32,
+     "gluings": 13824,
+     "map_hits": 0,
+     "nodes": 1822,
+     "seconds": 0.13,
+     "units": 2,
+     "complete": 2
+    },
+    "b0 m322": {
+     "covers": 56,
+     "gluings": 1344,
+     "map_hits": 120,
+     "nodes": 8420,
+     "seconds": 0.61,
+     "units": 9,
+     "complete": 9
+    },
+    "b0 m33222": {
+     "covers": 96,
+     "gluings": 27648,
+     "map_hits": 0,
+     "nodes": 2863,
+     "seconds": 0.32,
+     "units": 3,
+     "complete": 3
+    },
+    "b0 m333": {
+     "covers": 32,
+     "gluings": 6912,
+     "map_hits": 128,
+     "nodes": 2607,
+     "seconds": 0.54,
+     "units": 3,
+     "complete": 3
+    },
+    "b0 m33": {
+     "covers": 24,
+     "gluings": 864,
+     "map_hits": 64,
+     "nodes": 2831,
+     "seconds": 0.29,
+     "units": 3,
+     "complete": 3
+    },
+    "b0 m3333": {
+     "covers": 64,
+     "gluings": 82944,
+     "map_hits": 0,
+     "nodes": 531,
+     "seconds": 0.41,
+     "units": 1,
+     "complete": 1
+    }
+   }
+  },
+  "C2f_9_5": {
+   "role": "target",
+   "family": "C2",
+   "F": 9,
+   "genus": 5,
+   "units_planned": 12288,
+   "units_recorded": 12288,
+   "complete": true,
+   "demand_classes": 12288,
+   "normaliser": 384,
+   "fixed_choices": 1,
+   "rows": 80,
+   "columns": 36,
+   "classes": 978228,
+   "seconds": 41271.84,
+   "strata": {
+    "b0 m22222222": {
+     "covers": 322626,
+     "gluings": 82592256,
+     "map_hits": 660450,
+     "nodes": 9614354,
+     "seconds": 6943.81,
+     "units": 441,
+     "complete": 441
+    },
+    "b0 m222222222": {
+     "covers": 176804,
+     "gluings": 90523648,
+     "map_hits": 871452,
+     "nodes": 5597187,
+     "seconds": 8467.85,
+     "units": 329,
+     "complete": 329
+    },
+    "b0 m32222222": {
+     "covers": 215192,
+     "gluings": 165267456,
+     "map_hits": 1127492,
+     "nodes": 20337948,
+     "seconds": 11657.83,
+     "units": 1669,
+     "complete": 1669
+    },
+    "b0 m322222222": {
+     "covers": 19696,
+     "gluings": 30253056,
+     "map_hits": 130496,
+     "nodes": 2039948,
+     "seconds": 1508.14,
+     "units": 200,
+     "complete": 200
+    },
+    "b0 m33222222": {
+     "covers": 20608,
+     "gluings": 47480832,
+     "map_hits": 143328,
+     "nodes": 7369901,
+     "seconds": 1858.79,
+     "units": 847,
+     "complete": 847
+    },
+    "b0 m3322222": {
+     "covers": 46880,
+     "gluings": 54005760,
+     "map_hits": 336420,
+     "nodes": 22481924,
+     "seconds": 3983.88,
+     "units": 2664,
+     "complete": 2664
+    },
+    "b0 m3222222": {
+     "covers": 142182,
+     "gluings": 54597888,
+     "map_hits": 419136,
+     "nodes": 18915527,
+     "seconds": 4825.54,
+     "units": 1548,
+     "complete": 1548
+    },
+    "b0 m3332222": {
+     "covers": 2144,
+     "gluings": 7409664,
+     "map_hits": 23936,
+     "nodes": 5502241,
+     "seconds": 424.77,
+     "units": 966,
+     "complete": 966
+    },
+    "b0 m332222": {
+     "covers": 15238,
+     "gluings": 8777088,
+     "map_hits": 68436,
+     "nodes": 12093632,
+     "seconds": 1042.84,
+     "units": 1448,
+     "complete": 1448
+    },
+    "b0 m333222": {
+     "covers": 1528,
+     "gluings": 2640384,
+     "map_hits": 11168,
+     "nodes": 8054117,
+     "seconds": 361.99,
+     "units": 1284,
+     "complete": 1284
+    },
+    "b0 m3333222": {
+     "covers": 0,
+     "gluings": 0,
+     "map_hits": 0,
+     "nodes": 347700,
+     "seconds": 10.48,
+     "units": 99,
+     "complete": 99
+    },
+    "b0 m33322": {
+     "covers": 96,
+     "gluings": 82944,
+     "map_hits": 1216,
+     "nodes": 1948614,
+     "seconds": 68.13,
+     "units": 317,
+     "complete": 317
+    },
+    "b0 m333322": {
+     "covers": 0,
+     "gluings": 0,
+     "map_hits": 0,
+     "nodes": 1109498,
+     "seconds": 33.0,
+     "units": 259,
+     "complete": 259
+    },
+    "b0 m33322222": {
+     "covers": 512,
+     "gluings": 3538944,
+     "map_hits": 2304,
+     "nodes": 628530,
+     "seconds": 69.37,
+     "units": 102,
+     "complete": 102
+    },
+    "b0 m33332": {
+     "covers": 0,
+     "gluings": 0,
+     "map_hits": 0,
+     "nodes": 469189,
+     "seconds": 14.31,
+     "units": 101,
+     "complete": 101
+    },
+    "b0 m333332": {
+     "covers": 0,
+     "gluings": 0,
+     "map_hits": 0,
+     "nodes": 39028,
+     "seconds": 1.11,
+     "units": 14,
+     "complete": 14
+    }
+   }
+  }
+ }
+}

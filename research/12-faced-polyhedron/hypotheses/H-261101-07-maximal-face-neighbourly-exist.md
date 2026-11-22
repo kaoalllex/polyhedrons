@@ -114,3 +114,11 @@ UNKNOWN at 1 h per E (UNDERPOWERED). No new object: status and credence unchange
 
 E-261118-03 (STATUS 3bc): the plane-only C2 formulas of all 20 (11, 5) Aut+ = 2 maps UNSAT-SOLVER (planning only, no
 proof). No object: status and credence unchanged.
+
+## 2026-11-20 symmetric (9, 4) per-map formulas
+
+E-261119-02 stage B pass 1 (STATUS 3bf): the uniform symmetric formulas of every map on both (9, 4) lists (C3 3+3+3
+118, C2 4 x 2 + 1 12444) UNSAT-SOLVER (planning only, no proof). No object: status and credence unchanged.
+
+2026-11-22 (E-261116-09): scope only; the priced nine-face stage-B UNSATs do not need the symmetry, and 3 (9, 5)
+maps are excluded exactly by collinear-segment parity (STATUS 3bi). Status unchanged.

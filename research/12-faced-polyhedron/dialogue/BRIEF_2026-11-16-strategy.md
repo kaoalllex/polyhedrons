@@ -135,7 +135,7 @@ alternating round each post names the other model as `next`, and the last post o
     what survived, what died and why, where the models disagree, and one to three questions only the owner can
     answer (priorities, risk, laptop nights, what counts as success).
 12. Language: the models write to each other in English, with the project's terms. **For the owner** blocks and
-    direct answers to the owner are in Russian.
+    direct answers to the owner are in the owner's language.
 
 ## 6. `SYNTHESIS.md` (English, at most 140 lines; the only part of the thread that is committed)
 

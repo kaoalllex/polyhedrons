@@ -10,6 +10,10 @@ __pycache__/
 research/12-faced-polyhedron/overnight/work/
 research/12-faced-polyhedron/experiments/*/results/**/*.lock
 research/12-faced-polyhedron/experiments/*/results/**/launch.pids
+# E-261119-02 pass-1 maps (7.7 MB): rebuilt by its stageb.py, pinned by SHA-256 in queue_pass1.json
+research/12-faced-polyhedron/experiments/E-261119-02-symmetric-nine-face-census/maps/pass1.json
+# E-261119-02 (9, 5) pass-1 chunk maps and queues (~6 MB each): rebuilt by stageb.py --g5-pass1, pinned in pass1_9_5.json
+research/12-faced-polyhedron/experiments/E-261119-02-symmetric-nine-face-census/maps/pass1_9_5/
 
 # Run-control markers of overnight runs (launch.sh stop); never evidence
 stop.requested
@@ -39,6 +43,10 @@ research/12-faced-polyhedron/experiments/E-261113-02-s6-10-2-calibration-rung/**
 # E-261110-06 (as E-261113-02): per-map seed records, solver logs and empty model files of the owner run live in
 # ../polyhedrons-data; git keeps each shard's results.jsonl, manifests and results/night-summary.json (no SAT model).
 research/12-faced-polyhedron/experiments/E-261110-06-s5-10-4-strata-ab-remainder/results/run/*/map*/**
+
+# E-261119-02 pass 1 (owner, 2026-11-20): the 12562 per-map result.json files live in ../polyhedrons-data; git keeps
+# each shard's results.jsonl (the same records), manifests, the f9 control units and the runner's control summaries.
+research/12-faced-polyhedron/experiments/E-261119-02-symmetric-nine-face-census/results/stageB-pass1/*/attempt_*/map[0-9]*/**
 
 # Raw logs and stage payloads of the normalized-formula prep and bridge controls.
 research/12-faced-polyhedron/experiments/E-261114-01-normalised-s6-10-3/results/**/*.solver.log

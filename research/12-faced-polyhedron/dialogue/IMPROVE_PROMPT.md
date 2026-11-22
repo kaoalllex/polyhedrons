@@ -11,7 +11,7 @@ session asks the owner before any change that the list below does not cover.
 Improve the dispatched mode of `research/12-faced-polyhedron/dialogue/chat.py` and its page. **Read
 `dialogue/TRANSPORT.md`, `dialogue/README.md` and `dialogue/HOWTO_RU.md` first.** Every behaviour change is written
 into `TRANSPORT.md` (contract) and `README.md` (owner's guide) in the same commit; also update the owner's local
-Russian guide `HOWTO_RU.md`, which is excluded from git and stays untracked.
+guide `HOWTO_RU.md`, which is excluded from git and stays untracked.
 
 ## Why (evidence from thread `2026-11-16-strategy`, 2026-11-16/17)
 

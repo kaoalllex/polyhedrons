@@ -1094,3 +1094,53 @@ formulas, the main investment; E-261117-04 P6 if its census gate fails; E-261116
 ideas I-261119-02, I-261119-03 filed; I-261118-03 closed (mirror families outside every uniform formula), I-261118-04
 parked; (11, 5) closed for the laptop; STATUS section 4 heading restored. Owner's numbering idea triaged (Q1 kept as
 E-261119-03; Q2, Q3 dropped). No compute beyond session checks.
+
+2026-11-19 — Codex second opinion reconciled and approved by the owner (`reviews/strategy-review-2026-11-19-reconcile.md`):
+E-261119-01 loses its automatic C3 night (a new one needs a changed nine-plane discovery test), blocks maps by complete
+paired runs, treats U2 and U3 as predictions, D 2 -> 1; E-261119-02 enumerates 0 or 3 fixed triangles with pair
+multiplicity <= 3 (18 C3 demand classes, session check 0.14 s), gates C3 and C2 separately, prices one map per stratum
+and adds stage B controls; P6 only if neither family advances. No compute beyond the session check.
+
+2026-11-20 — E-261119-01 (week item 1, P3-sym power ladder): free C2 (8, 36) returned both known maps (59 s, 81 s,
+realized), then UNKNOWN at 1.5 h; (8, 30) and C3 (9, 39) UNKNOWN at 1 h: discovery PASS, no refutation power; 17.5 core-h
+recorded plus 8.5 in a discarded first launch. `experiments/E-261119-01-p3sym-power-ladder/CONCLUSION.md`.
+
+2026-11-20 — E-261119-02 stage A (week item 2): symmetric (9, 4) census complete for both families, every control
+exact (C3 3+3+3 118 classes, C2 4 x 2 + 1 12444; 0.24 core-h); stage B after per-stratum pricing. STATUS 3be;
+`experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+2026-11-20 — E-261119-02 stage B pass 1 (week item 2): all 12562 (9, 4) records (C3 118, C2 4 x 2 + 1 12444)
+UNSAT-SOLVER at 30 s (max 0.63 s), every control passed, the 33 pricing records replicated; 1.83 core-h, 11 min wall;
+no pass 2. Next: genus 5 per the tree. STATUS 3bf; `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+2026-11-20 — E-261119-02 amendment 4 (genus 5): the C3 3+3+3 census at (9, 5) is complete and empty (498 units, no exact
+cover; C3 (9, 3) control exact; consistent with the Z3 one-fixed-point argument). The C2 4 x 2 + 1 (9, 5) census (priced
+~12 core-h, 40 core-h cap) is the owner night. STATUS 3bg; `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+2026-11-22 — E-261119-02 amendment 4 (genus 5): the C2 4 x 2 + 1 census at (9, 5) is complete (owner night 2026-11-21,
+two launches, 12288 units; every control holds; 978228 map classes; ~12.4 of 40 core-h). Next: amendment 5 (per-stratum
+pricing, the pass-1 price to the owner). STATUS 3bh; `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+2026-11-22 — E-261119-02 amendment 5: lean runner mode (a non-control UNSAT-SOLVER unit keeps only its results line;
+the (9, 4) pricing replicated exactly in it, 53 of 53 statuses and hashes), brief-only streaming census summary, and the
+(9, 5) C2 4 x 2 + 1 pricing: 36 of 36 records UNSAT-SOLVER in <= 0.23 s, formula controls 180 + 180 + 36 pass. Pass 1
+(978228 records) priced at ~143 core-h, ~14 h wall, ~1 GB; to the owner. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+2026-11-22 — E-261119-02 amendment 6 (owner: a random 10% first): (9, 5) pass-1 order frozen (seed 2611220601, 100
+chunks), chunks 0-9 built and hash-pinned, cap 5 s, lean, 20 core-h cap; checks: the lean (8, 3) rung repeats its record
+with SAT folders kept and `--all-pairs` PASS, smoke 0.50 core-s per unit. Owner launch next.
+`experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+2026-11-22 — E-261116-09 concluded: lemmas L1-L5 PROVED-1, L6 (perturbation, degree <= 4) PROVED-1 with an exact local
+check; part B (owner): no common clause-family set, SYM not needed for the priced stage-B UNSATs, GF(2) parity Lemma P
+excludes 3 + 17 records exactly. `experiments/E-261116-09-uniformity-perturbation-lemmas/CONCLUSION.md`.
+2026-11-22 — E-261119-03 concluded (owner exception to T + D >= 3): no face-transitive cubic (9, 7) map is
+admissible (Z9 48768, Z3 x Z3 522240 valid rotations, all with repeated vertex triples); the slice is empty at genus 4
+and 7. `experiments/E-261119-03-cayley-nine-faces-genus-7/CONCLUSION.md`.
+
+2026-11-22 — Lead review 2026-11-22 approved by the owner after the three-step cycle with two blind portfolio reviews
+(`reviews/strategy-review-2026-11-22-final.md`, with `-codex.md`, `portfolio-review-2026-11-22-claude.md` and
+`-codex.md`): the symmetric nine-face route ends at genus 4; P6 (E-261117-04) is the main line: the (8, 3) rung with an
+enrichment control on the 790 free-C2 (8, 3) maps first, then the (9, 4) census and its plain pass; the free-C2 (8, 3)
+symmetric pass becomes conditional, with 862 actions (not 822); nine-face credence 0.45 -> 0.35; the C2 (9, 5)
+remainder stays postponed and parity stays with the paper. Session checks only (~0.03 core-h). New week branch
+`lab/2026-11-22`.

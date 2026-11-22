@@ -1,0 +1,36 @@
+controls start 1
+map control-f9-s1 start, solver 60s checker 120s
+map control-f9-s1 SAT
+map control-f9-neg-s1 start, solver 60s checker 120s
+map control-f9-neg-s1 UNSAT-SOLVER
+map 1 start, solver 600s checker 360s
+map 1 UNSAT-SOLVER
+map 11 start, solver 600s checker 360s
+map 11 UNSAT-SOLVER
+map 21 start, solver 600s checker 360s
+map 21 UNSAT-SOLVER
+map 31 start, solver 600s checker 360s
+map 31 UNSAT-SOLVER
+SHARD-COMPLETE wall_seconds 12.748
+controls start 1
+map control-f9-s1 start, solver 60s checker 120s
+map control-f9-s1 SAT
+map control-f9-neg-s1 start, solver 60s checker 120s
+map control-f9-neg-s1 UNSAT-SOLVER
+map 1 start, solver 600s checker 360s
+map 1 UNSAT-SOLVER
+map 11 start, solver 600s checker 360s
+map 11 UNSAT-SOLVER
+map 21 start, solver 600s checker 360s
+map 21 UNSAT-SOLVER
+map 31 start, solver 600s checker 360s
+map 31 UNSAT-SOLVER
+SHARD-COMPLETE wall_seconds 10.275
+ln: /Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261119-02-symmetric-nine-face-census/results/stageB5-pricing_lean/stop.requested: File exists
+no pending units; recorded units skipped
+ln: /Users/a.konyaev/src/my/polyhedrons/research/12-faced-polyhedron/experiments/E-261119-02-symmetric-nine-face-census/results/stageB5-pricing_9_5/stop.requested: File exists
+no pending units; recorded units skipped
+controls start 1
+map 1 start, solver 600s checker 360s
+map 1 SAT
+SHARD-COMPLETE wall_seconds 9.626

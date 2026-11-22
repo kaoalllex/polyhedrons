@@ -197,7 +197,12 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 
 * **Roles.** The *lead* is a strongest-model session at high effort, about once a week (skill `strategy-review`):
   it analyses the week's results in depth, updates the plan and writes the **week plan**. *Lab* sessions (cheaper
-  models, medium effort) execute week-plan items; the owner launches nights and calls the lead when needed.
+  models, medium effort) execute week-plan items; the owner launches nights and calls the lead when needed. The week plan
+  comes out of a three-step cycle (owner, 2026-11-22; skill `strategy-review`): the lead's draft with the owner's
+  corrections, a Codex cross-review, the lead's final version approved by the owner and applied by that session.
+* **Launches** (owner, 2026-11-22). A lab session runs any job of at most 50 min wall itself (<= 10 cores, 8-10 shards),
+  after a one-line permission from the owner (cores, minutes), instead of asking the owner to launch it; longer jobs are
+  owner launches (`launch.sh`). A night queue is sized to fill about 8 h at the price, the main item first.
 * **Week plan** = the "Week plan" block at the top of the `ROADMAP.md` S5 queue: at most five items, each with its
   question, budget, kill rule, **follow-up tree** (the conditional next steps allowed without the lead) and the lab
   model and effort it needs, with the Codex alternative model and effort always named next to the Claude one (owner,
@@ -260,5 +265,5 @@ Cloud CPU is spent only on items that passed the scoring rule; it does not repla
 * Keep one short handover block in `CONTINUE_PROMPT.md`: branch or commit, in-flight state, next action and
   exact command if needed, and verification scope. Link to the plan, ledger, and artifacts for details.
 * Ask the owner before launching large subagent tasks (usage limits). Agents: `.claude/agents/` (7 roles).
-* Report to the owner in Russian; write repository files in English. Never weaken the requirements, never
+* Report to the owner in the language the owner writes in; write repository files in English. Never weaken the requirements, never
   fabricate results, report failures with their output.

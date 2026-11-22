@@ -88,7 +88,7 @@ both are in. Use the `--round` labels given here.
     what survived, what died and why, where the models disagree, and one to three questions only the owner can
     answer (priorities, risk, compute nights, what counts as success).
 13. Language: the models write to each other in English, with the project's terms. **For the owner** blocks and
-    direct answers to the owner are in Russian.
+    direct answers to the owner are in the owner's language.
 
 ## 5. `SYNTHESIS.md` (English, at most 120 lines; the only part of the thread that is committed)
 

@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-19** (E-261118-03 concluded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
-registered result is E-261118-03 (section 3bc); results are listed newest last in section 3, chronology in
+As of **2026-11-22** (E-261119-01, E-261116-09 and E-261119-03 concluded; E-261119-02 stage A, stage-B pass 1 and both (9, 5) censuses recorded; owner's approval of the final lead review `reviews/strategy-review-2026-11-22-final.md`, 2026-11-22). The latest
+registered result is E-261119-03 (face-transitive (9, 7) census empty; section 3bj); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -14,8 +14,8 @@ and orbit checks (`reviews/dialogue-2026-11-16-strategy-checks/`) are session ch
 
 ## 0. State in one paragraph
 
-**Focus since 2026-11-19 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
-mutually adjacent faces (S1, genus free) first, on the two uniform symmetric families C3 3+3+3 and C2 4 x 2 + 1: the P3-sym power ladder on known answers (E-261119-01) and a symmetric nine-face census with per-map formulas (E-261119-02, the main investment), P6 the fallback; no result yet. The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
+**Focus since 2026-11-22 (`STRATEGY.md` §1, owner): one constructive target at a time on the laptop**: nine
+mutually adjacent faces (S1, genus free) first. The symmetric route (C3 3+3+3, C2 4 x 2 + 1) ended at genus 4 on the laptop: every per-map uniform symmetric formula at (9, 4) UNSAT-SOLVER (section 3bf), no C3 map at (9, 5) (3bg), the C2 (9, 5) random 10 % UNSAT-SOLVER (not yet concluded; remainder postponed by the owner). Main line since 2026-11-22: P6, the equivelar slice by plain per-map formulas (E-261117-04: the (8, 3) rung with an enrichment control, then the (9, 4) census and plain pass); no constructive result yet. The week of 2026-11-19: P3-sym power ladder (E-261119-01: discovery passed, refutation undecided, section 3bd), the symmetric nine-face census (E-261119-02, sections 3be-3bh), lemmas (E-261116-09, 3bi), face-transitive genus 7 (E-261119-03, 3bj). The week of 2026-11-18: the deletion sieve E-261118-04 (OPEN-LOW, section 3az), N1b E-261118-01 (section 3ba), P3-sym
 E-261118-02 (rung passed, nine faces UNDERPOWERED, section 3bb). The week of 2026-11-17: N1 (Cayley census, E-261117-01; slice empty, section 3au), N2 (moved chart,
 E-261117-02; gate passed, section 3av), P3 v2 (E-261116-07; no model at eight faces in its budget, parked, section 3aw), the P4 probe (E-261117-03; works at seven faces, nine elements out of reach, section 3ax) and one C3 night (E-261110-04; no nine-face hit in 63.8 core-h, section 3ay);
 (11, 5) one plane-only price probe (E-261118-03: all 20 Aut+ = 2 maps UNSAT-SOLVER, closed for the laptop, section 3bc; E-261116-06 withdrawn); S6 parked after (10, 3) (all 20 normalised formulas
@@ -537,6 +537,69 @@ including symmetric 12-element configurations pinned under the symmetry and gaug
 no candidate, no proof: planning only. Not run: improper symmetries (no uniform formula exists for them: lead review 2026-11-19, PROVED-1 sketch) and the
 3962 asymmetric maps; (11, 5) closes for the laptop. `experiments/E-261118-03-s5-11-5-plane-only-price-probe/CONCLUSION.md`.
 
+## 3bd. E-261119-01 P3-sym power ladder on known answers (2026-11-20)
+
+**Discovery PASS; refutation UNDERPOWERED@10.0 core-h; symmetric (8, 3) slice OPEN**: unpinned P3-sym with free C2 at
+(8, 36) (66 quad orbits) returned Mizhaev's and, after map blocking, Roest-Vigh's map in 59 s and 81 s (realized,
+`--all-pairs` PASS, known objects), then UNKNOWN at 1.5 h: a third symmetric (8, 3) map is neither found nor excluded.
+Free C2 at (8, 30) and C3 3+3+3 at (9, 39), decided negatives (3d), UNKNOWN at 1 h: no refutation power at 66 / 72
+orbits, so the nine-face UNKNOWNs of 3bb carry no information. Method scope: one host, one seed, 5 workers.
+`experiments/E-261119-01-p3sym-power-ladder/CONCLUSION.md`.
+
+## 3be. E-261119-02 stage A: symmetric nine-face census (2026-11-20)
+
+**Both families complete and pass their gates (EXACT; coverage PROVED-1; maps, not polyhedra)**: C3 3+3+3 at (9, 4) has
+118 admissible map classes (18 demand classes, 162 units; 86 with no fixed triangle, 32 with three); C2 4 x 2 + 1 at
+(9, 4) has 12444 (497 units); 23 classes carry both actions. Every control exact (C3 (9, 3) = the census's 8; C2 4 x 2 + 1
+(9, 3) = the census's 24; free C2 (8, 2) = 2; (7, 1) = Szilassi), every action checks; the free-C2 (8, 3) list has 790
+classes and holds both known maps. 807 of 807 units complete in 88 s wall, 0.24 core-h. Stage B (per-map symmetric
+formulas) is not run; no existence or non-existence statement for nine faces follows.
+`experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+## 3bf. E-261119-02 stage B pass 1: per-map symmetric formulas at (9, 4) (2026-11-20)
+
+**Both families: every uniform symmetric (9, 4) formula UNSAT-SOLVER (planning only, no proof)**: all 12562 records of the
+3be lists (C3 3+3+3 118 in the standard chart, C2 4 x 2 + 1 12444 plane-only in a moved chart; one rotation group each)
+decided UNSAT-SOLVER by kissat within the 30 s cap (max 0.63 s, 2096 solver-s); no SAT, no UNKNOWN, so no pass 2. Controls:
+the pinned f9 pair and the runner's controls passed on all 10 shards; the 33 pricing records replicated (same status and
+formula hash); the rung of amendment 2 and the formula controls of `controls_b.py` hold (README). 1.83 core-h, 11 min wall.
+Scope: these exact formulas only; nothing about non-symmetric realizations of these maps, mirrors, C2 3 x 2 + 3, or other
+genera, and no negative claim without a checked replay. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+## 3bg. E-261119-02 amendment 4: C3 3+3+3 census at (9, 5) (2026-11-20)
+
+**No admissible C3 3+3+3 map at (9, 5) (EXACT; coverage PROVED-1)**: all 498 units (83 demand classes, Burnside-checked,
+one fixed triangle forced) complete with no exact cover; the C3 (9, 3) control is exact. Consistent with the Z3
+fixed-point argument (one fixed point is impossible, PROVED-1). Scope: dual maps of cubic solids (admissible
+triangular maps) only. Not run: the C2 4 x 2 + 1 (9, 5) census (owner night, amendment 4); nothing about mirrors, other
+actions or genera. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+## 3bh. E-261119-02 amendment 4: C2 4 x 2 + 1 census at (9, 5) (2026-11-22)
+
+**978228 admissible C2 4 x 2 + 1 map classes at (9, 5) (EXACT; coverage PROVED-1)**: all 12288 units (demand classes,
+Burnside-checked) complete, in 12 of 16 multiplicity strata; the four C2 controls hold and every action checks. Owner
+night 2026-11-21 (two launches, resumed by claim files), ~12.4 of the 40 core-h cap with the pilots. Maps only: no
+formula run at genus 5 yet. Scope: dual maps of cubic solids (admissible triangular maps) with this action; nothing about
+mirrors, other actions or genera. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+
+## 3bi. E-261116-09 uniformity, perturbation and symmetry lemmas; family ablation of stage B (2026-11-22)
+
+* **L1-L5 PROVED-1** (single AI author): cubic objects perturb to uniform ones (L1), equivariantly for C3 3+3+3, C2 4 x 2 + 1 and free C2 at eight (L2, witnesses EXACT); symmetric nine-face S1 objects carry one of the two actions unless Cs (L3); eight-face ones a free half-turn unless C1, Cs, C7, C7v (L4); (11, 5): improper symmetries are mirrors only (L5).
+* **L6 PROVED-1, local check EXACT**: vertices of degree <= 4 resolve to cubic ones (same faces, genus, adjacencies; one new edge each); degree 5-6 not run, so (8, 2) / (9, 3) cover "degree <= 4", not all non-cubic objects.
+* **Ablation (UNSAT-SOLVER)**: no common small family set; dropping SYM keeps all 69 priced stage-B formulas UNSAT; the plain formula is UNSAT-SOLVER on 36 of 36 priced (9, 5) and 23 of 33 (9, 4) records (rest UNKNOWN at 5 s), on none of the (9, 3) rung.
+* **Lemma P, collinear-segment parity (certificates EXACT, reading PROVED-1)**: a GF(2)-inconsistent SEGMENT_DISJOINT system excludes 3 of 36 priced (9, 5) maps outright (any symmetry); with SYM, 17 (map, action) pairs of 69 under their action. Scope: these records; controls pass (SAT (8, 3) units consistent).
+`experiments/E-261116-09-uniformity-perturbation-lemmas/CONCLUSION.md`.
+
+## 3bj. E-261119-03 Cayley census of face-transitive cubic (9, 7) maps (2026-11-22)
+
+**NO-ADMISSIBLE-CAYLEY-9-7**: every cubic (9, 7) map with all face pairs adjacent and Aut+ transitive on the faces
+(a Cayley map of Z9 or Z3 x Z3, valency 14) has a repeated vertex triple, so none is the map of a nine-face
+polyhedron. EXACT computation (two enumerators agree on every count; rung reproduces section 3au's brute counts;
+K7, K12 controls), coverage PROVED-1. With 3au the face-transitive nine-face slice is empty at genus 4 and 7.
+Scope: cubic, face-transitive; genus >= 10 and non-face-transitive maps not covered; no formula ran (owner
+exception to T + D >= 3; ~2.0 core-h, 1.7 of them an aborted launch). H-261101-07 unchanged.
+`experiments/E-261119-03-cayley-nine-faces-genus-7/CONCLUSION.md`.
+
 ## 4. What may and may not be claimed
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for
@@ -549,8 +612,8 @@ local defect); "correct Gauss degree implies realizability" (refuted by Q1); "co
 May not (scope, owner's question 2026-11-08): that the (8, 2) or (9, 3) negative covers non-cubic objects. S5 is cubic; at
 (8, 2) and (9, 3) the edge count has slack (E <= 30 for 28 pairs, E <= 39 for 36), so counting does not exclude objects with
 every pair adjacent and some vertices of degree >= 4 (e.g. (9, 3) with V = 23, E = 36, three 4-valent vertices); no
-formula covers them. At (12, 6) there is no slack (E = 66 pairs), so S0 is unaffected. The (8, 2) / (9, 3) note must say "cubic"
-unless the perturbation lemma I-261108-09 (untested) reduces these objects to the cubic case.
+formula covers them. At (12, 6) there is no slack (E = 66 pairs), so S0 is unaffected. The (8, 2) / (9, 3) note must say "cubic",
+or "vertices of degree <= 4" by the perturbation lemma at k = 4 (section 3bi, PROVED-1); degree 5-6 stay uncovered.
 
 ## 5. Results worth sharing (ranked, with prerequisites)
 

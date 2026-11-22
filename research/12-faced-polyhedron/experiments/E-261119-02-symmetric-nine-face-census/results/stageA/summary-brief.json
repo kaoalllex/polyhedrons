@@ -1,0 +1,469 @@
+{
+ "controls": {
+  "C3_demand_classes_18": true,
+  "C3_9_3_equals_census": true,
+  "C2f_9_3_equals_census": true,
+  "C2_8_2_equals_census": true,
+  "C2f_7_1_is_szilassi": true,
+  "actions_ok_C3": true,
+  "actions_ok_C2": true,
+  "C2_8_3_holds_both_known": true
+ },
+ "gate": {
+  "C3": true,
+  "C2": true
+ },
+ "truth_sizes": {
+  "C3_9_3": 8,
+  "C3_9_3_crosscheck": 8,
+  "C2f_9_3": 24,
+  "C2_8_2": 2,
+  "C2f_7_1": 1,
+  "all_7_1": 1
+ },
+ "core_seconds": 655.8,
+ "configs": {
+  "C3_9_3": {
+   "role": "control",
+   "family": "C3",
+   "F": 9,
+   "genus": 3,
+   "units_planned": 24,
+   "units_recorded": 24,
+   "complete": true,
+   "demand_classes": 2,
+   "normaliser": 324,
+   "fixed_choices": 12,
+   "rows": 54,
+   "columns": 24,
+   "classes": 8,
+   "seconds": 1.28,
+   "strata": {
+    "b2 m2": {
+     "covers": 348,
+     "gluings": 696,
+     "map_hits": 264,
+     "nodes": 5349,
+     "seconds": 1.27,
+     "units": 24,
+     "complete": 24
+    }
+   }
+  },
+  "C3_9_4": {
+   "role": "target",
+   "family": "C3",
+   "F": 9,
+   "genus": 4,
+   "units_planned": 162,
+   "units_recorded": 162,
+   "complete": true,
+   "demand_classes": 18,
+   "normaliser": 324,
+   "fixed_choices": 9,
+   "rows": 54,
+   "columns": 24,
+   "classes": 118,
+   "seconds": 6.69,
+   "strata": {
+    "b0 m222": {
+     "covers": 514,
+     "gluings": 4112,
+     "map_hits": 644,
+     "nodes": 9321,
+     "seconds": 3.88,
+     "units": 11,
+     "complete": 11
+    },
+    "b3 m222": {
+     "covers": 276,
+     "gluings": 2208,
+     "map_hits": 240,
+     "nodes": 18458,
+     "seconds": 1.75,
+     "units": 88,
+     "complete": 88
+    },
+    "b0 m32": {
+     "covers": 44,
+     "gluings": 528,
+     "map_hits": 68,
+     "nodes": 4620,
+     "seconds": 0.5,
+     "units": 7,
+     "complete": 7
+    },
+    "b3 m32": {
+     "covers": 42,
+     "gluings": 504,
+     "map_hits": 60,
+     "nodes": 10389,
+     "seconds": 0.57,
+     "units": 56,
+     "complete": 56
+    }
+   }
+  },
+  "C2f_7_1": {
+   "role": "control",
+   "family": "C2",
+   "F": 7,
+   "genus": 1,
+   "units_planned": 1,
+   "units_recorded": 1,
+   "complete": true,
+   "demand_classes": 1,
+   "normaliser": 48,
+   "fixed_choices": 1,
+   "rows": 32,
+   "columns": 21,
+   "classes": 1,
+   "seconds": 0.02,
+   "strata": {
+    "b0 m": {
+     "covers": 16,
+     "gluings": 16,
+     "map_hits": 16,
+     "nodes": 97,
+     "seconds": 0.02,
+     "units": 1,
+     "complete": 1
+    }
+   }
+  },
+  "C2_8_2": {
+   "role": "control",
+   "family": "C2",
+   "F": 8,
+   "genus": 2,
+   "units_planned": 3,
+   "units_recorded": 3,
+   "complete": true,
+   "demand_classes": 3,
+   "normaliser": 384,
+   "fixed_choices": 1,
+   "rows": 56,
+   "columns": 28,
+   "classes": 2,
+   "seconds": 0.38,
+   "strata": {
+    "b0 m22": {
+     "covers": 176,
+     "gluings": 704,
+     "map_hits": 64,
+     "nodes": 1315,
+     "seconds": 0.24,
+     "units": 1,
+     "complete": 1
+    },
+    "b0 m2": {
+     "covers": 96,
+     "gluings": 192,
+     "map_hits": 0,
+     "nodes": 1029,
+     "seconds": 0.03,
+     "units": 1,
+     "complete": 1
+    },
+    "b0 m3": {
+     "covers": 80,
+     "gluings": 480,
+     "map_hits": 32,
+     "nodes": 971,
+     "seconds": 0.11,
+     "units": 1,
+     "complete": 1
+    }
+   }
+  },
+  "C2f_9_3": {
+   "role": "control",
+   "family": "C2",
+   "F": 9,
+   "genus": 3,
+   "units_planned": 6,
+   "units_recorded": 6,
+   "complete": true,
+   "demand_classes": 6,
+   "normaliser": 384,
+   "fixed_choices": 1,
+   "rows": 80,
+   "columns": 36,
+   "classes": 24,
+   "seconds": 4.86,
+   "strata": {
+    "b0 m22": {
+     "covers": 2096,
+     "gluings": 8384,
+     "map_hits": 352,
+     "nodes": 30458,
+     "seconds": 2.63,
+     "units": 4,
+     "complete": 4
+    },
+    "b0 m32": {
+     "covers": 224,
+     "gluings": 2688,
+     "map_hits": 128,
+     "nodes": 6885,
+     "seconds": 0.76,
+     "units": 1,
+     "complete": 1
+    },
+    "b0 m222": {
+     "covers": 480,
+     "gluings": 3840,
+     "map_hits": 288,
+     "nodes": 6983,
+     "seconds": 1.48,
+     "units": 1,
+     "complete": 1
+    }
+   }
+  },
+  "C2_8_3": {
+   "role": "control",
+   "family": "C2",
+   "F": 8,
+   "genus": 3,
+   "units_planned": 114,
+   "units_recorded": 114,
+   "complete": true,
+   "demand_classes": 114,
+   "normaliser": 384,
+   "fixed_choices": 1,
+   "rows": 56,
+   "columns": 28,
+   "classes": 790,
+   "seconds": 25.84,
+   "strata": {
+    "b0 m22222": {
+     "covers": 1352,
+     "gluings": 43264,
+     "map_hits": 1552,
+     "nodes": 25957,
+     "seconds": 6.79,
+     "units": 19,
+     "complete": 19
+    },
+    "b0 m32222": {
+     "covers": 528,
+     "gluings": 50688,
+     "map_hits": 912,
+     "nodes": 16451,
+     "seconds": 4.21,
+     "units": 14,
+     "complete": 14
+    },
+    "b0 m3222": {
+     "covers": 520,
+     "gluings": 24960,
+     "map_hits": 720,
+     "nodes": 28787,
+     "seconds": 3.42,
+     "units": 26,
+     "complete": 26
+    },
+    "b0 m222222": {
+     "covers": 272,
+     "gluings": 17408,
+     "map_hits": 432,
+     "nodes": 4393,
+     "seconds": 1.93,
+     "units": 3,
+     "complete": 3
+    },
+    "b0 m3332": {
+     "covers": 32,
+     "gluings": 13824,
+     "map_hits": 0,
+     "nodes": 1822,
+     "seconds": 0.14,
+     "units": 2,
+     "complete": 2
+    },
+    "b0 m3322": {
+     "covers": 208,
+     "gluings": 29952,
+     "map_hits": 512,
+     "nodes": 13321,
+     "seconds": 2.36,
+     "units": 13,
+     "complete": 13
+    },
+    "b0 m2222": {
+     "covers": 584,
+     "gluings": 9344,
+     "map_hits": 1096,
+     "nodes": 12077,
+     "seconds": 4.24,
+     "units": 10,
+     "complete": 10
+    },
+    "b0 m33222": {
+     "covers": 96,
+     "gluings": 27648,
+     "map_hits": 0,
+     "nodes": 2863,
+     "seconds": 0.33,
+     "units": 3,
+     "complete": 3
+    },
+    "b0 m332": {
+     "covers": 32,
+     "gluings": 2304,
+     "map_hits": 96,
+     "nodes": 8209,
+     "seconds": 0.52,
+     "units": 8,
+     "complete": 8
+    },
+    "b0 m33": {
+     "covers": 24,
+     "gluings": 864,
+     "map_hits": 64,
+     "nodes": 2831,
+     "seconds": 0.29,
+     "units": 3,
+     "complete": 3
+    },
+    "b0 m322": {
+     "covers": 56,
+     "gluings": 1344,
+     "map_hits": 120,
+     "nodes": 8420,
+     "seconds": 0.62,
+     "units": 9,
+     "complete": 9
+    },
+    "b0 m333": {
+     "covers": 32,
+     "gluings": 6912,
+     "map_hits": 128,
+     "nodes": 2607,
+     "seconds": 0.56,
+     "units": 3,
+     "complete": 3
+    },
+    "b0 m3333": {
+     "covers": 64,
+     "gluings": 82944,
+     "map_hits": 0,
+     "nodes": 531,
+     "seconds": 0.43,
+     "units": 1,
+     "complete": 1
+    }
+   }
+  },
+  "C2f_9_4": {
+   "role": "target",
+   "family": "C2",
+   "F": 9,
+   "genus": 4,
+   "units_planned": 497,
+   "units_recorded": 497,
+   "complete": true,
+   "demand_classes": 497,
+   "normaliser": 384,
+   "fixed_choices": 1,
+   "rows": 80,
+   "columns": 36,
+   "classes": 12444,
+   "seconds": 616.69,
+   "strata": {
+    "b0 m22222": {
+     "covers": 46508,
+     "gluings": 1488256,
+     "map_hits": 34268,
+     "nodes": 1155950,
+     "seconds": 262.04,
+     "units": 102,
+     "complete": 102
+    },
+    "b0 m222222": {
+     "covers": 13952,
+     "gluings": 892928,
+     "map_hits": 12760,
+     "nodes": 394508,
+     "seconds": 104.16,
+     "units": 43,
+     "complete": 43
+    },
+    "b0 m32222": {
+     "covers": 14168,
+     "gluings": 1360128,
+     "map_hits": 12336,
+     "nodes": 1012069,
+     "seconds": 123.78,
+     "units": 124,
+     "complete": 124
+    },
+    "b0 m3222": {
+     "covers": 6788,
+     "gluings": 325824,
+     "map_hits": 7152,
+     "nodes": 739708,
+     "seconds": 70.56,
+     "units": 99,
+     "complete": 99
+    },
+    "b0 m3322": {
+     "covers": 1168,
+     "gluings": 168192,
+     "map_hits": 1648,
+     "nodes": 334489,
+     "seconds": 22.64,
+     "units": 55,
+     "complete": 55
+    },
+    "b0 m322222": {
+     "covers": 1312,
+     "gluings": 251904,
+     "map_hits": 1120,
+     "nodes": 103636,
+     "seconds": 13.42,
+     "units": 14,
+     "complete": 14
+    },
+    "b0 m3332": {
+     "covers": 64,
+     "gluings": 27648,
+     "map_hits": 0,
+     "nodes": 30150,
+     "seconds": 1.27,
+     "units": 7,
+     "complete": 7
+    },
+    "b0 m332": {
+     "covers": 96,
+     "gluings": 6912,
+     "map_hits": 0,
+     "nodes": 92922,
+     "seconds": 2.79,
+     "units": 14,
+     "complete": 14
+    },
+    "b0 m33222": {
+     "covers": 1152,
+     "gluings": 331776,
+     "map_hits": 832,
+     "nodes": 230561,
+     "seconds": 15.54,
+     "units": 35,
+     "complete": 35
+    },
+    "b0 m33322": {
+     "covers": 0,
+     "gluings": 0,
+     "map_hits": 0,
+     "nodes": 19088,
+     "seconds": 0.5,
+     "units": 4,
+     "complete": 4
+    }
+   }
+  }
+ },
+ "note": "Brief form of `symcensus.py summary results/stageA` (the printed report); the full summary.json (25 MB, per-map codes) is rebuilt from the committed results.jsonl by the same command."
+}
