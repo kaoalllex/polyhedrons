@@ -9,16 +9,13 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-22, item 5 E-261119-03 done; E-261119-02's 10 % run stopped by the owner at 50 %, resumable)
+## Hand-over (2026-11-22, lead review draft done; strategy cycle step 2 next)
 
-* Branch `lab/2026-11-19`; week plan in `ROADMAP.md` (owner-approved lead review 2026-11-19 and its reconcile).
-* Item 2, amendment 6: the owner stopped the random 10 % of (9, 5) pass 1 at 49194 of 97830 maps (all UNSAT-SOLVER,
-  5 SKIPPED-STOP); `bash overnight/launch.sh 261119-02 start` resumes it. Its reading belongs to the owner's other session.
-* Item 5 done on an owner exception to T + D >= 3 (STATUS 3bj): no admissible face-transitive (9, 7) map; the slice
-  is empty at genus 4 and 7. Item 4 done (STATUS 3bi). Item 3 only if item 2 does not advance.
-* Next: the lead review; the owner decides on chunks 10-99 after the 10 % (amendment 6).
-* For the lead: the priced (9, 4) / (9, 5) stage-B UNSATs do not use the symmetry (3bi); a GF(2) parity pass over all
-  978228 + 12562 records, then the plain formula, may be worth more than the remaining 90 %; not priced here.
-* For the lead: L6 at k = 5, 6 is the open part of I-261108-09; a P3-sym UNKNOWN at nine faces carries no information (3bd).
-* For the lead: budget overruns: E-261119-01 by 6.8 core-h; E-261119-03 ~2.0 against <= 0.9 core-h (an aborted launch,
-  canonical code ~11 ms per map at valency 14). E-261119-01's normaliser rule under-blocks.
+* Branch `lab/2026-11-19`; the approved week plan in `ROADMAP.md` is finished except its close-out.
+* Lead review draft `reviews/strategy-review-2026-11-22.md` (step 1 of the strategy cycle, revised with the owner's
+  corrections): next the Codex cross-review (step 2), then the final version (step 3), which the owner approves and that
+  session applies. No lab item starts before step 3's approval.
+* E-261119-02: the random 10 % of (9, 5) pass 1 is complete (owner): 97830 of 97830 UNSAT-SOLVER in
+  `results/stageB5-pass1-c000..c009`, not yet concluded; chunks 10-99 postponed by the owner; parity deferred to the paper.
+* Proposed new item 1: the full free-C2 (8, 3) per-map pass (790 classes, 822 records; only the 4 known ones were run).
+* New owner rule: jobs <= 50 min wall the lab runs itself after a one-line permission (`PROTOCOL.md` §8b).
