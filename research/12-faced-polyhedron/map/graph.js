@@ -1625,17 +1625,17 @@ window.GRAPH = {
    "id": "E-261116-09",
    "kind": "experiment",
    "title": "Uniformity and perturbation lemmas - which scope words of the small-case results can be removed",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-16",
-   "concluded": "",
+   "concluded": "2026-11-22",
    "path": "experiments/E-261116-09-uniformity-perturbation-lemmas/README.md",
    "direction": [
     "DR19",
     "DR11"
    ],
-   "verdict": "",
+   "verdict": "FOUNDATION (L1-L5 PROVED-1; L6 at k = 4); part B no common family set, Lemma P parity on 3 + 17 records",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: FOUNDATION (scope lemmas, PROVED-1) for L1-L5; L6 partial (k = 4)."
   },
   {
    "id": "E-261117-01",
@@ -4286,7 +4286,7 @@ window.GRAPH = {
    "id": "I-261108-09",
    "kind": "idea",
    "title": "Perturbation lemma - vertices of degree >= 4 resolve into cubic vertices, so the cubic (8, 2) / (9, 3) negative would cover non-cubic objects",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-08",
    "concluded": "",
    "path": "ideas/I-261108-09-perturbation-lemma-non-cubic-vertices.md",
@@ -4678,7 +4678,7 @@ window.GRAPH = {
    "id": "I-261116-07",
    "kind": "idea",
    "title": "Uniformity lemma - a cubic embedded polyhedron survives a generic perturbation of its planes, so uniform formulas lose no cubic object",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-16",
    "concluded": "",
    "path": "ideas/I-261116-07-uniformity-lemma-cubic.md",
@@ -4765,7 +4765,7 @@ window.GRAPH = {
    "id": "I-261118-02",
    "kind": "idea",
    "title": "Symmetric slices at nine faces - the eight-face groups cannot act, C3 3+3+3 covers every order-3 rotation, the uniform families listed",
-   "status": "open",
+   "status": "tried",
    "date": "2026-11-18",
    "concluded": "",
    "path": "ideas/I-261118-02-symmetric-slices-nine-faces.md",

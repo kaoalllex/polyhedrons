@@ -1,7 +1,7 @@
 # Status ledger (single source of truth for "where are we")
 
-As of **2026-11-22** (E-261119-01 concluded; E-261119-02 stage A, stage-B pass 1 and both (9, 5) censuses recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
-registered result is the E-261119-02 C2 (9, 5) census (section 3bh); results are listed newest last in section 3, chronology in
+As of **2026-11-22** (E-261119-01 and E-261116-09 concluded; E-261119-02 stage A, stage-B pass 1 and both (9, 5) censuses recorded; owner's approval of lead review `reviews/strategy-review-2026-11-19.md`, 2026-11-19). The latest
+registered result is E-261116-09 (lemmas, ablation, parity; section 3bi); results are listed newest last in section 3, chronology in
 `experiment-log.md`, decisions in the `STRATEGY.md` log and the dated reviews. Definitions and labels: `SPEC.md`; current
 target: `STRATEGY.md`; next steps: `ROADMAP.md`. This file owns results and verdicts.
 
@@ -582,6 +582,14 @@ night 2026-11-21 (two launches, resumed by claim files), ~12.4 of the 40 core-h 
 formula run at genus 5 yet. Scope: dual maps of cubic solids (admissible triangular maps) with this action; nothing about
 mirrors, other actions or genera. `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
 
+## 3bi. E-261116-09 uniformity, perturbation and symmetry lemmas; family ablation of stage B (2026-11-22)
+
+* **L1-L5 PROVED-1** (single AI author): cubic objects perturb to uniform ones (L1), equivariantly for C3 3+3+3, C2 4 x 2 + 1 and free C2 at eight (L2, witnesses EXACT); symmetric nine-face S1 objects carry one of the two actions unless Cs (L3); eight-face ones a free half-turn unless C1, Cs, C7, C7v (L4); (11, 5): improper symmetries are mirrors only (L5).
+* **L6 PROVED-1, local check EXACT**: vertices of degree <= 4 resolve to cubic ones (same faces, genus, adjacencies; one new edge each); degree 5-6 not run, so (8, 2) / (9, 3) cover "degree <= 4", not all non-cubic objects.
+* **Ablation (UNSAT-SOLVER)**: no common small family set; dropping SYM keeps all 69 priced stage-B formulas UNSAT; the plain formula is UNSAT-SOLVER on 36 of 36 priced (9, 5) and 23 of 33 (9, 4) records (rest UNKNOWN at 5 s), on none of the (9, 3) rung.
+* **Lemma P, collinear-segment parity (certificates EXACT, reading PROVED-1)**: a GF(2)-inconsistent SEGMENT_DISJOINT system excludes 3 of 36 priced (9, 5) maps outright (any symmetry); with SYM, 17 (map, action) pairs of 69 under their action. Scope: these records; controls pass (SAT (8, 3) units consistent).
+`experiments/E-261116-09-uniformity-perturbation-lemmas/CONCLUSION.md`.
+
 ## 4. What may and may not be claimed
 
 May: the CERTIFIED and EXACT rows above, with their caveats; "genus-3 exact constructions on 12 faces for
@@ -594,8 +602,8 @@ local defect); "correct Gauss degree implies realizability" (refuted by Q1); "co
 May not (scope, owner's question 2026-11-08): that the (8, 2) or (9, 3) negative covers non-cubic objects. S5 is cubic; at
 (8, 2) and (9, 3) the edge count has slack (E <= 30 for 28 pairs, E <= 39 for 36), so counting does not exclude objects with
 every pair adjacent and some vertices of degree >= 4 (e.g. (9, 3) with V = 23, E = 36, three 4-valent vertices); no
-formula covers them. At (12, 6) there is no slack (E = 66 pairs), so S0 is unaffected. The (8, 2) / (9, 3) note must say "cubic"
-unless the perturbation lemma I-261108-09 (untested) reduces these objects to the cubic case.
+formula covers them. At (12, 6) there is no slack (E = 66 pairs), so S0 is unaffected. The (8, 2) / (9, 3) note must say "cubic",
+or "vertices of degree <= 4" by the perturbation lemma at k = 4 (section 3bi, PROVED-1); degree 5-6 stay uncovered.
 
 ## 5. Results worth sharing (ranked, with prerequisites)
 

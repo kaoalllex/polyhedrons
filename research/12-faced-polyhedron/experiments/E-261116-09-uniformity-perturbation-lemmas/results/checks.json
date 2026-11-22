@@ -1,0 +1,43 @@
+{
+ "witnesses": {
+  "C3_333_standard": {
+   "elements": 10,
+   "quads": 210,
+   "min_abs_minor": 8,
+   "zeros": 0
+  },
+  "C2_4x2p1_moved": {
+   "elements": 10,
+   "quads": 210,
+   "min_abs_minor": 44,
+   "zeros": 0
+  },
+  "C2_free_8_standard": {
+   "elements": 9,
+   "quads": 126,
+   "min_abs_minor": 20,
+   "zeros": 0
+  }
+ },
+ "local_k4": {
+  "cones": 14,
+  "valid_vertices": 288,
+  "universal": true,
+  "controls": {
+   "convex_cones_valid": 6,
+   "convex_keeps_bounded_cell_out": true,
+   "opposite_cones_rejected": true,
+   "three_plane_cones_rejected": 8,
+   "flipped_far_cell_rejected": true
+  }
+ },
+ "local_k4_case_counts": {
+  "sign +1, valid out, new adjacencies 1": 138,
+  "sign +1, valid in, new adjacencies 1": 138,
+  "sign +1, valid out+in, new adjacencies 1/1": 12,
+  "sign -1, valid out, new adjacencies 1": 138,
+  "sign -1, valid in, new adjacencies 1": 138,
+  "sign -1, valid out+in, new adjacencies 1/1": 12
+ },
+ "PASS": true
+}

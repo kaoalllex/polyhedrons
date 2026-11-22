@@ -1130,3 +1130,6 @@ the (9, 4) pricing replicated exactly in it, 53 of 53 statuses and hashes), brie
 chunks), chunks 0-9 built and hash-pinned, cap 5 s, lean, 20 core-h cap; checks: the lean (8, 3) rung repeats its record
 with SAT folders kept and `--all-pairs` PASS, smoke 0.50 core-s per unit. Owner launch next.
 `experiments/E-261119-02-symmetric-nine-face-census/README.md`.
+2026-11-22 — E-261116-09 concluded: lemmas L1-L5 PROVED-1, L6 (perturbation, degree <= 4) PROVED-1 with an exact local
+check; part B (owner): no common clause-family set, SYM not needed for the priced stage-B UNSATs, GF(2) parity Lemma P
+excludes 3 + 17 records exactly. `experiments/E-261116-09-uniformity-perturbation-lemmas/CONCLUSION.md`.
