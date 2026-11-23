@@ -2,12 +2,14 @@
 id: E-261117-04
 title: P6, the equivelar slice by plain per-map formulas - (8, 3) rung with an enrichment control, (9, 4) census and plain pass
 date: 2026-11-17
-status: planned
+status: done
+concluded: 2026-11-22
+verdict: EQUIVELAR-9-4-PLAIN-ALL-UNSAT-SOLVER
 direction: [DR19]
 origin: [I-261101-15, E-261103-01]
 tests: [H-261101-07]
 produces: []
-preregistered: false
+preregistered: true
 ---
 
 > Planned: the nine-face main line since the owner-approved final lead review 2026-11-22
@@ -22,13 +24,56 @@ preregistered: false
 extra-edge patterns) cost per stage? Stage A at (8, 3): maps enumerated, formulas decided, models sampled, maps
 realized, completion flags. It cannot show that Roest-Vigh and Mizhaev are alone.
 
+## Stage A results (2026-11-22, PLAN.md; STATUS 3bk)
+
+* **Census (EXACT computation, coverage PROVED-1)**: `results/census_8_3/` (`p6.py census`, 22 s): the seven
+  cycle-union inputs complete, 97 classes, all equivelar, 51 admissible. Classes per pattern 8 / 6+2 / 5+3 / 4+4 /
+  4+2+2 / 3+3+2 / 2+2+2+2: 43 / 13 / 8 / 21 / 6 / 0 / 6; admissible 12 / 11 / 0 / 16 / 6 / 0 / 6. Every census control
+  passed: both known codes (Roest-Vigh 4+4, Mizhaev 8), the six face-transitive classes of 3au and the 45 equivelar
+  free-C2 codes present; the admissible classes with a free half-turn are exactly those 45.
+* **Formulas** (`maps/stageA.json`, `queue_stageA.json`, `results/stageA/`): 796 of 796 units decided within the 60 s
+  cap (max 3.3 s, 367 solver-s). Equivelar: 2 SAT (the two known maps) of 51, 49 UNSAT-SOLVER (the face-transitive
+  classes 1-5 among them, as in E-261118-01). Non-equivelar free-C2: 0 SAT of 745, 745 UNSAT-SOLVER. Both SAT models
+  realized by the first bridge stage (hinge), `verify_candidate.py --all-pairs` PASS, (V, E, F, chi) =
+  (24, 36, 8, -4): the known objects, recovered unaided. No TIMEOUT, no SAT left unrealized: no follow-up queue.
+* **Controls**: the pinned Roest-Vigh pair (positive SAT, same-multigraph negative UNSAT-SOLVER) and the runner's
+  convex controls passed on all 10 shards; every shard SHARD-COMPLETE.
+* **Cost**: 622 core-s on 10 shards (ledger) + 22 s census = 0.18 core-h; ~2.5 min wall (pilot shard 0, then 1-9).
+* **Predictions**: P1-P5 all held (P2's first-model realization, 0.5; P3, 0.6).
+* **Scope**: plain sub-map formulas in the code's orientation, UNSAT-SOLVER (planning only, no proof). Not shown:
+  that the two known solids are the only (8, 3) ones; anything about non-equivelar maps without a free half-turn or
+  about the mirror orientation's formulas. Week item 2 has no input (no map of the 790 UNKNOWN or SAT-unrealized).
+
+## Stage B results (2026-11-22, PLAN amendment 1; STATUS 3bl)
+
+* **Census (EXACT computation, coverage PROVED-1)**: `results/census_9_4/` (`maps_9_4.json`, `census.json`,
+  `run.jsonl`): the eight cycle-union inputs in 240 root-stride units (30 per pattern), all complete at the 600 s cap
+  (max 180 s): 4118 classes, all equivelar, 1071 admissible. Classes / admissible per pattern 9: 2110 / 624; 7+2:
+  324 / 108; 6+3: 729 / 65; 5+4: 458 / 168; 5+2+2: 188 / 58; 4+3+2: 143 / 36; 3+3+3: 155 / 2; 3+2+2+2: 11 / 10.
+  Admissible |Aut+| 1 / 2 / 3 / 6: 960 / 96 / 7 / 8; none reflexible.
+* **Controls**: all passed. The (8, 3) census through the changed path (stride 3, `results/census_8_3_strided/`)
+  equals stage A's record for record; at (9, 4) both 3au classes present and inadmissible; the symmetric lists
+  complete and their 111 equivelar codes present with their rotation; every admissible class with a C3 3+3+3 or a
+  C2 4 x 2 + 1 rotation is in that list; duplicate records identical, every class in its unit's pattern. D3's
+  expectations held (3+2+2+2: 11 classes; no pattern below D3's partial count).
+* **Cost**: probe 547 core-s (2.7 min wall) + 10634 core-s (18.5 min wall, 10 workers) + 58 core-s (8, 3) control
+  = 3.1 core-h (`run.jsonl`, stop reason `done`). Predictions P6-P8 held. Per-unit codes and records pruned after
+  the merge; `census.json` keeps each unit's code-set SHA-256.
+* **Scope**: an enumeration of the equivelar (9, 4) maps; nothing about realizability.
+
+## Stage C results (2026-11-22, PLAN amendment 2; STATUS 3bn; `CONCLUSION.md`)
+
+* **Formulas** (`maps/stageC.json`, `queue_stageC_c0|c1.json`, `results/stageC_c0|c1/`): the plain sub-map formula
+  (10 elements, kissat seed 0, cap 60 s, lean, 10 shards) on all 1071 admissible equivelar (9, 4) classes: 1071
+  UNSAT-SOLVER, 0 SAT, 0 TIMEOUT (mean 11.0 s, max 54.9 s). The ten K2 maps UNSAT-SOLVER again.
+* **Controls**: build controls, the pinned f9 pair in every shard of both queues and the runner's convex controls
+  passed.
+* **Cost**: chunk 0 (91 maps) 887 core-s priced chunk 1 (980) at 13753 core-s, actual 11479: 3.43 core-h, ~23.5 min
+  wall, lab-run.
+* **Scope**: formula scope, the code's orientation, UNSAT-SOLVER (planning only, no proof). Nothing about
+  non-equivelar (9, 4) maps or non-realizability.
+
 ## Next
 
-Write `PLAN.md` for stages A-C (week items 1, 3, 4). Coverage: the 2-regular extra-edge multigraphs are disjoint cycles
-(a 2-cycle is a pair of multiplicity 3), one input per partition of F into parts >= 2: seven at (8, 3), eight at (9, 4),
-fed to `enum_multi.c` directly (not `extra_graphs`, not symcensus with the trivial group). (9, 4) needs the guards
-`census.py:154` and `enum_multi.c:186` raised to 9 and a re-read of the coverage argument. Session checks of the
-reviews (not ledger): (8, 3) 97 classes, 51 admissible, both known maps in patterns 8 and 4+4; 45 of the 790 free-C2
-(8, 3) maps and 111 symmetric (9, 4) codes are equivelar; the plain (9, 4) formula took 1.4-23.4 s on 10 of them
-(all UNSAT-SOLVER). Kill: control map absent or pinned control UNSAT after one repair; an unaided recovery timeout is
-a bridge diagnosis.
+None from this experiment: the all-UNSAT-SOLVER outcome goes to the lead review, which re-plans the nine-face line
+(week plan item 4 tree). A negative claim about these maps would need a replay with checked proofs.

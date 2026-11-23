@@ -1,6 +1,8 @@
 /* Exhaustive triangular rotations of K_n plus identified parallel edges.
  * Triangle assignment, MRV and short-cycle pruning follow code/enum_k12.c.
  * Input: n g k patterns, then k endpoint pairs for each extra-edge pattern.
+ * Optional root stride: of the root rotations of each pattern, numbered in enumeration order, only those with
+ * number % stride == offset are seeded, so the runs offset = 0..stride-1 split every pattern's search between them.
  * Output: canonical dart codes as JSONL, followed by an explicit completion record.
  */
 #define _POSIX_C_SOURCE 200809L
@@ -15,7 +17,7 @@ static int n, nd, degree[MAXN], extra_degree[MAXN];
 static int tail[MAXD], head[MAXD], succ[MAXD], pred[MAXD];
 static int arc[MAXN][MAXN][MAXN], mult[MAXN][MAXN];
 static int root_darts[MAXD], root_order[MAXD], root_used[MAXD];
-static long long nodes, leaves, roots;
+static long long nodes, leaves, roots, seeded, pattern_roots, stride = 1, offset;
 static int timed_out;
 static double limit;
 static struct timespec start;
@@ -159,7 +161,11 @@ static void seed(int i)
 static void rotations(int pos)
 {
     if (stopped()) return;
-    if (pos == degree[0]) { roots++; seed(0); return; }
+    if (pos == degree[0]) {
+        roots++;
+        if (pattern_roots++ % stride == offset) { seeded++; seed(0); }
+        return;
+    }
     for (int j = 0; j < degree[0] && !timed_out; j++) {
         if (root_used[j]) continue;
         int d = root_darts[j], v = head[d], skip = 0;
@@ -176,14 +182,20 @@ static void rotations(int pos)
 
 int main(int argc, char **argv)
 {
-    if (argc != 3) { fprintf(stderr, "usage: enum_multi input seconds\n"); return 2; }
+    if (argc != 3 && argc != 5) { fprintf(stderr, "usage: enum_multi input seconds [stride offset]\n"); return 2; }
     char *end;
     limit = strtod(argv[2], &end);
     if (*end || !(limit >= 0)) return 2;
+    if (argc == 5) {
+        stride = strtoll(argv[3], &end, 10);
+        if (*end || stride < 1) return 2;
+        offset = strtoll(argv[4], &end, 10);
+        if (*end || offset < 0 || offset >= stride) return 2;
+    }
     FILE *in = fopen(argv[1], "r");
     int genus, extras, patterns;
     if (!in || fscanf(in, "%d%d%d%d", &n, &genus, &extras, &patterns) != 4) return 2;
-    if (n < 3 || n > MAXN || extras < 0 || extras > 8 || patterns < 1 ||
+    if (n < 3 || n > MAXN || extras < 0 || extras > 9 || patterns < 1 ||
         2 * (n * (n - 1) / 2 + extras) > MAXD ||
         n * (n - 1) / 2 + extras != 3 * (n + 2 * genus - 2)) return 2;
     clock_gettime(CLOCK_MONOTONIC, &start);
@@ -210,17 +222,19 @@ int main(int argc, char **argv)
         memset(root_used, 0, sizeof root_used);
         for (int d = 0; d < nd; d++) if (!tail[d]) root_darts[k++] = d;
         root_order[0] = root_darts[0]; root_used[0] = 1;
+        pattern_roots = 0;
         rotations(1);
         if (!timed_out) done++;
-        fprintf(stderr, "pattern %d/%d complete=%d nodes=%lld classes=%d seconds=%.3f\n",
-                p + 1, patterns, !timed_out, nodes, nclasses, elapsed());
+        fprintf(stderr, "pattern %d/%d complete=%d roots=%lld nodes=%lld classes=%d seconds=%.3f\n",
+                p + 1, patterns, !timed_out, pattern_roots, nodes, nclasses, elapsed());
     }
     fclose(in);
     printf("{\"summary\":true,\"complete\":%s,\"stop_reason\":\"%s\","
            "\"graphs_done\":%d,\"graphs_total\":%d,\"roots\":%lld,\"nodes\":%lld,"
+           "\"seeded\":%lld,\"stride\":%lld,\"offset\":%lld,"
            "\"leaves\":%lld,\"classes\":%d,\"seconds\":%.6f}\n",
            done == patterns ? "true" : "false", done == patterns ? "exhausted" : "time_limit",
-           done, patterns, roots, nodes, leaves, nclasses, elapsed());
+           done, patterns, roots, nodes, seeded, stride, offset, leaves, nclasses, elapsed());
     free(classes);
     return 0;
 }

@@ -1687,16 +1687,16 @@ window.GRAPH = {
    "id": "E-261117-04",
    "kind": "experiment",
    "title": "P6, the equivelar slice by plain per-map formulas - (8, 3) rung with an enrichment control, (9, 4) census and plain pass",
-   "status": "planned",
+   "status": "done",
    "date": "2026-11-17",
-   "concluded": "",
+   "concluded": "2026-11-22",
    "path": "experiments/E-261117-04-equivelar-price-pilot/README.md",
    "direction": [
     "DR19"
    ],
-   "verdict": "",
-   "preregistered": "false",
-   "conclusion": ""
+   "verdict": "EQUIVELAR-9-4-PLAIN-ALL-UNSAT-SOLVER",
+   "preregistered": "true",
+   "conclusion": "Verdict: UNSAT-SOLVER on 1071 of 1071, 0 SAT@3.43 core-h (stage C; the experiment as a whole 6.7 core-h: A 0.18, B 3.1, C 3.43). Not LOW-YIELD: a complete pass over its slice at formula scope, every unit decided."
   },
   {
    "id": "E-261118-01",
@@ -1779,17 +1779,17 @@ window.GRAPH = {
    "id": "E-261119-02",
    "kind": "experiment",
    "title": "Symmetric nine-face census - C3 3+3+3 and C2 4 x 2 + 1 maps by lifting the C3 exact cover, then per-map symmetric formulas",
-   "status": "running",
+   "status": "done",
    "date": "2026-11-19",
-   "concluded": "",
+   "concluded": "2026-11-22",
    "path": "experiments/E-261119-02-symmetric-nine-face-census/README.md",
    "direction": [
     "DR19",
     "DR18"
    ],
-   "verdict": "",
+   "verdict": "SYMMETRIC-ROUTE-ENDS-AT-GENUS-4-UNSAT-SOLVER",
    "preregistered": "true",
-   "conclusion": ""
+   "conclusion": "Verdict: UNSAT-SOLVER on 97830 of 97830 (random 10 %), 0 SAT@14.32 core-h (symmetric route closed for the laptop at genus 4; the C2 (9, 5) remainder postponed, parity pass with the paper). Not LOW-YIELD: this is a price and a sample, the underlying SAT rate being < 3.1e-5 per sampled map."
   },
   {
    "id": "E-261119-03",
@@ -1805,6 +1805,36 @@ window.GRAPH = {
    "verdict": "NO-ADMISSIBLE-CAYLEY-9-7",
    "preregistered": "true",
    "conclusion": "Verdict for the direction: the face-transitive nine-face slice is EMPTY at genus 4 and 7 (EXACT, coverage PROVED-1); closed for planning."
+  },
+  {
+   "id": "E-261123-01",
+   "kind": "experiment",
+   "title": "The full cubic (8, 3) census and plain pass - formula-scope classification of the eight-face case, gate of non-equivelar (9, 4) strata",
+   "status": "planned",
+   "date": "2026-11-23",
+   "concluded": "",
+   "path": "experiments/E-261123-01-full-8-3-classification/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": ""
+  },
+  {
+   "id": "E-261123-02",
+   "kind": "experiment",
+   "title": "P3 with guarded face-label symmetry breaking - refutation rungs on the known negatives (8, 30) and (9, 39)",
+   "status": "planned",
+   "date": "2026-11-23",
+   "concluded": "",
+   "path": "experiments/E-261123-02-p3-guarded-label-breaking/README.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": "true",
+   "conclusion": ""
   },
   {
    "id": "FD11",
@@ -4849,6 +4879,48 @@ window.GRAPH = {
    "preregistered": ""
   },
   {
+   "id": "I-261123-01",
+   "kind": "idea",
+   "title": "Guarded face-label symmetry breaking for the census-free formula - faces by size, lex order under equal-size adjacent swaps",
+   "status": "open",
+   "date": "2026-11-23",
+   "concluded": "",
+   "path": "ideas/I-261123-01-guarded-label-symmetry-breaking.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261123-02",
+   "kind": "idea",
+   "title": "An unaided positive control at every new element count - truncate a convex vertex of a known solid",
+   "status": "open",
+   "date": "2026-11-23",
+   "concluded": "",
+   "path": "ideas/I-261123-02-truncated-solid-positive-controls.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
+   "id": "I-261123-03",
+   "kind": "idea",
+   "title": "A stratum transfer rule - price a non-equivelar (9, 4) stratum only for an extra-degree pattern that holds a realized (8, 3) map",
+   "status": "open",
+   "date": "2026-11-23",
+   "concluded": "",
+   "path": "ideas/I-261123-03-stratum-transfer-rule.md",
+   "direction": [
+    "DR19"
+   ],
+   "verdict": "",
+   "preregistered": ""
+  },
+  {
    "id": "L:abs1996",
    "kind": "source",
    "title": "Altshuler, Bokowski, Schuchert, Neighborly 2-manifolds with 12 vertices, JCTA 75 (1996) 148-162",
@@ -6103,6 +6175,11 @@ window.GRAPH = {
   },
   {
    "from": "E-261103-01",
+   "to": "E-261123-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261103-01",
    "to": "H-261101-07",
    "kind": "tests"
   },
@@ -6828,12 +6905,22 @@ window.GRAPH = {
   },
   {
    "from": "E-261116-07",
+   "to": "E-261123-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261116-07",
    "to": "H-261101-07",
    "kind": "tests"
   },
   {
    "from": "E-261116-07",
    "to": "I-261118-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261116-07",
+   "to": "I-261123-01",
    "kind": "origin"
   },
   {
@@ -6878,8 +6965,23 @@ window.GRAPH = {
   },
   {
    "from": "E-261117-04",
+   "to": "E-261123-01",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261117-04",
    "to": "H-261101-07",
    "kind": "tests"
+  },
+  {
+   "from": "E-261117-04",
+   "to": "I-261123-02",
+   "kind": "origin"
+  },
+  {
+   "from": "E-261117-04",
+   "to": "I-261123-03",
+   "kind": "origin"
   },
   {
    "from": "E-261118-01",
@@ -6927,14 +7029,9 @@ window.GRAPH = {
    "kind": "tests"
   },
   {
-   "from": "E-261119-02",
-   "to": "H-261101-07",
-   "kind": "tests"
-  },
-  {
-   "from": "E-261119-03",
-   "to": "H-261101-07",
-   "kind": "tests"
+   "from": "E-261119-01",
+   "to": "I-261123-01",
+   "kind": "origin"
   },
   {
    "from": "FD2",
@@ -7837,6 +7934,11 @@ window.GRAPH = {
    "kind": "origin"
   },
   {
+   "from": "I-261101-20",
+   "to": "I-261123-02",
+   "kind": "origin"
+  },
+  {
    "from": "I-261101-21",
    "to": "E-261101-25",
    "kind": "origin"
@@ -8299,6 +8401,21 @@ window.GRAPH = {
   {
    "from": "I-261119-03",
    "to": "E-261119-03",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261123-01",
+   "to": "E-261123-02",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261123-02",
+   "to": "E-261123-01",
+   "kind": "origin"
+  },
+  {
+   "from": "I-261123-03",
+   "to": "E-261123-01",
    "kind": "origin"
   },
   {

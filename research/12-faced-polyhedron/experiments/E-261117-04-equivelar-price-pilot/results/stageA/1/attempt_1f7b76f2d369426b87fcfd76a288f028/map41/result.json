@@ -1,0 +1,97 @@
+{
+  "status": "SAT",
+  "seconds": 0.07656954199774191,
+  "budget_seconds": 60,
+  "budget_fraction": 0.0012761590332956985,
+  "ended_by": "completed",
+  "variables": 4894,
+  "clauses": 37989,
+  "cnf_sha256": "a3f48264521b3376ac0329ad6141d4bcfd14c4dfefcab1373f9f78867555bb43",
+  "solver_children_maxrss": 12763136,
+  "model_checked": true,
+  "processing": {
+    "hinge": {
+      "wrong_signs": 0,
+      "signs_match": true,
+      "geometry": {
+        "corner_triples_distinct": true,
+        "all_pairs_adjacent": true,
+        "V_E_F_chi": [
+          24,
+          36,
+          8,
+          -4
+        ],
+        "points_distinct": true,
+        "simple_faces": 8,
+        "nonsimple_faces": [],
+        "edges_consistent": true,
+        "bad_pairs": [],
+        "EMBEDDED": true
+      },
+      "planes": [
+        [
+          213219330,
+          395644392,
+          584888181,
+          675210167
+        ],
+        [
+          -722664164,
+          -193763510,
+          506702258,
+          428331576
+        ],
+        [
+          280083689,
+          915517033,
+          181754798,
+          224380659
+        ],
+        [
+          445140946,
+          -636933948,
+          -223064696,
+          588564609
+        ],
+        [
+          336771876,
+          518673092,
+          -630325792,
+          -469312820
+        ],
+        [
+          -357887548,
+          -171951913,
+          -781601934,
+          481093532
+        ],
+        [
+          617976808,
+          -559058891,
+          523177235,
+          178451043
+        ],
+        [
+          -598432260,
+          154892946,
+          290935572,
+          -730235399
+        ]
+      ],
+      "seconds": 0.5647811669914518,
+      "budget_seconds": 120,
+      "ended_by": "completed"
+    }
+  },
+  "candidate": "research/12-faced-polyhedron/experiments/E-261117-04-equivelar-price-pilot/results/stageA/1/attempt_1f7b76f2d369426b87fcfd76a288f028/map41/map41_plain.candidate.json",
+  "candidate_verify_rc": 0,
+  "status_note": "CANDIDATE-NEEDS-REVIEW",
+  "task": "map41_plain",
+  "map_index": 41,
+  "scope": "sub-map embedding formula (submap=True)",
+  "canonical_sha256": "ba4306b8e4615a947515980814f278551ff5110815f11ae810a8b0fc88f08109",
+  "unit": "research/12-faced-polyhedron/experiments/E-261117-04-equivelar-price-pilot/results/stageA/1/attempt_1f7b76f2d369426b87fcfd76a288f028/map41",
+  "formula_sha256": "f129433c7bcd97e8cc08d5fcad742e8b9d0d24616ceb6690d5e42d0822ea902f",
+  "seed": 0
+}

@@ -7,15 +7,16 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
 
 * **Focus (owner, 2026-11-12): one constructive target at a time, each at least as significant as the 2026
   eight-face objects (owner's filter).**
-  * **First (owner, 2026-11-16b, confirmed 2026-11-17, -18, -19 and -22): S1, nine mutually adjacent faces with the
-    genus free.** The symmetric route ends at genus 4 on the laptop (lead review 2026-11-22, final): every C3 3+3+3
-    and C2 4 x 2 + 1 per-map formula at (9, 4) is UNSAT-SOLVER, C3 has no (9, 5) map, the C2 (9, 5) random 10 % is
-    UNSAT-SOLVER (the remainder postponed by the owner; C3 at genus 6 below the gate). **Main line: P6, the equivelar
-    slice for any symmetry (E-261117-04), by plain per-map formulas**, scored at (8, 3) on the two known maps unaided
-    with a non-equivelar enrichment control; the (9, 4) census checked against the symmetric lists and priced before
-    the (9, 4) formulas, no (9, 4) night before both. P3-sym parked for nine faces (3bd); mirror families only by
-    plain formulas (L1); no nine-plane sampling night without a measured rate one rung below (E-261110-04: no hit).
-    Success is only `verify_candidate.py FILE --all-pairs` PASS with nine faces, then `candidate-check`.
+  * **First (owner, 2026-11-16b, confirmed 2026-11-17, -18, -19, -22 and -23): S1, nine mutually adjacent faces with
+    the genus free.** The symmetric route ends at genus 4 on the laptop (2026-11-22), and P6 ends at the equivelar
+    slice: all 1071 admissible equivelar (9, 4) plain formulas are UNSAT-SOLVER (E-261117-04). Two gates decide whether
+    nine faces keeps a laptop route. First, the full (8, 3) rung (E-261123-01): a non-equivelar (9, 4) stratum runs
+    only after it realizes a map outside the equivelar slice, under a transfer rule pre-registered before its probe.
+    Second, the census-free refutation rung (E-261123-02): (8, 30) and (9, 39) INFEASIBLE on every cube, then an
+    unaided (8, 36) recovery, before any (9, 45) price. If both close, the owner chooses between parking nine faces and
+    the C2 (9, 5) remainder. P3-sym is parked; mirror families only by plain formulas (L1); no nine-plane sampling
+    night without a rung-below rate. Success is only `verify_candidate.py FILE --all-pairs` PASS with nine faces, then
+    `candidate-check`.
   * **S5 at (11, 5): closed for the laptop** (E-261118-03): all 20 Aut+ = 2 maps UNSAT-SOLVER under their half-turn
     (planning only); the improper slice has no uniform formula (lead review 2026-11-19, PROVED-1 sketch); the asymmetric
     sweep is priced out (>= 41 nights, E-261116-01). Success would be only `verify_candidate.py FILE --target S5` PASS.
@@ -151,3 +152,6 @@ orders the work under this strategy; `STATUS.md` owns the numbers; `SPEC.md` own
   reviews): nine faces stay first; the symmetric route ends at genus 4; P6 is the main line; nine-face credence
   0.45 -> 0.35; the C2 (9, 5) remainder stays postponed, parity stays with the paper. Stance, S0 parking and the side
   track unchanged.
+* 2026-11-23 (owner's approval of `reviews/strategy-review-2026-11-23-final.md`, cycle step 3): nine faces stay first
+  behind two gates (the full (8, 3) rung; P3 with guarded label breaking on the known negatives); P6 ends at the
+  equivelar slice; nine-face credence 0.35 -> 0.28. Stance, S0 parking and the side track unchanged.

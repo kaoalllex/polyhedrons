@@ -2,13 +2,18 @@
 id: E-261119-02
 title: Symmetric nine-face census - C3 3+3+3 and C2 4 x 2 + 1 maps by lifting the C3 exact cover, then per-map symmetric formulas
 date: 2026-11-19
-status: running
+status: done
+concluded: 2026-11-22
+verdict: SYMMETRIC-ROUTE-ENDS-AT-GENUS-4-UNSAT-SOLVER
 direction: [DR19, DR18]
 origin: [I-261030-18, I-261119-01, I-261118-02, E-261103-01, E-261118-03]
-tests: [H-261101-07]
+tests: []
 produces: []
 preregistered: true
 ---
+
+> Concluded 2026-11-22 ([CONCLUSION.md](CONCLUSION.md)): the symmetric route ends at genus 4; the random 10 % of the C2
+> (9, 5) list is 97830 of 97830 UNSAT-SOLVER (14.32 core-h); formula scope, planning only.
 
 > Planned, week item 2, the main investment (`reviews/strategy-review-2026-11-19.md` §1, owner-approved 2026-11-19;
 > reconciled with the Codex second opinion, `reviews/strategy-review-2026-11-19-reconcile.md`, owner-approved the same
@@ -126,6 +131,10 @@ full load; the 6 units in flight at the stop are SKIPPED-STOP, keep their folder
 loop stops the shard on STOP-REQUESTED. Projection for the 10%: ~14 core-h, ~1.4 h wall; for the rest ~122 core-h.
 Owner launch next: `launch.sh 261119-02 start` (`STAGE=B5p1`, chunks 0-9).
 
+**Amendment 6 result** (owner launch 2026-11-22, `results/stageB5-pass1*`, audit `audit_pass1.py` -> `pass1_summary.json`):
+chunks 0-9, 97830 of 97830 UNSAT-SOLVER within the 5 s cap (max 2.01 s, mean 0.158 s), controls pass on every
+shard-chunk, 14.32 core-h, ~1.4 h wall; both power lines and the scope in CONCLUSION.
+
 ## Next
 
 Both families are all UNSAT-SOLVER at (9, 4), so per the tree: genus 5 (E = 51) for both, priced the same way (stage-A
@@ -142,3 +151,5 @@ Amendment 6 (the random 10 % of (9, 5) pass 1) finished, 97830 of 97830 UNSAT-SO
 conditional on item 1): the free-C2 (8, 3) symmetric pass on maps item 1 leaves open, with all 862 free half-turns
 derived from Aut+ (stage A kept the first action per unit, `symcensus.py`:344: the 822 records miss 40 actions on 23
 maps, 14 on 13 maps not conjugate to a tested one; final review K1).
+
+Closed 2026-11-22 (week item 5): see CONCLUSION.md; the C2 (9, 5) chunks 10-99 stay postponed by the owner.

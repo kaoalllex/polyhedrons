@@ -1144,3 +1144,27 @@ enrichment control on the 790 free-C2 (8, 3) maps first, then the (9, 4) census 
 symmetric pass becomes conditional, with 862 actions (not 822); nine-face credence 0.45 -> 0.35; the C2 (9, 5)
 remainder stays postponed and parity stays with the paper. Session checks only (~0.03 core-h). New week branch
 `lab/2026-11-22`.
+
+2026-11-22 — E-261117-04 stage A (week item 1, STATUS 3bk): the equivelar (8, 3) census (97 classes, 51 admissible) and
+the plain sub-map formula on the 51 and on the 745 non-equivelar free-C2 (8, 3) maps: SAT only on Roest-Vigh's and
+Mizhaev's maps, both realized unaided; the rest UNSAT-SOLVER; 0.18 core-h. Week item 2 has no input.
+`experiments/E-261117-04-equivelar-price-pilot/README.md`.
+
+2026-11-22 — E-261117-04 stage B (week item 3, STATUS 3bl): the equivelar (9, 4) census in 240 root-stride units
+(guards raised to 9 extra edges): 4118 classes, 1071 admissible, all controls pass; 3.1 core-h.
+`experiments/E-261117-04-equivelar-price-pilot/README.md`.
+
+2026-11-22 — E-261119-02 concluded (week item 5, STATUS 3bm): the random 10 % of the C2 4 x 2 + 1 (9, 5) list, 97830 of
+97830 UNSAT-SOLVER (max 2.01 s, 14.32 core-h); both power lines (< 3.1e-5 per map; at most 28 SAT formulas in the
+978228 at 95 %), the 862-action note, the parity scope correction, `tests:` links removed.
+`experiments/E-261119-02-symmetric-nine-face-census/CONCLUSION.md`.
+
+2026-11-22 — E-261117-04 concluded (week item 4, STATUS 3bn): P6 stage C, the plain formulas of all 1071 admissible
+equivelar (9, 4) classes UNSAT-SOLVER (0 SAT, 0 TIMEOUT, max 54.9 s, 3.43 core-h, lab run); controls pass.
+`experiments/E-261117-04-equivelar-price-pilot/CONCLUSION.md`.
+
+2026-11-23 — Lead review 2026-11-23 approved by the owner after the three-step cycle (`reviews/strategy-review-2026-11-23-final.md`,
+with the draft and `-codex.md`): P6 ends at the equivelar slice; nine faces stay first behind two gates, the full (8, 3)
+census and plain pass with the truncated-solid 10-element controls as step 0 (E-261123-01) and P3 with guarded
+face-label breaking on the known negatives (E-261123-02); nine-face credence 0.35 -> 0.28. Session checks only
+(~1.15 core-h review, cross-review checks A-F). Ideas I-261123-01 to -03. New week branch `lab/2026-11-23`.

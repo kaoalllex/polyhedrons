@@ -1,16 +1,17 @@
 # Roadmap: the experiment queue
 
-**Focus since 2026-11-22** (`STRATEGY.md`, owner-approved `reviews/strategy-review-2026-11-22-final.md`): nine
+**Focus since 2026-11-23** (`STRATEGY.md`, owner-approved `reviews/strategy-review-2026-11-23-final.md`): nine
 mutually adjacent faces (S1, genus free) first. The symmetric route (C3 3+3+3, C2 4 x 2 + 1) ends at genus 4 on the
-laptop (E-261119-02; the C2 (9, 5) remainder postponed by the owner, parity with the paper). Main line: P6, the
-equivelar slice for any symmetry by plain per-map formulas (E-261117-04): the (8, 3) rung with an enrichment control
-first, then the (9, 4) census and its plain pass. No nine-plane sampling night without a measured rate one rung below
+laptop (E-261119-02; the C2 (9, 5) remainder postponed by the owner, parity with the paper), and P6 ends at the
+equivelar slice (E-261117-04: all 1071 admissible equivelar (9, 4) plain formulas UNSAT-SOLVER). Two gates decide
+whether nine faces keeps a laptop route: the full (8, 3) rung (E-261123-01) and P3 with guarded label breaking on the
+known negatives (E-261123-02). No nine-plane sampling night without a measured rate one rung below
 (E-261110-04: no hit, STATUS 3ay). Mirror families only by plain formulas. (11, 5): closed for the laptop
 (E-261118-03). S6 parked after (10, 3), its replay deferred with the note (E-261116-08). (10, 4): all 1117 admissible
 maps UNSAT-SOLVER, replay parked (I-261116-02). The S0 price probe is withdrawn. The significance filter excludes
 (11, 3); S6 (10,2) is a control, not a headline. The note is deferred.
 
-As of 2026-11-22. Compute is laptop-only, no Actions or rented compute. Prefer a certified finite cell list
+As of 2026-11-23. Compute is laptop-only, no Actions or rented compute. Prefer a certified finite cell list
 when enumeration and decisions fit the budget. Sampled misses need a measured discovery-power statement;
 solver answers without checked proofs are not family negatives. Current evidence: `STATUS.md`; run rules:
 `PROTOCOL.md`.
@@ -92,96 +93,91 @@ parallelise. Every item's `PLAN.md` states what SAT / UNSAT / timeout / near-mis
   push or a merge) is built only after two manual mornings went well. Already applied as wording on 2026-11-10: no
   night report, one commit per stage, the lead review's size and owner digest, chained lab items (`PROTOCOL.md` §8b).
 
-## Week plan (owner-approved lead review 2026-11-22, final; replaces the 2026-11-19 plan)
+## Week plan (owner-approved lead review 2026-11-23, final; replaces the 2026-11-22 plan)
 
-Source: `reviews/strategy-review-2026-11-22-final.md` §3 (cycle step 3, with the cross-review `-codex.md` and the blind
-portfolio reviews C2-a / C2-b), approved by the owner on 2026-11-22; branch `lab/2026-11-22`. Lab sessions take items
-in order and may chain steps needing neither a night nor an approval. Outside-tree questions go to "For the lead". At
-most 10 cores, 8-10 shards per splittable run, laptop on AC under caffeinate; no proofs, every UNSAT is UNSAT-SOLVER.
-Each experiment or amendment has its `PLAN.md` and unit tests committed before compute (skill `experiment-start`). Jobs
-of <= 50 min wall the lab launches itself after a one-line permission (cores, minutes); longer ones the owner. Every
-manifest records an aggregate elapsed budget across workers and restarts and the stop reason (no single-worker
-preflight: it breaks the shard rule). Success is only `--all-pairs` PASS with the face count, then `candidate-check`.
-The previous week (2026-11-19) is done: STATUS 3bd-3bj; the E-261119-02 close-out is item 5.
+Source: `reviews/strategy-review-2026-11-23-final.md` §2 (cycle step 3, with the draft and the Codex cross-review
+`-codex.md`), approved by the owner on 2026-11-23; branch `lab/2026-11-23`. Lab sessions take items in order and may
+chain steps needing neither a night nor an approval. Outside-tree questions go to "For the lead". At most 10 cores,
+8-10 shards per splittable run, laptop on AC under caffeinate; no proofs, every UNSAT is UNSAT-SOLVER. Each experiment
+or amendment has its `PLAN.md` and unit tests committed before compute (skill `experiment-start`). Jobs of <= 50 min
+wall the lab launches itself after a one-line permission (cores, minutes); longer ones the owner. Every manifest
+records an aggregate elapsed budget and the stop reason. Success is only `--all-pairs` PASS with the face count, then
+`candidate-check`. The previous week (2026-11-22) is done: STATUS 3bk-3bn (item 2 skipped).
 
-1. **P6 stage A: the equivelar (8, 3) rung and the enrichment control** ([E-261117-04](experiments/E-261117-04-equivelar-price-pilot/), PLAN first; explore, J 0; 2 2 2 1 2).
-   * Census: the seven 2-regular extra-edge patterns at (8, 3) (partitions of 8 into parts >= 2) through `enum_multi.c`,
-     one cycle-union input per partition (coverage argument PROVED-1 in the PLAN). Formula: the plain generator-free
-     `submap=True` formula at 9 elements (E-261103-03 imported-map runner) on every admissible class and on all 790
-     free-C2 (8, 3) maps of E-261119-02 stage A (745 not equivelar: the enrichment control), kissat cap 60 s, 10 shards.
-     Each SAT: bridge, >= 30 models if the first fails, `--all-pairs`.
-   * Controls: both known codes (`maps/rung_8_3.json`) and the six face-transitive (8, 3) classes of 3au present; the 45
-     equivelar codes of the free-C2 list present and every class with a free half-turn in the 790; Roest-Vigh's planes
-     pinned SAT, a wrong pairing UNSAT; both known maps SAT unaided and realized, (V, E, F, chi) = (24, 36, 8, -4);
-     E-261118-01 classes 1-5 UNSAT-SOLVER. Expected (session check, not a control truth): 97 classes, 51 admissible.
-   * Tree: a failed control -> one repair, then the lead. Only the known maps SAT -> record both rates (SAT of 51
-     equivelar, of 745 others; formula scope) and go to item 3. A non-equivelar map realized -> `candidate-check`,
-     escalate; P6's premise fails and the lead re-plans (plain formulas on the symmetric (9, 4) lists). A new equivelar
-     object -> `candidate-check`, escalate (owner: does it count under the filter; default a source for E-261112-02
-     and a paper item), item 3 continues. More than two maps SAT but unrealized -> bridge pricing to the lead before
-     stage C. UNKNOWN -> one 600 s pass.
-   * Budget <= 1 core-h including bridges, <= 50 min wall, lab-run after a one-line permission.
-   * Lab: Opus, high / Codex gpt-6-astra, high (a census input change; a new eight-face object is possible).
-2. **Free-C2 (8, 3) symmetric pass, conditional** ([E-261119-02](experiments/E-261119-02-symmetric-nine-face-census/) amendment 7; explore, J 0).
-   * Only on maps of the 790 whose item-1 plain formula is UNKNOWN or SAT without a realization; skip if none. Each such
-     map with all its free half-turns from the 862 derived from Aut+ (not from stage-A hits: `symcensus.py`:344 keeps
-     the first action per unit; 822 records miss 40 actions on 23 maps, 14 on 13 maps not conjugate to a tested one),
-     asserted equal to the reconstructed set; the four rung records keep status and hashes. Runner unchanged, cap 30 s,
-     lean, 10 shards.
-   * Tree: SAT only on the known maps -> "the free-C2 (8, 3) symmetric formulas of these maps hold only the known
-     maps" (formula scope, not a classification); another SAT -> bridge, `--all-pairs`, `candidate-check`, escalate
-     (reopens E-261112-02); SAT not realized -> the map stays open; UNKNOWN -> 600 s inside 1 core-h.
-   * Budget <= 0.3 core-h, lab-run. Lab: as item 1.
-3. **P6 stage B: the (9, 4) equivelar census** (E-261117-04; explore, J 2).
-   * Guards `census.py`:154 and `enum_multi.c`:186 raised to 9 extra edges, the coverage argument re-read; the eight
-     partitions of 9 as explicit inputs (not `extra_graphs(9, 9)`, not symcensus with the trivial group); root-stride
-     shards if a 10-min probe projects more than 50 min wall.
-   * Controls: item 1's (8, 3) codes reproduced through the changed path; both face-transitive (9, 4) classes of 3au
-     present (inadmissible); all 111 symmetric equivelar codes of E-261119-02 pass 1 present, and every class with a
-     C3 3+3+3 or C2 4 x 2 + 1 action in the E-261119-02 lists (both directions; a miss in a completed pattern is a
-     failure, in a timed-out pattern unresolved); a completion flag per pattern.
-   * Stop: a control or count mismatch, or a projection above 12 core-h -> the lead. Budget: price ~4 core-h
-     (NUMERICAL, uncertain by 2x or more), cap 12 core-h; lab-run if <= 50 min wall, else an owner day run.
-   * Lab: Opus, high / Codex gpt-6-astra, high (an EXACT census tool change whose coverage argument decides the claim).
-4. **P6 stage C: the (9, 4) plain pass** (E-261117-04; explore, J 2), after items 1 and 3 pass.
-   * The generator-free formula at 10 elements on every admissible class (canonical codes merge mirror images), lean
-     runner, 10 shards, cap 60 s; a stratified first chunk (all eight patterns) prices the rest. Controls: the f9 pinned
-     pair; the ten session-check maps of the final review (K2) UNSAT-SOLVER again.
-   * Tree: SAT -> >= 30 models, bridge, `--all-pairs` with nine faces, `candidate-check`, escalate. UNKNOWN -> one 600 s
-     pass in the same night. Priced above one night -> completed patterns first, highest asymmetric share, the rest to
-     the lead (a miss is scoped to its patterns). All UNSAT-SOLVER -> "every admissible equivelar (9, 4) map has an
-     UNSAT-SOLVER plain formula" (formula scope, planning only); the lead re-plans, no automatic credence move.
-   * Budget: price 5-31 core-h (8.1 s per map on symmetric equivelar maps, K2); an owner night, hard cap 80 core-h.
-     The night will not fill 8 h: nothing at T + D >= 3 pads it.
-   * Lab: Opus, high / Codex gpt-6-astra, high (the prep can waste a night; a SAT conclusion); all-UNSAT conclusion:
-     Sonnet, medium / Codex gpt-6.1-sol, medium.
-5. **E-261119-02 close-out** (no compute).
-   * Conclude amendment 6: the random 10 % of (9, 5) pass 1, 97830 of 97830 UNSAT-SOLVER (untracked
-     `results/stageB5-pass1*`, lean); power: rule of three (< 3.1e-5 SAT formulas per map, 95 %) and the finite-population
-     line (a unique SAT formula escapes the 10 % with probability 0.90; 95 % upper count 28), both formula scope.
-   * Record: the 862-action note (item 2's inventory); H-261101-07 weakened at genera 2-3 at formula scope, the other
-     cases open; the `tests:` links of E-261119-02 and E-261119-03 removed; the parity scope correction (42 % is pooled
-     by triple-pair count; single strata reach 16/33 and 2/4); the axis-alternation lemma as a paper item only.
-   * Lab: Sonnet, medium / Codex gpt-6.1-sol, medium.
+1. **Full (8, 3) classification at formula scope** ([E-261123-01](experiments/E-261123-01-full-8-3-classification/),
+   PLAN first; J 0, the rung for any non-equivelar (9, 4) stratum; 2 2 2 2 2).
+   * Step 0, register the 10-element controls (cross-review check A, a session check): Roest-Vigh's planes
+     (`code/control_rost_vigh.py`:23) cut by (7, 14, 21, -57), face-8 link (2, 6, 3); Mizhaev's (E-261107-01
+     `results/0/mizhaev_E36.output.candidate.json`) cut by (1, 2, 3, -1113), link (3, 2, 0). Bare verifier EMBEDDED,
+     (V, E, F, chi) = (26, 39, 9, -4), 8 doubled pairs, on the built and the bridged files (`--all-pairs` fails by
+     design: 31 of 36 pairs); unpinned plain formula at 10 elements SAT with a clause-checked model; bridge recovery
+     recorded separately. A plain-CNF UNSAT on a verified fixture -> encoder audit, lead; a bridge timeout -> recovery
+     diagnosis.
+   * Census: all 1806 inputs of `census.extra_graphs(8, 8)` by `census.run` in input-slice units, a completion bit per
+     input. Controls: the 97 equivelar classes of stage A record for record, the 790 free-C2 codes, the six
+     face-transitive classes (3au), the (8, 2) census by the same path. Lean: admissible records committed if <= 20 MB,
+     else SHA-256 only. Expected ~400 thousand classes, ~40-65 thousand admissible, heavy-tailed (NUMERICAL; review K1,
+     cross-review check D).
+   * Formulas: every admissible class decided or matched to a stage-A record by canonical code. Plain formula, 9
+     elements, code orientation, kissat cap 60 s, lean, 10 shards; a chunk 0 of ~2000, stratified by extra-edge degree
+     sequence, prices the rest end to end.
+   * Tree: step 0 fails -> lead. Coverage incomplete at the caps (an unfinished input, UNKNOWN after the 600 s pass, an
+     unbridged SAT) -> lead with the open IDs, counts over completed strata only. Full coverage and only the two known
+     maps SAT -> "every admissible cubic (8, 3) map other than Roest-Vigh's and Mizhaev's has an UNSAT-SOLVER plain
+     formula" (formula scope, planning; 0 of N per stratum, no transferred rate); no non-equivelar (9, 4) run on the
+     laptop; owner decision O4. A new map realized -> `candidate-check`, escalate (O4 of 2026-11-22; reopens
+     E-261112-02 Stage B); if it is non-equivelar, one transfer rule pre-registered (e.g. its extra degrees plus a
+     ninth face of extra degree 2; CONJECTURE), then a <= 10 min (9, 4) census probe, priced for the lead.
+   * Budget: census <= 4 core-h, formulas <= 12 core-h; lab jobs <= 50 min wall, otherwise an owner day run.
+   * Lab: Opus, high / Codex gpt-6-astra, high (a census path whose coverage decides the claim; a new eight-face
+     object is possible).
+2. **P3 with guarded face-label breaking, refutation rungs**
+   ([E-261123-02](experiments/E-261123-02-p3-guarded-label-breaking/) from E-261116-07, whose parked rule asks for a
+   changed search measured first; explore, J 2 through the tree; 1 2 2 2 2).
+   * Breaking: faces ordered by size; the upper-triangle multiplicity word lex-<= its image under each adjacent swap
+     of two equal-size faces (unguarded swaps are unsound: stage-A record 51 has 0 of 96 surviving size-sorted
+     labellings, final review point 3). After relabelling, the sign gauge and mirror fix are reapplied, then the cube
+     is assigned. Soundness and coverage over the union of cubes PROVED-1 in the PLAN. Regressions: stage-A record 51
+     and both known solids, pinned in canonical labellings; (7, 21) finds K7.
+   * Rungs: (8, 30) and (9, 39), 16 one-worker cubes each at 225 / 450 s, builds inside the cap (<= 3.0 core-h);
+     E-261116-07's baseline (all UNKNOWN) reused, not rerun.
+   * Kill: any UNKNOWN at either rung -> this configuration parked, cause recorded. A model -> decode the map, check
+     its chirotope against that map's plain formula, then assign a cause (a bug: one repair). Both rungs INFEASIBLE ->
+     a separately priced (8, 36) unaided-recovery test (canonical dart codes), then (9, 45) priced; no
+     residual-INFEASIBLE test until a whole-map-class blocker has controls (`p3.py` blocks one signed chirotope).
+   * Budget: 1 prep session + <= 3.0 core-h. Lab: Opus, high / Codex gpt-6-astra, high (a new encoding whose soundness
+     decides every INFEASIBLE).
+3. **Conditional, owner decision O4** (only if item 1 has full coverage with the two known maps, and the owner asks):
+   price checked replays for "cubic eight-face map classes at genus 3", stage A's negatives included (<= 10 min, 200
+   formulas), with census coverage, encoding soundness, L1 and proof provenance; for degree <= 4 the claim reads only
+   "admits a cubic resolution of one of the two map types". Default skipped. Lab: Sonnet, medium / Codex
+   gpt-6.1-sol, medium.
+4. **Ledger fixes** (no compute, with item 1's conclusion): H-261101-07 -> weakened (genera 2-3, formula scope; final
+   review 2026-11-22 point 13); E-261117-04 `tests:` emptied; a nine-face hypothesis file (credence 0.28) takes the
+   nine-face links. Lab: Sonnet, medium / Codex gpt-6.1-sol, medium.
 
-Deferred: the C2 (9, 5) remainder (chunks 10-99) and the parity pass (owner, 2026-11-22: to the paper); plain formulas
-on the 12562 symmetric (9, 4) maps (T + D = 2; reopens if item 1's premise fails); C3 at (9, 6) (below the gate);
-E-261116-08, L6 at k = 5, 6, P4, nine-plane sampling, I-261117-03, the asymmetric full (8, 3) sweep and E-261112-02
-Stage B (both reopen on a new (8, 3) map), the curved-face encoder, the deletion sieve, E-261101-08, the (10, 4)
-replay. Parked: P3-sym for nine faces (3bd), I-261117-04. Closed for the laptop: (11, 5), face-transitive nine faces
-(genus 4, 7), C2 at genus >= 6. None is refuted. Previous plans and their results remain in the dated reviews and
-STATUS.
+Owner decision O5 (no lab item): if both gates close, park nine faces and consolidate, or run the C2 (9, 5) remainder
+(~122 core-h, two nights).
 
-## Queue: constructive targets on the laptop (owner-approved 2026-11-12, reordered 2026-11-22)
+Deferred: the C2 (9, 5) remainder (O5) and parity (paper); plain formulas on the symmetric (9, 4) maps (on the 790
+free-C2 (8, 3) maps plain SAT = the two known, STATUS 3bk); C3 at (9, 6); L6 at k = 5, 6 (with O4); E-261110-01,
+E-261116-08, P4, I-261117-03, the curved-face encoder, the deletion sieve, E-261101-08, the (10, 4) replay. Parked:
+P3-sym for nine faces (3bd), I-261117-04. Closed for the laptop: (11, 5), face-transitive nine faces (genus 4, 7), C2
+at genus >= 6, the equivelar (9, 4) slice (3bn), equivelar genus 7. None is refuted. Previous plans and their results
+remain in the dated reviews and STATUS.
+
+## Queue: constructive targets on the laptop (owner-approved 2026-11-12, reordered 2026-11-23)
 
 A queue row is not a launch: commit its PLAN and pass its gates before compute. "J" = jump (2 reaches the target
 genus directly).
 
 | ID | State | Tests | Question | T D F G R | Budget | Stop rule |
 |---|---|---|---|---|---|---|
-| [E-261117-04](experiments/E-261117-04-equivelar-price-pilot/) | planned (the nine-face main line since 2026-11-22: week items 1, 3, 4) | H-261101-07 | **Explore, J 2.** P6: the equivelar slice by plain per-map formulas; stage A the (8, 3) rung (seven 2-regular patterns, both known maps unaided) with the enrichment control on the 790 free-C2 (8, 3) maps; stage B the (9, 4) census (eight patterns, guards raised to 9); stage C the (9, 4) plain pass | 2 2 2 1 2 | A <= 1 core-h lab-run; B price ~4, cap 12 core-h; C price 5-31 core-h, one owner night <= 80 core-h; no (9, 4) night before A and B pass | failed control (one repair), a count or overlap mismatch, B projection > 12 core-h, C price > 1 night (completed patterns first), first verified candidate |
+| [E-261123-01](experiments/E-261123-01-full-8-3-classification/) | planned 2026-11-23 (week item 1) | - | **Rung, J 0.** The full cubic (8, 3) census (all 1806 extra-edge inputs) and the plain formula on every admissible class, with the 10-element truncated-solid controls as step 0: the gate of any non-equivelar (9, 4) stratum and a formula-scope classification of the eight-face case | 2 2 2 2 2 | census <= 4, formulas <= 12 core-h; lab jobs <= 50 min wall, else an owner day run | step 0 failure, failed census control, incomplete coverage at the caps (to the lead), all classes recorded or first verified candidate |
+| [E-261123-02](experiments/E-261123-02-p3-guarded-label-breaking/) | planned 2026-11-23 (week item 2) | - | **Explore, J 2.** P3 (E-261116-07) with guarded face-label symmetry breaking on the known negatives (8, 30) and (9, 39), 16 cubes each; then a priced (8, 36) unaided recovery | 1 2 2 2 2 | 1 prep session + <= 3.0 core-h | any UNKNOWN at a negative rung (park), a model at a negative rung (one repair), both rungs INFEASIBLE (to the discovery price) |
+| [E-261117-04](experiments/E-261117-04-equivelar-price-pilot/) | done 2026-11-22 (A, STATUS 3bk: rung passed, only the known maps SAT; B, 3bl: 1071 admissible (9, 4) classes; C, 3bn: all 1071 plain formulas UNSAT-SOLVER; 6.7 core-h) | H-261101-07 | **Explore, J 2.** P6: the equivelar slice by plain per-map formulas; stage A the (8, 3) rung (seven 2-regular patterns, both known maps unaided) with the enrichment control on the 790 free-C2 (8, 3) maps; stage B the (9, 4) census (eight patterns, guards raised to 9); stage C the (9, 4) plain pass | 2 2 2 1 2 | A <= 1 core-h lab-run; B price ~4, cap 12 core-h; C price 5-31 core-h, one owner night <= 80 core-h; no (9, 4) night before A and B pass | failed control (one repair), a count or overlap mismatch, B projection > 12 core-h, C price > 1 night (completed patterns first), first verified candidate |
 | [E-261119-01](experiments/E-261119-01-p3sym-power-ladder/) | done 2026-11-20 (discovery PASS; refutation UNDERPOWERED@10.0 core-h; symmetric (8, 3) slice OPEN after two known maps; STATUS 3bd) | H-261101-07 | **Explore, J 0.** P3-sym power on known answers: free C2 at (8, 36) finds a model (66 orbits), free C2 at (8, 30) and C3 at (9, 39) predicted INFEASIBLE (3d); the symmetric (8, 3) slice by paired-run map blocking | 2 1 2 1 2 | 1 session + <= 20 core-h, one owner evening | failed control or blocking control, all units at their caps, a contradiction with 3d, or first verified candidate |
-| [E-261119-02](experiments/E-261119-02-symmetric-nine-face-census/) | running (symmetric route ended at genus 4, lead review 2026-11-22 final; stage A done 2026-11-20, STATUS 3be; stage B pass 1 all 12562 (9, 4) records UNSAT-SOLVER, STATUS 3bf; C3 (9, 5) no map, STATUS 3bg; C2 (9, 5) 978228 classes, STATUS 3bh; amendment 6, the random 10 %: 97830 of 97830 UNSAT-SOLVER, close-out is week item 5; amendment 7, the conditional free-C2 (8, 3) symmetric pass with 862 actions, week item 2; remainder chunks 10-99 postponed by the owner) | H-261101-07 | **Explore, J 2.** Symmetric nine-face census (C3 3+3+3, C2 4 x 2 + 1) by lifting the C3 exact cover, then per-map symmetric formulas at 10 elements | 2 2 1 2 2 | stage A 1 session, <= 1 core-h shared by C3 and C2; stage B <= 10 core-h owner run | census control failure, (9, 4) census over 1 core-h per family, all formulas recorded or first verified candidate |
+| [E-261119-02](experiments/E-261119-02-symmetric-nine-face-census/) | done 2026-11-22 (symmetric route ended at genus 4, UNSAT-SOLVER at formula scope; STATUS 3bm; lead review 2026-11-22 final; stage A done 2026-11-20, STATUS 3be; stage B pass 1 all 12562 (9, 4) records UNSAT-SOLVER, STATUS 3bf; C3 (9, 5) no map, STATUS 3bg; C2 (9, 5) 978228 classes, STATUS 3bh; amendment 6, the random 10 %: 97830 of 97830 UNSAT-SOLVER, concluded in week item 5; amendment 7, the conditional free-C2 (8, 3) symmetric pass with 862 actions, skipped in week item 2; remainder chunks 10-99 postponed by the owner) | H-261101-07 | **Explore, J 2.** Symmetric nine-face census (C3 3+3+3, C2 4 x 2 + 1) by lifting the C3 exact cover, then per-map symmetric formulas at 10 elements | 2 2 1 2 2 | stage A 1 session, <= 1 core-h shared by C3 and C2; stage B <= 10 core-h owner run | census control failure, (9, 4) census over 1 core-h per family, all formulas recorded or first verified candidate |
 | [E-261119-03](experiments/E-261119-03-cayley-nine-faces-genus-7/) | done 2026-11-22 (no admissible class; STATUS 3bj; owner exception to T + D >= 3) | H-261101-07 | **Explore, J 2.** Face-transitive (Cayley) nine-face maps at genus 7 (Z9, Z3 x Z3, valence 14), plain formula on any admissible class (owner's idea) | 1 1 2 1 2 | <= 1 session | no admissible class, all formulas recorded or first verified candidate |
 | [E-261118-04](experiments/E-261118-04-one-face-deletion-sieve-9-3/) | done (OPEN-LOW, pilot; owner) | H-261101-07 | **Explore, J 0.** (9, 3) one-face deletion sieve: 203 maps x 9 deleted faces at 9 elements; quasi-polyhedra with one curved face (owner's idea) | 1 2 2 1 2 | 1 session, <= 1 core-h, 10 shards | failed control, all 1827 formulas recorded or cap |
 | [E-261118-01](experiments/E-261118-01-face-transitive-8-3-formulas/) | done 2026-11-18 (classes 1-5 all UNSAT-SOLVER, Roest-Vigh's realized; STATUS 3ba) | H-261101-07 | **Exploit, J 0.** N1b: the five unrealized face-transitive (8, 3) classes by the plain and normalised formulas at 9 elements | 2 1 2 1 2 | <= 0.2 core-h, 10 shards | Roest-Vigh's class not SAT (bug), all ten formulas recorded or first verified candidate |
@@ -351,7 +347,7 @@ CONJECTURE: planning weights of one AI session, not evidence; moved by the "scen
 | Case | exists | Evidence in one line |
 |---|---|---|
 | (10, 3) face-minimal, single adjacencies (S6) | 0.25 | the vertex version is realizable at genus 3 (CLAIMED); the face version has no data; nothing run |
-| nine mutually adjacent faces, genus >= 4 (S1) | 0.35 | 2026-11-22 (owner-approved final lead review, point 11; was 0.45): the pre-registered forecast "both uniform symmetric slices UNSAT-SOLVER at genus 4 -> 0.35-0.40" fired; C3 (9, 5) has no map (EXACT); the C2 (9, 5) random 10 % and 20 plain formulas on symmetric nine-face maps UNSAT-SOLVER; none is a negative result; asymmetric maps untouched. 2026-11-18 (owner-approved lead review §7; was 0.55): zero hits in the C3 3+3+3 and C2 4 x 2 + 1 nine-plane families, the face-transitive (9, 4) slice empty (EXACT), Stage A 0 of 2004, the rung-below census only its source; none is a negative result. Eight exist at genus 3 (Mizhaev, Roest-Vigh); (9, 3) excluded at formula scope |
+| nine mutually adjacent faces, genus >= 4 (S1) | 0.28 | 2026-11-23 (owner-approved final lead review, point 11; was 0.35): all 1071 admissible equivelar (9, 4) plain formulas UNSAT-SOLVER (STATUS 3bn), the slice analogous to the only realizable (8, 3) one (2 of 51); non-equivelar genus 4 and genus >= 5 untouched; none is a negative result. 2026-11-22 (owner-approved final lead review, point 11; was 0.45): the pre-registered forecast "both uniform symmetric slices UNSAT-SOLVER at genus 4 -> 0.35-0.40" fired; C3 (9, 5) has no map (EXACT); the C2 (9, 5) random 10 % and 20 plain formulas on symmetric nine-face maps UNSAT-SOLVER; none is a negative result; asymmetric maps untouched. 2026-11-18 (owner-approved lead review §7; was 0.55): zero hits in the C3 3+3+3 and C2 4 x 2 + 1 nine-plane families, the face-transitive (9, 4) slice empty (EXACT), Stage A 0 of 2004, the rung-below census only its source; none is a negative result. Eight exist at genus 3 (Mizhaev, Roest-Vigh); (9, 3) excluded at formula scope |
 | relaxed Szilassi-12, genus >= 7 (S1) | 0.40 | no data; the engine is calibrated at 8 planes only |
 | (10, 4) S5 | 0.10 (the row of the table above) | stratum C 360/360 UNSAT-SOLVER is weak evidence against; laptop-only compute raises "cannot tell" |
 | S0 | the S0 table above (A = 0.20) is unchanged (owner, 2026-11-10); the handoff session's weight was 0.05 | no S0 evidence since 2026-11-01 |
