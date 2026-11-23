@@ -76,5 +76,5 @@ deletion sieve, E-261101-08, (10, 4) replay. Parked: P3-sym, nine faces. Closed 
 * Credences (CONJECTURE): nine faces 0.35 -> 0.28 (point 11); relaxed Szilassi-12 stays 0.40 (point 12); the others unchanged, no new datum.
 
 ## 4. Owner decisions
-* Now: §2, §3 and the credence. After approval this session applies `ROADMAP.md`, `STATUS.md`, `STRATEGY.md`, the idea files (N1, N2, N4), `TODO.md` and the
+* Approved by the owner as written (2026-11-23): §2, §3 and the credence. This session applied `ROADMAP.md`, `STATUS.md`, `STRATEGY.md`, the idea files (N1, N2, N4), `TODO.md` and the
   handover; then the end-of-week PR of `lab/2026-11-22` and the branch `lab/2026-11-23`. Later: O4, O5.

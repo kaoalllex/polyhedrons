@@ -1162,3 +1162,9 @@ Mizhaev's maps, both realized unaided; the rest UNSAT-SOLVER; 0.18 core-h. Week 
 2026-11-22 — E-261117-04 concluded (week item 4, STATUS 3bn): P6 stage C, the plain formulas of all 1071 admissible
 equivelar (9, 4) classes UNSAT-SOLVER (0 SAT, 0 TIMEOUT, max 54.9 s, 3.43 core-h, lab run); controls pass.
 `experiments/E-261117-04-equivelar-price-pilot/CONCLUSION.md`.
+
+2026-11-23 — Lead review 2026-11-23 approved by the owner after the three-step cycle (`reviews/strategy-review-2026-11-23-final.md`,
+with the draft and `-codex.md`): P6 ends at the equivelar slice; nine faces stay first behind two gates, the full (8, 3)
+census and plain pass with the truncated-solid 10-element controls as step 0 (E-261123-01) and P3 with guarded
+face-label breaking on the known negatives (E-261123-02); nine-face credence 0.35 -> 0.28. Session checks only
+(~1.15 core-h review, cross-review checks A-F). Ideas I-261123-01 to -03. New week branch `lab/2026-11-23`.

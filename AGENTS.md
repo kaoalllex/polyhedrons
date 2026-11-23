@@ -3,11 +3,12 @@
 This repository has two parts:
 - the public 3D viewer: `index.html`, published by GitHub Pages from `main`, so every commit on `main` is live;
 - the research: `research/12-faced-polyhedron/`. Does a 12-face Szilassi-type polyhedron exist? Current focus
-  (`STRATEGY.md`, owner-approved 2026-11-22): one constructive target at a time on the owner's laptop, subject to
+  (`STRATEGY.md`, owner-approved 2026-11-23): one constructive target at a time on the owner's laptop, subject to
   the significance filter. Nine mutually adjacent faces (SPEC S1, genus free) first. The symmetric route (C3 3+3+3,
-  C2 4 x 2 + 1) ended at genus 4 (the C2 (9, 5) remainder postponed, parity with the paper); the main line is P6, the
-  equivelar slice by plain per-map formulas: the (8, 3) rung with an enrichment control first, then the (9, 4)
-  census and plain pass; no nine-plane sampling night without a rung-below rate; mirror families only by plain
+  C2 4 x 2 + 1) ended at genus 4 (the C2 (9, 5) remainder postponed, parity with the paper) and P6 at the equivelar
+  slice (all 1071 (9, 4) plain formulas UNSAT-SOLVER); two gates remain: the full (8, 3) census and plain pass
+  (E-261123-01, truncated-solid controls first), then P3 with guarded label breaking on the known negatives
+  (E-261123-02); no nine-plane sampling night without a rung-below rate; mirror families only by plain
   formulas; P3-sym parked for nine faces; (11, 5) closed for the laptop; S6 parked after (10, 3) (all 20 formulas
   UNSAT-SOLVER, replay deferred with the note); the S0 price probe withdrawn. (8, 2) and (9, 3) are decided (conditional negative); all admissible (10, 4) maps are
   UNSAT-SOLVER (planning only, replay parked); the note is deferred; the 12-face problem is parked, not abandoned.

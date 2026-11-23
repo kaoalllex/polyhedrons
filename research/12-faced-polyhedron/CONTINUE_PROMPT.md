@@ -9,14 +9,14 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-23, lead review draft done and accepted by the owner; strategy cycle step 2 next)
+## Hand-over (2026-11-23, lead review approved and applied; week plan 2026-11-23, item 1 next)
 
-* Branch `lab/2026-11-22`. Week plan of 2026-11-22 done (STATUS 3bk-3bn; item 2 skipped). No run in flight.
-* Lead review draft (cycle step 1): `reviews/strategy-review-2026-11-23.md`, accepted by the owner without corrections (its
-  "Owner's decisions"). Proposed: P6 is spent at genus 4; nine faces stays first behind two gates: item 1, the full (8, 3) census
-  and plain pass (E-261123-01) with a 10-element truncated-solid power control as step 0; item 2, P3 with face-label symmetry
-  breaking on the known negatives (8, 30), (9, 39) (E-261123-02); credence 0.35 -> 0.28. Session checks K1, K2 in
-  `reviews/strategy-review-2026-11-23-checks/` (not ledger evidence).
-* Next: step 2, the Codex cross-review (gpt-6-astra, high) -> `reviews/strategy-review-2026-11-23-codex.md`; then step 3, the
-  final version and the owner's approval, which applies ROADMAP, STATUS, STRATEGY, idea files, TODO and this block; then the
-  end-of-week PR of `lab/2026-11-22` and the new branch `lab/2026-11-23`. Nothing of the draft is applied yet.
+* Branch `lab/2026-11-23` (from `main` after the week PR of `lab/2026-11-22`). Week plan: `ROADMAP.md` "Week plan"
+  (`reviews/strategy-review-2026-11-23-final.md` §2). No run in flight.
+* Next: item 1, E-261123-01 (folder with a planned README): PLAN first (skill `experiment-start`); step 0 registers the
+  two truncated-solid controls (cut planes and links in the week plan; cross-review check A passed them as a session
+  check); then the full (8, 3) census (1806 inputs, input-slice units) and the plain pass, lab jobs <= 50 min after a
+  one-line permission. Then item 2, E-261123-02 (P3 with guarded label breaking; I-261123-01). Item 4 rides with item
+  1's conclusion; item 3 only on the owner's O4.
+* Review session checks (not ledger evidence): `reviews/strategy-review-2026-11-23-checks/` (K1 census split, K2 timing).
+* For the lead: none.
