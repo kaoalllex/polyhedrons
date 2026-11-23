@@ -9,15 +9,14 @@ Continue the 12-face research in `research/12-faced-polyhedron/`.
 
 Use the handover below and follow `PROTOCOL.md` §8 to choose and carry out the current stage.
 
-## Hand-over (2026-11-22, week plan done: items 1, 3, 4, 5 done, item 2 skipped)
+## Hand-over (2026-11-23, lead review draft done and accepted by the owner; strategy cycle step 2 next)
 
-* Branch `lab/2026-11-22`. Week plan: `ROADMAP.md` "Week plan". Done: item 1 (STATUS 3bk), item 3 (3bl), item 5 (3bm)
-  and item 4 (3bn: E-261117-04 concluded, the plain formulas of all 1071 admissible equivelar (9, 4) classes
-  UNSAT-SOLVER, 0 SAT, 0 TIMEOUT, max 54.9 s, controls pass; 3.43 core-h, lab run). Item 2 skipped (no input).
-* No run in flight. `results/stageC_c0|c1/` committed as for stage A (manifests, results, controls; raw attempt files
-  ignored; `overnight/move_raw.py` after the commit).
-* Next: the weekly lead review (`strategy-review`, strongest model): item 4's tree sends the all-UNSAT-SOLVER outcome
-  to the lead, who re-plans the nine-face line; then the end-of-week PR into `main` after the owner approves.
-* For the lead: the 60 s cap nearly bound on 3 maps (max 54.9 s, patterns 9 and 5+4); a re-plan that reuses these
-  formulas at a lower cap must price that. Non-equivelar (9, 4) maps were never run by plain formulas.
-* Tooling: `p6.py build-c|price|summary --stage stageC|followup --stage stageC`, `run.sh` (`Q=stageC_*`).
+* Branch `lab/2026-11-22`. Week plan of 2026-11-22 done (STATUS 3bk-3bn; item 2 skipped). No run in flight.
+* Lead review draft (cycle step 1): `reviews/strategy-review-2026-11-23.md`, accepted by the owner without corrections (its
+  "Owner's decisions"). Proposed: P6 is spent at genus 4; nine faces stays first behind two gates: item 1, the full (8, 3) census
+  and plain pass (E-261123-01) with a 10-element truncated-solid power control as step 0; item 2, P3 with face-label symmetry
+  breaking on the known negatives (8, 30), (9, 39) (E-261123-02); credence 0.35 -> 0.28. Session checks K1, K2 in
+  `reviews/strategy-review-2026-11-23-checks/` (not ledger evidence).
+* Next: step 2, the Codex cross-review (gpt-6-astra, high) -> `reviews/strategy-review-2026-11-23-codex.md`; then step 3, the
+  final version and the owner's approval, which applies ROADMAP, STATUS, STRATEGY, idea files, TODO and this block; then the
+  end-of-week PR of `lab/2026-11-22` and the new branch `lab/2026-11-23`. Nothing of the draft is applied yet.

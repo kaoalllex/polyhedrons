@@ -121,14 +121,11 @@ to -24, H-261029-*, H-261101-01 to -17 except -07, the 2026-10-29 to -11-03 idea
 2. **An approved change not applied, a mislink repeated.** Final 2026-11-22 point 13 (`strategy-review-2026-11-22-final.md`:40) made H-261101-07
    weakened at genera 2-3; the file still says open (`hypotheses/H-261101-07-maximal-face-neighbourly-exist.md`:5, :137, :144). `E-261117-04/README.md`:10
    lists `tests: [H-261101-07]`, but (8, 3), (9, 4) are not maximal (SPEC S5): last week's removed mislink. Fix: item 4.
-3. **Text budget.** E-261117-04 amendment 2 runs 34 lines against 15 (`PLAN.md`:98-131; `PROTOCOL.md` §8b).
-4. **Lean output.** Four control files are committed 30 times each, byte-identical (`E-261117-04/results/stageC_c*/*/attempt_*/controls/`, e.g.
-   `nine_plane_control.model.json`, 7842 lines a copy). Fix: item 4.
-5. **Prices.** The last review priced stage C at 5-31 core-h (3.43 used) and stage B at ~4 (3.1). Chunk-0 pricing worked (13753 projected,
-   11479 used). Keep it.
-6. **Cost, chains, claims.** 7 commits, code +960 / markdown +420 lines, 6.7 core-h new compute, two amendments, P1-P12 held. Stop: P6 beyond the
-   equivelar slice, plain formulas on symmetric maps, P3-sym at nine faces. STATUS 3bk-3bn are scoped correctly; `E-261117-04/README.md`:25
-   ("cannot show that Roest-Vigh and Mizhaev are alone") stays true until item 1.
+3. **Budget, lean output, prices.** E-261117-04 amendment 2 runs 34 lines against 15 (`PLAN.md`:98-131); four control files are committed 30 times
+   each, byte-identical (`results/stageC_c*/*/attempt_*/controls/`, fix: item 4); chunk-0 pricing worked (13753 projected, 11479 used), while the
+   last review priced stage C at 5-31 core-h (3.43 used).
+4. **Cost, chains, claims.** 7 commits, code +960 / markdown +420 lines, 6.7 core-h, two amendments, P1-P12 held. Stop: P6 beyond the equivelar slice,
+   plain formulas on symmetric maps, P3-sym at nine faces. STATUS 3bk-3bn are scoped correctly (`E-261117-04/README.md`:25 holds until item 1).
 
 ## 7. Credences (CONJECTURE, planning weights)
 * **Nine faces, genus >= 4: 0.35 -> 0.28.** The slice analogous to the only realizable (8, 3) one is empty at (9, 4) at formula scope (3bn), as is
@@ -142,9 +139,12 @@ to -24, H-261029-*, H-261101-01 to -17 except -07, the 2026-10-29 to -11-03 idea
 pass, after a one-line permission (10 cores, <= 50 min a job). 3. Lab (same): item 2 and its (8, 30) rung; item 4 with item 1's conclusion.
 
 ## 9. Session checks (scripts and outputs in `strategy-review-2026-11-23-checks/`, ~1.15 core-h, commit 354e6f81)
-* **K1** (`k1_full_census_8_3.py`: `census.run(8, 3)` on the 1806 inputs split mod 8, enumerator cap 330 s per process, 531 s wall, 4068 core-s):
-  incomplete by design, 1159 of 1806 inputs; 214155 classes, 19745 admissible (Aut+ 1: 19409, 2: 319, larger: 17); controls partial as expected
-  (25 of 97 equivelar, 321 of 790 free-C2). Projection ~330-520 thousand classes, ~30-48 thousand admissible (inputs done; free-C2 share). NUMERICAL.
-* **K2** (`k2_plain_sample_8_3.py`: stage A's `tranche.submap_formula` at 9 elements, kissat 4.0.4, cap 60 s, 8 processes, 26 s wall): 240 random
-  admissible trivial-Aut+ non-equivelar classes from K1 (seed 2611230201), 240 UNSAT-SOLVER, solve mean 0.30 s, median 0.24, max 1.12. Pass price
-  30-48 thousand x 0.3-0.8 s (stage A's ledger: 0.78 s a unit) = 2.5-10.4 core-h. NUMERICAL.
+* **K1** (`k1_full_census_8_3.py`: `census.run(8, 3)`, 1806 inputs split mod 8, cap 330 s a process, 531 s wall, 4068 core-s): 1159 inputs done; 214155
+  classes, 19745 admissible (Aut+ 1: 19409, 2: 319, larger: 17); controls partial as expected (25 of 97 equivelar, 321 of 790 free-C2). Projection
+  ~330-520 thousand classes, ~30-48 thousand admissible (by inputs done; by the free-C2 share found). NUMERICAL.
+* **K2** (`k2_plain_sample_8_3.py`: stage A's formula at 9 elements, kissat 4.0.4, cap 60 s, 8 processes, 26 s wall): 240 random admissible trivial-Aut+
+  non-equivelar classes of K1 (seed 2611230201), all UNSAT-SOLVER, mean 0.30 s, max 1.12; pass 30-48 thousand x 0.3-0.8 s = 2.5-10.4 core-h. NUMERICAL.
+
+## Owner's decisions (2026-11-23, on this draft)
+* The owner accepted the draft's conclusions as written, with no corrections: the verdict, the week plan (items 1-4), O1-O3 and the credences.
+  Nothing is applied yet: the Codex cross-review (step 2) and the final version (step 3) follow, and step 3's approval applies the changes.
